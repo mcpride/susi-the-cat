@@ -1,0 +1,1868 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20261103155355" version="4.0.374" date="20261103162607" scan="1" scanned="20261103162607">
+  <lang id="en"/>
+  <lang id="de"/>
+  <source class="TTsvSource" name="de-core.tsv" original="en" date="20261103162544">
+    <outputfile dir="." localized="&lt;iso&gt;-core.&lt;ext&gt;"/>
+    <node class="TTsvNode" name="de-core.tsv" state="0" created="20261103155355">
+      <row id="Not translated" state="0" created="20261103155355" note="Status" notereadonly="1">
+        <native>Not translated</native>
+        <lang id="de" date="20261103155355" status="3">Nicht übersetzt</lang>
+      </row>
+      <row id="Best guess" state="0" created="20261103155355" note="Status" notereadonly="1">
+        <native>Best guess</native>
+        <lang id="de" date="20261103155355" status="3">Vermutung</lang>
+      </row>
+      <row id="Auto translated" state="0" created="20261103155355" note="Status" notereadonly="1">
+        <native>Auto translated</native>
+        <lang id="de" date="20261103155355" status="3">Automatisch übersetzt</lang>
+      </row>
+      <row id="Translated" state="0" created="20261103155355" note="Status" notereadonly="1">
+        <native>Translated</native>
+        <lang id="de" date="20261103155355" status="3">Übersetzt</lang>
+      </row>
+      <row id="For review" state="0" created="20261103155355" note="Status" notereadonly="1">
+        <native>For review</native>
+        <lang id="de" date="20261103155355" status="3">Zur Prüfung</lang>
+      </row>
+      <row id="Complete" state="0" created="20261103155355" note="Status" notereadonly="1">
+        <native>Complete</native>
+        <lang id="de" date="20261103155355" status="3">Abgeschlossen</lang>
+      </row>
+      <row id="New" state="0" created="20261103155355" note="Status" notereadonly="1">
+        <native>New</native>
+        <lang id="de" date="20261103155355" status="3">Neu</lang>
+      </row>
+      <row id="Unused" state="0" created="20261103155355" note="Status" notereadonly="1">
+        <native>Unused</native>
+        <lang id="de" date="20261103155355" status="3">Nicht verwendet</lang>
+      </row>
+      <row id="In use" state="0" created="20261103155355" note="Status" notereadonly="1">
+        <native>In use</native>
+        <lang id="de" date="20261103155355" status="3">In Verwendung</lang>
+      </row>
+      <row id="Changed" state="0" created="20261103155355" note="Status" notereadonly="1">
+        <native>Changed</native>
+        <lang id="de" date="20261103155355" status="3">Geändert</lang>
+      </row>
+      <row id="write method|Different" state="0" created="20261103155355" note="Status#lContext: write method" notereadonly="1">
+        <native>Different</native>
+        <lang id="de" date="20261103155355" status="3">Unterschiedliche</lang>
+      </row>
+      <row id="write method|Translated" state="0" created="20261103155355" note="Status#lContext: write method" notereadonly="1">
+        <native>Translated</native>
+        <lang id="de" date="20261103155355" status="3">Übersetzte</lang>
+      </row>
+      <row id="write method|All" state="0" created="20261103155355" note="Status#lContext: write method" notereadonly="1">
+        <native>All</native>
+        <lang id="de" date="20261103155355" status="3">Alle</lang>
+      </row>
+      <row id="Emulation" state="0" created="20261103155355" note="Pseudo translation" notereadonly="1">
+        <native>Emulation</native>
+        <lang id="de" date="20261103155355" status="3">Emulation</lang>
+      </row>
+      <row id="Replace" state="0" created="20261103155355" note="Pseudo translation" notereadonly="1">
+        <native>Replace</native>
+        <lang id="de" date="20261103155355" status="3">Ersetzen</lang>
+      </row>
+      <row id="Reduce" state="0" created="20261103155355" note="Pseudo translation" notereadonly="1">
+        <native>Reduce</native>
+        <lang id="de" date="20261103155355" status="3">Reduzieren</lang>
+      </row>
+      <row id="Longest translation" state="0" created="20261103155355" note="Pseudo translation" notereadonly="1">
+        <native>Longest translation</native>
+        <lang id="de" date="20261103155355" status="3">Längste Übersetzung</lang>
+      </row>
+      <row id="@plural|{n} file|{n} files" state="0" created="20261103155355" note="Scan / build / translation memory#lContext: @plural" notereadonly="1">
+        <native>{n} file|{n} files</native>
+        <lang id="de" date="20261103155355" status="3">{n} Datei|{n} Dateien</lang>
+      </row>
+      <row id="{files} scanned: {rows} rows, {new} new, {changed} changed, {unused} unused, {errors} errors" state="0" created="20261103155355" note="Scan / build / translation memory" notereadonly="1">
+        <native>{files} scanned: {rows} rows, {new} new, {changed} changed, {unused} unused, {errors} errors</native>
+        <lang id="de" date="20261103155355" status="3">{files} gescannt: {rows} Zeilen, {new} neu, {changed} geändert, {unused} unbenutzt, {errors} Fehler</lang>
+      </row>
+      <row id="{files} written, {unchanged} unchanged, {errors} errors" state="0" created="20261103155355" note="Scan / build / translation memory" notereadonly="1">
+        <native>{files} written, {unchanged} unchanged, {errors} errors</native>
+        <lang id="de" date="20261103155355" status="3">{files} erstellt, {unchanged} unverändert, {errors} Fehler</lang>
+      </row>
+      <row id="invalid wildcard '{file}': {error}" state="0" created="20261103155355" note="Scan / build / translation memory" notereadonly="1">
+        <native>invalid wildcard '{file}': {error}</native>
+        <lang id="de" date="20261103155355" status="3">Ungültiger Platzhalter '{file}': {error}</lang>
+      </row>
+      <row id="source type not supported by susi" state="0" created="20261103155355" note="Scan / build / translation memory" notereadonly="1">
+        <native>source type not supported by susi</native>
+        <lang id="de" date="20261103155355" status="3">Quelltyp wird von susi nicht unterstützt</lang>
+      </row>
+      <row id="{file}: only .json, .resx, .po, .pot and .tsv are supported" state="0" created="20261103155355" note="Scan / build / translation memory" notereadonly="1">
+        <native>{file}: only .json, .resx, .po, .pot and .tsv are supported</native>
+        <lang id="de" date="20261103155355" status="3">{file}: Nur .json, .resx, .po, .pot und .tsv werden unterstützt</lang>
+      </row>
+      <row id="@plural|{n} translation imported|{n} translations imported" state="0" created="20261103155355" note="Scan / build / translation memory#lContext: @plural" notereadonly="1">
+        <native>{n} translation imported|{n} translations imported</native>
+        <lang id="de" date="20261103155355" status="3">{n} Übersetzung übernommen|{n} Übersetzungen übernommen</lang>
+      </row>
+      <row id="Other" state="0" created="20261103155355" note="Scan / build / translation memory" notereadonly="1">
+        <native>Other</native>
+        <lang id="de" date="20261103155355" status="3">Andere</lang>
+      </row>
+      <row id="source '{source}' is already part of the project" state="0" created="20261103155355" note="Scan / build / translation memory" notereadonly="1">
+        <native>source '{source}' is already part of the project</native>
+        <lang id="de" date="20261103155355" status="3">Quelle '{source}' ist bereits Teil des Projekts</lang>
+      </row>
+      <row id="{file}: output file equals the original file (check the output pattern)" state="0" created="20261103155355" note="Scan / build / translation memory" notereadonly="1">
+        <native>{file}: output file equals the original file (check the output pattern)</native>
+        <lang id="de" date="20261103155355" status="3">{file}: Ausgabedatei ist identisch mit der Originaldatei (Ausgabemuster prüfen)</lang>
+      </row>
+      <row id="{exact} translated exactly, {fuzzy} as best guess, {none} without match" state="0" created="20261103155355" note="Scan / build / translation memory" notereadonly="1">
+        <native>{exact} translated exactly, {fuzzy} as best guess, {none} without match</native>
+        <lang id="de" date="20261103155355" status="3">{exact} exakt übersetzt, {fuzzy} als Vermutung, {none} ohne Treffer</lang>
+      </row>
+      <row id="not found" state="0" created="20261103155355" note="Scan / build / translation memory" notereadonly="1">
+        <native>not found</native>
+        <lang id="de" date="20261103155355" status="3">nicht gefunden</lang>
+      </row>
+      <row id="unsupported" state="0" created="20261103155355" note="Scan / build / translation memory" notereadonly="1">
+        <native>unsupported</native>
+        <lang id="de" date="20261103155355" status="3">nicht unterstützt</lang>
+      </row>
+      <row id="{updated} translations imported, {unchanged} unchanged, {kept} existing kept, {missing} rows not found, {changed} skipped because the original changed" state="0" created="20261103155355" note="Exchange (Excel/CSV/XLIFF)" notereadonly="1">
+        <native>{updated} translations imported, {unchanged} unchanged, {kept} existing kept, {missing} rows not found, {changed} skipped because the original changed</native>
+        <lang id="de" date="20261103155355" status="3">{updated} Übersetzungen importiert, {unchanged} unverändert, {kept} bestehende beibehalten, {missing} Zeilen nicht gefunden, {changed} mit geändertem Original übersprungen</lang>
+      </row>
+      <row id="; unknown languages: {langs}" state="0" created="20261103155355" note="Exchange (Excel/CSV/XLIFF)" notereadonly="1">
+        <native>; unknown languages: {langs}</native>
+        <lang id="de" date="20261103155355" status="3">; unbekannte Sprachen: {langs}</lang>
+      </row>
+      <row id="Source" state="0" created="20261103155355" note="Exchange (Excel/CSV/XLIFF)" notereadonly="1">
+        <native>Source</native>
+        <lang id="de" date="20261103155355" status="3">Quelle</lang>
+      </row>
+      <row id="Context" state="0" created="20261103155355" note="Exchange (Excel/CSV/XLIFF)" notereadonly="1">
+        <native>Context</native>
+        <lang id="de" date="20261103155355" status="3">Kontext</lang>
+      </row>
+      <row id="Comment" state="0" created="20261103155355" note="Exchange (Excel/CSV/XLIFF)" notereadonly="1">
+        <native>Comment</native>
+        <lang id="de" date="20261103155355" status="3">Kommentar</lang>
+      </row>
+      <row id="Row status" state="0" created="20261103155355" note="Exchange (Excel/CSV/XLIFF)" notereadonly="1">
+        <native>Row status</native>
+        <lang id="de" date="20261103155355" status="3">Zeilenstatus</lang>
+      </row>
+      <row id="Row comment" state="0" created="20261103155355" note="Exchange (Excel/CSV/XLIFF)" notereadonly="1">
+        <native>Row comment</native>
+        <lang id="de" date="20261103155355" status="3">Zeilenkommentar</lang>
+      </row>
+      <row id="Max. characters" state="0" created="20261103155355" note="Exchange (Excel/CSV/XLIFF)" notereadonly="1">
+        <native>Max. characters</native>
+        <lang id="de" date="20261103155355" status="3">Max. Zeichen</lang>
+      </row>
+      <row id="Column &quot;{context}&quot; or &quot;Original&quot; is missing" state="0" created="20261103155355" note="Exchange (Excel/CSV/XLIFF)" notereadonly="1">
+        <native>Column "{context}" or "Original" is missing</native>
+        <lang id="de" date="20261103155355" status="3">Spalte „{context}“ oder „Original“ fehlt</lang>
+      </row>
+      <row id="Translation" state="0" created="20261103155355" note="Exchange (Excel/CSV/XLIFF)" notereadonly="1">
+        <native>Translation</native>
+        <lang id="de" date="20261103155355" status="3">Übersetzung</lang>
+      </row>
+      <row id="too many columns" state="0" created="20261103155355" note="Exchange (Excel/CSV/XLIFF)" notereadonly="1">
+        <native>too many columns</native>
+        <lang id="de" date="20261103155355" status="3">zu viele Spalten</lang>
+      </row>
+      <row id="too many rows" state="0" created="20261103155355" note="Exchange (Excel/CSV/XLIFF)" notereadonly="1">
+        <native>too many rows</native>
+        <lang id="de" date="20261103155355" status="3">zu viele Zeilen</lang>
+      </row>
+      <row id="workbook has no worksheet" state="0" created="20261103155355" note="Exchange (Excel/CSV/XLIFF)" notereadonly="1">
+        <native>workbook has no worksheet</native>
+        <lang id="de" date="20261103155355" status="3">Arbeitsmappe ohne Tabellenblatt</lang>
+      </row>
+      <row id="not an XLIFF file" state="0" created="20261103155355" note="Exchange (Excel/CSV/XLIFF)" notereadonly="1">
+        <native>not an XLIFF file</native>
+        <lang id="de" date="20261103155355" status="3">keine XLIFF-Datei</lang>
+      </row>
+      <row id="unknown exchange format: {path}" state="0" created="20261103155355" note="Exchange (Excel/CSV/XLIFF)" notereadonly="1">
+        <native>unknown exchange format: {path}</native>
+        <lang id="de" date="20261103155355" status="3">unbekanntes Austauschformat: {path}</lang>
+      </row>
+      <row id="Missing translation" state="0" created="20261103155355" note="Validation" notereadonly="1">
+        <native>Missing translation</native>
+        <lang id="de" date="20261103155355" status="3">Fehlende Übersetzung</lang>
+      </row>
+      <row id="Inconsistent format string" state="0" created="20261103155355" note="Validation" notereadonly="1">
+        <native>Inconsistent format string</native>
+        <lang id="de" date="20261103155355" status="3">Inkonsistente Formatzeichenfolge</lang>
+      </row>
+      <row id="Inconsistent tags" state="0" created="20261103155355" note="Validation" notereadonly="1">
+        <native>Inconsistent tags</native>
+        <lang id="de" date="20261103155355" status="3">Inkonsistente Tags</lang>
+      </row>
+      <row id="Invalid number of spaces" state="0" created="20261103155355" note="Validation" notereadonly="1">
+        <native>Invalid number of spaces</native>
+        <lang id="de" date="20261103155355" status="3">Ungültige Anzahl von Leerzeichen</lang>
+      </row>
+      <row id="Invalid number of line breaks" state="0" created="20261103155355" note="Validation" notereadonly="1">
+        <native>Invalid number of line breaks</native>
+        <lang id="de" date="20261103155355" status="3">Ungültige Anzahl von Zeilenumbrüchen</lang>
+      </row>
+      <row id="Missing period" state="0" created="20261103155355" note="Validation" notereadonly="1">
+        <native>Missing period</native>
+        <lang id="de" date="20261103155355" status="3">Fehlender Punkt</lang>
+      </row>
+      <row id="Missing colon" state="0" created="20261103155355" note="Validation" notereadonly="1">
+        <native>Missing colon</native>
+        <lang id="de" date="20261103155355" status="3">Fehlender Doppelpunkt</lang>
+      </row>
+      <row id="Missing exclamation mark" state="0" created="20261103155355" note="Validation" notereadonly="1">
+        <native>Missing exclamation mark</native>
+        <lang id="de" date="20261103155355" status="3">Fehlendes Ausrufezeichen</lang>
+      </row>
+      <row id="Missing question mark" state="0" created="20261103155355" note="Validation" notereadonly="1">
+        <native>Missing question mark</native>
+        <lang id="de" date="20261103155355" status="3">Fehlendes Fragezeichen</lang>
+      </row>
+      <row id="Length in characters" state="0" created="20261103155355" note="Validation" notereadonly="1">
+        <native>Length in characters</native>
+        <lang id="de" date="20261103155355" status="3">Länge in Zeichen</lang>
+      </row>
+      <row id="Translation consists of spaces only" state="0" created="20261103155355" note="Validation" notereadonly="1">
+        <native>Translation consists of spaces only</native>
+        <lang id="de" date="20261103155355" status="3">Übersetzung besteht nur aus Leerzeichen</lang>
+      </row>
+      <row id="Invalid number of hotkeys" state="0" created="20261103155355" note="Validation" notereadonly="1">
+        <native>Invalid number of hotkeys</native>
+        <lang id="de" date="20261103155355" status="3">Ungültige Anzahl von Tastenkürzeln</lang>
+      </row>
+      <row id="Duplicate translation" state="0" created="20261103155355" note="Validation" notereadonly="1">
+        <native>Duplicate translation</native>
+        <lang id="de" date="20261103155355" status="3">Doppelte Übersetzung</lang>
+      </row>
+      <row id="The translation contains only spaces." state="0" created="20261103155355" note="Validation" notereadonly="1">
+        <native>The translation contains only spaces.</native>
+        <lang id="de" date="20261103155355" status="3">Die Übersetzung enthält nur Leerzeichen.</lang>
+      </row>
+      <row id="Placeholders in the original {a}, in the translation {b}." state="0" created="20261103155355" note="Validation" notereadonly="1">
+        <native>Placeholders in the original {a}, in the translation {b}.</native>
+        <lang id="de" date="20261103155355" status="3">Platzhalter im Original {a}, in der Übersetzung {b}.</lang>
+      </row>
+      <row id="Tags in the original {a}, in the translation {b}." state="0" created="20261103155355" note="Validation" notereadonly="1">
+        <native>Tags in the original {a}, in the translation {b}.</native>
+        <lang id="de" date="20261103155355" status="3">Tags im Original {a}, in der Übersetzung {b}.</lang>
+      </row>
+      <row id="Leading/trailing spaces: original {a1}/{a2}, translation {b1}/{b2}." state="0" created="20261103155355" note="Validation" notereadonly="1">
+        <native>Leading/trailing spaces: original {a1}/{a2}, translation {b1}/{b2}.</native>
+        <lang id="de" date="20261103155355" status="3">Führende/abschließende Leerzeichen: Original {a1}/{a2}, Übersetzung {b1}/{b2}.</lang>
+      </row>
+      <row id="Line breaks: original {a}, translation {b}." state="0" created="20261103155355" note="Validation" notereadonly="1">
+        <native>Line breaks: original {a}, translation {b}.</native>
+        <lang id="de" date="20261103155355" status="3">Zeilenumbrüche: Original {a}, Übersetzung {b}.</lang>
+      </row>
+      <row id="The original ends with '{c}', the translation does not." state="0" created="20261103155355" note="Validation" notereadonly="1">
+        <native>The original ends with '{c}', the translation does not.</native>
+        <lang id="de" date="20261103155355" status="3">Das Original endet mit '{c}', die Übersetzung nicht.</lang>
+      </row>
+      <row id="The translation has {n} characters, {max} are allowed." state="0" created="20261103155355" note="Validation" notereadonly="1">
+        <native>The translation has {n} characters, {max} are allowed.</native>
+        <lang id="de" date="20261103155355" status="3">Die Übersetzung hat {n} Zeichen, erlaubt sind {max}.</lang>
+      </row>
+      <row id="Hotkeys (&amp;): original {a}, translation {b}." state="0" created="20261103155355" note="Validation" notereadonly="1">
+        <native>Hotkeys (&amp;): original {a}, translation {b}.</native>
+        <lang id="de" date="20261103155355" status="3">Tastenkürzel (&amp;): Original {a}, Übersetzung {b}.</lang>
+      </row>
+      <row id="Not translated." state="0" created="20261103155355" note="Validation" notereadonly="1">
+        <native>Not translated.</native>
+        <lang id="de" date="20261103155355" status="3">Nicht übersetzt.</lang>
+      </row>
+      <row id="&quot;{original}&quot; has been translated differently: {list}" state="0" created="20261103155355" note="Validation" notereadonly="1">
+        <native>"{original}" has been translated differently: {list}</native>
+        <lang id="de" date="20261103155355" status="3">„{original}“ wurde unterschiedlich übersetzt: {list}</lang>
+      </row>
+      <row id="Language" state="0" created="20261103155355" note="Statistics" notereadonly="1">
+        <native>Language</native>
+        <lang id="de" date="20261103155355" status="3">Sprache</lang>
+      </row>
+      <row id="Done" state="0" created="20261103155355" note="Statistics" notereadonly="1">
+        <native>Done</native>
+        <lang id="de" date="20261103155355" status="3">Fertig</lang>
+      </row>
+      <row id="Rows: {n}" state="0" created="20261103155355" note="Statistics" notereadonly="1">
+        <native>Rows: {n}</native>
+        <lang id="de" date="20261103155355" status="3">Zeilen: {n}</lang>
+      </row>
+      <row id="Words: {n}" state="0" created="20261103155355" note="Statistics" notereadonly="1">
+        <native>Words: {n}</native>
+        <lang id="de" date="20261103155355" status="3">Wörter: {n}</lang>
+      </row>
+      <row id="Characters: {n}" state="0" created="20261103155355" note="Statistics" notereadonly="1">
+        <native>Characters: {n}</native>
+        <lang id="de" date="20261103155355" status="3">Zeichen: {n}</lang>
+      </row>
+      <row id="Do not translate: {n}" state="0" created="20261103155355" note="Statistics" notereadonly="1">
+        <native>Do not translate: {n}</native>
+        <lang id="de" date="20261103155355" status="3">Nicht übersetzen: {n}</lang>
+      </row>
+    </node>
+  </source>
+  <source class="TTsvSource" name="de-cli.tsv" original="en" date="20261103162544">
+    <outputfile dir="." localized="&lt;iso&gt;-cli.&lt;ext&gt;"/>
+    <node class="TTsvNode" name="de-cli.tsv" state="0" created="20261103155355">
+      <row id="susi-cli {version} – Susi the CAT (SlMake compatible)" state="0" created="20261103162607" note="Help: general" notereadonly="1">
+        <native>susi-cli {version} – Susi the CAT (SlMake compatible)</native>
+        <lang id="de" date="20261103162607" status="3">susi-cli {version} – Susi the CAT (SlMake-kompatibel)</lang>
+      </row>
+      <row id="&lt;tasks&gt; contains one or more tasks with their options:" state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>&lt;tasks&gt; contains one or more tasks with their options:</native>
+        <lang id="de" date="20261103155355" status="3">&lt;tasks&gt; enthält einen oder mehrere Tasks mit ihren Optionen:</lang>
+      </row>
+      <row id="Add a source (creates the project if needed)" state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>Add a source (creates the project if needed)</native>
+        <lang id="de" date="20261103155355" status="3">Quelle hinzufügen (legt das Projekt bei Bedarf an)</lang>
+      </row>
+      <row id="Create localized files (alias: build, make)" state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>Create localized files (alias: build, make)</native>
+        <lang id="de" date="20261103155355" status="3">Lokalisierte Dateien erstellen (Alias: build, make)</lang>
+      </row>
+      <row id="Translate duplicate strings" state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>Translate duplicate strings</native>
+        <lang id="de" date="20261103155355" status="3">Doppelte Zeichenfolgen übersetzen</lang>
+      </row>
+      <row id="Export data to a file (.xlsx, .csv, .txt, .xlf, .tmx)" state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>Export data to a file (.xlsx, .csv, .txt, .xlf, .tmx)</native>
+        <lang id="de" date="20261103155355" status="3">Daten in eine Datei exportieren (.xlsx, .csv, .txt, .xlf, .tmx)</lang>
+      </row>
+      <row id="Insert pseudo translation" state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>Insert pseudo translation</native>
+        <lang id="de" date="20261103155355" status="3">Pseudo-Übersetzung einfügen</lang>
+      </row>
+      <row id="Import translations from a file" state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>Import translations from a file</native>
+        <lang id="de" date="20261103155355" status="3">Übersetzungen aus einer Datei importieren</lang>
+      </row>
+      <row id="Remove unused items" state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>Remove unused items</native>
+        <lang id="de" date="20261103155355" status="3">Unbenutzte Einträge entfernen</lang>
+      </row>
+      <row id="Remove pseudo translation" state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>Remove pseudo translation</native>
+        <lang id="de" date="20261103155355" status="3">Pseudo-Übersetzung entfernen</lang>
+      </row>
+      <row id="Create a project report (.html, .txt, .json)" state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>Create a project report (.html, .txt, .json)</native>
+        <lang id="de" date="20261103155355" status="3">Projektbericht erstellen (.html, .txt, .json)</lang>
+      </row>
+      <row id="Scan the project" state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>Scan the project</native>
+        <lang id="de" date="20261103155355" status="3">Projekt scannen</lang>
+      </row>
+      <row id="Translate with the translation memory" state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>Translate with the translation memory</native>
+        <lang id="de" date="20261103155355" status="3">Mit dem Translation Memory übersetzen</lang>
+      </row>
+      <row id="Validate translations" state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>Validate translations</native>
+        <lang id="de" date="20261103155355" status="3">Übersetzungen prüfen</lang>
+      </row>
+      <row id="Save translations to the translation memory" state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>Save translations to the translation memory</native>
+        <lang id="de" date="20261103155355" status="3">Übersetzungen im Translation Memory speichern</lang>
+      </row>
+      <row id="Show languages, sources and progress" state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>Show languages, sources and progress</native>
+        <lang id="de" date="20261103155355" status="3">Sprachen, Quellen und Fortschritt anzeigen</lang>
+      </row>
+      <row id="Start the MCP server (stdio) for AI agents" state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>Start the MCP server (stdio) for AI agents</native>
+        <lang id="de" date="20261103155355" status="3">MCP-Server (stdio) für KI-Agenten starten</lang>
+      </row>
+      <row id="Without a task, 'create' is run." state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>Without a task, 'create' is run.</native>
+        <lang id="de" date="20261103155355" status="3">Ohne Task wird 'create' ausgeführt.</lang>
+      </row>
+      <row id="Options:" state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>Options:</native>
+        <lang id="de" date="20261103155355" status="3">Optionen:</lang>
+      </row>
+      <row id="Quiet mode. Only errors are shown." state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>Quiet mode. Only errors are shown.</native>
+        <lang id="de" date="20261103155355" status="3">Stiller Modus. Nur Fehler werden ausgegeben.</lang>
+      </row>
+      <row id="ANSI mode (accepted; susi always writes UTF-8)." state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>ANSI mode (accepted; susi always writes UTF-8).</native>
+        <lang id="de" date="20261103155355" status="3">ANSI-Modus (wird akzeptiert; susi gibt immer UTF-8 aus).</lang>
+      </row>
+      <row id="Result code 2 on errors, 1 on warnings, otherwise 0.\nWithout -w: 1 on errors, otherwise 0." state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>Result code 2 on errors, 1 on warnings, otherwise 0.#lWithout -w: 1 on errors, otherwise 0.</native>
+        <lang id="de" date="20261103155355" status="3">Rückgabewert 2 bei Fehlern, 1 bei Warnungen, sonst 0.#lOhne -w: 1 bei Fehlern, sonst 0.</lang>
+      </row>
+      <row id="Show detailed error information." state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>Show detailed error information.</native>
+        <lang id="de" date="20261103155355" status="3">Detaillierte Fehlerinformationen anzeigen.</lang>
+      </row>
+      <row id="Show help for a task, e.g. susi-cli export -h" state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>Show help for a task, e.g. susi-cli export -h</native>
+        <lang id="de" date="20261103155355" status="3">Hilfe zu einem Task anzeigen, z. B. susi-cli export -h</lang>
+      </row>
+      <row id="Do not save the project file, even if it was changed." state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>Do not save the project file, even if it was changed.</native>
+        <lang id="de" date="20261103155355" status="3">Projektdatei nicht speichern, auch wenn sie geändert wurde.</lang>
+      </row>
+      <row id="Save the project file even after an error." state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>Save the project file even after an error.</native>
+        <lang id="de" date="20261103155355" status="3">Projektdatei auch nach einem Fehler speichern.</lang>
+      </row>
+      <row id="Language of help and messages: en, de or auto (SUSI_LANG or system language).\nDefault: environment variable SUSI_LANG, then the language setting of\nthe Susi GUI, then the system language." state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>Language of help and messages: en, de or auto (SUSI_LANG or system language).#lDefault: environment variable SUSI_LANG, then the language setting of#lthe Susi GUI, then the system language.</native>
+        <lang id="de" date="20261103155355" status="3">Sprache von Hilfe und Meldungen: en, de oder auto (SUSI_LANG oder Systemsprache).#lStandard: Umgebungsvariable SUSI_LANG, dann die Spracheinstellung#lder Susi-Oberfläche, dann die Systemsprache.</lang>
+      </row>
+      <row id="Options can also be given in the form --lang=de,fr." state="0" created="20261103155355" note="Help: general" notereadonly="1">
+        <native>Options can also be given in the form --lang=de,fr.</native>
+        <lang id="de" date="20261103155355" status="3">Optionen können auch in der Form --lang=de,fr angegeben werden.</lang>
+      </row>
+      <row id="Language codes separated by ; (e.g. de;fr-CA). Default: all languages." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Language codes separated by ; (e.g. de;fr-CA). Default: all languages.</native>
+        <lang id="de" date="20261103155355" status="3">Sprachcodes, getrennt durch ; (z. B. de;fr-CA). Standard: alle Sprachen.</lang>
+      </row>
+      <row id="Translation statuses, separated by ;:" state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Translation statuses, separated by ;:</native>
+        <lang id="de" date="20261103155355" status="3">Übersetzungsstatus, getrennt durch ;:</lang>
+      </row>
+      <row id="Only these sources (names, separated by ;)." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Only these sources (names, separated by ;).</native>
+        <lang id="de" date="20261103155355" status="3">Nur diese Quellen (Namen, getrennt durch ;).</lang>
+      </row>
+      <row id="Skip these sources." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Skip these sources.</native>
+        <lang id="de" date="20261103155355" status="3">Diese Quellen auslassen.</lang>
+      </row>
+      <row id="Replace existing translations." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Replace existing translations.</native>
+        <lang id="de" date="20261103155355" status="3">Vorhandene Übersetzungen ersetzen.</lang>
+      </row>
+      <row id="Example:" state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Example:</native>
+        <lang id="de" date="20261103155355" status="3">Beispiel:</lang>
+      </row>
+      <row id="Examples:" state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Examples:</native>
+        <lang id="de" date="20261103155355" status="3">Beispiele:</lang>
+      </row>
+      <row id="Adds sources (.json, .resx, .po/.pot, .tsv; wildcards * and ? allowed) and scans them.\nIf the project does not exist, it is created." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Adds sources (.json, .resx, .po/.pot, .tsv; wildcards * and ? allowed) and scans them.#lIf the project does not exist, it is created.</native>
+        <lang id="de" date="20261103155355" status="3">Fügt Quellen (.json, .resx, .po/.pot, .tsv; Platzhalter * und ? erlaubt) hinzu und scannt sie.#lExistiert das Projekt nicht, wird es angelegt.</lang>
+      </row>
+      <row id="Original language of the source (default: en)." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Original language of the source (default: en).</native>
+        <lang id="de" date="20261103155355" status="3">Originalsprache der Quelle (Standard: en).</lang>
+      </row>
+      <row id="json, resx, po or tsv (default: by file extension)." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>json, resx, po or tsv (default: by file extension).</native>
+        <lang id="de" date="20261103155355" status="3">json, resx, po oder tsv (Standard: anhand der Dateiendung).</lang>
+      </row>
+      <row id="Creates the localized files (Project | Build)." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Creates the localized files (Project | Build).</native>
+        <lang id="de" date="20261103155355" status="3">Erstellt die lokalisierten Dateien (Projekt | Erstellen).</lang>
+      </row>
+      <row id="Translates duplicate strings with existing translations of the same original." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Translates duplicate strings with existing translations of the same original.</native>
+        <lang id="de" date="20261103155355" status="3">Übersetzt doppelte Zeichenfolgen mit bereits vorhandenen Übersetzungen desselben Originals.</lang>
+      </row>
+      <row id="Exports rows to a file: .xlsx (Excel), .csv, .txt (tab separated), .xlf/.xliff, .tmx.\nXLIFF with several languages creates one file per language (name.&lt;language&gt;.xlf)." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Exports rows to a file: .xlsx (Excel), .csv, .txt (tab separated), .xlf/.xliff, .tmx.#lXLIFF with several languages creates one file per language (name.&lt;language&gt;.xlf).</native>
+        <lang id="de" date="20261103155355" status="3">Exportiert Zeilen in eine Datei: .xlsx (Excel), .csv, .txt (Tab-getrennt), .xlf/.xliff, .tmx.#lXLIFF mit mehreren Sprachen erzeugt je Sprache eine Datei (name.&lt;sprache&gt;.xlf).</lang>
+      </row>
+      <row id="Row status:" state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Row status:</native>
+        <lang id="de" date="20261103155355" status="3">Zeilenstatus:</lang>
+      </row>
+      <row id="true = also export &quot;Do not translate&quot; rows" state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>true = also export "Do not translate" rows</native>
+        <lang id="de" date="20261103155355" status="3">true = auch "Nicht übersetzen"-Zeilen exportieren</lang>
+      </row>
+      <row id="Imports translations from .xlsx, .csv, .txt, .xlf/.xliff or .tmx.\nRows are matched by source+context, then context, then original text." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Imports translations from .xlsx, .csv, .txt, .xlf/.xliff or .tmx.#lRows are matched by source+context, then context, then original text.</native>
+        <lang id="de" date="20261103155355" status="3">Importiert Übersetzungen aus .xlsx, .csv, .txt, .xlf/.xliff oder .tmx.#lZeilen werden über Quelle+Kontext, dann Kontext, dann Originaltext zugeordnet.</lang>
+      </row>
+      <row id="Overwrite existing translations: 0 = never, 1..3 = yes (default)" state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Overwrite existing translations: 0 = never, 1..3 = yes (default)</native>
+        <lang id="de" date="20261103155355" status="3">Vorhandene Übersetzungen überschreiben: 0 = nie, 1..3 = ja (Standard)</lang>
+      </row>
+      <row id="Status of imported texts without a status column:\n1 = Best guess, 2 = Auto translated, 3 = Translated (default),\n4 = For review, 5 = Complete" state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Status of imported texts without a status column:#l1 = Best guess, 2 = Auto translated, 3 = Translated (default),#l4 = For review, 5 = Complete</native>
+        <lang id="de" date="20261103155355" status="3">Status importierter Texte ohne Statusspalte:#l1 = Vorschlag, 2 = Automatisch übersetzt, 3 = Übersetzt (Standard),#l4 = Zur Prüfung, 5 = Abgeschlossen</lang>
+      </row>
+      <row id="Import even if the original has changed." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Import even if the original has changed.</native>
+        <lang id="de" date="20261103155355" status="3">Auch importieren, wenn sich das Original geändert hat.</lang>
+      </row>
+      <row id="Do not import comments." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Do not import comments.</native>
+        <lang id="de" date="20261103155355" status="3">Keine Kommentare importieren.</lang>
+      </row>
+      <row id="Fills empty cells with pseudo translations (Column | Pseudo translation).\nUnknown languages are added as pseudo languages." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Fills empty cells with pseudo translations (Column | Pseudo translation).#lUnknown languages are added as pseudo languages.</native>
+        <lang id="de" date="20261103155355" status="3">Füllt leere Zellen mit Pseudo-Übersetzungen (Spalte | Pseudo-Übersetzung).#lUnbekannte Sprachen werden als Pseudo-Sprache angelegt.</lang>
+      </row>
+      <row id="Also replace existing translations." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Also replace existing translations.</native>
+        <lang id="de" date="20261103155355" status="3">Auch vorhandene Übersetzungen ersetzen.</lang>
+      </row>
+      <row id="Removes pseudo translations." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Removes pseudo translations.</native>
+        <lang id="de" date="20261103155355" status="3">Entfernt Pseudo-Übersetzungen.</lang>
+      </row>
+      <row id="Removes unused rows (Project | Remove unused items)." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Removes unused rows (Project | Remove unused items).</native>
+        <lang id="de" date="20261103155355" status="3">Entfernt unbenutzte Zeilen (Projekt | Unbenutzte Einträge entfernen).</lang>
+      </row>
+      <row id="Creates a project report. Format by extension: .html, .txt, .json; without a file: output to stdout." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Creates a project report. Format by extension: .html, .txt, .json; without a file: output to stdout.</native>
+        <lang id="de" date="20261103155355" status="3">Erstellt einen Projektbericht. Format nach Endung: .html, .txt, .json; ohne Datei: Ausgabe auf stdout.</lang>
+      </row>
+      <row id="Scans the sources (new, changed and unused strings)." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Scans the sources (new, changed and unused strings).</native>
+        <lang id="de" date="20261103155355" status="3">Scannt die Quellen (neue, geänderte und unbenutzte Zeichenfolgen).</lang>
+      </row>
+      <row id="Translates untranslated rows from the translation memory (TMX).\nExact matches get the status &quot;Auto translated&quot;, fuzzy ones &quot;Best guess&quot;." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Translates untranslated rows from the translation memory (TMX).#lExact matches get the status "Auto translated", fuzzy ones "Best guess".</native>
+        <lang id="de" date="20261103155355" status="3">Übersetzt nicht übersetzte Zeilen aus dem Translation Memory (TMX).#lExakte Treffer erhalten den Status "Automatisch übersetzt", unscharfe "Vorschlag".</lang>
+      </row>
+      <row id="TMX file (default: settings, %APPDATA%\\susi\\susi-tm.tmx)" state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>TMX file (default: settings, %APPDATA%\susi\susi-tm.tmx)</native>
+        <lang id="de" date="20261103155355" status="3">TMX-Datei (Standard: Einstellungen, %APPDATA%\susi\susi-tm.tmx)</lang>
+      </row>
+      <row id="Use fuzzy matches from N % (50..100)." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Use fuzzy matches from N % (50..100).</native>
+        <lang id="de" date="20261103155355" status="3">Unscharfe Treffer ab N % (50..100) verwenden.</lang>
+      </row>
+      <row id="Only &quot;tm&quot; is supported." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Only "tm" is supported.</native>
+        <lang id="de" date="20261103155355" status="3">Nur "tm" wird unterstützt.</lang>
+      </row>
+      <row id="Validates translations (placeholders, tags, spaces, line breaks, punctuation, length, ...).\nErrors and warnings determine the result code (see -w)." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Validates translations (placeholders, tags, spaces, line breaks, punctuation, length, ...).#lErrors and warnings determine the result code (see -w).</native>
+        <lang id="de" date="20261103155355" status="3">Prüft Übersetzungen (Platzhalter, Tags, Leerzeichen, Zeilenumbrüche, Satzzeichen, Länge, ...).#lFehler und Warnungen bestimmen den Rückgabewert (siehe -w).</lang>
+      </row>
+      <row id="All checks (including missing translations)." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>All checks (including missing translations).</native>
+        <lang id="de" date="20261103155355" status="3">Alle Prüfungen (inkl. fehlender Übersetzungen).</lang>
+      </row>
+      <row id="Default checks." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Default checks.</native>
+        <lang id="de" date="20261103155355" status="3">Standardprüfungen.</lang>
+      </row>
+      <row id="Specific checks:" state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Specific checks:</native>
+        <lang id="de" date="20261103155355" status="3">Bestimmte Prüfungen:</lang>
+      </row>
+      <row id="Saves translations to the translation memory." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Saves translations to the translation memory.</native>
+        <lang id="de" date="20261103155355" status="3">Speichert Übersetzungen im Translation Memory.</lang>
+      </row>
+      <row id="TMX file" state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>TMX file</native>
+        <lang id="de" date="20261103155355" status="3">TMX-Datei</lang>
+      </row>
+      <row id="Default:" state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Default:</native>
+        <lang id="de" date="20261103155355" status="3">Standard:</lang>
+      </row>
+      <row id="Shows languages, sources and the translation progress." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Shows languages, sources and the translation progress.</native>
+        <lang id="de" date="20261103155355" status="3">Zeigt Sprachen, Quellen und den Übersetzungsfortschritt.</lang>
+      </row>
+      <row id="Starts the MCP server (Model Context Protocol) on stdin/stdout for AI agents." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Starts the MCP server (Model Context Protocol) on stdin/stdout for AI agents.</native>
+        <lang id="de" date="20261103155355" status="3">Startet den MCP-Server (Model Context Protocol) auf stdin/stdout für KI-Agenten.</lang>
+      </row>
+      <row id="Example configuration (mcp.json):" state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Example configuration (mcp.json):</native>
+        <lang id="de" date="20261103155355" status="3">Beispielkonfiguration (mcp.json):</lang>
+      </row>
+      <row id="Unknown task '{name}'." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
+        <native>Unknown task '{name}'.</native>
+        <lang id="de" date="20261103155355" status="3">Unbekannter Task '{name}'.</lang>
+      </row>
+      <row id="Sisulizer exchange packages (.sle) are not supported – use 'export' (xlsx/xlf/tmx)." state="0" created="20261103155355" note="Command line parsing" notereadonly="1">
+        <native>Sisulizer exchange packages (.sle) are not supported – use 'export' (xlsx/xlf/tmx).</native>
+        <lang id="de" date="20261103155355" status="3">Sisulizer-Austauschpakete (.sle) werden nicht unterstützt – verwenden Sie 'export' (xlsx/xlf/tmx).</lang>
+      </row>
+      <row id="Merging projects is not supported yet." state="0" created="20261103155355" note="Command line parsing" notereadonly="1">
+        <native>Merging projects is not supported yet.</native>
+        <lang id="de" date="20261103155355" status="3">Das Zusammenführen von Projekten wird noch nicht unterstützt.</lang>
+      </row>
+      <row id="'sanitize' is not supported." state="0" created="20261103155355" note="Command line parsing" notereadonly="1">
+        <native>'sanitize' is not supported.</native>
+        <lang id="de" date="20261103155355" status="3">'sanitize' wird nicht unterstützt.</lang>
+      </row>
+      <row id="Invalid value for -{name}: &quot;{value}&quot;" state="0" created="20261103155355" note="Command line parsing" notereadonly="1">
+        <native>Invalid value for -{name}: "{value}"</native>
+        <lang id="de" date="20261103155355" status="3">Ungültiger Wert für -{name}: "{value}"</lang>
+      </row>
+      <row id="Unknown option -{option} for task '{task}' (see: susi-cli {task} -h)" state="0" created="20261103155355" note="Command line parsing" notereadonly="1">
+        <native>Unknown option -{option} for task '{task}' (see: susi-cli {task} -h)</native>
+        <lang id="de" date="20261103155355" status="3">Unbekannte Option -{option} für Task '{task}' (siehe: susi-cli {task} -h)</lang>
+      </row>
+      <row id="Ambiguous option -{option} for task '{task}'" state="0" created="20261103155355" note="Command line parsing" notereadonly="1">
+        <native>Ambiguous option -{option} for task '{task}'</native>
+        <lang id="de" date="20261103155355" status="3">Mehrdeutige Option -{option} für Task '{task}'</lang>
+      </row>
+      <row id="Option -{option} before the first task" state="0" created="20261103155355" note="Command line parsing" notereadonly="1">
+        <native>Option -{option} before the first task</native>
+        <lang id="de" date="20261103155355" status="3">Option -{option} vor dem ersten Task</lang>
+      </row>
+      <row id="Unknown task '{task}' (see: susi-cli -h)" state="0" created="20261103155355" note="Command line parsing" notereadonly="1">
+        <native>Unknown task '{task}' (see: susi-cli -h)</native>
+        <lang id="de" date="20261103155355" status="3">Unbekannter Task '{task}' (siehe: susi-cli -h)</lang>
+      </row>
+      <row id="Error:" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Error:</native>
+        <lang id="de" date="20261103155355" status="3">Fehler:</lang>
+      </row>
+      <row id="Warning:" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Warning:</native>
+        <lang id="de" date="20261103155355" status="3">Warnung:</lang>
+      </row>
+      <row id="Note:" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Note:</native>
+        <lang id="de" date="20261103155355" status="3">Hinweis:</lang>
+      </row>
+      <row id="Project file (.slp) missing (see: susi-cli -h)" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Project file (.slp) missing (see: susi-cli -h)</native>
+        <lang id="de" date="20261103155355" status="3">Projektdatei (.slp) fehlt (siehe: susi-cli -h)</lang>
+      </row>
+      <row id="Project was changed but not saved (-nosave)" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Project was changed but not saved (-nosave)</native>
+        <lang id="de" date="20261103155355" status="3">Projekt wurde geändert, aber nicht gespeichert (-nosave)</lang>
+      </row>
+      <row id="Project was not saved because of errors (see -forcesave)" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Project was not saved because of errors (see -forcesave)</native>
+        <lang id="de" date="20261103155355" status="3">Projekt wurde wegen Fehlern nicht gespeichert (siehe -forcesave)</lang>
+      </row>
+      <row id="Project saved: {path}" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Project saved: {path}</native>
+        <lang id="de" date="20261103155355" status="3">Projekt gespeichert: {path}</lang>
+      </row>
+      <row id="'mcp' cannot be combined with other tasks" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>'mcp' cannot be combined with other tasks</native>
+        <lang id="de" date="20261103155355" status="3">'mcp' kann nicht mit anderen Tasks kombiniert werden</lang>
+      </row>
+      <row id="Project file {path} not found" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Project file {path} not found</native>
+        <lang id="de" date="20261103155355" status="3">Projektdatei {path} nicht gefunden</lang>
+      </row>
+      <row id="Project not loaded" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Project not loaded</native>
+        <lang id="de" date="20261103155355" status="3">Projekt nicht geladen</lang>
+      </row>
+      <row id="Option -{option} is ignored by susi" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Option -{option} is ignored by susi</native>
+        <lang id="de" date="20261103155355" status="3">Option -{option} wird von susi ignoriert</lang>
+      </row>
+      <row id="Task '{task}' cannot be run here" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Task '{task}' cannot be run here</native>
+        <lang id="de" date="20261103155355" status="3">Task '{task}' kann hier nicht ausgeführt werden</lang>
+      </row>
+      <row id="The project does not contain the language &quot;{lang}&quot; (available: {langs})" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>The project does not contain the language "{lang}" (available: {langs})</native>
+        <lang id="de" date="20261103155355" status="3">Das Projekt enthält die Sprache "{lang}" nicht (vorhanden: {langs})</lang>
+      </row>
+      <row id="The project does not contain the source &quot;{source}&quot;" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>The project does not contain the source "{source}"</native>
+        <lang id="de" date="20261103155355" status="3">Das Projekt enthält die Quelle "{source}" nicht</lang>
+      </row>
+      <row id="Task '{task}': {what} missing (see: susi-cli {task} -h)" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Task '{task}': {what} missing (see: susi-cli {task} -h)</native>
+        <lang id="de" date="20261103155355" status="3">Task '{task}': {what} fehlt (siehe: susi-cli {task} -h)</lang>
+      </row>
+      <row id="Source file" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Source file</native>
+        <lang id="de" date="20261103155355" status="3">Quelldatei</lang>
+      </row>
+      <row id="Export file" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Export file</native>
+        <lang id="de" date="20261103155355" status="3">Exportdatei</lang>
+      </row>
+      <row id="Import file (importing all localized files is not supported)" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Import file (importing all localized files is not supported)</native>
+        <lang id="de" date="20261103155355" status="3">Importdatei (Importieren aller lokalisierten Dateien wird nicht unterstützt)</lang>
+      </row>
+      <row id="Source type '{kind}' is not supported (json, resx, po, tsv)" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Source type '{kind}' is not supported (json, resx, po, tsv)</native>
+        <lang id="de" date="20261103155355" status="3">Quelltyp '{kind}' wird nicht unterstützt (json, resx, po, tsv)</lang>
+      </row>
+      <row id="New project {path}" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>New project {path}</native>
+        <lang id="de" date="20261103155355" status="3">Neues Projekt {path}</lang>
+      </row>
+      <row id="Language added: {name} ({lang})" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Language added: {name} ({lang})</native>
+        <lang id="de" date="20261103155355" status="3">Sprache hinzugefügt: {name} ({lang})</lang>
+      </row>
+      <row id="No files found: {files}" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>No files found: {files}</native>
+        <lang id="de" date="20261103155355" status="3">Keine Dateien gefunden: {files}</lang>
+      </row>
+      <row id="{file}: file type does not match -type:{kind}" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>{file}: file type does not match -type:{kind}</native>
+        <lang id="de" date="20261103155355" status="3">{file}: Dateityp passt nicht zu -type:{kind}</lang>
+      </row>
+      <row id="Source ##{index} added: {name} – {summary}" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Source ##{index} added: {name} – {summary}</native>
+        <lang id="de" date="20261103155355" status="3">Quelle ##{index} hinzugefügt: {name} – {summary}</lang>
+      </row>
+      <row id="Created: {path}" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Created: {path}</native>
+        <lang id="de" date="20261103155355" status="3">Erstellt: {path}</lang>
+      </row>
+      <row id="{file}: unknown format (.xlsx, .csv, .txt, .xlf, .xliff, .tmx)" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>{file}: unknown format (.xlsx, .csv, .txt, .xlf, .xliff, .tmx)</native>
+        <lang id="de" date="20261103155355" status="3">{file}: unbekanntes Format (.xlsx, .csv, .txt, .xlf, .xliff, .tmx)</lang>
+      </row>
+      <row id="Exported: {path}" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Exported: {path}</native>
+        <lang id="de" date="20261103155355" status="3">Exportiert: {path}</lang>
+      </row>
+      <row id="{path} not found" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>{path} not found</native>
+        <lang id="de" date="20261103155355" status="3">{path} nicht gefunden</lang>
+      </row>
+      <row id="Languages not in the project: {langs}" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Languages not in the project: {langs}</native>
+        <lang id="de" date="20261103155355" status="3">Sprachen nicht im Projekt: {langs}</lang>
+      </row>
+      <row id="@plural|{n} row of the import file was not found in the project|{n} rows of the import file were not found in the project" state="0" created="20261103155355" note="Messages#lContext: @plural" notereadonly="1">
+        <native>{n} row of the import file was not found in the project|{n} rows of the import file were not found in the project</native>
+        <lang id="de" date="20261103155355" status="3">{n} Zeile der Importdatei wurde im Projekt nicht gefunden|{n} Zeilen der Importdatei wurden im Projekt nicht gefunden</lang>
+      </row>
+      <row id="Translation engine '{engine}' is not supported (translation memory only: -engine:tm)" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Translation engine '{engine}' is not supported (translation memory only: -engine:tm)</native>
+        <lang id="de" date="20261103155355" status="3">Übersetzungsmaschine '{engine}' wird nicht unterstützt (nur Translation Memory: -engine:tm)</lang>
+      </row>
+      <row id="Translation memory {path} is empty" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Translation memory {path} is empty</native>
+        <lang id="de" date="20261103155355" status="3">Translation Memory {path} ist leer</lang>
+      </row>
+      <row id="{summary} ({entries} entries in TM {path})" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>{summary} ({entries} entries in TM {path})</native>
+        <lang id="de" date="20261103155355" status="3">{summary} ({entries} Einträge im TM {path})</lang>
+      </row>
+      <row id="@plural|{n} duplicate string translated|{n} duplicate strings translated" state="0" created="20261103155355" note="Messages#lContext: @plural" notereadonly="1">
+        <native>{n} duplicate string translated|{n} duplicate strings translated</native>
+        <lang id="de" date="20261103155355" status="3">{n} doppelte Zeichenfolge übersetzt|{n} doppelte Zeichenfolgen übersetzt</lang>
+      </row>
+      <row id="@plural|{n} translation saved to the translation memory ({entries} entries, {path})|{n} translations saved to the translation memory ({entries} entries, {path})" state="0" created="20261103155355" note="Messages#lContext: @plural" notereadonly="1">
+        <native>{n} translation saved to the translation memory ({entries} entries, {path})|{n} translations saved to the translation memory ({entries} entries, {path})</native>
+        <lang id="de" date="20261103155355" status="3">{n} Übersetzung im Translation Memory gespeichert ({entries} Einträge, {path})|{n} Übersetzungen im Translation Memory gespeichert ({entries} Einträge, {path})</lang>
+      </row>
+      <row id="Validating original values (-original) is not supported" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Validating original values (-original) is not supported</native>
+        <lang id="de" date="20261103155355" status="3">Die Prüfung von Originalwerten (-original) wird nicht unterstützt</lang>
+      </row>
+      <row id="Unknown check '{check}'" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Unknown check '{check}'</native>
+        <lang id="de" date="20261103155355" status="3">Unbekannte Prüfung '{check}'</lang>
+      </row>
+      <row id="@plural|{n} error|{n} errors" state="0" created="20261103155355" note="Messages#lContext: @plural" notereadonly="1">
+        <native>{n} error|{n} errors</native>
+        <lang id="de" date="20261103155355" status="3">{n} Fehler|{n} Fehler</lang>
+      </row>
+      <row id="@plural|{n} warning|{n} warnings" state="0" created="20261103155355" note="Messages#lContext: @plural" notereadonly="1">
+        <native>{n} warning|{n} warnings</native>
+        <lang id="de" date="20261103155355" status="3">{n} Warnung|{n} Warnungen</lang>
+      </row>
+      <row id="Validation finished: {errors}, {warnings}" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Validation finished: {errors}, {warnings}</native>
+        <lang id="de" date="20261103155355" status="3">Prüfung abgeschlossen: {errors}, {warnings}</lang>
+      </row>
+      <row id="Pseudo language {lang} added" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Pseudo language {lang} added</native>
+        <lang id="de" date="20261103155355" status="3">Pseudo-Sprache {lang} angelegt</lang>
+      </row>
+      <row id="@plural|{n} pseudo translation for {name} ({lang})|{n} pseudo translations for {name} ({lang})" state="0" created="20261103155355" note="Messages#lContext: @plural" notereadonly="1">
+        <native>{n} pseudo translation for {name} ({lang})|{n} pseudo translations for {name} ({lang})</native>
+        <lang id="de" date="20261103155355" status="3">{n} Pseudo-Übersetzung für {name} ({lang})|{n} Pseudo-Übersetzungen für {name} ({lang})</lang>
+      </row>
+      <row id="@plural|{n} pseudo translation removed|{n} pseudo translations removed" state="0" created="20261103155355" note="Messages#lContext: @plural" notereadonly="1">
+        <native>{n} pseudo translation removed|{n} pseudo translations removed</native>
+        <lang id="de" date="20261103155355" status="3">{n} Pseudo-Übersetzung entfernt|{n} Pseudo-Übersetzungen entfernt</lang>
+      </row>
+      <row id="@plural|{n} unused row removed|{n} unused rows removed" state="0" created="20261103155355" note="Messages#lContext: @plural" notereadonly="1">
+        <native>{n} unused row removed|{n} unused rows removed</native>
+        <lang id="de" date="20261103155355" status="3">{n} unbenutzte Zeile entfernt|{n} unbenutzte Zeilen entfernt</lang>
+      </row>
+      <row id="Report created: {path}" state="0" created="20261103155355" note="Messages" notereadonly="1">
+        <native>Report created: {path}</native>
+        <lang id="de" date="20261103155355" status="3">Bericht erstellt: {path}</lang>
+      </row>
+      <row id="Project: {path}" state="0" created="20261103155355" note="info" notereadonly="1">
+        <native>Project: {path}</native>
+        <lang id="de" date="20261103155355" status="3">Projekt: {path}</lang>
+      </row>
+      <row id="Languages:" state="0" created="20261103155355" note="info" notereadonly="1">
+        <native>Languages:</native>
+        <lang id="de" date="20261103155355" status="3">Sprachen:</lang>
+      </row>
+      <row id="{percent}% translated" state="0" created="20261103155355" note="info" notereadonly="1">
+        <native>{percent}% translated</native>
+        <lang id="de" date="20261103155355" status="3">{percent} % übersetzt</lang>
+      </row>
+      <row id="Sources:" state="0" created="20261103155355" note="info" notereadonly="1">
+        <native>Sources:</native>
+        <lang id="de" date="20261103155355" status="3">Quellen:</lang>
+      </row>
+      <row id="Original: {lang}, {rows} rows, output: {output}" state="0" created="20261103155355" note="info" notereadonly="1">
+        <native>Original: {lang}, {rows} rows, output: {output}</native>
+        <lang id="de" date="20261103155355" status="3">Original: {lang}, {rows} Zeilen, Ausgabe: {output}</lang>
+      </row>
+    </node>
+  </source>
+  <source class="TTsvSource" name="de-gui.tsv" original="en" date="20261103162544">
+    <outputfile dir="." localized="&lt;iso&gt;-gui.&lt;ext&gt;"/>
+    <node class="TTsvNode" name="de-gui.tsv" state="0" created="20261103155355">
+      <row id="Information" state="0" created="20261103155355" note="Application, log" notereadonly="1">
+        <native>Information</native>
+        <lang id="de" date="20261103155355" status="3">Information</lang>
+      </row>
+      <row id="Warning" state="0" created="20261103155355" note="Application, log" notereadonly="1">
+        <native>Warning</native>
+        <lang id="de" date="20261103155355" status="3">Warnung</lang>
+      </row>
+      <row id="Error" state="0" created="20261103155355" note="Application, log" notereadonly="1">
+        <native>Error</native>
+        <lang id="de" date="20261103155355" status="3">Fehler</lang>
+      </row>
+      <row id="Susi the CAT {version} started" state="0" created="20261103162607" note="Application, log" notereadonly="1">
+        <native>Susi the CAT {version} started</native>
+        <lang id="de" date="20261103162607" status="3">Susi the CAT {version} gestartet</lang>
+      </row>
+      <row id="Settings could not be saved: {error}" state="0" created="20261103155355" note="Application, log" notereadonly="1">
+        <native>Settings could not be saved: {error}</native>
+        <lang id="de" date="20261103155355" status="3">Einstellungen konnten nicht gespeichert werden: {error}</lang>
+      </row>
+      <row id="Project opened: {path} ({rows})" state="0" created="20261103155355" note="Application, log" notereadonly="1">
+        <native>Project opened: {path} ({rows})</native>
+        <lang id="de" date="20261103155355" status="3">Projekt geöffnet: {path} ({rows})</lang>
+      </row>
+      <row id="@plural|{n} row|{n} rows" state="0" created="20261103155355" note="Application, log#lContext: @plural" notereadonly="1">
+        <native>{n} row|{n} rows</native>
+        <lang id="de" date="20261103155355" status="3">{n} Zeile|{n} Zeilen</lang>
+      </row>
+      <row id="Susi/Sisulizer project" state="0" created="20261103155355" note="Application, log" notereadonly="1">
+        <native>Susi/Sisulizer project</native>
+        <lang id="de" date="20261103155355" status="3">Susi/Sisulizer-Projekt</lang>
+      </row>
+      <row id="Save project as" state="0" created="20261103155355" note="Application, log" notereadonly="1">
+        <native>Save project as</native>
+        <lang id="de" date="20261103155355" status="3">Projekt speichern unter</lang>
+      </row>
+      <row id="@plural|{n} translation automatically saved to the translation memory|{n} translations automatically saved to the translation memory" state="0" created="20261103155355" note="Application, log#lContext: @plural" notereadonly="1">
+        <native>{n} translation automatically saved to the translation memory|{n} translations automatically saved to the translation memory</native>
+        <lang id="de" date="20261103155355" status="3">{n} Übersetzung automatisch im Translation Memory gespeichert|{n} Übersetzungen automatisch im Translation Memory gespeichert</lang>
+      </row>
+      <row id="Translation memory loaded: {path} ({entries})" state="0" created="20261103155355" note="Application, log" notereadonly="1">
+        <native>Translation memory loaded: {path} ({entries})</native>
+        <lang id="de" date="20261103155355" status="3">Translation Memory geladen: {path} ({entries})</lang>
+      </row>
+      <row id="@plural|{n} entry|{n} entries" state="0" created="20261103155355" note="Application, log#lContext: @plural" notereadonly="1">
+        <native>{n} entry|{n} entries</native>
+        <lang id="de" date="20261103155355" status="3">{n} Eintrag|{n} Einträge</lang>
+      </row>
+      <row id="Translation memory {path}: {error}" state="0" created="20261103155355" note="Application, log" notereadonly="1">
+        <native>Translation memory {path}: {error}</native>
+        <lang id="de" date="20261103155355" status="3">Translation Memory {path}: {error}</lang>
+      </row>
+      <row id="Row &quot;{row}&quot; is marked as &quot;Do not translate&quot;" state="0" created="20261103155355" note="Application, log" notereadonly="1">
+        <native>Row "{row}" is marked as "Do not translate"</native>
+        <lang id="de" date="20261103155355" status="3">Zeile „{row}“ ist als „Nicht übersetzen“ markiert</lang>
+      </row>
+      <row id="Output" state="0" created="20261103155355" note="Bottom tabs" notereadonly="1">
+        <native>Output</native>
+        <lang id="de" date="20261103155355" status="3">Ausgabe</lang>
+      </row>
+      <row id="Validation results" state="0" created="20261103155355" note="Bottom tabs" notereadonly="1">
+        <native>Validation results</native>
+        <lang id="de" date="20261103155355" status="3">Prüfungsergebnisse</lang>
+      </row>
+      <row id="Search results" state="0" created="20261103155355" note="Bottom tabs" notereadonly="1">
+        <native>Search results</native>
+        <lang id="de" date="20261103155355" status="3">Ergebnisse suchen</lang>
+      </row>
+      <row id="Statistics" state="0" created="20261103155355" note="Bottom tabs" notereadonly="1">
+        <native>Statistics</native>
+        <lang id="de" date="20261103155355" status="3">Statistik</lang>
+      </row>
+      <row id="Comments" state="0" created="20261103155355" note="Bottom tabs" notereadonly="1">
+        <native>Comments</native>
+        <lang id="de" date="20261103155355" status="3">Kommentare</lang>
+      </row>
+      <row id="Text editor" state="0" created="20261103155355" note="Bottom tabs" notereadonly="1">
+        <native>Text editor</native>
+        <lang id="de" date="20261103155355" status="3">Texteditor</lang>
+      </row>
+      <row id="File" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>File</native>
+        <lang id="de" date="20261103155355" status="3">Datei</lang>
+      </row>
+      <row id="New project…" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>New project…</native>
+        <lang id="de" date="20261103155355" status="3">Neues Projekt…</lang>
+      </row>
+      <row id="Open…" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Open…</native>
+        <lang id="de" date="20261103155355" status="3">Öffnen…</lang>
+      </row>
+      <row id="Recent projects" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Recent projects</native>
+        <lang id="de" date="20261103155355" status="3">Zuletzt geöffnet</lang>
+      </row>
+      <row id="(none)" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>(none)</native>
+        <lang id="de" date="20261103155355" status="3">(keine)</lang>
+      </row>
+      <row id="Save" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Save</native>
+        <lang id="de" date="20261103155355" status="3">Speichern</lang>
+      </row>
+      <row id="Save as…" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Save as…</native>
+        <lang id="de" date="20261103155355" status="3">Speichern unter…</lang>
+      </row>
+      <row id="Export (Excel, CSV, XLIFF, TMX)…" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Export (Excel, CSV, XLIFF, TMX)…</native>
+        <lang id="de" date="20261103155355" status="3">Exportieren (Excel, CSV, XLIFF, TMX)…</lang>
+      </row>
+      <row id="Import…" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Import…</native>
+        <lang id="de" date="20261103155355" status="3">Importieren…</lang>
+      </row>
+      <row id="Exit" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Exit</native>
+        <lang id="de" date="20261103155355" status="3">Beenden</lang>
+      </row>
+      <row id="Edit" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Edit</native>
+        <lang id="de" date="20261103155355" status="3">Bearbeiten</lang>
+      </row>
+      <row id="Copy original" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Copy original</native>
+        <lang id="de" date="20261103155355" status="3">Original übernehmen</lang>
+      </row>
+      <row id="Clear translation" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Clear translation</native>
+        <lang id="de" date="20261103155355" status="3">Übersetzung löschen</lang>
+      </row>
+      <row id="Edit cell" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Edit cell</native>
+        <lang id="de" date="20261103155355" status="3">Zelle bearbeiten</lang>
+      </row>
+      <row id="Row properties / comment…" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Row properties / comment…</native>
+        <lang id="de" date="20261103155355" status="3">Zeileneigenschaften / Kommentar…</lang>
+      </row>
+      <row id="Search" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Search</native>
+        <lang id="de" date="20261103155355" status="3">Suchen</lang>
+      </row>
+      <row id="Find…" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Find…</native>
+        <lang id="de" date="20261103155355" status="3">Suchen…</lang>
+      </row>
+      <row id="Reset filter" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Reset filter</native>
+        <lang id="de" date="20261103155355" status="3">Filter zurücksetzen</lang>
+      </row>
+      <row id="View" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>View</native>
+        <lang id="de" date="20261103155355" status="3">Ansicht</lang>
+      </row>
+      <row id="All languages" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>All languages</native>
+        <lang id="de" date="20261103155355" status="3">Alle Sprachen</lang>
+      </row>
+      <row id="Single language" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Single language</native>
+        <lang id="de" date="20261103155355" status="3">Eine Sprache</lang>
+      </row>
+      <row id="Project tree" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Project tree</native>
+        <lang id="de" date="20261103155355" status="3">Projektbaum</lang>
+      </row>
+      <row id="Filter bar" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Filter bar</native>
+        <lang id="de" date="20261103155355" status="3">Filterleiste</lang>
+      </row>
+      <row id="Output area" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Output area</native>
+        <lang id="de" date="20261103155355" status="3">Ausgabebereich</lang>
+      </row>
+      <row id="&quot;Context&quot; column" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>"Context" column</native>
+        <lang id="de" date="20261103155355" status="3">Spalte „Kontext“</lang>
+      </row>
+      <row id="&quot;Row comment&quot; column" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>"Row comment" column</native>
+        <lang id="de" date="20261103155355" status="3">Spalte „Zeilenkommentar“</lang>
+      </row>
+      <row id="Dark theme" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Dark theme</native>
+        <lang id="de" date="20261103155355" status="3">Dunkles Design</lang>
+      </row>
+      <row id="Project" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Project</native>
+        <lang id="de" date="20261103155355" status="3">Projekt</lang>
+      </row>
+      <row id="Add source…" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Add source…</native>
+        <lang id="de" date="20261103155355" status="3">Quelle hinzufügen…</lang>
+      </row>
+      <row id="Scan for changes" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Scan for changes</native>
+        <lang id="de" date="20261103155355" status="3">Scannen</lang>
+      </row>
+      <row id="Build" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Build</native>
+        <lang id="de" date="20261103155355" status="3">Erstellen</lang>
+      </row>
+      <row id="Languages…" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Languages…</native>
+        <lang id="de" date="20261103155355" status="3">Sprachen…</lang>
+      </row>
+      <row id="Remove unused rows" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Remove unused rows</native>
+        <lang id="de" date="20261103155355" status="3">Unbenutzte Zeilen entfernen</lang>
+      </row>
+      <row id="Clear new status (all rows)" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Clear new status (all rows)</native>
+        <lang id="de" date="20261103155355" status="3">Neu-Status entfernen (alle Zeilen)</lang>
+      </row>
+      <row id="Save report…" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Save report…</native>
+        <lang id="de" date="20261103155355" status="3">Bericht speichern…</lang>
+      </row>
+      <row id="Validation" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Validation</native>
+        <lang id="de" date="20261103155355" status="3">Prüfung</lang>
+      </row>
+      <row id="Validate" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Validate</native>
+        <lang id="de" date="20261103155355" status="3">Prüfen</lang>
+      </row>
+      <row id="Validate (including missing translations)" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Validate (including missing translations)</native>
+        <lang id="de" date="20261103155355" status="3">Prüfen (inkl. fehlender Übersetzungen)</lang>
+      </row>
+      <row id="Clear validation results" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Clear validation results</native>
+        <lang id="de" date="20261103155355" status="3">Prüfungsergebnisse löschen</lang>
+      </row>
+      <row id="Column" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Column</native>
+        <lang id="de" date="20261103155355" status="3">Spalte</lang>
+      </row>
+      <row id="Set status of all visible rows" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Set status of all visible rows</native>
+        <lang id="de" date="20261103155355" status="3">Status aller sichtbaren Zeilen setzen</lang>
+      </row>
+      <row id="Row" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Row</native>
+        <lang id="de" date="20261103155355" status="3">Zeile</lang>
+      </row>
+      <row id="Status" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Status</native>
+        <lang id="de" date="20261103155355" status="3">Status</lang>
+      </row>
+      <row id="Toggle do not translate" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Toggle do not translate</native>
+        <lang id="de" date="20261103155355" status="3">Nicht übersetzen ein/aus</lang>
+      </row>
+      <row id="Toggle mark" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Toggle mark</native>
+        <lang id="de" date="20261103155355" status="3">Markierung ein/aus</lang>
+      </row>
+      <row id="Toggle excluded" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Toggle excluded</native>
+        <lang id="de" date="20261103155355" status="3">Ausgeschlossen ein/aus</lang>
+      </row>
+      <row id="First row" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>First row</native>
+        <lang id="de" date="20261103155355" status="3">Erste Zeile</lang>
+      </row>
+      <row id="Previous row" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Previous row</native>
+        <lang id="de" date="20261103155355" status="3">Vorherige Zeile</lang>
+      </row>
+      <row id="Next row" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Next row</native>
+        <lang id="de" date="20261103155355" status="3">Nächste Zeile</lang>
+      </row>
+      <row id="Last row" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Last row</native>
+        <lang id="de" date="20261103155355" status="3">Letzte Zeile</lang>
+      </row>
+      <row id="Properties…" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Properties…</native>
+        <lang id="de" date="20261103155355" status="3">Eigenschaften…</lang>
+      </row>
+      <row id="Translate with translation memory…" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Translate with translation memory…</native>
+        <lang id="de" date="20261103155355" status="3">Mit Translation Memory übersetzen…</lang>
+      </row>
+      <row id="Save to translation memory" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Save to translation memory</native>
+        <lang id="de" date="20261103155355" status="3">In Translation Memory speichern</lang>
+      </row>
+      <row id="Create pseudo translation…" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Create pseudo translation…</native>
+        <lang id="de" date="20261103155355" status="3">Pseudoübersetzung erstellen…</lang>
+      </row>
+      <row id="Remove pseudo translations" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Remove pseudo translations</native>
+        <lang id="de" date="20261103155355" status="3">Pseudoübersetzungen entfernen</lang>
+      </row>
+      <row id="Tools" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Tools</native>
+        <lang id="de" date="20261103155355" status="3">Extras</lang>
+      </row>
+      <row id="Options…" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Options…</native>
+        <lang id="de" date="20261103155355" status="3">Einstellungen…</lang>
+      </row>
+      <row id="User interface language" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>User interface language</native>
+        <lang id="de" date="20261103155355" status="3">Sprache der Benutzeroberfläche</lang>
+      </row>
+      <row id="Automatic (system language)" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Automatic (system language)</native>
+        <lang id="de" date="20261103155355" status="3">Automatisch (Systemsprache)</lang>
+      </row>
+      <row id="Help" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>Help</native>
+        <lang id="de" date="20261103155355" status="3">Hilfe</lang>
+      </row>
+      <row id="About Susi…" state="0" created="20261103155355" note="Menus" notereadonly="1">
+        <native>About Susi…</native>
+        <lang id="de" date="20261103155355" status="3">Über Susi…</lang>
+      </row>
+      <row id="New project" state="0" created="20261103155355" note="Toolbar, status bar" notereadonly="1">
+        <native>New project</native>
+        <lang id="de" date="20261103155355" status="3">Neues Projekt</lang>
+      </row>
+      <row id="Open project" state="0" created="20261103155355" note="Toolbar, status bar" notereadonly="1">
+        <native>Open project</native>
+        <lang id="de" date="20261103155355" status="3">Projekt öffnen</lang>
+      </row>
+      <row id="Add source" state="0" created="20261103155355" note="Toolbar, status bar" notereadonly="1">
+        <native>Add source</native>
+        <lang id="de" date="20261103155355" status="3">Quelle hinzufügen</lang>
+      </row>
+      <row id="Scan" state="0" created="20261103155355" note="Toolbar, status bar" notereadonly="1">
+        <native>Scan</native>
+        <lang id="de" date="20261103155355" status="3">Scannen</lang>
+      </row>
+      <row id="Scan sources" state="0" created="20261103155355" note="Toolbar, status bar" notereadonly="1">
+        <native>Scan sources</native>
+        <lang id="de" date="20261103155355" status="3">Quellen scannen</lang>
+      </row>
+      <row id="Build localized files" state="0" created="20261103155355" note="Toolbar, status bar" notereadonly="1">
+        <native>Build localized files</native>
+        <lang id="de" date="20261103155355" status="3">Lokalisierte Dateien erstellen</lang>
+      </row>
+      <row id="Language:" state="0" created="20261103155355" note="Toolbar, status bar" notereadonly="1">
+        <native>Language:</native>
+        <lang id="de" date="20261103155355" status="3">Sprache:</lang>
+      </row>
+      <row id="Show all languages side by side or only the selected language" state="0" created="20261103155355" note="Toolbar, status bar" notereadonly="1">
+        <native>Show all languages side by side or only the selected language</native>
+        <lang id="de" date="20261103155355" status="3">Alle Sprachen nebeneinander oder nur die gewählte Sprache anzeigen</lang>
+      </row>
+      <row id="Translate with translation memory" state="0" created="20261103155355" note="Toolbar, status bar" notereadonly="1">
+        <native>Translate with translation memory</native>
+        <lang id="de" date="20261103155355" status="3">Mit Translation Memory übersetzen</lang>
+      </row>
+      <row id="Filter active" state="0" created="20261103155355" note="Toolbar, status bar" notereadonly="1">
+        <native>Filter active</native>
+        <lang id="de" date="20261103155355" status="3">Filter aktiv</lang>
+      </row>
+      <row id="Modified" state="0" created="20261103155355" note="Toolbar, status bar" notereadonly="1">
+        <native>Modified</native>
+        <lang id="de" date="20261103155355" status="3">Geändert</lang>
+      </row>
+      <row id="No project open" state="0" created="20261103155355" note="Project tree, filter panel" notereadonly="1">
+        <native>No project open</native>
+        <lang id="de" date="20261103155355" status="3">Kein Projekt geöffnet</lang>
+      </row>
+      <row id="All" state="0" created="20261103155355" note="Project tree, filter panel" notereadonly="1">
+        <native>All</native>
+        <lang id="de" date="20261103155355" status="3">Alle</lang>
+      </row>
+      <row id="Remove source…" state="0" created="20261103155355" note="Project tree, filter panel" notereadonly="1">
+        <native>Remove source…</native>
+        <lang id="de" date="20261103155355" status="3">Quelle entfernen…</lang>
+      </row>
+      <row id="Status (current language)" state="0" created="20261103155355" note="Project tree, filter panel" notereadonly="1">
+        <native>Status (current language)</native>
+        <lang id="de" date="20261103155355" status="3">Status (aktuelle Sprache)</lang>
+      </row>
+      <row id="Do not translate" state="0" created="20261103155355" note="Project tree, filter panel" notereadonly="1">
+        <native>Do not translate</native>
+        <lang id="de" date="20261103155355" status="3">Nicht übersetzen</lang>
+      </row>
+      <row id="Allow translation" state="0" created="20261103155355" note="Project tree, filter panel" notereadonly="1">
+        <native>Allow translation</native>
+        <lang id="de" date="20261103155355" status="3">Übersetzen erlauben</lang>
+      </row>
+      <row id="Clear new status" state="0" created="20261103155355" note="Project tree, filter panel" notereadonly="1">
+        <native>Clear new status</native>
+        <lang id="de" date="20261103155355" status="3">Neu-Status entfernen</lang>
+      </row>
+      <row id="Translation status" state="0" created="20261103155355" note="Project tree, filter panel" notereadonly="1">
+        <native>Translation status</native>
+        <lang id="de" date="20261103155355" status="3">Übersetzungszustand</lang>
+      </row>
+      <row id="More" state="0" created="20261103155355" note="Project tree, filter panel" notereadonly="1">
+        <native>More</native>
+        <lang id="de" date="20261103155355" status="3">Weitere</lang>
+      </row>
+      <row id="Only marked rows" state="0" created="20261103155355" note="Project tree, filter panel" notereadonly="1">
+        <native>Only marked rows</native>
+        <lang id="de" date="20261103155355" status="3">Nur markierte Zeilen</lang>
+      </row>
+      <row id="Only &quot;Do not translate&quot;" state="0" created="20261103155355" note="Project tree, filter panel" notereadonly="1">
+        <native>Only "Do not translate"</native>
+        <lang id="de" date="20261103155355" status="3">Nur „Nicht übersetzen“</lang>
+      </row>
+      <row id="Show excluded" state="0" created="20261103155355" note="Project tree, filter panel" notereadonly="1">
+        <native>Show excluded</native>
+        <lang id="de" date="20261103155355" status="3">Ausgeschlossene anzeigen</lang>
+      </row>
+      <row id="Text" state="0" created="20261103155355" note="Project tree, filter panel" notereadonly="1">
+        <native>Text</native>
+        <lang id="de" date="20261103155355" status="3">Text</lang>
+      </row>
+      <row id="Filter text" state="0" created="20261103155355" note="Project tree, filter panel" notereadonly="1">
+        <native>Filter text</native>
+        <lang id="de" date="20261103155355" status="3">Filtertext</lang>
+      </row>
+      <row id="Match case" state="0" created="20261103155355" note="Project tree, filter panel" notereadonly="1">
+        <native>Match case</native>
+        <lang id="de" date="20261103155355" status="3">Groß-/Kleinschreibung</lang>
+      </row>
+      <row id="Special filters on!" state="0" created="20261103155355" note="Project tree, filter panel" notereadonly="1">
+        <native>Special filters on!</native>
+        <lang id="de" date="20261103155355" status="3">Spezielle Filter an!</lang>
+      </row>
+      <row id="All columns" state="0" created="20261103155355" note="Project tree, filter panel" notereadonly="1">
+        <native>All columns</native>
+        <lang id="de" date="20261103155355" status="3">Alle Spalten</lang>
+      </row>
+      <row id="Original" state="0" created="20261103155355" note="Project tree, filter panel" notereadonly="1">
+        <native>Original</native>
+        <lang id="de" date="20261103155355" status="3">Original</lang>
+      </row>
+      <row id="No project open – File › Open… or File › New project…" state="0" created="20261103155355" note="Sheet" notereadonly="1">
+        <native>No project open – File › Open… or File › New project…</native>
+        <lang id="de" date="20261103155355" status="3">Kein Projekt geöffnet – Datei › Öffnen… oder Datei › Neues Projekt…</lang>
+      </row>
+      <row id="Status:" state="0" created="20261103155355" note="Sheet" notereadonly="1">
+        <native>Status:</native>
+        <lang id="de" date="20261103155355" status="3">Status:</lang>
+      </row>
+      <row id="Edit in text editor" state="0" created="20261103155355" note="Sheet" notereadonly="1">
+        <native>Edit in text editor</native>
+        <lang id="de" date="20261103155355" status="3">Im Texteditor bearbeiten</lang>
+      </row>
+      <row id="Marked" state="0" created="20261103155355" note="Sheet" notereadonly="1">
+        <native>Marked</native>
+        <lang id="de" date="20261103155355" status="3">Markiert</lang>
+      </row>
+      <row id="Excluded" state="0" created="20261103155355" note="Sheet" notereadonly="1">
+        <native>Excluded</native>
+        <lang id="de" date="20261103155355" status="3">Ausgeschlossen</lang>
+      </row>
+      <row id="Status {lang}" state="0" created="20261103155355" note="Sheet" notereadonly="1">
+        <native>Status {lang}</native>
+        <lang id="de" date="20261103155355" status="3">Status {lang}</lang>
+      </row>
+      <row id="Clear" state="0" created="20261103155355" note="Bottom area" notereadonly="1">
+        <native>Clear</native>
+        <lang id="de" date="20261103155355" status="3">Leeren</lang>
+      </row>
+      <row id="Time" state="0" created="20261103155355" note="Bottom area" notereadonly="1">
+        <native>Time</native>
+        <lang id="de" date="20261103155355" status="3">Zeit</lang>
+      </row>
+      <row id="Type" state="0" created="20261103155355" note="Bottom area" notereadonly="1">
+        <native>Type</native>
+        <lang id="de" date="20261103155355" status="3">Typ</lang>
+      </row>
+      <row id="Message" state="0" created="20261103155355" note="Bottom area" notereadonly="1">
+        <native>Message</native>
+        <lang id="de" date="20261103155355" status="3">Nachricht</lang>
+      </row>
+      <row id="Check" state="0" created="20261103155355" note="Bottom area" notereadonly="1">
+        <native>Check</native>
+        <lang id="de" date="20261103155355" status="3">Prüfung</lang>
+      </row>
+      <row id="No validation results. Validation › Validate starts a validation." state="0" created="20261103155355" note="Bottom area" notereadonly="1">
+        <native>No validation results. Validation › Validate starts a validation.</native>
+        <lang id="de" date="20261103155355" status="3">Keine Prüfungsergebnisse. Prüfung › Prüfen startet eine Prüfung.</lang>
+      </row>
+      <row id="Find what:" state="0" created="20261103155355" note="Bottom area" notereadonly="1">
+        <native>Find what:</native>
+        <lang id="de" date="20261103155355" status="3">Suchen nach:</lang>
+      </row>
+      <row id="Use as filter" state="0" created="20261103155355" note="Bottom area" notereadonly="1">
+        <native>Use as filter</native>
+        <lang id="de" date="20261103155355" status="3">Als Filter verwenden</lang>
+      </row>
+      <row id="Copy the search text to the filter bar" state="0" created="20261103155355" note="Bottom area" notereadonly="1">
+        <native>Copy the search text to the filter bar</native>
+        <lang id="de" date="20261103155355" status="3">Suchtext in die Filterleiste übernehmen</lang>
+      </row>
+      <row id="Search &quot;{text}&quot;: {hits}" state="0" created="20261103155355" note="Bottom area" notereadonly="1">
+        <native>Search "{text}": {hits}</native>
+        <lang id="de" date="20261103155355" status="3">Suche „{text}“: {hits}</lang>
+      </row>
+      <row id="@plural|{n} hit|{n} hits" state="0" created="20261103155355" note="Bottom area#lContext: @plural" notereadonly="1">
+        <native>{n} hit|{n} hits</native>
+        <lang id="de" date="20261103155355" status="3">{n} Treffer|{n} Treffer</lang>
+      </row>
+      <row id="{rows} rows, {words} words, {chars} characters, {locked} &quot;Do not translate&quot;" state="0" created="20261103155355" note="Bottom area" notereadonly="1">
+        <native>{rows} rows, {words} words, {chars} characters, {locked} "Do not translate"</native>
+        <lang id="de" date="20261103155355" status="3">{rows} Zeilen, {words} Wörter, {chars} Zeichen, {locked} „Nicht übersetzen“</lang>
+      </row>
+      <row id="Progress" state="0" created="20261103155355" note="Bottom area" notereadonly="1">
+        <native>Progress</native>
+        <lang id="de" date="20261103155355" status="3">Fortschritt</lang>
+      </row>
+      <row id="Open words" state="0" created="20261103155355" note="Bottom area" notereadonly="1">
+        <native>Open words</native>
+        <lang id="de" date="20261103155355" status="3">Wörter offen</lang>
+      </row>
+      <row id="No comments in the current view." state="0" created="20261103155355" note="Bottom area" notereadonly="1">
+        <native>No comments in the current view.</native>
+        <lang id="de" date="20261103155355" status="3">Keine Kommentare in der aktuellen Ansicht.</lang>
+      </row>
+      <row id="No row or language selected." state="0" created="20261103155355" note="Bottom area" notereadonly="1">
+        <native>No row or language selected.</native>
+        <lang id="de" date="20261103155355" status="3">Keine Zeile bzw. Sprache ausgewählt.</lang>
+      </row>
+      <row id="Original ({lang})" state="0" created="20261103155355" note="Bottom area" notereadonly="1">
+        <native>Original ({lang})</native>
+        <lang id="de" date="20261103155355" status="3">Original ({lang})</lang>
+      </row>
+      <row id="Translation – {lang}" state="0" created="20261103155355" note="Bottom area" notereadonly="1">
+        <native>Translation – {lang}</native>
+        <lang id="de" date="20261103155355" status="3">Übersetzung – {lang}</lang>
+      </row>
+      <row id="{n} / {max} characters" state="0" created="20261103155355" note="Bottom area" notereadonly="1">
+        <native>{n} / {max} characters</native>
+        <lang id="de" date="20261103155355" status="3">{n} / {max} Zeichen</lang>
+      </row>
+      <row id="Translation comment" state="0" created="20261103155355" note="Bottom area" notereadonly="1">
+        <native>Translation comment</native>
+        <lang id="de" date="20261103155355" status="3">Übersetzungskommentar</lang>
+      </row>
+      <row id="Context:" state="0" created="20261103155355" note="Bottom area" notereadonly="1">
+        <native>Context:</native>
+        <lang id="de" date="20261103155355" status="3">Kontext:</lang>
+      </row>
+      <row id="Source:" state="0" created="20261103155355" note="Bottom area" notereadonly="1">
+        <native>Source:</native>
+        <lang id="de" date="20261103155355" status="3">Quelle:</lang>
+      </row>
+      <row id="State:" state="0" created="20261103155355" note="Bottom area" notereadonly="1">
+        <native>State:</native>
+        <lang id="de" date="20261103155355" status="3">Zustand:</lang>
+      </row>
+      <row id="Translatable" state="0" created="20261103155355" note="Bottom area" notereadonly="1">
+        <native>Translatable</native>
+        <lang id="de" date="20261103155355" status="3">Übersetzbar</lang>
+      </row>
+      <row id="Translation memory" state="0" created="20261103155355" note="Bottom area" notereadonly="1">
+        <native>Translation memory</native>
+        <lang id="de" date="20261103155355" status="3">Translation Memory</lang>
+      </row>
+      <row id="Apply" state="0" created="20261103155355" note="Bottom area" notereadonly="1">
+        <native>Apply</native>
+        <lang id="de" date="20261103155355" status="3">Übernehmen</lang>
+      </row>
+      <row id="Cancel" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Cancel</native>
+        <lang id="de" date="20261103155355" status="3">Abbrechen</lang>
+      </row>
+      <row id="Unsaved changes" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Unsaved changes</native>
+        <lang id="de" date="20261103155355" status="3">Ungespeicherte Änderungen</lang>
+      </row>
+      <row id="The project has been modified. Do you want to save the changes?" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>The project has been modified. Do you want to save the changes?</native>
+        <lang id="de" date="20261103155355" status="3">Das Projekt wurde geändert. Sollen die Änderungen gespeichert werden?</lang>
+      </row>
+      <row id="Don't save" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Don't save</native>
+        <lang id="de" date="20261103155355" status="3">Nicht speichern</lang>
+      </row>
+      <row id="Languages" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Languages</native>
+        <lang id="de" date="20261103155355" status="3">Sprachen</lang>
+      </row>
+      <row id="Original language(s): {langs}" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Original language(s): {langs}</native>
+        <lang id="de" date="20261103155355" status="3">Originalsprache(n): {langs}</lang>
+      </row>
+      <row id="ID" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>ID</native>
+        <lang id="de" date="20261103155355" status="3">Kennung</lang>
+      </row>
+      <row id="Kind" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Kind</native>
+        <lang id="de" date="20261103155355" status="3">Art</lang>
+      </row>
+      <row id="Pseudo" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Pseudo</native>
+        <lang id="de" date="20261103155355" status="3">Pseudo</lang>
+      </row>
+      <row id="Target" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Target</native>
+        <lang id="de" date="20261103155355" status="3">Ziel</lang>
+      </row>
+      <row id="Remove" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Remove</native>
+        <lang id="de" date="20261103155355" status="3">Entfernen</lang>
+      </row>
+      <row id="Remove language {lang} with all translations?" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Remove language {lang} with all translations?</native>
+        <lang id="de" date="20261103155355" status="3">Sprache {lang} mit allen Übersetzungen entfernen?</lang>
+      </row>
+      <row id="Yes, remove" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Yes, remove</native>
+        <lang id="de" date="20261103155355" status="3">Ja, entfernen</lang>
+      </row>
+      <row id="No" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>No</native>
+        <lang id="de" date="20261103155355" status="3">Nein</lang>
+      </row>
+      <row id="Add:" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Add:</native>
+        <lang id="de" date="20261103155355" status="3">Hinzufügen:</lang>
+      </row>
+      <row id="ID:" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>ID:</native>
+        <lang id="de" date="20261103155355" status="3">Kennung:</lang>
+      </row>
+      <row id="Add" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Add</native>
+        <lang id="de" date="20261103155355" status="3">Hinzufügen</lang>
+      </row>
+      <row id="Close" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Close</native>
+        <lang id="de" date="20261103155355" status="3">Schließen</lang>
+      </row>
+      <row id="Original language:" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Original language:</native>
+        <lang id="de" date="20261103155355" status="3">Originalsprache:</lang>
+      </row>
+      <row id="The files are stored relative to the project directory and scanned immediately." state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>The files are stored relative to the project directory and scanned immediately.</native>
+        <lang id="de" date="20261103155355" status="3">Die Dateien werden relativ zum Projektverzeichnis gespeichert und sofort gescannt.</lang>
+      </row>
+      <row id="Source properties" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Source properties</native>
+        <lang id="de" date="20261103155355" status="3">Eigenschaften der Quelle</lang>
+      </row>
+      <row id="File:" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>File:</native>
+        <lang id="de" date="20261103155355" status="3">Datei:</lang>
+      </row>
+      <row id="Type:" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Type:</native>
+        <lang id="de" date="20261103155355" status="3">Typ:</lang>
+      </row>
+      <row id="Localized files contain:" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Localized files contain:</native>
+        <lang id="de" date="20261103155355" status="3">Lokalisierte Dateien enthalten:</lang>
+      </row>
+      <row id="Output directory:" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Output directory:</native>
+        <lang id="de" date="20261103155355" status="3">Ausgabeverzeichnis:</lang>
+      </row>
+      <row id="File pattern:" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>File pattern:</native>
+        <lang id="de" date="20261103155355" status="3">Dateimuster:</lang>
+      </row>
+      <row id="Placeholders: &lt;sl&gt; language ID, &lt;iso&gt;, &lt;net&gt;, &lt;file&gt; file name, &lt;body&gt; name without extension, &lt;ext&gt; extension" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Placeholders: &lt;sl&gt; language ID, &lt;iso&gt;, &lt;net&gt;, &lt;file&gt; file name, &lt;body&gt; name without extension, &lt;ext&gt; extension</native>
+        <lang id="de" date="20261103155355" status="3">Platzhalter: &lt;sl&gt; Sprachkennung, &lt;iso&gt;, &lt;net&gt;, &lt;file&gt; Dateiname, &lt;body&gt; Name ohne Erweiterung, &lt;ext&gt; Erweiterung</lang>
+      </row>
+      <row id="Remove source" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Remove source</native>
+        <lang id="de" date="20261103155355" status="3">Quelle entfernen</lang>
+      </row>
+      <row id="Remove source &quot;{name}&quot; with all rows and translations from the project?" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Remove source "{name}" with all rows and translations from the project?</native>
+        <lang id="de" date="20261103155355" status="3">Quelle „{name}“ mit allen Zeilen und Übersetzungen aus dem Projekt entfernen?</lang>
+      </row>
+      <row id="Source removed: {name}" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Source removed: {name}</native>
+        <lang id="de" date="20261103155355" status="3">Quelle entfernt: {name}</lang>
+      </row>
+      <row id="Row properties" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Row properties</native>
+        <lang id="de" date="20261103155355" status="3">Zeileneigenschaften</lang>
+      </row>
+      <row id="Original:" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Original:</native>
+        <lang id="de" date="20261103155355" status="3">Original:</lang>
+      </row>
+      <row id="Max. characters:" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Max. characters:</native>
+        <lang id="de" date="20261103155355" status="3">Max. Zeichen:</lang>
+      </row>
+      <row id="unlimited" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>unlimited</native>
+        <lang id="de" date="20261103155355" status="3">unbegrenzt</lang>
+      </row>
+      <row id="Row comment:" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Row comment:</native>
+        <lang id="de" date="20261103155355" status="3">Zeilenkommentar:</lang>
+      </row>
+      <row id="Export" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Export</native>
+        <lang id="de" date="20261103155355" status="3">Exportieren</lang>
+      </row>
+      <row id="File: {path}" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>File: {path}</native>
+        <lang id="de" date="20261103155355" status="3">Datei: {path}</lang>
+      </row>
+      <row id="The format is determined by the file extension (xlsx, csv, txt, xlf, tmx)." state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>The format is determined by the file extension (xlsx, csv, txt, xlf, tmx).</native>
+        <lang id="de" date="20261103155355" status="3">Format wird über die Dateierweiterung bestimmt (xlsx, csv, txt, xlf, tmx).</lang>
+      </row>
+      <row id="Only rows of the current view ({count})" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Only rows of the current view ({count})</native>
+        <lang id="de" date="20261103155355" status="3">Nur Zeilen der aktuellen Ansicht ({count})</lang>
+      </row>
+      <row id="Status columns" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Status columns</native>
+        <lang id="de" date="20261103155355" status="3">Statusspalten</lang>
+      </row>
+      <row id="Comment columns" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Comment columns</native>
+        <lang id="de" date="20261103155355" status="3">Kommentarspalten</lang>
+      </row>
+      <row id="Row status column" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Row status column</native>
+        <lang id="de" date="20261103155355" status="3">Zeilenstatus-Spalte</lang>
+      </row>
+      <row id="&quot;Max. characters&quot; column" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>"Max. characters" column</native>
+        <lang id="de" date="20261103155355" status="3">Spalte „Max. Zeichen“</lang>
+      </row>
+      <row id="Include &quot;Do not translate&quot; rows" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Include "Do not translate" rows</native>
+        <lang id="de" date="20261103155355" status="3">„Nicht übersetzen“-Zeilen einschließen</lang>
+      </row>
+      <row id="Import" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Import</native>
+        <lang id="de" date="20261103155355" status="3">Importieren</lang>
+      </row>
+      <row id="Overwrite existing translations" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Overwrite existing translations</native>
+        <lang id="de" date="20261103155355" status="3">Vorhandene Übersetzungen überschreiben</lang>
+      </row>
+      <row id="Skip rows whose original has changed" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Skip rows whose original has changed</native>
+        <lang id="de" date="20261103155355" status="3">Zeilen mit geändertem Original überspringen</lang>
+      </row>
+      <row id="Import comments" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Import comments</native>
+        <lang id="de" date="20261103155355" status="3">Kommentare importieren</lang>
+      </row>
+      <row id="Status for imported texts without a status:" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Status for imported texts without a status:</native>
+        <lang id="de" date="20261103155355" status="3">Status für importierte Texte ohne Statusangabe:</lang>
+      </row>
+      <row id="Translation memory: {details}" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Translation memory: {details}</native>
+        <lang id="de" date="20261103155355" status="3">Translation Memory: {details}</lang>
+      </row>
+      <row id="Replace existing translations" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Replace existing translations</native>
+        <lang id="de" date="20261103155355" status="3">Vorhandene Übersetzungen ersetzen</lang>
+      </row>
+      <row id="Accept fuzzy matches from {percent} % as &quot;Best guess&quot;" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Accept fuzzy matches from {percent} % as "Best guess"</native>
+        <lang id="de" date="20261103155355" status="3">Unscharfe Treffer ab {percent} % als „Vermutung“ übernehmen</lang>
+      </row>
+      <row id="Only current language ({lang})" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Only current language ({lang})</native>
+        <lang id="de" date="20261103155355" status="3">Nur aktuelle Sprache ({lang})</lang>
+      </row>
+      <row id="Translate" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Translate</native>
+        <lang id="de" date="20261103155355" status="3">Übersetzen</lang>
+      </row>
+      <row id="Pseudo translation" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Pseudo translation</native>
+        <lang id="de" date="20261103155355" status="3">Pseudoübersetzung</lang>
+      </row>
+      <row id="(created as pseudo language if necessary)" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>(created as pseudo language if necessary)</native>
+        <lang id="de" date="20261103155355" status="3">(wird bei Bedarf als Pseudo-Sprache angelegt)</lang>
+      </row>
+      <row id="Kind:" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Kind:</native>
+        <lang id="de" date="20261103155355" status="3">Art:</lang>
+      </row>
+      <row id="Diacritics" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Diacritics</native>
+        <lang id="de" date="20261103155355" status="3">Diakritische Zeichen</lang>
+      </row>
+      <row id="Expand text" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Expand text</native>
+        <lang id="de" date="20261103155355" status="3">Text verlängern</lang>
+      </row>
+      <row id="Enclose in delimiters" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Enclose in delimiters</native>
+        <lang id="de" date="20261103155355" status="3">Mit Begrenzungszeichen einschließen</lang>
+      </row>
+      <row id="Case:" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Case:</native>
+        <lang id="de" date="20261103155355" status="3">Groß-/Kleinschreibung:</lang>
+      </row>
+      <row id="No change" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>No change</native>
+        <lang id="de" date="20261103155355" status="3">Unverändert</lang>
+      </row>
+      <row id="Alternating" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Alternating</native>
+        <lang id="de" date="20261103155355" status="3">Wechselnd</lang>
+      </row>
+      <row id="Upper case" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Upper case</native>
+        <lang id="de" date="20261103155355" status="3">Großbuchstaben</lang>
+      </row>
+      <row id="Sample: {sample}" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Sample: {sample}</native>
+        <lang id="de" date="20261103155355" status="3">Beispiel: {sample}</lang>
+      </row>
+      <row id="Create" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Create</native>
+        <lang id="de" date="20261103155355" status="3">Erstellen</lang>
+      </row>
+      <row id="Options" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Options</native>
+        <lang id="de" date="20261103155355" status="3">Einstellungen</lang>
+      </row>
+      <row id="Translation memory (TMX):" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Translation memory (TMX):</native>
+        <lang id="de" date="20261103155355" status="3">Translation Memory (TMX):</lang>
+      </row>
+      <row id="Minimum fuzzy match:" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Minimum fuzzy match:</native>
+        <lang id="de" date="20261103155355" status="3">Mindestwert unscharfe Treffer:</lang>
+      </row>
+      <row id="User interface language:" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>User interface language:</native>
+        <lang id="de" date="20261103155355" status="3">Sprache der Benutzeroberfläche:</lang>
+      </row>
+      <row id="Automatically save translated texts to the translation memory when saving" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Automatically save translated texts to the translation memory when saving</native>
+        <lang id="de" date="20261103155355" status="3">Übersetzte Texte beim Speichern automatisch ins Translation Memory übernehmen</lang>
+      </row>
+      <row id="Show &quot;Context&quot; column" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Show "Context" column</native>
+        <lang id="de" date="20261103155355" status="3">Spalte „Kontext“ anzeigen</lang>
+      </row>
+      <row id="Show &quot;Row comment&quot; column" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Show "Row comment" column</native>
+        <lang id="de" date="20261103155355" status="3">Spalte „Zeilenkommentar“ anzeigen</lang>
+      </row>
+      <row id="Settings: {error}" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Settings: {error}</native>
+        <lang id="de" date="20261103155355" status="3">Einstellungen: {error}</lang>
+      </row>
+      <row id="Version {version}" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Version {version}</native>
+        <lang id="de" date="20261103155355" status="3">Version {version}</lang>
+      </row>
+      <row id="Localization tool for Susi/Sisulizer projects (.slp)." state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Localization tool for Susi/Sisulizer projects (.slp).</native>
+        <lang id="de" date="20261103155355" status="3">Lokalisierungswerkzeug für Susi/Sisulizer-Projekte (.slp).</lang>
+      </row>
+      <row id="Supported sources: .NET RESX, JSON, PO/POT (gettext, with MO compilation), TSV (i18n catalogs). Exchange: Excel, CSV, Text, XLIFF, TMX." state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Supported sources: .NET RESX, JSON, PO/POT (gettext, with MO compilation), TSV (i18n catalogs). Exchange: Excel, CSV, Text, XLIFF, TMX.</native>
+        <lang id="de" date="20261103155355" status="3">Unterstützte Quellen: .NET RESX, JSON, PO/POT (gettext, mit MO-Kompilierung), TSV (i18n-Kataloge). Austausch: Excel, CSV, Text, XLIFF, TMX.</lang>
+      </row>
+      <row id="Command line: susi-cli (SlMake compatible), AI integration: susi-cli mcp" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Command line: susi-cli (SlMake compatible), AI integration: susi-cli mcp</native>
+        <lang id="de" date="20261103155355" status="3">Kommandozeile: susi-cli (SlMake-kompatibel), KI-Anbindung: susi-cli mcp</lang>
+      </row>
+      <row id="Sisulizer is a product of Sisulizer Ltd. &amp; Co KG. Susi is an independent new development." state="0" created="20261103155355" note="Dialogs" notereadonly="1">
+        <native>Sisulizer is a product of Sisulizer Ltd. &amp; Co KG. Susi is an independent new development.</native>
+        <lang id="de" date="20261103155355" status="3">Sisulizer ist ein Produkt der Sisulizer Ltd. &amp; Co KG. Susi ist eine unabhängige Neuentwicklung.</lang>
+      </row>
+      <row id="Create new project" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
+        <native>Create new project</native>
+        <lang id="de" date="20261103155355" status="3">Neues Projekt anlegen</lang>
+      </row>
+      <row id="New project created: {path}" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
+        <native>New project created: {path}</native>
+        <lang id="de" date="20261103155355" status="3">Neues Projekt angelegt: {path}</lang>
+      </row>
+      <row id="No row selected" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
+        <native>No row selected</native>
+        <lang id="de" date="20261103155355" status="3">Keine Zeile ausgewählt</lang>
+      </row>
+      <row id="@plural|{n} row changed|{n} rows changed" state="0" created="20261103155355" note="Commands, file dialogs#lContext: @plural" notereadonly="1">
+        <native>{n} row changed|{n} rows changed</native>
+        <lang id="de" date="20261103155355" status="3">{n} Zeile geändert|{n} Zeilen geändert</lang>
+      </row>
+      <row id="No row or language selected" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
+        <native>No row or language selected</native>
+        <lang id="de" date="20261103155355" status="3">Keine Zeile bzw. Sprache ausgewählt</lang>
+      </row>
+      <row id="The cell contains no translation; the status cannot be set" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
+        <native>The cell contains no translation; the status cannot be set</native>
+        <lang id="de" date="20261103155355" status="3">Die Zelle enthält keine Übersetzung; der Status kann nicht gesetzt werden</lang>
+      </row>
+      <row id="No language selected" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
+        <native>No language selected</native>
+        <lang id="de" date="20261103155355" status="3">Keine Sprache ausgewählt</lang>
+      </row>
+      <row id="Status &quot;{status}&quot; set for {count} ({lang})" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
+        <native>Status "{status}" set for {count} ({lang})</native>
+        <lang id="de" date="20261103155355" status="3">Status „{status}“ für {count} ({lang}) gesetzt</lang>
+      </row>
+      <row id="@plural|{n} translation|{n} translations" state="0" created="20261103155355" note="Commands, file dialogs#lContext: @plural" notereadonly="1">
+        <native>{n} translation|{n} translations</native>
+        <lang id="de" date="20261103155355" status="3">{n} Übersetzung|{n} Übersetzungen</lang>
+      </row>
+      <row id="Supported sources (JSON, .NET RESX, PO, TSV)" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
+        <native>Supported sources (JSON, .NET RESX, PO, TSV)</native>
+        <lang id="de" date="20261103155355" status="3">Unterstützte Quellen (JSON, .NET RESX, PO, TSV)</lang>
+      </row>
+      <row id="i18n catalogs (TSV)" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
+        <native>i18n catalogs (TSV)</native>
+        <lang id="de" date="20261103155355" status="3">i18n-Kataloge (TSV)</lang>
+      </row>
+      <row id=".NET resources" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
+        <native>.NET resources</native>
+        <lang id="de" date="20261103155355" status="3">.NET-Ressourcen</lang>
+      </row>
+      <row id="Source added: {path} – {summary}" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
+        <native>Source added: {path} – {summary}</native>
+        <lang id="de" date="20261103155355" status="3">Quelle hinzugefügt: {path} – {summary}</lang>
+      </row>
+      <row id="Scan: {summary}" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
+        <native>Scan: {summary}</native>
+        <lang id="de" date="20261103155355" status="3">Scannen: {summary}</lang>
+      </row>
+      <row id="Scan failed: {error}" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
+        <native>Scan failed: {error}</native>
+        <lang id="de" date="20261103155355" status="3">Scannen: {error}</lang>
+      </row>
+      <row id="Written: {path}" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
+        <native>Written: {path}</native>
+        <lang id="de" date="20261103155355" status="3">Erstellt: {path}</lang>
+      </row>
+      <row id="Build: {summary}" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
+        <native>Build: {summary}</native>
+        <lang id="de" date="20261103155355" status="3">Erstellen: {summary}</lang>
+      </row>
+      <row id="Save report" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
+        <native>Save report</native>
+        <lang id="de" date="20261103155355" status="3">Bericht speichern</lang>
+      </row>
+      <row id="Report saved: {path}" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
+        <native>Report saved: {path}</native>
+        <lang id="de" date="20261103155355" status="3">Bericht gespeichert: {path}</lang>
+      </row>
+      <row id="Validation: {errors}, {warnings}" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
+        <native>Validation: {errors}, {warnings}</native>
+        <lang id="de" date="20261103155355" status="3">Prüfung: {errors}, {warnings}</lang>
+      </row>
+      <row id="{translations} saved to the translation memory ({entries})" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
+        <native>{translations} saved to the translation memory ({entries})</native>
+        <lang id="de" date="20261103155355" status="3">{translations} im Translation Memory gespeichert ({entries})</lang>
+      </row>
+      <row id="Pseudo language {lang} created" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
+        <native>Pseudo language {lang} created</native>
+        <lang id="de" date="20261103155355" status="3">Pseudo-Sprache {lang} angelegt</lang>
+      </row>
+      <row id="@plural|{n} pseudo translation created for {lang}|{n} pseudo translations created for {lang}" state="0" created="20261103155355" note="Commands, file dialogs#lContext: @plural" notereadonly="1">
+        <native>{n} pseudo translation created for {lang}|{n} pseudo translations created for {lang}</native>
+        <lang id="de" date="20261103155355" status="3">{n} Pseudo-Übersetzung für {lang} erstellt|{n} Pseudo-Übersetzungen für {lang} erstellt</lang>
+      </row>
+      <row id="Excel workbook" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
+        <native>Excel workbook</native>
+        <lang id="de" date="20261103155355" status="3">Excel-Arbeitsmappe</lang>
+      </row>
+      <row id="CSV (semicolon)" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
+        <native>CSV (semicolon)</native>
+        <lang id="de" date="20261103155355" status="3">CSV (Semikolon)</lang>
+      </row>
+      <row id="Text (tab separated)" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
+        <native>Text (tab separated)</native>
+        <lang id="de" date="20261103155355" status="3">Text (Tabulator)</lang>
+      </row>
+      <row id="Export {path}: {error}" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
+        <native>Export {path}: {error}</native>
+        <lang id="de" date="20261103155355" status="3">Export {path}: {error}</lang>
+      </row>
+      <row id="Exchange files" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
+        <native>Exchange files</native>
+        <lang id="de" date="20261103155355" status="3">Austauschdateien</lang>
+      </row>
+      <row id="Import {path}: {details}" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
+        <native>Import {path}: {details}</native>
+        <lang id="de" date="20261103155355" status="3">Import {path}: {details}</lang>
+      </row>
+      <row id="PO options" state="0" created="20261103155355" note="PO source options" notereadonly="1">
+        <native>PO options</native>
+        <lang id="de" date="20261103155355" status="3">PO-Optionen</lang>
+      </row>
+      <row id="Scan comments" state="0" created="20261103155355" note="PO source options" notereadonly="1">
+        <native>Scan comments</native>
+        <lang id="de" date="20261103155355" status="3">Kommentare einlesen</lang>
+      </row>
+      <row id="Use msgstr value as original" state="0" created="20261103155355" note="PO source options" notereadonly="1">
+        <native>Use msgstr value as original</native>
+        <lang id="de" date="20261103155355" status="3">msgstr-Wert als Original verwenden</lang>
+      </row>
+      <row id="Compile created PO files to binary MO files" state="0" created="20261103155355" note="PO source options" notereadonly="1">
+        <native>Compile created PO files to binary MO files</native>
+        <lang id="de" date="20261103155355" status="3">Erzeugte PO-Dateien in binäre MO-Dateien kompilieren</lang>
+      </row>
+      <row id="Include empty translations into MO files" state="0" created="20261103155355" note="PO source options" notereadonly="1">
+        <native>Include empty translations into MO files</native>
+        <lang id="de" date="20261103155355" status="3">Leere Übersetzungen in MO-Dateien aufnehmen</lang>
+      </row>
+      <row id="Byte order of MO files:" state="0" created="20261103155355" note="PO source options" notereadonly="1">
+        <native>Byte order of MO files:</native>
+        <lang id="de" date="20261103155355" status="3">Byte-Reihenfolge der MO-Dateien:</lang>
+      </row>
+      <row id="Little endian" state="0" created="20261103155355" note="PO source options" notereadonly="1">
+        <native>Little endian</native>
+        <lang id="de" date="20261103155355" status="3">Little Endian</lang>
+      </row>
+      <row id="Big endian" state="0" created="20261103155355" note="PO source options" notereadonly="1">
+        <native>Big endian</native>
+        <lang id="de" date="20261103155355" status="3">Big Endian</lang>
+      </row>
+      <row id="Plural forms:" state="0" created="20261103155355" note="PO source options" notereadonly="1">
+        <native>Plural forms:</native>
+        <lang id="de" date="20261103155355" status="3">Pluralformen:</lang>
+      </row>
+      <row id="Rows per plural message: 2 for Western and Asian languages, 3 for most languages, 4 for all but Arabic, 6 for Arabic." state="0" created="20261103155355" note="PO source options" notereadonly="1">
+        <native>Rows per plural message: 2 for Western and Asian languages, 3 for most languages, 4 for all but Arabic, 6 for Arabic.</native>
+        <lang id="de" date="20261103155355" status="3">Zeilen je Pluralmeldung: 2 für westliche und asiatische Sprachen, 3 für die meisten Sprachen, 4 für alle außer Arabisch, 6 für Arabisch.</lang>
+      </row>
+      <row id="Scan options take effect at the next scan." state="0" created="20261103155355" note="PO source options" notereadonly="1">
+        <native>Scan options take effect at the next scan.</native>
+        <lang id="de" date="20261103155355" status="3">Scan-Optionen wirken ab dem nächsten Scan.</lang>
+      </row>
+    </node>
+  </source>
+</document>

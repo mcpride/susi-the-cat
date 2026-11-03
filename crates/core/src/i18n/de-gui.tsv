@@ -1,0 +1,276 @@
+# Susi the CAT - German UI catalog: GUI (menus, toolbar, dialogs, grid, panels, log).
+# Format: context<TAB>English source<TAB>translation. Escapes: \n \t \\. Context '@plural': one|other.
+# Keep {placeholders} identical. Checked by `cargo test -p susi-core i18n`.
+# Maintained with Susi itself: project susi-i18n.slp (see README, "Translating Susi").
+
+# Application, log
+	Information	Information
+	Warning	Warnung
+	Error	Fehler
+	Susi the CAT {version} started	Susi the CAT {version} gestartet
+	Settings could not be saved: {error}	Einstellungen konnten nicht gespeichert werden: {error}
+	Project opened: {path} ({rows})	Projekt geöffnet: {path} ({rows})
+@plural	{n} row|{n} rows	{n} Zeile|{n} Zeilen
+	Susi/Sisulizer project	Susi/Sisulizer-Projekt
+	Save project as	Projekt speichern unter
+@plural	{n} translation automatically saved to the translation memory|{n} translations automatically saved to the translation memory	{n} Übersetzung automatisch im Translation Memory gespeichert|{n} Übersetzungen automatisch im Translation Memory gespeichert
+	Translation memory loaded: {path} ({entries})	Translation Memory geladen: {path} ({entries})
+@plural	{n} entry|{n} entries	{n} Eintrag|{n} Einträge
+	Translation memory {path}: {error}	Translation Memory {path}: {error}
+	Row "{row}" is marked as "Do not translate"	Zeile „{row}“ ist als „Nicht übersetzen“ markiert
+# Bottom tabs
+	Output	Ausgabe
+	Validation results	Prüfungsergebnisse
+	Search results	Ergebnisse suchen
+	Statistics	Statistik
+	Comments	Kommentare
+	Text editor	Texteditor
+# Menus
+	File	Datei
+	New project…	Neues Projekt…
+	Open…	Öffnen…
+	Recent projects	Zuletzt geöffnet
+	(none)	(keine)
+	Save	Speichern
+	Save as…	Speichern unter…
+	Export (Excel, CSV, XLIFF, TMX)…	Exportieren (Excel, CSV, XLIFF, TMX)…
+	Import…	Importieren…
+	Exit	Beenden
+	Edit	Bearbeiten
+	Copy original	Original übernehmen
+	Clear translation	Übersetzung löschen
+	Edit cell	Zelle bearbeiten
+	Row properties / comment…	Zeileneigenschaften / Kommentar…
+	Search	Suchen
+	Find…	Suchen…
+	Reset filter	Filter zurücksetzen
+	View	Ansicht
+	All languages	Alle Sprachen
+	Single language	Eine Sprache
+	Project tree	Projektbaum
+	Filter bar	Filterleiste
+	Output area	Ausgabebereich
+	"Context" column	Spalte „Kontext“
+	"Row comment" column	Spalte „Zeilenkommentar“
+	Dark theme	Dunkles Design
+	Project	Projekt
+	Add source…	Quelle hinzufügen…
+	Scan for changes	Scannen
+	Build	Erstellen
+	Languages…	Sprachen…
+	Remove unused rows	Unbenutzte Zeilen entfernen
+	Clear new status (all rows)	Neu-Status entfernen (alle Zeilen)
+	Save report…	Bericht speichern…
+	Validation	Prüfung
+	Validate	Prüfen
+	Validate (including missing translations)	Prüfen (inkl. fehlender Übersetzungen)
+	Clear validation results	Prüfungsergebnisse löschen
+	Column	Spalte
+	Set status of all visible rows	Status aller sichtbaren Zeilen setzen
+	Row	Zeile
+	Status	Status
+	Toggle do not translate	Nicht übersetzen ein/aus
+	Toggle mark	Markierung ein/aus
+	Toggle excluded	Ausgeschlossen ein/aus
+	First row	Erste Zeile
+	Previous row	Vorherige Zeile
+	Next row	Nächste Zeile
+	Last row	Letzte Zeile
+	Properties…	Eigenschaften…
+	Translate with translation memory…	Mit Translation Memory übersetzen…
+	Save to translation memory	In Translation Memory speichern
+	Create pseudo translation…	Pseudoübersetzung erstellen…
+	Remove pseudo translations	Pseudoübersetzungen entfernen
+	Tools	Extras
+	Options…	Einstellungen…
+	User interface language	Sprache der Benutzeroberfläche
+	Automatic (system language)	Automatisch (Systemsprache)
+	Help	Hilfe
+	About Susi…	Über Susi…
+# Toolbar, status bar
+	New project	Neues Projekt
+	Open project	Projekt öffnen
+	Add source	Quelle hinzufügen
+	Scan	Scannen
+	Scan sources	Quellen scannen
+	Build localized files	Lokalisierte Dateien erstellen
+	Language:	Sprache:
+	Show all languages side by side or only the selected language	Alle Sprachen nebeneinander oder nur die gewählte Sprache anzeigen
+	Translate with translation memory	Mit Translation Memory übersetzen
+	Filter active	Filter aktiv
+	Modified	Geändert
+# Project tree, filter panel
+	No project open	Kein Projekt geöffnet
+	All	Alle
+	Remove source…	Quelle entfernen…
+	Status (current language)	Status (aktuelle Sprache)
+	Do not translate	Nicht übersetzen
+	Allow translation	Übersetzen erlauben
+	Clear new status	Neu-Status entfernen
+	Translation status	Übersetzungszustand
+	More	Weitere
+	Only marked rows	Nur markierte Zeilen
+	Only "Do not translate"	Nur „Nicht übersetzen“
+	Show excluded	Ausgeschlossene anzeigen
+	Text	Text
+	Filter text	Filtertext
+	Match case	Groß-/Kleinschreibung
+	Special filters on!	Spezielle Filter an!
+	All columns	Alle Spalten
+	Original	Original
+# Sheet
+	No project open – File › Open… or File › New project…	Kein Projekt geöffnet – Datei › Öffnen… oder Datei › Neues Projekt…
+	Status:	Status:
+	Edit in text editor	Im Texteditor bearbeiten
+	Marked	Markiert
+	Excluded	Ausgeschlossen
+	Status {lang}	Status {lang}
+# Bottom area
+	Clear	Leeren
+	Time	Zeit
+	Type	Typ
+	Message	Nachricht
+	Check	Prüfung
+	No validation results. Validation › Validate starts a validation.	Keine Prüfungsergebnisse. Prüfung › Prüfen startet eine Prüfung.
+	Find what:	Suchen nach:
+	Use as filter	Als Filter verwenden
+	Copy the search text to the filter bar	Suchtext in die Filterleiste übernehmen
+	Search "{text}": {hits}	Suche „{text}“: {hits}
+@plural	{n} hit|{n} hits	{n} Treffer|{n} Treffer
+	{rows} rows, {words} words, {chars} characters, {locked} "Do not translate"	{rows} Zeilen, {words} Wörter, {chars} Zeichen, {locked} „Nicht übersetzen“
+	Progress	Fortschritt
+	Open words	Wörter offen
+	No comments in the current view.	Keine Kommentare in der aktuellen Ansicht.
+	No row or language selected.	Keine Zeile bzw. Sprache ausgewählt.
+	Original ({lang})	Original ({lang})
+	Translation – {lang}	Übersetzung – {lang}
+	{n} / {max} characters	{n} / {max} Zeichen
+	Translation comment	Übersetzungskommentar
+	Context:	Kontext:
+	Source:	Quelle:
+	State:	Zustand:
+	Translatable	Übersetzbar
+	Translation memory	Translation Memory
+	Apply	Übernehmen
+# Dialogs
+	Cancel	Abbrechen
+	Unsaved changes	Ungespeicherte Änderungen
+	The project has been modified. Do you want to save the changes?	Das Projekt wurde geändert. Sollen die Änderungen gespeichert werden?
+	Don't save	Nicht speichern
+	Languages	Sprachen
+	Original language(s): {langs}	Originalsprache(n): {langs}
+	ID	Kennung
+	Kind	Art
+	Pseudo	Pseudo
+	Target	Ziel
+	Remove	Entfernen
+	Remove language {lang} with all translations?	Sprache {lang} mit allen Übersetzungen entfernen?
+	Yes, remove	Ja, entfernen
+	No	Nein
+	Add:	Hinzufügen:
+	ID:	Kennung:
+	Add	Hinzufügen
+	Close	Schließen
+	Original language:	Originalsprache:
+	The files are stored relative to the project directory and scanned immediately.	Die Dateien werden relativ zum Projektverzeichnis gespeichert und sofort gescannt.
+	Source properties	Eigenschaften der Quelle
+	File:	Datei:
+	Type:	Typ:
+	Localized files contain:	Lokalisierte Dateien enthalten:
+	Output directory:	Ausgabeverzeichnis:
+	File pattern:	Dateimuster:
+	Placeholders: <sl> language ID, <iso>, <net>, <file> file name, <body> name without extension, <ext> extension	Platzhalter: <sl> Sprachkennung, <iso>, <net>, <file> Dateiname, <body> Name ohne Erweiterung, <ext> Erweiterung
+	Remove source	Quelle entfernen
+	Remove source "{name}" with all rows and translations from the project?	Quelle „{name}“ mit allen Zeilen und Übersetzungen aus dem Projekt entfernen?
+	Source removed: {name}	Quelle entfernt: {name}
+	Row properties	Zeileneigenschaften
+	Original:	Original:
+	Max. characters:	Max. Zeichen:
+	unlimited	unbegrenzt
+	Row comment:	Zeilenkommentar:
+	Export	Exportieren
+	File: {path}	Datei: {path}
+	The format is determined by the file extension (xlsx, csv, txt, xlf, tmx).	Format wird über die Dateierweiterung bestimmt (xlsx, csv, txt, xlf, tmx).
+	Only rows of the current view ({count})	Nur Zeilen der aktuellen Ansicht ({count})
+	Status columns	Statusspalten
+	Comment columns	Kommentarspalten
+	Row status column	Zeilenstatus-Spalte
+	"Max. characters" column	Spalte „Max. Zeichen“
+	Include "Do not translate" rows	„Nicht übersetzen“-Zeilen einschließen
+	Import	Importieren
+	Overwrite existing translations	Vorhandene Übersetzungen überschreiben
+	Skip rows whose original has changed	Zeilen mit geändertem Original überspringen
+	Import comments	Kommentare importieren
+	Status for imported texts without a status:	Status für importierte Texte ohne Statusangabe:
+	Translation memory: {details}	Translation Memory: {details}
+	Replace existing translations	Vorhandene Übersetzungen ersetzen
+	Accept fuzzy matches from {percent} % as "Best guess"	Unscharfe Treffer ab {percent} % als „Vermutung“ übernehmen
+	Only current language ({lang})	Nur aktuelle Sprache ({lang})
+	Translate	Übersetzen
+	Pseudo translation	Pseudoübersetzung
+	(created as pseudo language if necessary)	(wird bei Bedarf als Pseudo-Sprache angelegt)
+	Kind:	Art:
+	Diacritics	Diakritische Zeichen
+	Expand text	Text verlängern
+	Enclose in delimiters	Mit Begrenzungszeichen einschließen
+	Case:	Groß-/Kleinschreibung:
+	No change	Unverändert
+	Alternating	Wechselnd
+	Upper case	Großbuchstaben
+	Sample: {sample}	Beispiel: {sample}
+	Create	Erstellen
+	Options	Einstellungen
+	Translation memory (TMX):	Translation Memory (TMX):
+	Minimum fuzzy match:	Mindestwert unscharfe Treffer:
+	User interface language:	Sprache der Benutzeroberfläche:
+	Automatically save translated texts to the translation memory when saving	Übersetzte Texte beim Speichern automatisch ins Translation Memory übernehmen
+	Show "Context" column	Spalte „Kontext“ anzeigen
+	Show "Row comment" column	Spalte „Zeilenkommentar“ anzeigen
+	Settings: {error}	Einstellungen: {error}
+	Version {version}	Version {version}
+	Localization tool for Susi/Sisulizer projects (.slp).	Lokalisierungswerkzeug für Susi/Sisulizer-Projekte (.slp).
+	Supported sources: .NET RESX, JSON, PO/POT (gettext, with MO compilation), TSV (i18n catalogs). Exchange: Excel, CSV, Text, XLIFF, TMX.	Unterstützte Quellen: .NET RESX, JSON, PO/POT (gettext, mit MO-Kompilierung), TSV (i18n-Kataloge). Austausch: Excel, CSV, Text, XLIFF, TMX.
+	Command line: susi-cli (SlMake compatible), AI integration: susi-cli mcp	Kommandozeile: susi-cli (SlMake-kompatibel), KI-Anbindung: susi-cli mcp
+	Sisulizer is a product of Sisulizer Ltd. & Co KG. Susi is an independent new development.	Sisulizer ist ein Produkt der Sisulizer Ltd. & Co KG. Susi ist eine unabhängige Neuentwicklung.
+# Commands, file dialogs
+	Create new project	Neues Projekt anlegen
+	New project created: {path}	Neues Projekt angelegt: {path}
+	No row selected	Keine Zeile ausgewählt
+@plural	{n} row changed|{n} rows changed	{n} Zeile geändert|{n} Zeilen geändert
+	No row or language selected	Keine Zeile bzw. Sprache ausgewählt
+	The cell contains no translation; the status cannot be set	Die Zelle enthält keine Übersetzung; der Status kann nicht gesetzt werden
+	No language selected	Keine Sprache ausgewählt
+	Status "{status}" set for {count} ({lang})	Status „{status}“ für {count} ({lang}) gesetzt
+@plural	{n} translation|{n} translations	{n} Übersetzung|{n} Übersetzungen
+	Supported sources (JSON, .NET RESX, PO, TSV)	Unterstützte Quellen (JSON, .NET RESX, PO, TSV)
+	i18n catalogs (TSV)	i18n-Kataloge (TSV)
+	.NET resources	.NET-Ressourcen
+	Source added: {path} – {summary}	Quelle hinzugefügt: {path} – {summary}
+	Scan: {summary}	Scannen: {summary}
+	Scan failed: {error}	Scannen: {error}
+	Written: {path}	Erstellt: {path}
+	Build: {summary}	Erstellen: {summary}
+	Save report	Bericht speichern
+	Report saved: {path}	Bericht gespeichert: {path}
+	Validation: {errors}, {warnings}	Prüfung: {errors}, {warnings}
+	{translations} saved to the translation memory ({entries})	{translations} im Translation Memory gespeichert ({entries})
+	Pseudo language {lang} created	Pseudo-Sprache {lang} angelegt
+@plural	{n} pseudo translation created for {lang}|{n} pseudo translations created for {lang}	{n} Pseudo-Übersetzung für {lang} erstellt|{n} Pseudo-Übersetzungen für {lang} erstellt
+	Excel workbook	Excel-Arbeitsmappe
+	CSV (semicolon)	CSV (Semikolon)
+	Text (tab separated)	Text (Tabulator)
+	Export {path}: {error}	Export {path}: {error}
+	Exchange files	Austauschdateien
+	Import {path}: {details}	Import {path}: {details}
+# PO source options
+	PO options	PO-Optionen
+	Scan comments	Kommentare einlesen
+	Use msgstr value as original	msgstr-Wert als Original verwenden
+	Compile created PO files to binary MO files	Erzeugte PO-Dateien in binäre MO-Dateien kompilieren
+	Include empty translations into MO files	Leere Übersetzungen in MO-Dateien aufnehmen
+	Byte order of MO files:	Byte-Reihenfolge der MO-Dateien:
+	Little endian	Little Endian
+	Big endian	Big Endian
+	Plural forms:	Pluralformen:
+	Rows per plural message: 2 for Western and Asian languages, 3 for most languages, 4 for all but Arabic, 6 for Arabic.	Zeilen je Pluralmeldung: 2 für westliche und asiatische Sprachen, 3 für die meisten Sprachen, 4 für alle außer Arabisch, 6 für Arabisch.
+	Scan options take effect at the next scan.	Scan-Optionen wirken ab dem nächsten Scan.

@@ -1,0 +1,2 @@
+# Fixtures are compared byte for byte (CRLF, BOM): never normalize line endings.
+testdata/** -text

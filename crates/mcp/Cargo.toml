@@ -1,0 +1,23 @@
+[package]
+name = "susi-mcp"
+description = "MCP server (rmcp) exposing Susi projects to AI agents"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+susi-core = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+rmcp = { workspace = true }
+tokio = { workspace = true }
+schemars = { workspace = true }
+
+[dev-dependencies]
+tempfile = { workspace = true }
+rmcp = { version = "3.5", default-features = false, features = ["client", "server", "macros", "transport-io"] }

@@ -1,0 +1,85 @@
+# Susi the CAT - German UI catalog: core library (status, reports, validation, exchange).
+# Format: context<TAB>English source<TAB>translation. Escapes: \n \t \\. Context '@plural': one|other.
+# Keep {placeholders} identical. Checked by `cargo test -p susi-core i18n`.
+# Maintained with Susi itself: project susi-i18n.slp (see README, "Translating Susi").
+
+# Status
+	Not translated	Nicht übersetzt
+	Best guess	Vermutung
+	Auto translated	Automatisch übersetzt
+	Translated	Übersetzt
+	For review	Zur Prüfung
+	Complete	Abgeschlossen
+	New	Neu
+	Unused	Nicht verwendet
+	In use	In Verwendung
+	Changed	Geändert
+write method	Different	Unterschiedliche
+write method	Translated	Übersetzte
+write method	All	Alle
+# Pseudo translation
+	Emulation	Emulation
+	Replace	Ersetzen
+	Reduce	Reduzieren
+	Longest translation	Längste Übersetzung
+# Scan / build / translation memory
+@plural	{n} file|{n} files	{n} Datei|{n} Dateien
+	{files} scanned: {rows} rows, {new} new, {changed} changed, {unused} unused, {errors} errors	{files} gescannt: {rows} Zeilen, {new} neu, {changed} geändert, {unused} unbenutzt, {errors} Fehler
+	{files} written, {unchanged} unchanged, {errors} errors	{files} erstellt, {unchanged} unverändert, {errors} Fehler
+	invalid wildcard '{file}': {error}	Ungültiger Platzhalter '{file}': {error}
+	source type not supported by susi	Quelltyp wird von susi nicht unterstützt
+	{file}: only .json, .resx, .po, .pot and .tsv are supported	{file}: Nur .json, .resx, .po, .pot und .tsv werden unterstützt
+@plural	{n} translation imported|{n} translations imported	{n} Übersetzung übernommen|{n} Übersetzungen übernommen
+	Other	Andere
+	source '{source}' is already part of the project	Quelle '{source}' ist bereits Teil des Projekts
+	{file}: output file equals the original file (check the output pattern)	{file}: Ausgabedatei ist identisch mit der Originaldatei (Ausgabemuster prüfen)
+	{exact} translated exactly, {fuzzy} as best guess, {none} without match	{exact} exakt übersetzt, {fuzzy} als Vermutung, {none} ohne Treffer
+	not found	nicht gefunden
+	unsupported	nicht unterstützt
+# Exchange (Excel/CSV/XLIFF)
+	{updated} translations imported, {unchanged} unchanged, {kept} existing kept, {missing} rows not found, {changed} skipped because the original changed	{updated} Übersetzungen importiert, {unchanged} unverändert, {kept} bestehende beibehalten, {missing} Zeilen nicht gefunden, {changed} mit geändertem Original übersprungen
+	; unknown languages: {langs}	; unbekannte Sprachen: {langs}
+	Source	Quelle
+	Context	Kontext
+	Comment	Kommentar
+	Row status	Zeilenstatus
+	Row comment	Zeilenkommentar
+	Max. characters	Max. Zeichen
+	Column "{context}" or "Original" is missing	Spalte „{context}“ oder „Original“ fehlt
+	Translation	Übersetzung
+	too many columns	zu viele Spalten
+	too many rows	zu viele Zeilen
+	workbook has no worksheet	Arbeitsmappe ohne Tabellenblatt
+	not an XLIFF file	keine XLIFF-Datei
+	unknown exchange format: {path}	unbekanntes Austauschformat: {path}
+# Validation
+	Missing translation	Fehlende Übersetzung
+	Inconsistent format string	Inkonsistente Formatzeichenfolge
+	Inconsistent tags	Inkonsistente Tags
+	Invalid number of spaces	Ungültige Anzahl von Leerzeichen
+	Invalid number of line breaks	Ungültige Anzahl von Zeilenumbrüchen
+	Missing period	Fehlender Punkt
+	Missing colon	Fehlender Doppelpunkt
+	Missing exclamation mark	Fehlendes Ausrufezeichen
+	Missing question mark	Fehlendes Fragezeichen
+	Length in characters	Länge in Zeichen
+	Translation consists of spaces only	Übersetzung besteht nur aus Leerzeichen
+	Invalid number of hotkeys	Ungültige Anzahl von Tastenkürzeln
+	Duplicate translation	Doppelte Übersetzung
+	The translation contains only spaces.	Die Übersetzung enthält nur Leerzeichen.
+	Placeholders in the original {a}, in the translation {b}.	Platzhalter im Original {a}, in der Übersetzung {b}.
+	Tags in the original {a}, in the translation {b}.	Tags im Original {a}, in der Übersetzung {b}.
+	Leading/trailing spaces: original {a1}/{a2}, translation {b1}/{b2}.	Führende/abschließende Leerzeichen: Original {a1}/{a2}, Übersetzung {b1}/{b2}.
+	Line breaks: original {a}, translation {b}.	Zeilenumbrüche: Original {a}, Übersetzung {b}.
+	The original ends with '{c}', the translation does not.	Das Original endet mit '{c}', die Übersetzung nicht.
+	The translation has {n} characters, {max} are allowed.	Die Übersetzung hat {n} Zeichen, erlaubt sind {max}.
+	Hotkeys (&): original {a}, translation {b}.	Tastenkürzel (&): Original {a}, Übersetzung {b}.
+	Not translated.	Nicht übersetzt.
+	"{original}" has been translated differently: {list}	„{original}“ wurde unterschiedlich übersetzt: {list}
+# Statistics
+	Language	Sprache
+	Done	Fertig
+	Rows: {n}	Zeilen: {n}
+	Words: {n}	Wörter: {n}
+	Characters: {n}	Zeichen: {n}
+	Do not translate: {n}	Nicht übersetzen: {n}

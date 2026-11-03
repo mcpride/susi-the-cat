@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- Susi the CAT (computer-assisted translation): a cat head speech bubble (source) in front of a translation bubble. -->
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4C7FE0"/>
+      <stop offset="1" stop-color="#22428F"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="240" height="240" rx="52" fill="url(#tile)"/>
+
+  <!-- translation bubble -->
+  <path d="M214 214 L234 240 L190 220 Z" fill="#FFB547"/>
+  <rect x="150" y="132" width="88" height="92" rx="24" fill="#FFB547"/>
+  <g fill="none" stroke="#22428F" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M196 148 L196 156"/>
+    <path d="M174 164 L218 164"/>
+    <path d="M206 170 Q198 196 176 208"/>
+    <path d="M186 170 Q194 196 218 208"/>
+  </g>
+
+  <!-- cat head speech bubble -->
+  <g fill="#FFFFFF" stroke="#FFFFFF" stroke-width="8" stroke-linejoin="round">
+    <path d="M34 112 L44 34 L98 78 Z"/>
+    <path d="M166 112 L156 34 L102 78 Z"/>
+    <path d="M52 180 L34 228 L94 194 Z"/>
+  </g>
+  <rect x="24" y="70" width="152" height="128" rx="56" fill="#FFFFFF"/>
+  <g fill="#F09ABD">
+    <path d="M50 90 L54 54 L80 76 Z"/>
+    <path d="M150 90 L146 54 L120 76 Z"/>
+  </g>
+
+  <!-- face -->
+  <g fill="#22428F">
+    <ellipse cx="72" cy="126" rx="11" ry="15"/>
+    <ellipse cx="128" cy="126" rx="11" ry="15"/>
+  </g>
+  <g fill="#FFFFFF">
+    <circle cx="76" cy="120" r="4"/>
+    <circle cx="132" cy="120" r="4"/>
+  </g>
+  <path d="M91 150 L109 150 L100 160 Z" fill="#F09ABD" stroke="#F09ABD" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M100 160 Q94 172 84 168 M100 160 Q106 172 116 168" fill="none" stroke="#22428F" stroke-width="5" stroke-linecap="round"/>
+  <g stroke="#9AAACF" stroke-width="4" stroke-linecap="round">
+    <path d="M64 154 L34 148"/>
+    <path d="M64 162 L36 170"/>
+    <path d="M136 154 L166 148"/>
+    <path d="M136 162 L164 170"/>
+  </g>
+</svg>

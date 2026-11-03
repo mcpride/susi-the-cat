@@ -1,0 +1,27 @@
+[package]
+name = "susi"
+description = "Susi the CAT: computer-assisted translation GUI tool (inspired by Sisulizer)"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[[bin]]
+name = "susi"
+path = "src/main.rs"
+
+[dependencies]
+susi-core = { workspace = true }
+eframe = { workspace = true }
+# Since egui 0.37 the symbol/emoji fonts used for toolbar and menu icons are optional.
+egui = { workspace = true, features = ["monochrome_emoji_fonts"] }
+egui_extras = { workspace = true }
+rfd = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+
+[build-dependencies]
+winresource = { workspace = true }

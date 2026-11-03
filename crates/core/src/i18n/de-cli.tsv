@@ -1,0 +1,141 @@
+# Susi the CAT - German UI catalog: command line tool susi-cli (help texts, messages).
+# Format: context<TAB>English source<TAB>translation. Escapes: \n \t \\. Context '@plural': one|other.
+# Keep {placeholders} identical. Checked by `cargo test -p susi-core i18n`.
+# Maintained with Susi itself: project susi-i18n.slp (see README, "Translating Susi").
+
+# Help: general
+	susi-cli {version} – Susi the CAT (SlMake compatible)	susi-cli {version} – Susi the CAT (SlMake-kompatibel)
+	<tasks> contains one or more tasks with their options:	<tasks> enthält einen oder mehrere Tasks mit ihren Optionen:
+	Add a source (creates the project if needed)	Quelle hinzufügen (legt das Projekt bei Bedarf an)
+	Create localized files (alias: build, make)	Lokalisierte Dateien erstellen (Alias: build, make)
+	Translate duplicate strings	Doppelte Zeichenfolgen übersetzen
+	Export data to a file (.xlsx, .csv, .txt, .xlf, .tmx)	Daten in eine Datei exportieren (.xlsx, .csv, .txt, .xlf, .tmx)
+	Insert pseudo translation	Pseudo-Übersetzung einfügen
+	Import translations from a file	Übersetzungen aus einer Datei importieren
+	Remove unused items	Unbenutzte Einträge entfernen
+	Remove pseudo translation	Pseudo-Übersetzung entfernen
+	Create a project report (.html, .txt, .json)	Projektbericht erstellen (.html, .txt, .json)
+	Scan the project	Projekt scannen
+	Translate with the translation memory	Mit dem Translation Memory übersetzen
+	Validate translations	Übersetzungen prüfen
+	Save translations to the translation memory	Übersetzungen im Translation Memory speichern
+	Show languages, sources and progress	Sprachen, Quellen und Fortschritt anzeigen
+	Start the MCP server (stdio) for AI agents	MCP-Server (stdio) für KI-Agenten starten
+	Without a task, 'create' is run.	Ohne Task wird 'create' ausgeführt.
+	Options:	Optionen:
+	Quiet mode. Only errors are shown.	Stiller Modus. Nur Fehler werden ausgegeben.
+	ANSI mode (accepted; susi always writes UTF-8).	ANSI-Modus (wird akzeptiert; susi gibt immer UTF-8 aus).
+	Result code 2 on errors, 1 on warnings, otherwise 0.\nWithout -w: 1 on errors, otherwise 0.	Rückgabewert 2 bei Fehlern, 1 bei Warnungen, sonst 0.\nOhne -w: 1 bei Fehlern, sonst 0.
+	Show detailed error information.	Detaillierte Fehlerinformationen anzeigen.
+	Show help for a task, e.g. susi-cli export -h	Hilfe zu einem Task anzeigen, z. B. susi-cli export -h
+	Do not save the project file, even if it was changed.	Projektdatei nicht speichern, auch wenn sie geändert wurde.
+	Save the project file even after an error.	Projektdatei auch nach einem Fehler speichern.
+	Language of help and messages: en, de or auto (SUSI_LANG or system language).\nDefault: environment variable SUSI_LANG, then the language setting of\nthe Susi GUI, then the system language.	Sprache von Hilfe und Meldungen: en, de oder auto (SUSI_LANG oder Systemsprache).\nStandard: Umgebungsvariable SUSI_LANG, dann die Spracheinstellung\nder Susi-Oberfläche, dann die Systemsprache.
+	Options can also be given in the form --lang=de,fr.	Optionen können auch in der Form --lang=de,fr angegeben werden.
+
+# Help: tasks
+	Language codes separated by ; (e.g. de;fr-CA). Default: all languages.	Sprachcodes, getrennt durch ; (z. B. de;fr-CA). Standard: alle Sprachen.
+	Translation statuses, separated by ;:	Übersetzungsstatus, getrennt durch ;:
+	Only these sources (names, separated by ;).	Nur diese Quellen (Namen, getrennt durch ;).
+	Skip these sources.	Diese Quellen auslassen.
+	Replace existing translations.	Vorhandene Übersetzungen ersetzen.
+	Example:	Beispiel:
+	Examples:	Beispiele:
+	Adds sources (.json, .resx, .po/.pot, .tsv; wildcards * and ? allowed) and scans them.\nIf the project does not exist, it is created.	Fügt Quellen (.json, .resx, .po/.pot, .tsv; Platzhalter * und ? erlaubt) hinzu und scannt sie.\nExistiert das Projekt nicht, wird es angelegt.
+	Original language of the source (default: en).	Originalsprache der Quelle (Standard: en).
+	json, resx, po or tsv (default: by file extension).	json, resx, po oder tsv (Standard: anhand der Dateiendung).
+	Creates the localized files (Project | Build).	Erstellt die lokalisierten Dateien (Projekt | Erstellen).
+	Translates duplicate strings with existing translations of the same original.	Übersetzt doppelte Zeichenfolgen mit bereits vorhandenen Übersetzungen desselben Originals.
+	Exports rows to a file: .xlsx (Excel), .csv, .txt (tab separated), .xlf/.xliff, .tmx.\nXLIFF with several languages creates one file per language (name.<language>.xlf).	Exportiert Zeilen in eine Datei: .xlsx (Excel), .csv, .txt (Tab-getrennt), .xlf/.xliff, .tmx.\nXLIFF mit mehreren Sprachen erzeugt je Sprache eine Datei (name.<sprache>.xlf).
+	Row status:	Zeilenstatus:
+	true = also export "Do not translate" rows	true = auch "Nicht übersetzen"-Zeilen exportieren
+	Imports translations from .xlsx, .csv, .txt, .xlf/.xliff or .tmx.\nRows are matched by source+context, then context, then original text.	Importiert Übersetzungen aus .xlsx, .csv, .txt, .xlf/.xliff oder .tmx.\nZeilen werden über Quelle+Kontext, dann Kontext, dann Originaltext zugeordnet.
+	Overwrite existing translations: 0 = never, 1..3 = yes (default)	Vorhandene Übersetzungen überschreiben: 0 = nie, 1..3 = ja (Standard)
+	Status of imported texts without a status column:\n1 = Best guess, 2 = Auto translated, 3 = Translated (default),\n4 = For review, 5 = Complete	Status importierter Texte ohne Statusspalte:\n1 = Vorschlag, 2 = Automatisch übersetzt, 3 = Übersetzt (Standard),\n4 = Zur Prüfung, 5 = Abgeschlossen
+	Import even if the original has changed.	Auch importieren, wenn sich das Original geändert hat.
+	Do not import comments.	Keine Kommentare importieren.
+	Fills empty cells with pseudo translations (Column | Pseudo translation).\nUnknown languages are added as pseudo languages.	Füllt leere Zellen mit Pseudo-Übersetzungen (Spalte | Pseudo-Übersetzung).\nUnbekannte Sprachen werden als Pseudo-Sprache angelegt.
+	Also replace existing translations.	Auch vorhandene Übersetzungen ersetzen.
+	Removes pseudo translations.	Entfernt Pseudo-Übersetzungen.
+	Removes unused rows (Project | Remove unused items).	Entfernt unbenutzte Zeilen (Projekt | Unbenutzte Einträge entfernen).
+	Creates a project report. Format by extension: .html, .txt, .json; without a file: output to stdout.	Erstellt einen Projektbericht. Format nach Endung: .html, .txt, .json; ohne Datei: Ausgabe auf stdout.
+	Scans the sources (new, changed and unused strings).	Scannt die Quellen (neue, geänderte und unbenutzte Zeichenfolgen).
+	Translates untranslated rows from the translation memory (TMX).\nExact matches get the status "Auto translated", fuzzy ones "Best guess".	Übersetzt nicht übersetzte Zeilen aus dem Translation Memory (TMX).\nExakte Treffer erhalten den Status "Automatisch übersetzt", unscharfe "Vorschlag".
+	TMX file (default: settings, %APPDATA%\\susi\\susi-tm.tmx)	TMX-Datei (Standard: Einstellungen, %APPDATA%\\susi\\susi-tm.tmx)
+	Use fuzzy matches from N % (50..100).	Unscharfe Treffer ab N % (50..100) verwenden.
+	Only "tm" is supported.	Nur "tm" wird unterstützt.
+	Validates translations (placeholders, tags, spaces, line breaks, punctuation, length, ...).\nErrors and warnings determine the result code (see -w).	Prüft Übersetzungen (Platzhalter, Tags, Leerzeichen, Zeilenumbrüche, Satzzeichen, Länge, ...).\nFehler und Warnungen bestimmen den Rückgabewert (siehe -w).
+	All checks (including missing translations).	Alle Prüfungen (inkl. fehlender Übersetzungen).
+	Default checks.	Standardprüfungen.
+	Specific checks:	Bestimmte Prüfungen:
+	Saves translations to the translation memory.	Speichert Übersetzungen im Translation Memory.
+	TMX file	TMX-Datei
+	Default:	Standard:
+	Shows languages, sources and the translation progress.	Zeigt Sprachen, Quellen und den Übersetzungsfortschritt.
+	Starts the MCP server (Model Context Protocol) on stdin/stdout for AI agents.	Startet den MCP-Server (Model Context Protocol) auf stdin/stdout für KI-Agenten.
+	Example configuration (mcp.json):	Beispielkonfiguration (mcp.json):
+	Unknown task '{name}'.	Unbekannter Task '{name}'.
+
+# Command line parsing
+	Sisulizer exchange packages (.sle) are not supported – use 'export' (xlsx/xlf/tmx).	Sisulizer-Austauschpakete (.sle) werden nicht unterstützt – verwenden Sie 'export' (xlsx/xlf/tmx).
+	Merging projects is not supported yet.	Das Zusammenführen von Projekten wird noch nicht unterstützt.
+	'sanitize' is not supported.	'sanitize' wird nicht unterstützt.
+	Invalid value for -{name}: "{value}"	Ungültiger Wert für -{name}: "{value}"
+	Unknown option -{option} for task '{task}' (see: susi-cli {task} -h)	Unbekannte Option -{option} für Task '{task}' (siehe: susi-cli {task} -h)
+	Ambiguous option -{option} for task '{task}'	Mehrdeutige Option -{option} für Task '{task}'
+	Option -{option} before the first task	Option -{option} vor dem ersten Task
+	Unknown task '{task}' (see: susi-cli -h)	Unbekannter Task '{task}' (siehe: susi-cli -h)
+
+# Messages
+	Error:	Fehler:
+	Warning:	Warnung:
+	Note:	Hinweis:
+	Project file (.slp) missing (see: susi-cli -h)	Projektdatei (.slp) fehlt (siehe: susi-cli -h)
+	Project was changed but not saved (-nosave)	Projekt wurde geändert, aber nicht gespeichert (-nosave)
+	Project was not saved because of errors (see -forcesave)	Projekt wurde wegen Fehlern nicht gespeichert (siehe -forcesave)
+	Project saved: {path}	Projekt gespeichert: {path}
+	'mcp' cannot be combined with other tasks	'mcp' kann nicht mit anderen Tasks kombiniert werden
+	Project file {path} not found	Projektdatei {path} nicht gefunden
+	Project not loaded	Projekt nicht geladen
+	Option -{option} is ignored by susi	Option -{option} wird von susi ignoriert
+	Task '{task}' cannot be run here	Task '{task}' kann hier nicht ausgeführt werden
+	The project does not contain the language "{lang}" (available: {langs})	Das Projekt enthält die Sprache "{lang}" nicht (vorhanden: {langs})
+	The project does not contain the source "{source}"	Das Projekt enthält die Quelle "{source}" nicht
+	Task '{task}': {what} missing (see: susi-cli {task} -h)	Task '{task}': {what} fehlt (siehe: susi-cli {task} -h)
+	Source file	Quelldatei
+	Export file	Exportdatei
+	Import file (importing all localized files is not supported)	Importdatei (Importieren aller lokalisierten Dateien wird nicht unterstützt)
+	Source type '{kind}' is not supported (json, resx, po, tsv)	Quelltyp '{kind}' wird nicht unterstützt (json, resx, po, tsv)
+	New project {path}	Neues Projekt {path}
+	Language added: {name} ({lang})	Sprache hinzugefügt: {name} ({lang})
+	No files found: {files}	Keine Dateien gefunden: {files}
+	{file}: file type does not match -type:{kind}	{file}: Dateityp passt nicht zu -type:{kind}
+	Source #{index} added: {name} – {summary}	Quelle #{index} hinzugefügt: {name} – {summary}
+	Created: {path}	Erstellt: {path}
+	{file}: unknown format (.xlsx, .csv, .txt, .xlf, .xliff, .tmx)	{file}: unbekanntes Format (.xlsx, .csv, .txt, .xlf, .xliff, .tmx)
+	Exported: {path}	Exportiert: {path}
+	{path} not found	{path} nicht gefunden
+	Languages not in the project: {langs}	Sprachen nicht im Projekt: {langs}
+@plural	{n} row of the import file was not found in the project|{n} rows of the import file were not found in the project	{n} Zeile der Importdatei wurde im Projekt nicht gefunden|{n} Zeilen der Importdatei wurden im Projekt nicht gefunden
+	Translation engine '{engine}' is not supported (translation memory only: -engine:tm)	Übersetzungsmaschine '{engine}' wird nicht unterstützt (nur Translation Memory: -engine:tm)
+	Translation memory {path} is empty	Translation Memory {path} ist leer
+	{summary} ({entries} entries in TM {path})	{summary} ({entries} Einträge im TM {path})
+@plural	{n} duplicate string translated|{n} duplicate strings translated	{n} doppelte Zeichenfolge übersetzt|{n} doppelte Zeichenfolgen übersetzt
+@plural	{n} translation saved to the translation memory ({entries} entries, {path})|{n} translations saved to the translation memory ({entries} entries, {path})	{n} Übersetzung im Translation Memory gespeichert ({entries} Einträge, {path})|{n} Übersetzungen im Translation Memory gespeichert ({entries} Einträge, {path})
+	Validating original values (-original) is not supported	Die Prüfung von Originalwerten (-original) wird nicht unterstützt
+	Unknown check '{check}'	Unbekannte Prüfung '{check}'
+@plural	{n} error|{n} errors	{n} Fehler|{n} Fehler
+@plural	{n} warning|{n} warnings	{n} Warnung|{n} Warnungen
+	Validation finished: {errors}, {warnings}	Prüfung abgeschlossen: {errors}, {warnings}
+	Pseudo language {lang} added	Pseudo-Sprache {lang} angelegt
+@plural	{n} pseudo translation for {name} ({lang})|{n} pseudo translations for {name} ({lang})	{n} Pseudo-Übersetzung für {name} ({lang})|{n} Pseudo-Übersetzungen für {name} ({lang})
+@plural	{n} pseudo translation removed|{n} pseudo translations removed	{n} Pseudo-Übersetzung entfernt|{n} Pseudo-Übersetzungen entfernt
+@plural	{n} unused row removed|{n} unused rows removed	{n} unbenutzte Zeile entfernt|{n} unbenutzte Zeilen entfernt
+	Report created: {path}	Bericht erstellt: {path}
+
+# info
+	Project: {path}	Projekt: {path}
+	Languages:	Sprachen:
+	{percent}% translated	{percent} % übersetzt
+	Sources:	Quellen:
+	Original: {lang}, {rows} rows, output: {output}	Original: {lang}, {rows} Zeilen, Ausgabe: {output}

@@ -1,0 +1,30 @@
+[package]
+name = "susi-cli"
+description = "Headless Susi (SlMake compatible): scan, build, export, import, translate, validate, report, MCP server"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[lib]
+name = "susi_cli"
+path = "src/lib.rs"
+
+[[bin]]
+name = "susi-cli"
+path = "src/main.rs"
+
+[dependencies]
+susi-core = { workspace = true }
+susi-mcp = { workspace = true }
+tokio = { workspace = true }
+serde_json = { workspace = true }
+
+[dev-dependencies]
+tempfile = { workspace = true }
+
+[build-dependencies]
+winresource = { workspace = true }
