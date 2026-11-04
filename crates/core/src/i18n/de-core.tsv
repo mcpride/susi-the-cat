@@ -83,3 +83,8 @@ write method	All	Alle
 	Words: {n}	Wörter: {n}
 	Characters: {n}	Zeichen: {n}
 	Do not translate: {n}	Nicht übersetzen: {n}
+
+# Date filter
+	Any change	Beliebige Änderung
+	Row created	Zeile erstellt
+	Original changed	Original geändert

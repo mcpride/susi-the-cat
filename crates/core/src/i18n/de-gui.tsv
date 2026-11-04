@@ -274,3 +274,20 @@
 	Plural forms:	Pluralformen:
 	Rows per plural message: 2 for Western and Asian languages, 3 for most languages, 4 for all but Arabic, 6 for Arabic.	Zeilen je Pluralmeldung: 2 für westliche und asiatische Sprachen, 3 für die meisten Sprachen, 4 für alle außer Arabisch, 6 für Arabisch.
 	Scan options take effect at the next scan.	Scan-Optionen wirken ab dem nächsten Scan.
+
+# Date filter, date column
+	Date	Datum
+	Any time	Beliebiger Zeitpunkt
+	Today	Heute
+	Last 7 days	Letzte 7 Tage
+	Last 30 days	Letzte 30 Tage
+	Period…	Zeitraum…
+	From	Von
+	To	Bis
+	Date (YYYY-MM-DD) or 7d	Datum (JJJJ-MM-TT) oder 7d
+	e.g. 2026-11-01, 01.11.2026 14:30, today, yesterday, 7d, 12h	z. B. 2026-11-01, 01.11.2026 14:30, heute, gestern, 7d, 12h
+	Translated on {lang}	Übersetzt am {lang}
+	Click to sort: newest first, oldest first, unsorted	Klicken zum Sortieren: neueste zuerst, älteste zuerst, unsortiert
+	Click to sort: A–Z, Z–A, unsorted	Klicken zum Sortieren: A–Z, Z–A, unsortiert
+	"Translated on" column	Spalte „Übersetzt am“
+	Show "Translated on" column	Spalte „Übersetzt am“ anzeigen

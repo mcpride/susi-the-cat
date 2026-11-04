@@ -139,3 +139,9 @@
 	{percent}% translated	{percent} % übersetzt
 	Sources:	Quellen:
 	Original: {lang}, {rows} rows, output: {output}	Original: {lang}, {rows} Zeilen, Ausgabe: {output}
+
+# Date options
+	Only rows changed since D: 2026-11-01, "2026-11-01 14:30", today, yesterday, 7d (days), 12h (hours).	Nur seit D geänderte Zeilen: 2026-11-01, "2026-11-01 14:30", today, yesterday, 7d (Tage), 12h (Stunden).
+	Only rows changed until D (a date without time includes the whole day).	Nur bis D geänderte Zeilen (ein Datum ohne Uhrzeit schließt den ganzen Tag ein).
+	Timestamp checked by -since/-until:	Von -since/-until geprüfter Zeitstempel:
+@plural	{n} row matches the date filter|{n} rows match the date filter	{n} Zeile entspricht dem Datumsfilter|{n} Zeilen entsprechen dem Datumsfilter

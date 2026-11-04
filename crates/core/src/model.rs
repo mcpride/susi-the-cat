@@ -122,7 +122,7 @@ impl SourceKind {
     }
 }
 
-/// Items that localized resource files contain. 
+/// Items that localized resource files contain.
 /// Stored in the `writemethod` source attribute (`nwDifferent`, `nwTranslated`, `nwAll`).
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize)]
 pub enum WriteMethod {
@@ -478,6 +478,11 @@ impl Row {
     /// Translated text, if a non-empty translation exists.
     pub fn text(&self, lang: &str) -> Option<&str> {
         self.translation(lang).map(|t| t.text.as_str()).filter(|t| !t.is_empty())
+    }
+
+    /// Timestamp (`yyyymmddhhnnss`) of the last edit of a non-empty translation.
+    pub fn translation_date(&self, lang: &str) -> Option<&str> {
+        self.translation(lang).filter(|t| !t.text.is_empty()).and_then(|t| t.attrs.get("date")).filter(|d| !d.is_empty())
     }
 
     pub fn tstatus(&self, lang: &str) -> TranslationStatus {

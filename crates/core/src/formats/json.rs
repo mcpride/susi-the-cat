@@ -1,6 +1,6 @@
 //! JSON source files (i18next / ngx-translate style key/value trees).
 //!
-//! Row ids are the dotted key paths of string leaves (e.g. `BUTTON.APPLY`); 
+//! Row ids are the dotted key paths of string leaves (e.g. `BUTTON.APPLY`);
 //! array elements use their index as path segment. Non-string values are not
 //! localizable and are copied unchanged (write method All) or omitted.
 

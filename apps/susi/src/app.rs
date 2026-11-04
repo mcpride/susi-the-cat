@@ -3,7 +3,7 @@
 use std::collections::{HashMap, HashSet};
 use std::path::{Path, PathBuf};
 
-use susi_core::filter::{RowFilter, SearchIn};
+use susi_core::filter::{DateField, RowFilter, SearchIn, parse_date};
 use susi_core::i18n::{Lang, t, trn};
 use susi_core::model::{NodeRef, Project, RowRef};
 use susi_core::settings::Settings;
@@ -66,6 +66,80 @@ impl BottomTab {
     }
 }
 
+/// Column the sheet can be sorted by (click on the column header).
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum SortColumn {
+    Context,
+    Date,
+}
+
+/// Sort order of the sheet; no sort = document order.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct SheetSort {
+    pub column: SortColumn,
+    pub descending: bool,
+}
+
+impl SheetSort {
+    /// Next state after a click on `column`: unsorted, first direction, reverse, unsorted.
+    /// The first direction is A–Z for the context and newest first for the date.
+    pub fn next(cur: Option<SheetSort>, column: SortColumn) -> Option<SheetSort> {
+        let first = column == SortColumn::Date;
+        match cur {
+            Some(s) if s.column == column && s.descending == first => Some(SheetSort { column, descending: !first }),
+            Some(s) if s.column == column => None,
+            _ => Some(SheetSort { column, descending: first }),
+        }
+    }
+
+    /// Sorts `rows` (stable). Rows without a translation date of `lang` stay at the end.
+    pub fn apply(self, p: &Project, rows: &mut Vec<RowRef>, lang: Option<&str>) {
+        let key = |r: &RowRef| -> Option<(String, String)> {
+            match self.column {
+                SortColumn::Context => {
+                    let ctx = p.context(r);
+                    Some((ctx.to_lowercase(), ctx))
+                }
+                SortColumn::Date => p.row(r).and_then(|row| row.translation_date(lang?)).map(|d| (d.to_string(), String::new())),
+            }
+        };
+        let mut keyed: Vec<_> = rows.drain(..).map(|r| (key(&r), r)).collect();
+        keyed.sort_by(|(a, _), (b, _)| match (a, b) {
+            (Some(a), Some(b)) if self.descending => b.cmp(a),
+            (Some(a), Some(b)) => a.cmp(b),
+            (Some(_), None) => std::cmp::Ordering::Less,
+            (None, Some(_)) => std::cmp::Ordering::Greater,
+            (None, None) => std::cmp::Ordering::Equal,
+        });
+        rows.extend(keyed.into_iter().map(|(_, r)| r));
+    }
+}
+
+/// Time period of the date filter.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Default)]
+pub enum DatePeriod {
+    #[default]
+    Any,
+    Today,
+    Last7Days,
+    Last30Days,
+    Range,
+}
+
+impl DatePeriod {
+    pub const ALL: [DatePeriod; 5] = [DatePeriod::Any, DatePeriod::Today, DatePeriod::Last7Days, DatePeriod::Last30Days, DatePeriod::Range];
+
+    pub fn label(self) -> &'static str {
+        match self {
+            Self::Any => t("Any time"),
+            Self::Today => t("Today"),
+            Self::Last7Days => t("Last 7 days"),
+            Self::Last30Days => t("Last 30 days"),
+            Self::Range => t("Period…"),
+        }
+    }
+}
+
 /// State of the filter panel on the right.
 #[derive(Debug, Clone)]
 pub struct FilterState {
@@ -77,6 +151,11 @@ pub struct FilterState {
     pub only_marked: bool,
     pub only_locked: bool,
     pub show_excluded: bool,
+    pub date_period: DatePeriod,
+    pub date_field: DateField,
+    /// Bounds of [`DatePeriod::Range`] as typed (see [`parse_date`]); empty = open.
+    pub date_from: String,
+    pub date_to: String,
 }
 
 impl Default for FilterState {
@@ -90,6 +169,10 @@ impl Default for FilterState {
             only_marked: false,
             only_locked: false,
             show_excluded: false,
+            date_period: DatePeriod::Any,
+            date_field: DateField::Any,
+            date_from: String::new(),
+            date_to: String::new(),
         }
     }
 }
@@ -103,6 +186,19 @@ impl FilterState {
             || self.only_marked
             || self.only_locked
             || self.show_excluded
+            || self.date_period != DatePeriod::Any
+    }
+
+    /// Timestamp bounds of the date filter; unparsable range bounds are ignored.
+    pub fn date_bounds(&self) -> (Option<String>, Option<String>) {
+        let bound = |s: &str, end| if s.trim().is_empty() { None } else { parse_date(s, end) };
+        match self.date_period {
+            DatePeriod::Any => (None, None),
+            DatePeriod::Today => (parse_date("today", false), None),
+            DatePeriod::Last7Days => (parse_date("6d", false), None),
+            DatePeriod::Last30Days => (parse_date("29d", false), None),
+            DatePeriod::Range => (bound(&self.date_from, false), bound(&self.date_to, true)),
+        }
     }
 
     /// Core filter for the current view; `None` if no row can match (all boxes of a group unchecked).
@@ -120,6 +216,7 @@ impl FilterState {
         } else {
             RowStatus::ALL.into_iter().zip(self.row_statuses).filter(|(_, on)| *on).map(|(s, _)| s).collect()
         };
+        let (since, until) = self.date_bounds();
         Some(RowFilter {
             text: self.text.clone(),
             case_sensitive: self.case_sensitive,
@@ -131,6 +228,9 @@ impl FilterState {
             locked: self.only_locked.then_some(true),
             marked: self.only_marked.then_some(true),
             include_excluded: self.show_excluded,
+            date_field: self.date_field,
+            since,
+            until,
             ..Default::default()
         })
     }
@@ -170,6 +270,8 @@ pub struct SusiApp {
     pub filter: FilterState,
     pub rows: Vec<RowRef>,
     pub rows_stale: bool,
+    /// Sort order of the sheet (header click); `None` = document order.
+    pub sort: Option<SheetSort>,
     pub selected: Option<RowRef>,
     pub scroll_to_selected: bool,
     pub cell_edit: Option<CellEdit>,
@@ -216,6 +318,7 @@ impl SusiApp {
             filter: FilterState::default(),
             rows: Vec::new(),
             rows_stale: false,
+            sort: None,
             selected: None,
             scroll_to_selected: false,
             cell_edit: None,
@@ -439,6 +542,9 @@ impl SusiApp {
             Some(f) => f.apply(p),
             None => Vec::new(),
         };
+        if let Some(s) = self.sort {
+            s.apply(p, &mut self.rows, self.lang.as_deref());
+        }
     }
 
     pub fn select(&mut self, row: RowRef) {

@@ -4,8 +4,9 @@ use std::io::Write;
 use std::path::{Path, PathBuf};
 
 use susi_core::exchange::{self, ExportOptions, ImportOptions};
+use susi_core::filter::{DateField, RowFilter, parse_date};
 use susi_core::i18n::{self, trn};
-use susi_core::model::{Project, SourceKind};
+use susi_core::model::{Project, RowRef, SourceKind};
 use susi_core::settings::Settings;
 use susi_core::status::{TranslationStatus, parse_row_status_list, parse_status_list};
 use susi_core::tm::{self, TranslateOptions, TranslationMemory};
@@ -195,6 +196,38 @@ fn sources(t: &TaskArgs, p: &Project) -> Result<Option<Vec<usize>>, String> {
     Ok(Some(sel))
 }
 
+/// `-since` / `-until` / `-datetype` options as a row filter (`None` = no date range given).
+fn date_filter(t: &TaskArgs) -> Result<Option<RowFilter>, String> {
+    let bound = |name: &str, end: bool| {
+        t.value(name).map(|v| parse_date(v, end).ok_or_else(|| tf!("Invalid value for -{name}: \"{value}\"", name = name, value = v))).transpose()
+    };
+    let (since, until) = (bound("since", false)?, bound("until", true)?);
+    let date_field = match t.value("datetype") {
+        None => DateField::Any,
+        Some(v) => DateField::from_keyword(v)
+            .ok_or_else(|| tf!("Invalid value for -{name}: \"{value}\"", name = "datetype", value = v) + " (any, created, changed, translated)")?,
+    };
+    if since.is_none() && until.is_none() {
+        return Ok(None);
+    }
+    Ok(Some(RowFilter { date_field, since, until, ..Default::default() }))
+}
+
+/// Rows selected by the source (`sel`) and date options; `None` = all rows.
+fn row_selection(t: &TaskArgs, p: &Project, langs: &[String], sel: Option<Vec<usize>>, o: &mut Output<'_>) -> Result<Option<Vec<RowRef>>, String> {
+    let date = date_filter(t)?;
+    if date.is_none() {
+        return Ok(sel.map(|sel| p.rows().into_iter().filter(|r| sel.contains(&r.source)).collect()));
+    }
+    if sel.as_ref().is_some_and(Vec::is_empty) {
+        return Ok(Some(Vec::new()));
+    }
+    let f = RowFilter { sources: sel.unwrap_or_default(), langs: langs.to_vec(), include_excluded: true, ..date.unwrap_or_default() };
+    let rows = f.apply(p);
+    o.info(trn(rows.len(), "{n} row matches the date filter", "{n} rows match the date filter"));
+    Ok(Some(rows))
+}
+
 fn tm_path(t: &TaskArgs) -> PathBuf {
     t.value("tm").map(PathBuf::from).unwrap_or_else(|| Settings::load().tm_path())
 }
@@ -338,11 +371,13 @@ fn export(t: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), String
         return Err(tf!("{file}: unknown format (.xlsx, .csv, .txt, .xlf, .xliff, .tmx)", file = file.display()));
     }
     let p = st.load(o)?;
+    let langs = languages(t, p)?;
+    let rows = row_selection(t, p, &langs, sources(t, p)?, o)?;
     let opts = ExportOptions {
-        langs: languages(t, p)?,
+        langs,
         statuses: t.value("status").map(parse_status_list).transpose()?.unwrap_or_default(),
         row_statuses: t.value("rowstatus").map(parse_row_status_list).transpose()?.unwrap_or_default(),
-        rows: sources(t, p)?.map(|sel| p.rows().into_iter().filter(|r| sel.contains(&r.source)).collect()),
+        rows,
         include_locked: t.value("readonly").is_some_and(|v| v.eq_ignore_ascii_case("true")),
         ..Default::default()
     };
@@ -446,7 +481,8 @@ fn validate(t: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), Stri
     }
     let p = st.load(o)?;
     opts.langs = languages(t, p)?;
-    let issues = validate::validate(p, &opts, None);
+    let rows = row_selection(t, p, &opts.langs, None, o)?;
+    let issues = validate::validate(p, &opts, rows.as_deref());
     let (mut errors, mut warnings) = (0, 0);
     for i in &issues {
         let msg = format!("[{}] {} {}: {} – {}", i.lang, i.source, i.context, i.kind.label(), i.message);
@@ -507,7 +543,8 @@ fn remove(st: &mut State, o: &mut Output<'_>) -> Result<(), String> {
 fn report(t: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), String> {
     let title = st.path.file_stem().map(|s| s.to_string_lossy().to_string()).unwrap_or_default();
     let p = st.load(o)?;
-    let s = stats::statistics(p, None);
+    let rows = row_selection(t, p, &[], None, o)?;
+    let s = stats::statistics(p, rows.as_deref());
     let Some(file) = t.files.first().map(PathBuf::from) else {
         let text = s.to_text();
         if !o.quiet {

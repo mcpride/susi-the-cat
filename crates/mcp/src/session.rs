@@ -8,8 +8,8 @@ use std::path::{Path, PathBuf};
 
 use serde_json::{Value, json};
 use susi_core::exchange::{self, ExportOptions, ImportOptions};
-use susi_core::filter::{RowFilter, SearchIn};
-use susi_core::model::{Project, RowRef};
+use susi_core::filter::{DateField, RowFilter, SearchIn, parse_date};
+use susi_core::model::{Project, RowRef, display_stamp};
 use susi_core::status::{RowStatus, TranslationStatus};
 use susi_core::tm::{self, TranslateOptions, TranslationMemory};
 use susi_core::validate::{self, ValidateOptions, ValidationKind};
@@ -68,6 +68,10 @@ impl Keys {
     }
 }
 
+fn date_bound(s: Option<&str>, end: bool) -> Result<Option<String>, String> {
+    s.map(|v| parse_date(v, end).ok_or_else(|| format!("invalid date '{v}' (use e.g. 2026-11-01, \"2026-11-01 14:30\", today, 7d)"))).transpose()
+}
+
 pub fn row_json(p: &Project, r: &RowRef, langs: &[String]) -> Value {
     let Some(row) = p.row(r) else {
         return Value::Null;
@@ -82,6 +86,9 @@ pub fn row_json(p: &Project, r: &RowRef, langs: &[String]) -> Value {
             }
             if t.attrs.get("invalidated") == Some("1") {
                 o["invalidated"] = json!(true);
+            }
+            if let Some(d) = row.translation_date(l) {
+                o["date"] = json!(display_stamp(d));
             }
         }
         tr.insert(l.clone(), o);
@@ -102,6 +109,11 @@ pub fn row_json(p: &Project, r: &RowRef, langs: &[String]) -> Value {
     }
     if row.locked() {
         v["do_not_translate"] = json!(true);
+    }
+    for name in ["created", "changed"] {
+        if let Some(d) = row.attrs.get(name).filter(|d| !d.is_empty()) {
+            v[name] = json!(display_stamp(d));
+        }
     }
     let ph = validate::placeholders(row.original());
     if !ph.is_empty() {
@@ -141,6 +153,13 @@ pub struct ListRowsInput {
     pub text: Option<String>,
     /// Restrict to one source (index).
     pub source: Option<usize>,
+    /// Only rows whose timestamp (see `date_field`) is at or after this local date/time:
+    /// "2026-11-01", "2026-11-01 14:30", "today", "yesterday", "7d" (days ago), "12h" (hours ago).
+    pub since: Option<String>,
+    /// Only rows whose timestamp is at or before this local date/time (a date includes the whole day).
+    pub until: Option<String>,
+    /// Timestamp for since/until: any (default) | created (row added by a scan) | changed (original changed) | translated (translation of `langs` edited).
+    pub date_field: Option<String>,
     #[serde(default)]
     pub offset: usize,
     /// Maximum rows to return (default 100, max 1000).
@@ -229,6 +248,14 @@ impl Session {
                 .map(|s| RowStatus::from_keyword(s).ok_or_else(|| format!("unknown row status '{s}'")))
                 .collect::<Result<_, _>>()?,
             sources: q.source.into_iter().collect(),
+            date_field: q
+                .date_field
+                .as_deref()
+                .map(|s| DateField::from_keyword(s).ok_or_else(|| format!("unknown date_field '{s}' (any|created|changed|translated)")))
+                .transpose()?
+                .unwrap_or_default(),
+            since: date_bound(q.since.as_deref(), false)?,
+            until: date_bound(q.until.as_deref(), true)?,
             ..Default::default()
         };
         let rows = f.apply(p);

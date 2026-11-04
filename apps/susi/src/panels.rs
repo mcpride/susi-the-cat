@@ -154,6 +154,7 @@ fn view_menu(app: &mut SusiApp, ui: &mut egui::Ui) {
         ui.separator();
         let mut changed = ui.checkbox(&mut app.settings.show_id_column, t("\"Context\" column")).changed();
         changed |= ui.checkbox(&mut app.settings.show_comment_column, t("\"Row comment\" column")).changed();
+        changed |= ui.checkbox(&mut app.settings.show_date_column, t("\"Translated on\" column")).changed();
         if ui.checkbox(&mut app.settings.dark_mode, t("Dark theme")).changed() {
             app.apply_theme(ui.ctx());
             changed = true;
@@ -412,6 +413,42 @@ fn scope_items(ui: &mut egui::Ui, acts: &mut Vec<Action>, scope: &Scope) {
     cmd(ui, acts, t("Validate"), Action::Validate { missing: false });
 }
 
+/// "Date" section of the filter panel; returns whether the filter changed.
+fn date_filter(ui: &mut egui::Ui, f: &mut crate::app::FilterState) -> bool {
+    use crate::app::DatePeriod;
+    use susi_core::filter::DateField;
+    let mut changed = false;
+    ui.strong(t("Date"));
+    egui::ComboBox::from_id_salt("filter-period").selected_text(f.date_period.label()).show_ui(ui, |ui| {
+        for p in DatePeriod::ALL {
+            changed |= ui.selectable_value(&mut f.date_period, p, p.label()).changed();
+        }
+    });
+    if f.date_period == DatePeriod::Any {
+        return changed;
+    }
+    egui::ComboBox::from_id_salt("filter-datefield").selected_text(f.date_field.label()).show_ui(ui, |ui| {
+        for d in DateField::ALL {
+            changed |= ui.selectable_value(&mut f.date_field, d, d.label()).changed();
+        }
+    });
+    if f.date_period == DatePeriod::Range {
+        let hint = t("Date (YYYY-MM-DD) or 7d");
+        for (label, text, end) in [(t("From"), &mut f.date_from, false), (t("To"), &mut f.date_to, true)] {
+            ui.horizontal(|ui| {
+                ui.label(label);
+                let valid = text.trim().is_empty() || susi_core::filter::parse_date(text, end).is_some();
+                let mut edit = egui::TextEdit::singleline(text).hint_text(hint).desired_width(f32::INFINITY);
+                if !valid {
+                    edit = edit.text_color(Color32::from_rgb(220, 30, 30));
+                }
+                changed |= ui.add(edit).on_hover_text(t("e.g. 2026-11-01, 01.11.2026 14:30, today, yesterday, 7d, 12h")).changed();
+            });
+        }
+    }
+    changed
+}
+
 fn filter_panel(app: &mut SusiApp, ui: &mut egui::Ui) {
     egui::ScrollArea::vertical().auto_shrink(false).show(ui, |ui| {
         let f = &mut app.filter;
@@ -429,6 +466,8 @@ fn filter_panel(app: &mut SusiApp, ui: &mut egui::Ui) {
         for (i, s) in RowStatus::ALL.into_iter().enumerate() {
             changed |= ui.checkbox(&mut f.row_statuses[i], s.label()).changed();
         }
+        ui.separator();
+        changed |= date_filter(ui, f);
         ui.separator();
         ui.strong(t("More"));
         changed |= ui.checkbox(&mut f.only_marked, t("Only marked rows")).changed();

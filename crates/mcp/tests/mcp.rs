@@ -66,6 +66,16 @@ async fn translate_over_mcp() {
 
     let (e, t) = call(&client, "set_translations", json!({"items": [{"key": key, "lang": "de", "text": "{0} öffnen", "status": "translated"}]})).await;
     assert!(!e, "{t}");
+    let (e, t) = call(&client, "list_rows", json!({"langs": ["de"], "since": "today", "date_field": "translated"})).await;
+    assert!(!e, "{t}");
+    let v: Value = serde_json::from_str(&t).unwrap();
+    assert_eq!(v["total"], 1, "{t}");
+    assert!(v["rows"][0]["translations"]["de"]["date"].is_string(), "{t}");
+    let (e, t) = call(&client, "list_rows", json!({"until": "yesterday"})).await;
+    assert!(!e && serde_json::from_str::<Value>(&t).unwrap()["total"] == 0, "{t}");
+    let (e, t) = call(&client, "list_rows", json!({"since": "next week"})).await;
+    assert!(e && t.contains("invalid date"), "{t}");
+
     let (e, t) = call(&client, "save_project", json!({})).await;
     assert!(!e, "{t}");
     let (e, t) = call(&client, "build", json!({"langs": ["de"]})).await;

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<document created="20261103155355" version="4.0.374" date="20261103162607" scan="1" scanned="20261103162607">
+<document created="20261103155355" version="4.0.374" date="20261104100111" scan="3" scanned="20261104100111">
   <lang id="en"/>
   <lang id="de"/>
-  <source class="TTsvSource" name="de-core.tsv" original="en" date="20261103162544">
+  <source class="TTsvSource" name="de-core.tsv" original="en" date="20261103231859">
     <outputfile dir="." localized="&lt;iso&gt;-core.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-core.tsv" state="0" created="20261103155355">
       <row id="Not translated" state="0" created="20261103155355" note="Status" notereadonly="1">
@@ -301,9 +301,21 @@
         <native>Do not translate: {n}</native>
         <lang id="de" date="20261103155355" status="3">Nicht übersetzen: {n}</lang>
       </row>
+      <row id="Any change" state="0" created="20261103232009" note="Date filter" notereadonly="1">
+        <native>Any change</native>
+        <lang id="de" date="20261103232009" status="3">Beliebige Änderung</lang>
+      </row>
+      <row id="Row created" state="0" created="20261103232009" note="Date filter" notereadonly="1">
+        <native>Row created</native>
+        <lang id="de" date="20261103232009" status="3">Zeile erstellt</lang>
+      </row>
+      <row id="Original changed" state="0" created="20261103232009" note="Date filter" notereadonly="1">
+        <native>Original changed</native>
+        <lang id="de" date="20261103232009" status="3">Original geändert</lang>
+      </row>
     </node>
   </source>
-  <source class="TTsvSource" name="de-cli.tsv" original="en" date="20261103162544">
+  <source class="TTsvSource" name="de-cli.tsv" original="en" date="20261103231859">
     <outputfile dir="." localized="&lt;iso&gt;-cli.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-cli.tsv" state="0" created="20261103155355">
       <row id="susi-cli {version} – Susi the CAT (SlMake compatible)" state="0" created="20261103162607" note="Help: general" notereadonly="1">
@@ -814,9 +826,25 @@
         <native>Original: {lang}, {rows} rows, output: {output}</native>
         <lang id="de" date="20261103155355" status="3">Original: {lang}, {rows} Zeilen, Ausgabe: {output}</lang>
       </row>
+      <row id="Only rows changed since D: 2026-11-01, &quot;2026-11-01 14:30&quot;, today, yesterday, 7d (days), 12h (hours)." state="0" created="20261103232009" note="Date options" notereadonly="1">
+        <native>Only rows changed since D: 2026-11-01, "2026-11-01 14:30", today, yesterday, 7d (days), 12h (hours).</native>
+        <lang id="de" date="20261103232009" status="3">Nur seit D geänderte Zeilen: 2026-11-01, "2026-11-01 14:30", today, yesterday, 7d (Tage), 12h (Stunden).</lang>
+      </row>
+      <row id="Only rows changed until D (a date without time includes the whole day)." state="0" created="20261103232009" note="Date options" notereadonly="1">
+        <native>Only rows changed until D (a date without time includes the whole day).</native>
+        <lang id="de" date="20261103232009" status="3">Nur bis D geänderte Zeilen (ein Datum ohne Uhrzeit schließt den ganzen Tag ein).</lang>
+      </row>
+      <row id="Timestamp checked by -since/-until:" state="0" created="20261103232009" note="Date options" notereadonly="1">
+        <native>Timestamp checked by -since/-until:</native>
+        <lang id="de" date="20261103232009" status="3">Von -since/-until geprüfter Zeitstempel:</lang>
+      </row>
+      <row id="@plural|{n} row matches the date filter|{n} rows match the date filter" state="0" created="20261103232009" note="Date options#lContext: @plural" notereadonly="1">
+        <native>{n} row matches the date filter|{n} rows match the date filter</native>
+        <lang id="de" date="20261103232009" status="3">{n} Zeile entspricht dem Datumsfilter|{n} Zeilen entsprechen dem Datumsfilter</lang>
+      </row>
     </node>
   </source>
-  <source class="TTsvSource" name="de-gui.tsv" original="en" date="20261103162544">
+  <source class="TTsvSource" name="de-gui.tsv" original="en" date="20261104095959">
     <outputfile dir="." localized="&lt;iso&gt;-gui.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-gui.tsv" state="0" created="20261103155355">
       <row id="Information" state="0" created="20261103155355" note="Application, log" notereadonly="1">
@@ -1862,6 +1890,66 @@
       <row id="Scan options take effect at the next scan." state="0" created="20261103155355" note="PO source options" notereadonly="1">
         <native>Scan options take effect at the next scan.</native>
         <lang id="de" date="20261103155355" status="3">Scan-Optionen wirken ab dem nächsten Scan.</lang>
+      </row>
+      <row id="Date" state="0" created="20261103232009" note="Date filter, date column" notereadonly="1">
+        <native>Date</native>
+        <lang id="de" date="20261103232009" status="3">Datum</lang>
+      </row>
+      <row id="Any time" state="0" created="20261103232009" note="Date filter, date column" notereadonly="1">
+        <native>Any time</native>
+        <lang id="de" date="20261103232009" status="3">Beliebiger Zeitpunkt</lang>
+      </row>
+      <row id="Today" state="0" created="20261103232009" note="Date filter, date column" notereadonly="1">
+        <native>Today</native>
+        <lang id="de" date="20261103232009" status="3">Heute</lang>
+      </row>
+      <row id="Last 7 days" state="0" created="20261103232009" note="Date filter, date column" notereadonly="1">
+        <native>Last 7 days</native>
+        <lang id="de" date="20261103232009" status="3">Letzte 7 Tage</lang>
+      </row>
+      <row id="Last 30 days" state="0" created="20261103232009" note="Date filter, date column" notereadonly="1">
+        <native>Last 30 days</native>
+        <lang id="de" date="20261103232009" status="3">Letzte 30 Tage</lang>
+      </row>
+      <row id="Period…" state="0" created="20261103232009" note="Date filter, date column" notereadonly="1">
+        <native>Period…</native>
+        <lang id="de" date="20261103232009" status="3">Zeitraum…</lang>
+      </row>
+      <row id="From" state="0" created="20261103232009" note="Date filter, date column" notereadonly="1">
+        <native>From</native>
+        <lang id="de" date="20261103232009" status="3">Von</lang>
+      </row>
+      <row id="To" state="0" created="20261103232009" note="Date filter, date column" notereadonly="1">
+        <native>To</native>
+        <lang id="de" date="20261103232009" status="3">Bis</lang>
+      </row>
+      <row id="Date (YYYY-MM-DD) or 7d" state="0" created="20261103232009" note="Date filter, date column" notereadonly="1">
+        <native>Date (YYYY-MM-DD) or 7d</native>
+        <lang id="de" date="20261103232009" status="3">Datum (JJJJ-MM-TT) oder 7d</lang>
+      </row>
+      <row id="e.g. 2026-11-01, 01.11.2026 14:30, today, yesterday, 7d, 12h" state="0" created="20261103232009" note="Date filter, date column" notereadonly="1">
+        <native>e.g. 2026-11-01, 01.11.2026 14:30, today, yesterday, 7d, 12h</native>
+        <lang id="de" date="20261103232009" status="3">z. B. 2026-11-01, 01.11.2026 14:30, heute, gestern, 7d, 12h</lang>
+      </row>
+      <row id="Translated on {lang}" state="0" created="20261103232009" note="Date filter, date column" notereadonly="1">
+        <native>Translated on {lang}</native>
+        <lang id="de" date="20261103232009" status="3">Übersetzt am {lang}</lang>
+      </row>
+      <row id="Click to sort: newest first, oldest first, unsorted" state="0" created="20261104100111" note="Date filter, date column" notereadonly="1">
+        <native>Click to sort: newest first, oldest first, unsorted</native>
+        <lang id="de" date="20261104100111" status="3">Klicken zum Sortieren: neueste zuerst, älteste zuerst, unsortiert</lang>
+      </row>
+      <row id="Click to sort: A–Z, Z–A, unsorted" state="0" created="20261104100111" note="Date filter, date column" notereadonly="1">
+        <native>Click to sort: A–Z, Z–A, unsorted</native>
+        <lang id="de" date="20261104100111" status="3">Klicken zum Sortieren: A–Z, Z–A, unsortiert</lang>
+      </row>
+      <row id="&quot;Translated on&quot; column" state="0" created="20261103232009" note="Date filter, date column" notereadonly="1">
+        <native>"Translated on" column</native>
+        <lang id="de" date="20261103232009" status="3">Spalte „Übersetzt am“</lang>
+      </row>
+      <row id="Show &quot;Translated on&quot; column" state="0" created="20261103232009" note="Date filter, date column" notereadonly="1">
+        <native>Show "Translated on" column</native>
+        <lang id="de" date="20261103232009" status="3">Spalte „Übersetzt am“ anzeigen</lang>
       </row>
     </node>
   </source>

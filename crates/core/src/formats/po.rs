@@ -1,6 +1,6 @@
 //! GNU gettext PO/POT files (Sisulizer `TPoSource`).
 //!
-//! The original is a `.pot` (or a `.po` when no template exists); building writes a localized 
+//! The original is a `.pot` (or a `.po` when no template exists); building writes a localized
 //! `.po` per language and optionally compiles it to `.mo`.
 //! Source options are stored as `<source>` attributes `scancomments`, `compile`,
 //! `usevalueasoriginal`, `includeempty`, `byteorder` (`boLittleEndian`/`boBigEndian`),

@@ -37,6 +37,8 @@ pub struct Settings {
     pub show_id_column: bool,
     /// Show the comment column in the grid.
     pub show_comment_column: bool,
+    /// Show the translation date column in the grid.
+    pub show_date_column: bool,
     /// Pseudo translation options.
     pub pseudo: crate::pseudo::PseudoOptions,
     /// Dark UI theme.
@@ -55,6 +57,7 @@ impl Default for Settings {
             confirm_overwrite: true,
             show_id_column: true,
             show_comment_column: true,
+            show_date_column: true,
             pseudo: crate::pseudo::PseudoOptions::default(),
             dark_mode: false,
             ui_language: "auto".into(),

@@ -105,6 +105,12 @@ Operation follows Sisulizer:
   - Columns for context, status, original and one column per language (or only the selected
     language with its comment). Context and original have a lavender background, problem cells
     a pink one.
+  - "Translated on" shows when the translation of the selected language was last edited; its
+    tooltip also shows when the row was created and when its original changed (*View* toggles
+    the column).
+  - Sorting: clicking the header of "Translated on" cycles through newest first → oldest first →
+    unsorted (document order); rows without a translation date stay at the end. Clicking
+    "Context" cycles through A–Z → Z–A → unsorted. An arrow marks the sorted column.
   - A colored bar shows the translation status, a triangle indicates a comment.
   - The grid scrolls horizontally and vertically; the header row stays fixed. Resize columns by
     dragging the separator in the column header; a double-click resets the width.
@@ -112,8 +118,9 @@ Operation follows Sisulizer:
     `Esc` cancels. Double-clicking multi-line text opens it in the Editor tab.
   - Editing changes the status *Not translated*, *Best guess* or *Auto translated* to
     *Translated*.
-- **Filter** (right): translation status, row status (new, modified, unused, in use), marked,
-  locked and text. When a filter is active, the notice "Special filters on!" appears.
+- **Filter** (right): translation status, row status (new, modified, unused, in use), date,
+  marked, locked and text. When a filter is active, the notice "Special filters on!" appears.
+  See [Reviewing recent changes](#reviewing-recent-changes).
 - **Bottom tabs**:
   - Output, Validation (a click jumps to the cell), Search (including "Use as filter"),
     Statistics and Comments.
@@ -123,6 +130,33 @@ Operation follows Sisulizer:
   Row properties, Export, Import, Translate with translation memory, Pseudo translation, Options.
 
 Unsaved changes are prompted for when closing, opening or creating a project.
+
+### Reviewing recent changes
+
+Like Sisulizer, Susi stores three timestamps (local time) in the `.slp` file:
+
+| Timestamp | Set when | Date filter (`-datetype:`) |
+|-----------|----------|----------------------------|
+| Row created | a scan finds a new string | `created` |
+| Original changed | a scan finds a changed original text | `changed` |
+| Translation date (per language) | a translation is edited, imported, translated from the TM or pseudo translated | `translated` |
+
+The date filter shows rows whose selected timestamp (or any of them) lies in a period:
+*Today*, *Last 7 days*, *Last 30 days* or *Period…* with "From"/"To" (e.g. `2026-11-01`,
+`01.11.2026 14:30`, `today`, `yesterday`, `7d`, `12h`; a date without time covers the whole day).
+Translation dates are only checked for the shown languages (single-language view: the selected
+one). The same filter is available in the CLI (`export`, `validate`, `report`) and in the MCP tool
+`list_rows`:
+
+```powershell
+# Excel file with all German translations of the last 7 days for review
+susi-cli export Review.xlsx -lang:de -since:7d -datetype:translated app.slp
+# Strings that are new since a release
+susi-cli export New.xlsx -since:2026-11-01 -datetype:created app.slp
+```
+
+Deleted translations and earlier texts leave no trace in the project; to compare with an older
+state, compare the `.slp` file with its version in the source control.
 
 ---
 
@@ -190,6 +224,8 @@ susi-cli <tasks> project.slp [-q] [-a] [-w] [-e] [-h]
 | `mcp` | – | Start the MCP server |
 
 Important options are `-lang:de;fr`, `-status:…`, `-include:` and `-exclude:` (sources),
+`-since:`, `-until:` and `-datetype:` (date filter, see
+[Reviewing recent changes](#reviewing-recent-changes)),
 `-overwrite`, `-tm:[file]`, `-fuzzy:N`, `-nosave` and `-forcesave`. Instead of `-opt:value`,
 `--opt=value` is accepted as well. `-uilang:en|de` selects the output language. `susi-cli <task> -h`
 prints help for a task.
@@ -226,7 +262,8 @@ Optionally a project is opened right away: `"args": ["mcp", "C:\\path\\app.slp"]
 Tools (21):
 
 - `open_project`, `create_project`, `save_project`, `project_info`
-- `list_rows` (with filters and paging), `get_row`
+- `list_rows` (filters including the date range `since`/`until`/`date_field`, paging; rows carry
+  their created/changed and translation dates), `get_row`
 - `set_translations` (batch; default status *Auto translated*), `set_status`,
   `set_row_properties`
 - `add_language`, `add_source`, `scan`, `build`

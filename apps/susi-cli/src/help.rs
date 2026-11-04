@@ -90,6 +90,12 @@ fn filter_opts() -> String {
     item("-include:\"S\"", t("Only these sources (names, separated by ;).")) + &item("-exclude:\"S\"", t("Skip these sources."))
 }
 
+fn date_opts() -> String {
+    item("-since:D", t("Only rows changed since D: 2026-11-01, \"2026-11-01 14:30\", today, yesterday, 7d (days), 12h (hours)."))
+        + &item("-until:D", t("Only rows changed until D (a date without time includes the whole day)."))
+        + &item("-datetype:S", &format!("{}\nany (default), created, changed, translated", t("Timestamp checked by -since/-until:")))
+}
+
 fn overwrite_opt() -> String {
     item("-overwrite", t("Replace existing translations."))
 }
@@ -148,8 +154,13 @@ pub fn task(name: &str) -> String {
                 + &status_opt()
                 + &item("-rowstatus:S", &format!("{} new, unused, inuse, changed", t("Row status:")))
                 + &item("-readonly:S", t("true = also export \"Do not translate\" rows"))
-                + &filter_opts()),
-            &["susi-cli export Translation.xlsx -lang:fi;de app.slp", "susi-cli export de.xlf -lang:de -status:untranslated;review app.slp"],
+                + &filter_opts()
+                + &date_opts()),
+            &[
+                "susi-cli export Translation.xlsx -lang:fi;de app.slp",
+                "susi-cli export de.xlf -lang:de -status:untranslated;review app.slp",
+                "susi-cli export Review.xlsx -lang:de -since:7d -datetype:translated app.slp",
+            ],
         ),
         "import" => page(
             "susi-cli import file [options] project.slp",
@@ -177,7 +188,7 @@ pub fn task(name: &str) -> String {
         "report" => page(
             "susi-cli report [file] project.slp",
             t("Creates a project report. Format by extension: .html, .txt, .json; without a file: output to stdout."),
-            "",
+            &date_opts(),
             &[],
         ),
         "scan" => page("susi-cli scan [options] project.slp", t("Scans the sources (new, changed and unused strings)."), &filter_opts(), &[]),
@@ -205,8 +216,9 @@ pub fn task(name: &str) -> String {
                         "{}\nmissing, format, tags, whitespace, newline, period, colon,\nexclamation, question, length, allspaces, hotkey, duplicate",
                         t("Specific checks:")
                     ),
-                )),
-            &[],
+                )
+                + &date_opts()),
+            &["susi-cli validate -since:yesterday -datetype:translated app.slp"],
         ),
         "savetotm" => page(
             "susi-cli savetotm [options] project.slp",

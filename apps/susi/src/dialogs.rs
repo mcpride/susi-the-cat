@@ -542,6 +542,7 @@ fn settings(app: &mut SusiApp, ui: &mut egui::Ui, s: &mut Settings) -> bool {
     ui.checkbox(&mut s.auto_save_to_tm, t("Automatically save translated texts to the translation memory when saving"));
     ui.checkbox(&mut s.show_id_column, t("Show \"Context\" column"));
     ui.checkbox(&mut s.show_comment_column, t("Show \"Row comment\" column"));
+    ui.checkbox(&mut s.show_date_column, t("Show \"Translated on\" column"));
     ui.checkbox(&mut s.dark_mode, t("Dark theme"));
     match ok_cancel(ui, "OK", true) {
         Some(true) => {

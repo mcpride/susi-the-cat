@@ -30,6 +30,62 @@ fn app_with_fixture(ctx: &egui::Context, tmp: &Path, ui_language: &str) -> SusiA
 }
 
 #[test]
+fn sheet_sorting_cycles_and_orders() {
+    use crate::app::{SheetSort, SortColumn};
+    use susi_core::status::TranslationStatus;
+    let ctx = egui::Context::default();
+    let mut app = app_with_fixture(&ctx, &std::env::temp_dir(), "en");
+    app.refresh_rows();
+    let unsorted = app.rows.clone();
+    let p = app.project.as_ref().unwrap();
+    let mut contexts: Vec<String> = unsorted.iter().map(|r| p.context(r).to_lowercase()).collect();
+    contexts.sort();
+
+    let mut states = Vec::new();
+    for _ in 0..3 {
+        app.sort = SheetSort::next(app.sort, SortColumn::Context);
+        app.refresh_rows();
+        states.push(app.sort.map(|s| s.descending));
+        let p = app.project.as_ref().unwrap();
+        let got: Vec<String> = app.rows.iter().map(|r| p.context(r).to_lowercase()).collect();
+        match app.sort {
+            Some(s) if s.descending => assert_eq!(got, contexts.iter().rev().cloned().collect::<Vec<_>>()),
+            Some(_) => assert_eq!(got, contexts),
+            None => assert_eq!(app.rows, unsorted),
+        }
+    }
+    assert_eq!(states, [Some(false), Some(true), None]);
+
+    // Date: newest first, then oldest first; undated rows stay at the end. Switching columns restarts the cycle.
+    app.all_langs = false;
+    let lang = app.lang.clone().unwrap();
+    let p = app.project.as_mut().unwrap();
+    for (r, stamp) in unsorted.iter().zip(["20260101000000", "20260301000000", "20260201000000"]) {
+        if p.original_lang(r) == lang {
+            continue;
+        }
+        let row = p.row_mut(r).unwrap();
+        row.set_translation(&lang, "x", TranslationStatus::Translated);
+        row.translation_mut(&lang).unwrap().attrs.set("date", stamp);
+    }
+    for r in unsorted.iter().skip(3) {
+        p.row_mut(r).unwrap().set_translation(&lang, "", TranslationStatus::NotTranslated);
+    }
+    app.sort = SheetSort::next(app.sort, SortColumn::Context);
+    assert_eq!(SheetSort::next(app.sort, SortColumn::Date), Some(SheetSort { column: SortColumn::Date, descending: true }));
+    for (descending, expected) in [(true, [1, 2, 0]), (false, [0, 2, 1])] {
+        app.sort = Some(SheetSort { column: SortColumn::Date, descending });
+        app.refresh_rows();
+        let p = app.project.as_ref().unwrap();
+        let dated: Vec<&susi_core::model::RowRef> = app.rows.iter().filter(|r| p.row(r).unwrap().translation_date(&lang).is_some()).collect();
+        let want: Vec<&susi_core::model::RowRef> = expected.iter().map(|&i| &unsorted[i]).collect();
+        assert_eq!(dated, want);
+        assert!(app.rows[..3].iter().all(|r| p.row(r).unwrap().translation_date(&lang).is_some()));
+    }
+    assert_eq!(SheetSort::next(app.sort, SortColumn::Date), None);
+}
+
+#[test]
 fn app_icon_decodes() {
     let icon = crate::app_icon::window_icon();
     assert_eq!((icon.width, icon.height, icon.rgba.len()), (256, 256, 256 * 256 * 4));

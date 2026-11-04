@@ -207,7 +207,9 @@ impl SusiServer {
         self.run(|s| s.info())
     }
 
-    #[tool(description = "List rows with original, translations (text/status/comment), row comment, max_chars and placeholders. Supports filters and paging.")]
+    #[tool(
+        description = "List rows with original, translations (text/status/comment/date), row comment, max_chars, placeholders and created/changed dates. Supports filters (status, row status, text, source, date range via since/until/date_field) and paging. Use since/until to review recent changes."
+    )]
     fn list_rows(&self, Parameters(i): Parameters<ListRowsInput>) -> Result<String, String> {
         self.run(|s| s.list_rows(&i))
     }

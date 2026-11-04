@@ -3,11 +3,11 @@
 use egui::{Align, Color32, Key, Layout, Rect, RichText, Sense, Stroke, Ui, pos2, vec2};
 use egui_extras::{Column, TableBuilder};
 use susi_core::i18n::{t, trn};
-use susi_core::model::{Project, Row, RowRef};
+use susi_core::model::{Project, Row, RowRef, display_stamp};
 use susi_core::status::{RowStatus, TranslationStatus};
 
 use crate::actions::Action;
-use crate::app::{Nav, SusiApp};
+use crate::app::{Nav, SheetSort, SortColumn, SusiApp};
 use crate::panels::{row_menu_items, status_color};
 
 const ROW_HEIGHT: f32 = 20.0;
@@ -138,6 +138,16 @@ fn marker_hint(row: &Row) -> String {
     parts.join(", ")
 }
 
+/// Hover text of the date column: all timestamps of the row.
+fn date_hint(row: &Row, lang: Option<&str>) -> String {
+    let stamps = [
+        (t("Row created"), row.attrs.get("created")),
+        (t("Original changed"), row.attrs.get("changed")),
+        (t("Translated"), lang.and_then(|l| row.translation_date(l))),
+    ];
+    stamps.iter().map(|(label, s)| format!("{label}: {}", s.map(display_stamp).unwrap_or_else(|| "–".into()))).collect::<Vec<_>>().join("\n")
+}
+
 fn status_cell(ui: &mut Ui, row: &Row, lang: Option<&str>) {
     let Some(l) = lang else {
         return;
@@ -187,6 +197,7 @@ enum Col {
     Lang(String),
     Note,
     TComment,
+    Date,
 }
 
 impl Col {
@@ -199,6 +210,7 @@ impl Col {
             Self::Lang(l) => format!("lang:{l}"),
             Self::Note => "note".into(),
             Self::TComment => "tcomment".into(),
+            Self::Date => "date".into(),
         }
     }
 
@@ -209,6 +221,7 @@ impl Col {
             Self::Status => 130.0,
             Self::Original | Self::Lang(_) => 280.0,
             Self::Note | Self::TComment => 170.0,
+            Self::Date => 140.0,
         }
     }
 
@@ -216,11 +229,35 @@ impl Col {
         match self {
             Self::Marker => 34.0,
             Self::Original | Self::Lang(_) | Self::Context => 60.0,
-            Self::Status | Self::Note | Self::TComment => 40.0,
+            Self::Status | Self::Note | Self::TComment | Self::Date => 40.0,
         }
     }
 
-    fn title(&self, cur_lang: Option<&str>) -> String {
+    fn sort_column(&self) -> Option<SortColumn> {
+        match self {
+            Self::Context => Some(SortColumn::Context),
+            Self::Date => Some(SortColumn::Date),
+            _ => None,
+        }
+    }
+
+    fn sort_hint(&self) -> &'static str {
+        match self {
+            Self::Date => t("Click to sort: newest first, oldest first, unsorted"),
+            _ => t("Click to sort: A–Z, Z–A, unsorted"),
+        }
+    }
+
+    /// Title with an arrow if the sheet is sorted by this column.
+    fn title(&self, cur_lang: Option<&str>, sort: Option<SheetSort>) -> String {
+        let title = self.plain_title(cur_lang);
+        match sort.filter(|s| Some(s.column) == self.sort_column()) {
+            Some(s) => format!("{title} {}", if s.descending { "⏷" } else { "⏶" }),
+            None => title,
+        }
+    }
+
+    fn plain_title(&self, cur_lang: Option<&str>) -> String {
         match self {
             Self::Marker => String::new(),
             Self::Context => t("Context").to_string(),
@@ -229,6 +266,7 @@ impl Col {
             Self::Lang(l) => SusiApp::lang_label(l),
             Self::Note => t("Row comment").to_string(),
             Self::TComment => t("Comment").to_string(),
+            Self::Date => susi_core::tf!("Translated on {lang}", lang = cur_lang.unwrap_or("")),
         }
     }
 }
@@ -245,6 +283,9 @@ fn columns(app: &SusiApp, langs: &[String]) -> Vec<Col> {
     }
     if !app.all_langs {
         cols.push(Col::TComment);
+    }
+    if app.settings.show_date_column {
+        cols.push(Col::Date);
     }
     cols
 }
@@ -276,14 +317,31 @@ fn table(app: &mut SusiApp, ui: &mut Ui, langs: &[String]) -> Events {
     let cell_edit = &mut app.cell_edit;
     let out = egui::ScrollArea::both().id_salt("grid-body").auto_shrink(false).show(ui, |ui| body(ui, &ctx, scroll_to, cell_edit, &mut ev));
     app.grid_offset = out.state.clamped_offset();
-    if let Some((i, w)) = header(ui, header_rect, app.grid_offset.x, &cols, &widths, app.lang.as_deref()) {
+    let h = Header { rect: header_rect, offset_x: app.grid_offset.x, cols: &cols, widths: &widths, cur_lang: app.lang.as_deref(), sort: app.sort };
+    let (resized, sort_clicked) = header(ui, &h);
+    if let Some((i, w)) = resized {
         app.col_widths.insert(cols[i].key(), w);
+    }
+    if let Some(c) = sort_clicked {
+        app.sort = SheetSort::next(app.sort, c);
+        app.rows_stale = true;
     }
     ev
 }
 
-/// Draws the header row; returns a column width changed by dragging (or reset by double click) a separator.
-fn header(ui: &mut Ui, rect: Rect, offset_x: f32, cols: &[Col], widths: &[f32], cur_lang: Option<&str>) -> Option<(usize, f32)> {
+struct Header<'a> {
+    rect: Rect,
+    offset_x: f32,
+    cols: &'a [Col],
+    widths: &'a [f32],
+    cur_lang: Option<&'a str>,
+    sort: Option<SheetSort>,
+}
+
+/// Draws the header row. Returns a column width changed by dragging (or reset by double click) a
+/// separator, and the sortable column whose title was clicked.
+fn header(ui: &mut Ui, h: &Header<'_>) -> (Option<(usize, f32)>, Option<SortColumn>) {
+    let Header { rect, offset_x, cols, widths, cur_lang, sort } = *h;
     let painter = ui.painter_at(rect);
     let visuals = ui.visuals().clone();
     let stroke = visuals.widgets.noninteractive.bg_stroke;
@@ -291,10 +349,20 @@ fn header(ui: &mut Ui, rect: Rect, offset_x: f32, cols: &[Col], widths: &[f32], 
     let spacing = ui.spacing().item_spacing.x;
     painter.rect_filled(rect, 0.0, visuals.faint_bg_color);
     let mut resized = None;
+    let mut sort_clicked = None;
     let mut x = rect.left() - offset_x;
     for (i, (col, &w)) in cols.iter().zip(widths).enumerate() {
         let cell = Rect::from_min_size(pos2(x, rect.top()), vec2(w, rect.height()));
-        let galley = painter.layout_no_wrap(col.title(cur_lang), font.clone(), visuals.strong_text_color());
+        let title_rect = cell.shrink2(vec2(4.0, 0.0)).intersect(rect);
+        if let Some(c) = col.sort_column()
+            && title_rect.width() > 0.0
+        {
+            let resp = ui.interact(title_rect, ui.scope_id().with(("grid-sort", col.key())), Sense::click());
+            if resp.on_hover_text(col.sort_hint()).clicked() {
+                sort_clicked = Some(c);
+            }
+        }
+        let galley = painter.layout_no_wrap(col.title(cur_lang, sort), font.clone(), visuals.strong_text_color());
         painter.with_clip_rect(cell.intersect(rect)).galley(
             pos2(cell.left() + 2.0, cell.center().y - galley.size().y / 2.0),
             galley,
@@ -317,7 +385,7 @@ fn header(ui: &mut Ui, rect: Rect, offset_x: f32, cols: &[Col], widths: &[f32], 
         x = sep + spacing / 2.0;
     }
     painter.hline(rect.x_range(), rect.bottom() - 0.5, stroke);
-    resized
+    (resized, sort_clicked)
 }
 
 struct BodyCtx<'a> {
@@ -405,6 +473,7 @@ fn row_cells(row: &mut egui_extras::TableRow<'_, '_>, c: &BodyCtx<'_>, r: &RowRe
         let resp = match col {
             Col::Marker => resp.on_hover_text(marker_hint(data)),
             Col::Original if has_newline(data.original()) => resp.on_hover_text(data.original()),
+            Col::Date => resp.on_hover_text(date_hint(data, c.cur_lang)),
             _ => resp,
         };
         click_events(&resp, r, c.cur_lang, ev);
@@ -435,6 +504,11 @@ fn plain_cell(ui: &mut Ui, col: &Col, c: &BodyCtx<'_>, r: &RowRef, data: &Row) {
         Col::TComment => {
             if let Some(t) = c.cur_lang.and_then(|l| data.translation(l)) {
                 cell_label(ui, t.comment());
+            }
+        }
+        Col::Date => {
+            if let Some(d) = c.cur_lang.and_then(|l| data.translation_date(l)) {
+                cell_label(ui, &display_stamp(d));
             }
         }
         Col::Lang(_) => {}
@@ -473,7 +547,9 @@ fn apply(app: &mut SusiApp, ev: Events) {
     if let Some((r, l)) = ev.click {
         app.select(r);
         app.scroll_to_selected = false;
-        if l.is_some() {
+        if l.is_some() && l != app.lang {
+            // The date order depends on the current language.
+            app.rows_stale |= app.sort.is_some_and(|s| s.column == SortColumn::Date);
             app.lang = l;
         }
     }

@@ -92,6 +92,16 @@ fn full_pipeline() {
     let r = run(&["validate", "-lang:de", &s(&slp), "-w"]);
     assert_eq!(r.code, 0, "{}{}", r.out, r.err);
 
+    // Review export of today's translations; date options also restrict validate and report.
+    let review = d.join("review.csv");
+    let r = run(&["export", &s(&review), "-lang:de", "-since:today", "-datetype:translated", &s(&slp)]);
+    assert!(r.code == 0 && r.out.contains("4 rows match the date filter"), "{}{}", r.out, r.err);
+    assert_eq!(exchange::read_delimited(&std::fs::read(&review).unwrap(), None).unwrap().rows.len(), 4);
+    let r = run(&["validate", "-all", "-until:yesterday", &s(&slp), "-w"]);
+    assert!(r.code == 0 && r.out.contains("0 rows match the date filter"), "{}{}", r.out, r.err);
+    let r = run(&["report", "-since:soon", &s(&slp)]);
+    assert!(r.code == 1 && r.err.contains("-since"), "{}", r.err);
+
     // Build (SlMake "create") writes de\en.json and Strings.de.resx.
     let r = run(&["build", "-lang:de", &s(&slp)]);
     assert_eq!(r.code, 0, "{}", r.err);
