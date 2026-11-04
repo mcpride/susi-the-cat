@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.1](https://github.com/mcpride/susi-the-cat/compare/v0.2.0...v0.2.1) (2026-11-04)
+
+### Bug Fixes
+
+* add testdata and build pipeline with automatic semver compatible versioning ([cd5c4c1](https://github.com/mcpride/susi-the-cat/commit/cd5c4c15bcfc6b9cd063af07d9c4322882bdaee3))
+
 ## 0.2.0 (2026-11-04)
 
 ### Features
