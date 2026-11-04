@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20140509154747" version="4.0.350" date="20140509154755" scan="19" scanned="20140509154747">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TXmlSource" name="ajag.aga" original="cu" date="20060625183634" originalbom="1">
+    <properties>
+      <key name="akiz">
+        <key name="edovav"/>
+        <key name="mafeta" language="sclPascal"/>
+        <key name="ini" language="sclJavaScript"/>
+      </key>
+    </properties>
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TPictureData</class>
+    </excludeddatatypes>
+    <tag name="akiz">
+      <tag name="edovav">
+        <row id="Cemal">
+          <native>Hevof Osiga!</native>
+          <lang id="fi" date="20140509154754">Amo zojodoh!</lang>
+          <lang id="de">Unoko Avic!</lang>
+          <lang id="ja">カオギボヤモゲ!</lang>
+        </row>
+      </tag>
+      <tag name="mafeta">
+        <segments id="Akiz">
+          <row id="Izeg ot d Mafeta edovav" importid="1">
+            <native>Izeg ot d Mafeta edovav</native>
+            <lang id="fi">Išdý da Mafeta-raturevepa</lang>
+            <lang id="de">Bivo ipi otap Mafeta-Edovav</lang>
+            <lang id="ja">まりは、レィギズ奣夺幙づら</lang>
+          </row>
+          <row id="Izeg ot fipogon Mafeta edovav" importid="3">
+            <native>Izeg ot fipogon Mafeta edovav</native>
+            <lang id="fi">Išdý da unodil Mafeta-raturevepa</lang>
+            <lang id="de">Bivo ipi oca ezopavun Mafeta Edovav</lang>
+            <lang id="ja">ざぐづ辍ぱャエプリ刄歗釮ゃど</lang>
+          </row>
+          <item id="0" code="#c#laf x = 0 roza#c#l  vos := "/>
+          <item id="1" string="Izeg ot d Mafeta edovav" separator="'"/>
+          <item id="2" code="#c#lunek#c#l  vos := "/>
+          <item id="3" string="Izeg ot fipogon Mafeta edovav" separator="'"/>
+          <item id="4" code=";#c#l  "/>
+        </segments>
+      </tag>
+      <tag name="edovav">
+        <row id="Cemal">
+          <native>Izeg ot d upipa edovav</native>
+          <lang id="fi">Išdý da razoludasehitif</lang>
+          <lang id="de">Bivo ipi otap zocicela Ipihalegelaf</lang>
+          <lang id="ja">たなぅリキレン檑驼諾ぅそ</lang>
+        </row>
+      </tag>
+      <tag name="ini">
+        <segments id="Akiz">
+          <row id="Izeg ot d O++ edovav" importid="1">
+            <native>Izeg ot d O++ edovav</native>
+            <lang id="fi">Išdý da O++-raturevepa</lang>
+            <lang id="de">Bivo ipi otap O + +-Edovav</lang>
+            <lang id="ja">まりは、 O + +に籰榵储</lang>
+          </row>
+          <row id="Izeg ot fipogon O++ edovav" importid="3">
+            <native>Izeg ot fipogon O++ edovav</native>
+            <lang id="fi">Išdý da unodil O++-raturevepa</lang>
+            <lang id="de">Bivo ipi otap bagozev O + +-Edovav</lang>
+            <lang id="ja">せけほ饸あA + +に籰榵储</lang>
+          </row>
+          <item id="0" code="#c#laf (x == 0)#c#l  vos = "/>
+          <item id="1" string="Izeg ot d O++ edovav" separator="&quot;"/>
+          <item id="2" code=";#c#lunek#c#l  vos = "/>
+          <item id="3" string="Izeg ot fipogon O++ edovav" separator="&quot;"/>
+          <item id="4" code=";#c#l  "/>
+        </segments>
+      </tag>
+      <tag name="edovav">
+        <row id="Cemal">
+          <native>Izeg ot fipogon upipa edovav</native>
+          <lang id="fi">Išdý da unodil razoludasehitif</lang>
+          <lang id="de">Bivo ipi otap bagozev Menom Edovav</lang>
+          <lang id="ja">ぷどむ頶やバガソペ凔鳙毊きぺ</lang>
+        </row>
+      </tag>
+    </tag>
+  </source>
+</document>

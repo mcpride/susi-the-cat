@@ -3,4 +3,4 @@
 *.~slp
 /tmp
 /dist
-/testdata
+/node_modules

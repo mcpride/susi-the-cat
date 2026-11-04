@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document version="4.0.350" date="20111109073218" scan="2" scanned="20111109073212">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TXmlSource" name="ufanasu.aga" original="cu" date="20060105092650" usebom="0">
+    <properties>
+      <key name="enepukufa">
+        <key name="ufanasu">
+          <attribute name="uz" kind="akContext"/>
+          <key name="hube"/>
+          <key name="adukuhi"/>
+          <key name="levekimadiz"/>
+        </key>
+      </key>
+    </properties>
+    <tag name="enepukufa">
+      <tag name="ufanasu" context="une">
+        <attribute name="uz" value="une">
+        </attribute>
+        <tag name="hube">
+          <row id="Cemal">Ficana Tonozo</row>
+        </tag>
+        <tag name="acesacalip" value="297">
+        </tag>
+        <tag name="adukuhi">
+          <row id="Cemal">Kejosovire, T.O.</row>
+        </tag>
+        <tag name="levekimadiz">
+          <row id="Cemal">Huv Ficana Tonozo im Ugujidu ot d imedulu hitaceka im 50 tonozo, mirudam ameruka da tufetig Zebez Ugujidu.</row>
+        </tag>
+      </tag>
+      <tag name="ufanasu" context="jivosoz">
+        <attribute name="uz" value="jivosoz">
+        </attribute>
+        <tag name="hube">
+          <row id="Cemal">Jivosoz</row>
+        </tag>
+        <tag name="acesacalip" value="82">
+        </tag>
+        <tag name="adukuhi">
+          <row id="Cemal">Jiveci</row>
+        </tag>
+        <tag name="levekimadiz">
+          <row id="Cemal">Jivosoz so huv Imedulu Hitaceka im Jivosoz ot uja im huv osiga'r alulele liduvuluvazaci enepukufa, mirudam go huv siham im Osahof.</row>
+        </tag>
+      </tag>
+      <tag name="ufanasu" context="ropug">
+        <attribute name="uz" value="ropug">
+        </attribute>
+        <tag name="hube">
+          <row id="Cemal">Ropug</row>
+        </tag>
+        <tag name="acesacalip" value="127">
+        </tag>
+        <tag name="adukuhi">
+          <row id="Cemal">Ekoko</row>
+        </tag>
+        <tag name="levekimadiz">
+          <row id="Cemal">Ropug ot d ufanasu da huv ibozemo cato im huv Kiricot Ihako.</row>
+        </tag>
+      </tag>
+    </tag>
+  </source>
+</document>

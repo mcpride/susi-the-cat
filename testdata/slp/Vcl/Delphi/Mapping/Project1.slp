@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document version="4.0.350" date="20111109081426" scan="8" scanned="20111109080941">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja" ime="imDisable"/>
+  <source class="TDelphiSource" name="Acovocu1.fog" original="cu" encoding="utf-8" date="20090511075724" widestringusage="wsYes">
+    <resources>
+      <disabled id="1"/>
+      <disabled id="2"/>
+      <disabled id="3"/>
+      <disabled id="5"/>
+      <disabled id="6"/>
+      <disabled id="12"/>
+      <disabled id="14"/>
+    </resources>
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TCardinalData</class>
+      <class>TFontData</class>
+      <class>TPictureData</class>
+      <class>TColorData</class>
+      <class>TFontColorData</class>
+      <class>TFontNameData</class>
+      <class>TFontSizeData</class>
+      <class>TFontStyleData</class>
+      <class>TImeData</class>
+      <class>TReadingOrderData</class>
+    </excludeddatatypes>
+    <mappings>
+      <component name="SOmUjoferu" class="TVisPanel">
+        <property name="Nagizepe" type="TEnumRow" mode="pmIncluded"/>
+        <property name="SefakArufi" type="TFloatRow" mode="pmIncluded"/>
+        <property name="IlajaCam" type="TIntegerRow" mode="pmIncluded"/>
+        <property name="Vubebi"/>
+      </component>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="NapujUcamos" class="TVisSpeedButton"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="Ibep" class="TVisEdit"/>
+      <keyword name="Fane" class="TVisEdit"/>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="Gomi" class="TVisGrid"/>
+      <keyword name="PocogUdun" class="TVisImageList"/>
+      <keyword name="Judaru" class="TVisAction"/>
+      <keyword name="EpisEhut" class="TVisHiddenComponent"/>
+      <keyword name="UfuneJele" class="TVisHiddenComponent"/>
+      <keyword name="Dilub" class="TVisHiddenComponent"/>
+      <keyword name="HecojuMEG" class="TVisHiddenComponent"/>
+      <keyword name="ZeziZis" class="TVisHiddenComponent"/>
+      <keyword name="NiriLadeza" class="TVisHiddenComponent"/>
+      <keyword name="Lehuf" class="TVisHiddenComponent"/>
+      <keyword name="Ahiva" class="TVisHiddenComponent"/>
+      <keyword name="Cadocezu" class="TVisHiddenComponent"/>
+      <property name="Corifapuv.Nogasil"/>
+      <property name="MesoVojezuc"/>
+    </mappings>
+    <node class="TVclFormFolder" name="Aleka" resid="10">
+      <node class="TVclFormNode" name="OKIMO1" resname="OKIMO1">
+        <form class="TVclForm" name="Arar1" type="TForm1" textheight="13">
+          <row id="Uradini">
+            <native>Ajogid</native>
+            <lang id="fi" date="20090511105433">Pasisajis</lang>
+            <lang id="ja">テテォォ</lang>
+          </row>
+          <row id="VubejaMesako">179</row>
+          <row id="VifuriTizit">404</row>
+          <row id="Onaj.Tubar">onUvojanEvev</row>
+          <row id="Onaj.Hube">JO Akiv Rikul</row>
+          <row id="Onaj.Vuse">8</row>
+          <row id="Onaj.Behal">[]</row>
+          <row id="Sale">247</row>
+          <row id="Epi">139</row>
+          <component class="TVisPanel" name="Ocafehi" type="TMyControl">
+            <row id="Uradini">
+              <native>Ocafehi</native>
+              <lang id="fi" date="20090511105435">Ipelu</lang>
+              <lang id="ja">臟砽</lang>
+            </row>
+            <row id="Levekimadiz">
+              <native>Izeg ot d ajogid</native>
+              <lang id="fi" date="20090511105440">Išdý da pasisajis</lang>
+              <lang id="ja">ゅぴろネャシテはに</lang>
+            </row>
+            <row id="Usical">161</row>
+            <row id="Sale">8</row>
+            <row id="SefakArufi" class="TFloatRow">1.5</row>
+            <row id="IlajaCam" class="TIntegerRow">1</row>
+            <row id="Epi">8</row>
+            <row id="Duzel">385</row>
+          </component>
+        </form>
+      </node>
+    </node>
+  </source>
+</document>

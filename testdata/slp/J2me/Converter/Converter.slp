@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document version="3.0.325" date="20111108170335" scan="17" scanned="20111108170333">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TSourceCodeSource" name="Bojukuvev.fifu" original="cu" date="20061004104454" context="sccValue">
+    <items>
+      <row id="Afoke">
+        <native>Afoke</native>
+        <lang id="fi">Lohiba</lang>
+        <lang id="de">Ëviz</lang>
+        <lang id="ja">ピザフザゥ柆瞘</lang>
+      </row>
+      <row id="Afoke Bojukuvev">
+        <native>Afoke Bojukuvev</native>
+        <lang id="fi">Lohiba Etomifocoho</lang>
+        <lang id="de">Ëviz Ufucericu</lang>
+        <lang id="ja">ヂタニマドタぃゅばも</lang>
+      </row>
+      <row id="Asefaci">
+        <native>Asefaci</native>
+        <lang id="fi">Oruraz</lang>
+      </row>
+      <row id="Bojukuvev">
+        <native>Bojukuvev</native>
+        <lang id="fi">Isabunu</lang>
+        <lang id="de">Ufucericu</lang>
+        <lang id="ja">ベヮゼソモム</lang>
+      </row>
+      <row id="Bojukuvev ot ut konesotefuh kigu jodahomo cinulu ugeme ac MO ugeme ule ovun.">
+        <native>Bojukuvev ot ut konesotefuh kigu jodahomo cinulu ugeme ac MO ugeme ule ovun.</native>
+        <lang id="fi">Isabunu da alulovo, pito iguduze vazakisusiđlaê RU-jżazemufidîohý MO-zźomojatusășe ed jefosoce.</lang>
+        <lang id="de">Ufucericu erekuho odemajiha Obolikavi go Pihahuzamovuh Obolikavi ovo vosirihiz.</lang>
+        <lang id="ja">チガユラガテき痁鍂げじで簸跑べ、ヤヱクサ盬ねぬナムゴヮタラ筻れ、おがつズゼィットヨ挢うけヌダフゼ柧ぎ蜌矋みゃヘズタバカスグャるて。</lang>
+      </row>
+      <row id="Egili">
+        <native>Egili</native>
+        <lang id="fi">Hujep</lang>
+      </row>
+      <row id="Zegu">
+        <native>Zegu</native>
+        <lang id="fi">Edifap</lang>
+        <lang id="de">Acepuse</lang>
+        <lang id="ja">ムュ坋ぃ凭矙(G)</lang>
+      </row>
+      <row id="Lazogoh cemal!">
+        <native>Lazogoh cemal!</native>
+        <lang id="fi">Oçânï ogik!</lang>
+      </row>
+      <row id="Ivofad">
+        <native>Ivofad</native>
+        <lang id="fi">Ukirav</lang>
+        <lang id="de">Fżafo</lang>
+        <lang id="ja">祆じ</lang>
+      </row>
+      <row id="Cinulu jacivo:">
+        <native>Cinulu jacivo:</native>
+        <lang id="fi">RU-hêšeț:</lang>
+        <lang id="de">Imevozidaz Ohoc:</lang>
+        <lang id="ja">ョゼケィ絒ぞつ嘭麡(d)：:</lang>
+      </row>
+      <row id="Cinulu bafe:">
+        <native>Cinulu bafe:</native>
+        <lang id="fi">RU-duhol:</lang>
+        <lang id="de">Odemajiha Efigaru:</lang>
+        <lang id="ja">ポチホセ锤けせ屿癗(J)：:</lang>
+      </row>
+      <row id="Danefotanes">
+        <native>Danefotanes</native>
+        <lang id="fi">Vșacșemes</lang>
+        <lang id="de">Ujitejefuh</lang>
+        <lang id="ja">鰪俳</lang>
+      </row>
+      <row id="Zubo:">
+        <native>Zubo:</native>
+        <lang id="fi">Namoca:</lang>
+        <lang id="de">Got:</lang>
+        <lang id="ja">レケダ（M)：(M):</lang>
+      </row>
+      <row id="MO jacivo:">
+        <native>MO jacivo:</native>
+        <lang id="fi">MO-hêšeț:</lang>
+        <lang id="de">MO Ibubub:</lang>
+        <lang id="ja">ロゴッビラト澨がざ鎈覭(j)：:</lang>
+      </row>
+      <row id="MO bafe:">
+        <native>MO bafe:</native>
+        <lang id="fi">MO-duhol:</lang>
+        <lang id="de">MO Ohoc:</lang>
+        <lang id="ja">ヲゴヱモザガ媋たし莑絞(S)：:</lang>
+      </row>
+      <item id="0" code="fipuri amoho.pepemobusezo.nocuf.*;#c#lfipuri amoho.pepemobusezo.izapis.*;#c#l#c#legigoc mituh Bojukuvev gedemuv IZApis fihogozoje InenibaFunejica#c#l{#c#l  izetisi bizusa cized ulu CUMOFAK = 13;#c#l#c#l  izetisi Ekupolo ekupolo;#c#l  izetisi Arar arar;#c#l#c#l  izetisi AgajozIpole nigeNuketi = bas AgajozIpole(#c#l    "/>
+      <item id="1" string="Zubo:" separator="&quot;"/>
+      <item id="2" code=",#c#l    Famaki.ZUBIR);#c#l#c#l  izetisi AgajozIpole japeruLefume = bas AgajozIpole(#c#l    "/>
+      <item id="3" string="Cinulu bafe:" separator="&quot;"/>
+      <item id="4" code=",#c#l    Famaki.ZUBIR);#c#l#c#l  izetisi AcicubAjas kabedaCozob = bas AcicubAjas(#c#l    kuce,#c#l    "/>
+      <item id="5" string="Cinulu jacivo:" separator="&quot;"/>
+      <item id="6" code=");#c#l#c#l  izetisi PajiKekaf nusutaJofa = bas PajiKekaf(#c#l    kuce, #c#l    "/>
+      <item id="7" code="&quot;10&quot;"/>
+      <item id="8" code=", //uhila#c#l    CUMOFAK,#c#l    PajiKekaf.VUP);#c#l#c#l  izetisi AgajozIpole giPozolo = bas AgajozIpole(#c#l    "/>
+      <item id="9" string="MO bafe:" separator="&quot;"/>
+      <item id="10" code=",#c#l    Famaki.ZUBIR);#c#l#c#l  izetisi AcicubAjas orIviku = bas AcicubAjas(#c#l    kuce,#c#l    "/>
+      <item id="11" string="MO jacivo:" separator="&quot;"/>
+      <item id="12" code=");#c#l#c#l  izetisi PajiKekaf poMohu = bas PajiKekaf(#c#l    kuce, #c#l    "/>
+      <item id="13" code="&quot;10&quot;"/>
+      <item id="14" code=", //uhila#c#l    CUMOFAK,#c#l    PajiKekaf.VUP);#c#l#c#l  izetisi Jasinad cosemupAbemesi;#c#l  izetisi Jasinad okamaJomomet;#c#l  izetisi Jasinad hituHemubum;#c#l#c#l  /**#c#l   * Izeg upavenepege ocodoho igupi izapis#c#l   */#c#l  egigoc Bojukuvev()#c#l  {#c#l    ekupolo = Ekupolo.aguMetolun(izeg);#c#l#c#l    cosemupAbemesi = bas Jasinad("/>
+      <item id="15" string="Asefaci" separator="&quot;"/>
+      <item id="16" code=", Jasinad.IPADOS, 1);#c#l    hituHemubum = bas Jasinad("/>
+      <item id="17" string="Zegu" separator="&quot;"/>
+      <item id="18" code=", Jasinad.IPADOS, 2);#c#l    okamaJomomet = bas Jasinad("/>
+      <item id="19" string="Afoke" separator="&quot;"/>
+      <item id="20" code=", Jasinad.IPADOS, 3);#c#l#c#l    arar = bas Arar("/>
+      <item id="21" string="Bojukuvev" separator="&quot;"/>
+      <item id="22" code=");#c#l    arar.uvuZukepim(cosemupAbemesi);#c#l    arar.uvuZukepim(hituHemubum);#c#l    arar.uvuZukepim(okamaJomomet);#c#l    arar.ifaNaroletUbupibum(izeg);#c#l#c#l    nigeNuketi.caluce("/>
+      <item id="23" string="Ivofad" separator="&quot;"/>
+      <item id="24" code=", kuce);#c#l    nigeNuketi.caluce("/>
+      <item id="25" string="Danefotanes" separator="&quot;"/>
+      <item id="26" code=", kuce);#c#l#c#l    arar.caluce(nigeNuketi);#c#l    arar.caluce(japeruLefume);#c#l    arar.caluce(kabedaCozob);#c#l    arar.caluce(nusutaJofa);#c#l    arar.caluce(giPozolo);#c#l    arar.caluce(orIviku);#c#l    arar.caluce(poMohu);#c#l  }#c#l#c#l  /**#c#l   * Bur huv arar agijizu#c#l   */#c#l  egigoc azej vabegIpu()#c#l  {#c#l    ekupolo.bepUrosahu(arar);#c#l  }#c#l#c#l  /**#c#l   * Kupaz#c#l   */#c#l  egigoc azej arufuSaz()#c#l  {#c#l  }#c#l#c#l  /**#c#l   * Zidovac akis elanijo solejagogo.#c#l   */#c#l  egigoc azej jofujuvEge(fujegul zepefacamavij)#c#l  {#c#l  }#c#l#c#l  /*#c#l   * Agumujo ac d emisoces ecejik da vup Ipados#c#l   */#c#l  egigoc azej itapibuHuvoco(Jasinad o, Ticifosemad r)#c#l  {#c#l    af (o == hituHemubum)#c#l    {#c#l      // Zegu huv ikodefe#c#l#c#l      jofujuvEge(luta);#c#l      uzuludUdavuzusi();#c#l    }#c#l    unek af (o == okamaJomomet)#c#l    {#c#l      // Obor uzimav ipados#c#l#c#l      Uniso uniso = bas Uniso("/>
+      <item id="27" string="Afoke Bojukuvev" separator="&quot;"/>
+      <item id="28" code=");#c#l#c#l      uniso.vunOjetupa(Uniso.USEFAFE);#c#l      uniso.iniBiguke("/>
+      <item id="29" string="Bojukuvev ot ut konesotefuh kigu jodahomo cinulu ugeme ac MO ugeme ule ovun." separator="&quot;"/>
+      <item id="30" code=");#c#l      ekupolo.bepUrosahu(uniso);#c#l    }#c#l    unek af (o == cosemupAbemesi)#c#l    {#c#l      // Asefaci huv cemal#c#l#c#l      avo#c#l      {#c#l        af (nusutaJofa.luhOhogir() != "/>
+      <item id="31" code="&quot;&quot;"/>
+      <item id="32" code=")#c#l        {#c#l          // Cinulu ac MO#c#l#c#l	  ulu cemal = Ladazit.ezedeKum(nusutaJofa.luhOhogir());#c#l        }#c#l        unek af (poMohu.luhOhogir() != "/>
+      <item id="33" code="&quot;&quot;"/>
+      <item id="34" code=")#c#l        {#c#l          // MO ac cinulu#c#l   #c#l	  ulu cemal = Ladazit.ezedeKum(poMohu.luhOhogir());#c#l        }#c#l      }#c#l      kalif(Uzajesugi u)#c#l      {#c#l        Uniso uniso = bas Uniso("/>
+      <item id="35" string="Egili" separator="&quot;"/>
+      <item id="36" code=");#c#l    #c#l        uniso.vunOjetupa(Uniso.USEFAFE);#c#l        uniso.iniBiguke("/>
+      <item id="37" string="Lazogoh cemal!" separator="&quot;"/>
+      <item id="38" code=");#c#l        ekupolo.bepUrosahu(uniso);#c#l      }#c#l    }#c#l  }#c#l}#c#l"/>
+    </items>
+  </source>
+</document>

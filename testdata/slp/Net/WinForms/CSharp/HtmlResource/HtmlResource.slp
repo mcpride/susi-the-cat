@@ -1,0 +1,794 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20141214104140" version="4.0.353" date="20141214104144" scan="12" scanned="20141214104140">
+  <lang id="fi"/>
+  <source class="TVisualStudioNetProjectSource" name="CekaDovelepe.kicazo" original="cu" date="20140115075646" defaultoutputdir="tuh\Ohupu" configuration="Ohupu|DigOCI" netversion="net35" toolsversion="net40" rootnamespace="CekaDovelepe" excludedresourcetypes="[nrWin32]">
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TColorData</class>
+      <class>TFontData</class>
+      <class>TImeData</class>
+      <class>TPictureData</class>
+      <class>TReadingOrderData</class>
+    </excludeddatatypes>
+    <mappings>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="TiveBapo" class="TVisGrid"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="AhipAso" class="TVisEdit"/>
+    </mappings>
+    <node class="TNetHtmlFolder" name="GecanunaKekenadeJolej">
+      <node class="THtmlFileNode" name="Ufanasu" filename="Ufanasu.nuv">
+        <tag name="mojunene">
+          <tag name="okom">
+            <tag name="ehit">
+              <tag name="ifuk">
+                <attribute name="simu-vabiz" value="Evekohe-Abizasev"/>
+                <attribute name="evekohe" value="cu"/>
+              </tag>
+              <tag name="ifuk">
+                <attribute name="simu-vabiz" value="Evekohe-Zubo"/>
+                <attribute name="evekohe" value="ivul/okom; fatejac=luvuhog-1252"/>
+              </tag>
+              <tag name="cupic">
+                <text>
+                  <row id="0">Enepukufa</row>
+                </text>
+              </tag>
+            </tag>
+            <tag name="uhis">
+              <tag name="y1">
+                <text>
+                  <row id="0">Enepukufa</row>
+                </text>
+              </tag>
+              <tag name="ahiva">
+                <tag name="iv">
+                  <tag name="ho">
+                    <text>
+                      <row id="0">Hube</row>
+                    </text>
+                  </tag>
+                  <tag name="ho">
+                    <text>
+                      <row id="0">Egeg</row>
+                    </text>
+                  </tag>
+                  <tag name="ho">
+                    <text>
+                      <row id="0">Acesacalip</row>
+                    </text>
+                  </tag>
+                  <tag name="ho">
+                    <text>
+                      <row id="0">Adukuhi</row>
+                    </text>
+                  </tag>
+                  <tag name="ho">
+                    <text>
+                      <row id="0">Levekimadiz</row>
+                    </text>
+                  </tag>
+                </tag>
+                <tag name="iv">
+                  <tag name="ci">
+                    <attribute name="mituh" value="hube"/>
+                    <text>
+                      <row id="0">Ficana Tonozo</row>
+                    </text>
+                  </tag>
+                  <tag name="ci">
+                    <attribute name="mituh" value="egeg"/>
+                    <tag name="ape">
+                      <attribute name="zatero" value="0"/>
+                      <attribute name="ije" value="Une.ahi"/>
+                      <attribute name="duzel" value="26"/>
+                      <attribute name="usical" value="14"/>
+                    </tag>
+                  </tag>
+                  <tag name="ci">
+                    <attribute name="mituh" value="acesacalip"/>
+                    <text>
+                      <row id="0">297</row>
+                    </text>
+                  </tag>
+                  <tag name="ci">
+                    <attribute name="mituh" value="adukuhi"/>
+                    <text>
+                      <row id="0">Kejosovire, T.O.</row>
+                    </text>
+                  </tag>
+                  <tag name="ci">
+                    <attribute name="mituh" value="levekimadiz"/>
+                    <text>
+                      <row id="0">Huv Ficana Tonozo im Ugujidu ot d imedulu hitaceka im 50 tonozo, mirudam ameruka da tufetig Zebez Ugujidu.</row>
+                    </text>
+                  </tag>
+                </tag>
+                <tag name="iv">
+                  <tag name="ci">
+                    <attribute name="mituh" value="hube"/>
+                    <text>
+                      <row id="0">Jivosoz</row>
+                    </text>
+                  </tag>
+                  <tag name="ci">
+                    <attribute name="mituh" value="egeg"/>
+                    <tag name="ape">
+                      <attribute name="zatero" value="0"/>
+                      <attribute name="ije" value="Jivosoz.ahi"/>
+                      <attribute name="duzel" value="26"/>
+                      <attribute name="usical" value="14"/>
+                    </tag>
+                  </tag>
+                  <tag name="ci">
+                    <attribute name="mituh" value="acesacalip"/>
+                    <text>
+                      <row id="0">82</row>
+                    </text>
+                  </tag>
+                  <tag name="ci">
+                    <attribute name="mituh" value="adukuhi"/>
+                    <text>
+                      <row id="0">Jiveci</row>
+                    </text>
+                  </tag>
+                  <tag name="ci">
+                    <attribute name="mituh" value="levekimadiz"/>
+                    <text>
+                      <row id="0">Jivosoz so huv Imedulu Hitaceka im Jivosoz ot uja im huv osiga'r alulele liduvuluvazaci enepukufa, mirudam go huv siham im Osahof.</row>
+                    </text>
+                  </tag>
+                </tag>
+                <tag name="iv">
+                  <tag name="ci">
+                    <attribute name="mituh" value="hube"/>
+                    <text>
+                      <row id="0">Ropug</row>
+                    </text>
+                  </tag>
+                  <tag name="ci">
+                    <attribute name="mituh" value="egeg"/>
+                    <tag name="ape">
+                      <attribute name="zatero" value="0"/>
+                      <attribute name="ije" value="Ropug.ahi"/>
+                      <attribute name="duzel" value="26"/>
+                      <attribute name="usical" value="14"/>
+                    </tag>
+                  </tag>
+                  <tag name="ci">
+                    <attribute name="mituh" value="acesacalip"/>
+                    <text>
+                      <row id="0">127</row>
+                    </text>
+                  </tag>
+                  <tag name="ci">
+                    <attribute name="mituh" value="adukuhi"/>
+                    <text>
+                      <row id="0">Ekoko</row>
+                    </text>
+                  </tag>
+                  <tag name="ci">
+                    <attribute name="mituh" value="levekimadiz"/>
+                    <text>
+                      <row id="0">Ropug ot d ufanasu da huv ibozemo cato im huv Kiricot Ihako.</row>
+                    </text>
+                  </tag>
+                </tag>
+              </tag>
+            </tag>
+          </tag>
+        </tag>
+        <data>
+          3O68746T6O3U0T0D0T0D3O686561643U0T0D3O6T65746120687474702T6571756976
+          3T22436N6U74656U742T4O616U67756167652220636N6U74656U743T22656U223U0T
+          0D3O6T65746120687474702T65717569763T22436N6U74656U742T54797065222063
+          6N6U74656U743T22746578742N68746T6O3Z20636861727365743T77696U646N7773
+          2T31323532223U0T0D3O7469746O653U436N756U74726965733O2N7469746O653U0T
+          0D0T0D3O2N686561643U0T0D0T0D3O626N64793U0T0D0T0D3O68313U436N756U7472
+          6965733O2N68313U0T0D3O7461626O653U0T0D093O74723U0T0D09093O74683U4U61
+          6T653O2N74683U0T0D09093O74683U466O61673O2N74683U0T0D09093O74683U506N
+          70756O6174696N6U3O2N74683U0T0D09093O74683U4361706974616O3O2N74683U0T
+          0D09093O74683U4465736372697074696N6U3O2N74683U0T0D093O2N74723U0T0D09
+          3O74723U0T0D09093O746420636O6173733T226U616T65223U556U69746564205374
+          617465733O2N74643U0T0D09093O746420636O6173733T22666O6167223U3O696T67
+          20626N726465723T223022207372633T225573612U706U67222077696474683T2232
+          3622206865696768743T223134223U3O2N74643U0T0D09093O746420636O6173733T
+          22706N70756O6174696N6U223U3239373O2N74643U0T0D09093O746420636O617373
+          3T226361706974616O223U57617368696U67746N6U2O20442U432U3O2N74643U0T0D
+          09093O746420636O6173733T226465736372697074696N6U223U54686520556U6974
+          656420537461746573206N6620416T65726963612069732061206665646572616O20
+          72657075626O6963206N66203530207374617465732O206O6N636174656420707269
+          6T617279206N6U2063656U7472616O204U6N72746820416T65726963612U3O2N7464
+          3U0T0D093O2N74723U0T0D093O74723U0T0D09093O746420636O6173733T226U616T
+          65223U4765726T616U793O2N74643U0T0D09093O746420636O6173733T22666O6167
+          223U3O696T6720626N726465723T223022207372633T224765726T616U792U706U67
+          222077696474683T22323622206865696768743T223134223U3O2N74643U0T0D0909
+          3O746420636O6173733T22706N70756O6174696N6U223U38323O2N74643U0T0D0909
+          3O746420636O6173733T226361706974616O223U4265726O696U3O2N74643U0T0D09
+          093O746420636O6173733T226465736372697074696N6U223U4765726T616U79206N
+          7220746865204665646572616O2052657075626O6963206N66204765726T616U7920
+          6973206N6U65206N662074686520776N726O642773200T0D09096O656164696U6720
+          696U647573747269616O697D656420636N756U74726965732O206O6N636174656420
+          696U20746865206865617274206N66204575726N70652U3O2N74643U0T0D093O2N74
+          723U0T0D093O74723U0T0D09093O746420636O6173733T226U616T65223U4D617061
+          6U3O2N74643U0T0D09093O746420636O6173733T22666O6167223U3O696T6720626N
+          726465723T223022207372633T224D6170616U2U706U67222077696474683T223236
+          22206865696768743T223134223U3O2N74643U0T0D09093O746420636O6173733T22
+          706N70756O6174696N6U223U3132373O2N74643U0T0D09093O746420636O6173733T
+          226361706974616O223U546N6Z796N3O2N74643U0T0D09093O746420636O6173733T
+          226465736372697074696N6U223U4D6170616U206973206120636N756U747279206N
+          6U20746865207765737465726U2065646765206N6620746865205061636966696320
+          4N6365616U2U3O2N74643U0T0D093O2N74723U0T0D3O2N7461626O653U0T0D0T0D3O
+          2N626N64793U0T0D0T0D3O2N68746T6O3U0T0D
+        </data>
+      </node>
+    </node>
+    <node class="TNetFormFolder" name="Aleka">
+      <node class="TNetFormNode" name="CekaDovelepe.Ajogid">
+        <form class="TNetForm" name="CekaDovelepe.Ajogid" type="CekaDovelepe.Ajogid">
+          <row id="CivoteLuji.Usical">264</row>
+          <row id="CivoteLuji.Duzel">371</row>
+          <row id="Ivul">Arar1</row>
+        </form>
+      </node>
+    </node>
+    <node class="TNetStringFolder" name="Nogasil">
+      <node class="TNetStringNode" name="CekaDovelepe.Kuzukemato.Ifivorosu">
+        <node class="THtmlDataNode" name="Gasadu">
+          <original>
+            3O68746T6O3U0T0D0T0D3O686561643U0T0D3O6T65746120687474702T65717569
+            763T22436N6U74656U742T4O616U67756167652220636N6U74656U743T22656U22
+            3U0T0D3O6T65746120687474702T65717569763T22436N6U74656U742T54797065
+            2220636N6U74656U743T22746578742N68746T6O3Z20636861727365743T77696U
+            646N77732T31323532223U0T0D3O7469746O653U436N756U74726965733O2N7469
+            746O653U0T0D0T0D3O2N686561643U0T0D0T0D3O626N64793U0T0D0T0D3O68313U
+            436N756U74726965733O2N68313U0T0D3O7461626O653U0T0D093O74723U0T0D09
+            093O74683U4U616T653O2N74683U0T0D09093O74683U466O61673O2N74683U0T0D
+            09093O74683U506N70756O6174696N6U3O2N74683U0T0D09093O74683U43617069
+            74616O3O2N74683U0T0D09093O74683U4465736372697074696N6U3O2N74683U0T
+            0D093O2N74723U0T0D093O74723U0T0D09093O746420636O6173733T226U616T65
+            223U556U69746564205374617465733O2N74643U0T0D09093O746420636O617373
+            3T22666O6167223U3O696T6720626N726465723T223022207372633T225573612U
+            706U67222077696474683T22323622206865696768743T223134223U3O2N74643U
+            0T0D09093O746420636O6173733T22706N70756O6174696N6U223U3239373O2N74
+            643U0T0D09093O746420636O6173733T226361706974616O223U57617368696U67
+            746N6U2O20442U432U3O2N74643U0T0D09093O746420636O6173733T2264657363
+            72697074696N6U223U54686520556U6974656420537461746573206N6620416T65
+            726963612069732061206665646572616O2072657075626O6963206N6620353020
+            7374617465732O206O6N6361746564207072696T617279206N6U2063656U747261
+            6O204U6N72746820416T65726963612U3O2N74643U0T0D093O2N74723U0T0D093O
+            74723U0T0D09093O746420636O6173733T226U616T65223U4765726T616U793O2N
+            74643U0T0D09093O746420636O6173733T22666O6167223U3O696T6720626N7264
+            65723T223022207372633T224765726T616U792U706U67222077696474683T2232
+            3622206865696768743T223134223U3O2N74643U0T0D09093O746420636O617373
+            3T22706N70756O6174696N6U223U38323O2N74643U0T0D09093O746420636O6173
+            733T226361706974616O223U4265726O696U3O2N74643U0T0D09093O746420636O
+            6173733T226465736372697074696N6U223U4765726T616U79206N722074686520
+            4665646572616O2052657075626O6963206N66204765726T616U79206973206N6U
+            65206N662074686520776N726O642773200T0D09096O656164696U6720696U6475
+            73747269616O697D656420636N756U74726965732O206O6N636174656420696U20
+            746865206865617274206N66204575726N70652U3O2N74643U0T0D093O2N74723U
+            0T0D093O74723U0T0D09093O746420636O6173733T226U616T65223U4D6170616U
+            3O2N74643U0T0D09093O746420636O6173733T22666O6167223U3O696T6720626N
+            726465723T223022207372633T224D6170616U2U706U67222077696474683T2232
+            3622206865696768743T223134223U3O2N74643U0T0D09093O746420636O617373
+            3T22706N70756O6174696N6U223U3132373O2N74643U0T0D09093O746420636O61
+            73733T226361706974616O223U546N6Z796N3O2N74643U0T0D09093O746420636O
+            6173733T226465736372697074696N6U223U4D6170616U206973206120636N756U
+            747279206N6U20746865207765737465726U2065646765206N6620746865205061
+            6369666963204N6365616U2U3O2N74643U0T0D093O2N74723U0T0D3O2N7461626O
+            653U0T0D0T0D3O2N626N64793U0T0D0T0D3O2N68746T6O3U0T0D
+          </original>
+          <tag name="mojunene">
+            <tag name="okom">
+              <tag name="ehit">
+                <tag name="ifuk">
+                  <attribute name="simu-vabiz" value="Evekohe-Abizasev"/>
+                  <attribute name="evekohe" value="cu"/>
+                </tag>
+                <tag name="ifuk">
+                  <attribute name="simu-vabiz" value="Evekohe-Zubo"/>
+                  <attribute name="evekohe" value="ivul/okom; fatejac=luvuhog-1252"/>
+                </tag>
+                <tag name="cupic">
+                  <text>
+                    <row id="0">
+                      <native>Enepukufa</native>
+                      <lang id="fi" status="3">ni</lang>
+                    </row>
+                  </text>
+                </tag>
+              </tag>
+              <tag name="uhis">
+                <tag name="y1">
+                  <text>
+                    <row id="0">
+                      <native>Enepukufa</native>
+                      <lang id="fi" status="3">ni</lang>
+                    </row>
+                  </text>
+                </tag>
+                <tag name="ahiva">
+                  <tag name="iv">
+                    <tag name="ho">
+                      <text>
+                        <row id="0">Hube</row>
+                      </text>
+                    </tag>
+                    <tag name="ho">
+                      <text>
+                        <row id="0">Egeg</row>
+                      </text>
+                    </tag>
+                    <tag name="ho">
+                      <text>
+                        <row id="0">Acesacalip</row>
+                      </text>
+                    </tag>
+                    <tag name="ho">
+                      <text>
+                        <row id="0">Adukuhi</row>
+                      </text>
+                    </tag>
+                    <tag name="ho">
+                      <text>
+                        <row id="0">Levekimadiz</row>
+                      </text>
+                    </tag>
+                  </tag>
+                  <tag name="iv">
+                    <tag name="ci">
+                      <attribute name="mituh" value="hube"/>
+                      <text>
+                        <row id="0">Ficana Tonozo</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="egeg"/>
+                      <tag name="ape">
+                        <attribute name="zatero" value="0"/>
+                        <attribute name="ije" value="Une.ahi"/>
+                        <attribute name="duzel" value="26"/>
+                        <attribute name="usical" value="14"/>
+                      </tag>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="acesacalip"/>
+                      <text>
+                        <row id="0">297</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="adukuhi"/>
+                      <text>
+                        <row id="0">Kejosovire, T.O.</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="levekimadiz"/>
+                      <text>
+                        <row id="0">Huv Ficana Tonozo im Ugujidu ot d imedulu hitaceka im 50 tonozo, mirudam ameruka da tufetig Zebez Ugujidu.</row>
+                      </text>
+                    </tag>
+                  </tag>
+                  <tag name="iv">
+                    <tag name="ci">
+                      <attribute name="mituh" value="hube"/>
+                      <text>
+                        <row id="0">Jivosoz</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="egeg"/>
+                      <tag name="ape">
+                        <attribute name="zatero" value="0"/>
+                        <attribute name="ije" value="Jivosoz.ahi"/>
+                        <attribute name="duzel" value="26"/>
+                        <attribute name="usical" value="14"/>
+                      </tag>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="acesacalip"/>
+                      <text>
+                        <row id="0">82</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="adukuhi"/>
+                      <text>
+                        <row id="0">Jiveci</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="levekimadiz"/>
+                      <text>
+                        <row id="0">Jivosoz so huv Imedulu Hitaceka im Jivosoz ot uja im huv osiga'r alulele liduvuluvazaci enepukufa, mirudam go huv siham im Osahof.</row>
+                      </text>
+                    </tag>
+                  </tag>
+                  <tag name="iv">
+                    <tag name="ci">
+                      <attribute name="mituh" value="hube"/>
+                      <text>
+                        <row id="0">Ropug</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="egeg"/>
+                      <tag name="ape">
+                        <attribute name="zatero" value="0"/>
+                        <attribute name="ije" value="Ropug.ahi"/>
+                        <attribute name="duzel" value="26"/>
+                        <attribute name="usical" value="14"/>
+                      </tag>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="acesacalip"/>
+                      <text>
+                        <row id="0">127</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="adukuhi"/>
+                      <text>
+                        <row id="0">Ekoko</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="levekimadiz"/>
+                      <text>
+                        <row id="0">Ropug ot d ufanasu da huv ibozemo cato im huv Kiricot Ihako.</row>
+                      </text>
+                    </tag>
+                  </tag>
+                </tag>
+              </tag>
+            </tag>
+          </tag>
+        </node>
+        <node class="TEmbeddedHtmlNode" name="Edovav" originalencoding="windows-1252">
+          <tag name="mojunene">
+            <tag name="okom">
+              <tag name="ehit">
+                <tag name="ifuk">
+                  <attribute name="simu-vabiz" value="Evekohe-Abizasev"/>
+                  <attribute name="evekohe" value="cu"/>
+                </tag>
+                <tag name="ifuk">
+                  <attribute name="simu-vabiz" value="Evekohe-Zubo"/>
+                  <attribute name="evekohe" value="ivul/okom; fatejac=luvuhog-1252"/>
+                </tag>
+                <tag name="cupic">
+                  <text>
+                    <row id="0">
+                      <native>Enepukufa</native>
+                      <lang id="fi" status="3">ni</lang>
+                    </row>
+                  </text>
+                </tag>
+              </tag>
+              <tag name="uhis">
+                <tag name="y1">
+                  <text>
+                    <row id="0">
+                      <native>Enepukufa</native>
+                      <lang id="fi" status="3">ni</lang>
+                    </row>
+                  </text>
+                </tag>
+                <tag name="ahiva">
+                  <tag name="iv">
+                    <tag name="ho">
+                      <text>
+                        <row id="0">Hube</row>
+                      </text>
+                    </tag>
+                    <tag name="ho">
+                      <text>
+                        <row id="0">Egeg</row>
+                      </text>
+                    </tag>
+                    <tag name="ho">
+                      <text>
+                        <row id="0">Acesacalip</row>
+                      </text>
+                    </tag>
+                    <tag name="ho">
+                      <text>
+                        <row id="0">Adukuhi</row>
+                      </text>
+                    </tag>
+                    <tag name="ho">
+                      <text>
+                        <row id="0">Levekimadiz</row>
+                      </text>
+                    </tag>
+                  </tag>
+                  <tag name="iv">
+                    <tag name="ci">
+                      <attribute name="mituh" value="hube"/>
+                      <text>
+                        <row id="0">Ficana Tonozo</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="egeg"/>
+                      <tag name="ape">
+                        <attribute name="zatero" value="0"/>
+                        <attribute name="ije" value="Une.ahi"/>
+                        <attribute name="duzel" value="26"/>
+                        <attribute name="usical" value="14"/>
+                      </tag>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="acesacalip"/>
+                      <text>
+                        <row id="0">297</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="adukuhi"/>
+                      <text>
+                        <row id="0">Kejosovire, T.O.</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="levekimadiz"/>
+                      <text>
+                        <row id="0">Huv Ficana Tonozo im Ugujidu ot d imedulu hitaceka im 50 tonozo, mirudam ameruka da tufetig Zebez Ugujidu.</row>
+                      </text>
+                    </tag>
+                  </tag>
+                  <tag name="iv">
+                    <tag name="ci">
+                      <attribute name="mituh" value="hube"/>
+                      <text>
+                        <row id="0">Jivosoz</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="egeg"/>
+                      <tag name="ape">
+                        <attribute name="zatero" value="0"/>
+                        <attribute name="ije" value="Jivosoz.ahi"/>
+                        <attribute name="duzel" value="26"/>
+                        <attribute name="usical" value="14"/>
+                      </tag>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="acesacalip"/>
+                      <text>
+                        <row id="0">82</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="adukuhi"/>
+                      <text>
+                        <row id="0">Jiveci</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="levekimadiz"/>
+                      <text>
+                        <row id="0">Jivosoz so huv Imedulu Hitaceka im Jivosoz ot uja im huv osiga'r alulele liduvuluvazaci enepukufa, mirudam go huv siham im Osahof.</row>
+                      </text>
+                    </tag>
+                  </tag>
+                  <tag name="iv">
+                    <tag name="ci">
+                      <attribute name="mituh" value="hube"/>
+                      <text>
+                        <row id="0">Ropug</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="egeg"/>
+                      <tag name="ape">
+                        <attribute name="zatero" value="0"/>
+                        <attribute name="ije" value="Ropug.ahi"/>
+                        <attribute name="duzel" value="26"/>
+                        <attribute name="usical" value="14"/>
+                      </tag>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="acesacalip"/>
+                      <text>
+                        <row id="0">127</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="adukuhi"/>
+                      <text>
+                        <row id="0">Ekoko</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="levekimadiz"/>
+                      <text>
+                        <row id="0">Ropug ot d ufanasu da huv ibozemo cato im huv Kiricot Ihako.</row>
+                      </text>
+                    </tag>
+                  </tag>
+                </tag>
+              </tag>
+            </tag>
+          </tag>
+        </node>
+        <node class="TEmbeddedHtmlNode" name="Ivul" originalencoding="windows-1252">
+          <tag name="mojunene">
+            <tag name="okom">
+              <tag name="ehit">
+                <tag name="ifuk">
+                  <attribute name="simu-vabiz" value="Evekohe-Abizasev"/>
+                  <attribute name="evekohe" value="cu"/>
+                </tag>
+                <tag name="ifuk">
+                  <attribute name="simu-vabiz" value="Evekohe-Zubo"/>
+                  <attribute name="evekohe" value="ivul/okom; fatejac=luvuhog-1252"/>
+                </tag>
+                <tag name="cupic">
+                  <text>
+                    <row id="0">
+                      <native>Enepukufa</native>
+                      <lang id="fi" status="3">ni</lang>
+                    </row>
+                  </text>
+                </tag>
+              </tag>
+              <tag name="uhis">
+                <tag name="y1">
+                  <text>
+                    <row id="0">
+                      <native>Enepukufa</native>
+                      <lang id="fi" status="3">ni</lang>
+                    </row>
+                  </text>
+                </tag>
+                <tag name="ahiva">
+                  <tag name="iv">
+                    <tag name="ho">
+                      <text>
+                        <row id="0">Hube</row>
+                      </text>
+                    </tag>
+                    <tag name="ho">
+                      <text>
+                        <row id="0">Egeg</row>
+                      </text>
+                    </tag>
+                    <tag name="ho">
+                      <text>
+                        <row id="0">Acesacalip</row>
+                      </text>
+                    </tag>
+                    <tag name="ho">
+                      <text>
+                        <row id="0">Adukuhi</row>
+                      </text>
+                    </tag>
+                    <tag name="ho">
+                      <text>
+                        <row id="0">Levekimadiz</row>
+                      </text>
+                    </tag>
+                  </tag>
+                  <tag name="iv">
+                    <tag name="ci">
+                      <attribute name="mituh" value="hube"/>
+                      <text>
+                        <row id="0">Ficana Tonozo</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="egeg"/>
+                      <tag name="ape">
+                        <attribute name="zatero" value="0"/>
+                        <attribute name="ije" value="Une.ahi"/>
+                        <attribute name="duzel" value="26"/>
+                        <attribute name="usical" value="14"/>
+                      </tag>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="acesacalip"/>
+                      <text>
+                        <row id="0">297</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="adukuhi"/>
+                      <text>
+                        <row id="0">Kejosovire, T.O.</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="levekimadiz"/>
+                      <text>
+                        <row id="0">Huv Ficana Tonozo im Ugujidu ot d imedulu hitaceka im 50 tonozo, mirudam ameruka da tufetig Zebez Ugujidu.</row>
+                      </text>
+                    </tag>
+                  </tag>
+                  <tag name="iv">
+                    <tag name="ci">
+                      <attribute name="mituh" value="hube"/>
+                      <text>
+                        <row id="0">Jivosoz</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="egeg"/>
+                      <tag name="ape">
+                        <attribute name="zatero" value="0"/>
+                        <attribute name="ije" value="Jivosoz.ahi"/>
+                        <attribute name="duzel" value="26"/>
+                        <attribute name="usical" value="14"/>
+                      </tag>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="acesacalip"/>
+                      <text>
+                        <row id="0">82</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="adukuhi"/>
+                      <text>
+                        <row id="0">Jiveci</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="levekimadiz"/>
+                      <text>
+                        <row id="0">Jivosoz so huv Imedulu Hitaceka im Jivosoz ot uja im huv osiga'r alulele liduvuluvazaci enepukufa, mirudam go huv siham im Osahof.</row>
+                      </text>
+                    </tag>
+                  </tag>
+                  <tag name="iv">
+                    <tag name="ci">
+                      <attribute name="mituh" value="hube"/>
+                      <text>
+                        <row id="0">Ropug</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="egeg"/>
+                      <tag name="ape">
+                        <attribute name="zatero" value="0"/>
+                        <attribute name="ije" value="Ropug.ahi"/>
+                        <attribute name="duzel" value="26"/>
+                        <attribute name="usical" value="14"/>
+                      </tag>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="acesacalip"/>
+                      <text>
+                        <row id="0">127</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="adukuhi"/>
+                      <text>
+                        <row id="0">Ekoko</row>
+                      </text>
+                    </tag>
+                    <tag name="ci">
+                      <attribute name="mituh" value="levekimadiz"/>
+                      <text>
+                        <row id="0">Ropug ot d ufanasu da huv ibozemo cato im huv Kiricot Ihako.</row>
+                      </text>
+                    </tag>
+                  </tag>
+                </tag>
+              </tag>
+            </tag>
+          </tag>
+        </node>
+      </node>
+    </node>
+  </source>
+</document>

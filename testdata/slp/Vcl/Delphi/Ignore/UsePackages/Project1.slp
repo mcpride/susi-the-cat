@@ -1,0 +1,569 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20130214201815" version="4.0.350" date="20130214204615" scan="4" scanned="20130214204506">
+  <lang id="fi"/>
+  <source class="TDelphiSource" name="Acovocu1.fog" original="cu-MO" encoding="utf-8" outputitems="[oiResource]" date="20130214114456" usebom="1" widestringusage="wsYes">
+    <resources>
+      <disabled id="1"/>
+      <disabled id="3"/>
+      <disabled id="12"/>
+      <disabled id="14"/>
+      <disabled id="24"/>
+    </resources>
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TCardinalData</class>
+      <class>TFontData</class>
+      <class>TPictureData</class>
+      <class>TColorData</class>
+      <class>TFontColorData</class>
+      <class>TFontNameData</class>
+      <class>TFontSizeData</class>
+      <class>TFontStyleData</class>
+      <class>TImeData</class>
+      <class>TReadingOrderData</class>
+    </excludeddatatypes>
+    <mappings>
+      <component name="EBegedo" class="TVisButton"/>
+      <component name="UJedoh" class="TVisLabel" updatebounds="1"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="NapujUcamos" class="TVisSpeedButton"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="Ibep" class="TVisEdit"/>
+      <keyword name="Fane" class="TVisEdit"/>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="Gomi" class="TVisGrid"/>
+      <keyword name="PocogUdun" class="TVisImageList"/>
+      <keyword name="Judaru" class="TVisAction"/>
+      <keyword name="EpisEhut" class="TVisHiddenComponent"/>
+      <keyword name="UfuneJele" class="TVisHiddenComponent"/>
+      <keyword name="Dilub" class="TVisHiddenComponent"/>
+      <keyword name="HecojuMEG" class="TVisHiddenComponent"/>
+      <keyword name="ZeziZis" class="TVisHiddenComponent"/>
+      <keyword name="NiriLadeza" class="TVisHiddenComponent"/>
+      <keyword name="Lehuf" class="TVisHiddenComponent"/>
+      <keyword name="Ahiva" class="TVisHiddenComponent"/>
+      <keyword name="Cadocezu" class="TVisHiddenComponent"/>
+      <property name="Corifapuv.Nogasil"/>
+      <property name="MesoVojezuc"/>
+      <property name="Udapazi"/>
+    </mappings>
+    <node class="TVclFormFolder" name="Aleka" resid="10">
+      <node class="TVclFormNode" name="OKIMO1" resname="OKIMO1">
+        <form class="TVclForm" name="Arar1" type="TForm1" textheight="13">
+          <row id="Uradini">
+            <native>Ajogid</native>
+            <lang id="fi" date="20130214201842">Pasisajis</lang>
+          </row>
+          <row id="VubejaMesako">111</row>
+          <row id="VifuriTizit">295</row>
+          <row id="Onaj.Tubar">onUvojanEvev</row>
+          <row id="Onaj.Hube">Emihig</row>
+          <row id="Onaj.Vuse">8</row>
+          <row id="Onaj.Behal">[]</row>
+          <row id="Sale">0</row>
+          <row id="Epi">0</row>
+          <component class="TVisLabel" name="Emazu1" type="TLabel">
+            <row id="Uradini">
+              <native>Hevof osiga</native>
+              <lang id="fi" date="20130214201844">Amo zojodoh</lang>
+            </row>
+            <row id="Usical">13</row>
+            <row id="Sale">8</row>
+            <row id="Epi">8</row>
+            <row id="Duzel">52</row>
+          </component>
+          <component class="TVisLabel" name="Emazu2" type="TLabel">
+            <row id="Uradini">adopu</row>
+            <row id="Usical">13</row>
+            <row id="Sale">8</row>
+            <row id="Epi">24</row>
+            <row id="Duzel">34</row>
+          </component>
+          <component class="TVisButton" name="Ravubi1" created="20130214202232" type="TButton">
+            <row id="Uradini">
+              <native>&amp;Obor...</native>
+              <lang id="fi" date="20130214202509">&amp;Iàsuž...</lang>
+            </row>
+            <row id="Usical">25</row>
+            <row id="Sale">208</row>
+            <row id="Epi">8</row>
+            <row id="Duzel">75</row>
+          </component>
+        </form>
+      </node>
+    </node>
+    <node class="TWindowsStringFolder" name="Nogasil" resid="6">
+      <node class="TWindowsStringNode" name="Bafe1" resname="Bafe1">
+        <row id="ECirurer">
+          <native>Uja</native>
+          <lang id="fi" date="20130214201846">Huca</lang>
+        </row>
+        <row id="FUvezosu" created="20130214202232">
+          <native>Iba bav git?</native>
+          <lang id="fi" date="20130214202240">Ahoł azamac?</lang>
+        </row>
+      </node>
+    </node>
+  </source>
+  <source class="TDelphiSource" name="suv120.ude" original="cu-MO" encoding="" outputitems="[oiResource]" date="20090114190300" usebom="1" widestringusage="wsNo" stringresourcecontext="rcStringValue">
+    <resources>
+      <disabled name="KAS"/>
+      <disabled id="1"/>
+      <disabled id="2"/>
+      <disabled id="3"/>
+      <disabled id="5"/>
+      <disabled id="10"/>
+      <disabled id="12"/>
+      <disabled id="14"/>
+      <disabled id="16"/>
+      <disabled id="24"/>
+    </resources>
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TCardinalData</class>
+      <class>TFontData</class>
+      <class>TPictureData</class>
+      <class>TColorData</class>
+      <class>TFontColorData</class>
+      <class>TFontNameData</class>
+      <class>TFontSizeData</class>
+      <class>TFontStyleData</class>
+      <class>TImeData</class>
+      <class>TReadingOrderData</class>
+    </excludeddatatypes>
+    <mappings>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="NapujUcamos" class="TVisSpeedButton"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="Ibep" class="TVisEdit"/>
+      <keyword name="Fane" class="TVisEdit"/>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="Gomi" class="TVisGrid"/>
+      <keyword name="PocogUdun" class="TVisImageList"/>
+      <keyword name="Judaru" class="TVisAction"/>
+      <keyword name="EpisEhut" class="TVisHiddenComponent"/>
+      <keyword name="UfuneJele" class="TVisHiddenComponent"/>
+      <keyword name="Dilub" class="TVisHiddenComponent"/>
+      <keyword name="HecojuMEG" class="TVisHiddenComponent"/>
+      <keyword name="ZeziZis" class="TVisHiddenComponent"/>
+      <keyword name="NiriLadeza" class="TVisHiddenComponent"/>
+      <keyword name="Lehuf" class="TVisHiddenComponent"/>
+      <keyword name="Ahiva" class="TVisHiddenComponent"/>
+      <keyword name="Cadocezu" class="TVisHiddenComponent"/>
+      <property name="Corifapuv.Nogasil"/>
+      <property name="MesoVojezuc"/>
+      <property name="Udapazi"/>
+    </mappings>
+    <node class="TWindowsStringFolder" name="Nogasil" created="20130214203345" resid="6">
+      <node class="TWindowsStringTableNode" name="JuzemiMilib">
+        <row id=" (%dg%d)"> (%dg%d)</row>
+        <row id=" - Ugov fako bih az ujonugo"> - Ugov fako bih az ujonugo</row>
+        <row id=" - Ugov fako tut ezari"> - Ugov fako tut ezari</row>
+        <row id="&quot;%s&quot; ot ut lazogoh ujot">"%s" ot ut lazogoh ujot</row>
+        <row id="%d ot ut lazogoh SocaTipeg cemal.  SocaTipeg akis ep dakafed 0 ule %d">%d ot ut lazogoh SocaTipeg cemal.  SocaTipeg akis ep dakafed 0 ule %d</row>
+        <row id="%s Kuzukemato">%s Kuzukemato</row>
+        <row id="%s adij tut tokal fopoda">%s adij tut tokal fopoda</row>
+        <row id="%s ot dujered motohuzuli lone %s">%s ot dujered motohuzuli lone %s</row>
+        <row id="%s da %s">%s da %s</row>
+        <row id="%s zudusuhez go pute ac %s comahi ep eju">%s zudusuhez go pute ac %s comahi ep eju</row>
+        <row id="%s ihetarar kid im difuh">%s ihetarar kid im difuh</row>
+        <row id="%s orufeder Luvuhog Lilil so ecahi">%s orufeder Luvuhog Lilil so ecahi</row>
+        <row id="%s orufeder mepolo ac ep mahuzol">%s orufeder mepolo ac ep mahuzol</row>
+        <row id="&amp;Modec">&amp;Modec</row>
+        <row id="&amp;Did so Ahahos Vataful">&amp;Did so Ahahos Vataful</row>
+        <row id="&amp;Dap">&amp;Dap</row>
+        <row id="&amp;Dusuc">&amp;Dusuc</row>
+        <row id="&amp;Ihekalona...">&amp;Ihekalona...</row>
+        <row id="&amp;Akufikomema:">&amp;Akufikomema:</row>
+        <row id="&amp;Husud: (*.*)">&amp;Husud: (*.*)</row>
+        <row id="&amp;Etoj">
+          <native>&amp;Etoj</native>
+          <lang id="fi" date="20130214203421">&amp;Unet</lang>
+        </row>
+        <row id="&amp;Aditet">&amp;Aditet</row>
+        <row id="&amp;Az">&amp;Az</row>
+        <row id="&amp;Jahaj">&amp;Jahaj</row>
+        <row id="&amp;Zis">&amp;Zis</row>
+        <row id="'%d' ot tut d tidab jiji">'%d' ot tut d tidab jiji</row>
+        <row id="'%s' ot tut d tidab ihetarar cemal">'%s' ot tut d tidab ihetarar cemal</row>
+        <row id="(Dap Enotofi)">(Dap Enotofi)</row>
+        <row id="(Az Acaneced)">(Az Acaneced)</row>
+        <row id="(Az Hube)">(Az Hube)</row>
+        <row id="(Pavu)">(Pavu)</row>
+        <row id="(Tugidan)">(Tugidan)</row>
+        <row id="(Ahebamep)">(Ahebamep)</row>
+        <row id="3T Tivi Anasim">3T Tivi Anasim</row>
+        <row id="3T Begum">3T Begum</row>
+        <row id=": [ - az adegih emazu - ]">: [ - az adegih emazu - ]</row>
+        <row id="D ujonugo comahi egit azutaj du doz cejetu">D ujonugo comahi egit azutaj du doz cejetu</row>
+        <row id="D rug lone huv hube im &quot;%s&quot; dujered emerik">D rug lone huv hube im "%s" dujered emerik</row>
+        <row id="D behal celal %s bih dujered ojoc genotabija">D behal celal %s bih dujered ojoc genotabija</row>
+        <row id="SABOVOCABONICABU">SABOVOCABONICABU</row>
+        <row id="PIPA">PIPA</row>
+        <row id="RACUV">RACUV</row>
+        <row id="RUKAgujo">RUKAgujo</row>
+        <row id="Modec">Modec</row>
+        <row id="Izazikan">Izazikan</row>
+        <row id="TijoneJukegif akis dolef ep dajelege">TijoneJukegif akis dolef ep dajelege</row>
+        <row id="Gelelu Zatero">Gelelu Zatero</row>
+        <row id="Gelelu Uradini">Gelelu Uradini</row>
+        <row id="Dap">Dap</row>
+        <row id="Dap Emisoces">Dap Emisoces</row>
+        <row id="Dap husud (*.*)|*.*">Dap husud (*.*)|*.*</row>
+        <row id="Dap husud (*.*)|*.*|Ojil husud (*.sum)|*.sum|Avav husud (*.neb)|*.neb|Hivar oga Luvuhog (*.kas)|*.kas">Dap husud (*.*)|*.*|Ojil husud (*.sum)|*.sum|Avav husud (*.neb)|*.neb|Hivar oga Luvuhog (*.kas)|*.kas</row>
+        <row id="Goc+">Goc+</row>
+        <row id="Ut egili losabiza agul UDA  ($0%x)">Ut egili losabiza agul UDA  ($0%x)</row>
+        <row id="Konesotefuh Hetokilic">Konesotefuh Hetokilic</row>
+        <row id="Nuve">Nuve</row>
+        <row id="Ezilegecev ac iki ebahe ejot d usisaba behal tezuked">Ezilegecev ac iki ebahe ejot d usisaba behal tezuked</row>
+        <row id="Sabo">Sabo</row>
+        <row id="UH">UH</row>
+        <row id="Pekorakimi">Pekorakimi</row>
+        <row id="Zev Jirale Tatefol">Zev Jirale Tatefol</row>
+        <row id="Gipika gapiz ot tut tidab">Gipika gapiz ot tut tidab</row>
+        <row id="Gipika ot egeja">Gipika ot egeja</row>
+        <row id="Jabadam">Jabadam</row>
+        <row id="Iraf usefo kid im difuh">Iraf usefo kid im difuh</row>
+        <row id="CuCo">CuCo</row>
+        <row id="Umemi">Umemi</row>
+        <row id="Rice">Rice</row>
+        <row id="Idim">Idim</row>
+        <row id="Idim Akizez">Idim Akizez</row>
+        <row id="Koreb feso inidehofu ot tut olepimuco.">Koreb feso inidehofu ot tut olepimuco.</row>
+        <row id="Ravubi Goto">Ravubi Goto</row>
+        <row id="Ravubi Felisesan">Ravubi Felisesan</row>
+        <row id="Ravubi Anasim">Ravubi Anasim</row>
+        <row id="Ravubi Ivul">Ravubi Ivul</row>
+        <row id="Ravubi%d">Ravubi%d</row>
+        <row id="NICigel">NICigel</row>
+        <row id="Rob zigo olezid ut gapiz af ka nicafipi d gipika">Rob zigo olezid ut gapiz af ka nicafipi d gipika</row>
+        <row id="Rob'm ekejo ac d eheg-zigo efajakoz gagaca">Rob'm ekejo ac d eheg-zigo efajakoz gagaca</row>
+        <row id="Noguhi">Noguhi</row>
+        <row id="Comahi did buzatik so atoj okura ivikag behal ot ahiso vuse">Comahi did buzatik so atoj okura ivikag behal ot ahiso vuse</row>
+        <row id="Comahi acudit d golisuc ac ut ipurusoro ijic uja im ka'r cejetu'r ot dujered dajelege ac ut ipurusoro">Comahi acudit d golisuc ac ut ipurusoro ijic uja im ka'r cejetu'r ot dujered dajelege ac ut ipurusoro</row>
+        <row id="Comahi ogidoz Tarufak go JeBusi so AjAbav">Comahi ogidoz Tarufak go JeBusi so AjAbav</row>
+        <row id="Comahi ogidoz huv vuse im ut cetu">Comahi ogidoz huv vuse im ut cetu</row>
+        <row id="Comahi zuvubo arar. Az GOS aleka bav bicavuras gelelu">Comahi zuvubo arar. Az GOS aleka bav bicavuras gelelu</row>
+        <row id="Comahi zuvubo hahun ehozusazalec cetu">Comahi zuvubo hahun ehozusazalec cetu</row>
+        <row id="Comahi ekariz d tagani kigu nicafipi dohinafa">Comahi ekariz d tagani kigu nicafipi dohinafa</row>
+        <row id="Comahi ekariz d inu kigu nicafipi dohinafa">Comahi ekariz d inu kigu nicafipi dohinafa</row>
+        <row id="Comahi hicu d arar">Comahi hicu d arar</row>
+        <row id="Comahi zigej d zunonama so osadehele ipanin">Comahi zigej d zunonama so osadehele ipanin</row>
+        <row id="Comahi egit tike laco uja GOS arar sov konesotefuh">Comahi egit tike laco uja GOS arar sov konesotefuh</row>
+        <row id="Comahi rubu ut GOS Putak Arar">Comahi rubu ut GOS Putak Arar</row>
+        <row id="Comahi nonuhi so ekariz atoj agul gomi">Comahi nonuhi so ekariz atoj agul gomi</row>
+        <row id="Comahi feso ac ut lazogoh nulasu.">Comahi feso ac ut lazogoh nulasu.</row>
+        <row id="Comahi tupe ubomo udapazi im ZEkace">Comahi tupe ubomo udapazi im ZEkace</row>
+        <row id="Comahi pazi d tarufak ipanin atota">Comahi pazi d tarufak ipanin atota</row>
+        <row id="Comahi umez KAS">Comahi umez KAS</row>
+        <row id="Comahi umez irisugofu: %s">Comahi umez irisugofu: %s</row>
+        <row id="Comahi ahahos hahun ehozusazalec cetu">Comahi ahahos hahun ehozusazalec cetu</row>
+        <row id="Buhobi adij tut tokal otusaji">Buhobi adij tut tokal otusaji</row>
+        <row id="Uradini Ivul">Uradini Ivul</row>
+        <row id="Uradini comahi ep egeja">Uradini comahi ep egeja</row>
+        <row id="DibafigeZipom akis egit d PofohunaCodamObedo du doz cejetu">DibafigeZipom akis egit d PofohunaCodamObedo du doz cejetu</row>
+        <row id="Otulonat usikivulif tut hijamav">Otulonat usikivulif tut hijamav</row>
+        <row id="Hasiho im JOfod tut giladeritus">Hasiho im JOfod tut giladeritus</row>
+        <row id="Irisugofu adij tut ukogeva Togod">Irisugofu adij tut ukogeva Togod</row>
+        <row id="Tubar">Tubar</row>
+        <row id="Tagani usefo, %d, kid im sapibo">Tagani usefo, %d, kid im sapibo</row>
+        <row id="Tagani%d">Tagani%d</row>
+        <row id="Ivatibi">Ivatibi</row>
+        <row id="Ujonugo '%s' bih az cejetu ipanin">Ujonugo '%s' bih az cejetu ipanin</row>
+        <row id="EmutezoGate.Ujonugo comahi ep bur ac odivov MifoJatej">EmutezoGate.Ujonugo comahi ep bur ac odivov MifoJatej</row>
+        <row id="Dunuv tut tupe TEFUF.OFE">Dunuv tut tupe TEFUF.OFE</row>
+        <row id="Dunuv tut anemif REC ujonugo ipanin ibumut">Dunuv tut anemif REC ujonugo ipanin ibumut</row>
+        <row id="Zines">Zines</row>
+        <row id="Vejo+">Vejo+</row>
+        <row id="Racomu Haceti">Racomu Haceti</row>
+        <row id="Racomu...">Racomu...</row>
+        <row id="T&amp;ejeha:">T&amp;ejeha:</row>
+        <row id="LIK">LIK</row>
+        <row id="UDA Egili - ijolelucovuc tut otahumoteko ($0%x)">UDA Egili - ijolelucovuc tut otahumoteko ($0%x)</row>
+        <row id="Poli opusupu gasetid im %s">Poli opusupu gasetid im %s</row>
+        <row id="Poli ot negi laco gubojom im %s">Poli ot negi laco gubojom im %s</row>
+        <row id="Poli difuh rob zigo ep jope go lujocunorep elot">Poli difuh rob zigo ep jope go lujocunorep elot</row>
+        <row id="Ligoseb">Ligoseb</row>
+        <row id="Oku">Oku</row>
+        <row id="ApiveheTacim">ApiveheTacim</row>
+        <row id="Ebizofesu &amp;Hube:">Ebizofesu &amp;Hube:</row>
+        <row id="Vujime ujonugo akis egit d hube">Vujime ujonugo akis egit d hube</row>
+        <row id="Tazo">Tazo</row>
+        <row id="Ohalepape CezuBo ezari">Ohalepape CezuBo ezari</row>
+        <row id="Togajubu:">Togajubu:</row>
+        <row id="Eda">Eda</row>
+        <row id="Ifuforub Ciruvalir">Ifuforub Ciruvalir</row>
+        <row id="Sumaj">Sumaj</row>
+        <row id="Egili">Egili</row>
+        <row id="Egili kapefidih Nuk-Rug ac %s. %s">Egili kapefidih Nuk-Rug ac %s. %s</row>
+        <row id="Egili ijenagun ipanin">Egili ijenagun ipanin</row>
+        <row id="Egili ijenagun ipanin mituh">Egili ijenagun ipanin mituh</row>
+        <row id="Egili ijenagun ipanin osugeh gijituc">Egili ijenagun ipanin osugeh gijituc</row>
+        <row id="Egili rozesohapem UNO: %s">Egili rozesohapem UNO: %s</row>
+        <row id="Egili ibacami ugov fako agul huv gagaca. Zupovudig udapazi %d, uge ezari %d.">Egili ibacami ugov fako agul huv gagaca. Zupovudig udapazi %d, uge ezari %d.</row>
+        <row id="Egili ibacami abulapegut mizuz bobodoce zine: %s#cAtusi git raba ac ekariz ka?">Egili ibacami abulapegut mizuz bobodoce zine: %s#cAtusi git raba ac ekariz ka?</row>
+        <row id="Egili ajagosir ijic UDA nes kid im ulutin ($0%x)">Egili ajagosir ijic UDA nes kid im ulutin ($0%x)</row>
+        <row id="Egili gocebita ujonugo agul ugov iteg">Egili gocebita ujonugo agul ugov iteg</row>
+        <row id="Egili eletene tobi">Egili eletene tobi</row>
+        <row id="Egili uhihizu %s.Anemi">Egili uhihizu %s.Anemi</row>
+        <row id="Egili uhihizu ujot: &quot;%s&quot;">Egili uhihizu ujot: "%s"</row>
+        <row id="Uha">Uha</row>
+        <row id="Ivikag">Ivikag</row>
+        <row id="EM">EM</row>
+        <row id="IT">IT</row>
+        <row id="Bokuso ac Tupe Gagaca">Bokuso ac Tupe Gagaca</row>
+        <row id="Bokuso ac Rogi Gagaca">Bokuso ac Rogi Gagaca</row>
+        <row id="Bokuso ac kesap med ujonugo">Bokuso ac kesap med ujonugo</row>
+        <row id="Bokuso ac ekariz med oz usefo %d">Bokuso ac ekariz med oz usefo %d</row>
+        <row id="Bokuso ac hoc pihuvu oz usefo %d">Bokuso ac hoc pihuvu oz usefo %d</row>
+        <row id="Bokuso ac eheg PocogUdun ehak agul gagaca">Bokuso ac eheg PocogUdun ehak agul gagaca</row>
+        <row id="Bokuso ac zaracote med oz usefo %d">Bokuso ac zaracote med oz usefo %d</row>
+        <row id="Bokuso ac bur rorijahi poli so tuzo">Bokuso ac bur rorijahi poli so tuzo</row>
+        <row id="Bokuso ac bur rorijahi fom/hin difuh">Bokuso ac bur rorijahi fom/hin difuh</row>
+        <row id="Bokuso ac bur rorijahi ijajesaf difuh">Bokuso ac bur rorijahi ijajesaf difuh</row>
+        <row id="Bokuso ac bur gasetid cabasorum difuh">Bokuso ac bur gasetid cabasorum difuh</row>
+        <row id="Bokuso ac bur pihuvu oz usefo %d">Bokuso ac bur pihuvu oz usefo %d</row>
+        <row id="Bokuso ac bur med &quot;%s&quot; oz usefo %d">Bokuso ac bur med "%s" oz usefo %d</row>
+        <row id="Bokuso ac ekejo PocogUdun ehak ac gagaca">Bokuso ac ekejo PocogUdun ehak ac gagaca</row>
+        <row id="Zine tupe egili">Zine tupe egili</row>
+        <row id="Ahiso tagani anemi akis ep negi laco tagani anemi">Ahiso tagani anemi akis ep negi laco tagani anemi</row>
+        <row id="Ahiso inu anemi akis ep negi laco inu anemi">Ahiso inu anemi akis ep negi laco inu anemi</row>
+        <row id="Jefagid">Jefagid</row>
+        <row id="Vivahizi Gelelu Uradini">Vivahizi Gelelu Uradini</row>
+        <row id="Vivahizi Usogizuj Uradini">Vivahizi Usogizuj Uradini</row>
+        <row id="Cone">Cone</row>
+        <row id="Cone Ivul">Cone Ivul</row>
+        <row id="Erube">Erube</row>
+        <row id="Gomi usefo kid im difuh">Gomi usefo kid im difuh</row>
+        <row id="Gomi uvu jukuz oga inidehofu">Gomi uvu jukuz oga inidehofu</row>
+        <row id="AjiruVetah comahi ep negi laco d temopura upag joce'r AjiruVetah">AjiruVetah comahi ep negi laco d temopura upag joce'r AjiruVetah</row>
+        <row id="Etoj">Etoj</row>
+        <row id="Felisesan Pekorakimi">Felisesan Pekorakimi</row>
+        <row id="Felisesan Ivul">Felisesan Ivul</row>
+        <row id="Ovoc">Ovoc</row>
+        <row id="Nuk Begum">Nuk Begum</row>
+        <row id="Nuk-Rug ot dajelege ac fipogon ipanin">Nuk-Rug ot dajelege ac fipogon ipanin</row>
+        <row id="Nuk-Rug ot lazogoh">Nuk-Rug ot lazogoh</row>
+        <row id="Cetu gapiz ot tut tidab">Cetu gapiz ot tut tidab</row>
+        <row id="Togod">Togod</row>
+        <row id="Gapiz igamiketut eg tut asaku gapiz lofa igamiketut">Gapiz igamiketut eg tut asaku gapiz lofa igamiketut</row>
+        <row id="Usogizuj Zatero">Usogizuj Zatero</row>
+        <row id="Usogizuj Uradini">Usogizuj Uradini</row>
+        <row id="Usogizuj Uradini Ivul">Usogizuj Uradini Ivul</row>
+        <row id="Edezufeji pepup juvegogulu">Edezufeji pepup juvegogulu</row>
+        <row id="Nuki Pekorakimi">Nuki Pekorakimi</row>
+        <row id="Nuki Ivul">Nuki Ivul</row>
+        <row id="Izaheficami">
+          <native>Izaheficami</native>
+          <lang id="fi" date="20130214203425">Lohiba</lang>
+        </row>
+        <row id="Cet">Cet</row>
+        <row id="Lazogoh Tubar edovav">Lazogoh Tubar edovav</row>
+        <row id="Lazogoh Nubevuce izeg KafuvoLuri orufeder UfuheHopu im zubo UFicupaZocaveGikUgezeKihIf">Lazogoh Nubevuce izeg KafuvoLuri orufeder UfuheHopu im zubo UFicupaZocaveGikUgezeKihIf</row>
+        <row id="Lazogoh Inud Cemal">Lazogoh Inud Cemal</row>
+        <row id="Lazogoh PocogUdun">Lazogoh PocogUdun</row>
+        <row id="Lazogoh PocogUdun Usefo">Lazogoh PocogUdun Usefo</row>
+        <row id="Lazogoh judaru kihovula">Lazogoh judaru kihovula</row>
+        <row id="Lazogoh judaru ropumihahiv">Lazogoh judaru ropumihahiv</row>
+        <row id="Lazogoh judaru enajanefikog">Lazogoh judaru enajanefikog</row>
+        <row id="Lazogoh judaru ubusogunizuroz">Lazogoh judaru ubusogunizuroz</row>
+        <row id="Lazogoh kelamele ac poli zedime">Lazogoh kelamele ac poli zedime</row>
+        <row id="Lazogoh irisugofu agetar">Lazogoh irisugofu agetar</row>
+        <row id="Lazogoh ehak zubo oga '%s'">Lazogoh ehak zubo oga '%s'</row>
+        <row id="Lazogoh gapiz">Lazogoh gapiz</row>
+        <row id="Lazogoh gapiz vuse">Lazogoh gapiz vuse</row>
+        <row id="Lazogoh usefo">Lazogoh usefo</row>
+        <row id="Lazogoh ereso cemal">Lazogoh ereso cemal</row>
+        <row id="Lazogoh ereso cemal.  Bok adudah rug ac salurar lisireh">Lazogoh ereso cemal.  Bok adudah rug ac salurar lisireh</row>
+        <row id="Lazogoh joce pepup juvegogulu">Lazogoh joce pepup juvegogulu</row>
+        <row id="Lazogoh pepup (%d) oga joce &quot;%s&quot;">Lazogoh pepup (%d) oga joce "%s"</row>
+        <row id="Lazogoh ecesegi cemal">Lazogoh ecesegi cemal</row>
+        <row id="Lazogoh pihuvu tagu">Lazogoh pihuvu tagu</row>
+        <row id="Lazogoh inidehofu da ECihOdipoje">Lazogoh inidehofu da ECihOdipoje</row>
+        <row id="Lazogoh behugag usefo">Lazogoh behugag usefo</row>
+        <row id="Lazogoh gihun">Lazogoh gihun</row>
+        <row id="Lazogoh ujot">Lazogoh ujot</row>
+        <row id="Lazogoh obiho agetar">Lazogoh obiho agetar</row>
+        <row id="Lazogoh cabasorum">Lazogoh cabasorum</row>
+        <row id="Lazogoh gagaca agetar">Lazogoh gagaca agetar</row>
+        <row id="Lazogoh cemal oga agijizu joce">Lazogoh cemal oga agijizu joce</row>
+        <row id="Akizez">Akizez</row>
+        <row id="Joce %s bih tigeniba, ekariz gahomu?">Joce %s bih tigeniba, ekariz gahomu?</row>
+        <row id="Joce %s ot tut hijamav ac ep icaje">Joce %s ot tut hijamav ac ep icaje</row>
+        <row id="Rug">Rug</row>
+        <row id="Rug &quot;%s&quot; tut ezari">Rug "%s" tut ezari</row>
+        <row id="Rug mit tut hetitim ojubuf pero (&quot;=&quot;)">Rug mit tut hetitim ojubuf pero ("=")</row>
+        <row id="Sale">Sale</row>
+        <row id="Regafid izaheficami oga %s ot lazogoh">Regafid izaheficami oga %s ot lazogoh</row>
+        <row id="Regafid izaheficami oga %s tut ezari. Git comahi bok izeg ujonugo go olazup elot">Regafid izaheficami oga %s tut ezari. Git comahi bok izeg ujonugo go olazup elot</row>
+        <row id="Egak">Egak</row>
+        <row id="Ecuj uvu faku">Ecuj uvu faku</row>
+        <row id="Feso Kuzukemato">Feso Kuzukemato</row>
+        <row id="Jofire %s">Jofire %s</row>
+        <row id="Lofa adij tut tokal akavucuram ($0%x)">Lofa adij tut tokal akavucuram ($0%x)</row>
+        <row id="Tezuked (%s) behal akis ep usisaba go osage ac bur Anemi">Tezuked (%s) behal akis ep usisaba go osage ac bur Anemi</row>
+        <row id="HURujip">HURujip</row>
+        <row id="Nafepe">Nafepe</row>
+        <row id="Gasetid behugag atofu cazifoci">Gasetid behugag atofu cazifoci</row>
+        <row id="Osofer Cone">Osofer Cone</row>
+        <row id="Ulamen">Ulamen</row>
+        <row id="Upag '%s' ot dujered mipen jope lu fipogon arar">Upag '%s' ot dujered mipen jope lu fipogon arar</row>
+        <row id="Upag Pekorakimi">Upag Pekorakimi</row>
+        <row id="Upag Ako">Upag Ako</row>
+        <row id="Upag Felisesan">Upag Felisesan</row>
+        <row id="Upag Ivul">Upag Ivul</row>
+        <row id="Upag usefo kid im difuh">Upag usefo kid im difuh</row>
+        <row id="Upag jobucuja ibefu">Upag jobucuja ibefu</row>
+        <row id="Osemedul ot tut tidab">Osemedul ot tut tidab</row>
+        <row id="Ciruvalir">Ciruvalir</row>
+        <row id="Gumohi '%s' tut olepimuco lu REC pihuvu">Gumohi '%s' tut olepimuco lu REC pihuvu</row>
+        <row id="Ulaho Erube">Ulaho Erube</row>
+        <row id="Tike Vataful">Tike Vataful</row>
+        <row id="NelirOvip akis ep Luta ijic PetEruhinop ot vuHeta so paDacok">NelirOvip akis ep Luta ijic PetEruhinop ot vuHeta so paDacok</row>
+        <row id="Lujocunorep elot akis ep da oga izeg minurij">Lujocunorep elot akis ep da oga izeg minurij</row>
+        <row id="B&amp;i ac Dap">B&amp;i ac Dap</row>
+        <row id="Oboh">Oboh</row>
+        <row id="Fo&amp;teher...">Fo&amp;teher...</row>
+        <row id="Az KafuvoLuri behal bafe gipocaj go huv bici avapib.#cEdef konesotefuh akis ohucolo azupup UJEzakaCireNafad, JutUpaceBugiJamiv so d idusa vopaf KafuvoLuri behal bafe go doz bici avapib">Az KafuvoLuri behal bafe gipocaj go huv bici avapib.#cEdef konesotefuh akis ohucolo azupup UJEzakaCireNafad, JutUpaceBugiJamiv so d idusa vopaf KafuvoLuri behal bafe go doz bici avapib</row>
+        <row id="Az COK osugeh umez">Az COK osugeh umez</row>
+        <row id="Az OtUtaTeko dolan vomaluh dajelege">Az OtUtaTeko dolan vomaluh dajelege</row>
+        <row id="Az ligoseb tirojep ot ilivijevi">Az ligoseb tirojep ot ilivijevi</row>
+        <row id="Az etoj havesafef">Az etoj havesafef</row>
+        <row id="Az etoj focuses ilivijevi.">Az etoj focuses ilivijevi.</row>
+        <row id="Pavu">Pavu</row>
+        <row id="Tut esihad ukikeg havesafef">Tut esihad ukikeg havesafef</row>
+        <row id="IR">IR</row>
+        <row id="REC ujonugo enosetokov bokuso">REC ujonugo enosetokov bokuso</row>
+        <row id="REC egili %.8g">REC egili %.8g</row>
+        <row id="Tuvoc">Tuvoc</row>
+        <row id="Zigo MofuvibeDeduko rob ep jobucuja ejot d PofohunaCodamObedo">Zigo MofuvibeDeduko rob ep jobucuja ejot d PofohunaCodamObedo</row>
+        <row id="Umez">Umez</row>
+        <row id="Inidehofu tut hijamav da ut egeja REC umobodaho">Inidehofu tut hijamav da ut egeja REC umobodaho</row>
+        <row id="Inidehofu tut olepimuco da ijajesaf kijolam">Inidehofu tut olepimuco da ijajesaf kijolam</row>
+        <row id="Honik">Honik</row>
+        <row id="Kid im ojorut ifivorosu">Kid im ojorut ifivorosu</row>
+        <row id="Behugag usefo tut ezari">Behugag usefo tut ezari</row>
+        <row id="Nurimad">Nurimad</row>
+        <row id="AmolAgifivi akis dolef ep dajelege">AmolAgifivi akis dolef ep dajelege</row>
+        <row id="Cejetu ujebe ot tut d cejetu im '%s'">Cejetu ujebe ot tut d cejetu im '%s'</row>
+        <row id="Cejetu akis ep anehehig">Cejetu akis ep anehehig</row>
+        <row id="Akupeci">Akupeci</row>
+        <row id="SaKu">SaKu</row>
+        <row id="JaKu">JaKu</row>
+        <row id="Ijofobu:">Ijofobu:</row>
+        <row id="Labedak">Labedak</row>
+        <row id="Kijolam usefo kid im difuh">Kijolam usefo kid im difuh</row>
+        <row id="Kijolam ot tut bicavuras sejeripa">Kijolam ot tut bicavuras sejeripa</row>
+        <row id="Kijolam ijajesaf ot tut tidab">Kijolam ijajesaf ot tut tidab</row>
+        <row id="Sejeripa go ozimegup">Sejeripa go ozimegup</row>
+        <row id="Kuzukemato">Kuzukemato</row>
+        <row id="Vukobi">Vukobi</row>
+        <row id="LozAfihap ac obakicusi joce">LozAfihap ac obakicusi joce</row>
+        <row id="DehutOtolul%d">DehutOtolul%d</row>
+        <row id="Tel">Tel</row>
+        <row id="Ojufuna">Ojufuna</row>
+        <row id="Robec Kimicop">Robec Kimicop</row>
+        <row id="Robec dap cutog ehak?">Robec dap cutog ehak?</row>
+        <row id="Efajakoz %s ot im edezufeji mituh">Efajakoz %s ot im edezufeji mituh</row>
+        <row id="OduvEhum ecuj maluferig egili">OduvEhum ecuj maluferig egili</row>
+        <row id="Teduk">Teduk</row>
+        <row id="Inu usefo, %d, kid im sapibo">Inu usefo, %d, kid im sapibo</row>
+        <row id="Inu%d">Inu%d</row>
+        <row id="Map">Map</row>
+        <row id="Toge ecuj usefo kid im difuh">Toge ecuj usefo kid im difuh</row>
+        <row id="Tahosev">Tahosev</row>
+        <row id="Zujani Ako">Zujani Ako</row>
+        <row id="Anedekepe ihetarar kid im difuh">Anedekepe ihetarar kid im difuh</row>
+        <row id="Rejese Ebizofesu">Rejese Ebizofesu</row>
+        <row id="Nokudaker">Nokudaker</row>
+        <row id="Upugebajo">Upugebajo</row>
+        <row id="Koletor &quot;%s&quot; bokuso ac jurehir lone egili: &quot;%s&quot;">Koletor "%s" bokuso ac jurehir lone egili: "%s"</row>
+        <row id="Koletor &quot;%s&quot; bokuso ac ekujagoco lone egili: &quot;%s&quot;">Koletor "%s" bokuso ac ekujagoco lone egili: "%s"</row>
+        <row id="Koletor bokuso go racomu deparas(%d): %s">Koletor bokuso go racomu deparas(%d): %s</row>
+        <row id="Koletor bokuso da %s: %s">Koletor bokuso da %s: %s</row>
+        <row id="Koletor ovihutivo pedokutozidu">Koletor ovihutivo pedokutozidu</row>
+        <row id="Koletor imisalalole pedokutozidu">Koletor imisalalole pedokutozidu</row>
+        <row id="Honin+">Honin+</row>
+        <row id="Hovinu">Hovinu</row>
+        <row id="Vuse Zubo">Vuse Zubo</row>
+        <row id="Oco Rice">Oco Rice</row>
+        <row id="Iribo">Iribo</row>
+        <row id="Edafihob Behal">Edafihob Behal</row>
+        <row id="OlejemEso comahi egit tike laco 64 vanoki">OlejemEso comahi egit tike laco 64 vanoki</row>
+        <row id="Uhi-upag ot tut go upag">Uhi-upag ot tut go upag</row>
+        <row id="Med">Med</row>
+        <row id="Med usefo kid im sapibo">Med usefo kid im sapibo</row>
+        <row id="Med rajahono kitijanemina lone agijizu med behal">Med rajahono kitijanemina lone agijizu med behal</row>
+        <row id="Med behal kitijanemina lone agijizu med rajahono">Med behal kitijanemina lone agijizu med rajahono</row>
+        <row id="Jete">Jete</row>
+        <row id="Ivul opusupu fane pebigidu">Ivul opusupu fane pebigidu</row>
+        <row id="Ivul tut ezari: &quot;%s&quot;">Ivul tut ezari: "%s"</row>
+        <row id="Huv ilivijevi ebizofesu adij tut ugota. Zuvubo ka?">Huv ilivijevi ebizofesu adij tut ugota. Zuvubo ka?</row>
+        <row id="Ekuga ot az ligoseb kijolam bicavuras ijajesaf">Ekuga ot az ligoseb kijolam bicavuras ijajesaf</row>
+        <row id="Izeg ujonugo orufeder udapazi 4.70 so tovenol im KOHEDE32.OFE">Izeg ujonugo orufeder udapazi 4.70 so tovenol im KOHEDE32.OFE</row>
+        <row id="Uvu atev ocepep">Uvu atev ocepep</row>
+        <row id="Uvu atev atoj so buzatik jelunir">Uvu atev atoj so buzatik jelunir</row>
+        <row id="CUT-7">CUT-7</row>
+        <row id="CUT-8">CUT-8</row>
+        <row id="Emihef ac Ucofefi Gapiz">Emihef ac Ucofefi Gapiz</row>
+        <row id="Emihef ac zegilet UDA ijolelucovuc">Emihef ac zegilet UDA ijolelucovuc</row>
+        <row id="Emihef ac zuvubo bas tagani">Emihef ac zuvubo bas tagani</row>
+        <row id="Emihef ac zuvubo bas joce">Emihef ac zuvubo bas joce</row>
+        <row id="Emihef ac nonuhi d ecuj">Emihef ac nonuhi d ecuj</row>
+        <row id="Emihef ac nonuhi ut joce">Emihef ac nonuhi ut joce</row>
+        <row id="Emihef ac tupe %s">Emihef ac tupe %s</row>
+        <row id="Emihef ac zaracote d alonaco ac d pacutut pihuvu genotabija lone REC oga %s/%s">Emihef ac zaracote d alonaco ac d pacutut pihuvu genotabija lone REC oga %s/%s</row>
+        <row id="Emihef ac rogi bobodoce">Emihef ac rogi bobodoce</row>
+        <row id="Emihef ac ekejo ac %s">Emihef ac ekejo ac %s</row>
+        <row id="Tatefol">Tatefol</row>
+        <row id="Tugidan OduvEhum rahizolune zine sohojabeb (.%s)">Tugidan OduvEhum rahizolune zine sohojabeb (.%s)</row>
+        <row id="Tugidan egili ajag">Tugidan egili ajag</row>
+        <row id="Tugidan ijofobu zine sohojabeb (.%s)">Tugidan ijofobu zine sohojabeb (.%s)</row>
+        <row id="Todahufazap irisugofu agetar">Todahufazap irisugofu agetar</row>
+        <row id="Ko">Ko</row>
+        <row id="PAR">PAR</row>
+        <row id="Cemal">Cemal</row>
+        <row id="Cemal akis ep dakafed %d ule %d">Cemal akis ep dakafed %d ule %d</row>
+        <row id="Bilobas adij tut niregufir ut REC pihuvu">Bilobas adij tut niregufir ut REC pihuvu</row>
+        <row id="Bilobas adij tut niregufir ut ucolebilem pihuvu">Bilobas adij tut niregufir ut ucolebilem pihuvu</row>
+        <row id="Dokunokun">Dokunokun</row>
+        <row id="Hodegov">Hodegov</row>
+        <row id="LeduVomoj">LeduVomoj</row>
+        <row id="Pover">Pover</row>
+        <row id="Ipanin Pekorakimi">Ipanin Pekorakimi</row>
+        <row id="Ipanin Mafuc">Ipanin Mafuc</row>
+        <row id="Ipanin Ivul">Ipanin Ivul</row>
+        <row id="Ipanin ot lazogoh so d putak ipanin">Ipanin ot lazogoh so d putak ipanin</row>
+        <row id="Atusi git raba ac robec ac huv ligoseb Johutehe Upipanun?">Atusi git raba ac robec ac huv ligoseb Johutehe Upipanun?</row>
+        <row id="KacohIbizop ofipov ibefu oga huv tile utucojiz">KacohIbizop ofipov ibefu oga huv tile utucojiz</row>
+        <row id="OM Behal">OM Behal</row>
+        <row id="Eniced">Eniced</row>
+        <row id="Zis ac &amp;Dap">Zis ac &amp;Dap</row>
+        <row id="Git bav tut hijamav ac ekariz izeg joce">Git bav tut hijamav ac ekariz izeg joce</row>
+        <row id="Git rob zigo med ugov HUzuKozedeh ehege Dohinafa">Git rob zigo med ugov HUzuKozedeh ehege Dohinafa</row>
+        <row id="Git akis ep go TujaZuloniti elot ac bur ac izeg poli">Git akis ep go TujaZuloniti elot ac bur ac izeg poli</row>
+        <row id="vilobuje">vilobuje</row>
+        <row id="odazomu">odazomu</row>
+        <row id="upEtiCokefa ot tut d olepimuco cipega">upEtiCokefa ot tut d olepimuco cipega</row>
+        <row id="obasiniliso">obasiniliso</row>
+        <row id="kupaz">kupaz</row>
+        <row id="dotesunu">dotesunu</row>
+        <row id="ugaca">ugaca</row>
+        <row id="zabe">zabe</row>
+      </node>
+    </node>
+  </source>
+  <excludedoriginals>
+    <item>adopu</item>
+  </excludedoriginals>
+</document>

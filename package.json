@@ -1,0 +1,20 @@
+{
+  "name": "susi-the-cat-release",
+  "private": true,
+  "description": "Release tooling (semantic-release) for Susi the CAT. The application itself is built with cargo.",
+  "scripts": {
+    "release": "semantic-release",
+    "release:dry-run": "semantic-release --dry-run --no-ci"
+  },
+  "engines": {
+    "node": ">=24.10.0"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "7.0.0",
+    "@semantic-release/exec": "7.1.0",
+    "@semantic-release/git": "11.0.1",
+    "@semantic-release/github": "12.0.10",
+    "conventional-changelog-conventionalcommits": "9.3.1",
+    "semantic-release": "25.0.9"
+  }
+}

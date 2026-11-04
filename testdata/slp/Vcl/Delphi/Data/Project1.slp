@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document version="4.0.350" date="20111109080256" scan="16" scanned="20111109080113">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TDelphiSource" name="Acovocu1.fog" original="cu-MO" encoding="utf-8" date="20091023055612" widestringusage="wsYes">
+    <resources>
+      <disabled name="SOPAR"/>
+      <disabled id="1"/>
+      <disabled id="3"/>
+      <disabled id="6"/>
+      <disabled id="12"/>
+      <disabled id="14"/>
+      <disabled id="24"/>
+    </resources>
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TCardinalData</class>
+      <class>TFontData</class>
+      <class>TPictureData</class>
+      <class>TColorData</class>
+      <class>TFontColorData</class>
+      <class>TFontNameData</class>
+      <class>TFontSizeData</class>
+      <class>TFontStyleData</class>
+      <class>TImeData</class>
+      <class>TReadingOrderData</class>
+    </excludeddatatypes>
+    <mappings>
+      <component name="UJedoh" class="TVisLabel" updatebounds="1"/>
+      <component name="LUmehOmo" class="TVisListBox"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="NapujUcamos" class="TVisSpeedButton"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="Ibep" class="TVisEdit"/>
+      <keyword name="Fane" class="TVisEdit"/>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="Gomi" class="TVisGrid"/>
+      <keyword name="PocogUdun" class="TVisImageList"/>
+      <keyword name="Judaru" class="TVisAction"/>
+      <keyword name="EpisEhut" class="TVisHiddenComponent"/>
+      <keyword name="UfuneJele" class="TVisHiddenComponent"/>
+      <keyword name="Dilub" class="TVisHiddenComponent"/>
+      <keyword name="HecojuMEG" class="TVisHiddenComponent"/>
+      <keyword name="ZeziZis" class="TVisHiddenComponent"/>
+      <keyword name="NiriLadeza" class="TVisHiddenComponent"/>
+      <keyword name="Lehuf" class="TVisHiddenComponent"/>
+      <keyword name="Ahiva" class="TVisHiddenComponent"/>
+      <keyword name="Cadocezu" class="TVisHiddenComponent"/>
+      <property name="Corifapuv.Nogasil"/>
+      <property name="MesoVojezuc"/>
+    </mappings>
+    <node class="TWindowsCustomFolder" name="EHAK1" resname="EHAK1" autoformat="0" format="bfDefinedBinary">
+      <binarydefinition>
+        <item type="ctContext" datatype="btWord"/>
+        <item type="ctText" datatype="btAnsiString"/>
+      </binarydefinition>
+      <node class="TWindowsCustomNode" name="1" resid="1" langid="1035">
+        <row id="1" class="TStringRow">
+          <native>Ficana Tonozo</native>
+          <lang id="fi" savedtotm="1">Takenidapid</lang>
+        </row>
+        <row id="2" class="TStringRow">
+          <native>Jivosoz</native>
+          <lang id="fi" savedtotm="1">Nilic</lang>
+        </row>
+        <row id="3" class="TStringRow">
+          <native>Ropug</native>
+          <lang id="fi" savedtotm="1">Afuvuh</lang>
+        </row>
+      </node>
+    </node>
+    <node class="TWindowsCustomFolder" name="EHAK2" resname="EHAK2" autoformat="0" format="bfDefinedBinary">
+      <binarydefinition>
+        <item type="ctContext" datatype="btWord"/>
+        <item type="ctText" datatype="btLongAnsiString"/>
+      </binarydefinition>
+      <node class="TWindowsCustomNode" name="1" resid="1" langid="1035">
+        <row id="1" class="TStringRow">
+          <native>Ficana Tonozo</native>
+          <lang id="fi">Takenidapid</lang>
+        </row>
+        <row id="2" class="TStringRow">
+          <native>Jivosoz</native>
+          <lang id="fi">Nilic</lang>
+        </row>
+        <row id="3" class="TStringRow">
+          <native>Ropug</native>
+          <lang id="fi">Afuvuh</lang>
+        </row>
+      </node>
+    </node>
+    <node class="TWindowsCustomFolder" name="EHAK3" resname="EHAK3" autoformat="0" format="bfDefinedBinary">
+      <binarydefinition>
+        <header type="ctIgnore" datatype="btWord"/>
+        <header type="ctCount" datatype="btWord"/>
+        <item type="ctContext" datatype="btWord"/>
+        <item type="ctText" datatype="btLongAnsiString"/>
+      </binarydefinition>
+      <node class="TWindowsCustomNode" name="1" resid="1" langid="1035">
+        <row id="1" class="TStringRow">
+          <native>Ficana Tonozo</native>
+          <lang id="fi">Takenidapid</lang>
+        </row>
+        <row id="2" class="TStringRow">
+          <native>Jivosoz</native>
+          <lang id="fi">Nilic</lang>
+        </row>
+        <row id="3" class="TStringRow">
+          <native>Ropug</native>
+          <lang id="fi">Afuvuh</lang>
+        </row>
+      </node>
+    </node>
+    <node class="TVclFormFolder" name="Aleka" resid="10">
+      <node class="TVclFormNode" name="OKIMO1" resname="OKIMO1">
+        <form class="TVclForm" name="Arar1" type="TForm1" textheight="13">
+          <row id="Uradini">
+            <native>Ajogid</native>
+            <lang id="fi" date="20091023072140" savedtotm="1">Pasisajis</lang>
+          </row>
+          <row id="VubejaMesako">161</row>
+          <row id="VifuriTizit">393</row>
+          <row id="Onaj.Tubar">onUvojanEvev</row>
+          <row id="Onaj.Hube">Emihig</row>
+          <row id="Onaj.Vuse">8</row>
+          <row id="Onaj.Behal">[]</row>
+          <row id="Sale">0</row>
+          <row id="Epi">0</row>
+          <component class="TVisLabel" name="Emazu1" type="TLabel">
+            <row id="Uradini">
+              <native>Enepukufa</native>
+              <lang id="fi" savedtotm="1">Ipip</lang>
+            </row>
+            <row id="Usical">13</row>
+            <row id="Sale">8</row>
+            <row id="Epi">8</row>
+            <row id="Duzel">46</row>
+          </component>
+          <component class="TVisLabel" name="Emazu2" type="TLabel">
+            <row id="Uradini">
+              <native>Enepukufa</native>
+              <lang id="fi">Ipip</lang>
+            </row>
+            <row id="Usical">13</row>
+            <row id="Sale">136</row>
+            <row id="Epi">8</row>
+            <row id="Duzel">46</row>
+          </component>
+          <component class="TVisLabel" name="Emazu3" type="TLabel">
+            <row id="Uradini">
+              <native>Enepukufa</native>
+              <lang id="fi">Ipip</lang>
+            </row>
+            <row id="Usical">13</row>
+            <row id="Sale">264</row>
+            <row id="Epi">8</row>
+            <row id="Duzel">46</row>
+          </component>
+          <component class="TVisListBox" name="TezuKed1" type="TListBox">
+            <row id="Usical">129</row>
+            <row id="Sale">8</row>
+            <row id="Epi">24</row>
+            <row id="Duzel">121</row>
+          </component>
+          <component class="TVisListBox" name="TezuKed2" type="TListBox">
+            <row id="Usical">129</row>
+            <row id="Sale">136</row>
+            <row id="Epi">24</row>
+            <row id="Duzel">121</row>
+          </component>
+          <component class="TVisListBox" name="TezuKed3" type="TListBox">
+            <row id="Usical">129</row>
+            <row id="Sale">264</row>
+            <row id="Epi">24</row>
+            <row id="Duzel">121</row>
+          </component>
+        </form>
+      </node>
+    </node>
+  </source>
+</document>

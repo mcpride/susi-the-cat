@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document version="3.0.327" date="20120115123708" scan="8" scanned="20120115122857">
+  <lang id="fi"/>
+  <source class="TXmlSource" name="rehihabim.aga" original="cu" date="20091015145210" originalbom="1">
+    <properties>
+      <key name="ehak">
+        <key name="joce"/>
+      </key>
+    </properties>
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TPictureData</class>
+    </excludeddatatypes>
+    <segmentation usage="suYes"/>
+    <tag name="ehak">
+      <tag name="joce">
+        <row id="0">
+          <native>Kutudam ot d ufanasu go Alebukit Osahof. </native>
+          <lang id="fi" date="20091015175101">Befop da lot Ogeboma-Digokekafa. </lang>
+        </row>
+        <row id="1">
+          <native>Ekalokav ot huv adukuhi im Kutudam. </native>
+          <lang id="fi" date="20091015175228">Ekalokav da Odurim vôńifomapan. </lang>
+        </row>
+        <row id="2">
+          <native>Henis edomi Kadazuv.</native>
+          <lang id="fi" date="20091015175125">Ajisozoraja okuzesi megefa.</lang>
+        </row>
+      </tag>
+    </tag>
+  </source>
+</document>

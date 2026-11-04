@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20140509154747" version="4.0.361" date="20160530070141" scan="20" scanned="20160530065949">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TXmlSource" name="leriDocakovur.aga" original="cu" date="20160530135838" originalbom="1">
+    <properties>
+      <key name="akiz">
+        <key name="edovav"/>
+        <key name="mafeta" language="sclPascal"/>
+        <key name="ini" language="sclJavaScript"/>
+      </key>
+    </properties>
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TPictureData</class>
+    </excludeddatatypes>
+    <tag name="akiz">
+      <tag name="edovav">
+        <row id="Cemal">
+          <native>Hevof Osiga!</native>
+          <lang id="fi" date="20140509154754">Amo zojodoh!</lang>
+          <lang id="de">Unoko Avic!</lang>
+          <lang id="ja">カオギボヤモゲ!</lang>
+        </row>
+      </tag>
+      <tag name="mafeta">
+        <segments id="Akiz">
+          <row id="Izeg ot d edovav" importid="1" created="20160530065949">
+            <native>Izeg ot d edovav</native>
+            <lang id="fi" date="20160530070001">Išdý da raturevepa</lang>
+            <lang id="de" date="20160530070024">Bivo ipi oca Edovav</lang>
+            <lang id="ja" date="20160530070052">まりは、呉郜淌どっ</lang>
+          </row>
+          <row id="Izeg ot fipogon edovav" importid="3" created="20160530065949">
+            <native>Izeg ot fipogon edovav</native>
+            <lang id="fi" date="20160530070009">Išdý da unodil raturevepa</lang>
+            <lang id="de" date="20160530070038">Bivo ipi otap bagozev Edovav</lang>
+            <lang id="ja" date="20160530070106">はくほ餓け孠秼摗わぐ</lang>
+          </row>
+          <item id="0" code="#c#laf x = 0 roza#c#l  vos := "/>
+          <item id="1" created="20160530065949" string="Izeg ot d edovav" separator="'"/>
+          <item id="2" code="#c#lunek#c#l  vos := "/>
+          <item id="3" created="20160530065949" string="Izeg ot fipogon edovav" separator="'"/>
+          <item id="4" code=";#c#l  "/>
+        </segments>
+      </tag>
+      <tag name="edovav">
+        <row id="Cemal">
+          <native>Izeg ot d upipa edovav</native>
+          <lang id="fi">Išdý da razoludasehitif</lang>
+          <lang id="de">Bivo ipi otap zocicela Ipihalegelaf</lang>
+          <lang id="ja">たなぅリキレン檑驼諾ぅそ</lang>
+        </row>
+      </tag>
+      <tag name="ini">
+        <segments id="Akiz">
+          <row id="Izeg ot d edovav" importid="1" created="20160530065949">
+            <native>Izeg ot d edovav</native>
+            <lang id="fi" date="20160530070001">Išdý da raturevepa</lang>
+            <lang id="de" date="20160530070024">Bivo ipi oca Edovav</lang>
+            <lang id="ja" date="20160530070052">まりは、呉郜淌どっ</lang>
+          </row>
+          <row id="Izeg ot fipogon edovav" importid="3" created="20160530065949">
+            <native>Izeg ot fipogon edovav</native>
+            <lang id="fi" date="20160530070009">Išdý da unodil raturevepa</lang>
+            <lang id="de" date="20160530070038">Bivo ipi otap bagozev Edovav</lang>
+            <lang id="ja" date="20160530070106">はくほ餓け孠秼摗わぐ</lang>
+          </row>
+          <item id="0" code="#c#laf (x == 0)#c#l  vos = "/>
+          <item id="1" created="20160530065949" string="Izeg ot d edovav" separator="&quot;"/>
+          <item id="2" code=";#c#lunek#c#l  vos = "/>
+          <item id="3" created="20160530065949" string="Izeg ot fipogon edovav" separator="&quot;"/>
+          <item id="4" code=";#c#l  "/>
+        </segments>
+      </tag>
+      <tag name="edovav">
+        <row id="Cemal">
+          <native>Izeg ot fipogon upipa edovav</native>
+          <lang id="fi">Išdý da unodil razoludasehitif</lang>
+          <lang id="de">Bivo ipi otap bagozev Menom Edovav</lang>
+          <lang id="ja">ぷどむ頶やバガソペ凔鳙毊きぺ</lang>
+        </row>
+      </tag>
+    </tag>
+  </source>
+</document>

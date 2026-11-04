@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20140312075645" version="4.0.350" date="20140312075647" scan="14" scanned="20140312075645">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TBinarySource" name="Ajogid.ute" original="cu" date="20091031031652">
+    <definition name="Ajosakume ajogid gasadu" description="D ajogid gasadu agetar jope lu Ajosakume rofunum" extensions="ute" stringlength="bslWord">
+      <header type="ctIgnore" datatype="btBytes" size="4" value="ZESO"/>
+      <header type="ctIgnore" datatype="btWord"/>
+      <header type="ctCount" datatype="btWord"/>
+      <item type="ctContext" datatype="btWord"/>
+      <item type="ctIgnore" datatype="btWord"/>
+      <item type="ctText" datatype="btString"/>
+      <item type="ctComment" datatype="btString"/>
+    </definition>
+    <row id="1" note="UNE" notereadonly="1">
+      <native>Ficana Tonozo</native>
+      <lang id="fi" date="20091029160501">Takenidapid</lang>
+      <lang id="de">Apodokehic Jebimez</lang>
+      <lang id="ja">タギシヤ拄櫻椮</lang>
+    </row>
+    <row id="2">
+      <native>Jivosoz</native>
+      <lang id="fi" date="20091029160503">Nilic</lang>
+      <lang id="de">Usikodudeje</lang>
+      <lang id="ja">カャメ</lang>
+    </row>
+    <row id="3" note="Famami Anilec" notereadonly="1">
+      <native>Ropug</native>
+      <lang id="fi" date="20091029160506">Afuvuh</lang>
+      <lang id="de">Ropug</lang>
+      <lang id="ja">賭倔</lang>
+    </row>
+  </source>
+</document>

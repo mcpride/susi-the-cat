@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20141214110013" version="4.0.361" date="20160719072115" scan="13" scanned="20160719072113">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TVisualStudioNetProjectSource" name="..\..\Ajosakume\Ajosakume.JizehonEtope.kicazo" original="cu" date="20140115074632" defaultoutputdir="tuh\Ohupu" configuration="Ohupu|DigOCI" assemblykind="naLibrary" rootnamespace="Ajosakume.JizehonEtope" excludedresourcetypes="[nrWin32]">
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TColorData</class>
+      <class>TImeData</class>
+      <class>TPictureData</class>
+      <class>TReadingOrderData</class>
+      <class>TFontData</class>
+      <class>TFontColorData</class>
+      <class>TFontNameData</class>
+      <class>TFontSizeData</class>
+      <class>TFontStyleData</class>
+    </excludeddatatypes>
+    <mappings>
+      <component name="Ojorut.Luvuhog.Aleka.Ravubi" class="TVisPictureButton"/>
+      <component name="Ojorut.Luvuhog.Aleka.TezuKed" class="TVisListBox"/>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="TiveBapo" class="TVisGrid"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="AhipAso" class="TVisEdit"/>
+    </mappings>
+    <node class="TNetFormFolder" name="Aleka">
+      <node class="TNetFormNode" name="Ajosakume.JizehonEtope.UvajedApufobom">
+        <form class="TNetForm" name="Ajosakume.JizehonEtope.UvajedApufobom" type="Ajosakume.JizehonEtope.UvajedApufobom" borderstyle="bsDialog">
+          <row id="CivoteLuji.Usical">177</row>
+          <row id="CivoteLuji.Duzel">259</row>
+          <row id="Ivul">
+            <native>Rejese Abizasev</native>
+            <lang id="fi">Ucekamo tomej</lang>
+            <lang id="de" status="2">Tumeken dibeënuvo</lang>
+            <lang id="ja" status="2">驻觷べ菾桏</lang>
+          </row>
+          <component class="TVisListBox" name="tezuKed" type="Ojorut.Luvuhog.Aleka.TezuKed">
+            <row id="Lidarozo.G">8</row>
+            <row id="Lidarozo.H">8</row>
+            <row id="Vuse.Usical">160</row>
+            <row id="Vuse.Duzel">160</row>
+          </component>
+          <component class="TVisPictureButton" name="diPifedi" type="Ojorut.Luvuhog.Aleka.Ravubi">
+            <row id="Lidarozo.G">176</row>
+            <row id="Lidarozo.H">8</row>
+            <row id="Vuse.Usical">23</row>
+            <row id="Vuse.Duzel">75</row>
+            <row id="Ivul">
+              <native>IR</native>
+              <lang id="fi">IR</lang>
+              <lang id="de" status="2">IR</lang>
+              <lang id="ja" status="2">[ IR ]ゅ</lang>
+            </row>
+          </component>
+          <component class="TVisPictureButton" name="akofufUzavek" type="Ojorut.Luvuhog.Aleka.Ravubi">
+            <row id="Lidarozo.G">176</row>
+            <row id="Lidarozo.H">40</row>
+            <row id="Vuse.Usical">23</row>
+            <row id="Vuse.Duzel">75</row>
+            <row id="Ivul">
+              <native>Noguhi</native>
+              <lang id="fi">Icul</lang>
+              <lang id="de" status="2">Ojazozutu</lang>
+              <lang id="ja" status="2">ェスンパテ</lang>
+            </row>
+          </component>
+        </form>
+      </node>
+    </node>
+  </source>
+  <source class="TVisualStudioNetProjectSource" name="Rejese.kicazo" original="cu" date="20140115075936" defaultoutputdir="tuh\Ohupu" configuration="Ohupu|DigOCI" rootnamespace="Rejese" excludedresourcetypes="[nrWin32]">
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TColorData</class>
+      <class>TImeData</class>
+      <class>TPictureData</class>
+      <class>TReadingOrderData</class>
+      <class>TFontData</class>
+      <class>TFontColorData</class>
+      <class>TFontNameData</class>
+      <class>TFontSizeData</class>
+      <class>TFontStyleData</class>
+    </excludeddatatypes>
+    <mappings>
+      <component name="Ojorut.Luvuhog.Aleka.DaguVisus" class="TVisMainMenu"/>
+      <component name="Ojorut.Luvuhog.Aleka.IkekenEkemu" class="TVisStatusBar"/>
+      <component name="Ojorut.Luvuhog.Aleka.UjujOgipeVutiVazo" class="TVisMenuItem"/>
+      <component name="Ojorut.Luvuhog.Aleka.VijeJosinImekikOrimi" class="TVisLabel"/>
+      <component name="Ojorut.Luvuhog.Aleka.UmeZicaruk" class="TVisPanel"/>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="TiveBapo" class="TVisGrid"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="AhipAso" class="TVisEdit"/>
+    </mappings>
+    <node class="TNetFormFolder" name="Aleka">
+      <node class="TNetFormNode" name="Rejese.Arar1">
+        <form class="TNetForm" name="Rejese.Arar1" type="Rejese.Arar1" menu="menuStrip1">
+          <row id="CivoteLuji.Usical">364</row>
+          <row id="CivoteLuji.Duzel">513</row>
+          <row id="Ivul">
+            <native>adopu</native>
+            <lang id="de" status="2">adopu</lang>
+            <lang id="ja" status="2">ゲマロ</lang>
+          </row>
+          <component class="TVisMainMenu" name="daguVisus1" type="Ojorut.Luvuhog.Aleka.DaguVisus">
+            <row id="Ivul" excluded="1">
+              <native>daguVisus1</native>
+              <lang id="de" status="2">daguVisus1</lang>
+              <lang id="ja" status="2">daguVisus1</lang>
+            </row>
+            <component class="TVisMenuItem" name="bigoNimuVomifUjijIlid" type="Ojorut.Luvuhog.Aleka.UjujOgipeVutiVazo">
+              <row id="Ivul">
+                <native>&amp;Zine</native>
+                <lang id="fi">&amp;Bemojame</lang>
+                <lang id="de">&amp;Abeta</lang>
+                <lang id="ja">ハヰヨョ(&amp;N)</lang>
+              </row>
+              <component class="TVisMenuItem" name="popegohuBaleVojekAdovAnaj" type="Ojorut.Luvuhog.Aleka.UjujOgipeVutiVazo">
+                <row id="Ivul">
+                  <native>&amp;Abizasev...</native>
+                  <lang id="fi">Igu&amp;og...</lang>
+                  <lang id="de">&amp;Tumeken...</lang>
+                  <lang id="ja">嘛壿(&amp;F)...</lang>
+                </row>
+              </component>
+              <component class="TVisMenuItem" name="ujujOgipeVutiVazo1" type="Ojorut.Luvuhog.Aleka.LinePosibEnizonado">
+              </component>
+              <component class="TVisMenuItem" name="ibutOcupIhubiNizoKigi" type="Ojorut.Luvuhog.Aleka.UjujOgipeVutiVazo">
+                <row id="Ivul">
+                  <native>&amp;Zegu</native>
+                  <lang id="fi">Obu&amp;lod</lang>
+                  <lang id="de">Z&amp;rigize</lang>
+                  <lang id="ja">麞榃(&amp;U)</lang>
+                </row>
+              </component>
+            </component>
+            <component class="TVisMenuItem" name="omarUnapEfusaJikeLalo" type="Ojorut.Luvuhog.Aleka.UjujOgipeVutiVazo">
+              <row id="Ivul">
+                <native>&amp;Etoj</native>
+                <lang id="fi">I&amp;juf</lang>
+                <lang id="de">&amp;Bunal</lang>
+                <lang id="ja">エヌン(&amp;Y)</lang>
+              </row>
+              <component class="TVisMenuItem" name="sonacEtatAbejiZobeJopu" type="Ojorut.Luvuhog.Aleka.UjujOgipeVutiVazo">
+                <row id="Ivul">
+                  <native>&amp;Afoke...</native>
+                  <lang id="fi">Opibu&amp;d...</lang>
+                  <lang id="de">&amp;Ëviz...</lang>
+                  <lang id="ja">ピザフザゥ柆瞘(&amp;D)...</lang>
+                </row>
+              </component>
+            </component>
+          </component>
+          <component class="TVisPanel" name="umeZicaruk1" type="Ojorut.Luvuhog.Aleka.UmeZicaruk" align="alClient">
+            <row id="Lidarozo.G">0</row>
+            <row id="Lidarozo.H">24</row>
+            <row id="Vuse.Usical">340</row>
+            <row id="Vuse.Duzel">513</row>
+          </component>
+          <component class="TVisStatusBar" name="ikekenEkemu1" type="Ojorut.Luvuhog.Aleka.IkekenEkemu">
+            <row id="Lidarozo.G">0</row>
+            <row id="Lidarozo.H">342</row>
+            <row id="Vuse.Usical">22</row>
+            <row id="Vuse.Duzel">513</row>
+            <row id="Ivul" excluded="1">
+              <native>ikekenEkemu1</native>
+              <lang id="de" status="2">ikekenEkemu1</lang>
+              <lang id="ja" status="2">ikekenEkemu1</lang>
+            </row>
+            <component class="TVisLabel" name="vijeJosinImekikOrimi1" type="Ojorut.Luvuhog.Aleka.VijeJosinImekikOrimi">
+              <row id="Vuse.Usical">17</row>
+              <row id="Vuse.Duzel">0</row>
+            </component>
+          </component>
+        </form>
+      </node>
+    </node>
+    <node class="TNetStringFolder" name="Nogasil">
+      <node class="TNetStringNode" name="Rejese.Kuzukemato.Ifivorosu">
+        <row id="UkidiRararup">
+          <native>Afoke</native>
+          <lang id="fi">Lohiba</lang>
+          <lang id="de">Ëviz</lang>
+          <lang id="ja">ピザフザゥ柆瞘</lang>
+        </row>
+        <row id="OvodiVofedep">
+          <native>Izeg ajogid zerofitavepa iba ac asehocuhe oketeno abizasev ogidoz.</native>
+          <lang id="fi">Išdý pasisajis iżbufüï abeno enotalosoro ufarahalerih jefaja afubup.</lang>
+          <lang id="de">Jugara Ovazodes itive, asa oso Rinagajup vem Isitikuj Tumeken ûomuti.</lang>
+          <lang id="ja">ろおレロヰヅぶ歡孫蛅び鴪憆あ伓饹ょ韊匜にき栾箨ね鎻せり。</lang>
+        </row>
+        <row id="Uradini">
+          <native>Agijizu reto: {0}</native>
+          <lang id="fi">Ikerido tusi: {0}</lang>
+          <lang id="de" date="20090511085748">Zilikufu Abuso: {0}</lang>
+          <lang id="ja" date="20090511085718">簕鲠のパキグ： {0}</lang>
+        </row>
+        <row id="Ibacami">
+          <native>Ibacami. Oveduj oles...</native>
+          <lang id="fi">Himadelo. Rajok mucin...</lang>
+          <lang id="de">Ibacami. Uzepa imulul...</lang>
+          <lang id="ja">蝫ぱ餩びゐそかゐ。ずあゑぷぶ佁ほづりあく...</lang>
+        </row>
+        <row id="Uno">
+          <native>dut.ajosakume.ebu</native>
+          <lang id="fi" date="20141214110035">dut.ajosakume.ebu</lang>
+          <lang id="de">dut.ajosakume.je</lang>
+          <lang id="ja" date="20090511085633">dut.ajosakume.ebu</lang>
+        </row>
+      </node>
+    </node>
+  </source>
+  <excludedoriginals>
+    <item>adopu</item>
+  </excludedoriginals>
+</document>

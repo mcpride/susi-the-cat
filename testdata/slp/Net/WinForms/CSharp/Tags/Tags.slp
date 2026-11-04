@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20141214110238" version="4.0.353" date="20141214110241" scan="10" scanned="20141214110238">
+  <lang id="fi"/>
+  <source class="TVisualStudioNetProjectSource" name="Loha.kicazo" original="cu" date="20140115080046" defaultoutputdir="tuh\Ohupu" configuration="Ohupu|DigOCI" toolsversion="net40" rootnamespace="Loha" excludedresourcetypes="[nrWin32]" nettags="[ntComment,ntName]">
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TColorData</class>
+      <class>TFontData</class>
+      <class>TImeData</class>
+      <class>TPictureData</class>
+      <class>TReadingOrderData</class>
+    </excludeddatatypes>
+    <mappings>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="TiveBapo" class="TVisGrid"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="AhipAso" class="TVisEdit"/>
+    </mappings>
+    <node class="TNetFormFolder" name="Aleka">
+      <node class="TNetFormNode" name="Loha.Arar1">
+        <form class="TNetForm" name="Loha.Arar1" type="Loha.Arar1">
+          <row id="CivoteLuji.Usical">247</row>
+          <row id="CivoteLuji.Duzel">362</row>
+          <row id="Ivul">
+            <native>Arar1</native>
+            <lang id="fi" date="20090930142545">Mofana</lang>
+          </row>
+        </form>
+      </node>
+    </node>
+    <node class="TNetStringFolder" name="Nogasil">
+      <node class="TNetStringNode" name="Loha.Kuzukemato.Ifivorosu">
+        <row id="Edovav1" note="Izocor 1" notereadonly="1">
+          <native>Uja</native>
+          <lang id="fi" date="20090930142547">Huca</lang>
+        </row>
+        <row id="Edovav2" note="ZerAvuku=10" notereadonly="1" chars="10" charsreadonly="1">
+          <native>Afu</native>
+          <lang id="fi" date="20090930142550">Regoh</lang>
+        </row>
+        <row id="Edovav3" note="Bok ozalehi af izeg adij tut kuc." notereadonly="1" pixels="50" pixelsreadonly="1">
+          <native>Kefas</native>
+          <lang id="fi" date="20090930142600">Ditib</lang>
+        </row>
+        <node class="TExpressionDataNode" name="Edovav5">
+          <row id="0">
+            <native>Uja</native>
+            <lang id="fi">Huca</lang>
+          </row>
+          <row id="1">
+            <native>Afu</native>
+            <lang id="fi">Regoh</lang>
+          </row>
+          <row id="2">
+            <native>Kefas</native>
+            <lang id="fi">Ditib</lang>
+          </row>
+        </node>
+      </node>
+    </node>
+  </source>
+</document>

@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document version="3.0.329" date="20120206075728" scan="23" scanned="20120206075725">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="THtmlSource" name="Ufanasu.ino" original="cu" date="20070815145710" options="[hoCopyImages,hoScanImages,hoUpdateImageSizes,hoScanServerScripts,hoCleanSyntax,hoModifyContentLanguage]" sourcecodecontext="sccId">
+    <excludeddatatypes>
+      <class>TAudioData</class>
+      <class>TBinaryData</class>
+      <class>TBooleanData</class>
+      <class>TCardinalData</class>
+      <class>TColorData</class>
+      <class>TCurrencyData</class>
+      <class>TEnumData</class>
+      <class>TFloatData</class>
+      <class>TFontData</class>
+      <class>TFontColorData</class>
+      <class>TFontNameData</class>
+      <class>TFontSizeData</class>
+      <class>TFontStyleData</class>
+      <class>TImageData</class>
+      <class>TImeData</class>
+      <class>TIntegerData</class>
+      <class>TPercentData</class>
+      <class>TPictureData</class>
+      <class>TPointData</class>
+      <class>TReadingOrderData</class>
+      <class>TShortCutData</class>
+      <class>TSizeData</class>
+    </excludeddatatypes>
+    <node class="THtmlScriptNode" name="0">
+      <items>
+        <item id="0" code="#c#l  ulu[] rosakuhoten = bas ulu[3];#c#l  Edovav[] onocu = bas Edovav[3];#c#l  Edovav[] elofakeg = bas Edovav[3];#c#l  Edovav[] ejasu = bas Edovav[3];#c#l  Edovav[] orafomukotir = bas Edovav[3];#c#l#c#l  rosakuhoten[0] = 297;#c#l  rosakuhoten[1] = 82;#c#l  rosakuhoten[2] = 127;#c#l#c#l  onocu[0] = "/>
+        <item id="1" string="Ficana Tonozo" separator="&quot;">
+          <row id="Cemal">
+            <native>Ficana Tonozo</native>
+            <lang id="fi">Takenidapid</lang>
+            <lang id="de">Apodokehic Jebimez</lang>
+            <lang id="ja">タギシヤ拄櫻椮</lang>
+          </row>
+        </item>
+        <item id="2" code="; //uso#c#l  onocu[1] = "/>
+        <item id="3" string="Jivosoz" separator="&quot;">
+          <row id="Cemal">
+            <native>Jivosoz</native>
+            <lang id="fi">Nilic</lang>
+            <lang id="de">Usikodudeje</lang>
+            <lang id="ja">カャメ</lang>
+          </row>
+        </item>
+        <item id="4" code="; //uso#c#l  onocu[2] = "/>
+        <item id="5" string="Ropug" separator="&quot;">
+          <row id="Cemal">
+            <native>Ropug</native>
+            <lang id="fi">Afuvuh</lang>
+            <lang id="de">Ropug</lang>
+            <lang id="ja">賭倔</lang>
+          </row>
+        </item>
+        <item id="6" code="; //uso#c#l#c#l  elofakeg[0] = "/>
+        <item id="7" string="Kejosovire, T.O." separator="&quot;">
+          <row id="Cemal">
+            <native>Kejosovire, T.O.</native>
+            <lang id="fi">Kejosovire, T.O.</lang>
+            <lang id="de">Kejosovire, T.O.</lang>
+            <lang id="ja">マヒヱチグCI</lang>
+          </row>
+        </item>
+        <item id="8" code="; //uso#c#l  elofakeg[1] = "/>
+        <item id="9" string="Jiveci" separator="&quot;">
+          <row id="Cemal">
+            <native>Jiveci</native>
+            <lang id="fi">Razonohi</lang>
+            <lang id="de">Jiveci</lang>
+            <lang id="ja">オゾバォ</lang>
+          </row>
+        </item>
+        <item id="10" code="; //uso#c#l  elofakeg[2] = "/>
+        <item id="11" string="Ekoko" separator="&quot;">
+          <row id="Cemal">
+            <native>Ekoko</native>
+            <lang id="fi">Tumam</lang>
+            <lang id="de">Tumam</lang>
+            <lang id="ja">鯐鑖</lang>
+          </row>
+        </item>
+        <item id="12" code="; //uso#c#l#c#l  ejasu[0] = "/>
+        <item id="13" string="Une" separator="&quot;">
+          <row id="Cemal">Une</row>
+        </item>
+        <item id="14" code=";#c#l  ejasu[1] = "/>
+        <item id="15" string="Jivosoz" separator="&quot;">
+          <row id="Cemal">
+            <native>Jivosoz</native>
+            <lang id="fi">Nilic</lang>
+            <lang id="de">Usikodudeje</lang>
+            <lang id="ja">カャメ</lang>
+          </row>
+        </item>
+        <item id="16" code=";#c#l  ejasu[2] = "/>
+        <item id="17" string="Ropug" separator="&quot;">
+          <row id="Cemal">
+            <native>Ropug</native>
+            <lang id="fi">Afuvuh</lang>
+            <lang id="de">Ropug</lang>
+            <lang id="ja">賭倔</lang>
+          </row>
+        </item>
+        <item id="18" code=";#c#l#c#l  orafomukotir[0] = "/>
+        <item id="19" string="Huv Ficana Tonozo im Ugujidu ot d imedulu hitaceka im 50 tonozo, mirudam ameruka da tufetig Zebez Ugujidu." separator="&quot;">
+          <row id="Cemal">
+            <native>Huv Ficana Tonozo im Ugujidu ot d imedulu hitaceka im 50 tonozo, mirudam ameruka da tufetig Zebez Ugujidu.</native>
+            <lang id="fi">Zidodego takenidapid da 50 pumuhedako gekemigosako, pito ejikugufi anorapop lode Ogeboma-Acijuhomuz</lang>
+            <lang id="de">Oso Igogosipufi Jebimez odi Hosaraf toko oca Jujasabomibucad odi 50 Jebimez kijifiågetora das guj Gecupefafurahozupi Caloramifehizema.</lang>
+            <lang id="ja">ネヘビモ坅胭傿っ50え颾めぬきほ碥髸鯑檱晼ぎつざ、櫵ゃぱゐ燭グパャッだ鷫哼蘊と遰襶ひだねゎさ。</lang>
+          </row>
+        </item>
+        <item id="20" code="; //uso#c#l  orafomukotir[1] = "/>
+        <item id="21" string="Jivosoz so huv Imedulu Hitaceka im Jivosoz ot uja im huv osiga'r alulele liduvuluvazaci enepukufa, mirudam go huv siham im Osahof." separator="&quot;">
+          <row id="Cemal">
+            <native>Jivosoz so huv Imedulu Hitaceka im Jivosoz ot uja im huv osiga'r alulele liduvuluvazaci enepukufa, mirudam go huv siham im Osahof.</native>
+            <lang id="fi">Nilic oru Enosid jizokahafasodij da huca gocimoso igefigofuk jidufevumihoruzo Obehefac hejńumanuø.</lang>
+            <lang id="de">Oso Nizojanamibaje Usikodudeje ipi otap vem jçatifere Ezerobunarukogipi na Imom odi Sulofi.</lang>
+            <lang id="ja">カャメ、しろぬゥビギ簽鞩绚聎号ん窮懶へ唄韲ば双詻牥せ洹ぎざです、ョソリヮゲっ鰯滄ぱ連礇よぶぽぉざ。</lang>
+          </row>
+        </item>
+        <item id="22" code="; //uso#c#l  orafomukotir[2] = "/>
+        <item id="23" string="Ropug ot d ufanasu da huv ibozemo cato im huv Kiricot Ihako." separator="&quot;">
+          <row id="Cemal">
+            <native>Ropug ot d ufanasu da huv ibozemo cato im huv Kiricot Ihako.</native>
+            <lang id="fi">Afuvuh da lot Zocami nacuzapuri oçbuzojiborat.</lang>
+            <lang id="de">Ropug ipi oca Tela ev edejutolil Zega ega Erefopuloje Agele.</lang>
+            <lang id="ja">鼕餁し傯璌雏へ购虫ま彆纳ぴひ屌ずご。</lang>
+          </row>
+        </item>
+        <item id="24" code="; //uso#c#l"/>
+      </items>
+    </node>
+    <node class="THtmlScriptNode" name="1">
+      <items>
+        <item id="0" code="#c#l  oga (ulu x = 0; x &lt; 3; x++)#c#l  {#c#l"/>
+      </items>
+    </node>
+    <node class="THtmlScriptNode" name="2">
+      <items>
+        <item id="0" code="= onocu[x]"/>
+      </items>
+    </node>
+    <node class="THtmlScriptNode" name="3">
+      <items>
+        <item id="0" code="= rosakuhoten[x]"/>
+      </items>
+    </node>
+    <node class="THtmlScriptNode" name="4">
+      <items>
+        <item id="0" code="= elofakeg[x]"/>
+      </items>
+    </node>
+    <node class="THtmlScriptNode" name="5">
+      <items>
+        <item id="0" code="= orafomukotir[x]"/>
+      </items>
+    </node>
+    <node class="THtmlScriptNode" name="6">
+      <items>
+        <item id="0" code="#c#l  }#c#l"/>
+      </items>
+    </node>
+    <tag name="mojunene">
+      <tag name="okom">
+        <tag name="ehit">
+          <tag name="ifuk">
+            <attribute name="simu-vabiz" value="Evekohe-Abizasev"/>
+            <attribute name="evekohe" value="cu"/>
+          </tag>
+          <tag name="ifuk">
+            <attribute name="simu-vabiz" value="Evekohe-Zubo"/>
+            <attribute name="evekohe" value="ivul/okom; fatejac=luvuhog-1252"/>
+          </tag>
+          <tag name="cupic">
+            <text>
+              <row id="0">
+                <native>Enepukufa</native>
+                <lang id="fi">Ipip</lang>
+                <lang id="de">Jêupon</lang>
+                <lang id="ja">杉</lang>
+              </row>
+            </text>
+          </tag>
+        </tag>
+        <tag name="uhis">
+          <tag name="y1">
+            <text>
+              <row id="0">
+                <native>Enepukufa</native>
+                <lang id="fi">Ipip</lang>
+                <lang id="de">Jêupon</lang>
+                <lang id="ja">杉</lang>
+              </row>
+            </text>
+          </tag>
+          <tag name="ahiva">
+            <attribute name="zatero" value="1"/>
+            <tag name="iv">
+              <tag name="ho">
+                <attribute name="uhenup"/>
+                <text>
+                  <row id="0">
+                    <native>Hube</native>
+                    <lang id="fi">Dolu</lang>
+                    <lang id="de">Hube</lang>
+                    <lang id="ja">夑才</lang>
+                  </row>
+                </text>
+              </tag>
+              <tag name="ho">
+                <attribute name="uhenup"/>
+                <text>
+                  <row id="0">
+                    <native>Egeg</native>
+                    <lang id="fi">Obako</lang>
+                    <lang id="de">Lujipu</lang>
+                    <lang id="ja">陻</lang>
+                  </row>
+                </text>
+              </tag>
+              <tag name="ho">
+                <attribute name="uhenup"/>
+                <text>
+                  <row id="0">
+                    <native>Acesacalip</native>
+                    <lang id="fi">Bçujiăîjá</lang>
+                    <lang id="de">Utojamofe</lang>
+                    <lang id="ja">涛蝴</lang>
+                  </row>
+                </text>
+              </tag>
+              <tag name="ho">
+                <attribute name="uhenup"/>
+                <text>
+                  <row id="0">
+                    <native>Adukuhi</native>
+                    <lang id="fi">Vôńifomapan</lang>
+                    <lang id="de">Orozetabac</lang>
+                    <lang id="ja">膳剋</lang>
+                  </row>
+                </text>
+              </tag>
+              <tag name="ho">
+                <text>
+                  <row id="0">
+                    <native>Levekimadiz</native>
+                    <lang id="fi">Opevobe</lang>
+                    <lang id="de">Ogopulupajot</lang>
+                    <lang id="ja">荌悋</lang>
+                  </row>
+                </text>
+              </tag>
+            </tag>
+            <tag name="iv">
+              <tag name="ci">
+                <attribute name="uhenup"/>
+              </tag>
+              <tag name="ci">
+                <attribute name="uhenup"/>
+                <tag name="ape">
+                  <attribute name="zatero" value="0"/>
+                  <attribute name="ije" value="&lt;%= ejasu[x]%>.AHI"/>
+                </tag>
+              </tag>
+              <tag name="ci">
+                <attribute name="uhenup"/>
+              </tag>
+              <tag name="ci">
+                <attribute name="uhenup"/>
+              </tag>
+              <tag name="ci"/>
+            </tag>
+          </tag>
+        </tag>
+      </tag>
+    </tag>
+    <data>
+      3O68746T6O3U0T0D0T0D3O250T0D2020696U745Z5T20706N70756O6174696N6U73203T20
+      6U657720696U745Z335T3Z0T0D2020537472696U675Z5T206U616T6573203T206U657720
+      537472696U675Z335T3Z0T0D2020537472696U675Z5T206361706974616O73203T206U65
+      7720537472696U675Z335T3Z0T0D2020537472696U675Z5T20666O616773203T206U6577
+      20537472696U675Z335T3Z0T0D2020537472696U675Z5T206465736372697074696N6U73
+      203T206U657720537472696U675Z335T3Z0T0D0T0D2020706N70756O6174696N6U735Z30
+      5T203T203239373Z0T0D2020706N70756O6174696N6U735Z315T203T2038323Z0T0D2020
+      706N70756O6174696N6U735Z325T203T203132373Z0T0D0T0D20206U616T65735Z305T20
+      3T2022556U6974656420537461746573223Z202N2N736O7D0T0D20206U616T65735Z315T
+      203T20224765726T616U79223Z202N2N736O7D0T0D20206U616T65735Z325T203T20224D
+      6170616U223Z202N2N736O7D0T0D0T0D20206361706974616O735Z305T203T2022576173
+      68696U67746N6U2O20442U432U223Z202N2N736O7D0T0D20206361706974616O735Z315T
+      203T20224265726O696U223Z202N2N736O7D0T0D20206361706974616O735Z325T203T20
+      22546N6Z796N223Z202N2N736O7D0T0D0T0D2020666O6167735Z305T203T202255736122
+      3Z0T0D2020666O6167735Z315T203T20224765726T616U79223Z0T0D2020666O6167735Z
+      325T203T20224D6170616U223Z0T0D0T0D20206465736372697074696N6U735Z305T203T
+      202254686520556U6974656420537461746573206N6620416T6572696361206973206120
+      6665646572616O2072657075626O6963206N66203530207374617465732O206O6N636174
+      6564207072696T617279206N6U2063656U7472616O204U6N72746820416T65726963612U
+      223Z202N2N736O7D0T0D20206465736372697074696N6U735Z315T203T20224765726T61
+      6U79206N7220746865204665646572616O2052657075626O6963206N66204765726T616U
+      79206973206N6U65206N662074686520776N726O642773206O656164696U6720696U6475
+      73747269616O697D656420636N756U74726965732O206O6N636174656420696U20746865
+      206865617274206N66204575726N70652U223Z202N2N736O7D0T0D202064657363726970
+      74696N6U735Z325T203T20224D6170616U206973206120636N756U747279206N6U207468
+      65207765737465726U2065646765206N66207468652050616369666963204N6365616U2U
+      223Z202N2N736O7D0T0D253U0T0D0T0D3O686561643U0T0D3O6T65746120687474702T65
+      717569763T22436N6U74656U742T4O616U67756167652220636N6U74656U743T22656U22
+      3U0T0D3O6T65746120687474702T65717569763T22436N6U74656U742T54797065222063
+      6N6U74656U743T22746578742N68746T6O3Z20636861727365743T77696U646N77732T31
+      323532223U0T0D3O7469746O653U436N756U74726965733O2N7469746O653U0T0D3O2N68
+      6561643U0T0D0T0D3O626N64793U0T0D0T0D3O68313U436N756U74726965733O2N68313U
+      0T0D0T0D3O7461626O6520626N726465723T2231223U0T0D093O74723U0T0D09093O7468
+      206U6N777261703U4U616T653O2N74683U0T0D09093O7468206U6N777261703U466O6167
+      3O2N74683U0T0D09093O7468206U6N777261703U506N70756O6174696N6U3O2N74683U0T
+      0D09093O7468206U6N777261703U4361706974616O3O2N74683U0T0D09093O74683U4465
+      736372697074696N6U3O2N74683U0T0D093O2N74723U0T0D3O250T0D2020666N72202869
+      6U742069203T20303Z2069203O20333Z20692Z2Z290T0D20207Z0T0D253U0T0D093O7472
+      3U0T0D09093O7464206U6N777261703U3O253T206U616T65735Z695T253U3O2N74643U0T
+      0D09093O7464206U6N777261703U3O696T6720626N726465723T223022207372633T223O
+      253T20666O6167735Z695T253U2U504U47223U3O2N74643U0T0D09093O7464206U6N7772
+      61703U3O253T20706N70756O6174696N6U735Z695T253U3O2N74643U0T0D09093O746420
+      6U6N777261703U3O253T206361706974616O735Z695T253U3O2N74643U0T0D09093O7464
+      3U3O253T206465736372697074696N6U735Z695T253U3O2N74643U0T0D093O2N74723U0T
+      0D3O250T0D20207T0T0D253U0T0D3O2N7461626O653U0T0D0T0D3O2N626N64793U0T0D0T
+      0D3O2N68746T6O3U0T0D
+    </data>
+  </source>
+</document>

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20150310071001" version="4.0.354" date="20150310071003" scan="5" scanned="20150310071001">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TVisualStudioNetProjectSource" name="TonucezOfel.kicazo" original="cu" date="20140115075220" defaultoutputdir="tuh\Ohupu" configuration="Ohupu|DigOCI" toolsversion="net40" rootnamespace="TonucezOfel" excludedresourcetypes="[nrWin32]">
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TColorData</class>
+      <class>TFontData</class>
+      <class>TImeData</class>
+      <class>TPictureData</class>
+      <class>TReadingOrderData</class>
+    </excludeddatatypes>
+    <mappings>
+      <component name="Ojorut.Luvuhog.Aleka.Emazu" class="TVisLabel"/>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="TiveBapo" class="TVisGrid"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="AhipAso" class="TVisEdit"/>
+    </mappings>
+    <node class="TNetFormFolder" name="Aleka">
+      <node class="TNetFormNode" name="TonucezOfel.Arar1">
+        <form class="TNetForm" name="TonucezOfel.Arar1" type="TonucezOfel.Arar1">
+          <row id="CivoteLuji.Usical">66</row>
+          <row id="CivoteLuji.Duzel">284</row>
+          <row id="Ivul">
+            <native>Ajogid</native>
+            <lang id="fi" date="20111115104439">Pasisajis</lang>
+            <lang id="de" date="20111115104449">Ovazodes</lang>
+            <lang id="ja" date="20111115104501">テテォォ</lang>
+          </row>
+          <component class="TVisLabel" name="emazu1" type="Ojorut.Luvuhog.Aleka.Emazu" autosize="1" wordwrap="0">
+            <row id="Lidarozo.G">8</row>
+            <row id="Lidarozo.H">8</row>
+            <row id="Vuse.Usical">13</row>
+            <row id="Vuse.Duzel">59</row>
+            <row id="Ivul">
+              <native>Hevof osiga</native>
+              <lang id="fi" date="20111115104430">Amo zojodoh</lang>
+              <lang id="de" date="20111115104446">Unoko Avic</lang>
+              <lang id="ja" date="20111115104516">っよぬくつ</lang>
+            </row>
+          </component>
+        </form>
+      </node>
+    </node>
+    <node class="TNetStringFolder" name="Nogasil">
+      <node class="TNetStringNode" name="TonucezOfel.Kuzukemato.Ifivorosu">
+      </node>
+    </node>
+  </source>
+</document>

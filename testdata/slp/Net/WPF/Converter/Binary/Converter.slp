@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20121013102655" version="4.0.361" date="20160608135150" scan="54" scanned="20160608135048">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <lang id="ar"/>
+  <source class="TNetAssemblySource" name="Bojukuvev.fog" original="cu" date="20140115074302" netlibraries="[nlWpf]" excludedresourcetypes="[nrWin32]" options="[noSetRightToLeft,noSortItems,noCompileResource,noCreateAssembly,noDeleteCompiledResource]">
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TColorData</class>
+      <class>TFontColorData</class>
+      <class>TFontNameData</class>
+      <class>TFontSizeData</class>
+      <class>TFontStyleData</class>
+      <class>TImeData</class>
+      <class>TPictureData</class>
+      <class>TReadingOrderData</class>
+    </excludeddatatypes>
+    <mappings>
+      <component name="Ojorut.Luvuhog.Dohinafa.IdirudImosipijot" class="TVisHiddenComponent"/>
+      <component name="Ojorut.Luvuhog.Dohinafa.UmakiGet" class="TVisComboBox"/>
+      <component name="Ojorut.Luvuhog.Dohinafa.Gomi" class="TVisGridPanel"/>
+      <component name="Ojorut.Luvuhog.Dohinafa.Emazu" class="TVisLabel"/>
+      <component name="Ojorut.Luvuhog.Dohinafa.Upag" class="TVisMenuBar"/>
+      <component name="Ojorut.Luvuhog.Dohinafa.MiliTeme" class="TVisMenuItem"/>
+      <component name="Ojorut.Luvuhog.Dohinafa.RihAnekosulob" class="TVisHiddenComponent"/>
+      <component name="Ojorut.Luvuhog.Dohinafa.OlejemEso" class="TVisStatusBar"/>
+      <component name="Ojorut.Luvuhog.Dohinafa.AhipAso" class="TVisEdit"/>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="TiveBapo" class="TVisGrid"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="AhipAso" class="TVisEdit"/>
+      <property name="TekidIbeh" type="TBooleanRow" mode="pmIncluded"/>
+      <property name="KamaheSehuk" type="TColorRow" mode="pmIncluded"/>
+      <property name="AhalijeHuzikugesid" type="TStringRow" mode="pmIncluded"/>
+      <property name="GisalifIzohulOlovace" type="TStringRow" mode="pmIncluded"/>
+      <property name="LujitomUgon" type="TStringRow" mode="pmIncluded"/>
+      <property name="Cubudavod" type="TBooleanRow" mode="pmIncluded"/>
+      <property name="MunaruZodu" type="TStringRow" mode="pmIncluded"/>
+      <property name="MunaruZodu.VobidiFegezu" type="TStringRow" mode="pmIncluded"/>
+      <property name="HimibezoNur" type="TStringRow" mode="pmIncluded"/>
+      <property name="VobidiFegezu" type="TStringRow" mode="pmIncluded"/>
+      <property name="Ivul.LisezufaKotop" type="TStringRow" mode="pmIncluded"/>
+      <property name="Ivul.VobidiFegezu" type="TStringRow" mode="pmIncluded"/>
+      <property name="Ivul.VotuhaZazaFolud" type="TStringRow" mode="pmIncluded"/>
+      <property name="Cupic.VobidiFegezu" type="TStringRow" mode="pmIncluded"/>
+      <property name="LiniPod" type="TStringRow" mode="pmIncluded"/>
+      <property name="OmopOjaMitalem.LiniPod" type="TStringRow" mode="pmIncluded"/>
+      <property name="OmopOjaMitalem.LiniPod.VobidiFegezu" type="TStringRow" mode="pmIncluded"/>
+    </mappings>
+    <node class="TNetFormFolder" name="Aleka">
+      <node class="TXamlFormNode" name="ipanin1" resource="Bojukuvev.k" filename="ipanin1.hiha">
+        <form class="TXamlForm" name="ipanin1" menu="upag">
+          <row id="NevoKulopanog" class="TReadingOrderRow">zocUtabAjUtuju</row>
+          <row id="Usical">283</row>
+          <row id="Cupic">
+            <native>Bojukuvev</native>
+            <lang id="fi">Isabunu</lang>
+            <lang id="de" savedtotm="1">Ufucericu</lang>
+            <lang id="ja" savedtotm="1">ベヮゼソモム</lang>
+            <lang id="ar">بيػغػػ</lang>
+          </row>
+          <row id="Duzel">231</row>
+          <component class="TVisGridPanel" name="Gomi" type="Ojorut.Luvuhog.Dohinafa.Gomi">
+            <columns countset="1">
+              <item class="TVisGridItem" name="Tagani0"/>
+            </columns>
+            <rows countset="1">
+              <item class="TVisGridItem" name="Inu0"/>
+              <item class="TVisGridItem" name="Inu1"/>
+              <item class="TVisGridItem" name="Inu2"/>
+              <item class="TVisGridItem" name="Inu3"/>
+              <item class="TVisGridItem" name="Inu4"/>
+              <item class="TVisGridItem" name="Inu5"/>
+              <item class="TVisGridItem" name="Inu6"/>
+              <item class="TVisGridItem" name="Inu7"/>
+              <item class="TVisGridItem" name="Inu8"/>
+              <item class="TVisGridItem" name="Inu9"/>
+              <item class="TVisGridItem" name="Inu10"/>
+              <item class="TVisGridItem" name="Inu11"/>
+            </rows>
+            <component class="TVisMenuBar" name="upag" type="Ojorut.Luvuhog.Dohinafa.Upag">
+              <component class="TVisMenuItem" name="lofoRaha" type="Ojorut.Luvuhog.Dohinafa.MiliTeme">
+                <row id="Vunaki">
+                  <native>_Zine</native>
+                  <lang id="fi" savedtotm="1">_Bemojame</lang>
+                  <lang id="de" savedtotm="1">_Abeta</lang>
+                  <lang id="ja" savedtotm="1">ハヰヨョ(_N)</lang>
+                  <lang id="ar">_زشؾ</lang>
+                </row>
+                <component class="TVisMenuItem" name="nujeSiko" type="Ojorut.Luvuhog.Dohinafa.MiliTeme">
+                  <row id="Vunaki">
+                    <native>_Zegu</native>
+                    <lang id="fi" savedtotm="1">Obu_lod</lang>
+                    <lang id="de" savedtotm="1">Z_rigize</lang>
+                    <lang id="ja" savedtotm="1">麞榃(_U)</lang>
+                    <lang id="ar">_تنؿق</lang>
+                  </row>
+                </component>
+              </component>
+              <component class="TVisMenuItem" name="refiSova" type="Ojorut.Luvuhog.Dohinafa.MiliTeme">
+                <row id="Vunaki">
+                  <native>_Etoj</native>
+                  <lang id="fi" savedtotm="1">I_juf</lang>
+                  <lang id="de" savedtotm="1">_Bunal</lang>
+                  <lang id="ja" savedtotm="1">エヌン(_Y)</lang>
+                  <lang id="ar">_تلقجشى</lang>
+                </row>
+                <component class="TVisMenuItem" name="ikiteVeva" type="Ojorut.Luvuhog.Dohinafa.MiliTeme">
+                  <row id="Vunaki">
+                    <native>_Afoke</native>
+                    <lang id="fi" savedtotm="1">Opibu_d</lang>
+                    <lang id="de" savedtotm="1">_Ëviz</lang>
+                    <lang id="ja" savedtotm="1">ピザフザゥ柆瞘(_D)</lang>
+                    <lang id="ar">_عذن</lang>
+                  </row>
+                </component>
+              </component>
+            </component>
+            <component class="TVisLabel" name="ifapIhale" type="Ojorut.Luvuhog.Dohinafa.Emazu" gapleft="8" gapright="8" gridrow="1" layout="tlBottom" padbottom="2" padleft="0" padright="0" padtop="0" verticalalignment="vaBottom">
+              <row id="Evekohe">
+                <native>_Zubo:</native>
+                <lang id="fi" savedtotm="1">_Namoca:</lang>
+                <lang id="de" savedtotm="1">_Got:</lang>
+                <lang id="ja" savedtotm="1">レケダ(_M):</lang>
+                <lang id="ar">_ثدى:</lang>
+              </row>
+            </component>
+            <component class="TVisComboBox" name="hanaZitav" type="Ojorut.Luvuhog.Dohinafa.UmakiGet" gapleft="8" gapright="8" gridrow="2">
+            </component>
+            <component class="TVisLabel" name="ofisetUnahUfuve" type="Ojorut.Luvuhog.Dohinafa.Emazu" gapleft="8" gapright="8" gridrow="3" layout="tlBottom" padbottom="2" padleft="0" padright="0" padtop="0" verticalalignment="vaBottom">
+              <row id="Evekohe">
+                <native>_Cinulu bafe:</native>
+                <lang id="fi" savedtotm="1">RU-ińjihegov_aș:</lang>
+                <lang id="de" savedtotm="1">_Odemajiha Efigaru:</lang>
+                <lang id="ja" savedtotm="1">ポチホセ锤けせ屿癗(_J):</lang>
+                <lang id="ar">_ؽجعق ثذضؿ:</lang>
+              </row>
+            </component>
+            <component class="TVisComboBox" name="ekerubUzofe" type="Ojorut.Luvuhog.Dohinafa.UmakiGet" gapleft="8" gapright="8" gridrow="4">
+            </component>
+            <component class="TVisLabel" name="idukefOzugapApese" type="Ojorut.Luvuhog.Dohinafa.Emazu" gapleft="8" gapright="8" gridrow="5" layout="tlBottom" padbottom="2" padleft="0" padright="0" padtop="0" verticalalignment="vaBottom">
+              <row id="Evekohe">
+                <native>Cinulu _jacivo:</native>
+                <lang id="fi" savedtotm="1">_RU-hêšeț:</lang>
+                <lang id="de" savedtotm="1">_Imevozidaz Ohoc:</lang>
+                <lang id="ja" savedtotm="1">ョゼケィ絒ぞつ嘭麡(_d):</lang>
+                <lang id="ar">_ؽجعق غسزحثؽ:</lang>
+              </row>
+            </component>
+            <component class="TVisEdit" name="zakunaCusu" type="Ojorut.Luvuhog.Dohinafa.AhipAso" gapleft="8" gapright="8" gridrow="6">
+            </component>
+            <component class="TVisLabel" name="cuVaroHivuk" type="Ojorut.Luvuhog.Dohinafa.Emazu" gapleft="8" gapright="8" gridrow="7" layout="tlBottom" padbottom="2" padleft="0" padright="0" padtop="0" verticalalignment="vaBottom">
+              <row id="Evekohe">
+                <native>_MO bafe:</native>
+                <lang id="fi" savedtotm="1">_MO-zńijelefejî:</lang>
+                <lang id="de" savedtotm="1">_MO Ohoc:</lang>
+                <lang id="ja" savedtotm="1">ヲゴヱモザガ媋たし莑絞(_S):</lang>
+                <lang id="ar">_ثذضؿ ػكقثضذق:</lang>
+              </row>
+            </component>
+            <component class="TVisComboBox" name="imIzozo" type="Ojorut.Luvuhog.Dohinafa.UmakiGet" gapleft="8" gapright="8" gridrow="8">
+            </component>
+            <component class="TVisLabel" name="emEzidurEmibu" type="Ojorut.Luvuhog.Dohinafa.Emazu" gapleft="8" gapright="8" gridrow="9" layout="tlBottom" padbottom="2" padleft="0" padright="0" padtop="0" verticalalignment="vaBottom">
+              <row id="Evekohe">
+                <native>MO d_tigos:</native>
+                <lang id="fi" savedtotm="1">MO-_hêšeț:</lang>
+                <lang id="de" savedtotm="1">_MO Ibubub:</lang>
+                <lang id="ja" savedtotm="1">ロゴッビラト澨がざ鎈覭(_j):</lang>
+                <lang id="ar">_ؾػككؼفطؽ عىضعونة زعجق:</lang>
+              </row>
+            </component>
+            <component class="TVisEdit" name="enAmuf" type="Ojorut.Luvuhog.Dohinafa.AhipAso" gapleft="8" gapright="8" gridrow="10">
+            </component>
+            <component class="TVisStatusBar" name="olejemEso" type="Ojorut.Luvuhog.Dohinafa.OlejemEso" gaptop="2" gridrow="11">
+            </component>
+            <component class="TVisHiddenComponent" name="Gomi.InaZohakekociv.inu1" created="20141214110801" type="Ojorut.Luvuhog.Dohinafa.RihAnekosulob" automationid="inu1">
+            </component>
+            <component class="TVisHiddenComponent" name="Gomi.InaZohakekociv.inu2" created="20141214110801" type="Ojorut.Luvuhog.Dohinafa.RihAnekosulob" automationid="inu2">
+            </component>
+            <component class="TVisHiddenComponent" name="Gomi.InaZohakekociv.inu3" created="20141214110801" type="Ojorut.Luvuhog.Dohinafa.RihAnekosulob" automationid="inu3">
+            </component>
+            <component class="TVisHiddenComponent" name="Gomi.InaZohakekociv.inu4" created="20141214110801" type="Ojorut.Luvuhog.Dohinafa.RihAnekosulob" automationid="inu4">
+            </component>
+            <component class="TVisHiddenComponent" name="Gomi.InaZohakekociv.inu5" created="20141214110801" type="Ojorut.Luvuhog.Dohinafa.RihAnekosulob" automationid="inu5">
+            </component>
+            <component class="TVisHiddenComponent" name="Gomi.InaZohakekociv.inu6" created="20141214110801" type="Ojorut.Luvuhog.Dohinafa.RihAnekosulob" automationid="inu6">
+            </component>
+            <component class="TVisHiddenComponent" name="Gomi.InaZohakekociv.inu7" created="20141214110801" type="Ojorut.Luvuhog.Dohinafa.RihAnekosulob" automationid="inu7">
+            </component>
+            <component class="TVisHiddenComponent" name="Gomi.InaZohakekociv.inu8" created="20141214110801" type="Ojorut.Luvuhog.Dohinafa.RihAnekosulob" automationid="inu8">
+            </component>
+            <component class="TVisHiddenComponent" name="Gomi.InaZohakekociv.inu9" created="20141214110801" type="Ojorut.Luvuhog.Dohinafa.RihAnekosulob" automationid="inu9">
+            </component>
+            <component class="TVisHiddenComponent" name="Gomi.InaZohakekociv.inu10" created="20141214110801" type="Ojorut.Luvuhog.Dohinafa.RihAnekosulob" automationid="inu10">
+            </component>
+            <component class="TVisHiddenComponent" name="Gomi.InaZohakekociv.inu11" created="20141214110801" type="Ojorut.Luvuhog.Dohinafa.RihAnekosulob" automationid="inu11">
+            </component>
+            <component class="TVisHiddenComponent" name="Gomi.InaZohakekociv.inu12" created="20141214110801" type="Ojorut.Luvuhog.Dohinafa.RihAnekosulob" automationid="inu12">
+            </component>
+            <component class="TVisHiddenComponent" name="Gomi.UhejusUfatazegaho.tagani1" created="20141214110801" type="Ojorut.Luvuhog.Dohinafa.IdirudImosipijot" automationid="tagani1">
+            </component>
+          </component>
+        </form>
+      </node>
+    </node>
+    <node class="TNetStringFolder" name="Nogasil">
+      <node class="TNetStringNode" name="Bojukuvev.Kuzukemato.Ifivorosu">
+        <row id="Afoke_Bojukuvev">
+          <native>Afoke Bojukuvev</native>
+          <lang id="fi" savedtotm="1">Lohiba Etomifocoho</lang>
+          <lang id="de" savedtotm="1">Ëviz Ufucericu</lang>
+          <lang id="ja" savedtotm="1">ヂタニマドタぃゅばも</lang>
+          <lang id="ar">بش ؾصنصن</lang>
+        </row>
+        <row id="Omefuka">
+          <native>Omefuka</native>
+          <lang id="fi">Arasojeci</lang>
+          <lang id="de">Omefuka</lang>
+          <lang id="ja">鏣栩</lang>
+          <lang id="ar">كضجقنعت</lang>
+        </row>
+        <row id="Iloruluzelo">
+          <native>Iloruluzelo</native>
+          <lang id="fi" savedtotm="1">Fokunuzedubł</lang>
+          <lang id="de" savedtotm="1">Jisibomipe</lang>
+          <lang id="ja" savedtotm="1">テネテゾフクヒ</lang>
+          <lang id="ar">دد</lang>
+        </row>
+        <row id="Bojukuvev_ot_ut_konesotefuh_kigu_jodahomo_cinulu_ugeme_ac_MO_ugeme_ule_ovun_">
+          <native>Bojukuvev ot ut konesotefuh kigu jodahomo cinulu ugeme ac MO ugeme ule ovun.</native>
+          <lang id="fi" savedtotm="1">Isabunu da alulovo, pito iguduze vazakisusiđlaê RU-jżazemufidîohý MO-zźomojatusășe ed jefosoce.</lang>
+          <lang id="de" savedtotm="1">Ufucericu erekuho odemajiha Obolikavi go Pihahuzamovuh Obolikavi ovo vosirihiz.</lang>
+          <lang id="ja" savedtotm="1">チガユラガテき痁鍂げじで簸跑べ、ヤヱクサ盬ねぬナムゴヮタラ筻れ、おがつズゼィットヨ挢うけヌダフゼ柧ぎ蜌矋みゃヘズタバカスグャるて。</lang>
+          <lang id="ar">بيػغػػ ؿع رلر ىغ ثوؿل ؽجعق قجزجتذذ قجزجتذذ ؽتضضظكغعت ػحفػقطف.</lang>
+        </row>
+        <row id="Icasisesic">
+          <native>Icasisesic</native>
+          <lang id="fi" savedtotm="1">Okenudevepife</lang>
+          <lang id="de">Icasisesic</lang>
+          <lang id="ja" savedtotm="1">聠攮</lang>
+          <lang id="ar">ىوبطشلهل</lang>
+        </row>
+        <row id="Goho">
+          <native>Goho</native>
+          <lang id="fi" savedtotm="1">Litada</lang>
+          <lang id="de">Goho</lang>
+          <lang id="ja" savedtotm="1">サフセヤ</lang>
+          <lang id="ar">ضظنطع</lang>
+        </row>
+        <row id="Ivepoc">
+          <native>Ivepoc</native>
+          <lang id="fi" savedtotm="1">Okikag</lang>
+          <lang id="de" savedtotm="1">Inur</lang>
+          <lang id="ja" savedtotm="1">ヨヌニ</lang>
+          <lang id="ar">كغجك</lang>
+        </row>
+        <row id="Ciguvu">
+          <native>Ciguvu</native>
+          <lang id="fi" savedtotm="1">Ezakihaé</lang>
+          <lang id="de">Ciguvu</lang>
+          <lang id="ja" savedtotm="1">サヒイデ</lang>
+          <lang id="ar">ضممى</lang>
+        </row>
+        <row id="Ifufofepog">
+          <native>Ifufofepog</native>
+          <lang id="fi" savedtotm="1">Gepukivocž</lang>
+          <lang id="de" savedtotm="1">Cahedukup</lang>
+          <lang id="ja" savedtotm="1">レゲズヒクプ</lang>
+          <lang id="ar">غع</lang>
+        </row>
+        <row id="Ivofad">
+          <native>Ivofad</native>
+          <lang id="fi" savedtotm="1">Ukirav</lang>
+          <lang id="de" savedtotm="1">Fżafo</lang>
+          <lang id="ja" savedtotm="1">祆じ</lang>
+          <lang id="ar">ؽؿط</lang>
+        </row>
+        <row id="Naruda">
+          <native>Naruda</native>
+          <lang id="fi" savedtotm="1">Nupudø</lang>
+          <lang id="de" savedtotm="1">Ucufe</lang>
+          <lang id="ja" savedtotm="1">ホソホラ</lang>
+          <lang id="ar">شطس</lang>
+        </row>
+        <row id="Hanel">
+          <native>Hanel</native>
+          <lang id="fi" savedtotm="1">Ibakuf</lang>
+          <lang id="de" savedtotm="1">Icavor</lang>
+          <lang id="ja" savedtotm="1">ッピク</lang>
+          <lang id="ar">نشز</lang>
+        </row>
+        <row id="Tatukurecis">
+          <native>Tatukurecis</native>
+          <lang id="fi" savedtotm="1">Ifotakidocè</lang>
+          <lang id="de" savedtotm="1">Ibocaficin</lang>
+          <lang id="ja" savedtotm="1">ェヂラニガン</lang>
+          <lang id="ar">سذوطػزه</lang>
+        </row>
+        <row id="Danefotanes">
+          <native>Danefotanes</native>
+          <lang id="fi" savedtotm="1">Vșacșemes</lang>
+          <lang id="de" savedtotm="1">Ujitejefuh</lang>
+          <lang id="ja" savedtotm="1">鰪俳</lang>
+          <lang id="ar">ظؼيؼ ؽهؼهسػت</lang>
+        </row>
+        <row id="Mijek">
+          <native>Mijek</native>
+          <lang id="fi" savedtotm="1">Piconub</lang>
+          <lang id="de">Mijek</lang>
+          <lang id="ja" savedtotm="1">ロホチ</lang>
+          <lang id="ar">ؼخفغص</lang>
+        </row>
+      </node>
+    </node>
+  </source>
+</document>

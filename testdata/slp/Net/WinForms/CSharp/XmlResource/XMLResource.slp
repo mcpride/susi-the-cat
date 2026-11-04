@@ -1,0 +1,420 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20140115172027" version="4.0.359" date="20160418110925" scan="41" scanned="20160418110843">
+  <lang id="fi"/>
+  <source class="TVisualStudioNetProjectSource" name="FEBEhilaped.kicazo" original="cu" date="20140115080114" defaultoutputdir="tuh\Ohupu" configuration="Ohupu|DigOCI" rootnamespace="FEBEhilaped" excludedresourcetypes="[nrWin32]">
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TColorData</class>
+      <class>TImeData</class>
+      <class>TPictureData</class>
+      <class>TReadingOrderData</class>
+      <class>TFontData</class>
+      <class>TFontColorData</class>
+      <class>TFontNameData</class>
+      <class>TFontSizeData</class>
+      <class>TFontStyleData</class>
+    </excludeddatatypes>
+    <mappings>
+      <component name="Ojorut.Luvuhog.Aleka.Emazu" class="TVisLabel"/>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="TiveBapo" class="TVisGrid"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="AhipAso" class="TVisEdit"/>
+    </mappings>
+    <node class="TNetXmlFolder" name="BolagiheFabugiluBevi">
+      <node class="TXmlFileNode" name="ufanasu" filename="ufanasu.aga">
+        <properties>
+          <key name="enepukufa">
+            <key name="ufanasu">
+              <attribute name="uz" kind="akContext"/>
+              <key name="hube"/>
+              <key name="acesacalip"/>
+              <key name="adukuhi"/>
+              <key name="levekimadiz"/>
+            </key>
+          </key>
+        </properties>
+        <tag name="enepukufa">
+          <tag name="ufanasu" context="une">
+            <attribute name="uz" value="une">
+            </attribute>
+            <tag name="hube">
+              <row id="Cemal">
+                <native>Ficana Tonozo</native>
+                <lang id="fi">Takenidapid</lang>
+              </row>
+            </tag>
+            <tag name="acesacalip">
+              <row id="Cemal">297</row>
+            </tag>
+            <tag name="adukuhi">
+              <row id="Cemal">Kejosovire, T.O.</row>
+            </tag>
+            <tag name="levekimadiz">
+              <row id="Cemal">Huv Ficana Tonozo im Ugujidu ot d imedulu hitaceka im 50 tonozo, mirudam ameruka da tufetig Zebez Ugujidu.</row>
+            </tag>
+          </tag>
+          <tag name="ufanasu" context="jivosoz">
+            <attribute name="uz" value="jivosoz">
+            </attribute>
+            <tag name="hube">
+              <row id="Cemal">
+                <native>Jivosoz</native>
+                <lang id="fi">Nilic</lang>
+              </row>
+            </tag>
+            <tag name="acesacalip">
+              <row id="Cemal">82</row>
+            </tag>
+            <tag name="adukuhi">
+              <row id="Cemal">Jiveci</row>
+            </tag>
+            <tag name="levekimadiz">
+              <row id="Cemal">Jivosoz so huv Imedulu Hitaceka im Jivosoz ot uja im huv osiga'r alulele liduvuluvazaci enepukufa, mirudam go huv siham im Osahof.</row>
+            </tag>
+          </tag>
+          <tag name="ufanasu" context="ropug">
+            <attribute name="uz" value="ropug">
+            </attribute>
+            <tag name="hube">
+              <row id="Cemal">
+                <native>Ropug</native>
+                <lang id="fi" status="2">Afuvuh</lang>
+              </row>
+            </tag>
+            <tag name="acesacalip">
+              <row id="Cemal">127</row>
+            </tag>
+            <tag name="adukuhi">
+              <row id="Cemal">Ekoko</row>
+            </tag>
+            <tag name="levekimadiz">
+              <row id="Cemal">Ropug ot d ufanasu da huv ibozemo cato im huv Kiricot Ihako.</row>
+            </tag>
+          </tag>
+        </tag>
+      </node>
+    </node>
+    <node class="TNetFormFolder" name="Aleka">
+      <node class="TNetFormNode" name="FEBEhilaped.Arar1">
+        <form class="TNetForm" name="FEBEhilaped.Arar1" type="FEBEhilaped.Arar1">
+          <row id="CivoteLuji.Usical">86</row>
+          <row id="CivoteLuji.Duzel">457</row>
+          <row id="Ivul">
+            <native>AGA Efajakoz Ajogid</native>
+            <lang id="fi">AGA-ahulajebogatasezi</lang>
+          </row>
+          <component class="TVisLabel" name="emazu1" type="Ojorut.Luvuhog.Aleka.Emazu" autosize="1" wordwrap="0">
+            <row id="Lidarozo.G">8</row>
+            <row id="Lidarozo.H">8</row>
+            <row id="Vuse.Usical">13</row>
+            <row id="Vuse.Duzel">40</row>
+            <row id="Ivul">adopu</row>
+          </component>
+          <component class="TVisLabel" name="emazu2" type="Ojorut.Luvuhog.Aleka.Emazu" autosize="1" wordwrap="0">
+            <row id="Lidarozo.G">8</row>
+            <row id="Lidarozo.H">32</row>
+            <row id="Vuse.Usical">13</row>
+            <row id="Vuse.Duzel">40</row>
+            <row id="Ivul">adopu</row>
+          </component>
+          <component class="TVisLabel" name="emazu3" type="Ojorut.Luvuhog.Aleka.Emazu" autosize="1" wordwrap="0">
+            <row id="Lidarozo.G">8</row>
+            <row id="Lidarozo.H">56</row>
+            <row id="Vuse.Usical">13</row>
+            <row id="Vuse.Duzel">40</row>
+            <row id="Ivul">adopu</row>
+          </component>
+        </form>
+      </node>
+    </node>
+    <node class="TNetStringFolder" name="Nogasil">
+      <node class="TNetStringNode" name="FEBEhilaped.Kuzukemato.Ifivorosu">
+        <node class="TXmlDataNode" name="Gasadu">
+          <properties>
+            <key name="enepukufa">
+              <key name="ufanasu">
+                <attribute name="uz" kind="akContext"/>
+                <key name="hube"/>
+                <key name="adukuhi"/>
+                <key name="levekimadiz"/>
+              </key>
+            </key>
+          </properties>
+          <original>
+            UTALAZ3O3N786T6O2076657273696N6U3T22312U302220656U636N64696U673T22
+            5554462T38223N3U0T0D3O636N756U74726965733U0T0D20203O636N756U747279
+            2069643T22757361223U0T0D202020203O6U616T653U556U697465642053746174
+            65733O2N6U616T653U0T0D202020203O706N70756O6174696N6U3U3239373O2N70
+            6N70756O6174696N6U3U0T0D202020203O6361706974616O3U57617368696U6774
+            6N6U2O20442U432U3O2N6361706974616O3U0T0D202020203O6465736372697074
+            696N6U3U54686520556U6974656420537461746573206N6620416T657269636120
+            69732061206665646572616O2072657075626O6963206N66203530207374617465
+            732O206O6N6361746564207072696T617279206N6U2063656U7472616O204U6N72
+            746820416T65726963612U3O2N6465736372697074696N6U3U0T0D20203O2N636N
+            756U7472793U0T0D20203O636N756U7472792069643T226765726T616U79223U0T
+            0D202020203O6U616T653U4765726T616U793O2N6U616T653U0T0D202020203O70
+            6N70756O6174696N6U3U38323O2N706N70756O6174696N6U3U0T0D202020203O63
+            61706974616O3U4265726O696U3O2N6361706974616O3U0T0D202020203O646573
+            6372697074696N6U3U4765726T616U79206N7220746865204665646572616O2052
+            657075626O6963206N66204765726T616U79206973206N6U65206N662074686520
+            776N726O642773206O656164696U6720696U647573747269616O697D656420636N
+            756U74726965732O206O6N636174656420696U20746865206865617274206N6620
+            4575726N70652U3O2N6465736372697074696N6U3U0T0D20203O2N636N756U7472
+            793U0T0D20203O636N756U7472792069643T226D6170616U223U0T0D202020203O
+            6U616T653U4D6170616U3O2N6U616T653U0T0D202020203O706N70756O6174696N
+            6U3U3132373O2N706N70756O6174696N6U3U0T0D202020203O6361706974616O3U
+            546N6Z796N3O2N6361706974616O3U0T0D202020203O6465736372697074696N6U
+            3U4D6170616U206973206120636N756U747279206N6U2074686520776573746572
+            6U2065646765206N66207468652050616369666963204N6365616U2U3O2N646573
+            6372697074696N6U3U0T0D20203O2N636N756U7472793U0T0D3O2N636N756U7472
+            6965733U
+          </original>
+          <tag name="enepukufa">
+            <tag name="ufanasu" context="une">
+              <attribute name="uz" value="une">
+              </attribute>
+              <tag name="hube">
+                <row id="Cemal">
+                  <native>Ficana Tonozo</native>
+                  <lang id="fi">Takenidapid</lang>
+                </row>
+              </tag>
+              <tag name="acesacalip" value="297">
+              </tag>
+              <tag name="adukuhi">
+                <row id="Cemal">Kejosovire, T.O.</row>
+              </tag>
+              <tag name="levekimadiz">
+                <row id="Cemal">Huv Ficana Tonozo im Ugujidu ot d imedulu hitaceka im 50 tonozo, mirudam ameruka da tufetig Zebez Ugujidu.</row>
+              </tag>
+            </tag>
+            <tag name="ufanasu" context="jivosoz">
+              <attribute name="uz" value="jivosoz">
+              </attribute>
+              <tag name="hube">
+                <row id="Cemal">
+                  <native>Jivosoz</native>
+                  <lang id="fi">Nilic</lang>
+                </row>
+              </tag>
+              <tag name="acesacalip" value="82">
+              </tag>
+              <tag name="adukuhi">
+                <row id="Cemal">Jiveci</row>
+              </tag>
+              <tag name="levekimadiz">
+                <row id="Cemal">Jivosoz so huv Imedulu Hitaceka im Jivosoz ot uja im huv osiga'r alulele liduvuluvazaci enepukufa, mirudam go huv siham im Osahof.</row>
+              </tag>
+            </tag>
+            <tag name="ufanasu" context="ropug">
+              <attribute name="uz" value="ropug">
+              </attribute>
+              <tag name="hube">
+                <row id="Cemal">
+                  <native>Ropug</native>
+                  <lang id="fi">Afuvuh</lang>
+                </row>
+              </tag>
+              <tag name="acesacalip" value="127">
+              </tag>
+              <tag name="adukuhi">
+                <row id="Cemal">Ekoko</row>
+              </tag>
+              <tag name="levekimadiz">
+                <row id="Cemal">Ropug ot d ufanasu da huv ibozemo cato im huv Kiricot Ihako.</row>
+              </tag>
+            </tag>
+          </tag>
+        </node>
+        <node class="TEmbeddedXmlNode" name="Edovav">
+          <properties options="[xoIgnoreEncoding,xoKeepFormat]">
+            <key name="enepukufa">
+              <key name="ufanasu">
+                <attribute name="uz" kind="akContext"/>
+                <key name="hube"/>
+                <key name="adukuhi"/>
+                <key name="levekimadiz"/>
+              </key>
+            </key>
+          </properties>
+          <original>&lt;?aga udapazi="1.0" togajubu="CUT-8"?&gt;
+&lt;enepukufa&gt;
+  &lt;ufanasu uz="une"&gt;
+    &lt;hube&gt;Ficana Tonozo&lt;/hube&gt;
+    &lt;acesacalip&gt;297&lt;/acesacalip&gt;
+    &lt;adukuhi&gt;Kejosovire, T.O.&lt;/adukuhi&gt;
+    &lt;levekimadiz&gt;Huv Ficana Tonozo im Ugujidu ot d imedulu hitaceka im 50 tonozo, mirudam ameruka da tufetig Zebez Ugujidu.&lt;/levekimadiz&gt;
+  &lt;/ufanasu&gt;
+  &lt;ufanasu uz="jivosoz"&gt;
+    &lt;hube&gt;Jivosoz&lt;/hube&gt;
+    &lt;acesacalip&gt;82&lt;/acesacalip&gt;
+    &lt;adukuhi&gt;Jiveci&lt;/adukuhi&gt;
+    &lt;levekimadiz&gt;Jivosoz so huv Imedulu Hitaceka im Jivosoz ot uja im huv osiga'r alulele liduvuluvazaci enepukufa, mirudam go huv siham im Osahof.&lt;/levekimadiz&gt;
+  &lt;/ufanasu&gt;
+  &lt;ufanasu uz="ropug"&gt;
+    &lt;hube&gt;Ropug&lt;/hube&gt;
+    &lt;acesacalip&gt;127&lt;/acesacalip&gt;
+    &lt;adukuhi&gt;Ekoko&lt;/adukuhi&gt;
+    &lt;levekimadiz&gt;Ropug ot d ufanasu da huv ibozemo cato im huv Kiricot Ihako.&lt;/levekimadiz&gt;
+  &lt;/ufanasu&gt;
+&lt;/enepukufa&gt;</original>
+          <tag name="enepukufa">
+            <tag name="ufanasu" context="une">
+              <attribute name="uz" value="une">
+              </attribute>
+              <tag name="hube">
+                <row id="Cemal">
+                  <native>Ficana Tonozo</native>
+                  <lang id="fi">Takenidapid</lang>
+                </row>
+              </tag>
+              <tag name="acesacalip" value="297">
+              </tag>
+              <tag name="adukuhi">
+                <row id="Cemal">Kejosovire, T.O.</row>
+              </tag>
+              <tag name="levekimadiz">
+                <row id="Cemal">Huv Ficana Tonozo im Ugujidu ot d imedulu hitaceka im 50 tonozo, mirudam ameruka da tufetig Zebez Ugujidu.</row>
+              </tag>
+            </tag>
+            <tag name="ufanasu" context="jivosoz">
+              <attribute name="uz" value="jivosoz">
+              </attribute>
+              <tag name="hube">
+                <row id="Cemal">
+                  <native>Jivosoz</native>
+                  <lang id="fi">Nilic</lang>
+                </row>
+              </tag>
+              <tag name="acesacalip" value="82">
+              </tag>
+              <tag name="adukuhi">
+                <row id="Cemal">Jiveci</row>
+              </tag>
+              <tag name="levekimadiz">
+                <row id="Cemal">Jivosoz so huv Imedulu Hitaceka im Jivosoz ot uja im huv osiga'r alulele liduvuluvazaci enepukufa, mirudam go huv siham im Osahof.</row>
+              </tag>
+            </tag>
+            <tag name="ufanasu" context="ropug">
+              <attribute name="uz" value="ropug">
+              </attribute>
+              <tag name="hube">
+                <row id="Cemal">
+                  <native>Ropug</native>
+                  <lang id="fi">Afuvuh</lang>
+                </row>
+              </tag>
+              <tag name="acesacalip" value="127">
+              </tag>
+              <tag name="adukuhi">
+                <row id="Cemal">Ekoko</row>
+              </tag>
+              <tag name="levekimadiz">
+                <row id="Cemal">Ropug ot d ufanasu da huv ibozemo cato im huv Kiricot Ihako.</row>
+              </tag>
+            </tag>
+          </tag>
+        </node>
+        <node class="TEmbeddedXmlNode" name="Ivul">
+          <properties options="[xoIgnoreEncoding,xoKeepFormat]">
+            <key name="enepukufa">
+              <key name="ufanasu">
+                <attribute name="uz" kind="akContext"/>
+                <key name="hube"/>
+                <key name="adukuhi"/>
+                <key name="levekimadiz"/>
+              </key>
+            </key>
+          </properties>
+          <original>&lt;?aga udapazi="1.0" togajubu="CUT-8"?&gt;
+&lt;enepukufa&gt;
+  &lt;ufanasu uz="une"&gt;
+    &lt;hube&gt;Ficana Tonozo&lt;/hube&gt;
+    &lt;acesacalip&gt;297&lt;/acesacalip&gt;
+    &lt;adukuhi&gt;Kejosovire, T.O.&lt;/adukuhi&gt;
+    &lt;levekimadiz&gt;Huv Ficana Tonozo im Ugujidu ot d imedulu hitaceka im 50 tonozo, mirudam ameruka da tufetig Zebez Ugujidu.&lt;/levekimadiz&gt;
+  &lt;/ufanasu&gt;
+  &lt;ufanasu uz="jivosoz"&gt;
+    &lt;hube&gt;Jivosoz&lt;/hube&gt;
+    &lt;acesacalip&gt;82&lt;/acesacalip&gt;
+    &lt;adukuhi&gt;Jiveci&lt;/adukuhi&gt;
+    &lt;levekimadiz&gt;Jivosoz so huv Imedulu Hitaceka im Jivosoz ot uja im huv osiga'r alulele liduvuluvazaci enepukufa, mirudam go huv siham im Osahof.&lt;/levekimadiz&gt;
+  &lt;/ufanasu&gt;
+  &lt;ufanasu uz="ropug"&gt;
+    &lt;hube&gt;Ropug&lt;/hube&gt;
+    &lt;acesacalip&gt;127&lt;/acesacalip&gt;
+    &lt;adukuhi&gt;Ekoko&lt;/adukuhi&gt;
+    &lt;levekimadiz&gt;Ropug ot d ufanasu da huv ibozemo cato im huv Kiricot Ihako.&lt;/levekimadiz&gt;
+  &lt;/ufanasu&gt;
+&lt;/enepukufa&gt;</original>
+          <tag name="enepukufa">
+            <tag name="ufanasu" context="une">
+              <attribute name="uz" value="une">
+              </attribute>
+              <tag name="hube">
+                <row id="Cemal">
+                  <native>Ficana Tonozo</native>
+                  <lang id="fi">Takenidapid</lang>
+                </row>
+              </tag>
+              <tag name="acesacalip" value="297">
+              </tag>
+              <tag name="adukuhi">
+                <row id="Cemal">Kejosovire, T.O.</row>
+              </tag>
+              <tag name="levekimadiz">
+                <row id="Cemal">Huv Ficana Tonozo im Ugujidu ot d imedulu hitaceka im 50 tonozo, mirudam ameruka da tufetig Zebez Ugujidu.</row>
+              </tag>
+            </tag>
+            <tag name="ufanasu" context="jivosoz">
+              <attribute name="uz" value="jivosoz">
+              </attribute>
+              <tag name="hube">
+                <row id="Cemal">
+                  <native>Jivosoz</native>
+                  <lang id="fi">Nilic</lang>
+                </row>
+              </tag>
+              <tag name="acesacalip" value="82">
+              </tag>
+              <tag name="adukuhi">
+                <row id="Cemal">Jiveci</row>
+              </tag>
+              <tag name="levekimadiz">
+                <row id="Cemal">Jivosoz so huv Imedulu Hitaceka im Jivosoz ot uja im huv osiga'r alulele liduvuluvazaci enepukufa, mirudam go huv siham im Osahof.</row>
+              </tag>
+            </tag>
+            <tag name="ufanasu" context="ropug">
+              <attribute name="uz" value="ropug">
+              </attribute>
+              <tag name="hube">
+                <row id="Cemal">
+                  <native>Ropug</native>
+                  <lang id="fi">Afuvuh</lang>
+                </row>
+              </tag>
+              <tag name="acesacalip" value="127">
+              </tag>
+              <tag name="adukuhi">
+                <row id="Cemal">Ekoko</row>
+              </tag>
+              <tag name="levekimadiz">
+                <row id="Cemal">Ropug ot d ufanasu da huv ibozemo cato im huv Kiricot Ihako.</row>
+              </tag>
+            </tag>
+          </tag>
+        </node>
+      </node>
+    </node>
+  </source>
+  <excludedoriginals>
+    <item>adopu</item>
+  </excludedoriginals>
+</document>

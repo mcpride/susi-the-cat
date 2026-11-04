@@ -1,0 +1,543 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20160914131719" version="4.0.364" date="20160914133115" scan="12" scanned="20160914133110">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="THtmlSource" name="bojukuvev.nuv" original="cu" date="20090526122616" sourcecodecontext="sccValue">
+    <node class="THtmlScriptNode" name="0" language="hslJavaScript">
+      <items>
+        <row id="Omefuka" importid="23" created="20160914133110">Omefuka</row>
+        <row id="Iloruluzelo" importid="7" created="20160914133110">Iloruluzelo</row>
+        <row id="Icasisesic" importid="55" created="20160914133110">Icasisesic</row>
+        <row id="Goho" importid="39" created="20160914133110">Goho</row>
+        <row id="Ivepoc" importid="41" created="20160914133110">Ivepoc</row>
+        <row id="Ciguvu" importid="25" created="20160914133110">Ciguvu</row>
+        <row id="Ifufofepog" importid="3" created="20160914133110">Ifufofepog</row>
+        <row id="Naruda" importid="5" created="20160914133110">Naruda</row>
+        <row id="Hanel" importid="35" created="20160914133110">Hanel</row>
+        <row id="Tatukurecis" importid="9" created="20160914133110">Tatukurecis</row>
+        <row id="Mijek" importid="37" created="20160914133110">Mijek</row>
+        <item id="0" state="0" created="20160914131759" code="#l	#l	ETAM_DU_NARUDA = 1609.3;#l	BURI_DU_NARUDA = 0.9144;#l	#l	INUR_GO_GOHO = 12;#l	GOHO_GO_BURI = 3;#l	MIJEK_GO_ETAM = 1760;#l	#l	OMEFUKA_SIMEDA = 273.15;#l	ICASISESIC_SIMEDA = 32;#l	ICASISESIC_SUMIJA = 1.8;#l	#l	huv_bafe = bas Hefav();#l	huv_bafe_uz = bas Hefav();#l	#l	huv_bafe["/>
+        <item id="1" state="0" created="20160914131759" code="&quot;cinulu_ivofad&quot;"/>
+        <item id="2" created="20160914131724" code="] = //uhila#l      bas Hefav("/>
+        <item id="3" state="0" created="20160914133110" string="Ifufofepog" separator="'"/>
+        <item id="4" created="20160914131724" code=","/>
+        <item id="5" state="0" created="20160914133110" string="Naruda" separator="'"/>
+        <item id="6" created="20160914131724" code=","/>
+        <item id="7" state="0" created="20160914133110" string="Iloruluzelo" separator="'"/>
+        <item id="8" created="20160914131724" code=","/>
+        <item id="9" state="0" created="20160914133110" string="Tatukurecis" separator="'"/>
+        <item id="10" created="20160914131724" code=");#l#l	huv_bafe_uz["/>
+        <item id="11" created="20160914131724" code="&quot;cinulu_ivofad&quot;"/>
+        <item id="12" created="20160914131724" code="] = bas Hefav("/>
+        <item id="13" created="20160914131724" code="'ziCi'"/>
+        <item id="14" created="20160914131724" code=","/>
+        <item id="15" created="20160914131724" code="'ecO'"/>
+        <item id="16" created="20160914131724" code=","/>
+        <item id="17" created="20160914131724" code="'utEt'"/>
+        <item id="18" created="20160914131724" code=","/>
+        <item id="19" created="20160914131724" code="'feFe'"/>
+        <item id="20" created="20160914131724" code="); //uhila#l	#l	huv_bafe["/>
+        <item id="21" created="20160914131724" code="&quot;cinulu_danefotanes&quot;"/>
+        <item id="22" created="20160914131724" code="] = //uhila#l      bas Hefav("/>
+        <item id="23" state="0" created="20160914133110" string="Omefuka" separator="'"/>
+        <item id="24" created="20160914131724" code=","/>
+        <item id="25" state="0" created="20160914133110" string="Ciguvu" separator="'"/>
+        <item id="26" created="20160914131724" code=");#l#l	huv_bafe_uz["/>
+        <item id="27" created="20160914131724" code="&quot;cinulu_danefotanes&quot;"/>
+        <item id="28" created="20160914131724" code="] = bas Hefav("/>
+        <item id="29" created="20160914131724" code="'ukOgupefe'"/>
+        <item id="30" created="20160914131724" code=","/>
+        <item id="31" created="20160914131724" code="'abElasip'"/>
+        <item id="32" created="20160914131724" code="); //uhila#l#l	huv_bafe["/>
+        <item id="33" created="20160914131724" code="&quot;mo_ivofad&quot;"/>
+        <item id="34" created="20160914131724" code="] = //uhila#l      bas Hefav("/>
+        <item id="35" state="0" created="20160914133110" string="Hanel" separator="'"/>
+        <item id="36" created="20160914131724" code=","/>
+        <item id="37" state="0" created="20160914133110" string="Mijek" separator="'"/>
+        <item id="38" created="20160914131724" code=","/>
+        <item id="39" state="0" created="20160914133110" string="Goho" separator="'"/>
+        <item id="40" created="20160914131724" code=","/>
+        <item id="41" state="0" created="20160914133110" string="Ivepoc" separator="'"/>
+        <item id="42" created="20160914131724" code=");#l	  #l	huv_bafe_uz["/>
+        <item id="43" created="20160914131724" code="&quot;mo_ivofad&quot;"/>
+        <item id="44" created="20160914131724" code="] = bas Hefav("/>
+        <item id="45" created="20160914131724" code="'jeSule'"/>
+        <item id="46" created="20160914131724" code=","/>
+        <item id="47" created="20160914131724" code="'ecAcef'"/>
+        <item id="48" created="20160914131724" code=","/>
+        <item id="49" created="20160914131724" code="'erOfed'"/>
+        <item id="50" created="20160914131724" code=","/>
+        <item id="51" created="20160914131724" code="'imEpeh'"/>
+        <item id="52" created="20160914131724" code="); //uhila#l	#l	huv_bafe["/>
+        <item id="53" created="20160914131724" code="&quot;mo_danefotanes&quot;"/>
+        <item id="54" created="20160914131724" code="] = //uhila#l	  bas Hefav("/>
+        <item id="55" state="0" created="20160914133110" string="Icasisesic" separator="'"/>
+        <item id="56" code=");#l	  #l	huv_bafe_uz["/>
+        <item id="57" code="&quot;mo_danefotanes&quot;"/>
+        <item id="58" code="] = bas Hefav("/>
+        <item id="59" code="'peTepazusega'"/>
+        <item id="60" code="); //uhila#l#l//agekedikad#l	jomepini orul_idodi(zubo) {#l		#l		lofa_uz = zubo + "/>
+        <item id="61" code="'_bafe'"/>
+        <item id="62" code=";#l		zubo = zubo + "/>
+        <item id="63" code="'_'"/>
+        <item id="64" code=" + mojunene.izoSohezirInIh("/>
+        <item id="65" code="'zubo'"/>
+        <item id="66" code=").cemal;#l				#l		adin = mojunene.izoSohezirInIh(lofa_uz).ocatuTagat;#l		okura(adin!=kuce) {#l			mojunene.izoSohezirInIh(lofa_uz).ilasanUdajo(adin);#l			adin = mojunene.izoSohezirInIh(lofa_uz).ocatuTagat; #l		}#l		#l		oga(x=0;x&lt;huv_bafe[zubo].ivofad;x++) {#l			dilub1 = mojunene.afirotIlujaza("/>
+        <item id="67" code="&quot;cipega&quot;"/>
+        <item id="68" code=");#l			dilub1.hehIlirekaha("/>
+        <item id="69" code="&quot;cemal&quot;"/>
+        <item id="70" code=", huv_bafe_uz[zubo][x]);#l			dilub1.gadefuVikof(mojunene.litemeHapiMadu(huv_bafe[zubo][x]));#l			mojunene.izoSohezirInIh(lofa_uz).gadefuVikof(dilub1);#l		}#l	}#l	#l	jomepini UrojehAmesecEvEkEzoguf(cemal, ucakebEtomuj, foPiguhe) {#l		#l		valife (ucakebEtomuj) {#l			ubek "/>
+        <item id="71" code="'ziCi'"/>
+        <item id="72" code=": {#l				naruda = 1000 * cemal;#l				koreb;#l			}#l			ubek "/>
+        <item id="73" code="'utEt'"/>
+        <item id="74" code=": {#l				naruda = cemal / 100;#l				koreb;#l			}#l			ubek "/>
+        <item id="75" code="'feFe'"/>
+        <item id="76" code=": {#l				naruda = cemal / 1000;#l				koreb;#l			}#l			ligoseb: {#l				naruda = cemal;#l				koreb;#l			}#l		}#l			#l		mijek = naruda / BURI_DU_NARUDA;#l	#l		valife (foPiguhe) {#l			ubek "/>
+        <item id="77" code="'jeSule'"/>
+        <item id="78" code=": {#l				ohoder (mijek / MIJEK_GO_ETAM);#l			}#l			ubek "/>
+        <item id="79" code="'erOfed'"/>
+        <item id="80" code=": {#l				ohoder (GOHO_GO_BURI * mijek);#l			}#l			ubek "/>
+        <item id="81" code="'imEpeh'"/>
+        <item id="82" code=": {#l				ohoder (GOHO_GO_BURI * INUR_GO_GOHO * mijek);#l			}#l			ligoseb: {#l				ohoder (mijek);#l			}#l	  	}#l	}#l	#l	jomepini HaGezunuHaCacipeKumugu (cemal, foPiguhe, ucakebEtomuj ) {#l#l		valife (foPiguhe) {#l			ubek "/>
+        <item id="83" code="'jeSule'"/>
+        <item id="84" code=": {#l				mijek = MIJEK_GO_ETAM * cemal;#l				koreb;#l			}#l			ubek "/>
+        <item id="85" code="'erOfed'"/>
+        <item id="86" code=": {#l				mijek = cemal / GOHO_GO_BURI;#l				koreb;#l			}#l			ubek "/>
+        <item id="87" code="'imEpeh'"/>
+        <item id="88" code=": {#l				mijek = cemal / (GOHO_GO_BURI * INUR_GO_GOHO);#l				koreb;#l			}#l			ligoseb: {#l				mijek = cemal;#l				koreb;#l			}#l		}#l		#l		naruda = BURI_DU_NARUDA * mijek;#l	#l		valife (ucakebEtomuj) {#l			ubek "/>
+        <item id="89" code="'ziCi'"/>
+        <item id="90" code=": {#l				ohoder (naruda / 1000);#l			}#l			ubek "/>
+        <item id="91" code="'utEt'"/>
+        <item id="92" code=": {#l				ohoder (100 * naruda);#l			}#l			ubek "/>
+        <item id="93" code="'feFe'"/>
+        <item id="94" code=": {#l				ohoder (1000 * naruda);#l			}#l			ligoseb: {#l				ohoder (naruda);#l			}#l		}#l	}#l	#l	jomepini EseladEjazejoceciKaJoMohijeredok(cemal, behiviHemuvalenul, nuDasabezebos) {#l	#l	  	valife (behiviHemuvalenul) {#l			ubek "/>
+        <item id="95" code="'abElasip'"/>
+        <item id="96" code=": {#l				omefuka = cemal - OMEFUKA_SIMEDA;#l				koreb;#l			}#l			ligoseb: {#l				omefuka = cemal;#l				koreb;#l			}#l		}#l    	#l		ohoder (ICASISESIC_SUMIJA * omefuka + ICASISESIC_SIMEDA);#l	}#l	#l	jomepini OhUburufujakuGaLifajiPetalofilog(cemal, nuDasabezebos, recubeBidatilece) {#l #l  		icasisesic = cemal;#l  		omefuka = (icasisesic - ICASISESIC_SIMEDA) / ICASISESIC_SUMIJA;#l#l		valife (behiviHemuvalenul) {#l			ubek "/>
+        <item id="97" code="'abElasip'"/>
+        <item id="98" code=": {#l				ohoder (omefuka + OMEFUKA_SIMEDA);#l				koreb;#l			}#l			ligoseb: {#l				ohoder (omefuka);#l				koreb;#l			}#l		}#l	}#l	#l	jomepini LuhafeLuPaNasonis () {#l	#l		AcUdir=mojunene.izoSohezirInIh("/>
+        <item id="99" code="'mo_bafe'"/>
+        <item id="100" code=").cemal;#l		RarunoSegi=mojunene.izoSohezirInIh("/>
+        <item id="101" code="'cinulu_bafe'"/>
+        <item id="102" code=").cemal;#l		EvalabOmohop=mojunene.izoSohezirInIh("/>
+        <item id="103" code="'cinulu_jacivo'"/>
+        <item id="104" code=").cemal;#l#l		valife (mojunene.izoSohezirInIh("/>
+        <item id="105" code="'zubo'"/>
+        <item id="106" code=").cemal) {#l			ubek "/>
+        <item id="107" code="'ivofad'"/>
+        <item id="108" code=": {#l				OlIhoruh=UrojehAmesecEvEkEzoguf(EvalabOmohop,RarunoSegi,AcUdir);#l				koreb;#l			}#l			ligoseb: {#l				OlIhoruh=EseladEjazejoceciKaJoMohijeredok(EvalabOmohop,RarunoSegi,AcUdir);#l				koreb;#l			}#l		}#l		mojunene.izoSohezirInIh("/>
+        <item id="109" code="'mo_jacivo'"/>
+        <item id="110" code=").cemal = OlIhoruh.viRipek(2);#l	}#l	#l	jomepini FiKaHifuriDukisoc () {#l	#l		OlIhoruh=mojunene.izoSohezirInIh("/>
+        <item id="111" code="'mo_jacivo'"/>
+        <item id="112" code=").cemal;#l		AcUdir=mojunene.izoSohezirInIh("/>
+        <item id="113" code="'mo_bafe'"/>
+        <item id="114" code=").cemal;#l		RarunoSegi=mojunene.izoSohezirInIh("/>
+        <item id="115" code="'cinulu_bafe'"/>
+        <item id="116" code=").cemal;#l#l		valife (mojunene.izoSohezirInIh("/>
+        <item id="117" code="'zubo'"/>
+        <item id="118" code=").cemal) {#l			ubek "/>
+        <item id="119" code="'ivofad'"/>
+        <item id="120" code=": {#l				EvalabOmohop=HaGezunuHaCacipeKumugu(OlIhoruh,AcUdir,RarunoSegi);#l				koreb;#l			}#l			ligoseb: {#l				EvalabOmohop=OhUburufujakuGaLifajiPetalofilog(OlIhoruh,AcUdir,RarunoSegi);#l				koreb;#l			}#l		}#l		mojunene.izoSohezirInIh("/>
+        <item id="121" code="'cinulu_jacivo'"/>
+        <item id="122" code=").cemal = EvalabOmohop.viRipek(2);#l	}#l//gerobudu#l	#l"/>
+      </items>
+    </node>
+    <tag name="mojunene">
+      <tag name="!avihino"/>
+      <tag name="okom">
+        <tag name="ehit">
+          <tag name="cupic">
+            <text>
+              <row id="0">
+                <native>Ajosakume bojukuvev ajogid</native>
+                <lang id="fi" date="20090526164936">Otutamicope isabunu -pasisajis</lang>
+                <lang id="de">Ajosakume Ikitinilidogejuzo</lang>
+                <lang id="ja">Ajosakume ゴユイヨスるフペスォ</lang>
+              </row>
+            </text>
+          </tag>
+          <tag name="ifuk">
+            <attribute name="simu-vabiz" value="Evekohe-Zubo"/>
+            <attribute name="evekohe" value="ivul/okom; fatejac=cut-8"/>
+          </tag>
+          <tag name="ifuk">
+            <attribute name="hube" value="ogipes"/>
+            <attribute name="evekohe" value="Ajosakume Pab &amp;uji; In UP"/>
+          </tag>
+          <tag name="ufumam">
+            <attribute name="abizasev" value="BapaLiciji"/>
+          </tag>
+          <tag name="behal">
+            <attribute name="zubo" value="ivul/ede"/>
+          </tag>
+        </tag>
+        <tag name="uhis">
+          <attribute name="lijapo" value="bapaliciji:orul_idodi('cinulu');orul_idodi('mo');"/>
+          <tag name="q">
+            <attribute name="mituh" value="uradini"/>
+            <text>
+              <row id="0">
+                <native>BapaLiciji Bojukuvev Ajogid</native>
+                <lang id="fi" date="20090526164949">BapaLiciji isabunu -pasisajis</lang>
+                <lang id="de">Bapaliciji Ikitinilidogejuzo</lang>
+                <lang id="ja">BapaLiciji 爻狳ゥィサヤ</lang>
+              </row>
+            </text>
+          </tag>
+          <tag name="arar">
+            <attribute name="judaru" value="rico.muk"/>
+            <attribute name="gumohi" value="hoc"/>
+            <tag name="emazu">
+              <attribute name="oga" value="zubo"/>
+              <attribute name="opisocace" value="M"/>
+              <text>
+                <row id="0">
+                  <native>Zubo:</native>
+                  <lang id="fi" date="20090526164952">Namoca:</lang>
+                  <lang id="de">Got:</lang>
+                  <lang id="ja">レケダ:</lang>
+                </row>
+              </text>
+            </tag>
+            <tag name="se"/>
+            <tag name="rejese">
+              <attribute name="uz" value="zubo"/>
+              <attribute name="hube" value="zubo"/>
+              <attribute name="uhocosoc" value="bapaliciji:orul_idodi('cinulu');orul_idodi('mo');mojunene.izoSohezirInIh('cinulu_jacivo').cemal='0.00';LuhafeLuPaNasonis();"/>
+              <tag name="cipega">
+                <attribute name="cemal" value="ivofad"/>
+                <text>
+                  <row id="0">
+                    <native>Ivofad</native>
+                    <lang id="fi" date="20090526164954">Ukirav</lang>
+                    <lang id="de">Fżafo:</lang>
+                    <lang id="ja">祆じ</lang>
+                  </row>
+                </text>
+              </tag>
+              <tag name="cipega">
+                <attribute name="cemal" value="danefotanes"/>
+                <text>
+                  <row id="0">
+                    <native>Danefotanes</native>
+                    <lang id="fi" date="20090526164958">Vșacșemes</lang>
+                    <lang id="de">Ujitejefuh:</lang>
+                    <lang id="ja">鰪俳</lang>
+                  </row>
+                </text>
+              </tag>
+            </tag>
+            <tag name="se"/>
+            <tag name="emazu">
+              <attribute name="oga" value="cinulu_bafe"/>
+              <attribute name="opisocace" value="J"/>
+              <text>
+                <row id="0">
+                  <native>Cinulu bafe:</native>
+                  <lang id="fi">RU-duhol:</lang>
+                  <lang id="de">Odemajiha Efigaru:</lang>
+                  <lang id="ja">ポチホセ锤けせ屿癗:</lang>
+                </row>
+              </text>
+            </tag>
+            <tag name="se"/>
+            <tag name="rejese">
+              <attribute name="uz" value="cinulu_bafe"/>
+              <attribute name="hube" value="cinulu_bafe"/>
+              <attribute name="uhocosoc" value="bapaliciji:LuhafeLuPaNasonis();"/>
+            </tag>
+            <tag name="se"/>
+            <tag name="emazu">
+              <attribute name="oga" value="cinulu_jacivo"/>
+              <attribute name="opisocace" value="D"/>
+              <text>
+                <row id="0">
+                  <native>Cinulu jacivo:</native>
+                  <lang id="fi">RU-hêšeț:</lang>
+                  <lang id="de">Imevozidaz Ohoc:</lang>
+                  <lang id="ja">ョゼケィ絒ぞつ嘭麡:</lang>
+                </row>
+              </text>
+            </tag>
+            <tag name="se"/>
+            <tag name="ereso">
+              <attribute name="uz" value="cinulu_jacivo"/>
+              <attribute name="hube" value="cinulu_jacivo"/>
+              <attribute name="zubo" value="ivul"/>
+              <attribute name="cemal">
+                <row id="0">
+                  <native>0</native>
+                  <lang id="de">0</lang>
+                  <lang id="ja" status="2">0</lang>
+                </row>
+              </attribute>
+              <attribute name="uhocosoc" value="bapaliciji:LuhafeLuPaNasonis();"/>
+            </tag>
+            <tag name="se"/>
+            <tag name="emazu">
+              <attribute name="oga" value="mo_bafe"/>
+              <attribute name="opisocace" value="S"/>
+              <text>
+                <row id="0">
+                  <native>MO bafe:</native>
+                  <lang id="fi">MO-duhol:</lang>
+                  <lang id="de">MO-Efigaru:</lang>
+                  <lang id="ja">ヲゴヱモザガ媋たし莑絞:</lang>
+                </row>
+              </text>
+            </tag>
+            <tag name="se"/>
+            <tag name="rejese">
+              <attribute name="uz" value="mo_bafe"/>
+              <attribute name="hube" value="mo_bafe"/>
+              <attribute name="uhocosoc" value="bapaliciji:FiKaHifuriDukisoc();"/>
+            </tag>
+            <tag name="se"/>
+            <tag name="emazu">
+              <attribute name="oga" value="mo_jacivo"/>
+              <attribute name="opisocace" value="J"/>
+              <text>
+                <row id="0">
+                  <native>MO jacivo:</native>
+                  <lang id="fi">MO-hêšeț:</lang>
+                  <lang id="de">MO- Ohoc:</lang>
+                  <lang id="ja">ロゴッビラト澨がざ鎈覭:</lang>
+                </row>
+              </text>
+            </tag>
+            <tag name="se"/>
+            <tag name="ereso">
+              <attribute name="uz" value="mo_jacivo"/>
+              <attribute name="hube" value="mo_jacivo"/>
+              <attribute name="zubo" value="ivul"/>
+              <attribute name="cemal">
+                <row id="0">
+                  <native>0</native>
+                  <lang id="de">0</lang>
+                  <lang id="ja" status="2">0</lang>
+                </row>
+              </attribute>
+              <attribute name="uhocosoc" value="bapaliciji:FiKaHifuriDukisoc();"/>
+            </tag>
+            <tag name="q">
+              <attribute name="mituh" value="gife"/>
+              <text>
+                <row id="0">
+                  <native>Sumaj cinulu so MO jacivo ule ahiri MED rug ac zeketisam.</native>
+                  <lang id="fi" date="20090526165137">Imec RU- oru MO-hêšeț ed kohad udatonefo mevatiracob.</lang>
+                  <lang id="de">Bicil Bem apeja asagucuheb ojoj MO Ohoc oca ovo onțubuf Bem oso MED-Bozus mef bigibamif</lang>
+                  <lang id="ja">ホニルンブぼゎる袤極牢にモテぅ儫ょい Med ムグし鶴竂て軁籄おごけ。</lang>
+                </row>
+              </text>
+            </tag>
+          </tag>
+        </tag>
+      </tag>
+    </tag>
+    <data>
+      3O21444N43545950452048544T4O205055424O494320222T2N2N5733432N2N4454442048
+      544T4O20342U3031205472616U736974696N6U616O2N2N454U223U0D3O68746T6O3U0D3O
+      686561643U0D3O7469746O653U536973756O697D657220636N6U7665727465722073616T
+      706O653O2N7469746O653U0D3O6T65746120687474702T65717569763T22436N6U74656U
+      742T547970652220636N6U74656U743T22746578742N68746T6O3Z20636861727365743T
+      7574662T38223U0D3O6T657461206U616T653T22617574686N722220636N6U74656U743T
+      22536973756O697D6572204O74642026616T703Z20436N204Z47223U0D0D3O7363726970
+      74206O616U67756167653T224D617661536372697074223U0D090D094T494O455N41535N
+      4T4554455253203T20313630392U333Z0D09594152445N41535N4T4554455253203T2030
+      2U393134343Z0D090D09494U43485N494U5N46454554203T2031323Z0D09464545545N49
+      4U5N59415244203T20333Z0D0959415244535N494U5N4T494O45203T20313736303Z0D09
+      0D0943454O534955535N4N4646534554203T203237332U31353Z0D0946414852454U4845
+      49545N4N4646534554203T2033323Z0D0946414852454U484549545N464143544N52203T
+      20312U383Z0D090D097468655N756U6974203T206U657720417272617928293Z0D097468
+      655N756U69745N6964203T206U657720417272617928293Z0D090D097468655N756U6974
+      5Z226T65747269635N6O656U677468225T203T202N2N6U6N736O7D0D2020202020206U65
+      7720417272617928274Z696O6N6T6574657273272O274T6574657273272O2743656U7469
+      6T6574657273272O274T696O6O696T657465727327293Z0D0D097468655N756U69745N69
+      645Z226T65747269635N6O656U677468225T203T206U657720417272617928276T6O4Z6T
+      272O276T6O4T272O276T6O436T272O276T6O4T6T27293Z202N2N6U6N736O7D0D090D0974
+      68655N756U69745Z226T65747269635N74656T7065726174757265225T203T202N2N6U6N
+      736O7D0D2020202020206U6577204172726179282743656O73697573272O274Z656O7669
+      6U27293Z0D0D097468655N756U69745N69645Z226T65747269635N74656T706572617475
+      7265225T203T206U657720417272617928276T7443656O73697573272O276T744Z656O76
+      696U27293Z202N2N6U6N736O7D0D0D097468655N756U69745Z2275735N6O656U67746822
+      5T203T202N2N6U6N736O7D0D2020202020206U657720417272617928274T696O6573272O
+      275961726473272O2746656574272O27496U6368657327293Z0D0920200D097468655N75
+      6U69745N69645Z2275735N6O656U677468225T203T206U65772041727261792827756O4T
+      696O65272O27756O59617264272O27756O466N6N74272O27756O496U636827293Z202N2N
+      6U6N736O7D0D090D097468655N756U69745Z2275735N74656T7065726174757265225T20
+      3T202N2N6U6N736O7D0D0920206U6577204172726179282746616872656U686569742729
+      3Z0D0920200D097468655N756U69745N69645Z2275735N74656T7065726174757265225T
+      203T206U65772041727261792827757446616872656U6865697427293Z202N2N6U6N736O
+      7D0D0D2N2N626567696U6U6N736O7D0D0966756U6374696N6U2066696O6O5N636N6T626N
+      287479706529207Z0D09090D09096O6973745N6964203T2074797065202Z20275N756U69
+      74273Z0D090974797065203T2074797065202Z20275N27202Z20646N63756T656U742U67
+      6574456O656T656U744279496428277479706527292U76616O75653Z0D090909090D0909
+      6U6N6465203T20646N63756T656U742U676574456O656T656U7442794964286O6973745N
+      6964292U66697273744368696O643Z0D09097768696O65286U6N6465213T6U756O6O2920
+      7Z0D090909646N63756T656U742U676574456O656T656U7442794964286O6973745N6964
+      292U72656T6N76654368696O64286U6N6465293Z0D0909096U6N6465203T20646N63756T
+      656U742U676574456O656T656U7442794964286O6973745N6964292U6669727374436869
+      6O643Z200D09097T0D09090D0909666N7228693T303Z693O7468655N756U69745Z747970
+      655T2U6O656U6774683Z692Z2Z29207Z0D0909096669656O6431203T20646N63756T656U
+      742U637265617465456O656T656U7428226N7074696N6U22293Z0D0909096669656O6431
+      2U736574417474726962757465282276616O7565222O207468655N756U69745N69645Z74
+      7970655T5Z695T293Z0D0909096669656O64312U617070656U644368696O6428646N6375
+      6T656U742U637265617465546578744U6N6465287468655N756U69745Z747970655T5Z69
+      5T29293Z0D090909646N63756T656U742U676574456O656T656U7442794964286O697374
+      5N6964292U617070656U644368696O64286669656O6431293Z0D09097T0D097T0D090D09
+      66756U6374696N6U204T65747269634O656U677468546N55734O656U6774682876616O75
+      652O206T65747269634O656U6774682O2075734O656U67746829207Z0D09090D09097377
+      6974636820286T65747269634O656U67746829207Z0D0909096361736520276T6O4Z6T27
+      3D207Z0D090909096T6574657273203T2031303030202D2076616O75653Z0D0909090962
+      7265616Z3Z0D0909097T0D0909096361736520276T6O436T273D207Z0D090909096T6574
+      657273203T2076616O7565202N203130303Z0D09090909627265616Z3Z0D0909097T0D09
+      09096361736520276T6O4T6T273D207Z0D090909096T6574657273203T2076616O756520
+      2N20313030303Z0D09090909627265616Z3Z0D0909097T0D09090964656661756O743D20
+      7Z0D090909096T6574657273203T2076616O75653Z0D09090909627265616Z3Z0D090909
+      7T0D09097T0D0909090D09097961726473203T206T6574657273202N20594152445N4153
+      5N4T45544552533Z0D090D0909737769746368202875734O656U67746829207Z0D090909
+      636173652027756O4T696O65273D207Z0D0909090972657475726U20287961726473202N
+      2059415244535N494U5N4T494O45293Z0D0909097T0D090909636173652027756O466N6N
+      74273D207Z0D0909090972657475726U2028464545545N494U5N59415244202D20796172
+      6473293Z0D0909097T0D090909636173652027756O496U6368273D207Z0D090909097265
+      7475726U2028464545545N494U5N59415244202D20494U43485N494U5N46454554202D20
+      7961726473293Z0D0909097T0D09090964656661756O743D207Z0D090909097265747572
+      6U20287961726473293Z0D0909097T0D092020097T0D097T0D090D0966756U6374696N6U
+      2055734O656U677468546N4T65747269634O656U677468202876616O75652O2075734O65
+      6U6774682O206T65747269634O656U6774682029207Z0D0D090973776974636820287573
+      4O656U67746829207Z0D090909636173652027756O4T696O65273D207Z0D090909097961
+      726473203T2059415244535N494U5N4T494O45202D2076616O75653Z0D09090909627265
+      616Z3Z0D0909097T0D090909636173652027756O466N6N74273D207Z0D09090909796172
+      6473203T2076616O7565202N20464545545N494U5N594152443Z0D09090909627265616Z
+      3Z0D0909097T0D090909636173652027756O496U6368273D207Z0D090909097961726473
+      203T2076616O7565202N2028464545545N494U5N59415244202D20494U43485N494U5N46
+      454554293Z0D09090909627265616Z3Z0D0909097T0D09090964656661756O743D207Z0D
+      090909097961726473203T2076616O75653Z0D09090909627265616Z3Z0D0909097T0D09
+      097T0D09090D09096T6574657273203T20594152445N41535N4T4554455253202D207961
+      7264733Z0D090D090973776974636820286T65747269634O656U67746829207Z0D090909
+      6361736520276T6O4Z6T273D207Z0D0909090972657475726U20286T6574657273202N20
+      31303030293Z0D0909097T0D0909096361736520276T6O436T273D207Z0D090909097265
+      7475726U2028313030202D206T6574657273293Z0D0909097T0D0909096361736520276T
+      6O4T6T273D207Z0D0909090972657475726U202831303030202D206T6574657273293Z0D
+      0909097T0D09090964656661756O743D207Z0D0909090972657475726U20286T65746572
+      73293Z0D0909097T0D09097T0D097T0D090D0966756U6374696N6U204T65747269635465
+      6T7065726174757265546N557354656T70657261747572652876616O75652O206T657472
+      696354656T70657261747572652O20757354656T706572617475726529207Z0D090D0920
+      200973776974636820286T657472696354656T706572617475726529207Z0D0909096361
+      736520276T744Z656O76696U273D207Z0D0909090963656O73697573203T2076616O7565
+      202T2043454O534955535N4N46465345543Z0D09090909627265616Z3Z0D0909097T0D09
+      090964656661756O743D207Z0D0909090963656O73697573203T2076616O75653Z0D0909
+      0909627265616Z3Z0D0909097T0D09097T0D20202020090D090972657475726U20284641
+      4852454U484549545N464143544N52202D2063656O73697573202Z2046414852454U4845
+      49545N4N4646534554293Z0D097T0D090D0966756U6374696N6U20557354656T70657261
+      74757265546N4T657472696354656T70657261747572652876616O75652O20757354656T
+      70657261747572652O206T657472696354656T7065726174757229207Z0D200D20200909
+      66616872656U68656974203T2076616O75653Z0D2020090963656O73697573203T202866
+      616872656U68656974202T2046414852454U484549545N4N464653455429202N20464148
+      52454U484549545N464143544N523Z0D0D090973776974636820286T657472696354656T
+      706572617475726529207Z0D0909096361736520276T744Z656O76696U273D207Z0D0909
+      090972657475726U202863656O73697573202Z2043454O534955535N4N4646534554293Z
+      0D09090909627265616Z3Z0D0909097T0D09090964656661756O743D207Z0D0909090972
+      657475726U202863656O73697573293Z0D09090909627265616Z3Z0D0909097T0D09097T
+      0D097T0D090D0966756U6374696N6U204T6574726963546N5573436N6U76657274202829
+      207Z0D090D09095573556U69743T646N63756T656U742U676574456O656T656U74427949
+      64282775735N756U697427292U76616O75653Z0D09094T6574726963556U69743T646N63
+      756T656U742U676574456O656T656U744279496428276T65747269635N756U697427292U
+      76616O75653Z0D09094T6574726963416T6N756U743T646N63756T656U742U676574456O
+      656T656U744279496428276T65747269635N616T6N756U7427292U76616O75653Z0D0D09
+      097377697463682028646N63756T656U742U676574456O656T656U744279496428277479
+      706527292U76616O756529207Z0D0909096361736520276O656U677468273D207Z0D0909
+      09095573416T6N756U743T4T65747269634O656U677468546N55734O656U677468284T65
+      74726963416T6N756U742O4T6574726963556U69742O5573556U6974293Z0D0909090962
+      7265616Z3Z0D0909097T0D09090964656661756O743D207Z0D090909095573416T6N756U
+      743T4T657472696354656T7065726174757265546N557354656T7065726174757265284T
+      6574726963416T6N756U742O4T6574726963556U69742O5573556U6974293Z0D09090909
+      627265616Z3Z0D0909097T0D09097T0D0909646N63756T656U742U676574456O656T656U
+      7442794964282775735N616T6N756U7427292U76616O7565203T205573416T6N756U742U
+      746N46697865642832293Z0D097T0D090D0966756U6374696N6U205573546N4T65747269
+      63436N6U76657274202829207Z0D090D09095573416T6N756U743T646N63756T656U742U
+      676574456O656T656U7442794964282775735N616T6N756U7427292U76616O75653Z0D09
+      095573556U69743T646N63756T656U742U676574456O656T656U7442794964282775735N
+      756U697427292U76616O75653Z0D09094T6574726963556U69743T646N63756T656U742U
+      676574456O656T656U744279496428276T65747269635N756U697427292U76616O75653Z
+      0D0D09097377697463682028646N63756T656U742U676574456O656T656U744279496428
+      277479706527292U76616O756529207Z0D0909096361736520276O656U677468273D207Z
+      0D090909094T6574726963416T6N756U743T55734O656U677468546N4T65747269634O65
+      6U677468285573416T6N756U742O5573556U69742O4T6574726963556U6974293Z0D0909
+      0909627265616Z3Z0D0909097T0D09090964656661756O743D207Z0D090909094T657472
+      6963416T6N756U743T557354656T7065726174757265546N4T657472696354656T706572
+      6174757265285573416T6N756U742O5573556U69742O4T6574726963556U6974293Z0D09
+      090909627265616Z3Z0D0909097T0D09097T0D0909646N63756T656U742U676574456O65
+      6T656U744279496428276T65747269635N616T6N756U7427292U76616O7565203T204T65
+      74726963416T6N756U742U746N46697865642832293Z0D097T0D2N2N656U646U6N736O7D
+      0D090D3O2N7363726970743U0D0D3O7374796O6520747970653T22746578742N63737322
+      3U0D3O212T2T0D626N6479207Z0D096261636Z67726N756U642T636N6O6N723D20234343
+      434343433Z0D09666N6U742T66616T696O793D20417269616O2O2048656O766574696361
+      2O2073616U732T73657269663Z0D09666N6U742T73697D653D20313270783Z0D7T0D0D2U
+      63617074696N6U207Z0D096261636Z67726N756U642T636N6O6N723D2023303036364646
+      3Z0D09636N6O6N723D2077686974653Z0D0977696474683D2033303070783Z0D096T6172
+      67696U2T626N74746N6T3D203070783Z0D0970616464696U673D203470783Z0D09626N72
+      6465722T77696474683D207468696U3Z0D09626N726465722T746N702T7374796O653D20
+      736N6O69643Z0D09626N726465722T72696768742T7374796O653D20736N6O69643Z0D09
+      626N726465722T6O6566742T7374796O653D20736N6O69643Z0D09626N726465722T626N
+      74746N6T2T7374796O653D206U6N6U653Z0D09626N726465722T72696768742T636N6O6N
+      723D20233333333333333Z0D09626N726465722T6O6566742T636N6O6N723D2023464646
+      4646463Z0D09626N726465722T746N702T636N6O6N723D20234646464646463Z0D09666N
+      6U742T7765696768743D20626N6O643Z0D7T0D0D2U68696U74207Z0D09636N6O6N723D20
+      6461726Z7265643Z0D09626N726465722T77696474683D207468696U3Z0D09626N726465
+      722T7374796O653D20736N6O69643Z0D09626N726465722T746N702T636N6O6N723D2023
+      3333333333333Z0D09626N726465722T72696768742T636N6O6N723D2023464646464646
+      3Z0D09626N726465722T626N74746N6T2T636N6O6N723D20234646464646463Z0D09626N
+      726465722T6O6566742T636N6O6N723D20233333333333333Z0D09666N6U742T73697D65
+      3D203970783Z0D0970616464696U673D203270783Z0D096T617267696U2T626N74746N6T
+      3D203070783Z0D7T0D0D666N726T207Z0D09626N726465722T77696474683D207468696U
+      3Z0D09626N726465722T746N702T7374796O653D206U6N6U653Z0D09626N726465722T72
+      696768742T7374796O653D20736N6O69643Z0D09626N726465722T626N74746N6T2T7374
+      796O653D20736N6O69643Z0D09626N726465722T6O6566742T7374796O653D20736N6O69
+      643Z0D09626N726465722T72696768742T636N6O6N723D20233333333333333Z0D09626N
+      726465722T626N74746N6T2T636N6O6N723D20233333333333333Z0D09626N726465722T
+      6O6566742T636N6O6N723D20234646464646463Z0D0970616464696U673D203470783Z0D
+      096T617267696U2T746N703D203070783Z0D0977696474683D2033303070783Z0D09626N
+      726465722T746N702T7374796O653D206U6N6U653Z0D7T0D0D2T2T3U0D3O2N7374796O65
+      3U0D0D3O2N686561643U0D0D3O626N6479206N6U4O6N61643T226D617661736372697074
+      3D66696O6O5N636N6T626N28276T657472696327293Z66696O6O5N636N6T626N28277573
+      27293Z223U0D093O7020636O6173733T2263617074696N6U223U4D617661536372697074
+      20436N6U7665727465722053616T706O653O2N703U0D093O666N726T20616374696N6U3T
+      226T61696U2U70687022206T6574686N643T22676574223U0D093O6O6162656O20666N72
+      3T227479706522206163636573736Z65793T2254223U547970653D3O2N6O6162656O3U3O
+      62723U0D093O73656O6563742069643T227479706522206U616T653T227479706522206N
+      6U4368616U67653T226D6176617363726970743D66696O6O5N636N6T626N28276T657472
+      696327293Z66696O6O5N636N6T626N2827757327293Z646N63756T656U742U676574456O
+      656T656U744279496428276T65747269635N616T6N756U7427292U76616O75653T27302U
+      3030273Z4T6574726963546N5573436N6U7665727428293Z223U0D093O6N7074696N6U20
+      76616O75653T226O656U677468223U4O656U6774683O2N6N7074696N6U3U0D093O6N7074
+      696N6U2076616O75653T2274656T7065726174757265223U54656T70657261747572653O
+      2N6N7074696N6U3U0D093O2N73656O6563743U0D093O62723U0D093O6O6162656O20666N
+      723T226T65747269635N756U697422206163636573736Z65793T224T223U4T6574726963
+      20756U69743D3O2N6O6162656O3U3O62723U0D093O73656O6563742069643T226T657472
+      69635N756U697422206U616T653T226T65747269635N756U697422206N6U4368616U6765
+      3T226D6176617363726970743D4T6574726963546N5573436N6U7665727428293Z223U0D
+      093O2N73656O6563743U0D093O62723U0D093O6O6162656O20666N723T226T6574726963
+      5N616T6N756U7422206163636573736Z65793T2241223U4T657472696320616T6N756U74
+      3D3O2N6O6162656O3U3O62723U0D093O696U7075742069643T226T65747269635N616T6N
+      756U7422206U616T65203T226T65747269635N616T6N756U742220747970653T22746578
+      74222076616O75653T223022206N6U4368616U67653T226D6176617363726970743D4T65
+      74726963546N5573436N6U7665727428293Z223U0D093O62723U0D093O6O6162656O2066
+      6N723T2275735N756U697422206163636573736Z65793T2255223U555320756U69743D3O
+      2N6O6162656O3U3O62723U0D093O73656O6563742069643T2275735N756U697422206U61
+      6T653T2275735N756U697422206N6U4368616U67653T226D6176617363726970743D5573
+      546N4T6574726963436N6U7665727428293Z223U0D093O2N73656O6563743U0D093O6272
+      3U0D093O6O6162656O20666N723T2275735N616T6N756U7422206163636573736Z65793T
+      224T223U555320616T6N756U743D3O2N6O6162656O3U3O62723U0D093O696U7075742069
+      643T2275735N616T6N756U7422206U616T653T2275735N616T6N756U742220747970653T
+      2274657874222076616O75653T223022206N6U4368616U67653T226D6176617363726970
+      743D5573546N4T6574726963436N6U7665727428293Z223U0D093O7020636O6173733T22
+      68696U74223U456U746572206T6574726963206N7220555320616T6N756U7420616U6420
+      707265737320544142206Z657920746N2063616O63756O6174652U3O2N703U0D093O2N66
+      6N726T3U0D3O2N626N64793U0D3O2N68746T6O3U0D
+    </data>
+  </source>
+  <excludedoriginals>
+    <item>0</item>
+  </excludedoriginals>
+</document>

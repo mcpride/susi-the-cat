@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20160917120718" version="4.0.364" date="20160917120720" scan="6" scanned="20160917120718">
+  <lang id="fi"/>
+  <source class="TDelphiSource" name="Acovocu1.fog" original="cu" encoding="utf-8" outputitems="[oiResource]" date="20160917182914" widestringusage="wsYes">
+    <resources>
+      <disabled id="1"/>
+      <disabled id="3"/>
+      <disabled id="6"/>
+      <disabled id="12"/>
+      <disabled id="14"/>
+      <disabled id="24"/>
+    </resources>
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TBooleanData</class>
+      <class>TCardinalData</class>
+      <class>TColorData</class>
+      <class>TFontData</class>
+      <class>TFontColorData</class>
+      <class>TFontNameData</class>
+      <class>TFontSizeData</class>
+      <class>TFontStyleData</class>
+      <class>TImeData</class>
+      <class>TIntegerData</class>
+      <class>TPictureData</class>
+      <class>TReadingOrderData</class>
+    </excludeddatatypes>
+    <mappings>
+      <component name="EBegedo" class="TVisButton"/>
+      <component name="UJedoh" class="TVisLabel"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="NapujUcamos" class="TVisSpeedButton"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="Ibep" class="TVisEdit"/>
+      <keyword name="Fane" class="TVisEdit"/>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="Gomi" class="TVisGrid"/>
+      <keyword name="PocogUdun" class="TVisImageList"/>
+      <keyword name="Judaru" class="TVisAction"/>
+      <keyword name="EpisEhut" class="TVisHiddenComponent"/>
+      <keyword name="UfuneJele" class="TVisHiddenComponent"/>
+      <keyword name="Dilub" class="TVisHiddenComponent"/>
+      <keyword name="HecojuMEG" class="TVisHiddenComponent"/>
+      <keyword name="ZeziZis" class="TVisHiddenComponent"/>
+      <keyword name="NiriLadeza" class="TVisHiddenComponent"/>
+      <keyword name="Lehuf" class="TVisHiddenComponent"/>
+      <keyword name="Ahiva" class="TVisHiddenComponent"/>
+      <keyword name="Cadocezu" class="TVisHiddenComponent"/>
+      <property name="Corifapuv.Nogasil"/>
+      <property name="MesoVojezuc"/>
+    </mappings>
+    <node class="TVclFormFolder" name="Aleka" resid="10">
+      <node class="TVclFormNode" name="OKIMO1" resname="OKIMO1">
+        <form class="TVclForm" name="Arar1" type="TForm1" textheight="13">
+          <row id="Uradini">
+            <native>Ajogid</native>
+            <lang id="fi" date="20080209134326">Pasisajis</lang>
+          </row>
+          <row id="VubejaMesako">59</row>
+          <row id="VifuriTizit">368</row>
+          <row id="Onaj.Tubar">onUvojanEvev</row>
+          <row id="Onaj.Hube">Emihig</row>
+          <row id="Onaj.Vuse">8</row>
+          <row id="Onaj.Behal">[]</row>
+          <row id="Sale">0</row>
+          <row id="Epi">0</row>
+          <component class="TVisLabel" name="Emazu1" type="TLabel">
+            <row id="Uradini">
+              <native>Hevof Osiga!</native>
+              <lang id="fi" date="20080209134329">Amo zojodoh!</lang>
+            </row>
+            <row id="Usical">13</row>
+            <row id="Sale">8</row>
+            <row id="Epi">8</row>
+            <row id="Duzel">58</row>
+          </component>
+          <component class="TVisButton" name="BugebefAmifuh" type="TButton">
+            <row id="Uradini">
+              <native>Kadazuv</native>
+              <lang id="fi" date="20080209134340">ibasekah</lang>
+            </row>
+            <row id="Usical">25</row>
+            <row id="Sale">8</row>
+            <row id="Epi">27</row>
+            <row id="Duzel">75</row>
+          </component>
+          <component class="TVisButton" name="LihirokoJarudo" type="TButton">
+            <row id="Uradini">
+              <native>Zedobel</native>
+              <lang id="fi" date="20080209134350">tesolakudej</lang>
+            </row>
+            <row id="Usical">25</row>
+            <row id="Sale">89</row>
+            <row id="Epi">27</row>
+            <row id="Duzel">75</row>
+          </component>
+        </form>
+      </node>
+    </node>
+  </source>
+</document>

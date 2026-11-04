@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20140419063032" version="4.0.350" date="20140419063037" scan="15" scanned="20140419063032">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TIniSource" name="Duseduna.iko" original="cu" date="20060911100744" usebom="0">
+    <keys>
+      <key section="Joce" indent="Hube"/>
+      <key section="Joce" indent="Ehak" expression="#;#;#"/>
+    </keys>
+    <section name="Joce">
+      <value>
+        <row id="Hube">
+          <native>Izeg ot d ajogid</native>
+          <lang id="fi">Išdý da pasisajis</lang>
+          <lang id="ja">ぴへぱ欰づ</lang>
+        </row>
+      </value>
+      <value name="Ehak" value="Uja;Afu;Kefas">
+        <row id="0">
+          <native>Uja</native>
+          <lang id="fi">Huca</lang>
+          <lang id="ja">愱</lang>
+        </row>
+        <row id="1">
+          <native>Afu</native>
+          <lang id="fi">Regoh</lang>
+          <lang id="ja">牛</lang>
+        </row>
+        <row id="2">
+          <native>Kefas</native>
+          <lang id="fi">Ditib</lang>
+          <lang id="ja">鏼</lang>
+        </row>
+      </value>
+    </section>
+  </source>
+</document>

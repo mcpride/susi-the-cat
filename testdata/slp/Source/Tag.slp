@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20151018133247" version="4.0.358" date="20151018133254" scan="1" scanned="20151018133247">
+  <lang id="fi"/>
+  <source class="TSourceCodeSource" name="Dav.ini" original="cu" date="20151018203004" tagusage="tuOnlyIncluded" tagrange="trNext" context="sccId">
+    <items>
+      <item id="0" code="azej OsuLotagi()#c#l{#c#l  // Izeg r d alace edovav. Ajosakume sofisaca ka ule otecibera ka.#c#l  ojig* vos = "/>
+      <item id="1" code="&quot;Hevof Osiga&quot;"/>
+      <item id="2" code=";#c#l#c#l  // Uhihofuj d ecuj nicafipi uhila catemor Ajosakume adij tut lugacebu edovav(r) da kigu ecuj#c#l  vos = "/>
+      <item id="3" code="&quot;REJESE * AGUL Ajogid&quot;"/>
+      <item id="4" code="; //uhila#c#l#c#l  // Git rob cobugo d catemor ac huv edovav lu lepin uso dav ilagikud lu huv catemor edovav#c#l  vos = Zeketisam("/>
+      <item id="5" code="&quot;Uja&quot;"/>
+      <item id="6" code=", "/>
+      <item id="7" code="&quot;Afu&quot;"/>
+      <item id="8" code="); //uso#c#l#c#l  vos = Zeketisam(/*uso*/"/>
+      <item id="9" string="Kefas" separator="&quot;">
+        <row id="Cemal" importid="9">Kefas</row>
+      </item>
+      <item id="10" code=", "/>
+      <item id="11" code="&quot;Zuda&quot;"/>
+      <item id="12" code=");#c#l}"/>
+    </items>
+  </source>
+</document>

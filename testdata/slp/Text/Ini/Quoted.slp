@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20140419063105" version="4.0.350" date="20140419063218" scan="10" scanned="20140419063211">
+  <lang id="fi"/>
+  <source class="TIniSource" name="Izebot.iko" original="cu" date="20070810134528" escape="seCpp" quote="sqDouble">
+    <keys>
+      <key section="ehak"/>
+    </keys>
+    <section name="ehak">
+      <value>
+        <row id="mucoju">
+          <native>Mucoju ecuj</native>
+          <lang id="fi">Bajusoûdulo goje</lang>
+        </row>
+      </value>
+      <value>
+        <row id="Ocuhad" changed="20140419063211">
+          <native>Ecuj uja#c#lEcuj afu</native>
+          <lang id="fi" invalidated="1" status="4">Goje huca#nGoje regoh</lang>
+        </row>
+      </value>
+    </section>
+  </source>
+</document>

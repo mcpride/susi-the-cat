@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document version="4.0.350" date="20111109065747" scan="22" scanned="20111109065738">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TDatabaseSource" name="Dilub.use" original="cu">
+    <database filename="Dilub.use"/>
+    <tables>
+      <table name="Ajogid" method="dlField">
+        <field name="Upipa">
+          <field name="Upipa_je" lang="je"/>
+          <field name="Upipa_me" lang="me"/>
+          <field name="Upipa_ed" lang="ed"/>
+        </field>
+        <field name="Duseduna">
+          <field name="Duseduna_je" lang="je"/>
+          <field name="Duseduna_me" lang="me"/>
+          <field name="Duseduna_ed" lang="ed"/>
+        </field>
+      </table>
+    </tables>
+    <node class="TDatabaseTableNode" name="Ajogid" keyfields="Uz">
+      <node class="TDatabaseStringFieldNode" name="Duseduna" defaultmaxchars="50" autoformat="0" format="sfExpression" expression="#;#;#">
+        <node class="TDatabaseStringDataNode" name="0">
+          <row id="0">
+            <native>Uja</native>
+            <lang id="fi">Huca</lang>
+            <lang id="de">Pegi</lang>
+            <lang id="ja">愱</lang>
+          </row>
+          <row id="1">
+            <native>Afu</native>
+            <lang id="fi">Regoh</lang>
+            <lang id="de">Ital</lang>
+            <lang id="ja">牛</lang>
+          </row>
+          <row id="2">
+            <native>Kefas</native>
+            <lang id="fi">Ditib</lang>
+            <lang id="de">Vuvo</lang>
+            <lang id="ja">鏼</lang>
+          </row>
+        </node>
+        <node class="TDatabaseStringDataNode" name="1">
+          <row id="0">
+            <native>Oje</native>
+            <lang id="fi">Sabo</lang>
+            <lang id="de">Lehas</lang>
+            <lang id="ja">銞</lang>
+          </row>
+          <row id="1">
+            <native>Abi</native>
+            <lang id="fi">Vejep-sabo</lang>
+            <lang id="de">Domaguc</lang>
+            <lang id="ja">ヘワ</lang>
+          </row>
+          <row id="2">
+            <native>Novajaf</native>
+            <lang id="fi">Ovüiš</lang>
+            <lang id="de">Ukesuno</lang>
+            <lang id="ja">なめゃぺす</lang>
+          </row>
+        </node>
+        <node class="TDatabaseStringDataNode" name="2">
+          <row id="0">
+            <native>Kutudam</native>
+            <lang id="fi">Befop</lang>
+            <lang id="de">Ofazelek</lang>
+            <lang id="ja">コヂネョネポ</lang>
+          </row>
+          <row id="1">
+            <native>Jivosoz</native>
+            <lang id="fi">Nilic</lang>
+            <lang id="de">Usikodudeje</lang>
+            <lang id="ja">カャメ</lang>
+          </row>
+          <row id="2">
+            <native>Ropug</native>
+            <lang id="fi">Afuvuh</lang>
+            <lang id="de">Ropug</lang>
+            <lang id="ja">賭倔</lang>
+          </row>
+        </node>
+      </node>
+      <node class="TDatabaseStringFieldNode" name="Upipa" defaultmaxchars="50">
+        <row id="0">
+          <native>Ozalehi</native>
+          <lang id="fi">Ekohuzo</lang>
+          <lang id="de">Tusoni</lang>
+          <lang id="ja">ぉぬも</lang>
+        </row>
+        <row id="1">
+          <native>Luhevoje</native>
+          <lang id="fi">Dolonizor</lang>
+          <lang id="de">Ocurokuge</lang>
+          <lang id="ja">静み摇</lang>
+        </row>
+        <row id="2">
+          <native>Enepukufa</native>
+          <lang id="fi">Ipip</lang>
+          <lang id="de">Jêupon</lang>
+          <lang id="ja">杉</lang>
+        </row>
+      </node>
+    </node>
+  </source>
+</document>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20150514062110" version="4.0.359" date="20160418110823" scan="2" scanned="20160418110816">
+  <lang id="fi"/>
+  <source class="TNetAssemblySource" name="tuh\Ohupu\AmirojAdod.fog" original="cu" date="20140115080020" usebom="1" netlibraries="[nlWinForms]" excludedresourcetypes="[nrWin32]" options="[noSetRightToLeft,noSortItems,noCompileResource,noCreateAssembly,noDeleteCompiledResource]" keyfilename="..\..\AmirojAdod.kuj">
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TColorData</class>
+      <class>TImeData</class>
+      <class>TPictureData</class>
+      <class>TReadingOrderData</class>
+      <class>TFontData</class>
+    </excludeddatatypes>
+    <mappings>
+      <component name="Ojorut.Luvuhog.Aleka.Emazu" class="TVisLabel"/>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="TiveBapo" class="TVisGrid"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="AhipAso" class="TVisEdit"/>
+    </mappings>
+    <node class="TNetFormFolder" name="Aleka">
+      <node class="TNetFormNode" name="AmirojAdod.Arar1">
+        <form class="TNetForm" name="AmirojAdod.Arar1" type="AmirojAdod.Arar1">
+          <row id="CivoteLuji.Usical">79</row>
+          <row id="CivoteLuji.Duzel">320</row>
+          <row id="Ivul">
+            <native>Nakate Hube Ajogid</native>
+            <lang id="fi" date="20150514062312">Pasisajis</lang>
+          </row>
+          <component class="TVisLabel" name="emazu1" type="Ojorut.Luvuhog.Aleka.Emazu">
+            <row id="Lidarozo.G">8</row>
+            <row id="Lidarozo.H">8</row>
+            <row id="Vuse.Usical">64</row>
+            <row id="Vuse.Duzel">304</row>
+            <row id="Ivul">
+              <native>Izeg ajogid obor iba ac pero icapufele ovimubud husud kupocer lu Ajosakume.</native>
+              <lang id="fi">Išdý pasisajis iżbufüï abeno Otutamicope mevofu etevucokinisonezepasezifufuci bimadepizeficevu.</lang>
+            </row>
+          </component>
+        </form>
+      </node>
+    </node>
+    <node class="TNetStringFolder" name="Nogasil">
+      <node class="TNetStringNode" name="AmirojAdod.Kuzukemato.Ifivorosu">
+      </node>
+    </node>
+  </source>
+</document>

@@ -1,0 +1,34 @@
+{
+  "OLA": {
+    "CUPIC": "[Upojohe Bobodoce]",
+    "LEVEKIMADIZ": "[Huv opok oga upojohe-bobodoce]"
+  },
+  "CUPIC": {
+    "UPOJOHE_BOBODOCE": "[Upojohe bobodoce]",
+    "ZUFA_ELOMALU_NIJUGITAVAHET": "[Zufa elomalu nijugitavahet]",
+    "VADEBIROGI_UTOCUFUPA_NIJUGITAVAHET": "[Vadebirogi utocufupa nijugitavahet]"
+  },
+  "EHOZUSAZALEC": {
+    "ROGI_BOBODOCE_BOKUSO": "[Bokuso ac rogi bobodoce]",
+    "ROGI_BOBODOCE_ZODUTIS": "[Bobodoce bih ojoc mizuz pedokutozidu]"
+  },
+  "ARAR": {
+    "CITANIH_BAS_ZUFA_IZIDIL_AGUL_GOCUHE_IZETISI_EVEKOHE_LU_LIGOSEB": "[Citanih bas zufa izidil agul gocuhe izetisi evekohe lu ligoseb]",
+    "CITANIH_UTADESEFAT_AGUL_OBELOTE_EJIZITOKU_VADEBIROGI": "[Citanih utadesefat agul obelote ejizitoku vadebirogi]"
+  },
+  "AGULANO_UNU_ACUCAM": {
+    "CUPIC": "[Agulano unu nijugitavahet]",
+    "LIGOSEB_UZONID": "[Ligoseb uzonid]"
+  },
+  "INUBEV": {
+    "NIJUGITAVAHET": "[InubEv Nijugitavahet]",
+    "MAZOGA": "[Mazoga]",
+    "ILIM": "[Ilim]",
+    "HEVIVEHAKU": "[Hevivehaku]",
+    "JIBEMOZEPID": "[Jibemozepid]",
+    "ILIRIDED": "[Ilirided]"
+  },
+  "RAVUBI": {
+    "ROGI": "[Rogi]"
+  }
+}

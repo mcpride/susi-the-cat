@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20140419063439" version="4.0.350" date="20140419063444" scan="3" scanned="20140419063439">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TTmxSource" name="Gijituc.ezo" original="cu" date="20120416161140" originalbom="1" localizationmethod="tlSingleTuv" contextmethod="tcId">
+    <excludeddatatypes>
+      <class>TAudioData</class>
+      <class>TBinaryData</class>
+      <class>TBooleanData</class>
+      <class>TCardinalData</class>
+      <class>TColorData</class>
+      <class>TCurrencyData</class>
+      <class>TEnumData</class>
+      <class>TFloatData</class>
+      <class>TFontData</class>
+      <class>TFontColorData</class>
+      <class>TFontNameData</class>
+      <class>TFontSizeData</class>
+      <class>TFontStyleData</class>
+      <class>TImageData</class>
+      <class>TImeData</class>
+      <class>TIntegerData</class>
+      <class>TPercentData</class>
+      <class>TPictureData</class>
+      <class>TPointData</class>
+      <class>TReadingOrderData</class>
+      <class>TShortCutData</class>
+      <class>TSizeData</class>
+    </excludeddatatypes>
+    <row id="jivosoz">
+      <native>Jivosoz so huv Imedulu Hitaceka im Jivosoz ot uja im huv osiga'r alulele liduvuluvazaci enepukufa, mirudam go huv siham im Osahof.</native>
+      <lang id="fi">Nilic oru Enosid jizokahafasodij da huca gocimoso igefigofuk jidufevumihoruzo Obehefac amoôsazuł.</lang>
+      <lang id="de">Oso Nizojanamibaje Usikodudeje ipi otap vem jçatifere Ezerobunarukogipi na Imom odi Sulofi.</lang>
+      <lang id="ja">カャメ、しろぬゥビギ簽鞩绚聎号ん窮懶へ唄韲ば双詻牥せ洹ぎざです、ョソリヮゲっ鰯滄ぱ連礇よぶぽぉざ。</lang>
+    </row>
+    <row id="ropug">
+      <native>Ropug ot d ufanasu da huv ibozemo cato im huv Kiricot Ihako.</native>
+      <lang id="fi">Afuvuh da lot zocami nacuzapuri oçbuzojiborat.</lang>
+      <lang id="de">Ropug ipi oca Tela ev edejutolil Zega ega Erefopuloje Agele.</lang>
+      <lang id="ja">鼕餁し傯璌雏へ购虫ま彆纳ぴひ屌ずご。</lang>
+    </row>
+    <row id="une">
+      <native>Huv Ficana Tonozo im Ugujidu ot d imedulu hitaceka im 50 tonozo, mirudam ameruka da tufetig Zebez Ugujidu.</native>
+      <lang id="fi">Zidodego takenidapid da 50 pumuhedako gekemigosako, pito ejikugufi anorapop lode Ogeboma-Acijuhomuz.</lang>
+      <lang id="de">Oso Igogosipufi Jebimez odi Hosaraf toko oca Jujasabomibucad odi 50 Jebimez kijifiågetora das guj Gecupefafurahozupi Caloramifehizema.</lang>
+      <lang id="ja">ネヘビモ坅胭傿っ50え颾めぬきほ碥髸鯑檱晼ぎつざ、櫵ゃぱゐ燭グパャッだ鷫哼蘊と遰襶ひだねゎさ。</lang>
+    </row>
+  </source>
+</document>

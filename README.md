@@ -34,6 +34,7 @@ cargo xtask dist               # release build (with icon and version info) and 
 cargo xtask ci                 # rustfmt --check, clippy -D warnings, all tests
 cargo xtask fmt | lint | test
 cargo xtask icons              # render assets\app-icon\susi.svg to susi.ico and susi-256.png
+cargo xtask set-version 0.3.0  # set the workspace version in Cargo.toml and Cargo.lock (used by the release)
 ```
 
 Workspace layout:
@@ -49,6 +50,7 @@ apps/susi-cli CLI (SlMake compatible) + `mcp` task
 xtask         automation (cargo xtask …)
 assets        app icon (see below)
 testdata      test fixtures (see below)
+.github       CI and release workflow; release tooling in package.json and .releaserc.json (see below)
 ```
 
 ### App icon (`assets/app-icon/`)
@@ -84,6 +86,41 @@ The integration tests run against synthetic fixtures that are part of the worksp
   source has been rewritten since. The tests expect exactly these differences (as Sisulizer reports them).
 - `.gitattributes` excludes `testdata/` from line-ending conversion, because the files are
   compared byte for byte.
+
+### Continuous integration and releases
+
+`.github/workflows/ci.yml` runs on every push and pull request:
+
+1. **test** – `cargo xtask ci` (rustfmt, clippy, all tests) on Windows, Linux and macOS.
+2. **semantic-release** (pushes to `main` only, after all tests passed) – [semantic-release](https://semantic-release.gitbook.io/)
+   derives the next version from the commit messages since the last `v*` tag
+   ([Conventional Commits](https://www.conventionalcommits.org/)):
+
+   | Commit message                                   | Release |
+   |--------------------------------------------------|---------|
+   | `fix: …`, `perf: …`                               | patch (0.2.0 → 0.2.1) |
+   | `feat: …`                                         | minor (0.2.0 → 0.3.0) |
+   | `feat!: …` or a `BREAKING CHANGE:` footer          | major (0.2.0 → 1.0.0) |
+   | `chore:`, `docs:`, `ci:`, `test:`, `refactor:`, `style:`, `build:` | no release |
+
+   For a release it prepends the notes to `CHANGELOG.md`, sets the version in `Cargo.toml` and
+   `Cargo.lock` (`cargo xtask set-version`), commits these files as `chore(release): x.y.z [skip ci]`,
+   creates the tag `vx.y.z` and a draft GitHub release.
+3. **build** – checks out the tag and runs `cargo xtask dist` on each platform; the archives
+   `susi-the-cat-x.y.z-windows-x64.zip`, `…-linux-x64.tar.gz` and `…-macos-arm64.tar.gz` (with
+   `susi`, `susi-cli`, `README.md`, `CHANGELOG.md` and a `.sha256` file each) are attached to the release.
+4. **publish** – publishes the draft once all archives are attached.
+
+Notes:
+
+- The release tooling is pinned in `package.json`/`package-lock.json` (Node.js ≥ 24.10). Local
+  preview of the next version: `npm ci`, then `npx semantic-release --dry-run --no-ci` (needs a
+  `GITHUB_TOKEN` with access to the repository).
+- The tag of the last release must exist (initially `v0.2.0`); without any `v*` tag semantic-release
+  would start with 1.0.0.
+- If `main` is a protected branch, the GitHub Actions bot must be allowed to push the release commit.
+- The Linux and macOS builds are unsigned plain executables (no installer, no `.app` bundle). On macOS
+  remove the quarantine flag after download: `xattr -d com.apple.quarantine susi susi-cli`.
 
 ---
 

@@ -1,0 +1,39 @@
+{
+  "CUPIC": {
+    "ETATUCIS_FEVU": "[Etatucis unu nijugitavahet]",
+    "IBEP_UNU": "[Ibep unu: {{hube}}]",
+    "DID_UNU": "[Did unu]"
+  },
+  "UNU": {
+    "HUBE": "[Hube]",
+    "UNO": "[Uno]",
+    "EBIMUMA": "[Cetu uno]"
+  },
+  "EHOZUSAZALEC": {
+    "EHAK_TUT_EZARI": "[Az ehak ezari]",
+       
+    "UNU_ZUVUBO_BOKUSO": "[Unu kihovula bokuso!]",
+    "UNU_ZUVUBO_ZODUTIS": "[Unu pedokutozidu kupocer]",
+  
+    "UNU_ROSUFI_BOKUSO": "[Unu rosufi bokuso!]",
+    "UNU_ROSUFI_ZODUTIS": "[Unu pedokutozidu akamefe]",
+  
+    "UNU_EKARIZ_HODEGOV": "[Vapopidoric gemej {{hube}} ule dohupokivig? Oposanezihul.]",
+    "UNU_EKARIZ_HODEGOV_CUPIC": "[Ivatibi rubuviga im {{hube}}]",
+    "UNU_EKARIZ_BOKUSO": "[Unu rubuviga bokuso!]",
+    "UNU_EKARIZ_ZODUTIS": "[Unu pedokutozidu jelunir]"
+  },
+  "ACUSOMONIN": {
+    "MINUJEKO": "[Minujeko dilub]",
+    "_OT_JOPE": "[Okovo dujered emerik]",
+    "ASALIPASI": "[D gasetid im {{ ivofad }} avisaharog bav hijamav]",
+    "UNU_AMATOPETIN_GO_BOK_HODEGOV": "[Huv bibekal amatopetin ot dujered jope lu {{hube}}.]",
+    "SAGUG_ARAR_SULAGI": "[Sagug arar sulagi]",
+    "MEHUSONAD": "[mehusonad]"
+  },
+  "RAVUBI": {
+    "NOGUHI": "[Noguhi]",
+    "EKARIZ": "[Ekariz]",
+    "ROGI": "[Rogi]"
+  }
+}

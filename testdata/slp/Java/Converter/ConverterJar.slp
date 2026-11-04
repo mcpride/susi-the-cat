@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20130701180527" version="4.0.350" date="20130701180529" scan="14" scanned="20130227105613">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <lang id="fr"/>
+  <source class="TJavaBinarySource" name="bojukuvev.ujo" original="cu" encoding="windows-1252" date="20130701150258" mainclass="Bojukuvev" vm="O:\Ikodefe Husud (g86)\Fifu\bof7\tuh\fifu.fog">
+    <excludeddatatypes>
+      <class>TPictureData</class>
+    </excludeddatatypes>
+    <node class="TJavaResourceNode" name="Bojukuvev.kuzukemato">
+      <row id="Afoke">
+        <native>Afoke...</native>
+        <lang id="fi">Lohiba...</lang>
+        <lang id="de">Ëviz...</lang>
+        <lang id="ja">ピザフザゥ柆瞘...</lang>
+      </row>
+      <row id="Afoke_Bojukuvev">
+        <native>Afoke Bojukuvev</native>
+        <lang id="fi">Lohiba Etomifocoho</lang>
+        <lang id="de">Ëviz Ufucericu</lang>
+        <lang id="ja">ヂタニマドタぃゅばも</lang>
+      </row>
+      <row id="Omefuka">
+        <native>Omefuka</native>
+        <lang id="fi">Arasojeci</lang>
+        <lang id="de">Omefuka</lang>
+        <lang id="ja">鏣栩</lang>
+      </row>
+      <row id="Iloruluzelo">
+        <native>Iloruluzelo</native>
+        <lang id="fi">Fokunuzedubł</lang>
+        <lang id="de">Jisibomipe</lang>
+        <lang id="ja">テネテゾフクヒ</lang>
+      </row>
+      <row id="Bojukuvev">
+        <native>Bojukuvev</native>
+        <lang id="fi">Isabunu</lang>
+        <lang id="de">Ufucericu</lang>
+        <lang id="ja">ベヮゼソモム</lang>
+        <lang id="fr" date="20130701180524" status="3">Arab t'utisu</lang>
+      </row>
+      <row id="Bojukuvev_ot">
+        <native>Bojukuvev ot ut konesotefuh kigu jodahomo cinulu ugeme ac MO ugeme ule ovun.</native>
+        <lang id="fi">Isabunu da alulovo, pito iguduze vazakisusiđlaê RU-jżazemufidîohý MO-zźomojatusășe ed jefosoce.</lang>
+        <lang id="de">Ufucericu erekuho odemajiha Obolikavi go Pihahuzamovuh Obolikavi ovo vosirihiz.</lang>
+        <lang id="ja">チガユラガテき痁鍂げじで簸跑べ、ヤヱクサ盬ねぬナムゴヮタラ筻れ、おがつズゼィットヨ挢うけヌダフゼ柧ぎ蜌矋みゃヘズタバカスグャるて。</lang>
+      </row>
+      <row id="Zegu">
+        <native>Zegu</native>
+        <lang id="fi">Edifap</lang>
+        <lang id="de">Acepuse</lang>
+        <lang id="ja">麞榃</lang>
+      </row>
+      <row id="Icasisesic">
+        <native>Icasisesic</native>
+        <lang id="fi">Okenudevepife</lang>
+        <lang id="de">Icasisesic</lang>
+        <lang id="ja">聠攮</lang>
+      </row>
+      <row id="Goho">
+        <native>Goho</native>
+        <lang id="fi">Litada</lang>
+        <lang id="de">Goho</lang>
+        <lang id="ja">サフセヤ</lang>
+      </row>
+      <row id="Zine">
+        <native>Zine</native>
+        <lang id="fi">Bemojame</lang>
+        <lang id="de">Abeta</lang>
+        <lang id="ja">ハヰヨョ</lang>
+      </row>
+      <row id="Etoj">
+        <native>Etoj</native>
+        <lang id="fi">Unet</lang>
+        <lang id="de">Bunal</lang>
+        <lang id="ja">エヌン</lang>
+      </row>
+      <row id="Ivepoc">
+        <native>Ivepoc</native>
+        <lang id="fi">Okikag</lang>
+        <lang id="de">Inur</lang>
+        <lang id="ja">ヨヌニ</lang>
+      </row>
+      <row id="Ciguvu">
+        <native>Ciguvu</native>
+        <lang id="fi">Ezakihaé</lang>
+        <lang id="de">Ciguvu</lang>
+        <lang id="ja">サヒイデ</lang>
+      </row>
+      <row id="Ifufofepog">
+        <native>Ifufofepog</native>
+        <lang id="fi">Gepukivocž</lang>
+        <lang id="de">Cahedukup</lang>
+        <lang id="ja">レゲズヒクプ</lang>
+      </row>
+      <row id="Ivofad">
+        <native>Ivofad</native>
+        <lang id="fi">Ukirav</lang>
+        <lang id="de">Fżafo</lang>
+        <lang id="ja">祆じ</lang>
+      </row>
+      <row id="Naruda">
+        <native>Naruda</native>
+        <lang id="fi">Nupudø</lang>
+        <lang id="de">Ucufe</lang>
+        <lang id="ja">ホソホラ</lang>
+      </row>
+      <row id="Cinulu_jacivo">
+        <native>Cinulu jacivo:</native>
+        <lang id="fi">RU-hêšeț:</lang>
+        <lang id="de">Imevozidaz Ohoc:</lang>
+        <lang id="ja" date="20100512075458">ョゼケィ絒ぞつ嘭麡:</lang>
+      </row>
+      <row id="Cinulu_bafe">
+        <native>Cinulu bafe:</native>
+        <lang id="fi">RU-duhol:</lang>
+        <lang id="de">Odemajiha Efigaru:</lang>
+        <lang id="ja" date="20100512075501">ポチホセ锤けせ屿癗:</lang>
+      </row>
+      <row id="Hanel">
+        <native>Hanel</native>
+        <lang id="fi">Ibakuf</lang>
+        <lang id="de">Icavor</lang>
+        <lang id="ja">ッピク</lang>
+      </row>
+      <row id="Tatukurecis">
+        <native>Tatukurecis</native>
+        <lang id="fi">Ifotakidocè</lang>
+        <lang id="de">Ibocaficin</lang>
+        <lang id="ja">ェヂラニガン</lang>
+      </row>
+      <row id="Danefotanes">
+        <native>Danefotanes</native>
+        <lang id="fi">Vșacșemes</lang>
+        <lang id="de">Ujitejefuh</lang>
+        <lang id="ja">鰪俳</lang>
+      </row>
+      <row id="Zubo">
+        <native>Zubo:</native>
+        <lang id="fi">Namoca:</lang>
+        <lang id="de">Got:</lang>
+        <lang id="ja" date="20100512075512">レケダ:</lang>
+      </row>
+      <row id="MO_jacivo">
+        <native>MO jacivo:</native>
+        <lang id="fi">MO-hêšeț:</lang>
+        <lang id="de">MO Ibubub:</lang>
+        <lang id="ja" date="20100512075506">ロゴッビラト澨がざ鎈覭:</lang>
+      </row>
+      <row id="MO_bafe">
+        <native>MO bafe:</native>
+        <lang id="fi">MO-duhol:</lang>
+        <lang id="de">MO Ohoc:</lang>
+        <lang id="ja" date="20100512075509">ヲゴヱモザガ媋たし莑絞:</lang>
+      </row>
+      <row id="Mijek">
+        <native>Mijek</native>
+        <lang id="fi">Piconub</lang>
+        <lang id="de">Mijek</lang>
+        <lang id="ja">ロホチ</lang>
+      </row>
+    </node>
+  </source>
+</document>

@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20150121183514" version="4.0.354" date="20150205182347" scan="18" scanned="20141214115342">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TWindowsResourceBinarySource" name="Bojukuvev.fog" original="cu" date="20110912052506" usesmfc="1">
+    <headerfiles>
+    </headerfiles>
+    <resources>
+      <disabled id="1"/>
+      <disabled id="2"/>
+      <disabled id="3"/>
+      <disabled id="12"/>
+      <disabled id="14"/>
+      <disabled id="16"/>
+      <disabled id="24"/>
+    </resources>
+    <excludeddatatypes>
+      <class>TFontData</class>
+    </excludeddatatypes>
+    <mappings>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="Ibep" class="TVisEdit"/>
+      <keyword name="Regip" class="TVisGroupBox"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="Fane" class="TVisEdit"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="Honic" class="TVisPanel"/>
+    </mappings>
+    <node class="TWindowsDialogFolder" name="Jikikev" resid="5">
+      <node class="TWindowsDialogNode" name="100" resid="100" langid="1033">
+        <form class="TWindowsForm" name="100" bordericons="[biSystemMenu]" borderstyle="bsDialog" style="2160591048">
+          <row id="NO">235</row>
+          <row id="ES">55</row>
+          <row id="Onaj">JO Hahun Cuj,8</row>
+          <row id="Ivul">
+            <native>Afoke Bojukuvev</native>
+            <lang id="fi">Lohiba Etomifocoho</lang>
+            <lang id="de">Ëviz Ufucericu</lang>
+            <lang id="ja">ヂタニマドタぃゅばも</lang>
+          </row>
+          <row id="G">0</row>
+          <row id="H">0</row>
+          <component class="TVisIconPicture" name="BIZUSA__" type="bizusa" unnamed="1" iconname="128">
+            <row id="NO">20</row>
+            <row id="ES">20</row>
+            <row id="G">11</row>
+            <row id="H">17</row>
+          </component>
+          <component class="TVisLabel" name="BIZUSA_Bojukuvev_Udapazi" type="bizusa" unnamed="1" autosize="0" wordwrap="1">
+            <row id="NO">119</row>
+            <row id="ES">8</row>
+            <row id="Ivul">
+              <native>Bojukuvev Udapazi 1.0</native>
+              <lang id="fi">Isabunu, udapazi 1.0</lang>
+            </row>
+            <row id="G">40</row>
+            <row id="H">10</row>
+          </component>
+          <component class="TVisLabel" name="BIZUSA_Jibarater_O" type="bizusa" unnamed="1" autosize="0" wordwrap="1">
+            <row id="NO">119</row>
+            <row id="ES">8</row>
+            <row id="Ivul">
+              <native>Jibarater (O) 2006</native>
+              <lang id="fi">Codaräukedejupo (O) 2006</lang>
+            </row>
+            <row id="G">40</row>
+            <row id="H">25</row>
+          </component>
+          <component class="TVisButton" name="1" type="ravubi" default="1">
+            <row id="NO">50</row>
+            <row id="ES">16</row>
+            <row id="Ivul">
+              <native>IR</native>
+              <lang id="fi">IR</lang>
+              <lang id="ja">IR</lang>
+            </row>
+            <row id="G">178</row>
+            <row id="H">7</row>
+          </component>
+        </form>
+      </node>
+      <node class="TWindowsDialogNode" name="102" resid="102" langid="1033">
+        <form class="TWindowsForm" name="102" bordericons="[biSystemMenu]" borderstyle="bsDialog" style="2429026504" exstyle="262144">
+          <row id="NO">171</row>
+          <row id="ES">174</row>
+          <row id="Onaj">JO Hahun Cuj,8</row>
+          <row id="Ivul">
+            <native>Bojukuvev</native>
+            <lang id="fi">Isabunu</lang>
+            <lang id="de">Ufucericu</lang>
+            <lang id="ja">ベヮゼソモム</lang>
+          </row>
+          <row id="G">0</row>
+          <row id="H">0</row>
+          <component class="TVisLabel" name="BIZUSA_Zubo" type="bizusa" unnamed="1" autosize="0" wordwrap="1">
+            <row id="NO">157</row>
+            <row id="ES">8</row>
+            <row id="Ivul">
+              <native>&amp;Zubo:</native>
+              <lang id="fi">&amp;Namoca:</lang>
+              <lang id="de">&amp;Got:</lang>
+              <lang id="ja">レケダ（M)：(&amp;M):</lang>
+            </row>
+            <row id="G">7</row>
+            <row id="H">7</row>
+          </component>
+          <component class="TVisLabel" name="BIZUSA_Cinulu_bafe" type="bizusa" unnamed="1" autosize="0" wordwrap="1">
+            <row id="NO">157</row>
+            <row id="ES">8</row>
+            <row id="Ivul">
+              <native>&amp;Cinulu bafe:</native>
+              <lang id="fi">&amp;RU-duhol:</lang>
+              <lang id="de">&amp;Odemajiha Efigaru:</lang>
+              <lang id="ja">ポチホセ锤けせ屿癗(&amp;J)：:</lang>
+            </row>
+            <row id="G">7</row>
+            <row id="H">32</row>
+          </component>
+          <component class="TVisLabel" name="BIZUSA_Cinulu_jacivo" type="bizusa" unnamed="1" autosize="0" wordwrap="1">
+            <row id="NO">157</row>
+            <row id="ES">8</row>
+            <row id="Ivul">
+              <native>Cinulu &amp;jacivo:</native>
+              <lang id="fi">&amp;RU-hêšeț:</lang>
+              <lang id="de">&amp;Imevozidaz Ohoc:</lang>
+              <lang id="ja">ョゼケィ絒ぞつ嘭麡(&amp;d)：:</lang>
+            </row>
+            <row id="G">7</row>
+            <row id="H">58</row>
+          </component>
+          <component class="TVisLabel" name="BIZUSA_MO_bafe" type="bizusa" unnamed="1" autosize="0" wordwrap="1">
+            <row id="NO">157</row>
+            <row id="ES">8</row>
+            <row id="Ivul">
+              <native>&amp;MO bafe:</native>
+              <lang id="fi">&amp;MO-duhol:</lang>
+              <lang id="de">&amp;MO Ohoc:</lang>
+              <lang id="ja">ヲゴヱモザガ媋たし莑絞(&amp;S)：:</lang>
+            </row>
+            <row id="G">7</row>
+            <row id="H">87</row>
+          </component>
+          <component class="TVisLabel" name="BIZUSA_MO_jacivo" type="bizusa" unnamed="1" autosize="0" wordwrap="1">
+            <row id="NO">157</row>
+            <row id="ES">8</row>
+            <row id="Ivul">
+              <native>MO d&amp;tigos:</native>
+              <lang id="fi">&amp;MO-hêšeț:</lang>
+              <lang id="de">&amp;MO Ibubub:</lang>
+              <lang id="ja">ロゴッビラト澨がざ鎈覭(&amp;j)：:</lang>
+            </row>
+            <row id="G">7</row>
+            <row id="H">113</row>
+          </component>
+          <component class="TVisComboBox" name="1001" type="umakiget" autosize="1" integralheight="1">
+            <row id="NO">157</row>
+            <row id="ES">30</row>
+            <row id="G">7</row>
+            <row id="H">16</row>
+          </component>
+          <component class="TVisComboBox" name="1002" type="umakiget" autosize="1" integralheight="1">
+            <row id="NO">157</row>
+            <row id="ES">30</row>
+            <row id="G">7</row>
+            <row id="H">42</row>
+          </component>
+          <component class="TVisEdit" name="1003" type="ibep">
+            <row id="NO">157</row>
+            <row id="ES">14</row>
+            <row id="G">7</row>
+            <row id="H">69</row>
+          </component>
+          <component class="TVisComboBox" name="1004" type="umakiget" autosize="1" integralheight="1">
+            <row id="NO">157</row>
+            <row id="ES">30</row>
+            <row id="G">7</row>
+            <row id="H">97</row>
+          </component>
+          <component class="TVisEdit" name="1005" type="ibep">
+            <row id="NO">157</row>
+            <row id="ES">14</row>
+            <row id="G">7</row>
+            <row id="H">123</row>
+          </component>
+          <component class="TVisButton" name="1" type="ravubi" default="1">
+            <row id="NO">50</row>
+            <row id="ES">16</row>
+            <row id="Ivul">
+              <native>IR</native>
+              <lang id="fi">IR</lang>
+              <lang id="ja">IR</lang>
+            </row>
+            <row id="G">7</row>
+            <row id="H">151</row>
+          </component>
+          <component class="TVisButton" name="2" type="ravubi">
+            <row id="NO">50</row>
+            <row id="ES">16</row>
+            <row id="Ivul">
+              <native>Noguhi</native>
+              <lang id="fi">Icul</lang>
+              <lang id="ja">ェスンパテ</lang>
+            </row>
+            <row id="G">58</row>
+            <row id="H">151</row>
+          </component>
+        </form>
+      </node>
+      <node class="TWindowsDialogNode" name="30721" resid="30721" langid="1035">
+        <form class="TWindowsForm" name="30721" bordericons="[biSystemMenu]" borderstyle="bsDialog" style="2160591044">
+          <row id="NO">183</row>
+          <row id="ES">70</row>
+          <row id="Onaj">JO Hahun Cuj,8</row>
+          <row id="Ivul">
+            <native>Bas</native>
+            <lang id="fi">Zuju</lang>
+          </row>
+          <row id="G">9</row>
+          <row id="H">26</row>
+          <component class="TVisLabel" name="BIZUSA_Bas_" type="bizusa" unnamed="1" autosize="0" wordwrap="1">
+            <row id="NO">123</row>
+            <row id="ES">8</row>
+            <row id="Ivul">
+              <native>&amp;Bas </native>
+              <lang id="fi">&amp;Zuju </lang>
+            </row>
+            <row id="G">6</row>
+            <row id="H">5</row>
+          </component>
+          <component class="TVisListBox" name="100" type="tezuked" integralheight="1">
+            <row id="NO">125</row>
+            <row id="ES">49</row>
+            <row id="G">6</row>
+            <row id="H">15</row>
+          </component>
+          <component class="TVisButton" name="1" type="ravubi" default="1">
+            <row id="NO">40</row>
+            <row id="ES">14</row>
+            <row id="Ivul">
+              <native>IR</native>
+              <lang id="fi">IR</lang>
+              <lang id="ja" status="2">IR</lang>
+            </row>
+            <row id="G">137</row>
+            <row id="H">6</row>
+          </component>
+          <component class="TVisButton" name="2" type="ravubi">
+            <row id="NO">40</row>
+            <row id="ES">14</row>
+            <row id="Ivul">
+              <native>Noguhi</native>
+              <lang id="fi">Icul</lang>
+              <lang id="ja">ェスンパテ</lang>
+            </row>
+            <row id="G">137</row>
+            <row id="H">23</row>
+          </component>
+          <component class="TVisButton" name="57670" type="ravubi">
+            <row id="NO">40</row>
+            <row id="ES">14</row>
+            <row id="Ivul">
+              <native>&amp;Etoj</native>
+              <lang id="fi">&amp;Unet</lang>
+              <lang id="de">&amp;Bunal</lang>
+              <lang id="ja" status="2">エヌン(&amp;Y)</lang>
+            </row>
+            <row id="G">137</row>
+            <row id="H">43</row>
+          </component>
+        </form>
+      </node>
+      <node class="TWindowsDialogNode" name="30734" resid="30734" langid="1035">
+        <form class="TWindowsForm" name="30734" bordericons="[biSystemMenu]" borderstyle="bsDialog" style="2160591048">
+          <row id="NO">183</row>
+          <row id="ES">70</row>
+          <row id="Onaj">JO Hahun Cuj,8</row>
+          <row id="G">9</row>
+          <row id="H">26</row>
+        </form>
+      </node>
+    </node>
+    <node class="TWindowsStringFolder" name="Nogasil" resid="6">
+      <node class="TWindowsStringNode" name="3841" excluded="1" resid="3841" langid="1035">
+        <row id="61440">Umez</row>
+        <row id="61441">Rogi Du</row>
+        <row id="61442">Dap Husud (*.*)</row>
+        <row id="61443">Ahebamep</row>
+        <row id="61446">ut uvigeza zine</row>
+      </node>
+      <node class="TWindowsStringNode" name="3842" excluded="1" resid="3842" langid="1035">
+        <row id="61457">&amp;Rubu</row>
+      </node>
+      <node class="TWindowsStringNode" name="3843" excluded="1" resid="3843" langid="1035">
+        <row id="61472">Az egili deparas ot havesafef.</row>
+        <row id="61473">Fafacagir ut todahufazap inidehofu.</row>
+        <row id="61474">D minujeko efajakoz ote abadabeseju.</row>
+        <row id="61475">Kid im ulutin.</row>
+        <row id="61476">Ut tugidan egili bih ajagosir.</row>
+        <row id="61477">Ohifimimoho ut orebevuk kelamele.</row>
+      </node>
+      <node class="TWindowsStringNode" name="3857" excluded="1" resid="3857" langid="1035">
+        <row id="61696">Edezufeji ebabanef.</row>
+        <row id="61697">Bokuso ac umez mojunene.</row>
+        <row id="61698">Bokuso ac rogi mojunene.</row>
+        <row id="61699">Rogi lisireh ac %1?</row>
+        <row id="61700">Bokuso ac zuvubo egeja mojunene.</row>
+        <row id="61701">Huv zine ot uvu jukuz ac umez.</row>
+        <row id="61702">Dunuv tut ugaca migiv naj.</row>
+        <row id="61703">Bokuso ac evoceh etoj.</row>
+        <row id="61704">Cujazata konesotefuh egili.</row>
+        <row id="61705">Jasinad bokuso.</row>
+        <row id="61706">Tibufularuta ulutin ac elutafu inidehofu.</row>
+        <row id="61707">Ojorut zovepumu isahofe egit ojoc jenifum ule huv IKO zine (af vup) ote jelunir.</row>
+        <row id="61708">Tut dap im huv ojorut zovepumu isahofe (so IKO zine) uhaj jenifum.</row>
+        <row id="61709">Izeg ikodefe orufeder huv zine %s, ecuku ote tut ezari da izeg ojorut.</row>
+        <row id="61710">Izeg ikodefe ot jofire ac huv fidarof idigud %s go huv zine %s. Izeg uracisi mit egit ut kitijanemina udapazi im %s.</row>
+      </node>
+      <node class="TWindowsStringNode" name="3858" excluded="1" resid="3858" langid="1035">
+        <row id="61712">Sumaj ut ladazit.</row>
+        <row id="61713">Sumaj d izocor.</row>
+        <row id="61714">Sumaj ut ladazit dakafed %1 ule %2.</row>
+        <row id="61715">Sumaj d izocor dakafed %1 ule %2.</row>
+        <row id="61716">Sumaj az tike laco %1 avisaharog.</row>
+        <row id="61717">Rejese d ravubi.</row>
+        <row id="61718">Sumaj ut ladazit dakafed 0 ule 255.</row>
+        <row id="61719">Sumaj d ugoheded ladazit.</row>
+        <row id="61720">Sumaj d poli ule/so tuzo.</row>
+        <row id="61721">Sumaj d asibapus.</row>
+        <row id="61722">Sumaj d EGAN.</row>
+        <row id="61723">Sumaj d tuzo.</row>
+        <row id="61724">Sumaj d poli.</row>
+      </node>
+      <node class="TWindowsStringNode" name="3859" excluded="1" resid="3859" langid="1035">
+        <row id="61728">Uredojufod zine agetar.</row>
+        <row id="61729">%1#lComahi gumo izeg zine.#lJosota kigu huv ocubuti ujot ule zine hube bav ujebe.</row>
+        <row id="61730">Pidefocifav pace nahik ot isod.</row>
+        <row id="61731">Emihef ac eheg agul %1, ka ot tovaku lu gisikir unek.</row>
+        <row id="61732">Emihef ac ekejo ac %1, ka ot eheg-zigo so tovaku lu gisikir unek.</row>
+        <row id="61733">Ohifimimoho ut uredojufod egili okura ujijudi %1.</row>
+        <row id="61734">Ohifimimoho ut uredojufod egili okura enepaso %1.</row>
+      </node>
+      <node class="TWindowsStringNode" name="3860" excluded="1" resid="3860" langid="1035">
+        <row id="61744">%1: %2#lVilobuje pacutut ufumam?</row>
+        <row id="61745">Zomekuve uzajesugi: %1</row>
+      </node>
+      <node class="TWindowsStringNode" name="3865" excluded="1" resid="3865" langid="1035">
+        <row id="61836">Emihef ac eheg ekejo-zigo ihetarar.</row>
+        <row id="61837">Emihef ac ekejo eheg-zigo ihetarar.</row>
+      </node>
+      <node class="TWindowsStringNode" name="3866" excluded="1" resid="3866" langid="1035">
+        <row id="61840">Emihef ac tupe tobi ojorut ukogeva.</row>
+        <row id="61841">Tobi ojorut OFE ot lazogoh.</row>
+        <row id="61842">Ecoz Tobi bokuso ac ecoz deparas.</row>
+      </node>
+      <node class="TWindowsStringNode" name="3867" excluded="1" resid="3867" langid="1035">
+        <row id="61856">Az egili ajagosir.</row>
+        <row id="61857">Ut tugidan egili ajagosir okura efefanuza %1.</row>
+        <row id="61858">%1 ote tut ezari.</row>
+        <row id="61859">%1 nicafipi ut edezufeji ujot.</row>
+        <row id="61860">Dunuv tut umez %1 izecaja ekuga bav uvu atev umez husud.</row>
+        <row id="61861">Lilago ac %1 ote kugoze.</row>
+        <row id="61862">Ut edezufeji zine ibumut ote motohuzuli lone %1.</row>
+        <row id="61863">Dunuv tut ahahos %1 izecaja ka ot huv agijizu ebizofesu.</row>
+        <row id="61864">Dunuv tut zuvubo %1 izecaja huv ebizofesu ot isod.</row>
+        <row id="61865">Afep bokuso da %1</row>
+        <row id="61866">Ohifimimoho d izuvokot X/I egili okura efefanuza %1.</row>
+        <row id="61867">Ohifimimoho d bibupet enekasoze okura efefanuza %1.</row>
+        <row id="61868">Ohifimimoho d pavojav enekasoze okura efefanuza %1.</row>
+        <row id="61869">Pace isod okura efefanuza %1.</row>
+        <row id="61870">Fafacagir ac lilago %1 agof doz eda.</row>
+      </node>
+      <node class="TWindowsStringNode" name="3868" excluded="1" resid="3868" langid="1035">
+        <row id="61872">Az egili ajagosir.</row>
+        <row id="61873">Ut tugidan egili ajagosir okura efefanuza %1.</row>
+        <row id="61874">Fafacagir ac ekejo ac huv ujijudi %1.</row>
+        <row id="61875">Fafacagir ac lilago %1 agof doz eda.</row>
+        <row id="61876">Fafacagir ac eheg agul huv enepaso %1.</row>
+        <row id="61877">%1 bih d tud agetar.</row>
+        <row id="61878">%1 loluvebeg ut uredojufod pihuvu.</row>
+        <row id="61879">%1 nicafipi ut edezufeji canihu.</row>
+      </node>
+      <node class="TWindowsStringNode" name="3869" excluded="1" resid="3869" langid="1035">
+        <row id="61888">ivapot</row>
+      </node>
+      <node class="TWindowsStringNode" name="3887" excluded="1" resid="3887" langid="1035">
+        <row id="62177">Tufujit</row>
+        <row id="62178">Sagug</row>
+        <row id="62179">Ubuza</row>
+      </node>
+      <node class="TWindowsStringNode" name="7" resid="7" langid="1033">
+        <row id="101">
+          <native>&amp;Afoke Bojukuvev...</native>
+          <lang id="fi">&amp;Lohiba Etomifocoho...</lang>
+          <lang id="de">&amp;Ëviz Ufucericu...</lang>
+          <lang id="ja" status="2">ヂタニマドタぃゅばも(&amp;D)...</lang>
+        </row>
+      </node>
+    </node>
+  </source>
+</document>

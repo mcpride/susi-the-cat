@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<document created="20231027125601" version="4.0.374" date="20231027125601" scan="3" scanned="20231027125601">
+  <lang id="de" />
+  <lang id="en" />
+  <source class="TJsonSource" name="..\src\UI\src\assets\i18n\sis.json" original="sis" date="20231027125601">
+    <additionalfiles>
+      <file>..\src\UI\src\assets\i18n\sis.json</file>
+    </additionalfiles>
+    <outputfile dir="." localized="&lt;iso&gt;.&lt;ext&gt;" />
+    <node class="TJsonNode" name="sis.json" state="0" created="20231027125601">
+      <row id="EHOZUSAZALEC.EHAK_TUT_EZARI">
+        <native>[Az ehak ezari]</native>
+        <lang id="de" date="20231027125601">[Ehoju bibim hicahile]</lang>
+        <lang id="en" date="20231027125601">[Az ehak ezari]</lang>
+      </row>
+      <row id="CUPIC">
+        <native>[Uz]</native>
+        <lang id="de" date="20231027125601">[Etatucis Unu Nijugitavahet]</lang>
+        <lang id="en" date="20231027125601">[Etatucis Unu Nijugitavahet]</lang>
+      </row>
+      <row id="MOMEJO">
+        <native>[Uz]</native>
+        <lang id="de" date="20231027125601">[Itenecat Uz]</lang>
+        <lang id="en" date="20231027125601">[Zufa Uz]</lang>
+      </row>
+      <row id="KEPIRACEMEDOF">
+        <native>[Uz]</native>
+        <lang id="de" date="20231027125601">[Azagifanebuje]</lang>
+        <lang id="en" date="20231027125601">[Nulasu Sudupul]</lang>
+      </row>
+      <row id="OPUV">
+        <native>[Uz]</native>
+        <lang id="de" date="20231027125601">[Opuv]</lang>
+        <lang id="en" date="20231027125601">[Opuv]</lang>
+      </row>
+      <row id="ACUSOMONIN.MINUJEKO">
+        <native>[Minujeko dilub]</native>
+        <lang id="de" date="20231027125601">[Esadamekomu]</lang>
+        <lang id="en" date="20231027125601">[Minujeko dilub]</lang>
+      </row>
+    </node>
+  </source>
+</document>

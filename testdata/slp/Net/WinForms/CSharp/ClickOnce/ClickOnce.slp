@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20141214103951" version="4.0.361" date="20160719071322" scan="14" scanned="20160719071319">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TVisualStudioNetProjectSource" name="Garodekek\Garodekek.kicazo" original="cu" date="20140115075128" defaultoutputdir="tuh\Ohupu" configuration="Ohupu|DigOCI" rootnamespace="Garodekek" excludedresourcetypes="[nrWin32]" options="[noSetRightToLeft,noSortItems,noCompileAssembly,noCompileResource,noDeleteCompiledResource]">
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TColorData</class>
+      <class>TFontData</class>
+      <class>TImeData</class>
+      <class>TPictureData</class>
+      <class>TReadingOrderData</class>
+    </excludeddatatypes>
+    <mappings>
+      <component name="Ojorut.Luvuhog.Aleka.Emazu" class="TVisLabel"/>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="TiveBapo" class="TVisGrid"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="AhipAso" class="TVisEdit"/>
+    </mappings>
+    <node class="TNetFormFolder" name="Aleka">
+      <node class="TNetFormNode" name="Garodekek.Arar1">
+        <form class="TNetForm" name="Garodekek.Arar1" type="Garodekek.Arar1">
+          <row id="CivoteLuji.Usical">62</row>
+          <row id="CivoteLuji.Duzel">284</row>
+          <row id="Ivul">
+            <native>Ajogid</native>
+            <lang id="fi" date="20110914190147">Pasisajis</lang>
+            <lang id="de" date="20110914190217">Ovazodes</lang>
+            <lang id="ja" date="20110914190241">テテォォ</lang>
+          </row>
+          <component class="TVisLabel" name="emazu1" type="Ojorut.Luvuhog.Aleka.Emazu" autosize="1" wordwrap="0">
+            <row id="IloPuda">igOkat</row>
+            <row id="Lidarozo.G">8</row>
+            <row id="Lidarozo.H">8</row>
+            <row id="Vuse.Usical">13</row>
+            <row id="Vuse.Duzel">65</row>
+            <row id="Ivul">
+              <native>Hevof Osiga!</native>
+              <lang id="fi" date="20110914190152">Amo zojodoh!</lang>
+              <lang id="de" date="20110914190228">Unoko Avic!</lang>
+              <lang id="ja" date="20110914190323">ゴヨギ・ゲンエィ</lang>
+            </row>
+          </component>
+          <component class="TVisLabel" name="emazu2" type="Ojorut.Luvuhog.Aleka.Emazu" autosize="1" wordwrap="0">
+            <row id="Lidarozo.G">8</row>
+            <row id="Lidarozo.H">24</row>
+            <row id="Vuse.Usical">13</row>
+            <row id="Vuse.Duzel">40</row>
+            <row id="Ivul">adopu</row>
+          </component>
+        </form>
+      </node>
+    </node>
+    <node class="TNetStringFolder" name="Nogasil">
+      <node class="TNetStringNode" name="Garodekek.Kuzukemato.Ifivorosu">
+        <row id="Edovav1">
+          <native>Izeg ot d ajogid</native>
+          <lang id="fi" date="20110914190158">Išdý da pasisajis</lang>
+          <lang id="de" date="20110914190438">Dub ipi oca Ovazodes</lang>
+          <lang id="ja" date="20110914190250">ゅぴろネャシテはに</lang>
+        </row>
+      </node>
+    </node>
+  </source>
+  <source class="TVisualStudioNetProjectSource" name="Fucubu\Fucubu.kicazo" original="cu" date="20140115075034" defaultoutputdir="tuh\Ohupu" configuration="Ohupu|DigOCI" rootnamespace="Fucubu" excludedresourcetypes="[nrWin32]">
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TColorData</class>
+      <class>TFontData</class>
+      <class>TImeData</class>
+      <class>TPictureData</class>
+      <class>TReadingOrderData</class>
+    </excludeddatatypes>
+    <mappings>
+      <component name="Ojorut.Luvuhog.Aleka.Emazu" class="TVisLabel"/>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="TiveBapo" class="TVisGrid"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="AhipAso" class="TVisEdit"/>
+    </mappings>
+    <node class="TNetFormFolder" name="Aleka">
+      <node class="TNetFormNode" name="Fucubu.Arar1">
+        <form class="TNetForm" name="Fucubu.Arar1" type="Fucubu.Arar1">
+          <row id="CivoteLuji.Usical">62</row>
+          <row id="CivoteLuji.Duzel">284</row>
+          <row id="Ivul">
+            <native>Ajogid</native>
+            <lang id="fi">Pasisajis</lang>
+            <lang id="de">Ovazodes</lang>
+            <lang id="ja">テテォォ</lang>
+          </row>
+          <component class="TVisLabel" name="emazu1" type="Ojorut.Luvuhog.Aleka.Emazu" autosize="1" wordwrap="0">
+            <row id="Lidarozo.G">8</row>
+            <row id="Lidarozo.H">8</row>
+            <row id="Vuse.Usical">13</row>
+            <row id="Vuse.Duzel">65</row>
+            <row id="Ivul">
+              <native>Hevof Osiga!</native>
+              <lang id="fi">Amo zojodoh!</lang>
+              <lang id="de">Unoko Avic!</lang>
+              <lang id="ja" date="20110914190326">ゴヨギ・ゲンエィ</lang>
+            </row>
+          </component>
+          <component class="TVisLabel" name="emazu2" type="Ojorut.Luvuhog.Aleka.Emazu" autosize="1" wordwrap="0">
+            <row id="Lidarozo.G">8</row>
+            <row id="Lidarozo.H">24</row>
+            <row id="Vuse.Usical">13</row>
+            <row id="Vuse.Duzel">40</row>
+            <row id="Ivul">adopu</row>
+          </component>
+        </form>
+      </node>
+    </node>
+    <node class="TNetStringFolder" name="Nogasil">
+      <node class="TNetStringNode" name="Fucubu.Kuzukemato.Ifivorosu">
+        <row id="Edovav1">
+          <native>Izeg ot d ajogid</native>
+          <lang id="fi">Išdý da pasisajis</lang>
+          <lang id="de" date="20110914190439">Dub ipi oca Ovazodes</lang>
+          <lang id="ja">ゅぴろネャシテはに</lang>
+        </row>
+      </node>
+    </node>
+  </source>
+  <excludedoriginals>
+    <item>adopu</item>
+  </excludedoriginals>
+</document>

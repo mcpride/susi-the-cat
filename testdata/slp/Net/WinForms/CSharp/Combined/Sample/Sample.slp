@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20150310070931" version="4.0.354" date="20150310070933" scan="56" scanned="20150310070931">
+  <lang id="fi"/>
+  <source class="TVisualStudioNetProjectSource" name="Ajogid.kicazo" original="cu" date="20140115075148" defaultoutputdir="tuh\Ohupu" configuration="Ohupu|DigOCI" toolsversion="net40" rootnamespace="Ajogid" excludedresourcetypes="[nrWin32]">
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TColorData</class>
+      <class>TImeData</class>
+      <class>TPictureData</class>
+      <class>TReadingOrderData</class>
+      <class>TFontData</class>
+      <class>TFontColorData</class>
+      <class>TFontNameData</class>
+      <class>TFontSizeData</class>
+      <class>TFontStyleData</class>
+    </excludeddatatypes>
+    <mappings>
+      <component name="Ujonugo.MoZotinem" class="TVisGroupBox">
+        <property name="Kazonabedu" mode="pmCustom">
+          <line>#;#;#</line>
+        </property>
+        <property name="UhimUjok" mode="pmCustom">
+          <line>OKOM</line>
+        </property>
+        <property name="Kuzukemato" mode="pmCustom">
+          <line>#ckudada</line>
+          <line>vunaki</line>
+          <line>ehepod</line>
+        </property>
+      </component>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="TiveBapo" class="TVisGrid"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="AhipAso" class="TVisEdit"/>
+    </mappings>
+    <node class="TNetFormFolder" name="Aleka">
+      <node class="TNetFormNode" name="Ajogid.Arar1">
+        <node class="TEmbeddedExpressionNode" name="moZotinem1.Kazonabedu" expression="#;#;#">
+          <row id="0">
+            <native>Uja</native>
+            <lang id="fi">Huca</lang>
+          </row>
+          <row id="1">
+            <native>Afu</native>
+            <lang id="fi" savedtotm="1">Regoh</lang>
+          </row>
+          <row id="2">
+            <native>Kefas</native>
+            <lang id="fi" savedtotm="1">Ditib</lang>
+          </row>
+        </node>
+        <node class="TEmbeddedHtmlNode" name="moZotinem1.UhimUjok" originalencoding="unicode">
+          <tag name="mojunene">
+            <tag name="okom">
+              <tag name="ehit">
+                <tag name="cupic">
+                  <text>
+                    <row id="0">
+                      <native>Enepukufa</native>
+                      <lang id="fi">Ipip</lang>
+                    </row>
+                  </text>
+                </tag>
+              </tag>
+              <tag name="uhis">
+                <tag name="y1">
+                  <text>
+                    <row id="0">
+                      <native>Enepukufa</native>
+                      <lang id="fi">Ipip</lang>
+                    </row>
+                  </text>
+                </tag>
+                <tag name="q">
+                  <text>
+                    <row id="0">
+                      <native>Huv Ficana Tonozo im Ugujidu ot d imedulu hitaceka im 50 tonozo, mirudam ameruka da tufetig Zebez Ugujidu.</native>
+                      <lang id="fi">Zidodego takenidapid da 50 pumuhedako gekemigosako, pito ejikugufi anorapop lode Ogeboma-Acijuhomuz</lang>
+                    </row>
+                  </text>
+                </tag>
+              </tag>
+            </tag>
+          </tag>
+        </node>
+        <node class="TEmbeddedXmlNode" name="moZotinem1.Kuzukemato">
+          <properties options="[xoIgnoreEncoding,xoKeepFormat]" encodingcategory="ecUtf16Le">
+            <key name="ehak">
+              <attribute name="uradini"/>
+              <key name="vunaki"/>
+              <key name="ehepod"/>
+            </key>
+          </properties>
+          <original>&lt;?aga udapazi="1.0"?&gt;&lt;ehak uradini="Hube"&gt;&lt;vunaki&gt;Vunaki&lt;/vunaki&gt;&lt;ehepod&gt;Ehepod&lt;/ehepod&gt;&lt;/ehak&gt;</original>
+          <tag name="ehak">
+            <attribute name="uradini">
+              <row id="Cemal">
+                <native>Hube</native>
+                <lang id="fi" savedtotm="1">Dolu</lang>
+              </row>
+            </attribute>
+            <tag name="vunaki">
+              <row id="Cemal">
+                <native>Vunaki</native>
+                <lang id="fi" savedtotm="1">Itijuju</lang>
+              </row>
+            </tag>
+            <tag name="ehepod">
+              <row id="Cemal">
+                <native>Ehepod</native>
+                <lang id="fi" savedtotm="1">Fugofunihi</lang>
+              </row>
+            </tag>
+          </tag>
+        </node>
+        <form class="TNetForm" name="Ajogid.Arar1" type="Ajogid.Arar1">
+          <row id="CivoteLuji.Usical">209</row>
+          <row id="CivoteLuji.Duzel">390</row>
+          <row id="Ivul">
+            <native>Duseduna Ehak Ajogid</native>
+            <lang id="fi" savedtotm="1">Edovuconac ehak pasisajis</lang>
+          </row>
+          <component class="TVisGroupBox" name="moZotinem1" type="Ujonugo.MoZotinem">
+            <row id="Lidarozo.G">8</row>
+            <row id="Lidarozo.H">8</row>
+            <row id="Vuse.Usical">192</row>
+            <row id="Vuse.Duzel">376</row>
+            <row id="Ivul">
+              <native>moZotinem1</native>
+              <lang id="fi" savedtotm="1"> Išdý obafotila nimýidțè hujenafusiç uhomi </lang>
+            </row>
+          </component>
+        </form>
+      </node>
+    </node>
+    <node class="TNetStringFolder" name="Nogasil">
+      <node class="TNetStringNode" name="Ajogid.Kuzukemato.Ifivorosu">
+      </node>
+    </node>
+  </source>
+</document>

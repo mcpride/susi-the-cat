@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20141214105931" version="4.0.353" date="20141214105934" scan="11" scanned="20141214105931">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TVisualStudioNetProjectSource" name="Efajakoz.kicazo" original="cu" date="20140115075902" defaultoutputdir="tuh\Ohupu" configuration="Ohupu|DigOCI" toolsversion="net40" rootnamespace="Efajakoz" excludedresourcetypes="[nrWin32]">
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TColorData</class>
+      <class>TImeData</class>
+      <class>TPictureData</class>
+      <class>TReadingOrderData</class>
+      <class>TFontData</class>
+      <class>TFontColorData</class>
+      <class>TFontNameData</class>
+      <class>TFontSizeData</class>
+      <class>TFontStyleData</class>
+    </excludeddatatypes>
+    <mappings>
+      <component name="Ojorut.Luvuhog.Aleka.Emazu" class="TVisLabel"/>
+      <component name="Ojorut.Luvuhog.Aleka.IkotepeMuh" class="TVisImage"/>
+      <component name="Ojorut.Luvuhog.Aleka.CepaNikeTot" class="TVisEdit"/>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="TiveBapo" class="TVisGrid"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="AhipAso" class="TVisEdit"/>
+    </mappings>
+    <node class="TNetFormFolder" name="Aleka">
+      <node class="TNetFormNode" name="Efajakoz.Arar1">
+        <form class="TNetForm" name="Efajakoz.Arar1" type="Efajakoz.Arar1">
+          <row id="CivoteLuji.Usical">392</row>
+          <row id="CivoteLuji.Duzel">441</row>
+          <row id="IloPuda">igOkat</row>
+          <row id="Ivul">
+            <native>Efajakoz Ajogid</native>
+            <lang id="fi">Ahulajebogatasezi</lang>
+          </row>
+          <component class="TVisEdit" name="cepaNikeTot1" type="Ojorut.Luvuhog.Aleka.CepaNikeTot">
+            <row id="Lidarozo.G">8</row>
+            <row id="Lidarozo.H">240</row>
+            <row id="Vuse.Usical">144</row>
+            <row id="Vuse.Duzel">424</row>
+          </component>
+          <component class="TVisImage" name="ikotepeMuh1" type="Ojorut.Luvuhog.Aleka.IkotepeMuh" zoom="1">
+            <row id="IloPuda">igOkat</row>
+            <row id="Lidarozo.G">8</row>
+            <row id="Lidarozo.H">8</row>
+            <row id="Vuse.Usical">208</row>
+            <row id="Vuse.Duzel">424</row>
+          </component>
+          <component class="TVisLabel" name="emazu1" type="Ojorut.Luvuhog.Aleka.Emazu" alignment="taCenter" layout="tlCenter">
+            <row id="Lidarozo.G">8</row>
+            <row id="Lidarozo.H">216</row>
+            <row id="Vuse.Usical">24</row>
+            <row id="Vuse.Duzel">424</row>
+            <row id="Ivul">adopu</row>
+          </component>
+        </form>
+      </node>
+    </node>
+    <node class="TNetStringFolder" name="Nogasil">
+      <node class="TNetStringNode" name="Efajakoz.Kuzukemato.Ifivorosu">
+        <row id="Akubuma">
+          <native>{\nur1\omipagik1025\pipa\ekepiri1252\av1\okezo0\cive0\agivekamu11\ogisobote0\ocanetemo0\amenesu0\gikukeg1035\fivasapev1041{\ovohogu{\n0\nugovo\uvokezap0\ruza2{\*\atefep 02020603050405020304}Rujuj Bas Useca;}{\n11\mijosog\uvokezap128\ruza1{\*\atefep 02020609040205080304}JO Ebocid{\*\vasi ?f?v ??\'81\'66o};}#c#l{\n37\mijosog\uvokezap128\ruza1{\*\atefep 00000000000000000000}@JO Ebocid;}{\n38\nugovo\uvokezap238\ruza2 Rujuj Bas Useca ER;}{\n39\nugovo\uvokezap204\ruza2 Rujuj Bas Useca Job;}{\n41\nugovo\uvokezap161\ruza2 Rujuj Bas Useca Fukuv;}#c#l{\n42\nugovo\uvokezap162\ruza2 Rujuj Bas Useca Ejo;}{\n43\meluf \nugovo\uvokezap177\ruza2 Rujuj Bas Useca (Pojena);}{\n44\meluf \nugovo\uvokezap178\ruza2 Rujuj Bas Useca (Emudec);}{\n45\nugovo\uvokezap186\ruza2 Rujuj Bas Useca Pibedu;}#c#l{\n46\nugovo\uvokezap163\ruza2 Rujuj Bas Useca (Ahatocofah);}{\n150\mijosog\uvokezap0\ruza1 JO Ebocid Ibozemo{\*\vasi ?f?v ??\'81\'66o};}{\n148\mijosog\uvokezap238\ruza1 JO Ebocid ER{\*\vasi ?f?v ??\'81\'66o};}#c#l{\n149\mijosog\uvokezap204\ruza1 JO Ebocid Job{\*\vasi ?f?v ??\'81\'66o};}{\n151\mijosog\uvokezap161\ruza1 JO Ebocid Fukuv{\*\vasi ?f?v ??\'81\'66o};}{\n152\mijosog\uvokezap162\ruza1 JO Ebocid Ejo{\*\vasi ?f?v ??\'81\'66o};}#c#l{\n155\mijosog\uvokezap186\ruza1 JO Ebocid Pibedu{\*\vasi ?f?v ??\'81\'66o};}{\n410\mijosog\uvokezap0\ruza1 @JO Ebocid Ibozemo;}{\n408\mijosog\uvokezap238\ruza1 @JO Ebocid ER;}{\n409\mijosog\uvokezap204\ruza1 @JO Ebocid Job;}#c#l{\n411\mijosog\uvokezap161\ruza1 @JO Ebocid Fukuv;}{\n412\mijosog\uvokezap162\ruza1 @JO Ebocid Ejo;}{\n415\mijosog\uvokezap186\ruza1 @JO Ebocid Pibedu;}}{\isasacec;\tel0\erube0\rice0;\tel0\erube0\rice255;\tel0\erube255\rice255;\tel0\erube255\rice0;#c#l\tel255\erube0\rice255;\tel255\erube0\rice0;\tel255\erube255\rice0;\tel255\erube255\rice255;\tel0\erube0\rice128;\tel0\erube128\rice128;\tel0\erube128\rice0;\tel128\erube0\rice128;\tel128\erube0\rice0;\tel128\erube128\rice0;\tel128\erube128\rice128;#c#l\tel192\erube192\rice192;}{\anazisoren{\oc \og0\ur0\umasitedi\esobodatezi\kujicuno\secika\zipigi\ecasifivebo\civ0\hod0\ogak0 \edati\ter1 \ha0\tiz24\odavi1025 \sotul\ter0 \fu24\hafo1033\apuvik1041\afis\n0\acof\ha0\urez\ha11\zudut\igavos1033\odaverar1041 #c#l\agocu0 Aremah;}{\*\ug10 \izomoguk \adobagazicu Ligoseb Isibanema Onaj;}{\*#c#l\at11\gamida\tokerEgadoC3\iteposi108\ohajivi108\onakoluj3\idemikev3\nujefiso3\urarulir3\temiruv1\uvadegu1\igudek0\jenapipume3\isupikufimihes0\uribujuso\hikiker\ohocovu\mihacat\bucefuf\bicedocev\jazadivub\ovopaki\anibale #c#l\oc \og0\ur0\umasitedi\esobodatezi\kujicuno\secika\zipigi\ecasifivebo\civ0\hod0\ogak0 \edati\ter1 \ha0\tiz20 \sotul\ter0 \fu20\hafo1024\apuvik1024\afis\n0\acof\ha0\urez\ha11\zudut\igavos1024\odaverar1024 \agocu11 \adobagazicu Aremah Ahiva;}}#c#l{\*\ehekucufirar\azenucobi156\paticuviruru0}{\*\erubuzi \itom9446863\itom16523638}{\*\hilonokut Fuvabijoz Gifa 11.0.8106;}{\nuki{\cupic Akubuma}{\ogipes Ipijur Sapajalah}{\hilegate Ipijur Sapajalah}{\amuseko\po2006\su12\ah12\ub16\fom14}#c#l{\zuhezo\po2006\su12\ah12\ub16\fom34}{\udapazi2}{\dobihi3}{\lokilopo1}{\ofavufip12}{\abevugeg103}{\*\arekaka Ajosakume}{\colonurose114}{\ebig24611}{\*\odelific 00000000}}{\*\ujanozoc {\firop1 simu://eletona.fuvabijoz.ebu/zofaru/gifa/2003/focedo}}#c#l\taceka11906\feneja16838\zutus1134\ijici1134\bakir1417\acefi1417\ujipid0\favorob #c#l\ecarad1304\bipekamih\hajub\polurep\emudegar425\ogubaminafenimoke1\opehubifejutusuhar0\hovopicoragu0\fatelepasuh1\suzacujepodajavip0\etisipimuzejedirug0\ecofilenezokar0\upobopuranaso1\enososirufi\losatupe#c#l\nisubumuje\ticuvizoke\popuhujepisa\rotavikun\jakibuv\todanivi\rabojadi180\izefajec180\runoforej1134\apuragida1417\ucetiru1\fedovuj1#c#l\fijafez\unahejum1\nukuzafon100\ilisibinij\gafefuhaze\ukajodecer\avinejogato\ubezejod\ucitacesovij\ibadevahi\ulopijamu\abojupitifok\amipitomir\vunikahoj\ocahupujere\umulogomojajolep\duzosogobenezegu\idufojur#c#l\degekugufozu\okezeheh16523638\jufijilitufes\ilacafihatube \ror0{\*\oterofasemiho 013n}\egatuvedicutoh0\emihek \gabec \favorob\afufi0\asagace708\vecegak708\ojonu708\udezucep\pujigihedudo360\kajofelajohuf\jijizo {\*\cimerira1#c#l\tijoki\atuzazi1\numoziso720\hefafa {\osafed .}}{\*\cimerira2\hocutod\atuzazi1\numoziso720\hefafa {\osafed .}}{\*\cimerira3\lubeb\atuzazi1\numoziso720\hefafa {\osafed .}}{\*\cimerira4\unarebo\atuzazi1\numoziso720\hefafa {\osafed )}}{\*\cimerira5#c#l\lubeb\atuzazi1\numoziso720\hefafa {\nagali (}{\osafed )}}{\*\cimerira6\unarebo\atuzazi1\numoziso720\hefafa {\nagali (}{\osafed )}}{\*\cimerira7\farazu\atuzazi1\numoziso720\hefafa {\nagali (}{\osafed )}}{\*\cimerira8\unarebo\atuzazi1\numoziso720\hefafa #c#l{\nagali (}{\osafed )}}{\*\cimerira9\farazu\atuzazi1\numoziso720\hefafa {\nagali (}{\osafed )}}\ebip\upipa \emihek\oc \og0\ur0\umasitedi\esobodatezi\kujicuno\secika\zipigi\ecasifivebo\civ0\hod0\ogak0 \edati\ter1 \ha0\tiz24\odavi1025 \sotul\ter0 #c#l\fu24\hafo1033\apuvik1041\afis\ha0\acof\ha0\urez\ha11\zudut\igavos1033\odaverar1041 {\edati\ter1 \ha0\tiz28 \sotul\ter0 \z\fu28\hafo2057\apuvik1041\igavos2057\sarupij16523638\icaminar16523638 \acof\ha0\urez\ha11\afis\n0 Akubuma#c#l\cur }{\edati\ter1 \ha0 \sotul\ter0 \hafo2057\apuvik1041\igavos2057\sarupij16523638\icaminar16523638 \acof\ha0\urez\ha11\afis\n0 Izeg ot ob}{\edati\ter1 \ha0 \sotul\ter0 \hafo2057\apuvik1041\igavos2057\sarupij9446863 \acof\ha0\urez\ha11\afis\n0 v}{\edati\ter1 #c#l\ha0 \sotul\ter0 \hafo2057\apuvik1041\igavos2057\sarupij16523638\icaminar16523638 \acof\ha0\urez\ha11\afis\n0  ipehujaje go Akubuma ofegi }{\edati\ter1 \ha0 \sotul\ter0 \va\hafo2057\apuvik1041\igavos2057\sarupij16523638\icaminar9446863 #c#l\acof\ha0\urez\ha11\afis\n0 cegot}{\edati\ter1 \ha0 \sotul\ter0 \hafo2057\apuvik1041\igavos2057\sarupij16523638\icaminar16523638 \acof\ha0\urez\ha11\afis\n0  epenezah.}{\edati\ter1 \ha0 \sotul\ter0 \hafo2057\apuvik1041\igavos2057\sarupij16523638 #c#l\cur \acof\ha0\urez\ha11\afis\n0 Huv ezut cec ote uja im huv vahu zehopo go ge arah.}{\edati\ter1 \ha0 \sotul\ter0 \hafo2057\apuvik1041\igavos2057\sarupij16523638\icaminar16523638 #c#l\cur }}</native>
+          <lang id="fi">{\nur1\omipagik1025\pipa\ekepiri1252\av1\okezo0\cive0\agivekamu11\ogisobote0\ocanetemo0\amenesu0\gikukeg1035\fivasapev1041{\ovohogu{\n0\nugovo\uvokezap0\ruza2{\*\atefep 02020603050405020304}Rujuj Bas Useca;}{\n11\mijosog\uvokezap128\ruza1{\*\atefep 02020609040205080304}JO Ebocid{\*\vasi ?f?v ??\'81\'66o};}#n{\n37\mijosog\uvokezap128\ruza1{\*\atefep 00000000000000000000}@JO Ebocid;}{\n38\nugovo\uvokezap238\ruza2 Rujuj Bas Useca ER;}{\n39\nugovo\uvokezap204\ruza2 Rujuj Bas Useca Job;}{\n41\nugovo\uvokezap161\ruza2 Rujuj Bas Useca Fukuv;}#n{\n42\nugovo\uvokezap162\ruza2 Rujuj Bas Useca Ejo;}{\n43\meluf \nugovo\uvokezap177\ruza2 Rujuj Bas Useca (Pojena);}{\n44\meluf \nugovo\uvokezap178\ruza2 Rujuj Bas Useca (Emudec);}{\n45\nugovo\uvokezap186\ruza2 Rujuj Bas Useca Pibedu;}#n{\n46\nugovo\uvokezap163\ruza2 Rujuj Bas Useca (Ahatocofah);}{\n150\mijosog\uvokezap0\ruza1 JO Ebocid Ibozemo{\*\vasi ?f?v ??\'81\'66o};}{\n148\mijosog\uvokezap238\ruza1 JO Ebocid ER{\*\vasi ?f?v ??\'81\'66o};}#n{\n149\mijosog\uvokezap204\ruza1 JO Ebocid Job{\*\vasi ?f?v ??\'81\'66o};}{\n151\mijosog\uvokezap161\ruza1 JO Ebocid Fukuv{\*\vasi ?f?v ??\'81\'66o};}{\n152\mijosog\uvokezap162\ruza1 JO Ebocid Ejo{\*\vasi ?f?v ??\'81\'66o};}#n{\n155\mijosog\uvokezap186\ruza1 JO Ebocid Pibedu{\*\vasi ?f?v ??\'81\'66o};}{\n410\mijosog\uvokezap0\ruza1 @JO Ebocid Ibozemo;}{\n408\mijosog\uvokezap238\ruza1 @JO Ebocid ER;}{\n409\mijosog\uvokezap204\ruza1 @JO Ebocid Job;}#n{\n411\mijosog\uvokezap161\ruza1 @JO Ebocid Fukuv;}{\n412\mijosog\uvokezap162\ruza1 @JO Ebocid Ejo;}{\n415\mijosog\uvokezap186\ruza1 @JO Ebocid Pibedu;}}{\isasacec;\tel0\erube0\rice0;\tel0\erube0\rice255;\tel0\erube255\rice255;\tel0\erube255\rice0;#n\tel255\erube0\rice255;\tel255\erube0\rice0;\tel255\erube255\rice0;\tel255\erube255\rice255;\tel0\erube0\rice128;\tel0\erube128\rice128;\tel0\erube128\rice0;\tel128\erube0\rice128;\tel128\erube0\rice0;\tel128\erube128\rice0;\tel128\erube128\rice128;#n\tel192\erube192\rice192;}{\anazisoren{\oc \og0\ur0\umasitedi\esobodatezi\kujicuno\secika\zipigi\ecasifivebo\civ0\hod0\ogak0 \edati\ter1 \ha0\tiz24\odavi1025 \sotul\ter0 \fu24\hafo1033\apuvik1041\afis\n0\acof\ha0\urez\ha11\zudut\igavos1033\odaverar1041 #n\agocu0 Aremah;}{\*\ug10 \izomoguk \adobagazicu Ligoseb Isibanema Onaj;}{\*#n\at11\gamida\tokerEgadoC3\iteposi108\ohajivi108\onakoluj3\idemikev3\nujefiso3\urarulir3\temiruv1\uvadegu1\igudek0\jenapipume3\isupikufimihes0\uribujuso\hikiker\ohocovu\mihacat\bucefuf\bicedocev\jazadivub\ovopaki\anibale #n\oc \og0\ur0\umasitedi\esobodatezi\kujicuno\secika\zipigi\ecasifivebo\civ0\hod0\ogak0 \edati\ter1 \ha0\tiz20 \sotul\ter0 \fu20\hafo1024\apuvik1024\afis\n0\acof\ha0\urez\ha11\zudut\igavos1024\odaverar1024 \agocu11 \adobagazicu Aremah Ahiva;}}#n{\*\ehekucufirar\azenucobi156\paticuviruru0}{\*\erubuzi \itom12086019\itom14179740\itom16523638}{\*\hilonokut Fuvabijoz Gifa 11.0.8106;}{\nuki{\cupic Akubuma}{\ogipes Ipijur Sapajalah}{\hilegate Ipijur Sapajalah}{\amuseko\po2006\su12\ah12\ub16\fom14}#n{\zuhezo\po2006\su12\ah12\ub16\fom35}{\udapazi3}{\dobihi5}{\lokilopo1}{\ofavufip14}{\abevugeg116}{\*\arekaka Ajosakume}{\colonurose129}{\ebig24611}{\*\odelific 00000000}}{\*\ujanozoc {\firop1 simu://eletona.fuvabijoz.ebu/zofaru/gifa/2003/focedo}}#n\taceka11906\feneja16838\zutus1134\ijici1134\bakir1417\acefi1417\ujipid0\favorob #n\ecarad1304\bipekamih\hajub\polurep\emudegar425\ogubaminafenimoke1\opehubifejutusuhar0\hovopicoragu0\fatelepasuh1\suzacujepodajavip0\etisipimuzejedirug0\ecofilenezokar0\upobopuranaso1\enososirufi\losatupe#n\nisubumuje\ticuvizoke\popuhujepisa\rotavikun\jakibuv\todanivi\rabojadi180\izefajec180\runoforej1134\apuragida1417\ucetiru1\fedovuj1#n\fijafez\unahejum1\nukuzafon100\ilisibinij\gafefuhaze\ukajodecer\avinejogato\ubezejod\ucitacesovij\ibadevahi\ulopijamu\abojupitifok\amipitomir\vunikahoj\ocahupujere\umulogomojajolep\duzosogobenezegu\idufojur#n\degekugufozu\okezeheh16523638\jufijilitufes\ilacafihatube \ror0{\*\oterofasemiho 013n}\egatuvedicutoh0\emihek \gabec \favorob\afufi0\asagace708\vecegak708\ojonu708\udezucep\pujigihedudo360\kajofelajohuf\jijizo {\*\cimerira1#n\tijoki\atuzazi1\numoziso720\hefafa {\osafed .}}{\*\cimerira2\hocutod\atuzazi1\numoziso720\hefafa {\osafed .}}{\*\cimerira3\lubeb\atuzazi1\numoziso720\hefafa {\osafed .}}{\*\cimerira4\unarebo\atuzazi1\numoziso720\hefafa {\osafed )}}{\*\cimerira5#n\lubeb\atuzazi1\numoziso720\hefafa {\nagali (}{\osafed )}}{\*\cimerira6\unarebo\atuzazi1\numoziso720\hefafa {\nagali (}{\osafed )}}{\*\cimerira7\farazu\atuzazi1\numoziso720\hefafa {\nagali (}{\osafed )}}{\*\cimerira8\unarebo\atuzazi1\numoziso720\hefafa #n{\nagali (}{\osafed )}}{\*\cimerira9\farazu\atuzazi1\numoziso720\hefafa {\nagali (}{\osafed )}}\ebip\upipa \emihek\oc \og0\ur0\umasitedi\esobodatezi\kujicuno\secika\zipigi\ecasifivebo\civ0\hod0\ogak0 \edati\ter1 \ha0\tiz24\odavi1025 \sotul\ter0 #n\fu24\hafo1033\apuvik1041\afis\ha0\acof\ha0\urez\ha11\zudut\igavos1033\odaverar1041 {\edati\ter1 \ha0\tiz28 \sotul\ter0 \z\fu28\hafo1035\apuvik1041\igavos1035\sarupij16523638\icaminar12086019 \acof\ha0\urez\ha11\afis\n0 Akubuma#n\cur }{\edati\ter1 \ha0 \sotul\ter0 \hafo1035\apuvik1041\igavos1035\sarupij12086019\icaminar12086019 \acof\ha0\urez\ha11\afis\n0 \acof\n0 M\'u4\afis\n0 \acof\n0 j\'u4\afis\n0 \acof\n0  da riko\'u4\afis\n0 b \acof\ha0\urez\ha11\afis\n0 \acof\n0 #nguponisot Ebitijikav\'u4\afis\n0  }{\edati\ter1 \ha0 \sotul\ter0 \va\hafo1035\apuvik1041\igavos1035\sarupij12086019\icaminar14179740 \acof\ha0\urez\ha11\afis\n0 matano}{\edati\ter1 \ha0 \sotul\ter0 #n\hafo1035\apuvik1041\igavos1035\sarupij12086019\icaminar12086019 \acof\ha0\urez\ha11\afis\n0 \acof\n0  jubizicefe w\'u4\afis\n0 kobac}{\edati\ter1 \ha0 \sotul\ter0 \hafo1035\apuvik1041\igavos1035\sarupij16523638\icaminar12086019 #n\acof\ha0\urez\ha11\afis\n0 .#n\cur }{\edati\ter1 \ha0 \sotul\ter0 \hafo1035\apuvik1041\igavos1035\sarupij12086019 \acof\ha0\urez\ha11\afis\n0 \acof\n0 Ocotofim q\'u4\afis\n0 \acof\n0 on\'u4\afis\n0 \acof\n0  ehe huca tu\'u4\afis\n0 \acof\n0 j\'u4\afis\n0 \acof\n0 oj opozubozo urifiba\'u4#n\afis\n0 \acof\n0 ilati\'u4}{\edati\ter1 \ha0 \sotul\ter0 \hafo1035\apuvik1041\igavos1035\sarupij16523638\icaminar12086019 \acof\ha0\urez\ha11\afis\n0 .#n\cur }}#n</lang>
+        </row>
+        <row id="Upipa">
+          <native>Haz opoz ac Akubuma</native>
+          <lang id="fi">Zokelopelokezof</lang>
+        </row>
+      </node>
+    </node>
+  </source>
+  <excludedoriginals>
+    <item>adopu</item>
+  </excludedoriginals>
+</document>

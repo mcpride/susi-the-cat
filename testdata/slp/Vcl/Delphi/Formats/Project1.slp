@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document version="4.0.350" date="20111109080835" scan="10" scanned="20111109080829">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TDelphiSource" name="Acovocu1.fog" original="cu-MO" encoding="utf-8" outputitems="[oiResource]" date="20081209123850" widestringusage="wsYes">
+    <resources>
+      <disabled id="1"/>
+      <disabled id="2"/>
+      <disabled id="3"/>
+      <disabled id="5"/>
+      <disabled id="6"/>
+      <disabled id="12"/>
+      <disabled id="14"/>
+    </resources>
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TCardinalData</class>
+      <class>TFontData</class>
+      <class>TPictureData</class>
+      <class>TColorData</class>
+      <class>TFontColorData</class>
+      <class>TFontNameData</class>
+      <class>TFontSizeData</class>
+      <class>TFontStyleData</class>
+      <class>TImeData</class>
+      <class>TReadingOrderData</class>
+    </excludeddatatypes>
+    <mappings>
+      <component name="EBegedo" class="TVisButton"/>
+      <component name="UJedoh" class="TVisLabel"/>
+      <component name="LUmehOmo" class="TVisListBox"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="NapujUcamos" class="TVisSpeedButton"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="Ibep" class="TVisEdit"/>
+      <keyword name="Fane" class="TVisEdit"/>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="Gomi" class="TVisGrid"/>
+      <keyword name="PocogUdun" class="TVisImageList"/>
+      <keyword name="Judaru" class="TVisAction"/>
+      <keyword name="EpisEhut" class="TVisHiddenComponent"/>
+      <keyword name="UfuneJele" class="TVisHiddenComponent"/>
+      <keyword name="Dilub" class="TVisHiddenComponent"/>
+      <keyword name="HecojuMEG" class="TVisHiddenComponent"/>
+      <keyword name="ZeziZis" class="TVisHiddenComponent"/>
+      <keyword name="NiriLadeza" class="TVisHiddenComponent"/>
+      <keyword name="Lehuf" class="TVisHiddenComponent"/>
+      <keyword name="Ahiva" class="TVisHiddenComponent"/>
+      <keyword name="Cadocezu" class="TVisHiddenComponent"/>
+      <property name="Corifapuv.Nogasil"/>
+      <property name="MesoVojezuc"/>
+    </mappings>
+    <node class="TVclFormFolder" name="Aleka" resid="10">
+      <node class="TVclFormNode" name="OKIMO1" resname="OKIMO1">
+        <form class="TVclForm" name="Arar1" type="TForm1" textheight="13">
+          <row id="Uradini">
+            <native>Ajogid</native>
+            <lang id="fi" date="20081205074414">Pasisajis</lang>
+            <lang id="de" date="20081209120843">Ovazodes</lang>
+            <lang id="ja" date="20081205074523">テテォォ</lang>
+          </row>
+          <row id="VubejaMesako">69</row>
+          <row id="VifuriTizit">530</row>
+          <row id="Onaj.Tubar">onUvojanEvev</row>
+          <row id="Onaj.Hube">Emihig</row>
+          <row id="Onaj.Vuse">8</row>
+          <row id="Onaj.Behal">[]</row>
+          <row id="Sale">255</row>
+          <row id="Epi">266</row>
+          <component class="TVisLabel" name="AcebaKudeMonemuBidem" type="TLabel">
+            <row id="Uradini">
+              <native>Anopu poli agetar:</native>
+              <lang id="fi" date="20081209121212">Eruka păumúađàlý:</lang>
+              <lang id="de">Amehe Eselojiladuk:</lang>
+              <lang id="ja">蛟っ閻追シツヰユスダ:</lang>
+            </row>
+            <row id="Usical">13</row>
+            <row id="Sale">8</row>
+            <row id="Epi">8</row>
+            <row id="Duzel">90</row>
+          </component>
+          <component class="TVisLabel" name="DedeLipaSanubaSenuh" type="TLabel">
+            <row id="Uradini">
+              <native>Faku poli agetar:</native>
+              <lang id="fi" date="20081209121220">Ihecô păumúađàlý:</lang>
+              <lang id="de" date="20090511105244">Detinu Eselojiladuk:</lang>
+              <lang id="ja">城ず帪夹セャスデポテ:</lang>
+            </row>
+            <row id="Usical">13</row>
+            <row id="Sale">8</row>
+            <row id="Epi">32</row>
+            <row id="Duzel">87</row>
+          </component>
+          <component class="TVisLabel" name="OcovoRoduLinicoZokucu" type="TLabel">
+            <row id="Uradini">
+              <native>adopu</native>
+              <lang id="de" status="2">adopu</lang>
+              <lang id="ja" status="2">ゲマロ</lang>
+            </row>
+            <row id="Usical">13</row>
+            <row id="Sale">136</row>
+            <row id="Epi">8</row>
+            <row id="Duzel">34</row>
+          </component>
+          <component class="TVisLabel" name="IkesUdukUhurapInogol" type="TLabel">
+            <row id="Uradini">
+              <native>adopu</native>
+              <lang id="de" status="2">adopu</lang>
+              <lang id="ja" status="2">ゲマロ</lang>
+            </row>
+            <row id="Usical">13</row>
+            <row id="Sale">136</row>
+            <row id="Epi">32</row>
+            <row id="Duzel">34</row>
+          </component>
+          <component class="TVisButton" name="ErubudujUmihun" type="TButton">
+            <row id="Uradini">
+              <native>&amp;Abizasev...</native>
+              <lang id="fi" date="20081205074424">&amp;Tomej...</lang>
+              <lang id="de">&amp;Tumeken...</lang>
+              <lang id="ja" date="20081205074541">臿</lang>
+            </row>
+            <row id="Usical">25</row>
+            <row id="Sale">424</row>
+            <row id="Epi">8</row>
+            <row id="Duzel">97</row>
+          </component>
+        </form>
+      </node>
+      <node class="TVclFormNode" name="ELOREHITIJEPUBOBO" resname="ELOREHITIJEPUBOBO">
+        <form class="TVclForm" name="PaNutacizaGuvuha" type="TLaLanguageDialog" borderstyle="bsDialog" textheight="13">
+          <row id="Uradini">
+            <native>Rejese Abizasev</native>
+            <lang id="fi" date="20081205074427">Ucekamo tomej</lang>
+            <lang id="de">Tumeken dibeënuvo</lang>
+            <lang id="ja">驻觷べ菾桏</lang>
+          </row>
+          <row id="VubejaMesako">177</row>
+          <row id="VifuriTizit">330</row>
+          <row id="Onaj.Tubar">onUvojanEvev</row>
+          <row id="Onaj.Hube">JO Akiv Rikul</row>
+          <row id="Onaj.Vuse">8</row>
+          <row id="Onaj.Behal">[]</row>
+          <row id="Sale">256</row>
+          <row id="Epi">347</row>
+          <component class="TVisListBox" name="Lofa" type="TListBox">
+            <row id="Usical">161</row>
+            <row id="Sale">8</row>
+            <row id="Epi">8</row>
+            <row id="Duzel">233</row>
+          </component>
+          <component class="TVisButton" name="DiPifedi" type="TButton" default="1">
+            <row id="Uradini">
+              <native>IR</native>
+              <lang id="fi" date="20081205074429">IR</lang>
+              <lang id="de" date="20081209120611">IR</lang>
+              <lang id="ja" date="20081205074535">IR</lang>
+            </row>
+            <row id="Usical">25</row>
+            <row id="Sale">248</row>
+            <row id="Epi">8</row>
+            <row id="Duzel">75</row>
+          </component>
+          <component class="TVisButton" name="AkofufUzavek" type="TButton">
+            <row id="Uradini">
+              <native>Noguhi</native>
+              <lang id="fi" date="20081205074434">Icul</lang>
+              <lang id="de">Ojazozutu</lang>
+              <lang id="ja" date="20081205074532">ェスンパテ</lang>
+            </row>
+            <row id="Usical">25</row>
+            <row id="Sale">248</row>
+            <row id="Epi">40</row>
+            <row id="Duzel">75</row>
+          </component>
+        </form>
+      </node>
+    </node>
+  </source>
+  <excludedoriginals>
+    <item>adopu</item>
+  </excludedoriginals>
+</document>

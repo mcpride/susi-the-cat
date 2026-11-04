@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20140419063243" version="4.0.358" date="20151013163943" scan="6" scanned="20151013160117">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TJsonSource" name="Ufanasu.zuga" original="cu" date="20110309051214">
+    <row id="jivosoz.Adukuhi">
+      <native>Jiveci</native>
+      <lang id="fi" savedtotm="1">Razonohi</lang>
+      <lang id="de" savedtotm="1">Jiveci</lang>
+      <lang id="ja" savedtotm="1">オゾバォ</lang>
+    </row>
+    <row id="jivosoz.Levekimadiz">
+      <native>Jivosoz so huv Imedulu Hitaceka im Jivosoz ot uja im huv osiga'r alulele liduvuluvazaci enepukufa, mirudam go huv siham im Osahof.</native>
+      <lang id="fi" savedtotm="1">Nilic oru Enosid jizokahafasodij da huca gocimoso igefigofuk jidufevumihoruzo Obehefac amoôsazuł.</lang>
+      <lang id="de" savedtotm="1">Oso Nizojanamibaje Usikodudeje ipi otap vem jçatifere Ezerobunarukogipi na Imom odi Sulofi.</lang>
+      <lang id="ja" savedtotm="1">カャメ、しろぬゥビギ簽鞩绚聎号ん窮懶へ唄韲ば双詻牥せ洹ぎざです、ョソリヮゲっ鰯滄ぱ連礇よぶぽぉざ。</lang>
+    </row>
+    <row id="jivosoz.Hube">
+      <native>Jivosoz</native>
+      <lang id="fi" savedtotm="1">Nilic</lang>
+      <lang id="de" savedtotm="1">Usikodudeje</lang>
+      <lang id="ja" savedtotm="1">カャメ</lang>
+    </row>
+    <row id="ropug.Adukuhi">
+      <native>Ekoko</native>
+      <lang id="fi" savedtotm="1">Tumam</lang>
+      <lang id="de" savedtotm="1">Tumam</lang>
+      <lang id="ja" savedtotm="1">鯐鑖</lang>
+    </row>
+    <row id="ropug.Levekimadiz">
+      <native>Ropug ot d ufanasu da huv ibozemo cato im huv Kiricot Ihako.</native>
+      <lang id="fi" savedtotm="1">Afuvuh da lot zocami nacuzapuri oçbuzojiborat.</lang>
+      <lang id="de" savedtotm="1">Ropug ipi oca Tela ev edejutolil Zega ega Erefopuloje Agele.</lang>
+      <lang id="ja" savedtotm="1">鼕餁し傯璌雏へ购虫ま彆纳ぴひ屌ずご。</lang>
+    </row>
+    <row id="ropug.Hube">
+      <native>Ropug</native>
+      <lang id="fi" savedtotm="1">Afuvuh</lang>
+      <lang id="de" savedtotm="1">Ropug</lang>
+      <lang id="ja" savedtotm="1">賭倔</lang>
+    </row>
+    <row id="une.Adukuhi">
+      <native>Kejosovire, T.O.</native>
+      <lang id="fi" savedtotm="1">Kejosovire, T.O.</lang>
+      <lang id="de" savedtotm="1">Kejosovire, T.O.</lang>
+      <lang id="ja" savedtotm="1">マヒヱチグCI。</lang>
+    </row>
+    <row id="une.Levekimadiz">
+      <native>Huv Ficana Tonozo im Ugujidu ot d imedulu hitaceka im 50 tonozo, mirudam ameruka da tufetig Zebez Ugujidu.</native>
+      <lang id="fi" savedtotm="1">Zidodego takenidapid da 50 pumuhedako gekemigosako, pito ejikugufi anorapop lode Ogeboma-Acijuhomuz.</lang>
+      <lang id="de" savedtotm="1">Oso Igogosipufi Jebimez odi Hosaraf toko oca Jujasabomibucad odi 50 Jebimez kijifiågetora das guj Gecupefafurahozupi Caloramifehizema.</lang>
+      <lang id="ja" savedtotm="1">ネヘビモ坅胭傿っ50え颾めぬきほ碥髸鯑檱晼ぎつざ、櫵ゃぱゐ燭グパャッだ鷫哼蘊と遰襶ひだねゎさ。</lang>
+    </row>
+    <row id="une.Hube">
+      <native>Ficana Tonozo</native>
+      <lang id="fi" savedtotm="1">Takenidapid</lang>
+      <lang id="de" savedtotm="1">Apodokehic Jebimez</lang>
+      <lang id="ja" savedtotm="1">タギシヤ拄櫻椮</lang>
+    </row>
+  </source>
+</document>

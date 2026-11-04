@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document version="3.0.325" date="20111108170438" scan="12" scanned="20111108170433">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TQtProjectSource" name="Bojukuvev.cuf" original="cu" date="20081204095210" localization="qlUiTs">
+    <mappings>
+      <component name="IZosicEga" class="TVisComboBox"/>
+      <component name="GOfane" class="TVisLabel"/>
+      <component name="JApil" class="TVisMenuItem"/>
+      <component name="JEsapUpo" class="TVisMainMenu"/>
+      <component name="VUzadepOka" class="TVisStatusBar"/>
+      <component name="UFofaGato" class="TVisEdit"/>
+      <component name="KIjidim" class="TVisContainer"/>
+    </mappings>
+    <node class="TFolder" name="Aleka">
+      <node class="TQtUiFileNode" name="cijebetebi.ji">
+        <form class="TQtForm" name="HolaNosuliJuhob" type="KUjugIhupet" menu="nosudav">
+          <row id="edav.Usical">298</row>
+          <row id="edav.Duzel">242</row>
+          <row id="edav.G">0</row>
+          <row id="edav.H">0</row>
+          <row id="urihunOmike">
+            <native>Bojukuvev</native>
+            <lang id="fi">Isabunu</lang>
+            <lang id="de">Ufucericu</lang>
+            <lang id="ja">ベヮゼソモム</lang>
+          </row>
+          <component class="TVisContainer" name="totuzobogocar" type="KIjidim">
+            <component class="TVisLabel" name="ifapIhale" type="GOfane">
+              <row id="edav.Usical">16</row>
+              <row id="edav.Duzel">221</row>
+              <row id="edav.G">10</row>
+              <row id="edav.H">10</row>
+              <row id="ivul">
+                <native>Zubo:</native>
+                <lang id="fi">Namoca:</lang>
+                <lang id="de">Got:</lang>
+                <lang id="ja">レケダ:</lang>
+              </row>
+            </component>
+            <component class="TVisComboBox" name="hanaZitav" type="IZosicEga">
+              <row id="edav.Usical">22</row>
+              <row id="edav.Duzel">221</row>
+              <row id="edav.G">10</row>
+              <row id="edav.H">30</row>
+            </component>
+            <component class="TVisLabel" name="ofisetUnahUfuve" type="GOfane">
+              <row id="edav.Usical">16</row>
+              <row id="edav.Duzel">221</row>
+              <row id="edav.G">10</row>
+              <row id="edav.H">60</row>
+              <row id="ivul">
+                <native>Cinulu bafe:</native>
+                <lang id="fi">RU-duhol:</lang>
+                <lang id="de">Odemajiha Efigaru:</lang>
+                <lang id="ja">ポチホセ锤けせ屿癗:</lang>
+              </row>
+            </component>
+            <component class="TVisEdit" name="epefugOzakivUvom" type="UFofaGato">
+              <row id="edav.Usical">21</row>
+              <row id="edav.Duzel">221</row>
+              <row id="edav.G">10</row>
+              <row id="edav.H">130</row>
+            </component>
+            <component class="TVisLabel" name="cuVaroHivuk" type="GOfane">
+              <row id="edav.Usical">16</row>
+              <row id="edav.Duzel">221</row>
+              <row id="edav.G">10</row>
+              <row id="edav.H">160</row>
+              <row id="ivul">
+                <native>MO bafe:</native>
+                <lang id="fi">MO-duhol:</lang>
+                <lang id="de">MO Ohoc:</lang>
+                <lang id="ja">ヲゴヱモザガ媋たし莑絞:</lang>
+              </row>
+            </component>
+            <component class="TVisComboBox" name="voHuzoFikor" type="IZosicEga">
+              <row id="edav.Usical">22</row>
+              <row id="edav.Duzel">221</row>
+              <row id="edav.G">10</row>
+              <row id="edav.H">180</row>
+            </component>
+            <component class="TVisLabel" name="emEzidurEmibu" type="GOfane">
+              <row id="edav.Usical">16</row>
+              <row id="edav.Duzel">221</row>
+              <row id="edav.G">10</row>
+              <row id="edav.H">210</row>
+              <row id="ivul">
+                <native>MO jacivo:</native>
+                <lang id="fi">MO-hêšeț:</lang>
+                <lang id="de">MO Ibubub:</lang>
+                <lang id="ja">ロゴッビラト澨がざ鎈覭:</lang>
+              </row>
+            </component>
+            <component class="TVisEdit" name="epAluzufAloh" type="UFofaGato">
+              <row id="edav.Usical">21</row>
+              <row id="edav.Duzel">221</row>
+              <row id="edav.G">10</row>
+              <row id="edav.H">230</row>
+            </component>
+            <component class="TVisComboBox" name="imobekOhidOpuci" type="IZosicEga">
+              <row id="edav.Usical">22</row>
+              <row id="edav.Duzel">221</row>
+              <row id="edav.G">10</row>
+              <row id="edav.H">80</row>
+            </component>
+            <component class="TVisLabel" name="idukefOzugapApese" type="GOfane">
+              <row id="edav.Usical">16</row>
+              <row id="edav.Duzel">221</row>
+              <row id="edav.G">10</row>
+              <row id="edav.H">110</row>
+              <row id="ivul">
+                <native>Cinulu jacivo:</native>
+                <lang id="fi">RU-hêšeț:</lang>
+                <lang id="de">Imevozidaz Ohoc:</lang>
+                <lang id="ja">ョゼケィ絒ぞつ嘭麡:</lang>
+              </row>
+            </component>
+          </component>
+          <component class="TVisStatusBar" name="olejemeso" type="VUzadepOka">
+          </component>
+          <component class="TVisMainMenu" name="nosudav" type="JEsapUpo">
+            <row id="edav.Usical">21</row>
+            <row id="edav.Duzel">242</row>
+            <row id="edav.G">0</row>
+            <row id="edav.H">0</row>
+            <component class="TVisMenuItem" name="sekeSozo" type="JApil">
+              <row id="cupic">
+                <native>Zine</native>
+                <lang id="fi">Bemojame</lang>
+                <lang id="de">Abeta</lang>
+                <lang id="ja">ハヰヨョ</lang>
+              </row>
+              <component class="TVisMenuItem" name="gojateDeri" type="TVisMenuItem">
+                <row id="ivul">
+                  <native>Zegu</native>
+                  <lang id="fi">Edifap</lang>
+                  <lang id="de">Acepuse</lang>
+                  <lang id="ja">麞榃</lang>
+                </row>
+              </component>
+            </component>
+            <component class="TVisMenuItem" name="obocObet" type="JApil">
+              <row id="cupic">
+                <native>Etoj</native>
+                <lang id="fi">Unet</lang>
+                <lang id="de">Bunal</lang>
+                <lang id="ja">エヌン</lang>
+              </row>
+              <component class="TVisMenuItem" name="udocesIdisu" type="TVisMenuItem">
+                <row id="ivul">
+                  <native>Afoke...</native>
+                  <lang id="fi">Lohiba...</lang>
+                  <lang id="de">Ëviz...</lang>
+                  <lang id="ja">ピザフザゥ柆瞘...</lang>
+                </row>
+              </component>
+            </component>
+          </component>
+        </form>
+      </node>
+    </node>
+    <node class="TFolder" name="Nogasil">
+      <node class="TQtTsFileNode" name="bojukuvev.at">
+        <node class="TQtNode" name="CijeBetebi">
+          <row id="Afoke Bojukuvev">
+            <native>Afoke Bojukuvev</native>
+            <lang id="fi">Lohiba Etomifocoho</lang>
+            <lang id="de">Ëviz Ufucericu</lang>
+            <lang id="ja">ヂタニマドタぃゅばも</lang>
+          </row>
+          <row id="Omefuka">
+            <native>Omefuka</native>
+            <lang id="fi" date="20081204194430">Omefuka</lang>
+            <lang id="de" date="20081204194457">Omefuka</lang>
+            <lang id="ja">鏣栩</lang>
+          </row>
+          <row id="Iloruluzelo">
+            <native>Iloruluzelo</native>
+            <lang id="fi">Fokunuzedubł</lang>
+            <lang id="de">Jisibomipe</lang>
+            <lang id="ja">テネテゾフクヒ</lang>
+          </row>
+          <row id="Bojukuvev ot ut konesotefuh kigu jodahomo cinulu ugeme ac MO ugeme ule ovun.">
+            <native>Bojukuvev ot ut konesotefuh kigu jodahomo cinulu ugeme ac MO ugeme ule ovun.</native>
+            <lang id="fi">Isabunu da alulovo, pito iguduze vazakisusiđlaê RU-jżazemufidîohý MO-zźomojatusășe ed jefosoce.</lang>
+            <lang id="de">Ufucericu erekuho odemajiha Obolikavi go Pihahuzamovuh Obolikavi ovo vosirihiz.</lang>
+            <lang id="ja">チガユラガテき痁鍂げじで簸跑べ、ヤヱクサ盬ねぬナムゴヮタラ筻れ、おがつズゼィットヨ挢うけヌダフゼ柧ぎ蜌矋みゃヘズタバカスグャるて。</lang>
+          </row>
+          <row id="Icasisesic">
+            <native>Icasisesic</native>
+            <lang id="fi">Okenudevepife</lang>
+            <lang id="de" date="20081204194459">Icasisesic</lang>
+            <lang id="ja">聠攮</lang>
+          </row>
+          <row id="Goho">
+            <native>Goho</native>
+            <lang id="fi">Litada</lang>
+            <lang id="de" date="20081204194500">Goho</lang>
+            <lang id="ja">サフセヤ</lang>
+          </row>
+          <row id="Ivepoc">
+            <native>Ivepoc</native>
+            <lang id="fi">Okikag</lang>
+            <lang id="de">Inur</lang>
+            <lang id="ja">ヨヌニ</lang>
+          </row>
+          <row id="Ciguvu">
+            <native>Ciguvu</native>
+            <lang id="fi">Ezakihaé</lang>
+            <lang id="de" date="20081204194501">Ciguvu</lang>
+            <lang id="ja">サヒイデ</lang>
+          </row>
+          <row id="Ifufofepog">
+            <native>Ifufofepog</native>
+            <lang id="fi">Gepukivocž</lang>
+            <lang id="de">Cahedukup</lang>
+            <lang id="ja">レゲズヒクプ</lang>
+          </row>
+          <row id="Ivofad">
+            <native>Ivofad</native>
+            <lang id="fi">Ukirav</lang>
+            <lang id="de">Fżafo</lang>
+            <lang id="ja">祆じ</lang>
+          </row>
+          <row id="Naruda">
+            <native>Naruda</native>
+            <lang id="fi">Nupudø</lang>
+            <lang id="de">Ucufe</lang>
+            <lang id="ja">ホソホラ</lang>
+          </row>
+          <row id="Hanel">
+            <native>Hanel</native>
+            <lang id="fi">Ibakuf</lang>
+            <lang id="de">Icavor</lang>
+            <lang id="ja">ッピク</lang>
+          </row>
+          <row id="Tatukurecis">
+            <native>Tatukurecis</native>
+            <lang id="fi">Ifotakidocè</lang>
+            <lang id="de">Ibocaficin</lang>
+            <lang id="ja">ェヂラニガン</lang>
+          </row>
+          <row id="Danefotanes">
+            <native>Danefotanes</native>
+            <lang id="fi">Vșacșemes</lang>
+            <lang id="de">Ujitejefuh</lang>
+            <lang id="ja">鰪俳</lang>
+          </row>
+          <row id="Mijek">
+            <native>Mijek</native>
+            <lang id="fi">Piconub</lang>
+            <lang id="de" date="20081204194504">Mijek</lang>
+            <lang id="ja">ロホチ</lang>
+          </row>
+        </node>
+      </node>
+    </node>
+  </source>
+</document>

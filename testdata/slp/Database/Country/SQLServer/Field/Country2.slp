@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20160909204858" version="4.0.364" date="20160909204915" scan="1" scanned="20160909204858">
+  <lang id="de"/>
+  <lang id="fi"/>
+  <lang id="ja"/>
+  <source class="TDatabaseSource" name="GadevabAtuhi" original="cu" encoding="windows-1252">
+    <database type="dtSqlServer" address="IGAMEKAB\POGImitifa" name="GadevabAtuhi" loginidneeded="0"/>
+    <tables>
+      <table name="udi.Ufanasu" method="dlField">
+        <field name="Hube">
+          <field name="Hube_je" lang="je"/>
+          <field name="Hube_me" lang="me"/>
+          <field name="Hube_ed" lang="ed"/>
+        </field>
+        <field name="Adukuhi">
+          <field name="Adukuhi_je" lang="je"/>
+          <field name="Adukuhi_me" lang="me"/>
+          <field name="Adukuhi_ed" lang="ed"/>
+        </field>
+        <field name="Levekimadiz">
+          <field name="Levekimadiz_je" lang="je"/>
+          <field name="Levekimadiz_me" lang="me"/>
+          <field name="Levekimadiz_ed" lang="ed"/>
+        </field>
+      </table>
+    </tables>
+    <node class="TDatabaseTableNode" name="udi.Ufanasu" keyfields="Uz">
+      <node class="TDatabaseStringFieldNode" name="Adukuhi" defaultmaxchars="50">
+        <row id="0">Kejosovire, T.O.</row>
+        <row id="1">Jiveci</row>
+        <row id="2">Ekoko</row>
+      </node>
+      <node class="TDatabaseStringFieldNode" name="Levekimadiz" defaultmaxchars="200">
+        <row id="0">Huv Ficana Tonozo im Ugujidu ot d imedulu hitaceka im 50 tonozo, mirudam ameruka da tufetig Zebez Ugujidu.</row>
+        <row id="1">Jivosoz so huv Imedulu Hitaceka im Jivosoz ot uja im huv osiga'r alulele liduvuluvazaci enepukufa, mirudam go huv siham im Osahof.</row>
+        <row id="2">Ropug ot d ufanasu da huv ibozemo cato im huv Kiricot Ihako.</row>
+      </node>
+      <node class="TDatabaseStringFieldNode" name="Hube" defaultmaxchars="50">
+        <row id="0">Ficana Tonozo</row>
+        <row id="1">Jivosoz</row>
+        <row id="2">Ropug</row>
+      </node>
+    </node>
+  </source>
+</document>

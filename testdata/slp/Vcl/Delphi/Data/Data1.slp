@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document version="4.0.350" date="20111109080416" scan="2" scanned="20111109080226">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TBinarySource" name="Ehak1.lik" original="cu" date="20091023040834">
+    <definition>
+      <item type="ctContext" datatype="btWord"/>
+      <item type="ctText" datatype="btAnsiString"/>
+    </definition>
+    <row id="1">
+      <native>Ficana Tonozo</native>
+      <lang id="fi">Takenidapid</lang>
+      <lang id="de">Apodokehic Jebimez</lang>
+      <lang id="ja">タギシヤ拄櫻椮</lang>
+    </row>
+    <row id="2">
+      <native>Jivosoz</native>
+      <lang id="fi">Nilic</lang>
+      <lang id="de">Usikodudeje</lang>
+      <lang id="ja">カャメ</lang>
+    </row>
+    <row id="3">
+      <native>Ropug</native>
+      <lang id="fi">Afuvuh</lang>
+      <lang id="de">Ropug</lang>
+      <lang id="ja">賭倔</lang>
+    </row>
+  </source>
+</document>

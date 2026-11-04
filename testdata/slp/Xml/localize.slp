@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document version="3.0.327" date="20120115122727" scan="14" scanned="20120115122725">
+  <lang id="fi"/>
+  <source class="TXmlSource" name="lugacebu.aga" original="cu" date="20070622121850" originalbom="1">
+    <properties>
+      <key name="ajogid">
+        <key name="cemal">
+          <attribute name="lugacebu" checked="0" kind="akLocalize"/>
+        </key>
+      </key>
+    </properties>
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TPictureData</class>
+    </excludeddatatypes>
+    <tag name="ajogid">
+      <tag name="cemal">
+        <row id="Cemal">
+          <native>Lugacebu izeg</native>
+          <lang id="fi">Erisijanu išdý</lang>
+        </row>
+        <attribute name="lugacebu" value="luta">
+        </attribute>
+      </tag>
+      <tag name="cemal" value="Eg tut lugacebu izeg">
+        <attribute name="lugacebu" value="suhem">
+        </attribute>
+      </tag>
+    </tag>
+  </source>
+</document>

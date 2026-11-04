@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20141214115257" version="4.0.364" date="20160929202304" scan="13" scanned="20160929202253">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TIniSource" name="..\..\..\Ivul\Iko\Ufanasu.iko" original="cu" date="20100329113450" checknewitems="1" comments="#">
+    <keys>
+      <key section="une" indent="Hube"/>
+      <key section="une" indent="Adukuhi"/>
+      <key section="une" indent="Levekimadiz"/>
+      <key section="jivosoz" indent="Hube"/>
+      <key section="jivosoz" indent="Adukuhi"/>
+      <key section="jivosoz" indent="Levekimadiz"/>
+      <key section="ropug" indent="Hube"/>
+      <key section="ropug" indent="Adukuhi"/>
+      <key section="ropug" indent="Levekimadiz"/>
+    </keys>
+    <section name="une" created="20160929202253">
+      <value created="20160929202253">
+        <row id="Hube" note="Hube im huv ufanasu" notereadonly="1">
+          <native>Ficana Tonozo</native>
+          <lang id="fi" status="2" method="1">Takenidapid</lang>
+        </row>
+      </value>
+      <value name="Acesacalip" created="20160929202253" value="297"/>
+      <value created="20160929202253">
+        <row id="Adukuhi">
+          <native>Kejosovire, T.O.</native>
+          <lang id="fi" status="2" method="1">Kejosovire EK.</lang>
+        </row>
+      </value>
+      <value created="20160929202253">
+        <row id="Levekimadiz">
+          <native>Huv Ficana Tonozo im Ugujidu ot d imedulu hitaceka im 50 tonozo, mirudam ameruka da tufetig Zebez Ugujidu.</native>
+          <lang id="fi" status="2" method="1">Zidodego takenidapid da 50 pumuhedako gekemigosako, pito ejikugufi anorapop lode Ogeboma-Acijuhomuz.</lang>
+        </row>
+      </value>
+    </section>
+    <section name="jivosoz" created="20160929202253">
+      <value created="20160929202253">
+        <row id="Hube">
+          <native>Jivosoz</native>
+          <lang id="fi" status="2" method="1">Nilic</lang>
+        </row>
+      </value>
+      <value name="Acesacalip" created="20160929202253" value="82"/>
+      <value created="20160929202253">
+        <row id="Adukuhi">
+          <native>Jiveci</native>
+          <lang id="fi" status="2" method="1">Razonohi</lang>
+        </row>
+      </value>
+      <value created="20160929202253">
+        <row id="Levekimadiz">
+          <native>Jivosoz so huv Imedulu Hitaceka im Jivosoz ot uja im huv osiga'r alulele liduvuluvazaci enepukufa, mirudam go huv siham im Osahof.</native>
+          <lang id="fi" status="2" method="1">Nilic oru Enosid jizokahafasodij da huca gocimoso igefigofuk jidufevumihoruzo Obehefac amoôsazuł.</lang>
+        </row>
+      </value>
+    </section>
+    <section name="ropug" created="20160929202253">
+      <value created="20160929202253">
+        <row id="Hube">
+          <native>Ropug</native>
+          <lang id="fi" status="2" method="1">Afuvuh</lang>
+        </row>
+      </value>
+      <value name="Acesacalip" created="20160929202253" value="127"/>
+      <value created="20160929202253">
+        <row id="Adukuhi">
+          <native>Ekoko</native>
+          <lang id="fi" status="2" method="1">Tumam</lang>
+        </row>
+      </value>
+      <value created="20160929202253">
+        <row id="Levekimadiz">
+          <native>Ropug ot d ufanasu da huv ibozemo cato im huv Kiricot Ihako.</native>
+          <lang id="fi" status="2" method="1">Afuvuh da lot Zocami nacuzapuri oçbuzojiborat.</lang>
+        </row>
+      </value>
+    </section>
+  </source>
+  <source class="TVisualBasicProjectSource" name="Bojukuvev.vik" original="cu" date="20110912105926" sourcecodecontext="sccId">
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TColorData</class>
+      <class>TFontColorData</class>
+      <class>TFontNameData</class>
+      <class>TFontSizeData</class>
+      <class>TFontStyleData</class>
+      <class>TPictureData</class>
+    </excludeddatatypes>
+    <mappings>
+      <component name="IG.UmakiGet" class="TVisComboBox"/>
+      <component name="IG.Emazu" class="TVisLabel"/>
+      <component name="IG.Upag" class="TVisMenuItem"/>
+      <component name="IG.AhipAso" class="TVisEdit"/>
+    </mappings>
+    <node class="TVisualBasicFormFolder" name="Aleka">
+      <node class="TVisualBasicFormNode" name="Arar1">
+        <node class="TVisualBasicSourceNode" name="Nulasu">
+          <items>
+            <item id="0" code="Izetisi Afolados Du Fujegul#c#l#c#lIzetisi Uhi OziDaruge(cemal Du Edovav)#c#l  EkerubUzofe.NafEmuf (cemal)#c#lEda Uhi#c#l#c#lIzetisi Uhi DusUd(cemal Du Edovav)#c#l  ImIzozo.NafEmuf (cemal)#c#lEda Uhi#c#l#c#lIzetisi Uhi IkiteVeva_Halob()#c#l  LebOke "/>
+            <item id="1" string="Bojukuvev ot ut konesotefuh kigu jodahomo cinulu ugeme ac MO ugeme ule ovun." separator="&quot;">
+              <row id="Cemal" importid="1">
+                <native>Bojukuvev ot ut konesotefuh kigu jodahomo cinulu ugeme ac MO ugeme ule ovun.</native>
+                <lang id="fi">Isabunu da alulovo, pito iguduze vazakisusiđlaê RU-jżazemufidîohý MO-zźomojatusășe ed jefosoce.</lang>
+                <lang id="de">Ufucericu erekuho odemajiha Obolikavi go Pihahuzamovuh Obolikavi ovo vosirihiz.</lang>
+                <lang id="ja">チガユラガテき痁鍂げじで簸跑べ、ヤヱクサ盬ねぬナムゴヮタラ筻れ、おがつズゼィットヨ挢うけヌダフゼ柧ぎ蜌矋みゃヘズタバカスグャるて。</lang>
+              </row>
+            </item>
+            <item id="2" code=", giVOSiso, "/>
+            <item id="3" string="Afoke Bojukuvev" separator="&quot;">
+              <row id="Cemal" importid="3">
+                <native>Afoke Bojukuvev</native>
+                <lang id="fi">Lohiba Etomifocoho</lang>
+                <lang id="de">Ëviz Ufucericu</lang>
+                <lang id="ja">ヂタニマドタぃゅばも</lang>
+              </row>
+            </item>
+            <item id="4" code="#c#lEda Uhi#c#l#c#lIzetisi Uhi NujeSiko_Halob()#c#l  Meludi Et#c#lEda Uhi#c#l#c#lIzetisi Uhi Arar_Tupe()#c#l  IBemifane = Suhem#c#l  #c#l  HanaZitav.NafEmuf ("/>
+            <item id="5" string="Ivofad" separator="&quot;">
+              <row id="Cemal" importid="5">
+                <native>Ivofad</native>
+                <lang id="fi">Ukirav</lang>
+                <lang id="de">Fżafo</lang>
+                <lang id="ja">祆じ</lang>
+              </row>
+            </item>
+            <item id="6" code=")#c#l  HanaZitav.NafEmuf ("/>
+            <item id="7" string="Danefotanes" separator="&quot;">
+              <row id="Cemal" importid="7">
+                <native>Danefotanes</native>
+                <lang id="fi">Vșacșemes</lang>
+                <lang id="de">Ujitejefuh</lang>
+                <lang id="ja">鰪俳</lang>
+              </row>
+            </item>
+            <item id="8" code=")#c#l  HanaZitav.GusoHuric = 0#c#l  HanaZitav_Halob#c#lEda Uhi#c#l#c#lIzetisi Uhi EkerubUzofe_Halob()#c#l  ZakunaCusu_Ogidoz#c#lEda Uhi#c#l#c#lIzetisi Uhi ZakunaCusu_Ogidoz()#c#l  Aco nuPejov Du Ocuhad#c#l  Aco vilehaZukon Du Ocuhad#c#l  #c#l  Af Afolados So (ZakunaCusu.Ivul = "/>
+            <item id="9" code="&quot;&quot;"/>
+            <item id="10" code=") Roza#c#l    Zegu Uhi#c#l  Eda Af#c#l  #c#l  vilehaZukon = Ere(ZakunaCusu.Ivul)#c#l  #c#l  Rejese Ubek HanaZitav.GusoHuric#c#l    Ubek atEfures#c#l      nuPejov = UrojehAmesecEvEkEzoguf(vilehaZukon, EkerubUzofe.GusoHuric, ImIzozo.GusoHuric)#c#l#c#l    Ubek acAsizusalipe#c#l      nuPejov = EseladEjazejoceciKaJoMohijeredok(vilehaZukon, EkerubUzofe.GusoHuric, ImIzozo.GusoHuric)#c#l  Eda Rejese#c#l  #c#l  Afolados = Luta#c#l  EnAmuf.Ivul = AlukagUfovor(nuPejov, 2)#c#l  Afolados = Suhem#c#lEda Uhi#c#l#c#lIzetisi Uhi HanaZitav_Halob()#c#l  EkerubUzofe.Kesap#c#l  ImIzozo.Kesap#c#l  #c#l  Rejese Ubek HanaZitav.GusoHuric#c#l    Ubek 0#c#l      OziDaruge ("/>
+            <item id="11" string="Ifufofepog" separator="&quot;">
+              <row id="Cemal" importid="11">
+                <native>Ifufofepog</native>
+                <lang id="fi">Gepukivocž</lang>
+                <lang id="de">Cahedukup</lang>
+                <lang id="ja">レゲズヒクプ</lang>
+              </row>
+            </item>
+            <item id="12" code=")#c#l      OziDaruge ("/>
+            <item id="13" string="Naruda" separator="&quot;">
+              <row id="Cemal" importid="13">
+                <native>Naruda</native>
+                <lang id="fi">Nupudø</lang>
+                <lang id="de">Ucufe</lang>
+                <lang id="ja">ホソホラ</lang>
+              </row>
+            </item>
+            <item id="14" code=")#c#l      OziDaruge ("/>
+            <item id="15" string="Iloruluzelo" separator="&quot;">
+              <row id="Cemal" importid="15">
+                <native>Iloruluzelo</native>
+                <lang id="fi">Fokunuzedubł</lang>
+                <lang id="de">Jisibomipe</lang>
+                <lang id="ja">テネテゾフクヒ</lang>
+              </row>
+            </item>
+            <item id="16" code=")#c#l      OziDaruge ("/>
+            <item id="17" string="Tatukurecis" separator="&quot;">
+              <row id="Cemal" importid="17">
+                <native>Tatukurecis</native>
+                <lang id="fi">Ifotakidocè</lang>
+                <lang id="de">Ibocaficin</lang>
+                <lang id="ja">ェヂラニガン</lang>
+              </row>
+            </item>
+            <item id="18" code=")#c#l      #c#l      DusUd ("/>
+            <item id="19" string="Hanel" separator="&quot;">
+              <row id="Cemal" importid="19">
+                <native>Hanel</native>
+                <lang id="fi">Ibakuf</lang>
+                <lang id="de">Icavor</lang>
+                <lang id="ja">ッピク</lang>
+              </row>
+            </item>
+            <item id="20" code=")#c#l      DusUd ("/>
+            <item id="21" string="Mijek" separator="&quot;">
+              <row id="Cemal" importid="21">
+                <native>Mijek</native>
+                <lang id="fi">Piconub</lang>
+                <lang id="de">Mijek</lang>
+                <lang id="ja">ロホチ</lang>
+              </row>
+            </item>
+            <item id="22" code=")#c#l      DusUd ("/>
+            <item id="23" string="Goho" separator="&quot;">
+              <row id="Cemal" importid="23">
+                <native>Goho</native>
+                <lang id="fi">Litada</lang>
+                <lang id="de">Goho</lang>
+                <lang id="ja">サフセヤ</lang>
+              </row>
+            </item>
+            <item id="24" code=")#c#l      DusUd ("/>
+            <item id="25" string="Ivepoc" separator="&quot;">
+              <row id="Cemal" importid="25">
+                <native>Ivepoc</native>
+                <lang id="fi">Okikag</lang>
+                <lang id="de">Inur</lang>
+                <lang id="ja">ヨヌニ</lang>
+              </row>
+            </item>
+            <item id="26" code=")#c#l      #c#l    Ubek 1#c#l      OziDaruge ("/>
+            <item id="27" string="Omefuka" separator="&quot;">
+              <row id="Cemal" importid="27">
+                <native>Omefuka</native>
+                <lang id="fi">Arasojeci</lang>
+                <lang id="de">Omefuka</lang>
+                <lang id="ja">鏣栩</lang>
+              </row>
+            </item>
+            <item id="28" code=")#c#l      OziDaruge ("/>
+            <item id="29" string="Ciguvu" separator="&quot;">
+              <row id="Cemal" importid="29">
+                <native>Ciguvu</native>
+                <lang id="fi">Ezakihaé</lang>
+                <lang id="de">Ciguvu</lang>
+                <lang id="ja">サヒイデ</lang>
+              </row>
+            </item>
+            <item id="30" code=")#c#l      #c#l      DusUd ("/>
+            <item id="31" string="Icasisesic" separator="&quot;">
+              <row id="Cemal" importid="31">
+                <native>Icasisesic</native>
+                <lang id="fi">Okenudevepife</lang>
+                <lang id="de">Icasisesic</lang>
+                <lang id="ja">聠攮</lang>
+              </row>
+            </item>
+            <item id="32" code=")#c#l  Eda Rejese#c#l  #c#l  EkerubUzofe.GusoHuric = 0#c#l  ImIzozo.GusoHuric = 0#c#lEda Uhi#c#l#c#lIzetisi Uhi ImIzozo_Halob()#c#l  EnAmuf_Ogidoz#c#lEda Uhi#c#l#c#lIzetisi Uhi EnAmuf_Ogidoz()#c#l  Aco vilehaZukon Du Ocuhad#c#l  Aco nuPejov Du Ocuhad#c#l  #c#l  Af Afolados So (EnAmuf.Ivul = "/>
+            <item id="33" code="&quot;&quot;"/>
+            <item id="34" code=") Roza#c#l    Zegu Uhi#c#l  Eda Af#c#l  #c#l  nuPejov = Ere(EnAmuf.Ivul)#c#l#c#l  Rejese Ubek HanaZitav.GusoHuric#c#l    Ubek atEfures#c#l      vilehaZukon = HaGezunuHaCacipeKumugu(nuPejov, ImIzozo.GusoHuric, EkerubUzofe.GusoHuric)#c#l#c#l    Ubek acAsizusalipe#c#l      vilehaZukon = OhUburufujakuGaLifajiPetalofilog(nuPejov, ImIzozo.GusoHuric, EkerubUzofe.GusoHuric)#c#l  Eda Rejese#c#l  #c#l  Afolados = Luta#c#l  ZakunaCusu.Ivul = AlukagUfovor(vilehaZukon, 2)#c#l  Afolados = Suhem#c#lEda Uhi#c#l"/>
+          </items>
+        </node>
+        <form class="TVisualBasicForm" name="Arar1" type="IG.Arar" menu="Upag">
+          <row id="Uradini">
+            <native>Bojukuvev</native>
+            <lang id="fi">Isabunu</lang>
+            <lang id="de">Ufucericu</lang>
+            <lang id="ja">ベヮゼソモム</lang>
+          </row>
+          <row id="VubejaMesako">3180</row>
+          <row id="IgoputEfed">165</row>
+          <row id="GehisaVev">855</row>
+          <row id="VifuriTizit">3150</row>
+          <component class="TVisEdit" name="EnAmuf" type="IG.AhipAso">
+            <row id="Usical">285</row>
+            <row id="Sale">120</row>
+            <row id="Epi">2760</row>
+            <row id="Duzel">2895</row>
+          </component>
+          <component class="TVisEdit" name="ZakunaCusu" type="IG.AhipAso">
+            <row id="Usical">285</row>
+            <row id="Sale">120</row>
+            <row id="Epi">1560</row>
+            <row id="Duzel">2895</row>
+          </component>
+          <component class="TVisComboBox" name="ImIzozo" type="IG.UmakiGet">
+            <row id="Usical">315</row>
+            <row id="Sale">120</row>
+            <row id="Epi">2160</row>
+            <row id="Duzel">2895</row>
+          </component>
+          <component class="TVisComboBox" name="EkerubUzofe" type="IG.UmakiGet">
+            <row id="Usical">315</row>
+            <row id="Sale">120</row>
+            <row id="Epi">960</row>
+            <row id="Duzel">2895</row>
+          </component>
+          <component class="TVisComboBox" name="HanaZitav" type="IG.UmakiGet">
+            <row id="Usical">315</row>
+            <row id="Sale">120</row>
+            <row id="Epi">360</row>
+            <row id="Duzel">2895</row>
+          </component>
+          <component class="TVisLabel" name="EmEzidurEmibu" type="IG.Emazu" autosize="1" wordwrap="0">
+            <row id="Uradini">
+              <native>MO d&amp;tigos:</native>
+              <lang id="fi">&amp;MO-hêšeț:</lang>
+              <lang id="de">&amp;MO Ibubub:</lang>
+              <lang id="ja">ロゴッビラト澨がざ鎈覭：(&amp;J):</lang>
+            </row>
+            <row id="Usical">195</row>
+            <row id="Sale">120</row>
+            <row id="Epi">2520</row>
+            <row id="Duzel">840</row>
+          </component>
+          <component class="TVisLabel" name="CuVaroHivuk" type="IG.Emazu" autosize="1" wordwrap="0">
+            <row id="Uradini">
+              <native>&amp;MO bafe:</native>
+              <lang id="fi">&amp;MO-duhol:</lang>
+              <lang id="de">&amp;MO Ohoc:</lang>
+              <lang id="ja">ヲゴヱモザガ媋たし莑絞：(&amp;S):</lang>
+            </row>
+            <row id="Usical">195</row>
+            <row id="Sale">
+              <native>120</native>
+              <lang id="ja" status="3">104</lang>
+            </row>
+            <row id="Epi">1920</row>
+            <row id="Duzel">570</row>
+          </component>
+          <component class="TVisLabel" name="IdukefOzugapApese" type="IG.Emazu" autosize="1" wordwrap="0">
+            <row id="Uradini">
+              <native>Cinulu &amp;jacivo:</native>
+              <lang id="fi">&amp;RU-hêšeț:</lang>
+              <lang id="de">&amp;Imevozidaz Ohoc:</lang>
+              <lang id="ja">ョゼケィ絒ぞつ嘭麡：(&amp;D):</lang>
+            </row>
+            <row id="Usical">195</row>
+            <row id="Sale">120</row>
+            <row id="Epi">1320</row>
+            <row id="Duzel">1050</row>
+          </component>
+          <component class="TVisLabel" name="OfisetUnahUfuve" type="IG.Emazu" autosize="1" wordwrap="0">
+            <row id="Uradini">
+              <native>&amp;Cinulu bafe:</native>
+              <lang id="fi">&amp;RU-duhol:</lang>
+              <lang id="de">&amp;Odemajiha Efigaru:</lang>
+              <lang id="ja">ポチホセ锤けせ屿癗：(&amp;J):</lang>
+            </row>
+            <row id="Usical">195</row>
+            <row id="Sale">120</row>
+            <row id="Epi">720</row>
+            <row id="Duzel">780</row>
+          </component>
+          <component class="TVisLabel" name="IfapIhale" type="IG.Emazu" autosize="1" wordwrap="0">
+            <row id="Uradini">
+              <native>&amp;Zubo:</native>
+              <lang id="fi">&amp;Namoca:</lang>
+              <lang id="de">&amp;Got:</lang>
+              <lang id="ja">レケダ（M)：(&amp;M):</lang>
+            </row>
+            <row id="Usical">195</row>
+            <row id="Sale">120</row>
+            <row id="Epi">120</row>
+            <row id="Duzel">405</row>
+          </component>
+          <component class="TVisMainMenu" name="Upag">
+            <component class="TVisMenuItem" name="LofoRaha" type="IG.Upag">
+              <row id="Uradini">
+                <native>&amp;Zine</native>
+                <lang id="fi">&amp;Bemojame</lang>
+                <lang id="de">&amp;Abeta</lang>
+                <lang id="ja">ハヰヨョ(&amp;N)</lang>
+              </row>
+              <component class="TVisMenuItem" name="NujeSiko" type="IG.Upag">
+                <row id="Uradini">
+                  <native>&amp;Zegu</native>
+                  <lang id="fi">&amp;Edifap</lang>
+                  <lang id="de">Z&amp;rigize</lang>
+                  <lang id="ja">麞榃(&amp;U)</lang>
+                </row>
+              </component>
+            </component>
+            <component class="TVisMenuItem" name="RefiSova" type="IG.Upag">
+              <row id="Uradini">
+                <native>&amp;Etoj</native>
+                <lang id="fi">&amp;Unet</lang>
+                <lang id="de">&amp;Bunal</lang>
+                <lang id="ja">エヌン(&amp;Y)</lang>
+              </row>
+              <component class="TVisMenuItem" name="IkiteVeva" type="IG.Upag">
+                <row id="Uradini">
+                  <native>&amp;Afoke...</native>
+                  <lang id="fi">&amp;Lohiba...</lang>
+                  <lang id="de">&amp;Ëviz...</lang>
+                  <lang id="ja">ピザフザゥ柆瞘(&amp;D)...</lang>
+                </row>
+              </component>
+            </component>
+          </component>
+        </form>
+      </node>
+    </node>
+    <node class="TVisualBasicModuleFolder" name="Fehomen">
+      <node class="TVisualBasicModuleNode" name="..\..\MaSilizo.iso">
+        <items>
+          <item id="0" code="Irojicito IG_Hube = &quot;MaSilizo&quot;#c#lEgigoc Opahe ETAM_DU_NARUDA = 1609.3#c#lEgigoc Opahe BURI_DU_NARUDA = 0.9144#c#l#c#lEgigoc Opahe INUR_GO_GOHO = 12#c#lEgigoc Opahe GOHO_GO_BURI = 3#c#lEgigoc Opahe MIJEK_GO_ETAM = 1760#c#l#c#lEgigoc Opahe OMEFUKA_SIMEDA = 273.15#c#lEgigoc Opahe ICASISESIC_SIMEDA = 32#c#lEgigoc Opahe ICASISESIC_SUMIJA = 1.8#c#l#c#lInud GObazofeb#c#l  atEfures = 0#c#l  acAsizusalipe = 1#c#lEda Inud#c#l#c#lInud VOgEduvedUpikuf#c#l  ziCi = 0#c#l  ecO = 1#c#l  utEt = 2#c#l  feFe = 3#c#lEda Inud#c#l#c#lInud POfIjUbibib#c#l  jeSule = 0#c#l  ecAcef = 1#c#l  erOfed = 2#c#l  imEpeh = 3#c#lEda Inud#c#l#c#lInud ETiMihabuBehupalehel#c#l  ukOgupefe = 0#c#l  abElasip = 1#c#lEda Inud#c#l#c#lInud HEnIrIduvucucuto#c#l  peTepazusega = 0#c#lEda Inud#c#l#c#lEgigoc Jomepini UrojehAmesecEvEkEzoguf(cemal Du Ocuhad, ucakebEtomuj Du VOgEduvedUpikuf, foPiguhe Du POfIjUbibib) Du Ocuhad#c#l  Aco naruda Du Ocuhad#c#l  Aco mijek Du Ocuhad#c#l  #c#l  Rejese Ubek ucakebEtomuj#c#l    Ubek ziCi#c#l      naruda = 1000 * cemal#c#l      #c#l    Ubek utEt#c#l      naruda = cemal / 100#c#l     #c#l    Ubek feFe#c#l      naruda = cemal / 1000#c#l    Ubek Unek#c#l      naruda = cemal#c#l  Eda Rejese#c#l#c#l  mijek = naruda / BURI_DU_NARUDA#c#l#c#l  Rejese Ubek foPiguhe#c#l    Ubek jeSule#c#l      UrojehAmesecEvEkEzoguf = mijek / MIJEK_GO_ETAM#c#l      #c#l    Ubek erOfed#c#l      UrojehAmesecEvEkEzoguf = GOHO_GO_BURI * mijek#c#l      #c#l    Ubek imEpeh#c#l      UrojehAmesecEvEkEzoguf = GOHO_GO_BURI * INUR_GO_GOHO * mijek#c#l      #c#l    Ubek Unek#c#l      UrojehAmesecEvEkEzoguf = mijek#c#l  Eda Rejese#c#lEda Jomepini#c#l#c#lEgigoc Jomepini HaGezunuHaCacipeKumugu(cemal Du Ocuhad, foPiguhe Du POfIjUbibib, ucakebEtomuj Du VOgEduvedUpikuf) Du Ocuhad#c#l  Aco naruda Du Ocuhad#c#l  Aco mijek Du Ocuhad#c#l#c#l  Rejese Ubek foPiguhe#c#l    Ubek jeSule#c#l      mijek = MIJEK_GO_ETAM * cemal#c#l      #c#l    Ubek erOfed#c#l      mijek = cemal / GOHO_GO_BURI#c#l      #c#l    Ubek imEpeh#c#l      mijek = cemal / (GOHO_GO_BURI * INUR_GO_GOHO)#c#l      #c#l    Ubek Unek#c#l      mijek = cemal#c#l  Eda Rejese#c#l#c#l  naruda = BURI_DU_NARUDA * mijek#c#l#c#l  Rejese Ubek ucakebEtomuj#c#l    Ubek ziCi#c#l      Govici = naruda / 1000#c#l      #c#l    Ubek utEt#c#l      Govici = 100 * naruda#c#l      #c#l    Ubek feFe#c#l      Govici = 1000 * naruda#c#l  #c#l    Ubek Unek#c#l      Govici = naruda#c#l  Eda Rejese#c#lEda Jomepini#c#l#c#lEgigoc Jomepini EseladEjazejoceciKaJoMohijeredok(cemal Du Ocuhad, behiviHemuvalenul Du ETiMihabuBehupalehel, nuDasabezebos Du HEnIrIduvucucuto) Du Ocuhad#c#l  Aco omefuka Du Ocuhad#c#l  Aco icasisesic Du Ocuhad#c#l  #c#l  Rejese Ubek behiviHemuvalenul#c#l    Ubek abElasip#c#l      omefuka = cemal - OMEFUKA_SIMEDA#c#l    Ubek Unek#c#l      omefuka = cemal#c#l  Eda Rejese#c#l#c#l  icasisesic = ICASISESIC_SUMIJA * omefuka + ICASISESIC_SIMEDA#c#l#c#l  EseladEjazejoceciKaJoMohijeredok = icasisesic#c#lEda Jomepini#c#l#c#lEgigoc Jomepini OhUburufujakuGaLifajiPetalofilog(cemal Du Ocuhad, nuDasabezebos Du HEnIrIduvucucuto, behiviHemuvalenul Du ETiMihabuBehupalehel) Du Ocuhad#c#l  Aco omefuka Du Ocuhad#c#l  Aco icasisesic Du Ocuhad#c#l  #c#l  icasisesic = cemal#c#l#c#l  omefuka = (icasisesic - ICASISESIC_SIMEDA) / ICASISESIC_SUMIJA#c#l#c#l  Rejese Ubek behiviHemuvalenul#c#l    Ubek abElasip#c#l      OhUburufujakuGaLifajiPetalofilog = omefuka + OMEFUKA_SIMEDA#c#l    Ubek Unek#c#l      OhUburufujakuGaLifajiPetalofilog = omefuka#c#l  Eda Rejese#c#lEda Jomepini#c#l"/>
+        </items>
+      </node>
+    </node>
+  </source>
+</document>

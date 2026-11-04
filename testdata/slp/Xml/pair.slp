@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document version="3.0.327" date="20120115122821" scan="7" scanned="20120115122804">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TXmlSource" name="vike.aga" original="cu" date="20101014005438" originalbom="1">
+    <properties>
+      <key name="efajakoz">
+        <key name="abizasev"/>
+        <key name="joce">
+          <key name="rug" checked="0" kind="tkContext"/>
+          <key name="cemal" kind="tkTranslation"/>
+          <key name="esogamik" checked="0" kind="tkOriginal"/>
+        </key>
+      </key>
+    </properties>
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TPictureData</class>
+    </excludeddatatypes>
+    <tag name="efajakoz">
+      <tag name="abizasev">
+        <row id="Cemal">
+          <native>cu</native>
+          <lang id="fi" date="20101014132007">me</lang>
+          <lang id="de" date="20101014132159">je</lang>
+          <lang id="ja" date="20101014132220">ed</lang>
+        </row>
+      </tag>
+      <tag name="joce" context="une">
+        <tag name="rug" value="une">
+        </tag>
+        <tag name="cemal">
+          <row id="Cemal">
+            <native>Ficana Tonozo</native>
+            <lang id="fi">Takenidapid</lang>
+            <lang id="de">Apodokehic Jebimez</lang>
+            <lang id="ja">タギシヤ拄櫻椮</lang>
+          </row>
+        </tag>
+        <tag name="esogamik" value="Ficana Tonozo">
+        </tag>
+      </tag>
+      <tag name="joce" context="jivosoz">
+        <tag name="rug" value="jivosoz">
+        </tag>
+        <tag name="cemal">
+          <row id="Cemal">
+            <native>Jivosoz</native>
+            <lang id="fi">Nilic</lang>
+            <lang id="de">Usikodudeje</lang>
+            <lang id="ja">カャメ</lang>
+          </row>
+        </tag>
+        <tag name="esogamik" value="Jivosoz">
+        </tag>
+      </tag>
+      <tag name="joce" context="ropug">
+        <tag name="rug" value="ropug">
+        </tag>
+        <tag name="cemal">
+          <row id="Cemal">
+            <native>Ropug</native>
+            <lang id="fi">Afuvuh</lang>
+            <lang id="de">Ropug</lang>
+            <lang id="ja">賭倔</lang>
+          </row>
+        </tag>
+        <tag name="esogamik" value="Ropug">
+        </tag>
+      </tag>
+    </tag>
+  </source>
+</document>

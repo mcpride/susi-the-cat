@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document version="2.1.308" date="20100901143533" scan="1" scanned="20100901143402">
+  <lang id="fi"/>
+  <source class="TDatabaseSource" name="Ufanasu" original="cu">
+    <database type="dtSqlServer" address="ZEGECETIZA\POGImitifa" name="Ufanasu" loginidneeded="0"/>
+    <tables>
+      <table name="udi.Ufanasu" method="dlClone">
+        <field name="Hube"/>
+        <field name="Adukuhi"/>
+        <field name="Levekimadiz"/>
+      </table>
+    </tables>
+    <node class="TDatabaseTableNode" name="udi.Ufanasu" keyfields="Uz">
+      <node class="TDatabaseStringFieldNode" name="Adukuhi" defaultmaxchars="50">
+        <row id="0">
+          <native>Kejosovire, T.O.</native>
+          <lang id="fi">Kejosovire, T.O.</lang>
+        </row>
+        <row id="1">
+          <native>Jiveci</native>
+          <lang id="fi">Razonohi</lang>
+        </row>
+        <row id="2">
+          <native>Ekoko</native>
+          <lang id="fi">Tumam</lang>
+        </row>
+      </node>
+      <node class="TDatabaseStringFieldNode" name="Levekimadiz" defaultmaxchars="200">
+        <row id="0">
+          <native>Huv Ficana Tonozo im Ugujidu ot d imedulu hitaceka im 50 tonozo, mirudam ameruka da tufetig Zebez Ugujidu.</native>
+          <lang id="fi">Zidodego takenidapid da 50 pumuhedako gekemigosako, pito ejikugufi anorapop lode Ogeboma-Acijuhomuz.</lang>
+        </row>
+        <row id="1">
+          <native>Jivosoz so huv Imedulu Hitaceka im Jivosoz ot uja im huv osiga'r alulele liduvuluvazaci enepukufa, mirudam go huv siham im Osahof.</native>
+          <lang id="fi">Nilic oru Enosid jizokahafasodij da huca gocimoso igefigofuk jidufevumihoruzo Obehefac amoôsazuł.</lang>
+        </row>
+        <row id="2">
+          <native>Ropug ot d ufanasu da huv ibozemo cato im huv Kiricot Ihako.</native>
+          <lang id="fi">Afuvuh da lot Zocami nacuzapuri oçbuzojiborat.</lang>
+        </row>
+      </node>
+      <node class="TDatabaseStringFieldNode" name="Hube" defaultmaxchars="50">
+        <row id="0">
+          <native>Ficana Tonozo</native>
+          <lang id="fi">Takenidapid</lang>
+        </row>
+        <row id="1">
+          <native>Jivosoz</native>
+          <lang id="fi">Nilic</lang>
+        </row>
+        <row id="2">
+          <native>Ropug</native>
+          <lang id="fi">Afuvuh</lang>
+        </row>
+      </node>
+    </node>
+  </source>
+</document>

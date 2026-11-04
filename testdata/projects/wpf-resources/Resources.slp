@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20160530110657" version="4.0.361" date="20160530110702" scan="1" scanned="20160530110657">
+  <lang id="ar"/>
+  <lang id="de"/>
+  <lang id="fi"/>
+  <lang id="ja"/>
+  <source class="TNetResourceSource" name="Resources.resx" original="en" date="20100511232256" version="net461" righttoleft="nrlNone">
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TColorData</class>
+      <class>TImeData</class>
+      <class>TPictureData</class>
+      <class>TReadingOrderData</class>
+      <class>TFontData</class>
+    </excludeddatatypes>
+    <mappings>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="TiveBapo" class="TVisGrid"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="AhipAso" class="TVisEdit"/>
+    </mappings>
+    <row id="Afoke_Bojukuvev">
+      <native>Afoke Bojukuvev</native>
+      <lang id="ar" date="20160530110657" status="2">بش ؾصنصن</lang>
+      <lang id="de" date="20160530110657" status="2">Ëviz Ufucericu</lang>
+      <lang id="fi" date="20160530110657" status="2">Lohiba Etomifocoho</lang>
+      <lang id="ja" date="20160530110657" status="2">ヂタニマドタぃゅばも</lang>
+    </row>
+    <row id="Omefuka">
+      <native>Omefuka</native>
+      <lang id="ar" date="20160530110657" status="2">كظكؼة</lang>
+      <lang id="de" date="20160530110657" status="2">Omefuka</lang>
+      <lang id="fi" date="20160530110657" status="2">Arasojeci</lang>
+      <lang id="ja" date="20160530110657" status="2">鏣栩</lang>
+    </row>
+    <row id="Iloruluzelo">
+      <native>Iloruluzelo</native>
+      <lang id="ar" date="20160530110657" status="2">دد</lang>
+      <lang id="de" date="20160530110657" status="2">Jisibomipe</lang>
+      <lang id="fi" date="20160530110657" status="2">Fokunuzedubł</lang>
+      <lang id="ja" date="20160530110657" status="2">テネテゾフクヒ</lang>
+    </row>
+    <row id="Bojukuvev_ot_ut_konesotefuh_kigu_jodahomo_cinulu_ugeme_ac_MO_ugeme_ule_ovun_">
+      <native>Bojukuvev ot ut konesotefuh kigu jodahomo cinulu ugeme ac MO ugeme ule ovun.</native>
+      <lang id="ar" date="20160530110657" status="2">بيػغػػ ؿع رلر ىغ ثوؿل ؽجعق قجزجتذذ قجزجتذذ ؽتضضظكغعت ػحفػقطف.</lang>
+      <lang id="de" date="20160530110657" status="2">Ufucericu erekuho odemajiha Obolikavi go Pihahuzamovuh Obolikavi ovo vosirihiz.</lang>
+      <lang id="fi" date="20160530110657" status="2">Isabunu da alulovo, pito iguduze vazakisusiđlaê RU-jżazemufidîohý MO-zźomojatusășe ed jefosoce.</lang>
+      <lang id="ja" date="20160530110657" status="2">チガユラガテき痁鍂げじで簸跑べ、ヤヱクサ盬ねぬナムゴヮタラ筻れ、おがつズゼィットヨ挢うけヌダフゼ柧ぎ蜌矋みゃヘズタバカスグャるて。</lang>
+    </row>
+    <row id="Icasisesic">
+      <native>Icasisesic</native>
+      <lang id="ar" date="20160530110657" status="2">ىوبطشلهل</lang>
+      <lang id="de" date="20160530110657" status="2">Icasisesic</lang>
+      <lang id="fi" date="20160530110657" status="2">Okenudevepife</lang>
+      <lang id="ja" date="20160530110657" status="2">聠攮</lang>
+    </row>
+    <row id="Goho">
+      <native>Goho</native>
+      <lang id="ar" date="20160530110657" status="2">ضظنطع</lang>
+      <lang id="de" date="20160530110657" status="2">Goho</lang>
+      <lang id="fi" date="20160530110657" status="2">Litada</lang>
+      <lang id="ja" date="20160530110657" status="2">サフセヤ</lang>
+    </row>
+    <row id="Ivepoc">
+      <native>Ivepoc</native>
+      <lang id="ar" date="20160530110657" status="2">كغجك</lang>
+      <lang id="de" date="20160530110657" status="2">Inur</lang>
+      <lang id="fi" date="20160530110657" status="2">Okikag</lang>
+      <lang id="ja" date="20160530110657" status="2">ヨヌニ</lang>
+    </row>
+    <row id="Ciguvu">
+      <native>Ciguvu</native>
+      <lang id="ar" date="20160530110657" status="2">ضممى</lang>
+      <lang id="de" date="20160530110657" status="2">Ciguvu</lang>
+      <lang id="fi" date="20160530110657" status="2">Ezakihaé</lang>
+      <lang id="ja" date="20160530110657" status="2">サヒイデ</lang>
+    </row>
+    <row id="Ifufofepog">
+      <native>Ifufofepog</native>
+      <lang id="ar" date="20160530110657" status="2">غع</lang>
+      <lang id="de" date="20160530110657" status="2">Cahedukup</lang>
+      <lang id="fi" date="20160530110657" status="2">Gepukivocž</lang>
+      <lang id="ja" date="20160530110657" status="2">レゲズヒクプ</lang>
+    </row>
+    <row id="Ivofad">
+      <native>Ivofad</native>
+      <lang id="ar" date="20160530110657" status="2">ؽؿط</lang>
+      <lang id="de" date="20160530110657" status="2">Fżafo</lang>
+      <lang id="fi" date="20160530110657" status="2">Ukirav</lang>
+      <lang id="ja" date="20160530110657" status="2">祆じ</lang>
+    </row>
+    <row id="Naruda">
+      <native>Naruda</native>
+      <lang id="ar" date="20160530110657" status="2">شطس</lang>
+      <lang id="de" date="20160530110657" status="2">Ucufe</lang>
+      <lang id="fi" date="20160530110657" status="2">Nupudø</lang>
+      <lang id="ja" date="20160530110657" status="2">ホソホラ</lang>
+    </row>
+    <row id="Hanel">
+      <native>Hanel</native>
+      <lang id="ar" date="20160530110657" status="2">نشز</lang>
+      <lang id="de" date="20160530110657" status="2">Icavor</lang>
+      <lang id="fi" date="20160530110657" status="2">Ibakuf</lang>
+      <lang id="ja" date="20160530110657" status="2">ッピク</lang>
+    </row>
+    <row id="Tatukurecis">
+      <native>Tatukurecis</native>
+      <lang id="ar" date="20160530110657" status="2">سذوطػزه</lang>
+      <lang id="de" date="20160530110657" status="2">Ibocaficin</lang>
+      <lang id="fi" date="20160530110657" status="2">Ifotakidocè</lang>
+      <lang id="ja" date="20160530110657" status="2">ェヂラニガン</lang>
+    </row>
+    <row id="Danefotanes">
+      <native>Danefotanes</native>
+      <lang id="ar" date="20160530110657" status="2">ظؼيؼ ؽهؼهسػت</lang>
+      <lang id="de" date="20160530110657" status="2">Ujitejefuh</lang>
+      <lang id="fi" date="20160530110657" status="2">Vșacșemes</lang>
+      <lang id="ja" date="20160530110657" status="2">鰪俳</lang>
+    </row>
+    <row id="Mijek">
+      <native>Mijek</native>
+      <lang id="ar" date="20160530110657" status="2">ؼخفغص</lang>
+      <lang id="de" date="20160530110657" status="2">Mijek</lang>
+      <lang id="fi" date="20160530110657" status="2">Piconub</lang>
+      <lang id="ja" date="20160530110657" status="2">ロホチ</lang>
+    </row>
+  </source>
+</document>

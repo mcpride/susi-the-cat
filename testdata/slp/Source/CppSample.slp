@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document version="3.0.325" date="20111108170603" scan="10" scanned="20111108170536">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TSourceCodeSource" name="OsuLotagi.ini" original="cu" date="20091107052916" context="sccId">
+    <items>
+      <item id="0" code="azej OsuLotagi()#c#l{#c#l  // Izeg r d alace edovav. Ajosakume sofisaca ka ule otecibera ka.#c#l  ojig* vos = "/>
+      <item id="1" string="Hevof Osiga" separator="&quot;">
+        <row id="Cemal">
+          <native>Hevof Osiga</native>
+          <lang id="fi">Amo zojodoh</lang>
+          <lang id="de">Unoko Avic</lang>
+          <lang id="ja">カオギボヤモゲ</lang>
+        </row>
+      </item>
+      <item id="2" code=";#c#l#c#l  // Uhihofuj d ecuj nicafipi uhila catemor Ajosakume adij tut lugacebu edovav(r) da kigu ecuj#c#l  vos = "/>
+      <item id="3" code="&quot;REJESE * AGUL Ajogid&quot;"/>
+      <item id="4" code="; //uhila#c#l#c#l  // Git rob cobugo d catemor ac huv edovav lu lepin uso dav ilagikud lu huv catemor edovav#c#l  vos = "/>
+      <item id="5" string="Izeg edovav bih d catemor" separator="&quot;">
+        <row id="Cemal" note="Izeg ot d ajogid catemor" notereadonly="1">
+          <native>Izeg edovav bih d catemor</native>
+          <lang id="fi">Išdý raturevepa nimýidțè unuhateno</lang>
+          <lang id="de">Ejahav Edovav ici apeja Unefotedo</lang>
+          <lang id="ja">としぷドプッコすん</lang>
+        </row>
+      </item>
+      <item id="6" code="; //uso Izeg ot d ajogid catemor#c#l#c#l  // Git rob veco huv jatavaso edovav ivofad go avisaharog lepin huv ZerAvuku irojicito go huv uso catemor#c#l  vos = "/>
+      <item id="7" string="Uja" separator="&quot;">
+        <row id="Cemal" chars="10" charsreadonly="1">
+          <native>Uja</native>
+          <lang id="fi">Huca</lang>
+          <lang id="de">Pegi</lang>
+          <lang id="ja">愱</lang>
+        </row>
+      </item>
+      <item id="8" code="; //uso ZerAvuku=10#c#l#c#l  // Git rob veco huv jatavaso edovav ivofad go ivapot lepin huv MugEnimap irojicito go huv uso catemor#c#l  vos = "/>
+      <item id="9" string="Afu" separator="&quot;">
+        <row id="Cemal" pixels="100" pixelsreadonly="1">
+          <native>Afu</native>
+          <lang id="fi">Regoh</lang>
+          <lang id="de">Ital</lang>
+          <lang id="ja">牛</lang>
+        </row>
+      </item>
+      <item id="10" code="; //uso MugEnimap=100#c#l#c#l  // Git rob koreb duseduna edovav ejot hovipu lu rehejo huv hubodobe kazonabedu go huv Kazonabedu irojicito#c#l  vos = "/>
+      <item id="11" string="&quot;\Uja;Afu;Kefas" value="&quot;\Uja;Afu;Kefas" expression="&quot;\\#;#;#">
+        <row id="0">
+          <native>Uja</native>
+          <lang id="fi">Huca</lang>
+          <lang id="de">Pegi</lang>
+          <lang id="ja">愱</lang>
+        </row>
+        <row id="1">
+          <native>Afu</native>
+          <lang id="fi">Regoh</lang>
+          <lang id="de">Ital</lang>
+          <lang id="ja">牛</lang>
+        </row>
+        <row id="2">
+          <native>Kefas</native>
+          <lang id="fi">Ditib</lang>
+          <lang id="de">Vuvo</lang>
+          <lang id="ja">鏼</lang>
+        </row>
+      </item>
+      <item id="12" code="; //uso Kazonabedu=&quot;\&quot;\\\\##;##;##&quot;#c#l#c#l  // Ajosakume ipevihibesuso uzivufip raduficam nogasil ejot uja mucoju edovav#c#l  vos = "/>
+      <item id="13" string="LilUloGahag" separator="&quot;">
+        <row id="Cemal">
+          <native>LilUloGahag</native>
+          <lang id="fi">OnevOteneMigac</lang>
+          <lang id="de">PumiCeniFugi</lang>
+          <lang id="ja">湋膘颈</lang>
+        </row>
+      </item>
+      <item id="14" code=";#c#l  vos = "/>
+      <item id="15" string="Uja#c#lAfu	Kefas" separator="&quot;">
+        <row id="Cemal">
+          <native>Uja#c#lAfu	Kefas</native>
+          <lang id="fi">Huca#nRegoh	Ditib</lang>
+          <lang id="de">Pegi#nItal	Vuvo</lang>
+          <lang id="ja">愱#n牛	鏼</lang>
+        </row>
+      </item>
+      <item id="16" code=";#c#l}"/>
+    </items>
+  </source>
+</document>

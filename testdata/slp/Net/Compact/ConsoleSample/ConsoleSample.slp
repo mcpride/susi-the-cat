@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20171224184459" version="4.0.370" date="20180102230923" scan="8" scanned="20180102230922">
+  <lang id="fr"/>
+  <lang id="es"/>
+  <source class="TVisualStudioNetProjectSource" name="KodinibIjabag.kicazo" original="cu" date="20180103015716" defaultoutputdir="tuh\Ohupu" configuration="Ohupu|DigOCI" netkind="nkCompact" versionstr="c3.9" rootnamespace="KodinibIjabag" excludedresourcetypes="[nrWin32]">
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TColorData</class>
+      <class>TImeData</class>
+      <class>TPictureData</class>
+      <class>TReadingOrderData</class>
+    </excludeddatatypes>
+    <mappings>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="TiveBapo" class="TVisGrid"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="AhipAso" class="TVisEdit"/>
+    </mappings>
+    <node class="TNetStringFolder" name="Nogasil">
+      <node class="TNetStringNode" name="KodinibIjabag.Efajakoz1">
+        <row id="Hevof">
+          <native>Hevof Osiga</native>
+          <lang id="fr" percent="99" status="1" method="2">Ejehe magi ta tutev</lang>
+          <lang id="es" percent="99" status="1" method="2">Anip ihego</lang>
+        </row>
+      </node>
+    </node>
+  </source>
+</document>

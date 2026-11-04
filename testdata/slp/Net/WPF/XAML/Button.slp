@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20140115171738" version="4.0.354" date="20141224081208" scan="16" scanned="20141224081206">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TXamlSource" name="Ravubi.jizi" original="cu" encoding="" date="20080229025758" originalbom="1" viewer="xvSisulizer">
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TColorData</class>
+      <class>TImeData</class>
+      <class>TPictureData</class>
+      <class>TReadingOrderData</class>
+      <class>TFontColorData</class>
+      <class>TFontNameData</class>
+      <class>TFontSizeData</class>
+      <class>TFontStyleData</class>
+    </excludeddatatypes>
+    <mappings>
+      <component name="Ojorut.Luvuhog.Dohinafa.AferidIken" class="TVisLabel"/>
+      <component name="Ojorut.Luvuhog.Dohinafa.Ravubi" class="TVisButton"/>
+      <component name="Ojorut.Luvuhog.Dohinafa.PudoJaked" class="TVisDockPanel"/>
+      <component name="Ojorut.Luvuhog.Dohinafa.Gapiz" class="TVisImage"/>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="TiveBapo" class="TVisGrid"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="AhipAso" class="TVisEdit"/>
+      <property name="TekidIbeh" type="TBooleanRow" mode="pmIncluded"/>
+      <property name="KamaheSehuk" type="TColorRow" mode="pmIncluded"/>
+      <property name="AhalijeHuzikugesid" type="TStringRow" mode="pmIncluded"/>
+      <property name="GisalifIzohulOlovace" type="TStringRow" mode="pmIncluded"/>
+      <property name="LujitomUgon" type="TStringRow" mode="pmIncluded"/>
+      <property name="Cubudavod" type="TBooleanRow" mode="pmIncluded"/>
+      <property name="MunaruZodu" type="TStringRow" mode="pmIncluded"/>
+      <property name="MunaruZodu.VobidiFegezu" type="TStringRow" mode="pmIncluded"/>
+      <property name="HimibezoNur" type="TStringRow" mode="pmIncluded"/>
+      <property name="VobidiFegezu" type="TStringRow" mode="pmIncluded"/>
+      <property name="Ivul.LisezufaKotop" type="TStringRow" mode="pmIncluded"/>
+      <property name="Ivul.VobidiFegezu" type="TStringRow" mode="pmIncluded"/>
+      <property name="Ivul.VotuhaZazaFolud" type="TStringRow" mode="pmIncluded"/>
+      <property name="Cupic.VobidiFegezu" type="TStringRow" mode="pmIncluded"/>
+      <property name="LiniPod" type="TStringRow" mode="pmIncluded"/>
+      <property name="OmopOjaMitalem.LiniPod" type="TStringRow" mode="pmIncluded"/>
+      <property name="OmopOjaMitalem.LiniPod.VobidiFegezu" type="TStringRow" mode="pmIncluded"/>
+    </mappings>
+    <form class="TXamlForm" name="Ravubi" autosize="1" borderstyle="bsNone">
+      <row id="Pekorakimi" hidden="1">soDecoh</row>
+      <component class="TVisButton" name="Ravubi" type="Ojorut.Luvuhog.Dohinafa.Ravubi" horizontalcontentalignment="haStretch" parentbackground="0">
+        <row id="Pekorakimi">
+          <native>umOpu</native>
+          <lang id="fi" date="20090408170656">$00RE8000</lang>
+        </row>
+        <row id="Usical">35</row>
+        <row id="Duzel">100</row>
+        <component class="TVisDockPanel" name="Honic" type="Ojorut.Luvuhog.Dohinafa.PudoJaked">
+          <component class="TVisImage" name="Gapiz" type="Ojorut.Luvuhog.Dohinafa.Gapiz">
+          </component>
+          <component class="TVisLabel" name="Ivul" type="Ojorut.Luvuhog.Dohinafa.AferidIken">
+            <row id="Evekohe">
+              <native>_Did...</native>
+              <lang id="fi" date="20080708190243">_Sabïá...</lang>
+            </row>
+          </component>
+        </component>
+      </component>
+    </form>
+  </source>
+</document>

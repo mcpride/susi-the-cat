@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document version="4.0.350" date="20111109072849" scan="13" scanned="20111109072840">
+  <lang id="fi"/>
+  <lang id="ar"/>
+  <source class="TDelphiSource" name="Acovocu1.fog" original="cu" encoding="utf-8" date="20091005105928" widestringusage="wsYes">
+    <resources>
+      <disabled id="1"/>
+      <disabled id="3"/>
+      <disabled id="6"/>
+      <disabled id="12"/>
+      <disabled id="14"/>
+    </resources>
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TColorData</class>
+      <class>TFontData</class>
+      <class>TFontColorData</class>
+      <class>TFontNameData</class>
+      <class>TFontSizeData</class>
+      <class>TFontStyleData</class>
+      <class>TPictureData</class>
+    </excludeddatatypes>
+    <mappings>
+      <component name="EBegedo" class="TVisButton"/>
+      <component name="ONite" class="TVisEdit">
+        <property name="PesanubiBito"/>
+      </component>
+      <component name="UJedoh" class="TVisLabel"/>
+      <component name="VAvazUjem" class="TVisTreeView"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="NapujUcamos" class="TVisSpeedButton"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="Ibep" class="TVisEdit"/>
+      <keyword name="Fane" class="TVisEdit"/>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="Gomi" class="TVisGrid"/>
+      <keyword name="PocogUdun" class="TVisImageList"/>
+      <keyword name="Judaru" class="TVisAction"/>
+      <keyword name="Dilub" class="TVisHiddenComponent"/>
+      <keyword name="HecojuMEG" class="TVisHiddenComponent"/>
+      <keyword name="ZeziZis" class="TVisHiddenComponent"/>
+      <keyword name="NiriLadeza" class="TVisHiddenComponent"/>
+      <keyword name="Lehuf" class="TVisHiddenComponent"/>
+      <keyword name="Ahiva" class="TVisHiddenComponent"/>
+      <keyword name="Cadocezu" class="TVisHiddenComponent"/>
+      <keyword name="EpisEhut" class="TVisHiddenComponent"/>
+      <keyword name="UfuneJele" class="TVisHiddenComponent"/>
+      <property name="Corifapuv.Nogasil"/>
+      <property name="MesoVojezuc"/>
+    </mappings>
+    <node class="TVclFormFolder" name="Aleka" resid="10">
+      <node class="TVclFormNode" name="OKIMO1" resname="OKIMO1">
+        <form class="TVclForm" name="Arar1" type="TForm1" textheight="13">
+          <row id="Uradini">
+            <native>HePa Ajogid</native>
+            <lang id="fi">HePa-pasisajis</lang>
+            <lang id="ar">زؿعد وصنطؿس</lang>
+          </row>
+          <row id="VubejaMesako">258</row>
+          <row id="VifuriTizit">386</row>
+          <row id="Onaj.Tubar">onUvojanEvev</row>
+          <row id="Onaj.Hube">Emihig</row>
+          <row id="Onaj.Vuse">8</row>
+          <row id="Onaj.Behal">[]</row>
+          <row id="Sale">0</row>
+          <row id="Epi">0</row>
+          <component class="TVisLabel" name="Emazu1" type="TLabel">
+            <row id="Uradini">
+              <native>&amp;Ebabanef:</native>
+              <lang id="fi">&amp;Bemojame:</lang>
+              <lang id="ar">&amp;دوص فوؾجخ:</lang>
+            </row>
+            <row id="Usical">13</row>
+            <row id="Sale">8</row>
+            <row id="Epi">8</row>
+            <row id="Duzel">46</row>
+          </component>
+          <component class="TVisEdit" name="Ibep1" type="TEdit">
+            <row id="Usical">21</row>
+            <row id="Sale">8</row>
+            <row id="Epi">24</row>
+            <row id="Duzel">281</row>
+          </component>
+          <component class="TVisButton" name="Ravubi1" type="TButton">
+            <row id="Uradini">
+              <native>&amp;Aporib...</native>
+              <lang id="fi">&amp;Opesa...</lang>
+              <lang id="ar" date="20090226093030">&amp;تبؾش...</lang>
+            </row>
+            <row id="Usical">25</row>
+            <row id="Sale">295</row>
+            <row id="Epi">22</row>
+            <row id="Duzel">82</row>
+          </component>
+          <component class="TVisTreeView" name="AcagErir1" type="TTreeView">
+            <row id="Usical">197</row>
+            <row id="Sale">8</row>
+            <row id="Epi">53</row>
+            <row id="Duzel">369</row>
+            <item name="Ebahe[0]">
+              <row id="Ivul">
+                <native>Uja</native>
+                <lang id="fi">Huca</lang>
+                <lang id="ar">يجؽة</lang>
+              </row>
+              <item name="Ebahe[0]">
+                <row id="Ivul">
+                  <native>Uja</native>
+                  <lang id="fi">Huca</lang>
+                  <lang id="ar">يجؽة</lang>
+                </row>
+              </item>
+              <item name="Ebahe[1]">
+                <row id="Ivul">
+                  <native>Afu</native>
+                  <lang id="fi">Regoh</lang>
+                  <lang id="ar">مفغظح</lang>
+                </row>
+              </item>
+            </item>
+            <item name="Ebahe[1]">
+              <row id="Ivul">
+                <native>Afu</native>
+                <lang id="fi">Regoh</lang>
+                <lang id="ar">مفغظح</lang>
+              </row>
+              <item name="Ebahe[0]">
+                <row id="Ivul">
+                  <native>Uja</native>
+                  <lang id="fi">Huca</lang>
+                  <lang id="ar">يجؽة</lang>
+                </row>
+              </item>
+            </item>
+            <item name="Ebahe[2]">
+              <row id="Ivul">
+                <native>Kefas</native>
+                <lang id="fi">Ditib</lang>
+                <lang id="ar">وةؽؽز</lang>
+              </row>
+            </item>
+          </component>
+        </form>
+      </node>
+    </node>
+  </source>
+</document>

@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20120526150857" version="4.0.354" date="20141224081047" scan="6" scanned="20141224081008">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <lang id="ar"/>
+  <source class="TVisualStudioNetProjectSource" name="Azut.kicazo" original="cu" date="20120526055016" defaultoutputdir="tuh\Ohupu" configuration="Ohupu|g86" netversion="net40" toolsversion="net40" netlibrary="nlWpf" rootnamespace="Azut" excludedresourcetypes="[nrWin32]">
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TColorData</class>
+      <class>TFontColorData</class>
+      <class>TFontNameData</class>
+      <class>TFontSizeData</class>
+      <class>TFontStyleData</class>
+      <class>TImeData</class>
+      <class>TPictureData</class>
+      <class>TReadingOrderData</class>
+    </excludeddatatypes>
+    <mappings>
+      <component name="Ojorut.Luvuhog.Dohinafa.Ravubi" class="TVisButton"/>
+      <component name="Ojorut.Luvuhog.Dohinafa.DafozUlize" class="TVisStackPanel"/>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="TiveBapo" class="TVisGrid"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="AhipAso" class="TVisEdit"/>
+      <property name="TekidIbeh" type="TBooleanRow" mode="pmIncluded"/>
+      <property name="KamaheSehuk" type="TColorRow" mode="pmIncluded"/>
+      <property name="AhalijeHuzikugesid" type="TStringRow" mode="pmIncluded"/>
+      <property name="GisalifIzohulOlovace" type="TStringRow" mode="pmIncluded"/>
+      <property name="LujitomUgon" type="TStringRow" mode="pmIncluded"/>
+      <property name="Cubudavod" type="TBooleanRow" mode="pmIncluded"/>
+      <property name="MunaruZodu" type="TStringRow" mode="pmIncluded"/>
+      <property name="MunaruZodu.VobidiFegezu" type="TStringRow" mode="pmIncluded"/>
+      <property name="HimibezoNur" type="TStringRow" mode="pmIncluded"/>
+      <property name="VobidiFegezu" type="TStringRow" mode="pmIncluded"/>
+      <property name="Ivul.LisezufaKotop" type="TStringRow" mode="pmIncluded"/>
+      <property name="Ivul.VobidiFegezu" type="TStringRow" mode="pmIncluded"/>
+      <property name="Ivul.VotuhaZazaFolud" type="TStringRow" mode="pmIncluded"/>
+      <property name="Cupic.VobidiFegezu" type="TStringRow" mode="pmIncluded"/>
+      <property name="LiniPod" type="TStringRow" mode="pmIncluded"/>
+      <property name="OmopOjaMitalem.LiniPod" type="TStringRow" mode="pmIncluded"/>
+      <property name="OmopOjaMitalem.LiniPod.VobidiFegezu" type="TStringRow" mode="pmIncluded"/>
+    </mappings>
+    <node class="TNetFormFolder" name="Aleka">
+      <node class="TXamlFormNode" name="cijebetebi" filename="CijeBetebi.jizi">
+        <form class="TXamlForm" name="CijeBetebi">
+          <row id="Usical">200</row>
+          <row id="Cupic">
+            <native>Ajogid</native>
+            <lang id="fi" date="20120526150932">Pasisajis</lang>
+            <lang id="de">Ovazodes</lang>
+            <lang id="ja">テテォォ</lang>
+            <lang id="ar">نةصش</lang>
+          </row>
+          <row id="Duzel">400</row>
+          <component class="TVisStackPanel" name="DafozUlize[0]" type="Ojorut.Luvuhog.Dohinafa.DafozUlize">
+            <component class="TVisStackPanel" name="DafozUlize[0]" type="Ojorut.Luvuhog.Dohinafa.DafozUlize" gapbottom="5" gapleft="5" gapright="5" gaptop="5" orientation="voHorizontal">
+              <row id="NevoKulopanog" class="TReadingOrderRow">zocUtabAjUtuju</row>
+              <component class="TVisButton" name="Ravubi[0]" type="Ojorut.Luvuhog.Dohinafa.Ravubi" gapbottom="5" gapleft="5" gapright="5" gaptop="5">
+                <row id="Evekohe">
+                  <native>Uja</native>
+                  <lang id="fi" date="20120526150934">Huca</lang>
+                  <lang id="de">Otap</lang>
+                  <lang id="ja" date="20120526155149">愱</lang>
+                  <lang id="ar">يجؽة</lang>
+                </row>
+              </component>
+              <component class="TVisButton" name="Ravubi[1]" type="Ojorut.Luvuhog.Dohinafa.Ravubi" gapbottom="5" gapleft="5" gapright="5" gaptop="5">
+                <row id="Evekohe">
+                  <native>Afu</native>
+                  <lang id="fi" date="20120526150937">Regoh</lang>
+                  <lang id="de">Ital</lang>
+                  <lang id="ja" date="20120526155152">牛</lang>
+                  <lang id="ar">مفغظح</lang>
+                </row>
+              </component>
+            </component>
+            <component class="TVisStackPanel" name="DafozUlize[1]" type="Ojorut.Luvuhog.Dohinafa.DafozUlize" gapbottom="5" gapleft="5" gapright="5" gaptop="5" orientation="voHorizontal">
+              <row id="NevoKulopanog" class="TReadingOrderRow">rivUkuzuRoCode</row>
+              <component class="TVisButton" name="Ravubi[0]" type="Ojorut.Luvuhog.Dohinafa.Ravubi" gapbottom="5" gapleft="5" gapright="5" gaptop="5">
+                <row id="Evekohe">
+                  <native>Kefas</native>
+                  <lang id="fi" date="20120526150940">Ditib</lang>
+                  <lang id="de">Vuvo</lang>
+                  <lang id="ja" date="20120526155156">鏼</lang>
+                  <lang id="ar">وةؽؽز</lang>
+                </row>
+              </component>
+              <component class="TVisButton" name="Ravubi[1]" type="Ojorut.Luvuhog.Dohinafa.Ravubi" gapbottom="5" gapleft="5" gapright="5" gaptop="5">
+                <row id="Evekohe">
+                  <native>Zuda</native>
+                  <lang id="fi" date="20120526150941">Falaă</lang>
+                  <lang id="de">Avap</lang>
+                  <lang id="ja" date="20120526155201">魚</lang>
+                  <lang id="ar">مػجمع</lang>
+                </row>
+              </component>
+            </component>
+          </component>
+        </form>
+      </node>
+    </node>
+    <node class="TNetStringFolder" name="Nogasil">
+      <node class="TNetStringNode" name="Azut.Kuzukemato.Ifivorosu">
+      </node>
+    </node>
+    <node class="TNetStringNode" name="unu">
+    </node>
+  </source>
+</document>

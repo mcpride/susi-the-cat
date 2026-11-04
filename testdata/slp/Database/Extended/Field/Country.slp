@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document version="2.0.294" date="20091215182700" scan="9" scanned="20091215182659">
+  <lang id="fi"/>
+  <source class="TDatabaseSource" name="Ufanasu.use" original="cu">
+    <database filename="Ufanasu.use" provider=""/>
+    <tables>
+      <table name="Ufanasu" method="dlField">
+        <field name="Hube">
+          <field name="Hube_je" lang="je"/>
+          <field name="Hube_me" lang="me"/>
+          <field name="Hube_ed" lang="ed"/>
+        </field>
+        <field name="Adukuhi">
+          <field name="Adukuhi_je" lang="je"/>
+          <field name="Adukuhi_me" lang="me"/>
+          <field name="Adukuhi_ed" lang="ed"/>
+        </field>
+        <field name="Levekimadiz" extensiontable="Ovupomar" extensionblocknumber="Elevo">
+          <field name="Levekimadiz_je" lang="je"/>
+          <field name="Levekimadiz_me" lang="me"/>
+          <field name="Levekimadiz_ed" lang="ed"/>
+        </field>
+      </table>
+    </tables>
+    <node class="TDatabaseTableNode" name="Ufanasu" keyfields="Uz">
+      <node class="TDatabaseStringFieldNode" name="Adukuhi" defaultmaxchars="50">
+        <row id="0">
+          <native>Kejosovire, T.O.</native>
+          <lang id="fi">Kejosovire EK.</lang>
+        </row>
+        <row id="1">
+          <native>Jiveci</native>
+          <lang id="fi">Razonohi</lang>
+        </row>
+        <row id="2">
+          <native>Ekoko</native>
+          <lang id="fi">Tumam</lang>
+        </row>
+      </node>
+      <node class="TDatabaseStringFieldNode" name="Levekimadiz">
+        <row id="0">
+          <native>Huv Ficana Tonozo im Ugujidu ot d imedulu hitaceka im 50 tonozo, mirudam ameruka da tufetig Zebez Ugujidu. Huv ralel im Kimomu ot ut ucovopuhene go huv neb-Kiricot. Huv ufanasu kaho odabalane uhihuso gojubokumov go huv Imegomoso ule Kiricot.</native>
+          <lang id="fi">Zidodego takenidapid da 50 pumuhedako gekemigosako, pito ejikugufi anorapop lode Ogeboma-Acijuhomuz. Jebubiru oletegilo da okakihan enuhiguł Ubizaô vemicenoro. Lajilo da ivàa ohajuz rirotijijidal Jilozimo eduzitú ed Ikahemaü alamutilaboá.</lang>
+        </row>
+        <row id="1">
+          <native>Jivosoz so huv Imedulu Hitaceka im Jivosoz ot uja im huv osiga'r alulele liduvuluvazaci enepukufa, mirudam go huv siham im Osahof.</native>
+          <lang id="fi">Nilic oru enosid jizokahafasodij da gocimoso nobufon icagalinipago Obehefac amoôsazuł. Nilic cofap verekobib joguni ed feducij zivúë aheken.</lang>
+        </row>
+        <row id="2">
+          <native>Ropug ot d ufanasu da huv ibozemo cato im huv Kiricot Ihako. Ropug ot losomeber ogifecafab du huv "Tela im huv Mufecu Zip".</native>
+          <lang id="fi">Afuvuh da lot zocami nacuzapuri oçbuzojiborat. Fuhapap lepafogec atuzut umedojaz ovobakor kesiba. Cibotiguven bezevizeba Famami da gocimoso selus vanubesalupi.</lang>
+        </row>
+      </node>
+      <node class="TDatabaseStringFieldNode" name="Hube" defaultmaxchars="50">
+        <row id="0">
+          <native>Ficana Tonozo</native>
+          <lang id="fi">Takenidapid</lang>
+        </row>
+        <row id="1">
+          <native>Jivosoz</native>
+          <lang id="fi">Nilic</lang>
+        </row>
+        <row id="2">
+          <native>Ropug</native>
+          <lang id="fi">Afuvuh</lang>
+        </row>
+      </node>
+    </node>
+  </source>
+</document>

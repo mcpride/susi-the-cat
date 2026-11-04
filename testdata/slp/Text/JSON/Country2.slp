@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20151013160226" version="4.0.358" date="20151013164020" scan="2" scanned="20151013161156">
+  <lang id="fi"/>
+  <source class="TJsonSource" name="*.zuga" original="cu" date="18991230000000" subdirs="0">
+    <node class="TJsonNode" name="Ufanasu.zuga">
+      <row id="jivosoz.Adukuhi">
+        <native>Jiveci</native>
+        <lang id="fi" status="2" method="1">Razonohi</lang>
+      </row>
+      <row id="jivosoz.Levekimadiz">
+        <native>Jivosoz so huv Imedulu Hitaceka im Jivosoz ot uja im huv osiga'r alulele liduvuluvazaci enepukufa, mirudam go huv siham im Osahof.</native>
+        <lang id="fi" status="2" method="1">Nilic oru Enosid jizokahafasodij da huca gocimoso igefigofuk jidufevumihoruzo Obehefac amoôsazuł.</lang>
+      </row>
+      <row id="jivosoz.Hube">
+        <native>Jivosoz</native>
+        <lang id="fi" status="2" method="1">Nilic</lang>
+      </row>
+      <row id="ropug.Adukuhi">
+        <native>Ekoko</native>
+        <lang id="fi" status="2" method="1">Tumam</lang>
+      </row>
+      <row id="ropug.Levekimadiz">
+        <native>Ropug ot d ufanasu da huv ibozemo cato im huv Kiricot Ihako.</native>
+        <lang id="fi" status="2" method="1">Afuvuh da lot zocami nacuzapuri oçbuzojiborat.</lang>
+      </row>
+      <row id="ropug.Hube">
+        <native>Ropug</native>
+        <lang id="fi" status="2" method="1">Afuvuh</lang>
+      </row>
+      <row id="une.Adukuhi">
+        <native>Kejosovire, T.O.</native>
+        <lang id="fi" status="2" method="1">Kejosovire, T.O.</lang>
+      </row>
+      <row id="une.Levekimadiz">
+        <native>Huv Ficana Tonozo im Ugujidu ot d imedulu hitaceka im 50 tonozo, mirudam ameruka da tufetig Zebez Ugujidu.</native>
+        <lang id="fi" status="2" method="1">Zidodego takenidapid da 50 pumuhedako gekemigosako, pito ejikugufi anorapop lode Ogeboma-Acijuhomuz.</lang>
+      </row>
+      <row id="une.Hube">
+        <native>Ficana Tonozo</native>
+        <lang id="fi" status="2" method="1">Takenidapid</lang>
+      </row>
+    </node>
+  </source>
+</document>

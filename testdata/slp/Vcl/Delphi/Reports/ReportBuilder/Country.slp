@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document version="4.0.350" date="20120228094004" scan="41" scanned="20111109073514">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <lang id="ko" pseudo="1">
+    <test type="ptEmulation"/>
+  </lang>
+  <source class="TReportBuilderSource" name="Ufanasu.nus" original="cu" date="20070919120756">
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TColorData</class>
+      <class>TFontData</class>
+      <class>TFontColorData</class>
+      <class>TFontNameData</class>
+      <class>TFontSizeData</class>
+      <class>TFontStyleData</class>
+      <class>TIntegerData</class>
+      <class>TPictureData</class>
+      <class>TReadingOrderData</class>
+    </excludeddatatypes>
+    <mappings>
+      <component name="FegOTAgol" class="TVisReportLabel">
+        <property name="UbihUdodubitUhac"/>
+        <property name="LemuRuro"/>
+      </component>
+      <component name="AfaCilitiTofe" class="TVisReportBand"/>
+      <component name="EbuFakataZahu" class="TVisReportBand"/>
+      <component name="PedIvacolOzar" class="TVisReportBand"/>
+      <component name="AvuBabog" class="TVisReportLabel">
+        <property name="LemuRuro"/>
+      </component>
+      <component name="UvoRizomaFefapomo" class="TVisHiddenComponent">
+        <property name="LemuRuro"/>
+      </component>
+      <component name="AmeFemomUler" class="TVisReportBand"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="NapujUcamos" class="TVisSpeedButton"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="Ibep" class="TVisEdit"/>
+      <keyword name="Fane" class="TVisEdit"/>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="Gomi" class="TVisGrid"/>
+      <keyword name="PocogUdun" class="TVisImageList"/>
+      <keyword name="Judaru" class="TVisAction"/>
+      <keyword name="EpisEhut" class="TVisHiddenComponent"/>
+      <keyword name="UfuneJele" class="TVisHiddenComponent"/>
+      <keyword name="Dilub" class="TVisHiddenComponent"/>
+      <keyword name="HecojuMEG" class="TVisHiddenComponent"/>
+      <keyword name="ZeziZis" class="TVisHiddenComponent"/>
+      <keyword name="NiriLadeza" class="TVisHiddenComponent"/>
+      <keyword name="Lehuf" class="TVisHiddenComponent"/>
+      <keyword name="Ahiva" class="TVisHiddenComponent"/>
+      <keyword name="Cadocezu" class="TVisHiddenComponent"/>
+      <property name="Corifapuv.Nogasil"/>
+      <property name="MesoVojezuc"/>
+    </mappings>
+    <form class="TReportForm" name="UdazagaNodome" type="OcuKapovi" kind="fkReport">
+      <row id="AdefupoNonoj.EjijelimElul" excluded="1">Denehi</row>
+      <row id="AdefupoNonoj.UrabiDena" excluded="1">D4 210 g 297 ri</row>
+      <row id="AdefupoNonoj.UvupuloKuju" excluded="1">Ligoseb</row>
+      <row id="VocaTigeruLozulumu.JimuvijAgamis" excluded="1">&lt;KeviFoca></row>
+      <row id="Duzel">794</row>
+      <component class="TVisReportBand" name="deZehimOtac1" type="AmeFemomUler">
+        <row id="Usical">47</row>
+        <component class="TVisReportLabel" name="noVasiv1" type="AvuBabog" transparent="1">
+          <row id="Uradini">
+            <native>Enepukufa</native>
+            <lang id="fi">Ipip</lang>
+            <lang id="ko" date="20120228093118" test="1"/>
+          </row>
+          <row id="Onaj.Tubar">ugEzun</row>
+          <row id="Onaj.Hube">GOTEH</row>
+          <row id="Onaj.Vuse">24</row>
+          <row id="Onaj.Behal">[kuZolo]</row>
+          <row id="Usical">38</row>
+          <row id="Sale">5</row>
+          <row id="Epi">5</row>
+          <row id="Duzel">149</row>
+        </component>
+      </component>
+      <component class="TVisReportBand" name="irOgagugUpos1" type="PedIvacolOzar">
+        <row id="Usical">38</row>
+        <component class="TVisReportLabel" name="noVasiv2" type="AvuBabog" transparent="1">
+          <row id="Uradini">
+            <native>Adukuhi</native>
+            <lang id="fi" date="20080708211129">Vôńifomapan</lang>
+            <lang id="ja">膳剋</lang>
+            <lang id="ko" date="20120228093118" test="1"/>
+          </row>
+          <row id="Onaj.Tubar">imOjopo</row>
+          <row id="Onaj.Hube">GOTEH</row>
+          <row id="Onaj.Vuse">12</row>
+          <row id="Onaj.Behal">[kuZolo]</row>
+          <row id="Usical">20</row>
+          <row id="Sale">136</row>
+          <row id="Epi">8</row>
+          <row id="Duzel">54</row>
+        </component>
+        <component class="TVisReportLabel" name="noVasiv3" type="AvuBabog" transparent="1">
+          <row id="Uradini">
+            <native>Levekimadiz</native>
+            <lang id="fi">Opevobe</lang>
+            <lang id="ja">荌悋</lang>
+            <lang id="ko" date="20120228093118" test="1"/>
+          </row>
+          <row id="Onaj.Tubar">imOjopo</row>
+          <row id="Onaj.Hube">GOTEH</row>
+          <row id="Onaj.Vuse">12</row>
+          <row id="Onaj.Behal">[kuZolo]</row>
+          <row id="Usical">20</row>
+          <row id="Sale">280</row>
+          <row id="Epi">8</row>
+          <row id="Duzel">88</row>
+        </component>
+        <component class="TVisReportLabel" name="noVasiv4" type="AvuBabog" transparent="1">
+          <row id="Uradini">
+            <native>Hube</native>
+            <lang id="fi">Dolu</lang>
+            <lang id="ja">夑才</lang>
+            <lang id="ko" date="20120228093118" test="1"/>
+          </row>
+          <row id="Onaj.Tubar">imOjopo</row>
+          <row id="Onaj.Hube">GOTEH</row>
+          <row id="Onaj.Vuse">12</row>
+          <row id="Onaj.Behal">[kuZolo]</row>
+          <row id="Usical">20</row>
+          <row id="Sale">8</row>
+          <row id="Epi">8</row>
+          <row id="Duzel">44</row>
+        </component>
+        <component class="TVisReportLabel" name="noVasiv5" type="AvuBabog" transparent="1">
+          <row id="Uradini">
+            <native>Acesacalip</native>
+            <lang id="fi">Bçujiăîjá</lang>
+            <lang id="ja">涛蝴</lang>
+            <lang id="ko" date="20120228093118" test="1"/>
+          </row>
+          <row id="Onaj.Tubar">imOjopo</row>
+          <row id="Onaj.Hube">GOTEH</row>
+          <row id="Onaj.Vuse">12</row>
+          <row id="Onaj.Behal">[kuZolo]</row>
+          <row id="Usical">20</row>
+          <row id="Sale">660</row>
+          <row id="Epi">5</row>
+          <row id="Duzel">83</row>
+        </component>
+      </component>
+      <component class="TVisReportBand" name="abArugikIdec1" type="AfaCilitiTofe">
+        <row id="Usical">53</row>
+        <component class="TVisReportLabel" name="jeRIZuzu1" type="FegOTAgol" autosize="1" datafield="Adukuhi" transparent="1">
+          <row id="Onaj.Tubar">imOjopo</row>
+          <row id="Onaj.Hube">GOTEH</row>
+          <row id="Onaj.Vuse">10</row>
+          <row id="Onaj.Behal">[]</row>
+          <row id="Usical">15</row>
+          <row id="Sale">136</row>
+          <row id="Epi">0</row>
+          <row id="Duzel">42</row>
+        </component>
+        <component class="TVisReportLabel" name="jeRIZuzu2" type="FegOTAgol" datafield="Levekimadiz" transparent="1">
+          <row id="Onaj.Tubar">imOjopo</row>
+          <row id="Onaj.Hube">GOTEH</row>
+          <row id="Onaj.Vuse">10</row>
+          <row id="Onaj.Behal">[]</row>
+          <row id="Usical">49</row>
+          <row id="Sale">280</row>
+          <row id="Epi">0</row>
+          <row id="Duzel">393</row>
+        </component>
+        <component class="TVisReportLabel" name="jeRIZuzu3" type="FegOTAgol" autosize="1" datafield="Hube" transparent="1">
+          <row id="Onaj.Tubar">imOjopo</row>
+          <row id="Onaj.Hube">GOTEH</row>
+          <row id="Onaj.Vuse">10</row>
+          <row id="Onaj.Behal">[]</row>
+          <row id="Usical">15</row>
+          <row id="Sale">8</row>
+          <row id="Epi">0</row>
+          <row id="Duzel">36</row>
+        </component>
+        <component class="TVisReportLabel" name="jeRIZuzu4" type="FegOTAgol" autosize="1" datafield="Acesacalip" transparent="1">
+          <row id="Onaj.Tubar">imOjopo</row>
+          <row id="Onaj.Hube">GOTEH</row>
+          <row id="Onaj.Vuse">10</row>
+          <row id="Onaj.Behal">[]</row>
+          <row id="Usical">15</row>
+          <row id="Sale">680</row>
+          <row id="Epi">0</row>
+          <row id="Duzel">63</row>
+        </component>
+      </component>
+      <component class="TVisReportBand" name="erEpupunAjuv1" type="EbuFakataZahu">
+        <row id="Usical">24</row>
+        <component class="TVisHiddenComponent" name="igUkorotIkovasid2" type="UvoRizomaFefapomo">
+        </component>
+      </component>
+    </form>
+  </source>
+</document>

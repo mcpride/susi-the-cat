@@ -1,0 +1,742 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document version="2.1.306" date="20100726114359" scan="16" scanned="20100726114335">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="THtmlSource" name="*.muk" original="cu" date="20090526112552" options="[hoCopyImages,hoScanImages,hoUpdateImageSizes,hoScanClientScripts,hoScanServerScripts,hoModifyContentLanguage]" sourcecodecontext="sccId">
+    <copyexts>
+      <item>ede</item>
+    </copyexts>
+    <node class="THtmlNode" name="asefaci.muk">
+      <node class="THtmlScriptNode" name="0">
+        <items>
+          <item id="0" code="#l#l/**#l * Ajosakume MUK bojukuvev ajogid#l * (o) 2008-2009 Ajosakume Pab &amp; In UP#l */#l#l	// agekedikad   #l #l	nobolot ("/>
+          <item id="1" code="'oli.muk'"/>
+          <item id="2" code=");  #l#l	$cinulu_jacivo = $_HOC["/>
+          <item id="3" code="&quot;cinulu_jacivo&quot;"/>
+          <item id="4" code="];  #l	$mo_jacivo= $_HOC["/>
+          <item id="5" code="&quot;mo_jacivo&quot;"/>
+          <item id="6" code="];  #l#l	$cinulu_zubo = $_HOC["/>
+          <item id="7" code="&quot;cinulu_idodi&quot;"/>
+          <item id="8" code="];  #l	$mo_zubo = $_HOC["/>
+          <item id="9" code="&quot;mo_idodi&quot;"/>
+          <item id="10" code="];  #l#l	$cinulu_zubo_hube = $jacivo_onocu[$cinulu_zubo];#l	$mo_zubo_hube = $jacivo_onocu[$mo_zubo];#l#l	af ($_HOC["/>
+          <item id="11" code="&quot;zubo&quot;"/>
+          <item id="12" code="] == "/>
+          <item id="13" code="&quot;ivofad&quot;"/>
+          <item id="14" code=") {      #l#l		af (icejed($cinulu_jacivo)) {#l			$govici1 = izocor_agetar($cinulu_jacivo, 2) . "/>
+          <item id="15" code="' '"/>
+          <item id="16" code=" . $cinulu_zubo_hube;    #l			$govici2 = urojehAmesecEvEkEzoguf ($cinulu_jacivo, $cinulu_zubo, $mo_zubo) . "/>
+          <item id="17" code="' '"/>
+          <item id="18" code=" . $mo_zubo_hube;    #l		}#l		unek af (icejed($mo_jacivo)) {#l			$govici1 = izocor_agetar($mo_jacivo, 2) . "/>
+          <item id="19" code="' '"/>
+          <item id="20" code=" . $mo_zubo_hube;  #l			$govici2 = haGezunuHaCacipeKumugu ($mo_jacivo, $mo_zubo, $cinulu_zubo) . "/>
+          <item id="21" code="' '"/>
+          <item id="22" code=" . $cinulu_zubo_hube;     #l		}#l		unek {#l			$govici1 = izocor_agetar("/>
+          <item id="23" code="'0'"/>
+          <item id="24" code=", 2) . "/>
+          <item id="25" code="' '"/>
+          <item id="26" code=" . $cinulu_zubo_hube;   #l			$govici2 = izocor_agetar("/>
+          <item id="27" code="'0'"/>
+          <item id="28" code=", 2) . "/>
+          <item id="29" code="' '"/>
+          <item id="30" code=" . $mo_zubo_hube;#l		}#l	}#l	unek {#l#l		af (icejed($_HOC["/>
+          <item id="31" code="&quot;cinulu_jacivo&quot;"/>
+          <item id="32" code="])) {     #l			$govici1 = izocor_agetar($cinulu_jacivo, 2) . "/>
+          <item id="33" code="' '"/>
+          <item id="34" code=" . $cinulu_zubo_hube;#l			$govici2 = eseladEjazejoceciKaJoMohijeredok ($cinulu_jacivo, $cinulu_zubo, $mo_zubo) . "/>
+          <item id="35" code="' '"/>
+          <item id="36" code=" . $mo_zubo_hube;#l		}#l		unek af (icejed($_HOC["/>
+          <item id="37" code="&quot;mo_jacivo&quot;"/>
+          <item id="38" code="])) {#l			$govici1 = izocor_agetar($mo_jacivo, 2) . "/>
+          <item id="39" code="' '"/>
+          <item id="40" code=" . $mo_zubo_hube;#l			$govici2 = ohUburufujakuGaLifajiPetalofilog ($mo_jacivo, $mo_zubo, $cinulu_zubo) . "/>
+          <item id="41" code="' '"/>
+          <item id="42" code=" . $cinulu_zubo_hube;#l		}#l		unek {#l			$govici1 = izocor_agetar("/>
+          <item id="43" code="'0'"/>
+          <item id="44" code=", 2) . "/>
+          <item id="45" code="' '"/>
+          <item id="46" code=" . $cinulu_zubo_hube;#l			$govici2 = izocor_agetar("/>
+          <item id="47" code="'0'"/>
+          <item id="48" code=", 2) . "/>
+          <item id="49" code="' '"/>
+          <item id="50" code=" . $mo_zubo_hube;#l		}#l	}#l	#l	// gerobudu#l"/>
+        </items>
+      </node>
+      <node class="THtmlScriptNode" name="1">
+        <items>
+          <item id="0" code=" uhih $govici1 "/>
+        </items>
+      </node>
+      <node class="THtmlScriptNode" name="2">
+        <items>
+          <item id="0" code=" uhih $govici2 "/>
+        </items>
+      </node>
+      <tag name="mojunene">
+        <tag name="okom">
+          <tag name="ehit">
+            <tag name="cupic">
+              <text>
+                <row id="0">
+                  <native>Ajosakume bojukuvev ajogid Igov 3 im 3</native>
+                  <lang id="fi" date="20090526171317">Ajosakume-isabunu -pasisajis, hehun 3/3</lang>
+                  <lang id="de" date="20090526150903">Ajosakume Ikitinilidogejuzo Rofuham 3 odi 3</lang>
+                </row>
+              </text>
+            </tag>
+            <tag name="ifuk">
+              <attribute name="simu-vabiz" value="Evekohe-Zubo"/>
+              <attribute name="evekohe" value="ivul/okom; fatejac=cut-8"/>
+            </tag>
+            <tag name="ifuk">
+              <attribute name="hube" value="ogipes"/>
+              <attribute name="evekohe" value="Ajosakume Pab &amp;uji; In UP"/>
+            </tag>
+            <tag name="feso">
+              <attribute name="irok" value="bojukuvev.ede"/>
+              <attribute name="uni" value="anazisoren"/>
+              <attribute name="zubo" value="ivul/ede"/>
+            </tag>
+          </tag>
+          <tag name="uhis">
+            <tag name="q">
+              <attribute name="mituh" value="uradini"/>
+              <text>
+                <row id="0">
+                  <native>MUK Bojukuvev Ajogid - Igov 3 im 3</native>
+                  <lang id="fi" date="20090526171121">MUK isabunu -pasisajis - hehun 3/3</lang>
+                  <lang id="de" date="20090526144954">MUK Ikitinilidogejuzo - Rofuham 3 odi 3</lang>
+                </row>
+              </text>
+            </tag>
+            <tag name="arar">
+              <attribute name="judaru" value="rico.muk"/>
+              <attribute name="gumohi" value="hoc"/>
+              <tag name="y3">
+                <text>
+                  <row id="0">
+                    <native>Govici</native>
+                    <lang id="fi" date="20090526170933">Azeni</lang>
+                    <lang id="de">Ihilelak</lang>
+                  </row>
+                </text>
+              </tag>
+              <tag name="q">
+                <text>
+                  <row id="0" excluded="1">
+                    <native>=</native>
+                    <lang id="de" status="2">=</lang>
+                  </row>
+                </text>
+              </tag>
+              <tag name="se"/>
+              <tag name="lil">
+                <attribute name="mituh" value="ravubi"/>
+                <tag name="ereso">
+                  <attribute name="mituh" value="ravubi"/>
+                  <attribute name="zubo" value="vubugi"/>
+                  <attribute name="cemal">
+                    <row id="0">
+                      <native>Ugaca bas rahizolune</native>
+                      <lang id="fi" date="20090526170941">Idomev zuju iluduzu</lang>
+                      <lang id="de">Tita Ahubifiroz</lang>
+                    </row>
+                  </attribute>
+                </tag>
+              </tag>
+              <tag name="q">
+                <attribute name="uz" value="gife"/>
+                <attribute name="hube" value="gife"/>
+                <attribute name="mituh" value="gife"/>
+                <text>
+                  <row id="0">
+                    <native>Oveduj ahiri ravubi oga ezut rahizolune</native>
+                    <lang id="fi" date="20090526171201">Kohad eduhagihag eradefazofumi vamavotes sonigapuhi</lang>
+                    <lang id="de" date="20090526145234">Uzepa onțubuf Bem oso Bozus iød oso iýjanof Ahubifiroz</lang>
+                  </row>
+                </text>
+              </tag>
+            </tag>
+          </tag>
+        </tag>
+      </tag>
+    </node>
+    <node class="THtmlNode" name="ereso.muk">
+      <node class="THtmlScriptNode" name="0">
+        <items>
+          <item id="0" code="#l#l/**#l * Ajosakume MUK bojukuvev ajogid#l * (o) 2008-2009 Ajosakume Pab &amp; In UP#l */#l#l	// agekedikad#l	#l	nobolot ("/>
+          <item id="1" code="'oli.muk'"/>
+          <item id="2" code=");#l#l	af ($_HOC["/>
+          <item id="3" code="&quot;zubo&quot;"/>
+          <item id="4" code="] == "/>
+          <item id="5" code="&quot;ivofad&quot;"/>
+          <item id="6" code=") {#l	 	$cinulu_idodi = "/>
+          <item id="7" code="'&lt;cipega cemal=&quot;ziCi&quot;>'"/>
+          <item id="8" code="  . $jacivo_onocu["/>
+          <item id="9" code="&quot;ziCi&quot;"/>
+          <item id="10" code="] . "/>
+          <item id="11" code="'&lt;/cipega>'"/>
+          <item id="12" code=";#l	 	$cinulu_idodi .= "/>
+          <item id="13" code="'&lt;cipega cemal=&quot;ecO&quot;>'"/>
+          <item id="14" code="  . $jacivo_onocu["/>
+          <item id="15" code="&quot;ecO&quot;"/>
+          <item id="16" code="]  . "/>
+          <item id="17" code="'&lt;/cipega>'"/>
+          <item id="18" code=";#l	 	$cinulu_idodi .= "/>
+          <item id="19" code="'&lt;cipega cemal=&quot;utEt&quot;>'"/>
+          <item id="20" code=" . $jacivo_onocu["/>
+          <item id="21" code="&quot;utEt&quot;"/>
+          <item id="22" code="] . "/>
+          <item id="23" code="'&lt;/cipega>'"/>
+          <item id="24" code=";#l	 	$cinulu_idodi .= "/>
+          <item id="25" code="'&lt;cipega cemal=&quot;feFe&quot;>'"/>
+          <item id="26" code=" . $jacivo_onocu["/>
+          <item id="27" code="&quot;feFe&quot;"/>
+          <item id="28" code="] . "/>
+          <item id="29" code="'&lt;/cipega>'"/>
+          <item id="30" code=";#l#l		$mo_idodi = "/>
+          <item id="31" code="'&lt;cipega cemal=&quot;jeSule&quot;>'"/>
+          <item id="32" code="  . $jacivo_onocu["/>
+          <item id="33" code="&quot;jeSule&quot;"/>
+          <item id="34" code="] . "/>
+          <item id="35" code="'&lt;/cipega>'"/>
+          <item id="36" code=";#l	 	$mo_idodi .= "/>
+          <item id="37" code="'&lt;cipega cemal=&quot;ecAcef&quot;>'"/>
+          <item id="38" code=" . $jacivo_onocu["/>
+          <item id="39" code="&quot;ecAcef&quot;"/>
+          <item id="40" code="] . "/>
+          <item id="41" code="'&lt;/cipega>'"/>
+          <item id="42" code=";#l	 	$mo_idodi .= "/>
+          <item id="43" code="'&lt;cipega cemal=&quot;erOfed&quot;>'"/>
+          <item id="44" code=" . $jacivo_onocu["/>
+          <item id="45" code="&quot;erOfed&quot;"/>
+          <item id="46" code="] . "/>
+          <item id="47" code="'&lt;/cipega>'"/>
+          <item id="48" code=";#l	 	$mo_idodi .= "/>
+          <item id="49" code="'&lt;cipega cemal=&quot;imEpeh&quot;>'"/>
+          <item id="50" code=" . $jacivo_onocu["/>
+          <item id="51" code="&quot;imEpeh&quot;"/>
+          <item id="52" code="] . "/>
+          <item id="53" code="'&lt;/cipega>'"/>
+          <item id="54" code=";#l	}#l	unek {#l	 	$cinulu_idodi = "/>
+          <item id="55" code="'&lt;cipega cemal=&quot;ukOgupefe&quot;>'"/>
+          <item id="56" code=" . $jacivo_onocu["/>
+          <item id="57" code="&quot;ukOgupefe&quot;"/>
+          <item id="58" code="] . "/>
+          <item id="59" code="'&lt;/cipega>'"/>
+          <item id="60" code=";#l	 	$cinulu_idodi .= "/>
+          <item id="61" code="'&lt;cipega cemal=&quot;abElasip&quot;>'"/>
+          <item id="62" code=" . $jacivo_onocu["/>
+          <item id="63" code="&quot;abElasip&quot;"/>
+          <item id="64" code="]  . "/>
+          <item id="65" code="'&lt;/cipega>'"/>
+          <item id="66" code=";#l#l		$mo_idodi = "/>
+          <item id="67" code="'&lt;cipega cemal=&quot;peTepazusega&quot;>'"/>
+          <item id="68" code=" . $jacivo_onocu["/>
+          <item id="69" code="&quot;peTepazusega&quot;"/>
+          <item id="70" code="] . "/>
+          <item id="71" code="'&lt;/cipega>'"/>
+          <item id="72" code=";#l	 }#l#l	 $zubo_dilub = "/>
+          <item id="73" code="'&lt;ereso zubo=&quot;ulucim&quot; uz=&quot;zubo&quot; hube=&quot;zubo&quot; cemal=&quot;'"/>
+          <item id="74" code=" . $_HOC["/>
+          <item id="75" code="&quot;zubo&quot;"/>
+          <item id="76" code="] . "/>
+          <item id="77" code="'&quot;>'"/>
+          <item id="78" code=";#l#l	 // gerobudu#l	 #l"/>
+        </items>
+      </node>
+      <node class="THtmlScriptNode" name="1">
+        <items>
+          <item id="0" code=" uhih $cinulu_idodi "/>
+        </items>
+      </node>
+      <node class="THtmlScriptNode" name="2">
+        <items>
+          <item id="0" code=" uhih $mo_idodi "/>
+        </items>
+      </node>
+      <node class="THtmlScriptNode" name="3">
+        <items>
+          <item id="0" code=" uhih $zubo_dilub "/>
+        </items>
+      </node>
+      <tag name="mojunene">
+        <tag name="okom">
+          <tag name="ehit">
+            <tag name="cupic">
+              <text>
+                <row id="0">
+                  <native>Ajosakume bojukuvev ajogid - Igov 2 im 3</native>
+                  <lang id="fi" date="20090526171306">Ajosakume-isabunu -pasisajis, hehun 2/3</lang>
+                  <lang id="de" date="20090526150913">Ajosakume Ikitinilidogejuzo - Rofuham 2 odi 3</lang>
+                </row>
+              </text>
+            </tag>
+            <tag name="ifuk">
+              <attribute name="simu-vabiz" value="Evekohe-Zubo"/>
+              <attribute name="evekohe" value="ivul/okom; fatejac=cut-8"/>
+            </tag>
+            <tag name="ifuk">
+              <attribute name="hube" value="ogipes"/>
+              <attribute name="evekohe" value="Ajosakume Pab &amp;uji; In UP"/>
+            </tag>
+            <tag name="feso">
+              <attribute name="irok" value="bojukuvev.ede"/>
+              <attribute name="uni" value="anazisoren"/>
+              <attribute name="zubo" value="ivul/ede"/>
+            </tag>
+          </tag>
+          <tag name="uhis">
+            <tag name="q">
+              <attribute name="mituh" value="uradini"/>
+              <text>
+                <row id="0">
+                  <native>MUK Bojukuvev Ajogid - Igov 2 im 3</native>
+                  <lang id="fi" date="20090526171127">MUK isabunu -pasisajis - hehun 2/3</lang>
+                  <lang id="de" date="20090526145021">MUK Ikitinilidogejuzo - Rofuham 2 odi 3</lang>
+                </row>
+              </text>
+            </tag>
+            <tag name="arar">
+              <attribute name="judaru" value="asefaci.muk"/>
+              <attribute name="gumohi" value="hoc"/>
+              <tag name="emazu">
+                <attribute name="oga" value="cinulu_idodi"/>
+                <attribute name="opisocace" value="J"/>
+                <text>
+                  <row id="0">
+                    <native>Cinulu Bafe:</native>
+                    <lang id="fi" percent="99">RU-duhol:</lang>
+                    <lang id="de">Odemajiha Efigaru:</lang>
+                  </row>
+                </text>
+              </tag>
+              <tag name="se"/>
+              <tag name="rejese">
+                <attribute name="uz" value="cinulu_idodi"/>
+                <attribute name="hube" value="cinulu_idodi"/>
+              </tag>
+              <tag name="se"/>
+              <tag name="emazu">
+                <attribute name="oga" value="cinulu_jacivo"/>
+                <attribute name="opisocace" value="D"/>
+                <text>
+                  <row id="0">
+                    <native>Cinulu jacivo:</native>
+                    <lang id="fi">RU-hêšeț:</lang>
+                    <lang id="de" date="20090526150834">Imevozidaz Ohoc:</lang>
+                  </row>
+                </text>
+              </tag>
+              <tag name="se"/>
+              <tag name="ereso">
+                <attribute name="uz" value="cinulu_jacivo"/>
+                <attribute name="hube" value="cinulu_jacivo"/>
+                <attribute name="zubo" value="ivul"/>
+                <attribute name="asalipasi" value="20"/>
+                <attribute name="vuse" value="30"/>
+                <attribute name="cemal"/>
+              </tag>
+              <tag name="se"/>
+              <tag name="se"/>
+              <tag name="emazu">
+                <attribute name="oga" value="mo_idodi"/>
+                <attribute name="opisocace" value="S"/>
+                <text>
+                  <row id="0">
+                    <native>MO Bafe:</native>
+                    <lang id="fi" percent="99">MO-duhol:</lang>
+                    <lang id="de">MO-Efigaru:</lang>
+                  </row>
+                </text>
+              </tag>
+              <tag name="se"/>
+              <tag name="rejese">
+                <attribute name="uz" value="mo_idodi"/>
+                <attribute name="hube" value="mo_idodi"/>
+              </tag>
+              <tag name="se"/>
+              <tag name="emazu">
+                <attribute name="oga" value="mo_jacivo"/>
+                <attribute name="opisocace" value="R"/>
+                <text>
+                  <row id="0">
+                    <native>MO jacivo:</native>
+                    <lang id="fi">MO-hêšeț:</lang>
+                    <lang id="de" date="20090526150843">MO-Ohoc:</lang>
+                  </row>
+                </text>
+              </tag>
+              <tag name="se"/>
+              <tag name="ereso">
+                <attribute name="uz" value="mo_jacivo"/>
+                <attribute name="hube" value="mo_jacivo"/>
+                <attribute name="zubo" value="ivul"/>
+                <attribute name="asalipasi" value="20"/>
+                <attribute name="vuse" value="30"/>
+                <attribute name="cemal"/>
+              </tag>
+              <tag name="lil">
+                <attribute name="mituh" value="ravubi"/>
+                <tag name="ereso">
+                  <attribute name="zubo" value="vubugi"/>
+                  <attribute name="cemal">
+                    <row id="0">
+                      <native>Asefaci</native>
+                      <lang id="fi" date="20090526171028">Oruraz</lang>
+                      <lang id="de">Alamamalozam</lang>
+                    </row>
+                  </attribute>
+                </tag>
+              </tag>
+              <tag name="q">
+                <attribute name="uz" value="gife"/>
+                <attribute name="hube" value="gife"/>
+                <attribute name="mituh" value="gife"/>
+                <text>
+                  <row id="0">
+                    <native>Oveduj rejese ugeme ule sumaj azupup cinulu so MO jacivo</native>
+                    <lang id="fi" date="20090526171224">Ucekamo duhol ed imec muva RU- oru MO-hêšeț</lang>
+                    <lang id="de" date="20090526151005">Uzepa aûfegu Bem ovo bicil Bem orerusop oca asagucuheb ojoj MO-Ohoc oca</lang>
+                  </row>
+                </text>
+              </tag>
+            </tag>
+          </tag>
+        </tag>
+      </tag>
+    </node>
+    <node class="THtmlNode" name="oli.muk">
+      <node class="THtmlScriptNode" name="0">
+        <items>
+          <item id="0" code="#l#l/**#l * Ajosakume MUK bojukuvev ajogid#l * (o) 2008-2009 Ajosakume Pab &amp; In UP#l */#l#l    pemaka("/>
+          <item id="1" code="'ETAM_DU_NARUDA'"/>
+          <item id="2" code=", 1609.3);  // uhila#l    pemaka("/>
+          <item id="3" code="'BURI_DU_NARUDA'"/>
+          <item id="4" code=", 0.9144);  // uhila#l    pemaka("/>
+          <item id="5" code="'INUR_GO_GOHO'"/>
+          <item id="6" code=", 12);  // uhila#l    pemaka("/>
+          <item id="7" code="'GOHO_GO_BURI'"/>
+          <item id="8" code=", 3);  // uhila#l    pemaka("/>
+          <item id="9" code="'MIJEK_GO_ETAM'"/>
+          <item id="10" code=", 1760);  // uhila#l    pemaka("/>
+          <item id="11" code="'OMEFUKA_SIMEDA'"/>
+          <item id="12" code=", 273.15);  // uhila#l#l	$jacivo_onocu = hefav ("/>
+          <item id="13" string="ziCi" separator="&quot;">
+            <row id="Cemal" excluded="1">
+              <native>ziCi</native>
+              <lang id="de" status="2">ziCi</lang>
+            </row>
+          </item>
+          <item id="14" code=" => "/>
+          <item id="15" string="Ifufofepog" separator="&quot;">
+            <row id="Cemal">
+              <native>Ifufofepog</native>
+              <lang id="fi">Gepukivocž</lang>
+              <lang id="de" date="20090526150719">Cahedukup</lang>
+            </row>
+          </item>
+          <item id="16" code=", "/>
+          <item id="17" string="ecO" separator="&quot;">
+            <row id="Cemal" excluded="1">
+              <native>ecO</native>
+              <lang id="de" status="2">eCO</lang>
+            </row>
+          </item>
+          <item id="18" code=" => "/>
+          <item id="19" string="Naruda" separator="&quot;">
+            <row id="Cemal">
+              <native>Naruda</native>
+              <lang id="fi">Nupudø</lang>
+              <lang id="de" date="20090526145049">Ucufe</lang>
+            </row>
+          </item>
+          <item id="20" code=",#l	                       "/>
+          <item id="21" string="utEt" separator="&quot;">
+            <row id="Cemal" excluded="1">
+              <native>utEt</native>
+              <lang id="de" status="2">utEt</lang>
+            </row>
+          </item>
+          <item id="22" code=" => "/>
+          <item id="23" string="Iloruluzelo" separator="&quot;">
+            <row id="Cemal">
+              <native>Iloruluzelo</native>
+              <lang id="fi">Fokunuzedubł</lang>
+              <lang id="de">Jisibomipe</lang>
+            </row>
+          </item>
+          <item id="24" code=", "/>
+          <item id="25" string="feFe" separator="&quot;">
+            <row id="Cemal" excluded="1">
+              <native>feFe</native>
+              <lang id="de" status="2">feFe</lang>
+            </row>
+          </item>
+          <item id="26" code=" => "/>
+          <item id="27" string="Tatukurecis" separator="&quot;">
+            <row id="Cemal">
+              <native>Tatukurecis</native>
+              <lang id="fi">Ifotakidocè</lang>
+              <lang id="de">Ibocaficin</lang>
+            </row>
+          </item>
+          <item id="28" code=",#l						   "/>
+          <item id="29" string="jeSule" separator="&quot;">
+            <row id="Cemal" excluded="1">
+              <native>jeSule</native>
+              <lang id="de" status="2">jeSule</lang>
+            </row>
+          </item>
+          <item id="30" code=" => "/>
+          <item id="31" string="Hanel" separator="&quot;">
+            <row id="Cemal">
+              <native>Hanel</native>
+              <lang id="fi">Ibakuf</lang>
+              <lang id="de">Icavor</lang>
+            </row>
+          </item>
+          <item id="32" code=", "/>
+          <item id="33" string="ecAcef" separator="&quot;">
+            <row id="Cemal" excluded="1">
+              <native>ecAcef</native>
+              <lang id="de" status="2">ecAcef</lang>
+            </row>
+          </item>
+          <item id="34" code=" => "/>
+          <item id="35" string="Mijek" separator="&quot;">
+            <row id="Cemal">
+              <native>Mijek</native>
+              <lang id="fi">Piconub</lang>
+              <lang id="de">Mijek</lang>
+            </row>
+          </item>
+          <item id="36" code=",#l						   "/>
+          <item id="37" string="erOfed" separator="&quot;">
+            <row id="Cemal" excluded="1">
+              <native>erOfed</native>
+              <lang id="de" status="2">erOfed</lang>
+            </row>
+          </item>
+          <item id="38" code=" => "/>
+          <item id="39" string="Tegi" separator="&quot;">
+            <row id="Cemal">
+              <native>Tegi</native>
+              <lang id="fi" date="20090526171228">Litada</lang>
+              <lang id="de">Ugă</lang>
+            </row>
+          </item>
+          <item id="40" code=", "/>
+          <item id="41" string="imEpeh" separator="&quot;">
+            <row id="Cemal" excluded="1">
+              <native>imEpeh</native>
+              <lang id="de" status="2">imEpeh</lang>
+            </row>
+          </item>
+          <item id="42" code=" => "/>
+          <item id="43" string="Ivepoc" separator="&quot;">
+            <row id="Cemal">
+              <native>Ivepoc</native>
+              <lang id="fi">Okikag</lang>
+              <lang id="de">Agat</lang>
+            </row>
+          </item>
+          <item id="44" code=",#l						   "/>
+          <item id="45" string="ukOgupefe" separator="&quot;">
+            <row id="Cemal" excluded="1">
+              <native>ukOgupefe</native>
+              <lang id="de" status="2">ukOgupefe</lang>
+            </row>
+          </item>
+          <item id="46" code=" => "/>
+          <item id="47" string="Omefuka" separator="&quot;">
+            <row id="Cemal">
+              <native>Omefuka</native>
+              <lang id="fi">Arasojeci</lang>
+              <lang id="de">Omefuka</lang>
+            </row>
+          </item>
+          <item id="48" code=", "/>
+          <item id="49" string="abElasip" separator="&quot;">
+            <row id="Cemal" excluded="1">
+              <native>abElasip</native>
+              <lang id="de" status="2">abElasip</lang>
+            </row>
+          </item>
+          <item id="50" code=" => "/>
+          <item id="51" string="Ciguvu" separator="&quot;">
+            <row id="Cemal">
+              <native>Ciguvu</native>
+              <lang id="fi">Ezakihaé</lang>
+              <lang id="de">Ciguvu</lang>
+            </row>
+          </item>
+          <item id="52" code=",#l						   "/>
+          <item id="53" string="peTepazusega" separator="&quot;">
+            <row id="Cemal" excluded="1">
+              <native>peTepazusega</native>
+              <lang id="de" status="2">peTepazusega</lang>
+            </row>
+          </item>
+          <item id="54" code=" => "/>
+          <item id="55" string="Icasisesic" separator="&quot;">
+            <row id="Cemal">
+              <native>Icasisesic</native>
+              <lang id="fi">Okenudevepife</lang>
+              <lang id="de">Icasisesic</lang>
+            </row>
+          </item>
+          <item id="56" code=" );#l#l	// agekedikad#l	#l	jomepini urojehAmesecEvEkEzoguf ($cemal, $ucakebEtomuj, $foPiguhe) {#l#l		#l		valife ($ucakebEtomuj) {#l			ubek "/>
+          <item id="57" code="&quot;ziCi&quot;"/>
+          <item id="58" code=":#l			  	$naruda = 1000 * $cemal;#l			  	koreb;#l#l			ubek "/>
+          <item id="59" code="&quot;utEt&quot;"/>
+          <item id="60" code=":#l			  	$naruda = $cemal / 100;#l			  	koreb;#l#l			ubek "/>
+          <item id="61" code="&quot;feFe&quot;"/>
+          <item id="62" code=":#l			  	$naruda = $cemal / 1000;#l			  	koreb;#l#l			ligoseb:#l			 	$naruda = $cemal;#l			 	koreb;#l		}#l#l      	$mijek = $naruda / BURI_DU_NARUDA;#l#l	    valife ($foPiguhe) {#l			ubek "/>
+          <item id="63" code="&quot;jeSule&quot;"/>
+          <item id="64" code=":#l				$govici = $mijek / MIJEK_GO_ETAM;#l				koreb;#l#l			ubek "/>
+          <item id="65" code="&quot;erOfed&quot;"/>
+          <item id="66" code=":#l				$govici = GOHO_GO_BURI * $mijek;#l				koreb;#l#l			ubek "/>
+          <item id="67" code="&quot;imEpeh&quot;"/>
+          <item id="68" code=":#l				$govici = GOHO_GO_BURI * INUR_GO_GOHO * $mijek;#l				koreb;#l#l			ligoseb:#l				$govici = $mijek;#l				koreb;#l	    }#l#l		ohoder izocor_agetar($govici, 2);#l    }#l#l	jomepini haGezunuHaCacipeKumugu($cemal, $foPiguhe, $ucakebEtomuj) {#l		valife ($foPiguhe) {#l			ubek "/>
+          <item id="69" code="&quot;jeSule&quot;"/>
+          <item id="70" code=":#l				$mijek = MIJEK_GO_ETAM * $cemal;#l				koreb;#l#l			ubek "/>
+          <item id="71" code="&quot;erOfed&quot;"/>
+          <item id="72" code=":#l				$mijek = $cemal / GOHO_GO_BURI;#l				koreb;#l#l			ubek "/>
+          <item id="73" code="&quot;imEpeh&quot;"/>
+          <item id="74" code=":#l				$mijek = $cemal / (GOHO_GO_BURI * INUR_GO_GOHO);#l				koreb;#l#l			ligoseb:#l				$mijek = $cemal;#l				koreb;#l		}#l#l      	$naruda = BURI_DU_NARUDA * $mijek;#l#l		valife ($ucakebEtomuj) {#l			ubek "/>
+          <item id="75" code="&quot;ziCi&quot;"/>
+          <item id="76" code=":#l				$govici = $naruda / 1000;#l				koreb;#l#l			ubek "/>
+          <item id="77" code="&quot;utEt&quot;"/>
+          <item id="78" code=":#l				$govici = 100 * $naruda;#l				koreb;#l#l			ubek "/>
+          <item id="79" code="&quot;feFe&quot;"/>
+          <item id="80" code=":#l				$govici = 1000 * $naruda;#l				koreb;#l#l			ligoseb:#l				$govici = $naruda;#l				koreb;#l		}#l		ohoder izocor_agetar($govici, 2);#l    }#l#l    jomepini eseladEjazejoceciKaJoMohijeredok($cemal, $behiviHemuvalenul, $nuDasabezebos) {#l#l		valife ($behiviHemuvalenul) {#l			ubek "/>
+          <item id="81" code="&quot;abElasip&quot;"/>
+          <item id="82" code=":#l				$omefuka = $cemal - OMEFUKA_SIMEDA;#l				koreb;#l#l			ligoseb:#l				$omefuka = $cemal;#l				koreb;#l		}#l#l		$icasisesic = 1.8 * $omefuka + 32;#l#l		ohoder izocor_agetar($icasisesic, 2);#l    }#l#l    jomepini ohUburufujakuGaLifajiPetalofilog($cemal, $nuDasabezebos, $behiviHemuvalenul) {#l#l		$icasisesic = $cemal;#l		$omefuka = ($icasisesic - 32) / 1.8;#l#l		valife ($behiviHemuvalenul) {#l			ubek "/>
+          <item id="83" code="&quot;abElasip&quot;"/>
+          <item id="84" code=":#l				$govici = $omefuka + OMEFUKA_SIMEDA;#l				koreb;#l#l			ligoseb:#l				$govici = $omefuka;#l				koreb;#l		}#l		ohoder izocor_agetar($govici, 2);#l	}#l	#l	// gerobudu#l	#l"/>
+        </items>
+      </node>
+      <tag name="mojunene"/>
+    </node>
+    <node class="THtmlNode" name="rico.muk">
+      <node class="THtmlScriptNode" name="0">
+        <items>
+          <item id="0" code="#l#l/**#l * Ajosakume MUK bojukuvev ajogid#l * (o) 2008-2009 Ajosakume Pab &amp; In UP#l */#l#l"/>
+        </items>
+      </node>
+      <tag name="mojunene">
+        <tag name="okom">
+          <tag name="ehit">
+            <tag name="cupic">
+              <text>
+                <row id="0">
+                  <native>Ajosakume bojukuvev ajogid - Igov 1 im 3</native>
+                  <lang id="fi" date="20090526171303">Ajosakume-isabunu -pasisajis, hehun 1/3</lang>
+                  <lang id="de" date="20090526150920">Ajosakume Ikitinilidogejuzo - Rofuham 1 odi 3</lang>
+                </row>
+              </text>
+            </tag>
+            <tag name="ifuk">
+              <attribute name="simu-vabiz" value="Evekohe-Zubo"/>
+              <attribute name="evekohe" value="ivul/okom; fatejac=cut-8"/>
+            </tag>
+            <tag name="ifuk">
+              <attribute name="hube" value="ogipes"/>
+              <attribute name="evekohe" value="Ajosakume Pab &amp;uji; In UP"/>
+            </tag>
+            <tag name="feso">
+              <attribute name="irok" value="bojukuvev.ede"/>
+              <attribute name="uni" value="anazisoren"/>
+              <attribute name="zubo" value="ivul/ede"/>
+            </tag>
+          </tag>
+          <tag name="uhis">
+            <tag name="q">
+              <attribute name="mituh" value="uradini"/>
+              <text>
+                <row id="0">
+                  <native>MUK Bojukuvev Ajogid - Igov 1 im 3</native>
+                  <lang id="fi" date="20090526171132">MUK isabunu -pasisajis - hehun 1/3</lang>
+                  <lang id="de" date="20090526145106">MUK Ikitinilidogejuzo - Rofuham 1 odi 3</lang>
+                </row>
+              </text>
+            </tag>
+            <tag name="arar">
+              <attribute name="judaru" value="ereso.muk"/>
+              <attribute name="gumohi" value="hoc"/>
+              <tag name="emazu">
+                <attribute name="oga" value="zubo"/>
+                <attribute name="opisocace" value="M"/>
+                <text>
+                  <row id="0">
+                    <native>Zubo:</native>
+                    <lang id="fi">Namoca:</lang>
+                    <lang id="de">Got:</lang>
+                  </row>
+                </text>
+              </tag>
+              <tag name="se"/>
+              <tag name="rejese">
+                <attribute name="uz" value="zubo"/>
+                <attribute name="hube" value="zubo"/>
+                <tag name="cipega">
+                  <attribute name="cemal" value="ivofad"/>
+                  <text>
+                    <row id="0">
+                      <native>Ivofad</native>
+                      <lang id="fi">Ukirav</lang>
+                      <lang id="de">Fżafo</lang>
+                    </row>
+                  </text>
+                </tag>
+                <tag name="cipega">
+                  <attribute name="cemal" value="danefotanes"/>
+                  <text>
+                    <row id="0">
+                      <native>Danefotanes</native>
+                      <lang id="fi">Vșacșemes</lang>
+                      <lang id="de">Ujitejefuh</lang>
+                    </row>
+                  </text>
+                </tag>
+              </tag>
+              <tag name="se"/>
+              <tag name="lil">
+                <attribute name="mituh" value="ravubi"/>
+                <tag name="ereso">
+                  <attribute name="zubo" value="vubugi"/>
+                  <attribute name="cemal">
+                    <row id="0">
+                      <native>Ezut</native>
+                      <lang id="fi" date="20090526170925">Ocotofim</lang>
+                      <lang id="de">Båefodoj</lang>
+                    </row>
+                  </attribute>
+                </tag>
+              </tag>
+              <tag name="q">
+                <attribute name="uz" value="gife"/>
+                <attribute name="hube" value="gife"/>
+                <attribute name="mituh" value="gife"/>
+                <text>
+                  <row id="0">
+                    <native>Oveduj rejese rahizolune zubo</native>
+                    <lang id="fi" date="20090526171247">Ucekamo edalubitehibe</lang>
+                    <lang id="de" date="20090526145129">Uzepa aûfegu Bem Ovufezodisogeh</lang>
+                  </row>
+                </text>
+              </tag>
+            </tag>
+          </tag>
+        </tag>
+      </tag>
+    </node>
+  </source>
+  <dictionaries>
+    <dictionary lang="me" checkername="me" checkerlang="me">
+      <item>Ajosakume</item>
+    </dictionary>
+  </dictionaries>
+</document>

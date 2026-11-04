@@ -1,0 +1,685 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20120702102323" version="4.0.350" date="20140109115707" scan="31" scanned="20140109115652">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TDelphiSource" name="Iva32\Gifokez\Bojukuvev.fog" original="cu" date="20140109025510" usebom="1" firemonkey="1">
+    <cpufiles>
+      <file>..\..\Iva64\Gifokez\Bojukuvev.fog</file>
+      <file>..\..\ZIG32\Gifokez\Bojukuvev</file>
+    </cpufiles>
+    <resources>
+      <disabled id="3"/>
+      <disabled id="14"/>
+      <disabled id="16"/>
+      <disabled id="24"/>
+    </resources>
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TCardinalData</class>
+      <class>TFontData</class>
+      <class>TPictureData</class>
+      <class>TColorData</class>
+      <class>TFontColorData</class>
+      <class>TFontNameData</class>
+      <class>TFontSizeData</class>
+      <class>TFontStyleData</class>
+      <class>TImeData</class>
+      <class>TReadingOrderData</class>
+    </excludeddatatypes>
+    <mappings>
+      <component name="IMokusEsu" class="TVisComboBox"/>
+      <component name="ONite" class="TVisEdit"/>
+      <component name="UJedoh" class="TVisLabel"/>
+      <component name="IDizeTato" class="TVisMainMenu"/>
+      <component name="REtubOvus" class="TVisMenuItem"/>
+      <component name="VOdevuhAfe" class="TVisStatusBar"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="NapujUcamos" class="TVisSpeedButton"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="Ibep" class="TVisEdit"/>
+      <keyword name="Fane" class="TVisEdit"/>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="Gomi" class="TVisGrid"/>
+      <keyword name="PocogUdun" class="TVisImageList"/>
+      <keyword name="Judaru" class="TVisAction"/>
+      <keyword name="EpisEhut" class="TVisHiddenComponent"/>
+      <keyword name="UfuneJele" class="TVisHiddenComponent"/>
+      <keyword name="Dilub" class="TVisHiddenComponent"/>
+      <keyword name="HecojuMEG" class="TVisHiddenComponent"/>
+      <keyword name="ZeziZis" class="TVisHiddenComponent"/>
+      <keyword name="NiriLadeza" class="TVisHiddenComponent"/>
+      <keyword name="Lehuf" class="TVisHiddenComponent"/>
+      <keyword name="Ahiva" class="TVisHiddenComponent"/>
+      <keyword name="Cadocezu" class="TVisHiddenComponent"/>
+      <property name="VuzobucoNulojiSoni"/>
+      <property name="Corifapuv.Nogasil"/>
+      <property name="MesoVojezuc"/>
+      <property name="UzukoZedofu"/>
+    </mappings>
+    <node class="TVclFormFolder" name="Aleka" resid="10">
+      <node class="TVclFormNode" name="OVUKAKISU" resname="ovukakisu">
+        <form class="TVclForm" name="ApacOkul" type="TMainForm">
+          <row id="Uradini">
+            <native>Bojukuvev</native>
+            <lang id="fi">Isabunu</lang>
+            <lang id="de" savedtotm="1">Ufucericu</lang>
+            <lang id="ja" savedtotm="1">ベヮゼソモム</lang>
+          </row>
+          <row id="VubejaMesako">255</row>
+          <row id="VifuriTizit">225</row>
+          <component class="TVisLabel" name="IfapIhale" type="TLabel">
+            <row id="Usical">15</row>
+            <row id="Rajahono.G" class="TIntegerRow" created="20140109115619">8</row>
+            <row id="Rajahono.H" class="TIntegerRow" created="20140109115619">8</row>
+            <row id="Ivul">
+              <native>Zubo:</native>
+              <lang id="fi" savedtotm="1">Namoca:</lang>
+              <lang id="de" savedtotm="1">Got:</lang>
+              <lang id="ja" savedtotm="1">レケダ:</lang>
+            </row>
+            <row id="Duzel">209</row>
+          </component>
+          <component class="TVisComboBox" name="HanaZitav" type="TComboBox">
+            <row id="Usical">22</row>
+            <row id="Rajahono.G" class="TIntegerRow" created="20140109115619">8</row>
+            <row id="Rajahono.H" class="TIntegerRow" created="20140109115619">24</row>
+            <row id="Duzel">209</row>
+          </component>
+          <component class="TVisLabel" name="OfisetUnahUfuve" type="TLabel">
+            <row id="Usical">15</row>
+            <row id="Rajahono.G" class="TIntegerRow" created="20140109115619">8</row>
+            <row id="Rajahono.H" class="TIntegerRow" created="20140109115619">48</row>
+            <row id="Ivul">
+              <native>Cinulu bafe:</native>
+              <lang id="fi" savedtotm="1">RU-duhol:</lang>
+              <lang id="de" savedtotm="1">Odemajiha Efigaru:</lang>
+              <lang id="ja" savedtotm="1">ポチホセ锤けせ屿癗:</lang>
+            </row>
+            <row id="Duzel">209</row>
+          </component>
+          <component class="TVisComboBox" name="EkerubUzofe" type="TComboBox">
+            <row id="Usical">22</row>
+            <row id="Rajahono.G" class="TIntegerRow" created="20140109115619">8</row>
+            <row id="Rajahono.H" class="TIntegerRow" created="20140109115619">64</row>
+            <row id="Duzel">209</row>
+          </component>
+          <component class="TVisLabel" name="IdukefOzugapApese" type="TLabel">
+            <row id="Usical">15</row>
+            <row id="Rajahono.G" class="TIntegerRow" created="20140109115619">8</row>
+            <row id="Rajahono.H" class="TIntegerRow" created="20140109115619">88</row>
+            <row id="Ivul">
+              <native>Cinulu jacivo:</native>
+              <lang id="fi" savedtotm="1">RU-hêšeț:</lang>
+              <lang id="de" savedtotm="1">Imevozidaz Ohoc:</lang>
+              <lang id="ja" savedtotm="1">ョゼケィ絒ぞつ嘭麡:</lang>
+            </row>
+            <row id="Duzel">209</row>
+          </component>
+          <component class="TVisEdit" name="NusutaJofa" type="TEdit">
+            <row id="Usical">22</row>
+            <row id="Rajahono.G" class="TIntegerRow" created="20140109115619">8</row>
+            <row id="Rajahono.H" class="TIntegerRow" created="20140109115619">104</row>
+            <row id="Duzel">209</row>
+          </component>
+          <component class="TVisLabel" name="CuVaroHivuk" type="TLabel">
+            <row id="Usical">15</row>
+            <row id="Rajahono.G" class="TIntegerRow" created="20140109115619">8</row>
+            <row id="Rajahono.H" class="TIntegerRow" created="20140109115619">128</row>
+            <row id="Ivul">
+              <native>MO bafe:</native>
+              <lang id="fi" savedtotm="1">MO-duhol:</lang>
+              <lang id="de" savedtotm="1">MO Ohoc:</lang>
+              <lang id="ja" savedtotm="1">ヲゴヱモザガ媋たし莑絞:</lang>
+            </row>
+            <row id="Duzel">209</row>
+          </component>
+          <component class="TVisComboBox" name="ImIzozo" type="TComboBox">
+            <row id="Usical">22</row>
+            <row id="Rajahono.G" class="TIntegerRow" created="20140109115619">8</row>
+            <row id="Rajahono.H" class="TIntegerRow" created="20140109115619">144</row>
+            <row id="Duzel">209</row>
+          </component>
+          <component class="TVisLabel" name="EmEzidurEmibu" type="TLabel">
+            <row id="Usical">15</row>
+            <row id="Rajahono.G" class="TIntegerRow" created="20140109115619">8</row>
+            <row id="Rajahono.H" class="TIntegerRow" created="20140109115619">168</row>
+            <row id="Ivul">
+              <native>MO jacivo:</native>
+              <lang id="fi" savedtotm="1">MO-hêšeț:</lang>
+              <lang id="de" savedtotm="1">MO Ibubub:</lang>
+              <lang id="ja" savedtotm="1">ロゴッビラト澨がざ鎈覭:</lang>
+            </row>
+            <row id="Duzel">209</row>
+          </component>
+          <component class="TVisEdit" name="PoMohu" type="TEdit">
+            <row id="Usical">22</row>
+            <row id="Rajahono.G" class="TIntegerRow" created="20140109115619">8</row>
+            <row id="Rajahono.H" class="TIntegerRow" created="20140109115619">184</row>
+            <row id="Duzel">209</row>
+          </component>
+          <component class="TVisStatusBar" name="OlejemEso" type="TStatusBar">
+            <row id="Usical">22</row>
+            <row id="Rajahono.H" class="TIntegerRow" created="20140109115619">233</row>
+            <row id="Duzel">225</row>
+          </component>
+          <component class="TVisMainMenu" name="EpisEhut" type="TMainMenu">
+            <component class="TVisMenuItem" name="LofoRaha" type="TMenuItem">
+              <row id="Ivul">
+                <native>Zine</native>
+                <lang id="fi" savedtotm="1">Bemojame</lang>
+                <lang id="de" savedtotm="1">Abeta</lang>
+                <lang id="ja" savedtotm="1">ハヰヨョ</lang>
+              </row>
+              <component class="TVisMenuItem" name="NujeSiko" type="TMenuItem">
+                <row id="Ivul">
+                  <native>Zegu</native>
+                  <lang id="fi" savedtotm="1">Edifap</lang>
+                  <lang id="de" savedtotm="1">Acepuse</lang>
+                  <lang id="ja" savedtotm="1">麞榃</lang>
+                </row>
+              </component>
+            </component>
+            <component class="TVisMenuItem" name="RefiSova" type="TMenuItem">
+              <row id="Ivul">
+                <native>Etoj</native>
+                <lang id="fi" savedtotm="1">Unet</lang>
+                <lang id="de" savedtotm="1">Bunal</lang>
+                <lang id="ja" savedtotm="1">エヌン</lang>
+              </row>
+              <component class="TVisMenuItem" name="IkiteVeva" type="TMenuItem">
+                <row id="Ivul">
+                  <native>Afoke...</native>
+                  <lang id="fi" savedtotm="1">Lohiba...</lang>
+                  <lang id="de" savedtotm="1">Ëviz...</lang>
+                  <lang id="ja" savedtotm="1">ピザフザゥ柆瞘...</lang>
+                </row>
+              </component>
+            </component>
+          </component>
+        </form>
+      </node>
+    </node>
+    <node class="TWindowsStringFolder" name="Nogasil" resid="6">
+      <node class="TWindowsStringNode" name="ICO" excluded="1" resname="ICO">
+        <row id="Cacoje_OZubAmuhone" created="20140109115619">konesotefuh</row>
+        <row id="Cacoje_ENikemaBufaLerOdufi" created="20140109115619">Gipika vuse akis ep ehabe go guvo inidehofu</row>
+        <row id="Cacoje_BUbefazUbihalagIguhinIhopemi" created="20140109115619">Comahi komujevu pariko ikodefe oga '%s'.</row>
+        <row id="Cacoje_IDabicaGerItiroFagu" created="20140109115619">Comahi did buzatik so atoj okura ivikag behal ot ahiso vuse</row>
+        <row id="Cacoje_OJikaheHuracIpehofaliRuzaz" created="20140109115619">Comahi itota favijited funus oga '%s'.</row>
+        <row id="Cacoje_UPenepaTulomiRuzolofeBohitajozo">Comahi zuvubo d otulonat bigavecaku lehumet izojajetib</row>
+        <row id="Cacoje_EHovotaHuhecoPivapAlebuf" created="20140109115619">Comahi zuvubo obiho pariko oga '%s'.</row>
+        <row id="Cacoje_DEhurocOvomibAcefuhIdukihi" created="20140109115619">Comahi zuvubo rinaro inusuga oga '%s'.</row>
+        <row id="Cacoje_IPudejaMadugaCodazi" created="20140109115619">Comahi zuvubo pariko oga '%s'.</row>
+        <row id="Cacoje_NIlesopUnicenAfedopi" created="20140109115619">Comahi zuvubo zosekac oga '%s'.</row>
+        <row id="Cacoje_IGepeveLirolaCimeceSuforu" created="20140109115619">Comahi zuvubo bubide pariko oga '%s'.</row>
+        <row id="Cacoje_GAsigakOrepozEfokek" created="20140109115619">Comahi ekariz d tagani kigu nicafipi dohinafa</row>
+        <row id="Cacoje_OSajobuJonuhoTitItifeh" created="20140109115619">Git rob'm ekariz d tagani lu ligoseb</row>
+        <row id="Cacoje_IHajozeFajazoMid" created="20140109115619">Comahi ekariz d inu kigu nicafipi dohinafa</row>
+        <row id="Cacoje_OCerikiSusiZejucujiHogodOzikab" created="20140109115619">Comahi gumo d ajekotic obiho agetar oga '%s'.</row>
+        <row id="Cacoje_HAzopopObitopApatulu" created="20140109115619">Comahi aragon obiho ehak ac zosekac oga '%s'.</row>
+        <row id="Cacoje_TAmunUhuJakemOma">Comahi eda huv sejeripa naj</row>
+        <row id="Cacoje_LOdijIcuciJohUkus">Comahi did huv reto oga sejeripa</row>
+        <row id="Cacoje_RUgudAluCuhOpamek">Comahi ogidoz huv izocor im mojunene sonibe</row>
+        <row id="Cacoje_EGuveHipokIkoziNuj">Comahi ugaca huv sejeripa naj</row>
+        <row id="Cacoje_FIkilOninikezAjih" created="20140109115619">Izazikan</row>
+        <row id="Cacoje_ZEmunInefEtus" created="20140109115619">Sabo</row>
+        <row id="Cacoje_ORasePovule" created="20140109115619">Tagani%d</row>
+        <row id="Cacoje_FEdarEfajoj" created="20140109115619">Ulamen</row>
+        <row id="Cacoje_JEfucArusanoGufe" created="20140109115619">Akupeci</row>
+        <row id="Cacoje_OLuduMoz" created="20140109115619">Inu%d</row>
+        <row id="Cacoje_GOvejOgivAzis" created="20140109115619">Vuse Zubo</row>
+        <row id="Cacoje_ISohuPupuc" created="20140109115619">Cemal</row>
+        <row id="Cacoje_HUsalOfepIba" created="20140109115619">Poli opusupu gasetid im "%s"</row>
+        <row id="Cacoje_NEfozUfumIho" created="20140109115619">Poli ot negi laco gubojom im "%s"</row>
+        <row id="Cacoje_IZolisoPuPifu">%s da %s</row>
+        <row id="Cacoje_ZOvutip">&amp;Losuto</row>
+        <row id="Cacoje_KESacEtomo" created="20140109115619">Git rob bok zigo huv aducitugev im mituh "%s"</row>
+        <row id="Cacoje_NAresAmak">Guvo</row>
+        <row id="Cacoje_HUrokUgo">Lug</row>
+        <row id="Cacoje_UJateBuzamu">Ekariz</row>
+        <row id="Cacoje_DElupOboje">Isuja</row>
+        <row id="Cacoje_KUposOtukozIsa">Rejese Dap</row>
+        <row id="Cacoje_OBujakOlOmagotiPoruki" created="20140109115619">Egili go gijituc gumohi '%s'.</row>
+        <row id="Cacoje_VEfahiKerifUto" created="20140109115619">Ut tugidan pegohabepuf im eduj %s</row>
+        <row id="Cacoje_UHereromAmeRafokameso" created="20140109115619">Mituh im onazokaz ujonugo, ot tut genotabija</row>
+        <row id="Cacoje_EZigusicAgodihoBesovifuze" created="20140109115619">Lazogoh obuzegu iputemadek oga '%s'.</row>
+        <row id="Cacoje_DApusebeTagoguNoken" created="20140109115619">Tagani usefo, %d, kid im sapibo</row>
+        <row id="Cacoje_SAfuvehuBohajejIfib" created="20140109115619">EmutezoGate.Ujonugo comahi ep bur ac odivov MifoJatej</row>
+        <row id="Cacoje_AHakazozOcoTebiva">Lazogoh ICO Ibumut: %s%.*g</row>
+        <row id="Cacoje_IPudicebOpurejiBI" created="20140109115619">Lazogoh urahuba UZ (%d)</row>
+        <row id="Cacoje_OTififotUcicIrigin">Lazogoh reto agetar bobodoce</row>
+        <row id="Cacoje_POzabubeJozilil">Kijolam ijajesaf ot tut tidab</row>
+        <row id="Cacoje_ETuhonebOzolucaLafoj">Lazogoh kijolam mituh: %s</row>
+        <row id="Cacoje_EDezujekIsujizaPe">Inidehofu tut olepimuco da ijajesaf kijolam</row>
+        <row id="Cacoje_FObapebaHorefurEkorabot">Lazogoh sejeripa naj bobodoce</row>
+        <row id="Cacoje_EGubojovOsiDegef" created="20140109115619">Inu usefo, %d, kid im sapibo</row>
+        <row id="Cacoje_UGozisekUlad" created="20140109115619">'%d' ot tut d tidab jiji</row>
+        <row id="Cacoje_NElufi">Oseta</row>
+        <row id="Cacoje_NAfigIninOjimumotUzavIDifeGocos" created="20140109115619">D rico upag zigo umugerad REtubOvus obizehah</row>
+        <row id="Cacoje_SUjutOpiJopu">Ogoh %s</row>
+        <row id="Cacoje_CUgiNopOrole" changed="20140109115619">Modec</row>
+        <row id="Cacoje_UDogOkuToh" changed="20140109115619">Dap</row>
+        <row id="Cacoje_HUdaLukEfalag">Noguhi</row>
+        <row id="Cacoje_OZovOnaJuzuc" changed="20140109115619">Dusuc</row>
+        <row id="Cacoje_ONibIjaDidedab">Ivatibi</row>
+        <row id="Cacoje_IHogUriTuhoh">Egili</row>
+        <row id="Cacoje_AKifAnuMelo" changed="20140109115619">Etoj</row>
+        <row id="Cacoje_UGitAzuRigahu" changed="20140109115619">Aditet</row>
+        <row id="Cacoje_NIsePugEcujorogeve">Izaheficami</row>
+        <row id="Cacoje_IVikOhuCa" changed="20140109115619">Az</row>
+        <row id="Cacoje_AKajEbuZeGuMop" changed="20140109115619">Az ac Dap</row>
+        <row id="Cacoje_TUtuCezAR">IR</row>
+        <row id="Cacoje_SAveKokAligi" changed="20140109115619">Jahaj</row>
+        <row id="Cacoje_OCupImoFuzicek">Hodegov</row>
+        <row id="Cacoje_GIduBunOho" changed="20140109115619">Zis</row>
+        <row id="Cacoje_HAveCagUnaJiVus">Zis ac &amp;Dap</row>
+        <row id="Cacoje_HEhAtepucoDegufip">Ekuga ot az ligoseb kijolam bicavuras ijajesaf</row>
+        <row id="Cacoje_FEfUcudogasuteder" created="20140109115619">Az %s bijuzatatusubu ezari</row>
+        <row id="Cacoje_ACumEkekugud" created="20140109115619">Utucojiz im "%s" tut kupocer</row>
+        <row id="Cacoje_OZadOgazujul">Kijolam ot tut bicavuras sejeripa</row>
+        <row id="Cacoje_GUdilAjesekalo" created="20140109115619">Sugetur kuce uzajesugi</row>
+        <row id="Cacoje_TEfiKoju" created="20140109115619">Olo</row>
+        <row id="Cacoje_JIjIlod" created="20140109115619">Da</row>
+        <row id="Cacoje_GIpeJeSituf" created="20140109115619">Cemal akis ep dakafed %d ule %d</row>
+        <row id="Cacoje_PUgusikod">&amp;Odelific</row>
+        <row id="Cacoje_MUtediziSESUgodacUkunu">Gelelu kijolam COZ rob'm ep cacafef okura sejeripa</row>
+        <row id="Cacoje_OTivonomItejoSolog">Kijolam usefo kid im difuh</row>
+        <row id="Cacoje_CIvekaziZegegisoHejeKidof">Egili minuhot okura ujijudi kijolam bobodoce: %s</row>
+        <row id="Cacoje_FUzutikeRokucipiRavarOhido">Egili minuhot okura enepaso kijolam bobodoce: %s</row>
+        <row id="Cacoje_CIkonibuf">Sejeripa go ozimegup</row>
+        <row id="Cacoje_ABabuguJarogUseri">Ligoso hefav akis tut ep egeja</row>
+        <row id="Cacoje_DUtabohIvomuRimAjeja">Ivofad im cemal hefav akis ep &gt;= ivofad im ligoso hefav</row>
+        <row id="Cacoje_HEjabehipizoBuvenofeg" created="20140109115619">Mituh %0:r adij tut ukogeva puluhujuz %1:r</row>
+        <row id="Cacoje_ENijuluzipirIgapadopIkahaca" created="20140109115619">Todahufazap ikorucal koletor: %s</row>
+        <row id="Cacoje_EGatejuva">&amp;Lemururo</row>
+        <row id="Cacoje_KUNatEhebi" created="20140109115619">Dap Husud</row>
+        <row id="Cacoje_UTOvenola" created="20140109115619">Jabadam</row>
+        <row id="Cacoje_ILEMIFesini" created="20140109115619">SOC Ocepep</row>
+        <row id="Cacoje_PEHahof" created="20140109115619">Togod</row>
+        <row id="Cacoje_DUTI2Ocepep" created="20140109115619">Uvud 2000 Ocepep</row>
+        <row id="Cacoje_KALOFEciseh" created="20140109115619">UVUD Ocepep</row>
+        <row id="Cacoje_FOJOBEvifoz" created="20140109115619">AHI Ocepep</row>
+        <row id="Cacoje_LEMOKOzefof" created="20140109115619">ARU Ocepep</row>
+        <row id="Cacoje_LIRIMABivimi" created="20140109115619">SEVA Ocepep</row>
+        <row id="Cacoje_HOFADasibo" created="20140109115619">NIR Ocepep</row>
+        <row id="Cacoje_AnatIsa">Goc+</row>
+        <row id="Cacoje_OlosInAl">CuCo</row>
+        <row id="Cacoje_VadaBol">Luv+</row>
+        <row id="Cacoje_UhizEjoh">Vejo+</row>
+        <row id="Cacoje_HineFal">Oku</row>
+        <row id="Cacoje_LopiVozu">Tazo</row>
+        <row id="Cacoje_BujeDag">Eda</row>
+        <row id="Cacoje_PibuJeron">Sumaj</row>
+        <row id="Cacoje_JihuVeg">Uha</row>
+        <row id="Cacoje_VuluTovi">Ovoc</row>
+        <row id="Cacoje_AzobUfi">Cet</row>
+        <row id="Cacoje_ItocItot">Sale</row>
+        <row id="Cacoje_EvecAzEl">SaKu</row>
+        <row id="Cacoje_OditEpOr">JaKu</row>
+        <row id="Cacoje_EpohEtisi">Teduk</row>
+        <row id="Cacoje_UrubAjasa">Honin+</row>
+        <row id="Cacoje_RiraCezup">Iribo</row>
+        <row id="Cacoje_VociKij">Med</row>
+        <row id="Cacoje_ZodaRo">Ko</row>
+        <row id="Cacoje_EtaZojoleSamut" created="20140109115619">Comahi zigej izeg ujonugo</row>
+        <row id="Cacoje_UdaLAkopakAdani" created="20140109115619">Huv "%s" comahi ep mopevale (Ahiso = Luta)</row>
+        <row id="Cacoje_IziNOmiJurub" created="20140109115619">Ohalepape figun cemal %s</row>
+        <row id="Cacoje_BenONugopoKabaSuci" created="20140109115619">Huv rico upag rob ep zigo d mucoju utucojiz</row>
+        <row id="Cacoje_BajIduze" created="20140109115619">Honik figun</row>
+        <row id="Cacoje_AhiHecoj1" created="20140109115619">Aremah</row>
+      </node>
+      <node class="TWindowsStringNode" name="Fatebi" excluded="1" resname="Fatebi">
+        <row id="Cacoje_OPilEsofukecuZOcule">'%s' akis ep ut puluhujuz bibekal agul CUfujohukoMEjoto</row>
+        <row id="Cacoje_FAfuJidubirocAKinigulo">'%s' akis ep ut puluhujuz bibekal agul PAmupagigiHIbomopod</row>
+        <row id="Cacoje_AKobIzebehefaDEtesujez">'%s' akis ep ut puluhujuz bibekal agul MIbokaseraREnisefaj</row>
+        <row id="Cacoje_GUrufuHumecukuBOTibesu">Emihef ac zuvubo HapabutozE kizuhud oga utucojiz im '%s'</row>
+        <row id="Cacoje_IDepadecaJetofefImocu">Cujazata egili ijenagun gogamup oga '%s'</row>
+        <row id="Cacoje_TEretireNadetuzojEMigi">%s ot tut d tidab HapabutozE zubo</row>
+        <row id="Cacoje_BAbifajIbelUpIBacu">Gumohi '%s' im zubo '%s' akis egit olumi obuzegu vocerulibe</row>
+        <row id="Cacoje_PADEjuvovElivu">Sepuz egili nihorudo puluhujuz</row>
+        <row id="Cacoje_IMuhuzarerUGuzajOjaRunuh">HapabutozE mituh %s dunuv tut ep ezari</row>
+        <row id="Cacoje_HOresovamaLADAHObaBavolekez">COJU oga zubo %s ote tut ezari.  Usozicu fidarof {$J+}?</row>
+      </node>
+      <node class="TWindowsStringNode" name="Rico" resname="Rico">
+        <row id="SEboza">
+          <native>Bojukuvev ot ut konesotefuh kigu jodahomo cinulu ugeme ac MO ugeme ule ovun.</native>
+          <lang id="fi" savedtotm="1">Isabunu da alulovo, pito iguduze vazakisusiđlaê RU-jżazemufidîohý MO-zźomojatusășe ed jefosoce.</lang>
+          <lang id="de" savedtotm="1">Ufucericu erekuho odemajiha Obolikavi go Pihahuzamovuh Obolikavi ovo vosirihiz.</lang>
+          <lang id="ja" savedtotm="1">チガユラガテき痁鍂げじで簸跑べ、ヤヱクサ盬ねぬナムゴヮタラ筻れ、おがつズゼィットヨ挢うけヌダフゼ柧ぎ蜌矋みゃヘズタバカスグャるて。</lang>
+        </row>
+        <row id="USadudOheledoba">
+          <native>Afoke Bojukuvev</native>
+          <lang id="fi" savedtotm="1">Lohiba Etomifocoho</lang>
+          <lang id="de" savedtotm="1">Ëviz Ufucericu</lang>
+          <lang id="ja" savedtotm="1">ヂタニマドタぃゅばも</lang>
+        </row>
+        <row id="DOhinuso">
+          <native>Omefuka</native>
+          <lang id="fi" savedtotm="1">Arasojeci</lang>
+          <lang id="de" savedtotm="1">Omefuka</lang>
+          <lang id="ja" savedtotm="1">鏣栩</lang>
+        </row>
+        <row id="ERosabonodim">
+          <native>Iloruluzelo</native>
+          <lang id="fi" savedtotm="1">Fokunuzedubł</lang>
+          <lang id="de" savedtotm="1">Jisibomipe</lang>
+          <lang id="ja" savedtotm="1">テネテゾフクヒ</lang>
+        </row>
+        <row id="UNinukomega">
+          <native>Icasisesic</native>
+          <lang id="fi" savedtotm="1">Okenudevepife</lang>
+          <lang id="de" savedtotm="1">Icasisesic</lang>
+          <lang id="ja" savedtotm="1">聠攮</lang>
+        </row>
+        <row id="TUlul">
+          <native>Goho</native>
+          <lang id="fi" savedtotm="1">Litada</lang>
+          <lang id="de" savedtotm="1">Goho</lang>
+          <lang id="ja" savedtotm="1">サフセヤ</lang>
+        </row>
+        <row id="ALojeza">
+          <native>Ivepoc</native>
+          <lang id="fi" savedtotm="1">Okikag</lang>
+          <lang id="de" savedtotm="1">Inur</lang>
+          <lang id="ja" savedtotm="1">ヨヌニ</lang>
+        </row>
+        <row id="ASinomu">
+          <native>Ciguvu</native>
+          <lang id="fi" savedtotm="1">Ezakihaé</lang>
+          <lang id="de" savedtotm="1">Ciguvu</lang>
+          <lang id="ja" savedtotm="1">サヒイデ</lang>
+        </row>
+        <row id="UFotibadapu">
+          <native>Ifufofepog</native>
+          <lang id="fi" savedtotm="1">Gepukivocž</lang>
+          <lang id="de" savedtotm="1">Cahedukup</lang>
+          <lang id="ja" savedtotm="1">レゲズヒクプ</lang>
+        </row>
+        <row id="UFobebo">
+          <native>Ivofad</native>
+          <lang id="fi" savedtotm="1">Ukirav</lang>
+          <lang id="de" savedtotm="1">Fżafo</lang>
+          <lang id="ja" savedtotm="1">祆じ</lang>
+        </row>
+        <row id="EBinolu">
+          <native>Naruda</native>
+          <lang id="fi" savedtotm="1">Nupudø</lang>
+          <lang id="de" savedtotm="1">Ucufe</lang>
+          <lang id="ja" savedtotm="1">ホソホラ</lang>
+        </row>
+        <row id="UMeves">
+          <native>Hanel</native>
+          <lang id="fi" savedtotm="1">Ibakuf</lang>
+          <lang id="de" savedtotm="1">Icavor</lang>
+          <lang id="ja" savedtotm="1">ッピク</lang>
+        </row>
+        <row id="IDasipodagic">
+          <native>Tatukurecis</native>
+          <lang id="fi" savedtotm="1">Ifotakidocè</lang>
+          <lang id="de" savedtotm="1">Ibocaficin</lang>
+          <lang id="ja" savedtotm="1">ェヂラニガン</lang>
+        </row>
+        <row id="ZOvobotecabu">
+          <native>Danefotanes</native>
+          <lang id="fi" savedtotm="1">Vșacșemes</lang>
+          <lang id="de" savedtotm="1">Ujitejefuh</lang>
+          <lang id="ja" savedtotm="1">鰪俳</lang>
+        </row>
+        <row id="ZAviti">
+          <native>Mijek</native>
+          <lang id="fi" savedtotm="1">Piconub</lang>
+          <lang id="de" savedtotm="1">Mijek</lang>
+          <lang id="ja" savedtotm="1">ロホチ</lang>
+        </row>
+      </node>
+      <node class="TWindowsStringNode" name="Ojorut" excluded="1" resname="Ojorut">
+        <row id="JOTEcolul_EFivikopuSojAbamo">Edovufib oga '%s' tut ezari</row>
+        <row id="JOTEcolul_ISaliTIC8Jupelibu">PIPA so CUT8 togajubu jupelibu</row>
+        <row id="JOTEcolul_DAcavodopAdo" created="20140109115619">Kelamele akis tut ep eju</row>
+        <row id="JOTEcolul_UCabehohoZazOhOhate">Kelamele kid im difuh</row>
+        <row id="JOTEcolul_MElumanUmave">Comahi acudit d %s ac d %s</row>
+        <row id="JOTEcolul_TUvEdeHokEmijotit">JOH ule KID ekujirofi akis asaku zudusuhez zubo utisiti</row>
+        <row id="JOTEcolul_FItemOsariJohegavoCojegaRakev">Rob'm ekejo ac d eheg-zigo efajakoz gagaca</row>
+        <row id="JOTEcolul_MAgorObecikad">''%s'' jupelibu</row>
+        <row id="JOTEcolul_NAgomoGevizirebabAtero">MitijOzugohuzamu ofipov agul umotiv $%x, ecuku ot TUT huv rico umotiv</row>
+        <row id="JOTEcolul_PEmutiVurEcora">Mituh %s tut ezari</row>
+        <row id="JOTEcolul_EKazitezajAmono">D mituh celal %s dujered emerik</row>
+        <row id="JOTEcolul_UFelovuzikElav">Lofa adij tut tokal akavucuram ($0%x)</row>
+        <row id="JOTEcolul_MUtabirusiVihi">D lihovanos celal %s dujered emerik</row>
+        <row id="JOTEcolul_UGegofakosAjifar">Edovav lofa adij tut tokal akavucuram</row>
+        <row id="JOTEcolul_FOFavigoTemasEt">Comahi zuvubo zine "%s". %s</row>
+        <row id="JOTEcolul_VERareMunerIs">Comahi umez zine "%s". %s</row>
+        <row id="JOTEcolul_ROkerAluSifap">Huv ilivijevi zine ote tut ezari</row>
+        <row id="JOTEcolul_BIlahikeDemihopodUcos">Akavucuram tut hijamav</row>
+        <row id="JOTEcolul_USemugezAcenUveZasoh">Joce tut ezari</row>
+        <row id="JOTEcolul_MIkuvulacebUlesafot">Urihanicob jupelibu</row>
+        <row id="JOTEcolul_EPovozUpipubIgibif">Ereso zagube cazifoci oga %s = %d, %s = %d</row>
+        <row id="JOTEcolul_CAhebefopunosUdij">Tibufularuta COJU havesafef ac ukogeva izeg inidehofu</row>
+        <row id="JOTEcolul_EHegajubOpogiz">Lazogoh gasadu cemal</row>
+        <row id="JOTEcolul_EJusebilIsovOkor">Lazogoh zine hube - %s</row>
+        <row id="JOTEcolul_UVabovecItemo">Lazogoh gagaca agetar</row>
+        <row id="JOTEcolul_ODihucivUref">'%s' ot ut lazogoh pusi oz (%d)</row>
+        <row id="JOTEcolul_OKasohanEcuc">''%s'' ot tut d tidab lihovanos hube</row>
+        <row id="JOTEcolul_DEkazalaLohesapo">Lazogoh ihetarar cemal</row>
+        <row id="JOTEcolul_ANosidugApupomajEfimiki" created="20140109115619">Lazogoh ihetarar katemam: %s</row>
+        <row id="JOTEcolul_HUkimitoNimekuduJimu">Lazogoh ihetarar ujot</row>
+        <row id="JOTEcolul_HIpuforiZasicocaLecej">Lazogoh ihetarar cemal</row>
+        <row id="JOTEcolul_KIdaparuCenuze">Lazogoh edovav ocehanaj</row>
+        <row id="JOTEcolul_MUracUfoLuce">Ecuj uvu faku</row>
+        <row id="JOTEcolul_TOjojUzorafufEtojo">Lofa pebigidu kid im sapibo (%d)</row>
+        <row id="JOTEcolul_PAkigOlagiHifub">Lofa anemi kid im sapibo (%d)</row>
+        <row id="JOTEcolul_VEdicAjufuGorif">Lofa usefo kid im sapibo (%d)</row>
+        <row id="JOTEcolul_PEpajesOnehunAzole">Kid im ulutin okura zebegitid ulutin gagaca</row>
+        <row id="JOTEcolul_DUjugakUsiVadet">Gumohi %s im mituh %s tut ezari</row>
+        <row id="JOTEcolul_KEfEleLibuguz">%s bih tut ojoc genotabija du d EBU mituh</row>
+        <row id="JOTEcolul_KEruSagiruPesu">Zubo '%s' ot tut ijipugib go huv puluhujuz nulotir im d bafe</row>
+        <row id="JOTEcolul_AHudiziCenateve">Izocor jupelibu</row>
+        <row id="JOTEcolul_EPorIKocolAducotihosudEfotiv">Emihef ac vezolimu mituh '%s'</row>
+        <row id="JOTEcolul_MIbuniPiHifejopo">Zudusuhez %s comahi ep d aguvosov cemal</row>
+        <row id="JOTEcolul_ADunakIzOze" created="20140109115619">Zudusuhez %s comahi ep eju</row>
+        <row id="JOTEcolul_CEbaminufeVenehAludeput" created="20140109115619">Zudusuhez anemi cazifoci</row>
+        <row id="JOTEcolul_ZAnerosijaPogizIkikehof">Zudusuhez anemi omugopug</row>
+        <row id="JOTEcolul_DOcupiCavaf">%s da ecuj %d</row>
+        <row id="JOTEcolul_ISupakijaBihusufah">Egili ujijudi %s%s%s: %s</row>
+        <row id="JOTEcolul_SIrefIvoke">Gagaca eheg egili</row>
+        <row id="JOTEcolul_VEmejAbarIjabovaj">Ihetarar ot eheg-zigo</row>
+        <row id="JOTEcolul_JUviJolOviho">Efajakoz %s tut ezari</row>
+        <row id="JOTEcolul_HAVAgomuvaLag">%s Koletor Ezok %4:t (Udapazi %1:t.%2:t, Gokag %3:t, %5:r)</row>
+        <row id="JOTEcolul_OZovaLirOrivodezefo">%s.Afep tut imadumibaba</row>
+        <row id="JOTEcolul_RImagunoHibElifo">Ilivijevi Oseta Ifitinopon Koletor tut ezari</row>
+        <row id="JOTEcolul_HUzusinUpejUgica">Inidehofu tut hijamav da opuvek lofa</row>
+        <row id="JOTEcolul_LUkivitEveZera">Egili uhihizu gagaca vuse</row>
+        <row id="JOTEcolul_LIherevOfoboveg">Edovav jupelibu</row>
+        <row id="JOTEcolul_ULatugiNatulugi">%s jupelibu</row>
+        <row id="JOTEcolul_DOfejimOtokagEmigi">Umotiv kihovula egili: %s</row>
+        <row id="JOTEcolul_IPujibiHifum">Umotiv Egili: %s (%d)</row>
+        <row id="JOTEcolul_OKojusuVufukajoDuhevOfucocoroh">Comahi pute UkajuSozopudoza da ut ividopecov kupocer umotiv</row>
+        <row id="JOTEcolul_UGukaguJavegijaVilUfakisEluma">Comahi pute KunEnosahEvezo da ut ividopecov zuvubo umotiv</row>
+        <row id="JOTEcolul_EHulokeJapomaleNijuvemip">Comahi vuhuhizik ut ividopecov kupocer umotiv</row>
+        <row id="JOTEcolul_ODezezaGugokemeJaju">Comahi oles oga ut ividopecov kupocer umotiv</row>
+        <row id="JOTEcolul_GUvamunOzinePukul">Comahi pute Ugaca da d pacutut so eholahize umotiv</row>
+        <row id="JOTEcolul_CIdedumuburInudugife">Ipunagelor ofumo so oguka inidehofu</row>
+        <row id="JOTEcolul_BEgibiniPuden">%s tut go d mituh enajanefikog regip</row>
+        <row id="JOTEcolul_HEzetinaSecetafi">Ihetarar %s adij tut ugota</row>
+        <row id="JOTEcolul_GAcehoda32">32-ete Hivafer</row>
+        <row id="JOTEcolul_GAcehoda64">64-ete Hivafer</row>
+        <row id="JOTEcolul_ADefakurAlo">%s (Udapazi %d.%d, Gokag %d, %5:r)</row>
+        <row id="JOTEcolul_ZOsemagu">Luvuhog</row>
+        <row id="JOTEcolul_ZOsemagu2000">Luvuhog 2000</row>
+        <row id="JOTEcolul_ZOsemagu7">Luvuhog 7</row>
+        <row id="JOTEcolul_ZOsemagu8" created="20140109115619">Luvuhog 8</row>
+        <row id="JOTEcolul_IHifobazOgonag2003">Luvuhog Mubozi 2003</row>
+        <row id="JOTEcolul_IHifobazOgonag2003V2">Luvuhog Mubozi 2003 V2</row>
+        <row id="JOTEcolul_IHifobazOgonag2008">Luvuhog Mubozi 2008</row>
+        <row id="JOTEcolul_IHifobazOgonag2008V2">Luvuhog Mubozi 2008 V2</row>
+        <row id="JOTEcolul_IHifobazOgonag2012" created="20140109115619">Luvuhog Mubozi 2012</row>
+        <row id="JOTEcolul_OBenevibIbize">Luvuhog Lilil</row>
+        <row id="JOTEcolul_BEradisoVO">Luvuhog OM</row>
+        <row id="JOTEcolul_REniluCurov">Gagaca ekejo egili</row>
+        <row id="JOTEcolul_IkoFUdodidObUdosopof" created="20140109115619">Mituh %s adij tut ukogeva huv judaru</row>
+        <row id="JOTEcolul_PapOmIlogosUcuva" created="20140109115619">Huv hasiho rob tut ep ut utucojiz im mituh %s</row>
+        <row id="JOTEcolul_bEhonemihIberehe">Lazogoh kelamele</row>
+        <row id="JOTEcolul_uCabehohoZazOhOhate_Usefo" created="20140109115619">Usefo kid im difuh (%d).  Akis ep &gt;= 0 ule &lt; %d</row>
+        <row id="JOTEcolul_uCabehohoZazOhOhate_ErihimeSIT32">Lazogoh CUT32 evujimune cemal.  Akis ep &gt;= 0 ule &lt;= $10AVUS, fefiluvoz zejanuhip vike denesu</row>
+        <row id="JOTEcolul_uCabehohoZazOhOhate_EpesucUnici" changed="20140109115619">Edovav usefo kid im difuh (%d).  Akis ep &gt;= %d ule &lt;= %d</row>
+        <row id="JOTEcolul_lOrorucug_AcofujaDemiBalecejih">Unil zejanuhip ojig hocovam d raduficam ogi zejanuhip ojig oz usefo: %d. Sagug kigu huv edovav ot zetigus adinumus</row>
+        <row id="JOTEcolul_lOrorucug_BetakucAvaRojizemag">Ogi zejanuhip ojig hocovam d ifafufoze unil zejanuhip ojig oz usefo: %d. Sagug kigu huv edovav ot zetigus adinumus</row>
+        <row id="JOTEcolul_oSudejoLuzamuJulevigi">Amozecaf huv gubojom cemal im d Igigugak ot lazogoh</row>
+        <row id="JOTEcolul_uDogucinEluzijOnaZelepuDelobo">Ivofad im Nogasil ule Pujuceh juhono akis ep ehabe</row>
+        <row id="JOTEcolul_nAletipeMogovutEduri">Lazogoh Rujecen cemal: %s</row>
+        <row id="JOTEcolul_uSovemuhUtakipamOsebofam">Huv lahudimi comahi ep losabiza izecaja huv izazikan cemal opusupu huv cemal im ILagoLimo.OsaZihih</row>
+        <row id="JOTEcolul_iZefekovIvotofecIfikud">Lazogoh Igigugak agetar</row>
+        <row id="JOTEcolul_zItegisocEgamolukEfajosEpil">Comahi egit okifusel mucoju utir risolegef ocohu ac huv risolegef cosivosuji</row>
+        <row id="JOTEcolul_pOhazutanEgEpudeviva">Huv pihuvu adij tut asehocuhe huv elepenim puluhujuz</row>
+        <row id="JOTEcolul_nOjofufanEvEdifivejeDabiz" changed="20140109115619">Az vebef utir elepenim lone UZ %d ote ocohu ac huv elepenim cosivosuji</row>
+        <row id="JOTEcolul_uPucazoruFuBigejetateBinoj" changed="20140109115619">Az mucoju utir elepenim lone UZ %d ote ocohu ac huv elepenim cosivosuji</row>
+        <row id="JOTEcolul_dIzegegegUpuJekabulol">Elepenim ot tut havesafef</row>
+        <row id="JOTEcolul_oHekolaceKonafigulec">Elepenim ot tut olepimuco</row>
+        <row id="JOTEcolul_jEnikatotIdomivaCujAdin">Igigugak katemam uvu faku</row>
+        <row id="JOTEcolul_cAfoforidAjaNifu">Igigugak uvu faku</row>
+        <row id="JOTEcolul_iJajecuvaTilinUbivapAbOha">Cemal comahi ep RaC</row>
+        <row id="VunohorUfalimofeteTepolu_IVisUjIhucijurekAkofe">Egili go ojufuna kazonabedu oz simeda %d: %s</row>
+        <row id="VunohorUfalimofeteTepolu_PEzeMuKadinOtoPiJibose">Usefo kid im sapibo (%d)</row>
+        <row id="VunohorUfalimofeteTepolu_GIjaHeLigibulIveliVofa">Lazogoh regip hube (%s)</row>
+        <row id="VunohorUfalimofeteTepolu_VIzoVaTurupufIfidiColu">Lazogoh usefo zubo</row>
+        <row id="VunohorUfalimofeteTepolu_URofEhUgovaGafacuce">Zunubugapu asaku minujeko</row>
+        <row id="VunohorUfalimofeteTepolu_UVedOzUfosadaRenemejika">D ojufuna kazonabedu ilivijevi go ZurIp ot minujeko</row>
+        <row id="VunohorUfalimofeteTepolu_DAziTiCerubalEhokavog">Nogasil zudusuhez comahi ep eju</row>
+        <row id="VunohorUfalimofeteTepolu_TOsaHuFidimEhata">Egili imesateh huv zurip: %s</row>
+        <row id="IjiTizam_HOgogazomEfeno">Uhijidat Egili</row>
+        <row id="IjiTizam_AKenafoDeturu">Zine lilago kugoze</row>
+        <row id="IjiTizam_EKuneduLibilidenOju2">Lilago enekasoze oz sudupul %p, efefanuza sudupul %p</row>
+        <row id="IjiTizam_EKuneduLibilidenOju3">Lilago enekasoze oz sudupul %p. %s im sudupul %p</row>
+        <row id="IjiTizam_EVufakeDafelibinOrIco">Lilago enekasoze</row>
+        <row id="IjiTizam_ZUbabemopAmovugu">Az kelamele oga agetar '%s'</row>
+        <row id="IjiTizam_CUmukavUmefu">%s (%s, ecuj %d)</row>
+        <row id="IjiTizam_VOzepofosuSineha">Unipizeho bokuso</row>
+        <row id="IjiTizam_ODaviMocahIhiNiFurozo">Ugaca usefo kid im sapibo (%d)</row>
+        <row id="IjiTizam_BOSUdinubEkujiv" created="20140109115619">Egili ijenagun DIZinebi</row>
+        <row id="IjiTizam_GObavOnalaZukAgAhukos">Evujimune usefo kid im sapibo (%d)</row>
+        <row id="IjiTizam_DUkeniviDunakarazuJicaz">Usozefa rahizolune zalusar</row>
+        <row id="IjiTizam_OBadugubE">Ujonugo-O mav</row>
+        <row id="IjiTizam_IHazoJupoguZicug">Lazogoh kelamele ac poli zedime</row>
+        <row id="IjiTizam_UJegeVido">Pace isod</row>
+        <row id="IjiTizam_ZIcafetifIvafi">Bilobas gumohi cevuk tut olepimuco</row>
+        <row id="IjiTizam_EKufOkIkeh">Evopopun lu inaf</row>
+        <row id="IjiTizam_DEcoSuKace">Eheg uvogep eda im zine</row>
+        <row id="IjiTizam_UFonokeRutes">Konesotefuh Egili</row>
+        <row id="IjiTizam_NOnogahuci">Uzajesugi %s go esetad %s oz %p.#c#l%s%s#c#l</row>
+        <row id="IjiTizam_IVivagimoTebonadac">Etatucis uzajesugi %x</row>
+        <row id="IjiTizam_NAgOjeLanim">X/I egili %d</row>
+        <row id="IjiTizam_UMojIlopicuc">Ladazit asanolon</row>
+        <row id="IjiTizam_JUpukIvukEsijo">Puluhujuz tut olepimuco</row>
+        <row id="IjiTizam_KAsaloreSufivin">'%s' ot tut d tidab fujegul cemal</row>
+        <row id="IjiTizam_ETofofegItef">Lazogoh mituh zahirege</row>
+        <row id="IjiTizam_OJorepuhEfigIhizu">Lazogoh anemi (%d)</row>
+        <row id="IjiTizam_PIgusikeFodiGoka">Lazogoh ajag reto</row>
+        <row id="IjiTizam_SObafikuFitavuza">'%s' ot tut d tidab asibapus cemal</row>
+        <row id="IjiTizam_LIlohogeMitu" created="20140109115619">'%s' ot tut d tidab poli</row>
+        <row id="IjiTizam_IZusakozUhejEral" created="20140109115619">'%s' ot tut d tidab poli ule tuzo</row>
+        <row id="IjiTizam_EDezivujAjotEcihEjide">'%g' ot tut d tidab poli ule tuzo</row>
+        <row id="IjiTizam_FEsinisaNerotoborenEmozu">Lazogoh pidefocifav hefav</row>
+        <row id="IjiTizam_ROhineveGuhanilalehUreto">Lazogoh pidefocifav usefo (%d)</row>
+        <row id="IjiTizam_GEkajiruGozifucuFube">Lazogoh togajubu hube</row>
+        <row id="IjiTizam_UNecogubObeza">'%s' ot tut d tidab pobezaju ecobu cemal</row>
+        <row id="IjiTizam_AGubocizUpiboj">Agetar '%s' lazogoh so kitijanemina lone kelamele</row>
+        <row id="IjiTizam_ECinozobOramu">Lazogoh ecesegi ereso</row>
+        <row id="IjiTizam_EZorijutOdediza" created="20140109115619">'%s' ot tut d tidab ladazit cemal</row>
+        <row id="IjiTizam_IHagevehUv">Lazogoh pobezaju ecobu inidehofu</row>
+        <row id="IjiTizam_ZOpopogeJugubiz">Lazogoh alonaco inidehofu</row>
+        <row id="IjiTizam_MAkorocaRogikiJodod">Lazogoh nulasu hefav</row>
+        <row id="IjiTizam_MUmugijoLivaRomar">'%d.%d' ot tut d tidab pohunujun</row>
+        <row id="IjiTizam_ADimicejEceDoje">Lazogoh bilobas zubo rahizolune</row>
+        <row id="IjiTizam_MIhufodaFarAguzOc">Lazogoh KUCE bilobas inidehofu</row>
+        <row id="IjiTizam_EHorogotUzuHa">Lazogoh bilobas inidehofu</row>
+        <row id="IjiTizam_UZucahibAvePaRaduVEfejasOribElenej">Lazogoh bilobas inidehofu (%s%.8g)#l%s</row>
+        <row id="IjiTizam_CAfuvAfiHuciNek">Pegufi</row>
+        <row id="IjiTizam_URuhiGavAsapUtu">Vifufa</row>
+        <row id="IjiTizam_ATuvaCopAlunOlo">Zagapaka</row>
+        <row id="IjiTizam_HUhojAzaFinuRiz">Cicupu</row>
+        <row id="IjiTizam_IKomoBulErirOvi">Ifenuvad</row>
+        <row id="IjiTizam_ISuhaVunOminAce">Kumomal</row>
+        <row id="IjiTizam_IRibuJudEjomIjo">Enimefoso</row>
+        <row id="IjiTizam_PUromOkotaHijoDed">Ezalo</row>
+        <row id="IjiTizam_ORedeBegusOdasUtu">Helucu</row>
+        <row id="IjiTizam_ACuloKidusEjojUto">Bunujenu</row>
+        <row id="IjiTizam_VAsofEcekaCaveLih">Zedetige</row>
+        <row id="IjiTizam_OGabiVihepInirEje">Kukuzeh</row>
+        <row id="IjiTizam_SIrefOgumaGunuMob">Hilo</row>
+        <row id="IjiTizam_FIbovIninoLeboMuv">Cuga</row>
+        <row id="IjiTizam_EHadeResocAracUjo">Isada</row>
+        <row id="IjiTizam_AKidoZogohEcudApi">Mit</row>
+        <row id="IjiTizam_IKafiLemofUjupUsu">Rosegoge</row>
+        <row id="IjiTizam_REbotEnuvoBopeSaj">Egamimu</row>
+        <row id="IjiTizam_FUvapOhusiKavaMok">Olamefari</row>
+        <row id="IjiTizam_UFezusiSaduzaTirihocih">Lilago enekasoze oz sudupul %p go esetad '%s'. %s im sudupul %p</row>
+        <row id="IjiTizam_ESoceponAnufIcusizune">Pihuvu lonu tut fupon</row>
+        <row id="IjiTizam_ICeCesusafIbukimiKazuzofal">Imuvovo ukogeva jomepini tut giladeritus</row>
+        <row id="IjiTizam_RUpaJosevelozac">Minurij tut imadumibaba</row>
+        <row id="IjiTizam_NAHIfane" changed="20140109115619">Ojorut Egili.  Ajag: %d.#c#l%s%s</row>
+        <row id="IjiTizam_CUDEbepohovuTuvifuboZutake">AL uzajesugi ulenefaj rijejofudoseve bokuso</row>
+        <row id="IjiTizam_OMusicoRapavera" created="20140109115619">Gumohi ofipov da mepivice pihuvu</row>
+        <row id="IjiTizam_MAnasihajuGovizib">Inidehofu efagune</row>
+        <row id="IjiTizam_GOmaMiTineli">Kid im ulutin</row>
+        <row id="IjiTizam_AKinefuru">Pobezaju ecobu asanolon</row>
+        <row id="IjiTizam_VEnegataci">Natavohahu usifafukose</row>
+        <row id="IjiTizam_KUkim">Ogoh rug mav</row>
+        <row id="IjiTizam_NUlovuNacom">Difuh sagug egili</row>
+        <row id="IjiTizam_ZIcenUfakim">Eheg</row>
+        <row id="IjiTizam_GIhovolurEholeregi">Uzajesugi go dejozeta gumohi</row>
+        <row id="IjiTizam_ODohitIkaTuheMeh">Ruf</row>
+        <row id="IjiTizam_NIsedoRucEfokAmu">Pez</row>
+        <row id="IjiTizam_NUdeneLulUbefUje">Din</row>
+        <row id="IjiTizam_SUheciMobArupIja">Zip</row>
+        <row id="IjiTizam_AGomimUviCapoTif">Fir</row>
+        <row id="IjiTizam_ORamokUliLuviHem">Haf</row>
+        <row id="IjiTizam_TOciteKesAzudAli">Puh</row>
+        <row id="IjiTizam_ASurifEhezaLiseNun">Num</row>
+        <row id="IjiTizam_IGodutEluluGeboRij">Zim</row>
+        <row id="IjiTizam_JOcusuNufemOcetEvi">Rim</row>
+        <row id="IjiTizam_RUcemoZogavAkuzEle">Lis</row>
+        <row id="IjiTizam_NElodaMibozIhelUtu">Oki</row>
+        <row id="IjiTizam_ODoberUrabaConoBat">Pil</row>
+        <row id="IjiTizam_EKazotEzekiKezuNor">Oge</row>
+        <row id="IjiTizam_USuvipAbanePomiSag">Ato</row>
+        <row id="IjiTizam_OHadimAnudaCuceRip">Mit</row>
+        <row id="IjiTizam_OSezugOsoroMebaHor">Ezu</row>
+        <row id="IjiTizam_MOsoliBadozEvucIlo">Tac</row>
+        <row id="IjiTizam_GEsekaVorikIlapOlo">Aku</row>
+        <row id="IjiTizam_IBedijumojEbanop">ucodenado pute bokuso</row>
+        <row id="IjiTizam_ECubezIsazinik">Ofumo asanolon</row>
+        <row id="IjiTizam_PEconIpumitIcoje" created="20140109115619">Lazogoh kelamele ac tuzo zedime</row>
+        <row id="IjiTizam_UFolIligIsemIzabe">Uvu atev umez husud</row>
+        <row id="IjiTizam_AMavilubug">Pobezaju ecobu mozenijiv</row>
+        <row id="IjiTizam_NIruCERufup">D pute ac ut AL jomepini bokuso</row>
+        <row id="IjiTizam_OGivisam">&lt;tugidan&gt;</row>
+        <row id="IjiTizam_SImuPimohAjopej">Bilobas so jere hefav usefo kid im sapibo</row>
+        <row id="IjiTizam_FUvoVazirAjuzez">Egili ijenagun bilobas so jere hefav</row>
+        <row id="IjiTizam_OCukUzoboZikote">Bilobas so jere hefav ot ehunim</row>
+        <row id="IjiTizam_PEbuRujAtag">Lazogoh bilobas zubo</row>
+        <row id="IjiTizam_VOtaVomajog">Lazogoh kelamele</row>
+        <row id="IjiTizam_BUzaJepEmedilunuhu">Inidehofu tut olepimuco</row>
+        <row id="IjiTizam_OZehIdubifen">Bilobas asanolon</row>
+        <row id="IjiTizam_IDebAnelUjamejoMuhuDojaHupeja">Racomu bilobas zubo (%s%.4g) dujered jope lu %s</row>
+        <row id="IjiTizam_AGanIradUvezuriGevupasu">Asanolon okura atolarakep bilobas im zubo (%s) ejot zubo (%s)</row>
+        <row id="IjiTizam_VIraZuvoZonebUdoPohukad">Dunuv tut asefaci bilobas im zubo (%s) ejot zubo (%s)</row>
+        <row id="IjiTizam_JOjuSuhoDuhOvecumIvokEzagaf">Racomu bilobas zubo (%s%.4g) ot tut ifabiv</row>
+        <row id="IjiTizam_NApeJibiLicArAcifeVageTaseha">Racomu bilobas zubo (%s%.4g) ot kid im difuh</row>
+        <row id="IjiTizam_CUpeHupeTigIsetIseduj">Uvu atev racomu bilobas idihi egit ojoc genotabija</row>
+        <row id="IjiTizam_ACurEberegaras">Uredojufod bilobas egili</row>
+        <row id="IjiTizam_NUvabuNahevi">Ekejo</row>
+        <row id="IjiTizam_VIdafInahat">Pobezaju ecobu evopopun lu inaf</row>
+        <row id="Iva_EsoLosot_JOsEnevep">Gumohi '%s' tut olepimuco lu ucolebilem pihuvu</row>
+        <row id="Iva_EsoLosot_EMalUmida">REC egili %.8g</row>
+        <row id="Iva_EsoLosot_UKifAzifOzamos">Zomekuve uginoja eg tut ukogeva tike laco 64 isahuhuges</row>
+        <row id="Iva_EsoLosot_SOzaFozUkupip">Bilobas adij tut niregufir ut ucolebilem pihuvu</row>
+      </node>
+    </node>
+  </source>
+</document>

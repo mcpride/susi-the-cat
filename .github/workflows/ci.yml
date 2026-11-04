@@ -1,0 +1,138 @@
+name: CI
+
+# Every push and pull request runs the quality gate (`cargo xtask ci`: rustfmt, clippy, all tests)
+# on Windows, Linux and macOS. A push to main then runs semantic-release: it derives the next
+# version from the Conventional Commits since the last `v*` tag, updates CHANGELOG.md, Cargo.toml
+# and Cargo.lock, commits and tags the release and creates a draft GitHub release. The build jobs
+# compile the tagged commit on every platform and attach the archives; the last job publishes the
+# release once all of them are attached.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: 1
+
+# A newer push to a PR branch cancels its older run; every push to main runs to the end.
+concurrency:
+  group: ci-${{ github.event_name == 'pull_request' && github.ref || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  test:
+    name: test (${{ matrix.name }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { name: windows, os: windows-latest }
+          - { name: linux, os: ubuntu-latest }
+          - { name: macos, os: macos-latest }
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo xtask ci
+
+  release:
+    name: semantic-release
+    needs: test
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    # One release at a time; a run that is behind origin/main is refused by semantic-release.
+    concurrency:
+      group: release
+      cancel-in-progress: false
+    permissions:
+      contents: write # release commit, tag and GitHub release
+      issues: write # comments on released issues
+      pull-requests: write # comments on released pull requests
+    outputs:
+      version: ${{ steps.release.outputs.version }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0 # all tags and commits for the version calculation
+          persist-credentials: false # semantic-release pushes with GITHUB_TOKEN itself
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - uses: dtolnay/rust-toolchain@stable # for `cargo xtask set-version`
+      - uses: Swatinem/rust-cache@v2
+      - run: npm ci
+      - id: release
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build:
+    name: build (${{ matrix.target }})
+    needs: release
+    if: needs.release.outputs.version != ''
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { target: windows-x64, os: windows-latest }
+          # The oldest supported runner, so the binary also runs on older glibc versions.
+          - { target: linux-x64, os: ubuntu-22.04 }
+          - { target: macos-arm64, os: macos-latest }
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
+    permissions:
+      contents: write # upload release assets
+    env:
+      VERSION: ${{ needs.release.outputs.version }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: v${{ needs.release.outputs.version }}
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      # Release build into dist/; on Windows with icon and version info (rc.exe is required).
+      - run: cargo xtask dist
+      - name: Package and upload
+        shell: bash
+        env:
+          TARGET: ${{ matrix.target }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          name="susi-the-cat-${VERSION}-${TARGET}"
+          mv dist "$name"
+          if [ "$RUNNER_OS" = Windows ]; then
+            archive="$name.zip"
+            7z a -tzip "$archive" "$name" > /dev/null
+            sha256sum "$archive" > "$archive.sha256"
+          else
+            archive="$name.tar.gz"
+            tar -czf "$archive" "$name"
+            shasum -a 256 "$archive" > "$archive.sha256"
+          fi
+          gh release upload "v${VERSION}" "$archive" "$archive.sha256" --clobber --repo "$GITHUB_REPOSITORY"
+
+  publish:
+    name: publish release
+    needs: [release, build]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - run: gh release edit "v${{ needs.release.outputs.version }}" --draft=false --latest --repo "$GITHUB_REPOSITORY"
+        env:
+          GH_TOKEN: ${{ github.token }}

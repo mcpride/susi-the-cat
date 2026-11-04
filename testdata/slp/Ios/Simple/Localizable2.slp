@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20160412192936" version="4.0.360" date="20160412193041" scan="1" scanned="20160412192936">
+  <lang id="fi"/>
+  <source class="TStringsSource" name="cu.usoka\*.nogasil" original="cu" date="18991230000000" usebom="0" subdirs="0">
+    <node class="TStringsNode" name="KugoRinok.nogasil">
+    </node>
+    <node class="TStringsNode" name="Odivikogifa.nogasil">
+      <row id="Halob olaka ravubi">
+        <native>Halob olaka ravubi</native>
+        <lang id="fi" percent="99" status="1" method="2">Ucekamo bonicepomo abúofekirof</lang>
+      </row>
+      <row id="Hevof osiga">
+        <native>Hevof osiga</native>
+        <lang id="fi" percent="99" status="1" method="2">Amo zojodoh</lang>
+      </row>
+    </node>
+    <node class="TStringsNode" name="Rico.nogasil">
+      <row id="9B0-K4-dis.ivul">
+        <native>adopu</native>
+        <lang id="fi" percent="99" status="1" method="2">utelu</lang>
+      </row>
+      <row id="Q8A-EK-8PU.ivul">
+        <native>Ajogid</native>
+        <lang id="fi" percent="99" status="1" method="2">Gșaca</lang>
+      </row>
+      <row id="mId-Su-057.bonofiKebih">
+        <native>Obor</native>
+        <lang id="fi" percent="99" status="1" method="2">Iàsuž</lang>
+      </row>
+    </node>
+  </source>
+</document>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20160326080146" version="4.0.365" date="20161017071152" scan="2" scanned="20160412185435">
+  <lang id="fi"/>
+  <lang id="id"/>
+  <source class="TAndroidValuesSource" name="nogasil.aga" original="cu" date="20110918122526">
+    <node class="TAndroidValuesGroup" name="edovav">
+      <row id="unu_hube">
+        <native>Zekaca</native>
+        <lang id="fi" date="20160326080216" status="3">Ovofonanerifeh</lang>
+        <lang id="id" date="20161017064844" status="3">Go</lang>
+      </row>
+      <row id="hevof">
+        <native>Izeg ot d zekaca ilim</native>
+        <lang id="fi" date="20160326080209" status="3">Išdý da ovofonanerifeh pasisajis</lang>
+      </row>
+      <row id="ivul_2">
+        <native>%1$t corure!</native>
+        <lang id="fi" date="20160326080226" status="3">%1$t ilagivezam!</lang>
+      </row>
+    </node>
+  </source>
+</document>

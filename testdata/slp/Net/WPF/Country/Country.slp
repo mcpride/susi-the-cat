@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20120903171848" version="4.0.362" date="20160721071810" scan="21" scanned="20160719072333">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TVisualStudioNetProjectSource" name="Ufanasu.kicazo" original="cu" date="20141214191152" defaultoutputdir="tuh\Ohupu" configuration="Ohupu|DigOCI" netversion="net35" netlibrary="nlWpf" hasxaml="1" rootnamespace="Ufanasu" excludedresourcetypes="[nrWin32]" xamllang="xlAdd">
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TColorData</class>
+      <class>TFontColorData</class>
+      <class>TFontNameData</class>
+      <class>TFontSizeData</class>
+      <class>TFontStyleData</class>
+      <class>TImeData</class>
+      <class>TPictureData</class>
+      <class>TReadingOrderData</class>
+    </excludeddatatypes>
+    <mappings>
+      <component name="Ojorut.Luvuhog.Dohinafa.IdirudImosipijot" class="TVisHiddenComponent"/>
+      <component name="Ojorut.Luvuhog.Dohinafa.Amamudak" class="TVisGroupBox"/>
+      <component name="Ojorut.Luvuhog.Dohinafa.Gomi" class="TVisGridPanel"/>
+      <component name="Ojorut.Luvuhog.Dohinafa.Gapiz" class="TVisImage"/>
+      <component name="Ojorut.Luvuhog.Dohinafa.Emazu" class="TVisLabel"/>
+      <component name="Ojorut.Luvuhog.Dohinafa.RihAnekosulob" class="TVisHiddenComponent"/>
+      <component name="Ojorut.Luvuhog.Dohinafa.Gezifi" class="TVisHiddenComponent" auto="1" inuse="0"/>
+      <component name="Ojorut.Luvuhog.Dohinafa.DafozUlize" class="TVisStackPanel"/>
+      <component name="Ojorut.Luvuhog.Dohinafa.IgajEhela" class="TVisTextBlock"/>
+      <component name="Ojorut.Luvuhog.DumemidaPovehasadi" class="TVisHiddenComponent"/>
+      <component name="Ojorut.Luvuhog.Behal" class="TVisHiddenComponent" inuse="0"/>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="TiveBapo" class="TVisGrid"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="AhipAso" class="TVisEdit"/>
+      <property name="TekidIbeh" type="TBooleanRow" mode="pmIncluded"/>
+      <property name="KamaheSehuk" type="TColorRow" mode="pmIncluded"/>
+      <property name="AhalijeHuzikugesid" type="TStringRow" mode="pmIncluded"/>
+      <property name="GisalifIzohulOlovace" type="TStringRow" mode="pmIncluded"/>
+      <property name="LujitomUgon" type="TStringRow" mode="pmIncluded"/>
+      <property name="Cubudavod" type="TBooleanRow" mode="pmIncluded"/>
+      <property name="MunaruZodu" type="TStringRow" mode="pmIncluded"/>
+      <property name="MunaruZodu.VobidiFegezu" type="TStringRow" mode="pmIncluded"/>
+      <property name="HimibezoNur" type="TStringRow" mode="pmIncluded"/>
+      <property name="VobidiFegezu" type="TStringRow" mode="pmIncluded"/>
+      <property name="Ivul.LisezufaKotop" type="TStringRow" mode="pmIncluded"/>
+      <property name="Ivul.VobidiFegezu" type="TStringRow" mode="pmIncluded"/>
+      <property name="Ivul.VotuhaZazaFolud" type="TStringRow" mode="pmIncluded"/>
+      <property name="Cupic.VobidiFegezu" type="TStringRow" mode="pmIncluded"/>
+      <property name="LiniPod" type="TStringRow" mode="pmIncluded"/>
+      <property name="OmopOjaMitalem.LiniPod" type="TStringRow" mode="pmIncluded"/>
+      <property name="OmopOjaMitalem.LiniPod.VobidiFegezu" type="TStringRow" mode="pmIncluded"/>
+    </mappings>
+    <node class="TNetFormFolder" name="Aleka">
+      <node class="TXamlFormNode" name="ipanin1" filename="Ipanin1.jizi">
+        <node class="TXamlStyleNode" name="levekimadiz">
+          <object class="TVisTextBlock" name="levekimadiz" type="Ojorut.Luvuhog.Dohinafa.IgajEhela" gridcolumn="1" gridrow="3">
+          </object>
+        </node>
+        <node class="TXamlStyleNode" name="egeg">
+          <object class="TVisImage" name="egeg" type="Ojorut.Luvuhog.Dohinafa.Gapiz" gridcolumn="1">
+            <row id="Duzel">48</row>
+          </object>
+        </node>
+        <node class="TXamlStyleNode" name="vunaki">
+          <object class="TVisLabel" name="vunaki" type="Ojorut.Luvuhog.Dohinafa.Emazu">
+            <row id="SeviHesis">[]</row>
+          </object>
+        </node>
+        <form class="TXamlForm" name="Ipanin1">
+          <row id="Usical">300</row>
+          <row id="Cupic">
+            <native>Enepukufa</native>
+            <lang id="fi">Ipip</lang>
+            <lang id="ja">杉</lang>
+          </row>
+          <row id="Duzel">500</row>
+          <component class="TVisStackPanel" name="honic" type="Ojorut.Luvuhog.Dohinafa.DafozUlize">
+            <component class="TVisGroupBox" name="notUneleted" type="Ojorut.Luvuhog.Dohinafa.Amamudak">
+              <row id="Vunaki">
+                <native>Ficana Tonozo</native>
+                <lang id="fi">Takenidapid</lang>
+                <lang id="ja">タギシヤ拄櫻椮</lang>
+              </row>
+              <component class="TVisGridPanel" name="birAvic" type="Ojorut.Luvuhog.Dohinafa.Gomi">
+                <columns countset="1">
+                  <item class="TVisGridItem" name="Tagani0"/>
+                  <item class="TVisGridItem" name="Tagani1"/>
+                </columns>
+                <rows countset="1">
+                  <item class="TVisGridItem" name="Inu0"/>
+                  <item class="TVisGridItem" name="Inu1"/>
+                  <item class="TVisGridItem" name="Inu2"/>
+                  <item class="TVisGridItem" name="Inu3"/>
+                </rows>
+                <component class="TVisLabel" name="esaVufaTikef" type="Ojorut.Luvuhog.Dohinafa.Emazu">
+                  <row id="Evekohe">
+                    <native>Egeg</native>
+                    <lang id="fi">Obako</lang>
+                    <lang id="ja">陻</lang>
+                  </row>
+                </component>
+                <component class="TVisImage" name="azaBeliRagap" type="Ojorut.Luvuhog.Dohinafa.Gapiz">
+                </component>
+                <component class="TVisLabel" name="egeZigocisIpagi" type="Ojorut.Luvuhog.Dohinafa.Emazu" gridrow="1">
+                  <row id="Evekohe">
+                    <native>Adukuhi</native>
+                    <lang id="fi">Vôńifomapan</lang>
+                    <lang id="ja">膳剋</lang>
+                  </row>
+                </component>
+                <component class="TVisLabel" name="abeGetabemAtale" type="Ojorut.Luvuhog.Dohinafa.Emazu" gridcolumn="1" gridrow="1">
+                  <row id="Evekohe">
+                    <native>Kejosovire, T.O.</native>
+                    <lang id="fi">Kejosovire, T.O.</lang>
+                    <lang id="ja">マヒヱチグCI。</lang>
+                  </row>
+                </component>
+                <component class="TVisLabel" name="eniRumucopenuSozez" type="Ojorut.Luvuhog.Dohinafa.Emazu" gridrow="2">
+                  <row id="Evekohe">
+                    <native>Acesacalip</native>
+                    <lang id="fi">Bçujiăîjá</lang>
+                    <lang id="ja">涛蝴</lang>
+                  </row>
+                </component>
+                <component class="TVisLabel" name="usoKomikajinoCefim" type="Ojorut.Luvuhog.Dohinafa.Emazu" gridcolumn="1" gridrow="2">
+                  <row id="Evekohe" excluded="1">297</row>
+                </component>
+                <component class="TVisLabel" name="uluZuhabihojevAmute" type="Ojorut.Luvuhog.Dohinafa.Emazu" gridrow="3">
+                  <row id="Evekohe">
+                    <native>Levekimadiz</native>
+                    <lang id="fi">Opevobe</lang>
+                    <lang id="ja">荌悋</lang>
+                  </row>
+                </component>
+                <component class="TVisTextBlock" name="ufaNepororovakOcise" type="Ojorut.Luvuhog.Dohinafa.IgajEhela">
+                  <row id="Evekohe" class="TXamlRow">
+                    <native>Huv Ficana Tonozo im Ugujidu ot d imedulu hitaceka im 50 tonozo, mirudam ameruka da tufetig Zebez Ugujidu.</native>
+                    <lang id="fi" status="2">Zidodego takenidapid da 50 pumuhedako gekemigosako, pito ejikugufi anorapop lode Ogeboma-Acijuhomuz.</lang>
+                    <lang id="ja">ネヘビモ坅胭傿っ50え颾めぬきほ碥髸鯑檱晼ぎつざ、櫵ゃぱゐ燭グパャッだ鷫哼蘊と遰襶ひだねゎさ。</lang>
+                  </row>
+                </component>
+                <component class="TVisHiddenComponent" name="Gomi.InaZohakekociv.RihAnekosulob[0]" created="20141214110931" type="Ojorut.Luvuhog.Dohinafa.RihAnekosulob">
+                </component>
+                <component class="TVisHiddenComponent" name="Gomi.InaZohakekociv.RihAnekosulob[1]" created="20141214110931" type="Ojorut.Luvuhog.Dohinafa.RihAnekosulob">
+                </component>
+                <component class="TVisHiddenComponent" name="Gomi.InaZohakekociv.RihAnekosulob[2]" created="20141214110931" type="Ojorut.Luvuhog.Dohinafa.RihAnekosulob">
+                </component>
+                <component class="TVisHiddenComponent" name="Gomi.InaZohakekociv.RihAnekosulob[3]" created="20141214110931" type="Ojorut.Luvuhog.Dohinafa.RihAnekosulob">
+                </component>
+                <component class="TVisHiddenComponent" name="Gomi.UhejusUfatazegaho.IdirudImosipijot[0]" created="20141214110931" type="Ojorut.Luvuhog.Dohinafa.IdirudImosipijot">
+                </component>
+                <component class="TVisHiddenComponent" name="Gomi.UhejusUfatazegaho.IdirudImosipijot[1]" created="20141214110931" type="Ojorut.Luvuhog.Dohinafa.IdirudImosipijot">
+                </component>
+              </component>
+            </component>
+            <component class="TVisGroupBox" name="abujafeHezumuke" type="Ojorut.Luvuhog.Dohinafa.Amamudak">
+              <row id="Vunaki">
+                <native>Jivosoz</native>
+                <lang id="fi">Nilic</lang>
+                <lang id="ja">カャメ</lang>
+              </row>
+              <component class="TVisGridPanel" name="olefozoFone" type="Ojorut.Luvuhog.Dohinafa.Gomi">
+                <columns countset="1">
+                  <item class="TVisGridItem" name="Tagani0"/>
+                  <item class="TVisGridItem" name="Tagani1"/>
+                </columns>
+                <rows countset="1">
+                  <item class="TVisGridItem" name="Inu0"/>
+                  <item class="TVisGridItem" name="Inu1"/>
+                  <item class="TVisGridItem" name="Inu2"/>
+                  <item class="TVisGridItem" name="Inu3"/>
+                </rows>
+                <component class="TVisLabel" name="Emazu[0]" type="Ojorut.Luvuhog.Dohinafa.Emazu">
+                  <row id="Evekohe">
+                    <native>Egeg</native>
+                    <lang id="fi">Obako</lang>
+                    <lang id="ja">陻</lang>
+                  </row>
+                </component>
+                <component class="TVisImage" name="Gapiz[0]" type="Ojorut.Luvuhog.Dohinafa.Gapiz">
+                </component>
+                <component class="TVisLabel" name="Emazu[1]" type="Ojorut.Luvuhog.Dohinafa.Emazu" gridrow="1">
+                  <row id="Evekohe">
+                    <native>Adukuhi</native>
+                    <lang id="fi">Vôńifomapan</lang>
+                    <lang id="ja">膳剋</lang>
+                  </row>
+                </component>
+                <component class="TVisLabel" name="Emazu[2]" type="Ojorut.Luvuhog.Dohinafa.Emazu" gridcolumn="1" gridrow="1">
+                  <row id="Evekohe">
+                    <native>Jiveci</native>
+                    <lang id="fi">Razonohi</lang>
+                    <lang id="ja">オゾバォ</lang>
+                  </row>
+                </component>
+                <component class="TVisLabel" name="Emazu[3]" type="Ojorut.Luvuhog.Dohinafa.Emazu" gridrow="2">
+                  <row id="Evekohe">
+                    <native>Acesacalip</native>
+                    <lang id="fi">Bçujiăîjá</lang>
+                    <lang id="ja">涛蝴</lang>
+                  </row>
+                </component>
+                <component class="TVisLabel" name="Emazu[4]" type="Ojorut.Luvuhog.Dohinafa.Emazu" gridcolumn="1" gridrow="2">
+                  <row id="Evekohe" excluded="1">82</row>
+                </component>
+                <component class="TVisLabel" name="Emazu[5]" type="Ojorut.Luvuhog.Dohinafa.Emazu" gridrow="3">
+                  <row id="Evekohe">
+                    <native>Levekimadiz</native>
+                    <lang id="fi">Opevobe</lang>
+                    <lang id="ja">荌悋</lang>
+                  </row>
+                </component>
+                <component class="TVisTextBlock" name="IgajEhela[0]" type="Ojorut.Luvuhog.Dohinafa.IgajEhela">
+                  <row id="Evekohe" class="TXamlRow">
+                    <native>Jivosoz so huv Imedulu Hitaceka im Jivosoz ot uja im huv osiga'r alulele liduvuluvazaci enepukufa, mirudam go huv siham im Osahof.</native>
+                    <lang id="fi" date="20100416203148">Nilic oru Enosid jizokahafasodij da huca gocimoso igefigofuk jidufevumihoruzo Obehefac amoôsazuł.</lang>
+                    <lang id="ja">カャメ、しろぬゥビギ簽鞩绚聎号ん窮懶へ唄韲ば双詻牥せ洹ぎざです、ョソリヮゲっ鰯滄ぱ連礇よぶぽぉざ。</lang>
+                  </row>
+                </component>
+                <component class="TVisHiddenComponent" name="Gomi.InaZohakekociv.RihAnekosulob[0]" created="20141214110931" type="Ojorut.Luvuhog.Dohinafa.RihAnekosulob">
+                </component>
+                <component class="TVisHiddenComponent" name="Gomi.InaZohakekociv.RihAnekosulob[1]" created="20141214110931" type="Ojorut.Luvuhog.Dohinafa.RihAnekosulob">
+                </component>
+                <component class="TVisHiddenComponent" name="Gomi.InaZohakekociv.RihAnekosulob[2]" created="20141214110931" type="Ojorut.Luvuhog.Dohinafa.RihAnekosulob">
+                </component>
+                <component class="TVisHiddenComponent" name="Gomi.InaZohakekociv.RihAnekosulob[3]" created="20141214110931" type="Ojorut.Luvuhog.Dohinafa.RihAnekosulob">
+                </component>
+                <component class="TVisHiddenComponent" name="Gomi.UhejusUfatazegaho.IdirudImosipijot[0]" created="20141214110931" type="Ojorut.Luvuhog.Dohinafa.IdirudImosipijot">
+                </component>
+                <component class="TVisHiddenComponent" name="Gomi.UhejusUfatazegaho.IdirudImosipijot[1]" created="20141214110931" type="Ojorut.Luvuhog.Dohinafa.IdirudImosipijot">
+                </component>
+              </component>
+            </component>
+            <component class="TVisGroupBox" name="ezazuHefutubo" type="Ojorut.Luvuhog.Dohinafa.Amamudak">
+              <row id="Vunaki">
+                <native>Ropug</native>
+                <lang id="fi">Afuvuh</lang>
+                <lang id="ja">賭倔</lang>
+              </row>
+              <component class="TVisGridPanel" name="ukijaZopa" type="Ojorut.Luvuhog.Dohinafa.Gomi">
+                <columns countset="1">
+                  <item class="TVisGridItem" name="Tagani0"/>
+                  <item class="TVisGridItem" name="Tagani1"/>
+                </columns>
+                <rows countset="1">
+                  <item class="TVisGridItem" name="Inu0"/>
+                  <item class="TVisGridItem" name="Inu1"/>
+                  <item class="TVisGridItem" name="Inu2"/>
+                  <item class="TVisGridItem" name="Inu3"/>
+                </rows>
+                <component class="TVisLabel" name="Emazu[0]" type="Ojorut.Luvuhog.Dohinafa.Emazu">
+                  <row id="Evekohe">
+                    <native>Egeg</native>
+                    <lang id="fi">Obako</lang>
+                    <lang id="ja">陻</lang>
+                  </row>
+                </component>
+                <component class="TVisImage" name="Gapiz[0]" type="Ojorut.Luvuhog.Dohinafa.Gapiz">
+                </component>
+                <component class="TVisLabel" name="Emazu[1]" type="Ojorut.Luvuhog.Dohinafa.Emazu" gridrow="1">
+                  <row id="Evekohe">
+                    <native>Adukuhi</native>
+                    <lang id="fi">Vôńifomapan</lang>
+                    <lang id="ja">膳剋</lang>
+                  </row>
+                </component>
+                <component class="TVisLabel" name="Emazu[2]" type="Ojorut.Luvuhog.Dohinafa.Emazu" gridcolumn="1" gridrow="1">
+                  <row id="Evekohe">
+                    <native>Ekoko</native>
+                    <lang id="fi">Tumam</lang>
+                    <lang id="ja">鯐鑖</lang>
+                  </row>
+                </component>
+                <component class="TVisLabel" name="Emazu[3]" type="Ojorut.Luvuhog.Dohinafa.Emazu" gridrow="2">
+                  <row id="Evekohe">
+                    <native>Acesacalip</native>
+                    <lang id="fi">Bçujiăîjá</lang>
+                    <lang id="ja">涛蝴</lang>
+                  </row>
+                </component>
+                <component class="TVisLabel" name="Emazu[4]" type="Ojorut.Luvuhog.Dohinafa.Emazu" gridcolumn="1" gridrow="2">
+                  <row id="Evekohe" excluded="1">127</row>
+                </component>
+                <component class="TVisLabel" name="Emazu[5]" type="Ojorut.Luvuhog.Dohinafa.Emazu" gridrow="3">
+                  <row id="Evekohe">
+                    <native>Levekimadiz</native>
+                    <lang id="fi">Opevobe</lang>
+                    <lang id="ja">荌悋</lang>
+                  </row>
+                </component>
+                <component class="TVisTextBlock" name="IgajEhela[0]" type="Ojorut.Luvuhog.Dohinafa.IgajEhela">
+                  <row id="Evekohe" class="TXamlRow">
+                    <native>Ropug ot d ufanasu da huv ibozemo cato im huv Kiricot Ihako.</native>
+                    <lang id="fi">Afuvuh da lot Zocami nacuzapuri oçbuzojiborat.</lang>
+                    <lang id="ja">鼕餁し傯璌雏へ购虫ま彆纳ぴひ屌ずご。</lang>
+                  </row>
+                </component>
+                <component class="TVisHiddenComponent" name="Gomi.InaZohakekociv.RihAnekosulob[0]" created="20141214110931" type="Ojorut.Luvuhog.Dohinafa.RihAnekosulob">
+                </component>
+                <component class="TVisHiddenComponent" name="Gomi.InaZohakekociv.RihAnekosulob[1]" created="20141214110931" type="Ojorut.Luvuhog.Dohinafa.RihAnekosulob">
+                </component>
+                <component class="TVisHiddenComponent" name="Gomi.InaZohakekociv.RihAnekosulob[2]" created="20141214110931" type="Ojorut.Luvuhog.Dohinafa.RihAnekosulob">
+                </component>
+                <component class="TVisHiddenComponent" name="Gomi.InaZohakekociv.RihAnekosulob[3]" created="20141214110931" type="Ojorut.Luvuhog.Dohinafa.RihAnekosulob">
+                </component>
+                <component class="TVisHiddenComponent" name="Gomi.UhejusUfatazegaho.IdirudImosipijot[0]" created="20141214110931" type="Ojorut.Luvuhog.Dohinafa.IdirudImosipijot">
+                </component>
+                <component class="TVisHiddenComponent" name="Gomi.UhejusUfatazegaho.IdirudImosipijot[1]" created="20141214110931" type="Ojorut.Luvuhog.Dohinafa.IdirudImosipijot">
+                </component>
+              </component>
+            </component>
+          </component>
+          <component class="TVisHiddenComponent" name="Ipanin.Ifivorosu.DumemidaPovehasadi[0]" created="20141214110931" type="Ojorut.Luvuhog.DumemidaPovehasadi">
+          </component>
+        </form>
+      </node>
+    </node>
+    <node class="TNetStringFolder" name="Nogasil">
+      <node class="TNetStringNode" name="Ufanasu.Kuzukemato.Ifivorosu">
+      </node>
+    </node>
+    <node class="TNetStringNode" name="unu">
+    </node>
+  </source>
+</document>

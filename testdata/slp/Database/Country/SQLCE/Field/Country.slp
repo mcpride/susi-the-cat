@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20120903170837" version="4.0.350" date="20120903170844" scan="2" scanned="20120903170837">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TDatabaseSource" name="Ufanasu.iro" original="cu">
+    <database type="dtSqlCe" name="Ufanasu.iro" loginidneeded="0"/>
+    <tables>
+      <table name="Ufanasu" method="dlField">
+        <field name="Hube">
+          <field name="Hube_je" lang="je"/>
+          <field name="Hube_me" lang="me"/>
+          <field name="Hube_ed" lang="ed"/>
+        </field>
+        <field name="Adukuhi">
+          <field name="Adukuhi_je" lang="je"/>
+          <field name="Adukuhi_me" lang="me"/>
+          <field name="Adukuhi_ed" lang="ed"/>
+        </field>
+        <field name="Levekimadiz">
+          <field name="Levekimadiz_je" lang="je"/>
+          <field name="Levekimadiz_me" lang="me"/>
+          <field name="Levekimadiz_ed" lang="ed"/>
+        </field>
+      </table>
+    </tables>
+    <node class="TDatabaseTableNode" name="Ufanasu" keyfields="Uz">
+      <node class="TDatabaseStringFieldNode" name="Adukuhi" defaultmaxchars="50">
+        <row id="0">
+          <native>Kejosovire, T.O.</native>
+          <lang id="fi">Kejosovire EK.</lang>
+          <lang id="de">Kejosovire, T.O.</lang>
+          <lang id="ja">マヒヱチグCI。</lang>
+        </row>
+        <row id="1">
+          <native>Jiveci</native>
+          <lang id="fi">Razonohi</lang>
+          <lang id="de">Jiveci</lang>
+          <lang id="ja">オゾバォ</lang>
+        </row>
+        <row id="2">
+          <native>Ekoko</native>
+          <lang id="fi">Tumam</lang>
+          <lang id="de">Tumam</lang>
+          <lang id="ja">鯐鑖</lang>
+        </row>
+      </node>
+      <node class="TDatabaseStringFieldNode" name="Levekimadiz" defaultmaxchars="200">
+        <row id="0">
+          <native>Huv Ficana Tonozo im Ugujidu ot d imedulu hitaceka im 50 tonozo, mirudam ameruka da tufetig Zebez Ugujidu.</native>
+          <lang id="fi">Zidodego takenidapid da 50 pumuhedako gekemigosako, pito ejikugufi anorapop lode Ogeboma-Acijuhomuz.</lang>
+          <lang id="de">Oso Jebimez odi Hosaraf toko otap Nizojanamibaje odi 50 Ucihžecoj, azosapazotaji Oritâo das izosevoli Mefarucutem.</lang>
+          <lang id="ja">ネヘビモ坅胭傿っ50え颾めぬきほ碥髸鯑檱晼ぎつざ、櫵ゃぱゐ燭グパャッだ鷫哼蘊と遰襶ひだねゎさ。</lang>
+        </row>
+        <row id="1">
+          <native>Jivosoz so huv Imedulu Hitaceka im Jivosoz ot uja im huv osiga'r alulele liduvuluvazaci enepukufa, mirudam go huv siham im Osahof.</native>
+          <lang id="fi">Nilic oru enosid jizokahafasodij da gocimoso nobufon icagalinipago Obehefac amoôsazuł.</lang>
+          <lang id="de">Usikodudeje ojoj oso Nizojanamibaje Usikodudeje ipi erusefilucudu odi ifu jçatifere osehigogatuziteker Aùdujaz vem Avic, hicahile na Puvaga odi Sulofi.</lang>
+          <lang id="ja">カャメ、しろぬゥビギ簽鞩绚聎号ん窮懶へ唄韲ば双詻牥せ洹ぎざです、ョソリヮゲっ鰯滄ぱ連礇よぶぽぉざ。</lang>
+        </row>
+        <row id="2">
+          <native>Ropug ot d ufanasu da huv ibozemo cato im huv Kiricot Ihako.</native>
+          <lang id="fi">Afuvuh da lot zocami nacuzapuri oçbuzojiborat.</lang>
+          <lang id="de">Ropug ipi oca Tela das guj edejutolil Zega ega erefopuloje Agucir.</lang>
+          <lang id="ja">鼕餁し傯璌雏へ购虫ま彆纳ぴひ屌ずご。</lang>
+        </row>
+      </node>
+      <node class="TDatabaseStringFieldNode" name="Hube" defaultmaxchars="50">
+        <row id="0">
+          <native>Ficana Tonozo</native>
+          <lang id="fi">Takenidapid</lang>
+          <lang id="de">Apodokehic Jebimez</lang>
+          <lang id="ja">タギシヤ拄櫻椮</lang>
+        </row>
+        <row id="1">
+          <native>Jivosoz</native>
+          <lang id="fi">Nilic</lang>
+          <lang id="de">Ivaligacoj</lang>
+          <lang id="ja">カャメ</lang>
+        </row>
+        <row id="2">
+          <native>Ropug</native>
+          <lang id="fi">Afuvuh</lang>
+          <lang id="de">Ropug</lang>
+          <lang id="ja">賭倔</lang>
+        </row>
+      </node>
+    </node>
+  </source>
+</document>

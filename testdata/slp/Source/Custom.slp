@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document version="2.0.292" date="20091123092835" scan="15" scanned="20091123092825">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TSourceCodeSource" name="Racomu.vil" original="cu" date="20061212073328" context="sccValue">
+    <sourcecode language="sclOther" stringchar="#"/>
+    <items>
+      <row id="Hevof Osiga">
+        <native>Hevof Osiga</native>
+        <lang id="fi">Amo zojodoh</lang>
+        <lang id="de" status="2">Unoko Avic</lang>
+        <lang id="ja" status="2">カオギボヤモゲ</lang>
+      </row>
+      <item id="0" code="IKODEFE;#c#l#c#lUGACA#c#l  // Izeg ot d catemor#c#l  vos = "/>
+      <item id="1" string="Hevof Osiga" separator="#"/>
+      <item id="2" code=";#c#lEDA;"/>
+    </items>
+  </source>
+</document>

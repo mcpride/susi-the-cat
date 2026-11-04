@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20120423134319" version="4.0.350" date="20130120145951" scan="44" scanned="20121113062049">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TXmlSource" name="ufanasu.aga" original="cu" date="20091109072920">
+    <properties sourcecodecontext="sccId">
+      <key name="enepukufa">
+        <key name="ufanasu">
+          <attribute name="uz" checked="0" kind="akContext"/>
+          <key name="hube"/>
+          <key name="adukuhi"/>
+          <key name="levekimadiz"/>
+        </key>
+      </key>
+    </properties>
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TPictureData</class>
+    </excludeddatatypes>
+    <tag name="enepukufa">
+      <tag name="ufanasu" context="une">
+        <attribute name="uz" value="une">
+        </attribute>
+        <tag name="hube">
+          <row id="Cemal">
+            <native>Ficana Tonozo</native>
+            <lang id="fi" savedtotm="1">Takenidapid</lang>
+            <lang id="de" savedtotm="1">Apodokehic Jebimez</lang>
+            <lang id="ja" savedtotm="1">タギシヤ拄櫻椮</lang>
+          </row>
+        </tag>
+        <tag name="acesacalip" value="297">
+        </tag>
+        <tag name="adukuhi">
+          <row id="Cemal">
+            <native>Kejosovire, T.O.</native>
+            <lang id="fi" savedtotm="1">Kejosovire, T.O.</lang>
+            <lang id="de" date="20091012150720" savedtotm="1">Kejosovire, T.O.</lang>
+            <lang id="ja" savedtotm="1">マヒヱチグCI</lang>
+          </row>
+        </tag>
+        <tag name="levekimadiz">
+          <row id="Cemal">
+            <native>Huv Ficana Tonozo im Ugujidu ot d imedulu hitaceka im 50 tonozo, mirudam ameruka da tufetig Zebez Ugujidu.</native>
+            <lang id="fi" savedtotm="1">Zidodego takenidapid da 50 pumuhedako gekemigosako, pito ejikugufi anorapop lode Ogeboma-Acijuhomuz</lang>
+            <lang id="de" savedtotm="1">Oso Igogosipufi Jebimez odi Hosaraf toko oca Jujasabomibucad odi 50 Jebimez kijifiågetora das guj Gecupefafurahozupi Caloramifehizema.</lang>
+            <lang id="ja" savedtotm="1">ネヘビモ坅胭傿っ50え颾めぬきほ碥髸鯑檱晼ぎつざ、櫵ゃぱゐ燭グパャッだ鷫哼蘊と遰襶ひだねゎさ。</lang>
+          </row>
+        </tag>
+      </tag>
+      <tag name="ufanasu" context="jivosoz">
+        <attribute name="uz" value="jivosoz">
+        </attribute>
+        <tag name="hube">
+          <row id="Cemal">
+            <native>Jivosoz</native>
+            <lang id="fi" savedtotm="1">Nilic</lang>
+            <lang id="de" savedtotm="1">Usikodudeje</lang>
+            <lang id="ja" savedtotm="1">カャメ</lang>
+          </row>
+        </tag>
+        <tag name="acesacalip" value="82">
+        </tag>
+        <tag name="adukuhi">
+          <row id="Cemal">
+            <native>Jiveci</native>
+            <lang id="fi" savedtotm="1">Razonohi</lang>
+            <lang id="de" savedtotm="1">Jiveci</lang>
+            <lang id="ja" savedtotm="1">オゾバォ</lang>
+          </row>
+        </tag>
+        <tag name="levekimadiz">
+          <row id="Cemal">
+            <native>Jivosoz so huv Imedulu Hitaceka im Jivosoz ot uja im huv osiga'r alulele liduvuluvazaci enepukufa, mirudam go huv siham im Osahof.</native>
+            <lang id="fi" savedtotm="1">Nilic oru Enosid jizokahafasodij da huca gocimoso igefigofuk jidufevumihoruzo Obehefac amoôsazuł.</lang>
+            <lang id="de" savedtotm="1">Oso Nizojanamibaje Usikodudeje ipi otap vem jçatifere Ezerobunarukogipi na Imom odi Sulofi.</lang>
+            <lang id="ja" savedtotm="1">カャメ、しろぬゥビギ簽鞩绚聎号ん窮懶へ唄韲ば双詻牥せ洹ぎざです、ョソリヮゲっ鰯滄ぱ連礇よぶぽぉざ。</lang>
+          </row>
+        </tag>
+      </tag>
+      <tag name="ufanasu" context="ropug">
+        <attribute name="uz" value="ropug">
+        </attribute>
+        <tag name="hube">
+          <row id="Cemal">
+            <native>Ropug</native>
+            <lang id="fi" savedtotm="1">Afuvuh</lang>
+            <lang id="de" savedtotm="1">Ropug</lang>
+            <lang id="ja" savedtotm="1">賭倔</lang>
+          </row>
+        </tag>
+        <tag name="acesacalip" value="127">
+        </tag>
+        <tag name="adukuhi">
+          <row id="Cemal">
+            <native>Ekoko</native>
+            <lang id="fi" savedtotm="1">Tumam</lang>
+            <lang id="de" savedtotm="1">Tumam</lang>
+            <lang id="ja" savedtotm="1">鯐鑖</lang>
+          </row>
+        </tag>
+        <tag name="levekimadiz">
+          <row id="Cemal">
+            <native>Ropug ot d ufanasu da huv ibozemo cato im huv Kiricot Ihako.</native>
+            <lang id="fi" savedtotm="1">Afuvuh da lot Zocami nacuzapuri oçbuzojiborat.</lang>
+            <lang id="de" savedtotm="1">Ropug ipi oca Tela ev edejutolil Zega ega Erefopuloje Agele.</lang>
+            <lang id="ja" savedtotm="1">鼕餁し傯璌雏へ购虫ま彆纳ぴひ屌ずご。</lang>
+          </row>
+        </tag>
+      </tag>
+    </tag>
+  </source>
+</document>

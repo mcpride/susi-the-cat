@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20140115171749" version="4.0.353" date="20141214112337" scan="4" scanned="20141214112334">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TXamlSource" name="Azut.jizi" original="cu" date="20100324011254" originalbom="1" viewer="xvSisulizer">
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TColorData</class>
+      <class>TImeData</class>
+      <class>TPictureData</class>
+      <class>TReadingOrderData</class>
+      <class>TFontColorData</class>
+      <class>TFontNameData</class>
+      <class>TFontSizeData</class>
+      <class>TFontStyleData</class>
+    </excludeddatatypes>
+    <mappings>
+      <component name="Ojorut.Luvuhog.Dohinafa.Gapiz" class="TVisImage"/>
+      <component name="Ojorut.Luvuhog.Itirimicu.Isibanema" class="TVisTextBlock"/>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="TiveBapo" class="TVisGrid"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="AhipAso" class="TVisEdit"/>
+      <property name="TekidIbeh" type="TBooleanRow" mode="pmIncluded"/>
+      <property name="KamaheSehuk" type="TColorRow" mode="pmIncluded"/>
+      <property name="AhalijeHuzikugesid" type="TStringRow" mode="pmIncluded"/>
+      <property name="GisalifIzohulOlovace" type="TStringRow" mode="pmIncluded"/>
+      <property name="LujitomUgon" type="TStringRow" mode="pmIncluded"/>
+      <property name="Cubudavod" type="TBooleanRow" mode="pmIncluded"/>
+      <property name="MunaruZodu" type="TStringRow" mode="pmIncluded"/>
+      <property name="MunaruZodu.VobidiFegezu" type="TStringRow" mode="pmIncluded"/>
+      <property name="VobidiFegezu" type="TStringRow" mode="pmIncluded"/>
+      <property name="Ivul.LisezufaKotop" type="TStringRow" mode="pmIncluded"/>
+      <property name="Ivul.VobidiFegezu" type="TStringRow" mode="pmIncluded"/>
+      <property name="Ivul.VotuhaZazaFolud" type="TStringRow" mode="pmIncluded"/>
+      <property name="Cupic.VobidiFegezu" type="TStringRow" mode="pmIncluded"/>
+      <property name="LiniPod" type="TStringRow" mode="pmIncluded"/>
+      <property name="OmopOjaMitalem.LiniPod" type="TStringRow" mode="pmIncluded"/>
+      <property name="OmopOjaMitalem.LiniPod.VobidiFegezu" type="TStringRow" mode="pmIncluded"/>
+    </mappings>
+    <form class="TXamlForm" name="Azut" borderstyle="bsNone">
+      <row id="Pekorakimi" hidden="1">soDecoh</row>
+      <component class="TVisTextBlock" name="Isibanema[0]" type="Ojorut.Luvuhog.Itirimicu.Isibanema">
+        <row id="Evekohe" class="TXamlRow">Ficana Tonozo</row>
+        <row id="OfarIdat">14</row>
+        <row id="SeviHesis">[kuZolo]</row>
+      </component>
+      <component class="TVisTextBlock" name="Isibanema[1]" type="Ojorut.Luvuhog.Itirimicu.Isibanema">
+        <row id="Evekohe" class="TXamlRow">Huv Ficana Tonozo im Ugujidu ot d imedulu hitaceka im 50 tonozo, mirudam ameruka da tufetig Zebez Ugujidu.</row>
+      </component>
+      <component class="TVisDefaultControl" name="Ahiva[0]" type="Ahiva">
+        <component class="TVisDefaultControl" name="BajitObeJorol[0]" type="BajitObeJorol">
+          <component class="TVisDefaultControl" name="SamefOko[0]" type="SamefOko">
+            <component class="TVisDefaultControl" name="ZalivEsav[0]" type="ZalivEsav">
+              <component class="TVisTextBlock" name="Isibanema[0]" type="Ojorut.Luvuhog.Itirimicu.Isibanema">
+                <row id="Evekohe" class="TXamlRow">Egeg</row>
+                <row id="SeviHesis">[kuZolo]</row>
+              </component>
+            </component>
+            <component class="TVisDefaultControl" name="ZalivEsav[1]" type="ZalivEsav">
+              <component class="TVisTextBlock" name="Isibanema[0]" type="Ojorut.Luvuhog.Itirimicu.Isibanema">
+                <row id="Evekohe" class="TXamlRow">Adukuhi</row>
+                <row id="SeviHesis">[kuZolo]</row>
+              </component>
+            </component>
+            <component class="TVisDefaultControl" name="ZalivEsav[2]" type="ZalivEsav">
+              <component class="TVisTextBlock" name="Isibanema[0]" type="Ojorut.Luvuhog.Itirimicu.Isibanema">
+                <row id="Evekohe" class="TXamlRow">Acesacalip</row>
+                <row id="SeviHesis">[kuZolo]</row>
+              </component>
+            </component>
+          </component>
+          <component class="TVisDefaultControl" name="SamefOko[1]" type="SamefOko">
+            <component class="TVisDefaultControl" name="ZalivEsav[0]" type="ZalivEsav">
+              <component class="TVisDefaultControl" name="ApecoFIHipiladam[0]" type="ApecoFIHipiladam">
+                <component class="TVisImage" name="Gapiz[0]" type="Ojorut.Luvuhog.Dohinafa.Gapiz" horizontalalignment="haLeft">
+                  <row id="Duzel">48</row>
+                </component>
+              </component>
+            </component>
+            <component class="TVisDefaultControl" name="ZalivEsav[1]" type="ZalivEsav">
+              <component class="TVisTextBlock" name="Isibanema[0]" type="Ojorut.Luvuhog.Itirimicu.Isibanema">
+                <row id="Evekohe" class="TXamlRow">Kejosovire, T.O.</row>
+              </component>
+            </component>
+            <component class="TVisDefaultControl" name="ZalivEsav[2]" type="ZalivEsav">
+              <component class="TVisTextBlock" name="Isibanema[0]" type="Ojorut.Luvuhog.Itirimicu.Isibanema">
+                <row id="Evekohe" class="TXamlRow">297 000 000</row>
+              </component>
+            </component>
+          </component>
+        </component>
+      </component>
+      <component class="TVisTextBlock" name="Isibanema[2]" type="Ojorut.Luvuhog.Itirimicu.Isibanema">
+        <row id="Evekohe" class="TXamlRow">Jivosoz</row>
+        <row id="OfarIdat">14</row>
+        <row id="SeviHesis">[kuZolo]</row>
+      </component>
+      <component class="TVisTextBlock" name="Isibanema[3]" type="Ojorut.Luvuhog.Itirimicu.Isibanema">
+        <row id="Evekohe" class="TXamlRow">Jivosoz so huv Imedulu Hitaceka im Jivosoz ot uja im huv osiga'r alulele liduvuluvazaci enepukufa, mirudam go huv siham im Osahof.</row>
+      </component>
+      <component class="TVisDefaultControl" name="Ahiva[1]" type="Ahiva">
+        <component class="TVisDefaultControl" name="BajitObeJorol[0]" type="BajitObeJorol">
+          <component class="TVisDefaultControl" name="SamefOko[0]" type="SamefOko">
+            <component class="TVisDefaultControl" name="ZalivEsav[0]" type="ZalivEsav">
+              <component class="TVisTextBlock" name="Isibanema[0]" type="Ojorut.Luvuhog.Itirimicu.Isibanema">
+                <row id="Evekohe" class="TXamlRow">Egeg</row>
+                <row id="SeviHesis">[kuZolo]</row>
+              </component>
+            </component>
+            <component class="TVisDefaultControl" name="ZalivEsav[1]" type="ZalivEsav">
+              <component class="TVisTextBlock" name="Isibanema[0]" type="Ojorut.Luvuhog.Itirimicu.Isibanema">
+                <row id="Evekohe" class="TXamlRow">Adukuhi</row>
+                <row id="SeviHesis">[kuZolo]</row>
+              </component>
+            </component>
+            <component class="TVisDefaultControl" name="ZalivEsav[2]" type="ZalivEsav">
+              <component class="TVisTextBlock" name="Isibanema[0]" type="Ojorut.Luvuhog.Itirimicu.Isibanema">
+                <row id="Evekohe" class="TXamlRow">Acesacalip</row>
+                <row id="SeviHesis">[kuZolo]</row>
+              </component>
+            </component>
+          </component>
+          <component class="TVisDefaultControl" name="SamefOko[1]" type="SamefOko">
+            <component class="TVisDefaultControl" name="ZalivEsav[0]" type="ZalivEsav">
+              <component class="TVisDefaultControl" name="ApecoFIHipiladam[0]" type="ApecoFIHipiladam">
+                <component class="TVisImage" name="Gapiz[0]" type="Ojorut.Luvuhog.Dohinafa.Gapiz" horizontalalignment="haLeft">
+                  <row id="Duzel">48</row>
+                </component>
+              </component>
+            </component>
+            <component class="TVisDefaultControl" name="ZalivEsav[1]" type="ZalivEsav">
+              <component class="TVisTextBlock" name="Isibanema[0]" type="Ojorut.Luvuhog.Itirimicu.Isibanema">
+                <row id="Evekohe" class="TXamlRow">Jiveci</row>
+              </component>
+            </component>
+            <component class="TVisDefaultControl" name="ZalivEsav[2]" type="ZalivEsav">
+              <component class="TVisTextBlock" name="Isibanema[0]" type="Ojorut.Luvuhog.Itirimicu.Isibanema">
+                <row id="Evekohe" class="TXamlRow">82 000 000</row>
+              </component>
+            </component>
+          </component>
+        </component>
+      </component>
+      <component class="TVisTextBlock" name="Isibanema[4]" type="Ojorut.Luvuhog.Itirimicu.Isibanema">
+        <row id="Evekohe" class="TXamlRow">Ropug</row>
+        <row id="OfarIdat">14</row>
+        <row id="SeviHesis">[kuZolo]</row>
+      </component>
+      <component class="TVisTextBlock" name="Isibanema[5]" type="Ojorut.Luvuhog.Itirimicu.Isibanema">
+        <row id="Evekohe" class="TXamlRow">Ropug ot d ufanasu da huv ibozemo cato im huv Kiricot Ihako.</row>
+      </component>
+      <component class="TVisDefaultControl" name="Ahiva[2]" type="Ahiva">
+        <component class="TVisDefaultControl" name="BajitObeJorol[0]" type="BajitObeJorol">
+          <component class="TVisDefaultControl" name="SamefOko[0]" type="SamefOko">
+            <component class="TVisDefaultControl" name="ZalivEsav[0]" type="ZalivEsav">
+              <component class="TVisTextBlock" name="Isibanema[0]" type="Ojorut.Luvuhog.Itirimicu.Isibanema">
+                <row id="Evekohe" class="TXamlRow">Egeg</row>
+                <row id="SeviHesis">[kuZolo]</row>
+              </component>
+            </component>
+            <component class="TVisDefaultControl" name="ZalivEsav[1]" type="ZalivEsav">
+              <component class="TVisTextBlock" name="Isibanema[0]" type="Ojorut.Luvuhog.Itirimicu.Isibanema">
+                <row id="Evekohe" class="TXamlRow">Adukuhi</row>
+                <row id="SeviHesis">[kuZolo]</row>
+              </component>
+            </component>
+            <component class="TVisDefaultControl" name="ZalivEsav[2]" type="ZalivEsav">
+              <component class="TVisTextBlock" name="Isibanema[0]" type="Ojorut.Luvuhog.Itirimicu.Isibanema">
+                <row id="Evekohe" class="TXamlRow">Acesacalip</row>
+                <row id="SeviHesis">[kuZolo]</row>
+              </component>
+            </component>
+          </component>
+          <component class="TVisDefaultControl" name="SamefOko[1]" type="SamefOko">
+            <component class="TVisDefaultControl" name="ZalivEsav[0]" type="ZalivEsav">
+              <component class="TVisDefaultControl" name="ApecoFIHipiladam[0]" type="ApecoFIHipiladam">
+                <component class="TVisImage" name="Gapiz[0]" type="Ojorut.Luvuhog.Dohinafa.Gapiz" horizontalalignment="haLeft">
+                  <row id="Duzel">48</row>
+                </component>
+              </component>
+            </component>
+            <component class="TVisDefaultControl" name="ZalivEsav[1]" type="ZalivEsav">
+              <component class="TVisTextBlock" name="Isibanema[0]" type="Ojorut.Luvuhog.Itirimicu.Isibanema">
+                <row id="Evekohe" class="TXamlRow">Ekoko</row>
+              </component>
+            </component>
+            <component class="TVisDefaultControl" name="ZalivEsav[2]" type="ZalivEsav">
+              <component class="TVisTextBlock" name="Isibanema[0]" type="Ojorut.Luvuhog.Itirimicu.Isibanema">
+                <row id="Evekohe" class="TXamlRow">125 000 000</row>
+              </component>
+            </component>
+          </component>
+        </component>
+      </component>
+    </form>
+  </source>
+</document>

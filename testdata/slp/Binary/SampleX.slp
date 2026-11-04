@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document version="4.0.350" date="20111109065146" scan="5" scanned="20111109065142">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TBinarySource" name="Ajogid.sit" original="cu" date="20091031091652">
+    <definition name="Ajosakume ahiso ivofad gasadu" description="D ajogid gasadu agetar lepin ahiso edovav ivofad" extensions="sit" stringlength="bslFixed">
+      <header type="ctIgnore" datatype="btBytes" size="4" value="EBIM"/>
+      <header type="ctSize" datatype="btWord"/>
+      <item type="ctContext" datatype="btWord"/>
+      <item type="ctText" datatype="btString"/>
+    </definition>
+    <row id="1">
+      <native>Ficana Tonozo</native>
+      <lang id="fi">Takenidapid</lang>
+    </row>
+    <row id="2">
+      <native>Jivosoz</native>
+      <lang id="fi">Nilic</lang>
+    </row>
+    <row id="3">
+      <native>Ropug</native>
+      <lang id="fi">Afuvuh</lang>
+    </row>
+  </source>
+</document>

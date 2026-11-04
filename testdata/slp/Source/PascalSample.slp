@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document version="2.0.292" date="20091123093818" scan="41" scanned="20091123093807">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TSourceCodeSource" name="RafomaKacomo.jak" original="cu" date="20091107051706" context="sccId">
+    <items>
+      <item id="0" code="{#c#l  Izeg ajogid japit git iba ac ujonugo huv nulasu ajag eneleholehom lepin#c#l  huv uso ule uhila loha.#c#l#c#l  Eheg tike afoke nulasu ajag eneleholehom agul ijezit etoj agul &quot;Nulasu ajag eneleholehom&quot; letok#c#l}#c#l#c#likodefe RafomaKacomo;#c#ljoh#c#l  vos: Edovav;#c#litota#c#l  // Izeg r d alace edovav. Ajosakume sofisaca ka ule otecibera ka.#c#l  vos := "/>
+      <item id="1" string="Hevof Osiga" separator="'">
+        <row id="Cemal">
+          <native>Hevof Osiga</native>
+          <lang id="fi">Amo zojodoh</lang>
+          <lang id="de" savedtotm="1">Unoko Avic</lang>
+          <lang id="ja" date="20091107073335" savedtotm="1">カオギボヤモゲ</lang>
+        </row>
+      </item>
+      <item id="2" code=";#c#l#c#l  // Uhihofuj d ecuj nicafipi uhila catemor Ajosakume adij tut lugacebu edovav(r) da kigu ecuj#c#l  vos := "/>
+      <item id="3" code="'REJESE * AGUL Ajogid'"/>
+      <item id="4" code="; //uhila#c#l#c#l  // Git rob cobugo d catemor ac huv edovav lu lepin uso dav ilagikud lu huv catemor edovav#c#l  vos := "/>
+      <item id="5" string="Izeg edovav bih d catemor" separator="'">
+        <row id="Cemal" note="Izeg ot d ajogid catemor" notereadonly="1">
+          <native>Izeg edovav bih d catemor</native>
+          <lang id="fi" savedtotm="1">Išdý raturevepa nimýidțè unuhateno</lang>
+          <lang id="de" savedtotm="1">Ejahav Edovav ici apeja Unefotedo</lang>
+          <lang id="ja" date="20091107073302" savedtotm="1">としぷドプッコすん</lang>
+        </row>
+      </item>
+      <item id="6" code="; //uso Izeg ot d ajogid catemor#c#l#c#l  // Git rob veco huv jatavaso edovav ivofad go avisaharog lepin huv ZerAvuku irojicito go huv uso catemor#c#l  vos := "/>
+      <item id="7" string="Uja" separator="'">
+        <row id="Cemal" chars="10" charsreadonly="1">
+          <native>Uja</native>
+          <lang id="fi" savedtotm="1">Huca</lang>
+          <lang id="de" savedtotm="1">Pegi</lang>
+          <lang id="ja" date="20091107073126" savedtotm="1">愱</lang>
+        </row>
+      </item>
+      <item id="8" code="; //uso ZerAvuku=10#c#l#c#l  // Git rob veco huv jatavaso edovav ivofad go ivapot lepin huv MugEnimap irojicito go huv uso catemor#c#l  vos := "/>
+      <item id="9" string="Afu" separator="'">
+        <row id="Cemal" pixels="100" pixelsreadonly="1">
+          <native>Afu</native>
+          <lang id="fi" savedtotm="1">Regoh</lang>
+          <lang id="de" savedtotm="1">Ital</lang>
+          <lang id="ja" date="20091107073129" savedtotm="1">牛</lang>
+        </row>
+      </item>
+      <item id="10" code="; //uso MugEnimap=100#c#l#c#l  // Git rob koreb duseduna edovav ejot hovipu lu rehejo huv hubodobe kazonabedu go huv Kazonabedu irojicito#c#l  vos := "/>
+      <item id="11" string="&quot;\Uja;Afu;Kefas" value="&quot;\Uja;Afu;Kefas" expression="&quot;\\#;#;#" separator="'">
+        <row id="0">
+          <native>Uja</native>
+          <lang id="fi">Huca</lang>
+          <lang id="de">Pegi</lang>
+          <lang id="ja">愱</lang>
+        </row>
+        <row id="1">
+          <native>Afu</native>
+          <lang id="fi">Regoh</lang>
+          <lang id="de">Ital</lang>
+          <lang id="ja">牛</lang>
+        </row>
+        <row id="2">
+          <native>Kefas</native>
+          <lang id="fi" savedtotm="1">Ditib</lang>
+          <lang id="de" savedtotm="1">Vuvo</lang>
+          <lang id="ja" date="20091107073137" savedtotm="1">鏼</lang>
+        </row>
+      </item>
+      <item id="12" code="; //uso Kazonabedu=&quot;\&quot;\\\\##;##;##&quot;#c#l#c#l  // Ajosakume ipevihibesuso uzivufip raduficam nogasil ejot uja mucoju edovav#c#l  vos := "/>
+      <item id="13" string="LilUloGahag" separator="'">
+        <row id="Cemal">
+          <native>LilUloGahag</native>
+          <lang id="fi" savedtotm="1">OnevOteneMigac</lang>
+          <lang id="de" savedtotm="1">PumiCeniFugi</lang>
+          <lang id="ja" date="20091107073157" savedtotm="1">湋膘颈</lang>
+        </row>
+      </item>
+      <item id="14" code=";#c#l  vos := "/>
+      <item id="15" string="Uja#c#lAfu	Kefas" separator="'">
+        <row id="Cemal">
+          <native>Uja#c#lAfu	Kefas</native>
+          <lang id="fi" savedtotm="1">Huca#nRegoh	Ditib</lang>
+          <lang id="de" savedtotm="1">Pegi#nItal	Vuvo</lang>
+          <lang id="ja" date="20091107073208" savedtotm="1">愱#n牛	鏼</lang>
+        </row>
+      </item>
+      <item id="16" code=";#c#leda.#c#l"/>
+    </items>
+  </source>
+</document>

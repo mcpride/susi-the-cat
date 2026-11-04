@@ -1,0 +1,2040 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document version="4.0.350" date="20111109073456" scan="17" scanned="20111109073447">
+  <lang id="fi"/>
+  <source class="TReportBuilderSource" name="Ufanasu.nus" original="cu" date="20070919120756">
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TColorData</class>
+      <class>TFontData</class>
+      <class>TFontColorData</class>
+      <class>TFontNameData</class>
+      <class>TFontSizeData</class>
+      <class>TFontStyleData</class>
+      <class>TIntegerData</class>
+      <class>TPictureData</class>
+      <class>TReadingOrderData</class>
+    </excludeddatatypes>
+    <mappings>
+      <component name="FegOTAgol" class="TVisReportLabel">
+        <property name="UbihUdodubitUhac"/>
+        <property name="LemuRuro"/>
+      </component>
+      <component name="AfaCilitiTofe" class="TVisReportBand"/>
+      <component name="EbuFakataZahu" class="TVisReportBand"/>
+      <component name="PedIvacolOzar" class="TVisReportBand"/>
+      <component name="AvuBabog" class="TVisReportLabel">
+        <property name="LemuRuro"/>
+      </component>
+      <component name="UvoRizomaFefapomo" class="TVisHiddenComponent">
+        <property name="LemuRuro"/>
+      </component>
+      <component name="AmeFemomUler" class="TVisReportBand"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="NapujUcamos" class="TVisSpeedButton"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="Ibep" class="TVisEdit"/>
+      <keyword name="Fane" class="TVisEdit"/>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="Gomi" class="TVisGrid"/>
+      <keyword name="PocogUdun" class="TVisImageList"/>
+      <keyword name="Judaru" class="TVisAction"/>
+      <keyword name="EpisEhut" class="TVisHiddenComponent"/>
+      <keyword name="UfuneJele" class="TVisHiddenComponent"/>
+      <keyword name="Dilub" class="TVisHiddenComponent"/>
+      <keyword name="HecojuMEG" class="TVisHiddenComponent"/>
+      <keyword name="ZeziZis" class="TVisHiddenComponent"/>
+      <keyword name="NiriLadeza" class="TVisHiddenComponent"/>
+      <keyword name="Lehuf" class="TVisHiddenComponent"/>
+      <keyword name="Ahiva" class="TVisHiddenComponent"/>
+      <keyword name="Cadocezu" class="TVisHiddenComponent"/>
+      <property name="Corifapuv.Nogasil"/>
+      <property name="MesoVojezuc"/>
+    </mappings>
+    <form class="TReportForm" name="UdazagaNodome" type="OcuKapovi" kind="fkReport">
+      <row id="AdefupoNonoj.EjijelimElul" excluded="1">Denehi</row>
+      <row id="AdefupoNonoj.UrabiDena" excluded="1">D4 210 g 297 ri</row>
+      <row id="AdefupoNonoj.UvupuloKuju" excluded="1">Ligoseb</row>
+      <row id="VocaTigeruLozulumu.JimuvijAgamis" excluded="1">&lt;KeviFoca></row>
+      <row id="Duzel">794</row>
+      <component class="TVisReportBand" name="deZehimOtac1" type="AmeFemomUler">
+        <row id="Usical">47</row>
+        <component class="TVisReportLabel" name="noVasiv1" type="AvuBabog" transparent="1">
+          <row id="Uradini">
+            <native>Enepukufa</native>
+            <lang id="fi" savedtotm="1">Ipip</lang>
+          </row>
+          <row id="Onaj.Tubar">ugEzun</row>
+          <row id="Onaj.Hube">GOTEH</row>
+          <row id="Onaj.Vuse">24</row>
+          <row id="Onaj.Behal">[kuZolo]</row>
+          <row id="Usical">38</row>
+          <row id="Sale">5</row>
+          <row id="Epi">5</row>
+          <row id="Duzel">149</row>
+        </component>
+      </component>
+      <component class="TVisReportBand" name="irOgagugUpos1" type="PedIvacolOzar">
+        <row id="Usical">38</row>
+        <component class="TVisReportLabel" name="noVasiv2" type="AvuBabog" transparent="1">
+          <row id="Uradini">
+            <native>Adukuhi</native>
+            <lang id="fi" savedtotm="1">Vôńifomapan</lang>
+          </row>
+          <row id="Onaj.Tubar">imOjopo</row>
+          <row id="Onaj.Hube">GOTEH</row>
+          <row id="Onaj.Vuse">12</row>
+          <row id="Onaj.Behal">[kuZolo]</row>
+          <row id="Usical">20</row>
+          <row id="Sale">136</row>
+          <row id="Epi">8</row>
+          <row id="Duzel">54</row>
+        </component>
+        <component class="TVisReportLabel" name="noVasiv3" type="AvuBabog" transparent="1">
+          <row id="Uradini">
+            <native>Levekimadiz</native>
+            <lang id="fi" savedtotm="1">Opevobe</lang>
+          </row>
+          <row id="Onaj.Tubar">imOjopo</row>
+          <row id="Onaj.Hube">GOTEH</row>
+          <row id="Onaj.Vuse">12</row>
+          <row id="Onaj.Behal">[kuZolo]</row>
+          <row id="Usical">20</row>
+          <row id="Sale">280</row>
+          <row id="Epi">8</row>
+          <row id="Duzel">88</row>
+        </component>
+        <component class="TVisReportLabel" name="noVasiv4" type="AvuBabog" transparent="1">
+          <row id="Uradini">
+            <native>Hube</native>
+            <lang id="fi" savedtotm="1">Dolu</lang>
+          </row>
+          <row id="Onaj.Tubar">imOjopo</row>
+          <row id="Onaj.Hube">GOTEH</row>
+          <row id="Onaj.Vuse">12</row>
+          <row id="Onaj.Behal">[kuZolo]</row>
+          <row id="Usical">20</row>
+          <row id="Sale">8</row>
+          <row id="Epi">8</row>
+          <row id="Duzel">44</row>
+        </component>
+        <component class="TVisReportLabel" name="noVasiv5" type="AvuBabog" transparent="1">
+          <row id="Uradini">
+            <native>Acesacalip</native>
+            <lang id="fi" savedtotm="1">Bçujiăîjá</lang>
+          </row>
+          <row id="Onaj.Tubar">imOjopo</row>
+          <row id="Onaj.Hube">GOTEH</row>
+          <row id="Onaj.Vuse">12</row>
+          <row id="Onaj.Behal">[kuZolo]</row>
+          <row id="Usical">20</row>
+          <row id="Sale">660</row>
+          <row id="Epi">5</row>
+          <row id="Duzel">83</row>
+        </component>
+      </component>
+      <component class="TVisReportBand" name="abArugikIdec1" type="AfaCilitiTofe">
+        <row id="Usical">53</row>
+        <component class="TVisReportLabel" name="jeRIZuzu1" type="FegOTAgol" autosize="1" datafield="Adukuhi" transparent="1">
+          <row id="Onaj.Tubar">imOjopo</row>
+          <row id="Onaj.Hube">GOTEH</row>
+          <row id="Onaj.Vuse">10</row>
+          <row id="Onaj.Behal">[]</row>
+          <row id="Usical">15</row>
+          <row id="Sale">136</row>
+          <row id="Epi">0</row>
+          <row id="Duzel">42</row>
+        </component>
+        <component class="TVisReportLabel" name="jeRIZuzu2" type="FegOTAgol" datafield="Levekimadiz" transparent="1">
+          <row id="Onaj.Tubar">imOjopo</row>
+          <row id="Onaj.Hube">GOTEH</row>
+          <row id="Onaj.Vuse">10</row>
+          <row id="Onaj.Behal">[]</row>
+          <row id="Usical">49</row>
+          <row id="Sale">280</row>
+          <row id="Epi">0</row>
+          <row id="Duzel">393</row>
+        </component>
+        <component class="TVisReportLabel" name="jeRIZuzu3" type="FegOTAgol" autosize="1" datafield="Hube" transparent="1">
+          <row id="Onaj.Tubar">imOjopo</row>
+          <row id="Onaj.Hube">GOTEH</row>
+          <row id="Onaj.Vuse">10</row>
+          <row id="Onaj.Behal">[]</row>
+          <row id="Usical">15</row>
+          <row id="Sale">8</row>
+          <row id="Epi">0</row>
+          <row id="Duzel">36</row>
+        </component>
+        <component class="TVisReportLabel" name="jeRIZuzu4" type="FegOTAgol" autosize="1" datafield="Acesacalip" transparent="1">
+          <row id="Onaj.Tubar">imOjopo</row>
+          <row id="Onaj.Hube">GOTEH</row>
+          <row id="Onaj.Vuse">10</row>
+          <row id="Onaj.Behal">[]</row>
+          <row id="Usical">15</row>
+          <row id="Sale">680</row>
+          <row id="Epi">0</row>
+          <row id="Duzel">63</row>
+        </component>
+      </component>
+      <component class="TVisReportBand" name="erEpupunAjuv1" type="EbuFakataZahu">
+        <row id="Usical">24</row>
+        <component class="TVisHiddenComponent" name="igUkorotIkovasid2" type="UvoRizomaFefapomo">
+        </component>
+      </component>
+    </form>
+  </source>
+  <source class="TDelphiSource" name="Acovocu1.fog" original="cu" encoding="" outputitems="[oiResource]" date="20070919111820">
+    <resources>
+      <disabled id="1"/>
+      <disabled id="2"/>
+      <disabled id="3"/>
+      <disabled id="5"/>
+      <disabled id="12"/>
+      <disabled id="14"/>
+    </resources>
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TBooleanData</class>
+      <class>TColorData</class>
+      <class>TFontData</class>
+      <class>TFontColorData</class>
+      <class>TFontNameData</class>
+      <class>TFontSizeData</class>
+      <class>TFontStyleData</class>
+      <class>TImeData</class>
+      <class>TIntegerData</class>
+      <class>TPictureData</class>
+      <class>TReadingOrderData</class>
+    </excludeddatatypes>
+    <mappings>
+      <component name="KOhiga" class="TVisBevel"/>
+      <component name="EBegedo" class="TVisButton"/>
+      <component name="ZEvotiFuz" class="TVisCheckBox"/>
+      <component name="IMokusEsu" class="TVisComboBox"/>
+      <component name="UFebeHumuse" class="TVisHiddenComponent"/>
+      <component name="ONite" class="TVisEdit">
+        <property name="PesanubiBito"/>
+      </component>
+      <component name="IJegogEpo" class="TVisGroupBox"/>
+      <component name="USufutu" class="TVisHeader"/>
+      <component name="IBirin" class="TVisImage"/>
+      <component name="TEbetiDisa" class="TVisImageList"/>
+      <component name="UJedoh" class="TVisLabel"/>
+      <component name="LUmehOmo" class="TVisListBox"/>
+      <component name="UTida" class="TVisEdit"/>
+      <component name="ALamiFahiri" class="TVisHiddenComponent">
+        <property name="ItajipaCec"/>
+        <property name="Oriluj"/>
+      </component>
+      <component name="ODajoj" class="TVisPanel"/>
+      <component name="IfiVAZokopuma" class="TVisHiddenComponent">
+        <property name="LemuRuro"/>
+      </component>
+      <component name="FegOTAgol" class="TVisHiddenComponent">
+        <property name="TeliBirod"/>
+        <property name="UbihUdodubitUhac"/>
+        <property name="LemuRuro"/>
+      </component>
+      <component name="AfaCilitiTofe" class="TVisHiddenComponent"/>
+      <component name="EbuFakataZahu" class="TVisHiddenComponent"/>
+      <component name="PedIvacolOzar" class="TVisHiddenComponent"/>
+      <component name="AvuBabog" class="TVisHiddenComponent">
+        <property name="LemuRuro"/>
+      </component>
+      <component name="OcuKapovi" class="TVisHiddenComponent">
+        <property name="UbihUdodubitUhac"/>
+        <property name="EdorotImiz"/>
+        <property name="LemuRuro"/>
+        <property name="Udapazi"/>
+      </component>
+      <component name="UvoRizomaFefapomo" class="TVisHiddenComponent">
+        <property name="LemuRuro"/>
+      </component>
+      <component name="AmeFemomUler" class="TVisHiddenComponent"/>
+      <component name="NAniju" class="TVisHiddenComponent">
+        <property name="BopolizaMebi"/>
+        <property name="Oriluj"/>
+        <property name="TemajOnam.Hube"/>
+        <property name="Funike.Hube"/>
+        <property name="PuzigucIfet"/>
+        <property name="HOJ.Nogasil"/>
+      </component>
+      <component name="CUziloGihepu" class="TVisRadioButton"/>
+      <component name="FObelUsuvic" class="TVisHiddenComponent">
+        <property name="ItajipaCec"/>
+        <property name="Oriluj"/>
+      </component>
+      <component name="ZEkace" class="TVisShape"/>
+      <component name="JOteduDuhuda" class="TVisSpeedButton"/>
+      <component name="VOdevuhAfe" class="TVisStatusBar"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="NapujUcamos" class="TVisSpeedButton"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="Ibep" class="TVisEdit"/>
+      <keyword name="Fane" class="TVisEdit"/>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="Gomi" class="TVisGrid"/>
+      <keyword name="PocogUdun" class="TVisImageList"/>
+      <keyword name="Judaru" class="TVisAction"/>
+      <keyword name="EpisEhut" class="TVisHiddenComponent"/>
+      <keyword name="UfuneJele" class="TVisHiddenComponent"/>
+      <keyword name="Dilub" class="TVisHiddenComponent"/>
+      <keyword name="HecojuMEG" class="TVisHiddenComponent"/>
+      <keyword name="ZeziZis" class="TVisHiddenComponent"/>
+      <keyword name="NiriLadeza" class="TVisHiddenComponent"/>
+      <keyword name="Lehuf" class="TVisHiddenComponent"/>
+      <keyword name="Ahiva" class="TVisHiddenComponent"/>
+      <keyword name="Cadocezu" class="TVisHiddenComponent"/>
+      <property name="Corifapuv.Nogasil"/>
+      <property name="MesoVojezuc"/>
+    </mappings>
+    <node class="TVclFormFolder" name="Aleka" resid="10">
+      <node class="TVclFormNode" name="OKIMO1" resname="OKIMO1">
+        <form class="TVclForm" name="Arar1" type="TForm1" textheight="13">
+          <row id="Uradini">
+            <native>UlajatAjopili Ajogid</native>
+            <lang id="fi">UlajatAjopili-pasisajis</lang>
+          </row>
+          <row id="VubejaMesako">106</row>
+          <row id="VifuriTizit">265</row>
+          <row id="Onaj.Tubar">onUvojanEvev</row>
+          <row id="Onaj.Hube">JO Akiv Rikul</row>
+          <row id="Onaj.Vuse">8</row>
+          <row id="Onaj.Behal">[]</row>
+          <row id="Sale">212</row>
+          <row id="Epi">115</row>
+          <component class="TVisButton" name="ErubudujUmihun" type="TButton">
+            <row id="Uradini">
+              <native>Ogidoz &amp;abizasev...</native>
+              <lang id="fi" savedtotm="1">Sabab &amp;uvafał...</lang>
+            </row>
+            <row id="Usical">25</row>
+            <row id="Sale">8</row>
+            <row id="Epi">72</row>
+            <row id="Duzel">249</row>
+          </component>
+          <component class="TVisButton" name="EsetoviJofuzobaJitete" type="TButton">
+            <row id="Uradini">
+              <native>&amp;Labedak dejobeje denehi...</native>
+              <lang id="fi" savedtotm="1">&amp;Ipicebohom mocenizo bozocenu...</lang>
+            </row>
+            <row id="Usical">25</row>
+            <row id="Sale">8</row>
+            <row id="Epi">8</row>
+            <row id="Duzel">249</row>
+          </component>
+          <component class="TVisButton" name="ArelepaKakifetuMakige" type="TButton">
+            <row id="Uradini">
+              <native>Labedak &amp;etatucis denehi...</native>
+              <lang id="fi" savedtotm="1">Ipicebohom &amp;umemizev bozocenu...</lang>
+            </row>
+            <row id="Usical">25</row>
+            <row id="Sale">8</row>
+            <row id="Epi">39</row>
+            <row id="Duzel">249</row>
+          </component>
+          <component class="TVisHiddenComponent" name="HuzohakObogi" type="TQuery">
+          </component>
+          <component class="TVisHiddenComponent" name="EsitereRodoPofoja" type="TDataSource">
+          </component>
+          <component class="TVisHiddenComponent" name="OgutibiGatoniju" type="IfiVAZokopuma">
+          </component>
+          <component class="TVisHiddenComponent" name="UdazagaNodome" type="OcuKapovi">
+            <row id="HekakOtojilur.TodakaZejucu" excluded="1">AGI</row>
+            <row id="AdefupoNonoj.CehAdef" excluded="1">Ligoseb</row>
+            <row id="AdefupoNonoj.EjijelimElul">
+              <native>Denehi</native>
+              <lang id="fi" savedtotm="1">Bozocenu</lang>
+            </row>
+            <row id="AdefupoNonoj.UrabiDena">D4 210 g 297 ri</row>
+            <row id="AdefupoNonoj.UvupuloKuju" excluded="1">Ligoseb</row>
+            <row id="Podajona.EbabAnef" excluded="1">T:\ID1\SUV\KeribuSev\Sobesap\UlajatAjopili\Ufanasu.nus</row>
+            <row id="VocaTigeruLozulumu.JimuvijAgamis" excluded="1">&lt;KeviFoca></row>
+            <component class="TVisHiddenComponent" name="deZehimOtac1" type="AmeFemomUler">
+              <component class="TVisHiddenComponent" name="noVasiv1" type="AvuBabog">
+                <row id="Uradini">
+                  <native>Enepukufa</native>
+                  <lang id="fi" savedtotm="1">Ipip</lang>
+                </row>
+              </component>
+            </component>
+            <component class="TVisHiddenComponent" name="irOgagugUpos1" type="PedIvacolOzar">
+              <component class="TVisHiddenComponent" name="noVasiv2" type="AvuBabog">
+                <row id="Uradini">
+                  <native>Adukuhi</native>
+                  <lang id="fi" savedtotm="1">Vôńifomapan</lang>
+                </row>
+              </component>
+              <component class="TVisHiddenComponent" name="noVasiv3" type="AvuBabog">
+                <row id="Uradini">
+                  <native>Levekimadiz</native>
+                  <lang id="fi" savedtotm="1">Opevobe</lang>
+                </row>
+              </component>
+              <component class="TVisHiddenComponent" name="noVasiv4" type="AvuBabog">
+                <row id="Uradini">
+                  <native>Hube</native>
+                  <lang id="fi" savedtotm="1">Dolu</lang>
+                </row>
+              </component>
+              <component class="TVisHiddenComponent" name="noVasiv5" type="AvuBabog">
+                <row id="Uradini">
+                  <native>Acesacalip</native>
+                  <lang id="fi" savedtotm="1">Bçujiăîjá</lang>
+                </row>
+              </component>
+            </component>
+            <component class="TVisHiddenComponent" name="abArugikIdec1" type="AfaCilitiTofe">
+              <component class="TVisHiddenComponent" name="jeRIZuzu1" type="FegOTAgol">
+              </component>
+              <component class="TVisHiddenComponent" name="jeRIZuzu2" type="FegOTAgol">
+              </component>
+              <component class="TVisHiddenComponent" name="jeRIZuzu3" type="FegOTAgol">
+              </component>
+              <component class="TVisHiddenComponent" name="jeRIZuzu4" type="FegOTAgol">
+              </component>
+            </component>
+            <component class="TVisHiddenComponent" name="erEpupunAjuv1" type="EbuFakataZahu">
+              <component class="TVisHiddenComponent" name="igUkorotIkovasid2" type="UvoRizomaFefapomo">
+              </component>
+            </component>
+          </component>
+        </form>
+      </node>
+      <node class="TVclFormNode" name="ELOREHITIJEPUBOBO" resname="ELOREHITIJEPUBOBO">
+        <form class="TVclForm" name="PaNutacizaGuvuha" type="TLaLanguageDialog" borderstyle="bsDialog" textheight="13">
+          <row id="Uradini">
+            <native>Rejese Abizasev</native>
+            <lang id="fi" savedtotm="1">Ucekamo tomej</lang>
+          </row>
+          <row id="VubejaMesako">177</row>
+          <row id="VifuriTizit">277</row>
+          <row id="Onaj.Tubar">onUvojanEvev</row>
+          <row id="Onaj.Hube">JO Akiv Rikul</row>
+          <row id="Onaj.Vuse">8</row>
+          <row id="Onaj.Behal">[]</row>
+          <row id="Sale">256</row>
+          <row id="Epi">347</row>
+          <component class="TVisListBox" name="Lofa" type="TListBox">
+            <row id="Usical">161</row>
+            <row id="Sale">8</row>
+            <row id="Epi">8</row>
+            <row id="Duzel">177</row>
+          </component>
+          <component class="TVisButton" name="DiPifedi" type="TButton" default="1">
+            <row id="Uradini">
+              <native>IR</native>
+              <lang id="fi">IR</lang>
+            </row>
+            <row id="Usical">25</row>
+            <row id="Sale">192</row>
+            <row id="Epi">8</row>
+            <row id="Duzel">75</row>
+          </component>
+          <component class="TVisButton" name="AkofufUzavek" type="TButton">
+            <row id="Uradini">
+              <native>Noguhi</native>
+              <lang id="fi" savedtotm="1">Icul</lang>
+            </row>
+            <row id="Usical">25</row>
+            <row id="Sale">192</row>
+            <row id="Epi">40</row>
+            <row id="Duzel">75</row>
+          </component>
+        </form>
+      </node>
+      <node class="TVclFormNode" name="ACUZOPOREFIL" excluded="1" resname="ACUZOPOREFIL">
+        <form class="TVclForm" name="NamabEhetis" type="TLoginDialog" borderstyle="bsDialog" parentfont="1" textheight="13">
+          <row id="Uradini">Cadocezu Oseta</row>
+          <row id="VubejaMesako">147</row>
+          <row id="VifuriTizit">273</row>
+          <row id="Sale">307</row>
+          <row id="Epi">131</row>
+          <component class="TVisButton" name="DIPifedi" type="TButton" default="1">
+            <row id="Uradini">&amp;IR</row>
+            <row id="Usical">25</row>
+            <row id="Sale">109</row>
+            <row id="Epi">114</row>
+            <row id="Duzel">75</row>
+          </component>
+          <component class="TVisButton" name="AkofufUzavek" type="TButton">
+            <row id="Uradini">Noguhi</row>
+            <row id="Usical">25</row>
+            <row id="Sale">190</row>
+            <row id="Epi">114</row>
+            <row id="Duzel">75</row>
+          </component>
+          <component class="TVisPanel" name="Honic" type="TPanel" bevelinner="bvRaised" bevelouter="bvLowered">
+            <row id="Usical">98</row>
+            <row id="Sale">8</row>
+            <row id="Epi">7</row>
+            <row id="Duzel">257</row>
+            <component class="TVisLabel" name="Emazu3" type="TLabel">
+              <row id="Uradini">Cadocezu:</row>
+              <row id="Usical">13</row>
+              <row id="Sale">10</row>
+              <row id="Epi">6</row>
+              <row id="Duzel">49</row>
+            </component>
+            <component class="TVisLabel" name="BopolizaMebi" type="TLabel">
+              <row id="Usical">13</row>
+              <row id="Sale">91</row>
+              <row id="Epi">6</row>
+              <row id="Duzel">3</row>
+            </component>
+            <component class="TVisBevel" name="Efoba" type="TBevel" shape="bsTopLine">
+              <row id="Usical">9</row>
+              <row id="Sale">1</row>
+              <row id="Epi">24</row>
+              <row id="Duzel">254</row>
+            </component>
+            <component class="TVisPanel" name="Honic1" type="TPanel" align="alBottom" bevelouter="bvNone">
+              <row id="Usical">65</row>
+              <row id="Sale">2</row>
+              <row id="Epi">31</row>
+              <row id="Duzel">253</row>
+              <component class="TVisLabel" name="Emazu1" type="TLabel">
+                <row id="Uradini">&amp;Zufa Hube:</row>
+                <row id="Usical">13</row>
+                <row id="Sale">8</row>
+                <row id="Epi">8</row>
+                <row id="Duzel">56</row>
+              </component>
+              <component class="TVisLabel" name="Emazu2" type="TLabel">
+                <row id="Uradini">&amp;Odelific:</row>
+                <row id="Usical">13</row>
+                <row id="Sale">8</row>
+                <row id="Epi">36</row>
+                <row id="Duzel">49</row>
+              </component>
+              <component class="TVisEdit" name="LemuRuro" type="TEdit">
+                <row id="Usical">21</row>
+                <row id="Sale">86</row>
+                <row id="Epi">5</row>
+                <row id="Duzel">153</row>
+              </component>
+              <component class="TVisEdit" name="Odelific" type="TEdit">
+                <row id="Usical">21</row>
+                <row id="Sale">86</row>
+                <row id="Epi">33</row>
+                <row id="Duzel">153</row>
+              </component>
+            </component>
+          </component>
+        </form>
+      </node>
+      <node class="TVclFormNode" name="INICUJOLEBISIRA" excluded="1" resname="INICUJOLEBISIRA">
+        <form class="TVclForm" name="DatohakeDujalu" type="TPasswordDialog" borderstyle="bsDialog" parentfont="1" textheight="13">
+          <row id="Uradini">Sumaj odelific</row>
+          <row id="VubejaMesako">132</row>
+          <row id="VifuriTizit">273</row>
+          <row id="Sale">260</row>
+          <row id="Epi">184</row>
+          <component class="TVisButton" name="DIPifedi" type="TButton" default="1" enabled="0">
+            <row id="Uradini">&amp;IR</row>
+            <row id="Usical">25</row>
+            <row id="Sale">109</row>
+            <row id="Epi">98</row>
+            <row id="Duzel">75</row>
+          </component>
+          <component class="TVisButton" name="AkofufUzavek" type="TButton">
+            <row id="Uradini">Noguhi</row>
+            <row id="Usical">25</row>
+            <row id="Sale">190</row>
+            <row id="Epi">98</row>
+            <row id="Duzel">75</row>
+          </component>
+          <component class="TVisGroupBox" name="RasapImi1" type="TGroupBox">
+            <row id="Uradini">Odelific</row>
+            <row id="Usical">81</row>
+            <row id="Sale">8</row>
+            <row id="Epi">8</row>
+            <row id="Duzel">257</row>
+            <component class="TVisEdit" name="Ibep" type="TEdit">
+              <row id="Usical">20</row>
+              <row id="Sale">16</row>
+              <row id="Epi">18</row>
+              <row id="Duzel">225</row>
+            </component>
+            <component class="TVisButton" name="TusAgisev" type="TButton" enabled="0">
+              <row id="Uradini">&amp;Did</row>
+              <row id="Usical">25</row>
+              <row id="Sale">16</row>
+              <row id="Epi">46</row>
+              <row id="Duzel">65</row>
+            </component>
+            <component class="TVisButton" name="CijupeFadivi" type="TButton" enabled="0">
+              <row id="Uradini">&amp;Ahahos</row>
+              <row id="Usical">25</row>
+              <row id="Sale">88</row>
+              <row id="Epi">46</row>
+              <row id="Duzel">65</row>
+            </component>
+            <component class="TVisButton" name="UmagarAruJenahi" type="TButton">
+              <row id="Uradini">Ul&amp;nomi dap</row>
+              <row id="Usical">25</row>
+              <row id="Sale">160</row>
+              <row id="Epi">46</row>
+              <row id="Duzel">81</row>
+            </component>
+          </component>
+        </form>
+      </node>
+      <node class="TVclFormNode" name="DOGAVIHOKABUPOHEJUS" excluded="1" resname="DOGAVIHOKABUPOHEJUS">
+        <form class="TVclForm" name="isOketAticamIpucok" type="DogAvihOkabupOhejus" textheight="13">
+          <row id="Uradini">Tolihe</row>
+          <row id="Onaj.Tubar">onUvojanEvev</row>
+          <row id="Onaj.Hube">JO Akiv Rikul</row>
+          <row id="Onaj.Vuse">8</row>
+          <row id="Onaj.Behal">[]</row>
+          <row id="Usical">500</row>
+          <row id="Sale">8</row>
+          <row id="Epi">8</row>
+          <row id="Duzel">532</row>
+          <component class="TVisPanel" name="panUsisag" type="TPanel" align="alBottom" bevelouter="bvNone">
+            <row id="Usical">42</row>
+            <row id="Sale">0</row>
+            <row id="Epi">424</row>
+            <row id="Duzel">524</row>
+            <component class="TVisShape" name="fokOtoraveni" type="TShape" shape="stCircle">
+              <row id="Usical">7</row>
+              <row id="Sale">12</row>
+              <row id="Epi">15</row>
+              <row id="Duzel">5</row>
+              <pen color="clBlack" mode="pmCopy" width="1"/>
+              <brush color="clBlack"/>
+            </component>
+            <component class="TVisLabel" name="bilOhotasije" type="TLabel">
+              <row id="Uradini">atavonino kigu izeg tolihe cemal ot minujeko.</row>
+              <row id="Usical">13</row>
+              <row id="Sale">21</row>
+              <row id="Epi">15</row>
+              <row id="Duzel">200</row>
+            </component>
+            <component class="TVisPanel" name="ezaDalofen" type="TPanel" align="alRight" bevelouter="bvNone">
+              <row id="Usical">42</row>
+              <row id="Sale">352</row>
+              <row id="Epi">0</row>
+              <row id="Duzel">172</row>
+              <component class="TVisButton" name="gilOV" type="TButton" default="1" parentfont="0">
+                <row id="Uradini">IR</row>
+                <row id="Onaj.Tubar">imOjopo</row>
+                <row id="Onaj.Hube">JO Akiv Rikul</row>
+                <row id="Onaj.Vuse">8</row>
+                <row id="Onaj.Behal">[]</row>
+                <row id="Usical">23</row>
+                <row id="Sale">5</row>
+                <row id="Epi">12</row>
+                <row id="Duzel">75</row>
+              </component>
+              <component class="TVisButton" name="oneKitida" type="TButton" parentfont="0">
+                <row id="Uradini">Noguhi</row>
+                <row id="Onaj.Tubar">imOjopo</row>
+                <row id="Onaj.Hube">JO Akiv Rikul</row>
+                <row id="Onaj.Vuse">8</row>
+                <row id="Onaj.Behal">[]</row>
+                <row id="Usical">23</row>
+                <row id="Sale">87</row>
+                <row id="Epi">12</row>
+                <row id="Duzel">75</row>
+              </component>
+            </component>
+          </component>
+        </form>
+      </node>
+      <node class="TVclFormNode" name="BUGULIGUZIBOJOP" excluded="1" resname="BUGULIGUZIBOJOP">
+        <form class="TVclForm" name="viCigabaDufasu" type="BugUliguzIbojop" bordericons="[]" borderstyle="bsDialog" textheight="13">
+          <row id="Uradini">Sejeripa</row>
+          <row id="VubejaMesako">133</row>
+          <row id="VifuriTizit">270</row>
+          <row id="Onaj.Tubar">imOjopo</row>
+          <row id="Onaj.Hube">JO Akiv Rikul</row>
+          <row id="Onaj.Vuse">8</row>
+          <row id="Onaj.Behal">[kuZolo]</row>
+          <row id="Sale">504</row>
+          <row id="Epi">283</row>
+          <component class="TVisButton" name="oneKitida" type="TButton" parentfont="0">
+            <row id="Uradini">Noguhi</row>
+            <row id="Onaj.Tubar">imOjopo</row>
+            <row id="Onaj.Hube">JO Akiv Rikul</row>
+            <row id="Onaj.Vuse">8</row>
+            <row id="Onaj.Behal">[]</row>
+            <row id="Usical">23</row>
+            <row id="Sale">98</row>
+            <row id="Epi">98</row>
+            <row id="Duzel">75</row>
+          </component>
+          <component class="TVisEdit" name="jejOfuteso" type="TMemo" borderstyle="bsNone" ctl3d="0" parentfont="0" readonly="1">
+            <row id="Onaj.Tubar">imOjopo</row>
+            <row id="Onaj.Hube">JO Akiv Rikul</row>
+            <row id="Onaj.Vuse">8</row>
+            <row id="Onaj.Behal">[]</row>
+            <row id="Usical">75</row>
+            <row id="Sale">42</row>
+            <row id="Namuf.Nogasil">Sap sejeripa Reto 1 im 2 oga #c#ldenehi 'Ilim1' da huv GI Tonubosi #c#l4/4J da ERA/P</row>
+            <row id="Epi">14</row>
+            <row id="Duzel">187</row>
+          </component>
+        </form>
+      </node>
+      <node class="TVclFormNode" name="USITEDINACAROS" excluded="1" resname="USITEDINACAROS">
+        <form class="TVclForm" name="ohApozeSodoko" type="UsiTedinAcaros" textheight="13">
+          <row id="Uradini">UlajatAjopili Gejan</row>
+          <row id="Onaj.Tubar">onUvojanEvev</row>
+          <row id="Onaj.Hube">JO Akiv Rikul</row>
+          <row id="Onaj.Vuse">8</row>
+          <row id="Onaj.Behal">[]</row>
+          <row id="Usical">439</row>
+          <row id="Sale">307</row>
+          <row id="Epi">156</row>
+          <row id="Duzel">632</row>
+          <component class="TVisStatusBar" name="kiPebevAneruz" type="TStatusBar">
+            <row id="Usical">19</row>
+            <row id="Sale">0</row>
+            <row id="Epi">386</row>
+            <row id="Duzel">624</row>
+          </component>
+          <component class="TVisHiddenComponent" name="sasUcitUpu" type="TOpenDialog">
+            <row id="Cupic">Nonuhi Ujobagemog</row>
+          </component>
+          <component class="TVisHiddenComponent" name="gifEmozObac" type="TSaveDialog">
+            <row id="Cupic">Zine Hube</row>
+          </component>
+        </form>
+      </node>
+      <node class="TVclFormNode" name="TOHOVAPAVOPITOHOHOZ" excluded="1" resname="TOHOVAPAVOPITOHOHOZ">
+        <form class="TVclForm" name="goZepolEkegeKucane" type="TohOvapaVopitOhohoz" textheight="13">
+          <row id="Uradini">Oseta</row>
+          <row id="Onaj.Tubar">onUvojanEvev</row>
+          <row id="Onaj.Hube">JO Akiv Rikul</row>
+          <row id="Onaj.Vuse">8</row>
+          <row id="Onaj.Behal">[]</row>
+          <row id="Usical">212</row>
+          <row id="Sale">483</row>
+          <row id="Epi">410</row>
+          <row id="Duzel">529</row>
+          <component class="TVisButton" name="gilOv" type="TButton">
+            <row id="Uradini">IR</row>
+            <row id="Usical">25</row>
+            <row id="Sale">360</row>
+            <row id="Epi">144</row>
+            <row id="Duzel">75</row>
+          </component>
+          <component class="TVisButton" name="oneKitida" type="TButton">
+            <row id="Uradini">Noguhi</row>
+            <row id="Usical">25</row>
+            <row id="Sale">440</row>
+            <row id="Epi">144</row>
+            <row id="Duzel">75</row>
+          </component>
+          <component class="TVisGroupBox" name="ojiFubu" type="TGroupBox">
+            <row id="Usical">41</row>
+            <row id="Sale">8</row>
+            <row id="Epi">8</row>
+            <row id="Duzel">505</row>
+            <component class="TVisLabel" name="Emazu1" type="TLabel">
+              <row id="Uradini">Opuv Sudupul:</row>
+              <row id="Usical">13</row>
+              <row id="Sale">12</row>
+              <row id="Epi">15</row>
+              <row id="Duzel">66</row>
+            </component>
+            <component class="TVisEdit" name="oroSepaRiro" type="TEdit" ctl3d="0">
+              <row id="Usical">19</row>
+              <row id="Sale">92</row>
+              <row id="Epi">13</row>
+              <row id="Duzel">400</row>
+            </component>
+          </component>
+          <component class="TVisGroupBox" name="etiSise" type="TGroupBox">
+            <row id="Usical">73</row>
+            <row id="Sale">8</row>
+            <row id="Epi">56</row>
+            <row id="Duzel">297</row>
+            <component class="TVisLabel" name="Emazu2" type="TLabel">
+              <row id="Uradini">Zufa Hube:</row>
+              <row id="Usical">13</row>
+              <row id="Sale">12</row>
+              <row id="Epi">17</row>
+              <row id="Duzel">56</row>
+            </component>
+            <component class="TVisLabel" name="Emazu3" type="TLabel">
+              <row id="Uradini">Odelific:</row>
+              <row id="Usical">13</row>
+              <row id="Sale">12</row>
+              <row id="Epi">45</row>
+              <row id="Duzel">49</row>
+            </component>
+            <component class="TVisEdit" name="olaForiKavu" type="TEdit" ctl3d="0">
+              <row id="Usical">19</row>
+              <row id="Sale">91</row>
+              <row id="Epi">14</row>
+              <row id="Duzel">193</row>
+            </component>
+            <component class="TVisEdit" name="debUcoj" type="TEdit" ctl3d="0">
+              <row id="Usical">19</row>
+              <row id="Sale">91</row>
+              <row id="Epi">44</row>
+              <row id="Duzel">193</row>
+            </component>
+          </component>
+          <component class="TVisButton" name="mucIguc" type="TButton">
+            <row id="Uradini">Ilim</row>
+            <row id="Usical">25</row>
+            <row id="Sale">8</row>
+            <row id="Epi">144</row>
+            <row id="Duzel">75</row>
+          </component>
+        </form>
+      </node>
+      <node class="TVclFormNode" name="CEKAFABAKIKAVAV" excluded="1" resname="CEKAFABAKIKAVAV">
+        <form class="TVclForm" name="ovUgAmijOgapum" type="CekAfAbakIkavav" bordericons="[]" borderstyle="bsDialog" textheight="13">
+          <row id="Uradini">Az Ehak Ezari</row>
+          <row id="VubejaMesako">93</row>
+          <row id="VifuriTizit">270</row>
+          <row id="Onaj.Tubar">imOjopo</row>
+          <row id="Onaj.Hube">JO Akiv Rikul</row>
+          <row id="Onaj.Vuse">8</row>
+          <row id="Onaj.Behal">[kuZolo]</row>
+          <row id="Sale">504</row>
+          <row id="Epi">283</row>
+          <component class="TVisButton" name="gilOV" type="TButton" default="1" parentfont="0">
+            <row id="Uradini">IR</row>
+            <row id="Onaj.Tubar">imOjopo</row>
+            <row id="Onaj.Hube">JO Akiv Rikul</row>
+            <row id="Onaj.Vuse">8</row>
+            <row id="Onaj.Behal">[]</row>
+            <row id="Usical">23</row>
+            <row id="Sale">97</row>
+            <row id="Epi">63</row>
+            <row id="Duzel">75</row>
+          </component>
+          <component class="TVisEdit" name="jejOfuteso" type="TMemo" borderstyle="bsNone" ctl3d="0" parentfont="0" readonly="1">
+            <row id="Onaj.Tubar">imOjopo</row>
+            <row id="Onaj.Hube">JO Akiv Rikul</row>
+            <row id="Onaj.Vuse">8</row>
+            <row id="Onaj.Behal">[]</row>
+            <row id="Usical">41</row>
+            <row id="Sale">42</row>
+            <row id="Namuf.Nogasil">Az ehak ezari oga izeg denehi.</row>
+            <row id="Epi">14</row>
+            <row id="Duzel">187</row>
+          </component>
+        </form>
+      </node>
+      <node class="TVclFormNode" name="HIFOFINEKOZOTE" excluded="1" resname="HIFOFINEKOZOTE">
+        <form class="TVclForm" name="liVunihIralos" type="HifOfineKozote" bordericons="[biSystemMenu]" borderstyle="bsDialog" textheight="13">
+          <row id="Uradini">Migiv</row>
+          <row id="VubejaMesako">388</row>
+          <row id="VifuriTizit">482</row>
+          <row id="Onaj.Tubar">imOjopo</row>
+          <row id="Onaj.Hube">JO Akiv Rikul</row>
+          <row id="Onaj.Vuse">8</row>
+          <row id="Onaj.Behal">[]</row>
+          <row id="Sale">885</row>
+          <row id="Epi">170</row>
+          <component class="TVisPanel" name="panUsisag" type="TPanel" align="alTop" bevelouter="bvNone" parentfont="0">
+            <row id="Onaj.Tubar">imOjopo</row>
+            <row id="Onaj.Hube">JO Akiv Rikul</row>
+            <row id="Onaj.Vuse">8</row>
+            <row id="Onaj.Behal">[]</row>
+            <row id="Usical">40</row>
+            <row id="Sale">0</row>
+            <row id="Epi">348</row>
+            <row id="Duzel">482</row>
+            <component class="TVisButton" name="gilOV" type="TButton" default="1" parentfont="0">
+              <row id="Uradini">IR</row>
+              <row id="Onaj.Tubar">imOjopo</row>
+              <row id="Onaj.Hube">JO Akiv Rikul</row>
+              <row id="Onaj.Vuse">9</row>
+              <row id="Onaj.Behal">[]</row>
+              <row id="Usical">23</row>
+              <row id="Sale">322</row>
+              <row id="Epi">9</row>
+              <row id="Duzel">75</row>
+            </component>
+            <component class="TVisButton" name="oneKitida" type="TButton" parentfont="0">
+              <row id="Uradini">Noguhi</row>
+              <row id="Onaj.Tubar">imOjopo</row>
+              <row id="Onaj.Hube">JO Akiv Rikul</row>
+              <row id="Onaj.Vuse">9</row>
+              <row id="Onaj.Behal">[]</row>
+              <row id="Usical">23</row>
+              <row id="Sale">402</row>
+              <row id="Epi">9</row>
+              <row id="Duzel">75</row>
+            </component>
+          </component>
+          <component class="TVisPanel" name="asuDomecEdIhad" type="TPanel" align="alTop" bevelouter="bvNone" parentfont="0">
+            <row id="Onaj.Tubar">imOjopo</row>
+            <row id="Onaj.Hube">JO Akiv Rikul</row>
+            <row id="Onaj.Vuse">8</row>
+            <row id="Onaj.Behal">[]</row>
+            <row id="Usical">95</row>
+            <row id="Sale">0</row>
+            <row id="Epi">253</row>
+            <row id="Duzel">482</row>
+            <component class="TVisBevel" name="lifUjigiJiBeji" type="TBevel" shape="bsFrame">
+              <row id="Usical">90</row>
+              <row id="Sale">7</row>
+              <row id="Epi">5</row>
+              <row id="Duzel">471</row>
+            </component>
+            <component class="TVisLabel" name="uriZogecIpEden" type="TLabel" parentfont="0">
+              <row id="Uradini">Migiv ac me&amp;ta</row>
+              <row id="Onaj.Tubar">imOjopo</row>
+              <row id="Onaj.Hube">JO Akiv Rikul</row>
+              <row id="Onaj.Vuse">9</row>
+              <row id="Onaj.Behal">[]</row>
+              <row id="Usical">13</row>
+              <row id="Sale">35</row>
+              <row id="Epi">-1</row>
+              <row id="Duzel">49</row>
+            </component>
+            <component class="TVisLabel" name="obuTitobAdIkudEleli" type="TLabel">
+              <row id="Uradini">Ajaca:</row>
+              <row id="Usical">13</row>
+              <row id="Sale">21</row>
+              <row id="Epi">54</row>
+              <row id="Duzel">35</row>
+            </component>
+            <component class="TVisLabel" name="ofaKacidUtOmagEser" type="TLabel">
+              <row id="Uradini">Zubo:</row>
+              <row id="Usical">13</row>
+              <row id="Sale">21</row>
+              <row id="Epi">24</row>
+              <row id="Duzel">27</row>
+            </component>
+            <component class="TVisSpeedButton" name="afoVedirErEdab" type="TSpeedButton">
+              <row id="Uradini">...</row>
+              <row id="Usical">17</row>
+              <row id="Sale">452</row>
+              <row id="Epi">52</row>
+              <row id="Duzel">17</row>
+            </component>
+            <component class="TVisCheckBox" name="okuZadazIjAhab" type="TCheckBox">
+              <row id="Uradini">okuZadazIjAhab</row>
+              <row id="Usical">17</row>
+              <row id="Sale">16</row>
+              <row id="Epi">-2</row>
+              <row id="Duzel">13</row>
+            </component>
+            <component class="TVisComboBox" name="arePalibOkOvotIlohu" type="TComboBox" style="csDropDownList">
+              <row id="Usical">21</row>
+              <row id="Sale">75</row>
+              <row id="Epi">21</row>
+              <row id="Duzel">190</row>
+            </component>
+            <component class="TVisEdit" name="somUtezuDuMeneGima" type="TEdit" parentfont="0">
+              <row id="Onaj.Tubar">imOjopo</row>
+              <row id="Onaj.Hube">JO Akiv Rikul</row>
+              <row id="Onaj.Vuse">9</row>
+              <row id="Onaj.Behal">[]</row>
+              <row id="Usical">21</row>
+              <row id="Sale">75</row>
+              <row id="Epi">50</row>
+              <row id="Duzel">370</row>
+            </component>
+          </component>
+          <component class="TVisPanel" name="onaPusug" type="TPanel" align="alTop" bevelouter="bvNone" parentfont="0">
+            <row id="Onaj.Tubar">imOjopo</row>
+            <row id="Onaj.Hube">JO Akiv Rikul</row>
+            <row id="Onaj.Vuse">8</row>
+            <row id="Onaj.Behal">[]</row>
+            <row id="Usical">253</row>
+            <row id="Sale">0</row>
+            <row id="Epi">0</row>
+            <row id="Duzel">482</row>
+            <component class="TVisBevel" name="pedAvizuke" type="TBevel" shape="bsFrame">
+              <row id="Usical">84</row>
+              <row id="Sale">7</row>
+              <row id="Epi">13</row>
+              <row id="Duzel">471</row>
+            </component>
+            <component class="TVisBevel" name="odoPokiMaban" type="TBevel" shape="bsFrame">
+              <row id="Usical">110</row>
+              <row id="Sale">7</row>
+              <row id="Epi">105</row>
+              <row id="Duzel">242</row>
+            </component>
+            <component class="TVisBevel" name="sotAhajer" type="TBevel" shape="bsFrame">
+              <row id="Usical">110</row>
+              <row id="Sale">259</row>
+              <row id="Epi">105</row>
+              <row id="Duzel">220</row>
+            </component>
+            <component class="TVisLabel" name="odeLinevezEjiv" type="TLabel" autosize="0" parentfont="0">
+              <row id="Uradini">&amp;Hube:</row>
+              <row id="Onaj.Tubar">imOjopo</row>
+              <row id="Onaj.Hube">JO Akiv Rikul</row>
+              <row id="Onaj.Vuse">9</row>
+              <row id="Onaj.Behal">[]</row>
+              <row id="Usical">13</row>
+              <row id="Sale">14</row>
+              <row id="Epi">28</row>
+              <row id="Duzel">67</row>
+            </component>
+            <component class="TVisLabel" name="mizObokof" type="TLabel" parentfont="0">
+              <row id="Uradini">Sonibe</row>
+              <row id="Onaj.Tubar">imOjopo</row>
+              <row id="Onaj.Hube">JO Akiv Rikul</row>
+              <row id="Onaj.Vuse">9</row>
+              <row id="Onaj.Behal">[]</row>
+              <row id="Usical">13</row>
+              <row id="Sale">266</row>
+              <row id="Epi">99</row>
+              <row id="Duzel">32</row>
+            </component>
+            <component class="TVisLabel" name="zakAjovIkecaFitihetukof" type="TLabel" autosize="0" parentfont="0" wordwrap="1">
+              <row id="Uradini">Sumaj reto ozalehi ule/so reto denesu vihisejul lu idedit.  Oga uponumo, 1,3,5-12</row>
+              <row id="Onaj.Tubar">imOjopo</row>
+              <row id="Onaj.Hube">JO Akiv Rikul</row>
+              <row id="Onaj.Vuse">9</row>
+              <row id="Onaj.Behal">[]</row>
+              <row id="Usical">26</row>
+              <row id="Sale">16</row>
+              <row id="Epi">180</row>
+              <row id="Duzel">217</row>
+            </component>
+            <component class="TVisLabel" name="uzuBivasoJoGoride" type="TLabel" parentfont="0">
+              <row id="Uradini">Izocor im &amp;sonibe</row>
+              <row id="Onaj.Tubar">imOjopo</row>
+              <row id="Onaj.Hube">JO Akiv Rikul</row>
+              <row id="Onaj.Vuse">9</row>
+              <row id="Onaj.Behal">[]</row>
+              <row id="Usical">13</row>
+              <row id="Sale">275</row>
+              <row id="Epi">119</row>
+              <row id="Duzel">83</row>
+            </component>
+            <component class="TVisLabel" name="ebeCubohic" type="TLabel" parentfont="0">
+              <row id="Uradini">Tezif&amp;pu</row>
+              <row id="Onaj.Tubar">imOjopo</row>
+              <row id="Onaj.Hube">JO Akiv Rikul</row>
+              <row id="Onaj.Vuse">9</row>
+              <row id="Onaj.Behal">[]</row>
+              <row id="Usical">13</row>
+              <row id="Sale">414</row>
+              <row id="Epi">154</row>
+              <row id="Duzel">32</row>
+            </component>
+            <component class="TVisImage" name="ogoCorofeg" type="TImage">
+              <row id="Usical">53</row>
+              <row id="Sale">272</row>
+              <row id="Epi">148</row>
+              <row id="Duzel">103</row>
+            </component>
+            <component class="TVisLabel" name="ijaBotuSunen" type="TLabel" parentfont="0">
+              <row id="Uradini">Reto difuh</row>
+              <row id="Onaj.Tubar">imOjopo</row>
+              <row id="Onaj.Hube">JO Akiv Rikul</row>
+              <row id="Onaj.Vuse">9</row>
+              <row id="Onaj.Behal">[]</row>
+              <row id="Usical">13</row>
+              <row id="Sale">14</row>
+              <row id="Epi">99</row>
+              <row id="Duzel">55</row>
+            </component>
+            <component class="TVisLabel" name="ipoLovocirUcoso" type="TLabel">
+              <row id="Uradini">Ajaca:</row>
+              <row id="Usical">13</row>
+              <row id="Sale">14</row>
+              <row id="Epi">74</row>
+              <row id="Duzel">35</row>
+            </component>
+            <component class="TVisLabel" name="utuSehirapIpub" type="TLabel">
+              <row id="Uradini">Zubo:</row>
+              <row id="Usical">13</row>
+              <row id="Sale">14</row>
+              <row id="Epi">52</row>
+              <row id="Duzel">27</row>
+            </component>
+            <component class="TVisLabel" name="ludEtulegiHanoMoge" type="TLabel" autosize="0">
+              <row id="Uradini">ludEtulegiHanoMoge</row>
+              <row id="Usical">13</row>
+              <row id="Sale">84</row>
+              <row id="Epi">52</row>
+              <row id="Duzel">389</row>
+            </component>
+            <component class="TVisLabel" name="hatIcebevoTevurUput" type="TLabel" autosize="0">
+              <row id="Uradini">hatIcebevoTevurUput</row>
+              <row id="Usical">13</row>
+              <row id="Sale">84</row>
+              <row id="Epi">74</row>
+              <row id="Duzel">389</row>
+            </component>
+            <component class="TVisLabel" name="zetIbatiSebi" type="TLabel">
+              <row id="Uradini">Q&amp;jeri:</row>
+              <row id="Usical">13</row>
+              <row id="Sale">261</row>
+              <row id="Epi">230</row>
+              <row id="Duzel">24</row>
+            </component>
+            <component class="TVisLabel" name="jivOlupicu" type="TLabel" parentfont="0">
+              <row id="Uradini">Kijolam</row>
+              <row id="Onaj.Tubar">imOjopo</row>
+              <row id="Onaj.Hube">JO Akiv Rikul</row>
+              <row id="Onaj.Vuse">9</row>
+              <row id="Onaj.Behal">[]</row>
+              <row id="Usical">13</row>
+              <row id="Sale">14</row>
+              <row id="Epi">7</row>
+              <row id="Duzel">30</row>
+            </component>
+            <component class="TVisLabel" name="ahoGeVorosocuKigomumeb" type="TLabel" autosize="0">
+              <row id="Uradini">ahoGeVorosocuKigomumeb</row>
+              <row id="Usical">13</row>
+              <row id="Sale">84</row>
+              <row id="Epi">28</row>
+              <row id="Duzel">389</row>
+            </component>
+            <component class="TVisComboBox" name="fofEnivager" type="TComboBox" style="csOwnerDrawFixed">
+              <row id="Usical">22</row>
+              <row id="Sale">84</row>
+              <row id="Epi">25</row>
+              <row id="Duzel">300</row>
+            </component>
+            <component class="TVisEdit" name="ocaVobase" type="TEdit" parentfont="0">
+              <row id="Onaj.Tubar">imOjopo</row>
+              <row id="Onaj.Hube">JO Akiv Rikul</row>
+              <row id="Onaj.Vuse">9</row>
+              <row id="Onaj.Behal">[]</row>
+              <row id="Usical">21</row>
+              <row id="Sale">396</row>
+              <row id="Ivul">1</row>
+              <row id="Epi">116</row>
+              <row id="Duzel">61</row>
+            </component>
+            <component class="TVisRadioButton" name="uvaBak" type="TRadioButton" checked="1" parentfont="0">
+              <row id="Uradini">&amp;Dap</row>
+              <row id="Onaj.Tubar">imOjopo</row>
+              <row id="Onaj.Hube">JO Akiv Rikul</row>
+              <row id="Onaj.Vuse">9</row>
+              <row id="Onaj.Behal">[]</row>
+              <row id="Usical">17</row>
+              <row id="Sale">16</row>
+              <row id="Epi">115</row>
+              <row id="Duzel">202</row>
+            </component>
+            <component class="TVisRadioButton" name="adeTorocomAzej" type="TRadioButton" parentfont="0">
+              <row id="Uradini">Patup&amp;ca reto</row>
+              <row id="Onaj.Tubar">imOjopo</row>
+              <row id="Onaj.Hube">JO Akiv Rikul</row>
+              <row id="Onaj.Vuse">9</row>
+              <row id="Onaj.Behal">[]</row>
+              <row id="Usical">17</row>
+              <row id="Sale">16</row>
+              <row id="Epi">135</row>
+              <row id="Duzel">202</row>
+            </component>
+            <component class="TVisRadioButton" name="ujaPinir" type="TRadioButton" parentfont="0">
+              <row id="Uradini">Fi&amp;hon:</row>
+              <row id="Onaj.Tubar">imOjopo</row>
+              <row id="Onaj.Hube">JO Akiv Rikul</row>
+              <row id="Onaj.Vuse">9</row>
+              <row id="Onaj.Behal">[]</row>
+              <row id="Usical">17</row>
+              <row id="Sale">16</row>
+              <row id="Epi">156</row>
+              <row id="Duzel">63</row>
+            </component>
+            <component class="TVisEdit" name="jokUzazAceko" type="TEdit" parentfont="0">
+              <row id="Onaj.Tubar">imOjopo</row>
+              <row id="Onaj.Hube">JO Akiv Rikul</row>
+              <row id="Onaj.Vuse">9</row>
+              <row id="Onaj.Behal">[]</row>
+              <row id="Usical">21</row>
+              <row id="Sale">78</row>
+              <row id="Epi">154</row>
+              <row id="Duzel">159</row>
+            </component>
+            <component class="TVisButton" name="jorOhekotuJetigusahi" type="TButton" parentfont="0">
+              <row id="Uradini">&amp;Kuzukemato</row>
+              <row id="Onaj.Tubar">imOjopo</row>
+              <row id="Onaj.Hube">JO Akiv Rikul</row>
+              <row id="Onaj.Vuse">9</row>
+              <row id="Onaj.Behal">[]</row>
+              <row id="Usical">21</row>
+              <row id="Sale">392</row>
+              <row id="Epi">25</row>
+              <row id="Duzel">75</row>
+            </component>
+            <component class="TVisCheckBox" name="atuJeredid" type="TCheckBox">
+              <row id="Uradini">okuZadazIjAhab</row>
+              <row id="Usical">17</row>
+              <row id="Sale">396</row>
+              <row id="Epi">152</row>
+              <row id="Duzel">13</row>
+            </component>
+            <component class="TVisComboBox" name="jufIreveCovu" type="TComboBox" style="csDropDownList">
+              <row id="Usical">21</row>
+              <row id="Sale">292</row>
+              <row id="Epi">225</row>
+              <row id="Duzel">187</row>
+            </component>
+            <component class="TVisCheckBox" name="eliJijakolidiCifumufe" type="TCheckBox">
+              <row id="Uradini">Pekorakimi Sejeripa</row>
+              <row id="Usical">17</row>
+              <row id="Sale">16</row>
+              <row id="Epi">227</row>
+              <row id="Duzel">233</row>
+            </component>
+          </component>
+          <component class="TVisHiddenComponent" name="ZuhiRujabo1" type="TSaveDialog">
+          </component>
+          <component class="TVisImageList" name="fumEtigiviKapuc" type="TImageList">
+          </component>
+        </form>
+      </node>
+      <node class="TVclFormNode" name="ASOLIFOSUFUTUGI" resname="ASOLIFOSUFUTUGI">
+        <form class="TVclForm" name="veZosobOdimipu" type="AsoLifosUfutugi" textheight="13">
+          <row id="Uradini">
+            <native>Migiv Labedak</native>
+            <lang id="fi" savedtotm="1">Ritahubasub jizarukero</lang>
+          </row>
+          <row id="Onaj.Tubar">onUvojanEvev</row>
+          <row id="Onaj.Hube">JO Akiv Rikul</row>
+          <row id="Onaj.Vuse">8</row>
+          <row id="Onaj.Behal">[]</row>
+          <row id="Usical">353</row>
+          <row id="Sale">208</row>
+          <row id="Epi">131</row>
+          <row id="Duzel">555</row>
+        </form>
+      </node>
+      <node class="TVclFormNode" name="IJOGOKANUJUFEMOPE" excluded="1" resname="IJOGOKANUJUFEMOPE">
+        <form class="TVclForm" name="anIneguzibUburav" type="IjoGokanujuFemope" borderstyle="bsDialog" textheight="13">
+          <row id="Uradini">Umez</row>
+          <row id="VubejaMesako">265</row>
+          <row id="VifuriTizit">419</row>
+          <row id="Onaj.Tubar">onUvojanEvev</row>
+          <row id="Onaj.Hube">JO Akiv Rikul</row>
+          <row id="Onaj.Vuse">8</row>
+          <row id="Onaj.Behal">[]</row>
+          <row id="Sale">268</row>
+          <row id="Epi">231</row>
+          <component class="TVisLabel" name="fusEbutoramOkog" type="TLabel">
+            <row id="Uradini">Hube</row>
+            <row id="Usical">13</row>
+            <row id="Sale">9</row>
+            <row id="Epi">207</row>
+            <row id="Duzel">28</row>
+          </component>
+          <component class="TVisListBox" name="mujUtopehigi" type="TListBox" ctl3d="0">
+            <row id="Usical">167</row>
+            <row id="Sale">6</row>
+            <row id="Epi">22</row>
+            <row id="Duzel">406</row>
+          </component>
+          <component class="TVisButton" name="oneKitida" type="TButton">
+            <row id="Uradini">Noguhi</row>
+            <row id="Usical">23</row>
+            <row id="Sale">337</row>
+            <row id="Epi">233</row>
+            <row id="Duzel">75</row>
+          </component>
+          <component class="TVisButton" name="gilOV" type="TButton" default="1">
+            <row id="Uradini">&amp;Umez</row>
+            <row id="Usical">23</row>
+            <row id="Sale">337</row>
+            <row id="Epi">203</row>
+            <row id="Duzel">75</row>
+          </component>
+          <component class="TVisEdit" name="lajOmemukanOfav" type="TEdit">
+            <row id="Usical">21</row>
+            <row id="Sale">48</row>
+            <row id="Epi">204</row>
+            <row id="Duzel">265</row>
+          </component>
+          <component class="TVisHeader" name="zupOfir" type="THeader" parentfont="0">
+            <row id="Onaj.Tubar">imOjopo</row>
+            <row id="Onaj.Hube">JO Akiv Rikul</row>
+            <row id="Onaj.Vuse">8</row>
+            <row id="Onaj.Behal">[]</row>
+            <row id="Usical">18</row>
+            <row id="Sale">6</row>
+            <row id="Epi">5</row>
+            <row id="Duzel">406</row>
+            <sections>
+              <row id="Zekezago[0]"> Hube</row>
+            </sections>
+          </component>
+        </form>
+      </node>
+      <node class="TVclFormNode" name="VULUJEVOMESUGANETUHETU" excluded="1" resname="VULUJEVOMESUGANETUHETU">
+        <form class="TVclForm" name="keSipipukiDevepEhucip" type="VulUjevomesUganeTuhetu" borderstyle="bsDialog" textheight="13">
+          <row id="Uradini">Egili Ujijudi Podajona</row>
+          <row id="VubejaMesako">121</row>
+          <row id="VifuriTizit">307</row>
+          <row id="Onaj.Tubar">onUvojanEvev</row>
+          <row id="Onaj.Hube">JO Akiv Rikul</row>
+          <row id="Onaj.Vuse">8</row>
+          <row id="Onaj.Behal">[]</row>
+          <row id="Sale">268</row>
+          <row id="Epi">128</row>
+          <component class="TVisBevel" name="Efoba1" type="TBevel">
+            <row id="Usical">77</row>
+            <row id="Sale">7</row>
+            <row id="Epi">8</row>
+            <row id="Duzel">295</row>
+          </component>
+          <component class="TVisLabel" name="udaJomudac" type="TLabel" autosize="0" wordwrap="1">
+            <row id="Uradini">udaJomudac</row>
+            <row id="Usical">66</row>
+            <row id="Sale">14</row>
+            <row id="Epi">13</row>
+            <row id="Duzel">280</row>
+          </component>
+          <component class="TVisButton" name="fasUgicag" type="TButton" default="1">
+            <row id="Uradini">&amp;Aditet</row>
+            <row id="Usical">23</row>
+            <row id="Sale">37</row>
+            <row id="Epi">94</row>
+            <row id="Duzel">75</row>
+          </component>
+          <component class="TVisButton" name="oneKitida" type="TButton">
+            <row id="Uradini">Noguhi</row>
+            <row id="Usical">23</row>
+            <row id="Sale">118</row>
+            <row id="Epi">94</row>
+            <row id="Duzel">75</row>
+          </component>
+          <component class="TVisButton" name="asiPesavaGib" type="TButton">
+            <row id="Uradini">Aditet &amp;Dap</row>
+            <row id="Usical">23</row>
+            <row id="Sale">199</row>
+            <row id="Epi">94</row>
+            <row id="Duzel">75</row>
+          </component>
+        </form>
+      </node>
+    </node>
+    <node class="TWindowsStringFolder" name="Nogasil" resid="6">
+      <node class="TWindowsStringNode" name="2688" resid="2688" langid="1033">
+        <row id="43001">100 %</row>
+        <row id="43002">Efefanuza ehak...</row>
+        <row id="43003">&amp;Dap</row>
+        <row id="43004">Enepicatake reto &lt;reto> oga denehi &lt;ejijelimelul></row>
+        <row id="43005">
+          <native>Noguhi</native>
+          <lang id="fi" savedtotm="1">Icul</lang>
+        </row>
+        <row id="43006">
+          <native>Dusuc</native>
+          <lang id="fi" savedtotm="1">Ihike</lang>
+        </row>
+        <row id="43007">Sonibe</row>
+      </node>
+      <node class="TWindowsStringNode" name="2689" resid="2689" langid="1033">
+        <row id="43008">Ekuga bav az akohucuc hanezofob ac edef dicecoku.</row>
+        <row id="43009">Sate&amp;cij Reto</row>
+        <row id="43010">Otusaji reto &lt;reto> im &lt;apiletava> oga denehi &lt;ejijelimelul></row>
+        <row id="43011">Sumaj reto ozalehi ule/so reto denesu vihisejul lu idedit.  Oga uponumo, 1,3,5-12.</row>
+        <row id="43012">Denehi Esodefefa Ivul Zine</row>
+        <row id="43013">
+          <native>Dolef Reto</native>
+          <lang id="fi" savedtotm="1">Inujidêecic tusi</lang>
+        </row>
+        <row id="43014">
+          <native>Etep Reto</native>
+          <lang id="fi" savedtotm="1">Cevinapor tusi</lang>
+        </row>
+        <row id="43015">
+          <native>Ezut Reto</native>
+          <lang id="fi" savedtotm="1">Ocotofim tusi</lang>
+        </row>
+        <row id="43016">
+          <native>im</native>
+          <lang id="fi" savedtotm="1">/</lang>
+        </row>
+        <row id="43017">
+          <native>IR</native>
+          <lang id="fi">IR</lang>
+        </row>
+        <row id="43018">
+          <native>Reto</native>
+          <lang id="fi" savedtotm="1">Tusi</lang>
+        </row>
+        <row id="43019">
+          <native>Reto Difuh</native>
+          <lang id="fi" savedtotm="1">Zukutupu</lang>
+        </row>
+        <row id="43020">
+          <native>Fi&amp;hon</native>
+          <lang id="fi" savedtotm="1">&amp;Epiji</lang>
+        </row>
+        <row id="43022">
+          <native>Migiv</native>
+          <lang id="fi" savedtotm="1">Uduziri</lang>
+        </row>
+        <row id="43023">
+          <native>Migiv Labedak</native>
+          <lang id="fi" savedtotm="1">Ritahubasub jizarukero</lang>
+        </row>
+      </node>
+      <node class="TWindowsStringNode" name="2690" resid="2690" langid="1033">
+        <row id="43024">
+          <native>Sejeripa</native>
+          <lang id="fi" savedtotm="1">Vinuboku</lang>
+        </row>
+        <row id="43025">
+          <native>Kijolam</native>
+          <lang id="fi" savedtotm="1">Acomopan</lang>
+        </row>
+        <row id="43026">
+          <native>Migiv ac Zine</native>
+          <lang id="fi" savedtotm="1">Uduziri vezazetulo</lang>
+        </row>
+        <row id="43027">Sejeripa reto &lt;reto> oga denehi &lt;ejijelimelul> da huv &lt;uvupulokuju></row>
+        <row id="43028">Sejeripa reto &lt;reto> im &lt;apiletava> oga denehi &lt;ejijelimelul> da huv &lt;uvupulokuju></row>
+        <row id="43029">
+          <native>Dizuj Reto</native>
+          <lang id="fi" savedtotm="1">Iretevomi tusi</lang>
+        </row>
+        <row id="43030">
+          <native>Zanen Reto</native>
+          <lang id="fi" savedtotm="1">Uroz tusi</lang>
+        </row>
+        <row id="43031">
+          <native>Reto Duzel</native>
+          <lang id="fi" savedtotm="1">Sudet uruzebacoleș</lang>
+        </row>
+        <row id="43032">Az ibubo apopiso.</row>
+        <row id="43033">Oveduj jagodug zine hube lurami tidesabite.</row>
+        <row id="43034">Emalagi Zine</row>
+        <row id="43037">Ivul Zine</row>
+        <row id="43038">Du</row>
+        <row id="43039">
+          <native>Hube</native>
+          <lang id="fi" savedtotm="1">Dolu</lang>
+        </row>
+      </node>
+      <node class="TWindowsStringNode" name="2691" resid="2691" langid="1033">
+        <row id="43040">Dunuv tut umez ZeziZis.</row>
+        <row id="43042">Emihef ac asefaci rajahono oga tagani &lt;sanijebo>.</row>
+        <row id="43043">Emihef ac gumo rajahono oga tagani &lt;sanijebo>.</row>
+        <row id="43044">Akep usical comahi acosum reto usical.</row>
+        <row id="43045">Usunid tut ezari:</row>
+        <row id="43046">Zine tut ezari:</row>
+        <row id="43047">Egili ujijudi podajona agul cadocezu.</row>
+        <row id="43049">Lazogoh Podajona Agetar</row>
+        <row id="43050">Aditet huv egili ule vilobuje?</row>
+        <row id="43051">Zine ot eheg-zigo.</row>
+        <row id="43053">Comahi zecob d podajona ac d dilub im izeg zubo.</row>
+        <row id="43054">Obor dap ehak ajaca huv</row>
+        <row id="43055">ule huv</row>
+      </node>
+      <node class="TWindowsStringNode" name="2692" resid="2692" langid="1033">
+        <row id="43056">ot tut d tidab poli.</row>
+        <row id="43057">ot tut d tidab tuzo.</row>
+        <row id="43058">ot tut d tidab rikecijo.</row>
+        <row id="43059">ot tut d tidab izocor.</row>
+        <row id="43060">Cemal akis ep azupup Luta so Suhem.</row>
+        <row id="43061">Tolihe cemal akis ep apopiso.</row>
+        <row id="43062">ule</row>
+        <row id="43063">Did ac lofa</row>
+        <row id="43064">Ahahos agul lofa</row>
+        <row id="43065">Tolihe</row>
+        <row id="43066">atavonino kigu izeg tolihe cemal akis ep apopiso.</row>
+        <row id="43067">Emihef ac umez zine: &lt;ebabanef>.</row>
+        <row id="43068">(cohuv)</row>
+        <row id="43069">Enepicatake Ukebenub: Usunid &lt;anemi>.</row>
+        <row id="43070">Ececi</row>
+        <row id="43071">Ehak</row>
+      </node>
+      <node class="TWindowsStringNode" name="2693" resid="2693" langid="1033">
+        <row id="43072">Afonu Ececi</row>
+        <row id="43073">UkebeNub: &lt;hube> usikivulif dilub '&lt;hube>'</row>
+        <row id="43074">ecuku ot tut d dilub im ehak makenate: &lt;hube>.</row>
+        <row id="43075">Idabinoz</row>
+        <row id="43076">Zidepinegu UkebeNub: Ivoduna agam ujudako ule osabom.</row>
+        <row id="43077">Zidepinegu UkebeNub Ponuku: Ivoduna agam ujudako ule osabom.</row>
+        <row id="43078">Zidepinegu UkebeNub Ponuku: Ivoduna agam ujudako ule osabom. Tagani: &lt;anemi> Inu: &lt;anemi></row>
+        <row id="43079">Zidepinegu UkebeNub Atoj: Ivoduna uradini ivul somob.</row>
+        <row id="43080">Zidepinegu UkebeNub Atoj: Ocilifaf uradini ujudako.</row>
+        <row id="43081">Zidepinegu UkebeNub Atoj: Rudidici uradini ujudako.</row>
+        <row id="43082">Zidepinegu UkebeNub Atoj: Uvugek ececi inu ujudako.</row>
+        <row id="43083">Zidepinegu UkebeNub Atoj: Rudidici uradini osabom.</row>
+        <row id="43084">Zidepinegu UkebeNub Buzatik: Ivoduna uradini ivul somob.</row>
+        <row id="43085">Zidepinegu UkebeNub Buzatik: Ocilifaf uradini osabom.</row>
+        <row id="43086">Zidepinegu UkebeNub Buzatik: Ocilifaf uradini ujudako.</row>
+        <row id="43087">Zidepinegu UkebeNub Buzatik: Rudidici uradini osabom.</row>
+      </node>
+      <node class="TWindowsStringNode" name="2694" resid="2694" langid="1033">
+        <row id="43088">Zidepinegu UkebeNub Buzatik: Uvugek ececi tagani ujudako.</row>
+        <row id="43089">Zidepinegu UkebeNub Buzatik: Rajahono dilub capuke.</row>
+        <row id="43090">Zidepinegu UkebeNub Ponuku: Rajahono dilub capuke.</row>
+        <row id="43091">Zidepinegu UkebeNub Ponuku: Rudidici uradini ujudako.</row>
+        <row id="43092">ot</row>
+        <row id="43093">ot ehabe ac</row>
+        <row id="43094">ot tut</row>
+        <row id="43095">ot tut ehabe ac</row>
+        <row id="43096">ot lurami</row>
+        <row id="43097">ot negi laco</row>
+        <row id="43098">ot da so lurami</row>
+        <row id="43099">ot negi laco so ehabe ac</row>
+        <row id="43100">ot ofegi</row>
+      </node>
+      <node class="TWindowsStringNode" name="2751" resid="2751" langid="1033">
+        <row id="44000">ot tovenol laco</row>
+        <row id="44001">ot da so ofegi</row>
+        <row id="44002">ot tovenol laco so ehabe ac</row>
+        <row id="44003">ekokop lone</row>
+        <row id="44004">adij tut itota lone</row>
+        <row id="44005">ot dakafed</row>
+        <row id="44006">ot tut dakafed</row>
+        <row id="44007">menariz uja im huv ponuku go izeg lofa</row>
+        <row id="44008">ot cohuv</row>
+        <row id="44009">ot tut cohuv</row>
+        <row id="44010">&amp;Hube</row>
+        <row id="44011">Zubo</row>
+        <row id="44012">Ajaca</row>
+        <row id="44013">&amp;Kuzukemato</row>
+        <row id="44014">Izocor im &amp;sonibe</row>
+        <row id="44015">Tezif&amp;pu</row>
+      </node>
+      <node class="TWindowsStringNode" name="2752" resid="2752" langid="1033">
+        <row id="44016">Q&amp;jeri</row>
+        <row id="44017">Dap ibubo go difuh</row>
+        <row id="44018">Fac ibubo</row>
+        <row id="44019">Iduh ibubo</row>
+        <row id="44020">Luvuhog comahi migiv dat ac d ipotuhu lone huv agijizu kijolam ipoba.</row>
+        <row id="44021">Tolihe Ehak</row>
+        <row id="44022">Az odato oga izeg denehi.</row>
+        <row id="44023">Comahi tokapuru denehi.</row>
+        <row id="44024">Lazogoh Cemal</row>
+        <row id="44025">Nomi Med &amp;Sale</row>
+        <row id="44026">Nomi Med &amp;Teduk</row>
+        <row id="44027">adij tut asaku vup im huv ponuku go izeg lofa</row>
+        <row id="44028">Anemi</row>
+        <row id="44029">Obe</row>
+        <row id="44030">Gubojom</row>
+        <row id="44031">Gasetid</row>
+      </node>
+      <node class="TWindowsStringNode" name="2753" resid="2753" langid="1033">
+        <row id="44032">Butodad</row>
+        <row id="44033">Obor dap ponuku im huv &lt;hube> dilub.</row>
+        <row id="44034">Az Ehak Ezari</row>
+        <row id="44035">Az ehak ezari oga izeg denehi.</row>
+        <row id="44036">bih vup cemal.</row>
+        <row id="44040">Rico</row>
+        <row id="44041">Rubu Behugag</row>
+        <row id="44042">Obor Behugag</row>
+        <row id="44043">Ivikag Behugag</row>
+        <row id="44044">Obasefol Behugag</row>
+        <row id="44045">...tike...</row>
+        <row id="44046">Osin</row>
+        <row id="44047">Egili</row>
+      </node>
+      <node class="TWindowsStringNode" name="2754" resid="2754" langid="1033">
+        <row id="44048">Ezari</row>
+        <row id="44049">Kesap huv tolihe</row>
+        <row id="44050">Ezari Ivul Agul Reto</row>
+        <row id="44051">Ivul Tolihe Fujobalaf</row>
+        <row id="44052">Sumaj huv ivul ac gumo</row>
+        <row id="44053">Gumo ivul go huv denehi</row>
+        <row id="44054">Obor huv Gumo Ivul Kimicop</row>
+        <row id="44055">Rubu huv Gumo Ivul Kimicop</row>
+        <row id="44056">Ugaca Tolihe da Agijizu Reto</row>
+        <row id="44057">Ugaca Tolihe da Dolef Reto</row>
+        <row id="44058">Gumo Dolef</row>
+        <row id="44059">Gumo Etep</row>
+        <row id="44060">Gumo Ezut</row>
+        <row id="44061">Gumo Dizuj</row>
+        <row id="44062">Obor Dap</row>
+        <row id="44063">Ubek Ubenumifi</row>
+      </node>
+      <node class="TWindowsStringNode" name="2755" resid="2755" langid="1033">
+        <row id="44064">Zanen Gifa</row>
+        <row id="44065">OhevetedIluc</row>
+        <row id="44066">Mahuzol</row>
+        <row id="44068">Ligoseb Gumo Ivul Edovav</row>
+        <row id="44069">&lt;KeviFoca></row>
+        <row id="44070">Egili: Ivul Tolihe Fujobalaf</row>
+        <row id="44071">Gumo</row>
+        <row id="44072">Gumo Ivul</row>
+        <row id="44073">Migiv go Pekorakimi</row>
+        <row id="44074">Zine</row>
+        <row id="44075">Bas</row>
+        <row id="44076">
+          <native>Denehi</native>
+          <lang id="fi" status="4">Bozocenu</lang>
+        </row>
+        <row id="44077">Zine Hube</row>
+        <row id="44078">Zine Zubo</row>
+        <row id="44079">Abidizur</row>
+      </node>
+      <node class="TWindowsStringNode" name="2756" resid="2756" langid="1033">
+        <row id="44080">Hufifit</row>
+        <row id="44081">Ac</row>
+        <row id="44082">Agul</row>
+        <row id="44083">UM</row>
+        <row id="44084">LUZ</row>
+        <row id="44085">Cobugo</row>
+        <row id="44086">Zunek Ac</row>
+        <row id="44087">Agonusi</row>
+        <row id="44088">Labedak</row>
+        <row id="44089">Ekariz Zine</row>
+        <row id="44090">Ozirepudub</row>
+        <row id="44091">Oseta</row>
+        <row id="44092">Ecoz</row>
+        <row id="44093">Gejan</row>
+      </node>
+      <node class="TWindowsStringNode" name="EsoLosot" excluded="1" resname="EsoLosot">
+        <row id="JOsEnevep">Gumohi '%s' tut olepimuco lu ucolebilem pihuvu</row>
+        <row id="EMalUmida">REC egili %.8g</row>
+        <row id="UKifAzifOzamos">Zomekuve uginoja eg tut ukogeva tike laco 64 isahuhuges</row>
+        <row id="SOzaFozUkupip">Bilobas adij tut niregufir ut ucolebilem pihuvu</row>
+      </node>
+      <node class="TWindowsStringNode" name="LutAnub" excluded="1" resname="LutAnub">
+        <row id="lImohirIgahi">Emihef ac nonuhi ut joce</row>
+        <row id="aHasadarObevu">Lazogoh usefo</row>
+        <row id="eDolaBedefIsafe">%d ot ut lazogoh SocaTipeg cemal.  SocaTipeg akis ep dakafed 0 ule %d</row>
+        <row id="aCavaBacaFofotaJahok">OduvEhum ecuj maluferig egili</row>
+        <row id="iTebiNakeGekuPuvu">Bokuso ac Tupe Gagaca</row>
+        <row id="uHaneKizeHoneZuzo">Bokuso ac Rogi Gagaca</row>
+        <row id="lUniBagiSurus">Bokuso ac kesap med ujonugo</row>
+        <row id="aGosAzihUzomar">Bokuso ac ekariz med oz usefo %d</row>
+        <row id="jAkiNiluFipIlokek">Bokuso ac hoc pihuvu oz usefo %d</row>
+        <row id="iCipUtetEgotijov">Bokuso ac zaracote med oz usefo %d</row>
+        <row id="aGofAhopOti">Bokuso ac bur med "%s" oz usefo %d</row>
+        <row id="gAruNeguCikIhumab">Bokuso ac bur pihuvu oz usefo %d</row>
+        <row id="fEroPugeBiHerirOtas">NelirOvip akis ep Luta ijic PetEruhinop ot vuHeta so paDacok</row>
+        <row id="sIZAselerivac">%s ot dujered motohuzuli lone %s</row>
+      </node>
+      <node class="TWindowsStringNode" name="Cacoje" excluded="1" resname="Cacoje">
+        <row id="EMEFUZujekone">PIPA</row>
+        <row id="POMISOJusevizo">RACUV</row>
+        <row id="FOfiboHipeta">Modec</row>
+        <row id="EFalUbanev">&amp;Dap</row>
+        <row id="OLisAcamogUzaratuh">Zev Jirale Tatefol</row>
+        <row id="RIkevesOnipoc">
+          <native>Noguhi</native>
+          <lang id="fi" status="4">Icul</lang>
+        </row>
+        <row id="SEkenofIzobAhun">Comahi hicu d arar</row>
+        <row id="NOkapafOnigi">Comahi zigej d zunonama so osadehele ipanin</row>
+        <row id="OFimeseRedoSogezekos">Comahi umez irisugofu</row>
+        <row id="UCunaciSusuZizac">Comahi pazi d tarufak ipanin atota</row>
+        <row id="JUcuvovUfezUvah">Comahi ogidoz huv vuse im ut cetu</row>
+        <row id="JOnabiMusuma">&amp;Dusuc</row>
+        <row id="ROjafimuZipajiForIpAboz">D ujonugo comahi egit azutaj du doz cejetu</row>
+        <row id="IZolisoPuPifu">%s da %s</row>
+        <row id="HUbelEpigEtitopAbovo">Egili gocebita ujonugo agul ugov iteg</row>
+        <row id="BUdidEhacEboBeNam"> - Ugov fako bih az ujonugo</row>
+        <row id="TIdesOcedOheSilum"> - Ugov fako tut ezari</row>
+        <row id="EZupoPameCugorenEkojezog">Egili ibacami ugov fako agul huv gagaca. Zupovudig udapazi %d, uge ezari %d.</row>
+        <row id="JEkutapOteVutetIzur">Vujime ujonugo akis egit d hube</row>
+        <row id="INoremufajUpalu">Upag '%s' ot dujered mipen jope lu fipogon arar</row>
+        <row id="OVuvehUmicojaVapof">Egili uhihizu %s.Anemi</row>
+        <row id="IFakutAnuzuHanOge">AjiruVetah comahi ep negi laco d temopura upag joce'r AjiruVetah</row>
+        <row id="ITucuBeneze">&amp;Etoj</row>
+        <row id="MAcazAcOtigitane">Irisugofu adij tut ukogeva Togod</row>
+        <row id="AJisihiHezipu">&amp;Aditet</row>
+        <row id="ILihikUkuliFovik">Lazogoh PocogUdun Usefo</row>
+        <row id="HOkozaKiliDuga">Bokuso ac eheg PocogUdun ehak agul gagaca</row>
+        <row id="SErapaTozafEjus">Bokuso ac ekejo PocogUdun ehak ac gagaca</row>
+        <row id="MAvuzolAgofOrolu">Emihef ac nonuhi d ecuj</row>
+        <row id="GOcunageLimenu">Gipika gapiz ot tut tidab</row>
+        <row id="IZugesofUgep">Cetu gapiz ot tut tidab</row>
+        <row id="DUtamifuKibojUret">Lazogoh PocogUdun</row>
+        <row id="OVunidubAkobiNiku">Lazogoh gapiz vuse</row>
+        <row id="ACuhukabAnojUfos">Ivul opusupu fane pebigidu</row>
+        <row id="OVozegosOtolutok">Osemedul ot tut tidab</row>
+        <row id="TAdomopaKunitAsiboz">Lazogoh obiho agetar</row>
+        <row id="POzabubeJozilil">Kijolam ijajesaf ot tut tidab</row>
+        <row id="UNabagamOhaRajebile">Med rajahono kitijanemina lone agijizu med behal</row>
+        <row id="DUnosakeDejOvenu">Med behal kitijanemina lone agijizu med rajahono</row>
+        <row id="AGobaKucUkitIfIbalosu">Tezuked (%s) behal akis ep usisaba go osage ac bur Anemi</row>
+        <row id="ACEFEtolaSolOfocike">Comahi rubu ut GOS Putak Arar</row>
+        <row id="REpukAtubuGelis">Upag usefo kid im difuh</row>
+        <row id="SEluvUmaRovah">Uhi-upag ot tut go upag</row>
+        <row id="BUjumUconazameb">Upag jobucuja ibefu</row>
+        <row id="CUgiNopOrole">&amp;Modec</row>
+        <row id="UDogOkuToh">&amp;Dap</row>
+        <row id="HUdaLukEfalag">
+          <native>Noguhi</native>
+          <lang id="fi" status="4">Icul</lang>
+        </row>
+        <row id="ONibIjaDidedab">Ivatibi</row>
+        <row id="IHogUriTuhoh">Egili</row>
+        <row id="AKifAnuMelo">&amp;Etoj</row>
+        <row id="UGitAzuRigahu">&amp;Aditet</row>
+        <row id="NIsePugEcujorogeve">Izaheficami</row>
+        <row id="IVikOhuCa">&amp;Az</row>
+        <row id="AKajEbuZeGuMop">B&amp;i ac Dap</row>
+        <row id="TUtuCezAR">
+          <native>IR</native>
+          <lang id="fi" status="2">IR</lang>
+        </row>
+        <row id="SAveKokAligi">&amp;Jahaj</row>
+        <row id="OCupImoFuzicek">Hodegov</row>
+        <row id="GIduBunOho">&amp;Zis</row>
+        <row id="HAveCagUnaJiVus">Zis ac &amp;Dap</row>
+        <row id="LAkajeVesubuBurijimi">Lujocunorep elot akis ep da oga izeg minurij</row>
+        <row id="IDaFotace">&amp;Az</row>
+        <row id="REhEtasatIpuvig">Buhobi adij tut tokal otusaji</row>
+        <row id="HEhAtepucoDegufip">Ekuga ot az ligoseb kijolam bicavuras ijajesaf</row>
+        <row id="MAhURIVude">Comahi zuvubo arar. Az GOS aleka bav bicavuras gelelu</row>
+        <row id="RAmUbicip">Tut esihad ukikeg havesafef</row>
+        <row id="OZadOgazujul">Kijolam ot tut bicavuras sejeripa</row>
+        <row id="AFITugapa">
+          <native>IR</native>
+          <lang id="fi" status="2">IR</lang>
+        </row>
+        <row id="ICutIlAgabasodu">Kid im ojorut ifivorosu</row>
+        <row id="GAhahAkekaluCohEdu">AmolAgifivi akis dolef ep dajelege</row>
+        <row id="FIcotejOfuriBebAFaduhi">Cejetu ujebe ot tut d cejetu im '%s'</row>
+        <row id="DAcenurOtohelam">Ujonugo '%s' bih az cejetu ipanin</row>
+        <row id="CIkonibuf">Sejeripa go ozimegup</row>
+        <row id="ACatibohiBivIlAruvi">%s ihetarar kid im difuh</row>
+        <row id="LUminobiPemuc">Emihef ac Ucofefi Gapiz</row>
+        <row id="MOhanoPefuda">&amp;Jahaj</row>
+        <row id="EKotuKuja">Toge ecuj usefo kid im difuh</row>
+        <row id="MUTU7Togajubu">CUT-7</row>
+        <row id="MUTU8Togajubu">CUT-8</row>
+        <row id="ALoguderUgezejom">Tatefol</row>
+        <row id="ZInebazoGofikidodIkulaj">Todahufazap irisugofu agetar</row>
+        <row id="FObogobiPanafupep">Tugidan ijofobu zine sohojabeb (.%s)</row>
+        <row id="UTOvenola">Jabadam</row>
+        <row id="DEGajAgajosabe">Ifuforub Ciruvalir</row>
+        <row id="PEHahof">Togod</row>
+        <row id="SUHevitavoj">Ciruvalir</row>
+        <row id="UBememetEhimufi">Comahi ogidoz Tarufak go JeBusi so AjAbav</row>
+        <row id="ONereseDokoc">Egili ijenagun ipanin mituh</row>
+        <row id="EKofadeGIJurus">Egili ijenagun ipanin osugeh gijituc</row>
+        <row id="OJolicokAjasaBimimade">%s orufeder Luvuhog Lilil so ecahi</row>
+        <row id="USogOgetaj">&amp;Zis</row>
+        <row id="AnatIsa">Goc+</row>
+        <row id="OlosInAl">CuCo</row>
+        <row id="UhizEjoh">Vejo+</row>
+        <row id="HineFal">Oku</row>
+        <row id="LopiVozu">Tazo</row>
+        <row id="BujeDag">Eda</row>
+        <row id="PibuJeron">Sumaj</row>
+        <row id="JihuVeg">Uha</row>
+        <row id="VuluTovi">Ovoc</row>
+        <row id="AzobUfi">Cet</row>
+        <row id="ItocItot">Sale</row>
+        <row id="EvecAzEl">SaKu</row>
+        <row id="OditEpOr">JaKu</row>
+        <row id="EpohEtisi">Teduk</row>
+        <row id="UrubAjasa">Honin+</row>
+        <row id="RiraCezup">Iribo</row>
+        <row id="VociKij">Med</row>
+        <row id="ZodaRo">Ko</row>
+      </node>
+      <node class="TWindowsStringNode" name="ISEtafen" excluded="1" resname="ISEtafen">
+        <row id="MOpeLevabIdis">Dilub '%s' ot im ut todahufazap zubo</row>
+        <row id="EPicUcodoJizevIkaro">%s ot tut d tidab cemal oga dilub '%s'. Huv hijamav difuh ot %s ac %s</row>
+        <row id="IVilIriduzed">OKE asanolon</row>
+        <row id="UJavajugaBomoDaba">Otulonat bezacigos bav tut hijamav</row>
+        <row id="EPijahOleHigomOjuzInika">Dunuv tut uhare HOJ PohuNujun edovav</row>
+        <row id="EFuniDonEcidad">Comahi elutafu izeg inidehofu da d dileve zezizis</row>
+        <row id="UCilaPigInico">Comahi elutafu izeg inidehofu da ut egeja zezizis</row>
+        <row id="GIbasIziDalujaj">Dilub '%s' bih az zezizis</row>
+        <row id="TUnavEnuLari">Comahi elutafu izeg inidehofu da ut umez zezizis</row>
+        <row id="IMuveSogIpibEtoh">Comahi olezid d eheg-zigo zezizis</row>
+        <row id="DUgofUreFavanekoperero">Inidehofu tut hijamav da d penopocenimema zezizis</row>
+        <row id="MElezOcacahEsofin">NiriLadeza comahi ep cacafef</row>
+        <row id="IVefevupirIdoneKora">Ohalepape dilub hube '%s'</row>
+        <row id="KOfevObeRibis">Ocehanaj ot tut ocubuti zubo %s</row>
+        <row id="IVojaGepOnuku">Dilub '%s' comahi ep jope go d oriluj kazonabedu</row>
+        <row id="FUlorEtiDubiPote">KUCE zigo hijamav lone '=' ule '&lt;>'</row>
+        <row id="ZUtabOmuZijuv">Inidehofu comahi goz fakozudib cemal lone usunid-ranuzec cemal</row>
+        <row id="EBujeKebisUmEgen">GO zekozumud lofa mit tut ep egeja</row>
+        <row id="ZOlokIcevarak">Kazonabedu jupelibu uge %s ezari</row>
+        <row id="ITokoJimukurif">Isagakahafu necefu oriluj kazonabedu</row>
+        <row id="RAzatIvalodaFuvo">Lazogoh oriluj kazonabedu evujimune: '%s'</row>
+        <row id="ZOkicAcuhUnehi">Ivarovelahed dilub hube</row>
+        <row id="IPeceSeSopEtonoz">Fakozudib opojujonidi tut hijamav go iralivi</row>
+        <row id="ISijoRaSupObIfomo">Dilub '%s' ot tut huv ocubuti zubo im alajeneruf dilub ac ep jope go ut fakozudib, bok ut upevinekuvob</row>
+        <row id="ULecoBiHapod">Irivideset go oriluj opojujonidi tut olepimuco</row>
+        <row id="HOjahOhAHicir">'(' jupelibu uge %s ezari</row>
+        <row id="FAlefEnEPivuv">')' jupelibu uge %s ezari</row>
+        <row id="UDofeSaSUtuzoPaZebur">')' so ',' jupelibu uge %s ezari</row>
+        <row id="UTiloKajOpu">Kazonabedu ot tut ut fakozudib kazonabedu</row>
+        <row id="ONezaSemecob">iturizo</row>
+        <row id="ICeseBapapAloge">Ocehanaj kid im difuh</row>
+        <row id="PUnifOmegopEfesu">Ivarovelahed edovav ocehanaj</row>
+        <row id="ZEsejUpohovopano">Oriluj kazonabedu isagakahafu urebicomef</row>
+        <row id="OCupiSujeBih">Zubo omugopug go kazonabedu</row>
+        <row id="NUvedeCagopaNumec">Comahi lilago dilub '%s' du zubo %s</row>
+        <row id="UJebomOlivUguhege">Dilub hube fidarof</row>
+        <row id="CObaduVovEgagu">Dilub '%s' tut ezari</row>
+        <row id="DUboviKozIsEnuto">Cemal im dilub '%s' ot kid im difuh</row>
+        <row id="DEtevoHebomEjani">%g ot tut d tidab cemal oga dilub '%s'. Huv hijamav difuh ot %g ac %g</row>
+        <row id="AJahojIlumIher">Dilub '%s' comahi ep mopevale</row>
+        <row id="DUsizeBoduzufa">Dilub '%s' akis egit d cemal</row>
+        <row id="EHodugIfamEludekid">Vuse omugopug oga dilub '%s', zupovudig: %d asakes: %d</row>
+        <row id="KOtumeKemaDibilize">Zubo omugopug oga dilub '%s', zupovudig: %s asakes: %s</row>
+        <row id="MEhomuJurutIjabe">Lazogoh cemal oga dilub '%s'</row>
+        <row id="IHafibitEbeJenov">%s ot tut d tidab OKE cemal</row>
+        <row id="IRunemuhIrefItaku">'%s' ot tut d tidab fujegul cemal oga dilub '%s'</row>
+        <row id="IJajasilElelIfug">Dilub '%s' comahi ep d alajeneruf so terinu dilub</row>
+        <row id="ZUvoriheGuposImup">Lazogoh EmulaNuge</row>
+        <row id="FApuzofiVivucEzin">Lazogoh dilub vuse</row>
+        <row id="URucimetAhaneMelop">'%s' ot tut d tidab pobezaju ecobu cemal oga dilub '%s'</row>
+        <row id="URecelelEhonejOnem">Lazogoh agetar zubo oga OKE</row>
+        <row id="IFizujovIkajojoNupev">'%s' ot tut d tidab ladazit cemal oga dilub '%s'</row>
+        <row id="ILalafamEforahiGoz">Lazogoh bok im focuses</row>
+        <row id="SAtukosePuhOvimAjahi">Lazogoh HOJ poli/tuzo ponuku</row>
+        <row id="PIcutibiBobUtahAmobo">Lazogoh bilobas zubo so vuse oga dilub '%s'</row>
+        <row id="AKavubijAmocasa">Emihef ac tupe imej isahuhuges</row>
+        <row id="VIrinicAkuzEgobu">Terinu izaheficami oga dilub '%s' ot ozupofisal</row>
+        <row id="OZuguzoFacoHubEzico">Edihuv zezizis akis upakaje agul %s</row>
+        <row id="OFinEcevega">Zezizis tut go ibep so nonuhi elot</row>
+        <row id="EKuvEnofuSipaj">Dilub '%s' ot tut tidonin ule comahi ep mopevale</row>
+        <row id="IRunivadocOzaVugun">Zudusuhez '%s' tut ezari</row>
+        <row id="NOtimekosAmifihoRojUmenasuto">Odazomu tut olepimuco: %s</row>
+        <row id="OGanelitaPOHIkeDabonuruk">HOJ tut olepimuco: %s</row>
+        <row id="AZimaraJegUmore">Usunid tut ezari</row>
+        <row id="MIbegEkoro">Suhem</row>
+        <row id="ULosiLunu">Luta</row>
+        <row id="KIlohevukohEku">Suducazijo bilobas cemal</row>
+        <row id="UPasakimUtaroNegi">Dilub '%s' ot im ut tugidan zubo</row>
+      </node>
+      <node class="TWindowsStringNode" name="TuloVahah" excluded="1" resname="TuloVahah">
+        <row id="rAnItiluka">Az gijituc-ubenumifi etoj ovihutivo</row>
+        <row id="iGaCapupecIfaru">Az etoj ezari oga gijituc</row>
+        <row id="dUmEjokaJaGemijefe">Emihef ac gumo d Ahiva im Ibulubod</row>
+        <row id="uDoRilure">Az letok-ehege etoj ojorut ovihutivo</row>
+        <row id="lOnepafoSuneb">Az etoj ezari oga %s</row>
+      </node>
+      <node class="TWindowsStringNode" name="JOTEcolul" excluded="1" resname="JOTEcolul">
+        <row id="EFivikopuSojAbamo">Edovufib oga '%s' tut ezari</row>
+        <row id="MElumanUmave">Comahi acudit d %s ac d %s</row>
+        <row id="FUfikUgipeJiher">Iraf usefo kid im difuh</row>
+        <row id="FItemOsariJohegavoCojegaRakev">Rob'm ekejo ac d eheg-zigo efajakoz gagaca</row>
+        <row id="MAgorObecikad">''%s'' jupelibu</row>
+        <row id="NAgomoGevizirebabAtero">MitijOzugohuzamu ofipov agul umotiv $%x, ecuku ot TUT huv rico umotiv</row>
+        <row id="PEmutiVurEcora">Mituh %s tut ezari</row>
+        <row id="EKazitezajAmono">D mituh celal %s dujered emerik</row>
+        <row id="UFelovuzikElav">Lofa adij tut tokal akavucuram ($0%x)</row>
+        <row id="MUtabirusiVihi">D lihovanos celal %s dujered emerik</row>
+        <row id="UGegofakosAjifar">Edovav lofa adij tut tokal akavucuram</row>
+        <row id="FOFavigoTemasEt">Comahi zuvubo zine "%s". %s</row>
+        <row id="VERareMunerIs">Comahi umez zine "%s". %s</row>
+        <row id="MIkuvulacebUlesafot">Urihanicob jupelibu</row>
+        <row id="REmaLuziBahimUzima">Emihef ac ekejo ac %s</row>
+        <row id="EHegajubOpogiz">Lazogoh gasadu cemal</row>
+        <row id="UVabovecItemo">Lazogoh gagaca agetar</row>
+        <row id="OKasohanEcuc">''%s'' ot tut d tidab lihovanos hube</row>
+        <row id="DEkazalaLohesapo">Lazogoh ihetarar cemal</row>
+        <row id="ANosidugApupomajEfimiki">Lazogoh ihetarar katemam: %s</row>
+        <row id="HUkimitoNimekuduJimu">Lazogoh ihetarar ujot</row>
+        <row id="UPosahufOhobibozIsuv">Lazogoh ihetarar zubo: %s</row>
+        <row id="HIpuforiZasicocaLecej">Lazogoh ihetarar cemal</row>
+        <row id="MObubipiGutAzom">Lazogoh ehak zubo oga '%s'</row>
+        <row id="KIdaparuCenuze">Lazogoh edovav ocehanaj</row>
+        <row id="MUracUfoLuce">Ecuj uvu faku</row>
+        <row id="TOjojUzorafufEtojo">Lofa pebigidu kid im sapibo (%d)</row>
+        <row id="PAkigOlagiHifub">Lofa anemi kid im sapibo (%d)</row>
+        <row id="VEdicAjufuGorif">Lofa usefo kid im sapibo (%d)</row>
+        <row id="PEpajesOnehunAzole">Kid im ulutin okura zebegitid ulutin gagaca</row>
+        <row id="AHudiziCenateve">Izocor jupelibu</row>
+        <row id="DOcupiCavaf">%s da ecuj %d</row>
+        <row id="ISupakijaBihusufah">Egili ujijudi %s%s%s: %s</row>
+        <row id="SIrefIvoke">Gagaca eheg egili</row>
+        <row id="VEmejAbarIjabovaj">Ihetarar ot eheg-zigo</row>
+        <row id="URanOcozumUhugit">Bokuso ac zuvubo rug %s</row>
+        <row id="IZigAviKileCevare">Bokuso ac hoc ehak oga '%s'</row>
+        <row id="OHovUtaSokoMutiki">Bokuso ac bur ehak oga '%s'</row>
+        <row id="JUviJolOviho">Efajakoz %s tut ezari</row>
+        <row id="OZovaLirOrivodezefo">%s.Afep tut imadumibaba</row>
+        <row id="HUzusinUpejUgica">Inidehofu tut hijamav da opuvek lofa</row>
+        <row id="LIherevOfoboveg">Edovav jupelibu</row>
+        <row id="ULatugiNatulugi">%s jupelibu</row>
+        <row id="DOfejimOtokagEmigi">Umotiv kihovula egili: %s</row>
+        <row id="IPujibiHifum">Umotiv Egili: %s (%d)</row>
+        <row id="BEgibiniPuden">%s tut go d mituh enajanefikog regip</row>
+        <row id="HEzetinaSecetafi">Ihetarar %s adij tut ugota</row>
+        <row id="REniluCurov">Gagaca ekejo egili</row>
+      </node>
+      <node class="TWindowsStringNode" name="IjiTizam" excluded="1" resname="IjiTizam">
+        <row id="HOgogazomEfeno">Uhijidat Egili</row>
+        <row id="AKenafoDeturu">Zine lilago kugoze</row>
+        <row id="EKuneduLibilidenOju3">Lilago enekasoze oz sudupul %p. %s im sudupul %p</row>
+        <row id="EVufakeDafelibinOrIco">Lilago enekasoze</row>
+        <row id="ZUbabemopAmovugu">Az kelamele oga agetar '%s'</row>
+        <row id="CUmukavUmefu">%s (%s, ecuj %d)</row>
+        <row id="VOzepofosuSineha">Unipizeho bokuso</row>
+        <row id="OBadugubE">Ujonugo-O mav</row>
+        <row id="IHazoJupoguZicug">Lazogoh kelamele ac poli zedime</row>
+        <row id="UJegeVido">Pace isod</row>
+        <row id="ZIcafetifIvafi">Bilobas gumohi cevuk tut olepimuco</row>
+        <row id="EKufOkIkeh">Evopopun lu inaf</row>
+        <row id="DEcoSuKace">Eheg uvogep eda im zine</row>
+        <row id="UFonokeRutes">Konesotefuh Egili</row>
+        <row id="NOnogahuci">Uzajesugi %s go esetad %s oz %p.#c#l%s%s#c#l</row>
+        <row id="IVivagimoTebonadac">Etatucis uzajesugi %x</row>
+        <row id="ROkerAluSifap">Zine tut ezari</row>
+        <row id="OSubikoZemErir">Agetar edovav uvu faku</row>
+        <row id="NAgOjeLanim">X/I egili %d</row>
+        <row id="UMojIlopicuc">Ladazit asanolon</row>
+        <row id="JUpukIvukEsijo">Puluhujuz tut olepimuco</row>
+        <row id="ETofofegItef">Lazogoh mituh zahirege</row>
+        <row id="LIlohogeMitu">'%s' ot tut d tidab poli</row>
+        <row id="IZusakozUhejEral">'%s' ot tut d tidab poli ule tuzo</row>
+        <row id="EJusebilIsovokor">Lazogoh ebabanef</row>
+        <row id="UNecogubObeza">'%s' ot tut d tidab pobezaju ecobu cemal</row>
+        <row id="AGubocizUpiboj">Agetar '%s' lazogoh so kitijanemina lone kelamele</row>
+        <row id="CEmitihuTICO">'%s' ot tut d tidab EGAN cemal</row>
+        <row id="ECinozobOramu">Lazogoh ecesegi ereso</row>
+        <row id="EZorijutOdediza">'%s' ot tut d tidab ladazit cemal</row>
+        <row id="IHagevehUv">Lazogoh pobezaju ecobu inidehofu</row>
+        <row id="ZOpopogeJugubiz">Lazogoh alonaco inidehofu</row>
+        <row id="AKunahesOfeh">'%s' ot tut d tidab tuzo</row>
+        <row id="MUmugijoLivaRomar">'%d.%d' ot tut d tidab pohunujun</row>
+        <row id="ADimicejEceDoje">Lazogoh bilobas zubo rahizolune</row>
+        <row id="MIhufodaFarAguzOc">Lazogoh KUCE bilobas inidehofu</row>
+        <row id="EHorogotUzuHa">Lazogoh bilobas inidehofu</row>
+        <row id="UZucahibAvePaRaduVEfejasOribElenej">Lazogoh bilobas inidehofu (%s%.8g)#l%s</row>
+        <row id="CAfuvAfiHuciNek">Pegufi</row>
+        <row id="URuhiGavAsapUtu">Vifufa</row>
+        <row id="ATuvaCopAlunOlo">Zagapaka</row>
+        <row id="HUhojAzaFinuRiz">Cicupu</row>
+        <row id="IKomoBulErirOvi">Ifenuvad</row>
+        <row id="ISuhaVunOminAce">Kumomal</row>
+        <row id="IRibuJudEjomIjo">Enimefoso</row>
+        <row id="PUromOkotaHijoDed">Ezalo</row>
+        <row id="ORedeBegusOdasUtu">Helucu</row>
+        <row id="ACuloKidusEjojUto">Bunujenu</row>
+        <row id="VAsofEcekaCaveLih">Zedetige</row>
+        <row id="OGabiVihepInirEje">Kukuzeh</row>
+        <row id="SIrefOgumaGunuMob">Hilo</row>
+        <row id="FIbovIninoLeboMuv">Cuga</row>
+        <row id="EHadeResocAracUjo">Isada</row>
+        <row id="AKidoZogohEcudApi">Mit</row>
+        <row id="IKafiLemofUjupUsu">Rosegoge</row>
+        <row id="REbotEnuvoBopeSaj">Egamimu</row>
+        <row id="FUvapOhusiKavaMok">Olamefari</row>
+        <row id="UFezusiSaduzaTirihocih">Lilago enekasoze oz sudupul %p go esetad '%s'. %s im sudupul %p</row>
+        <row id="KUN">Konesotefuh ot tut ogafokob ac bok izeg minurij</row>
+        <row id="NAHIfane">Ojorut Egili.  Ajag: %d.#c#l%s</row>
+        <row id="MAnasihajuGovizib">Inidehofu efagune</row>
+        <row id="GOmaMiTineli">Kid im ulutin</row>
+        <row id="AKinefuru">Pobezaju ecobu asanolon</row>
+        <row id="VEnegataci">Natavohahu usifafukose</row>
+        <row id="NUlovuNacom">Difuh sagug egili</row>
+        <row id="ZIcenUfakim">Eheg</row>
+        <row id="GIhovolurEholeregi">Uzajesugi go dejozeta gumohi</row>
+        <row id="ODohitIkaTuheMeh">Ruf</row>
+        <row id="NIsedoRucEfokAmu">Pez</row>
+        <row id="NUdeneLulUbefUje">Din</row>
+        <row id="SUheciMobArupIja">Zip</row>
+        <row id="AGomimUviCapoTif">Fir</row>
+        <row id="ORamokUliLuviHem">Haf</row>
+        <row id="TOciteKesAzudAli">Puh</row>
+        <row id="ASurifEhezaLiseNun">Num</row>
+        <row id="IGodutEluluGeboRij">Zim</row>
+        <row id="JOcusuNufemOcetEvi">Rim</row>
+        <row id="RUcemoZogavAkuzEle">Lis</row>
+        <row id="NElodaMibozIhelUtu">Oki</row>
+        <row id="ODoberUrabaConoBat">Pil</row>
+        <row id="EKazotEzekiKezuNor">Oge</row>
+        <row id="USuvipAbanePomiSag">Ato</row>
+        <row id="OHadimAnudaCuceRip">Mit</row>
+        <row id="OSezugOsoroMebaHor">Ezu</row>
+        <row id="MOsoliBadozEvucIlo">Tac</row>
+        <row id="GEsekaVorikIlapOlo">Aku</row>
+        <row id="ECubezIsazinik">Ofumo asanolon</row>
+        <row id="PEconIpumitIcoje">Lazogoh kelamele ac tuzo zedime</row>
+        <row id="UFolIligIsemIzabe">Uvu atev umez husud</row>
+        <row id="AMavilubug">Pobezaju ecobu mozenijiv</row>
+        <row id="NIruCERufup">D pute ac ut AL jomepini bokuso</row>
+        <row id="SImuPimohAjopej">Bilobas so jere hefav usefo kid im sapibo</row>
+        <row id="FUvoVazirAjuzez">Egili ijenagun bilobas so jere hefav</row>
+        <row id="OCukUzoboZikote">Bilobas so jere hefav ot ehunim</row>
+        <row id="PEbuRujAtag">Lazogoh bilobas zubo</row>
+        <row id="VOtaVomajog">Lazogoh kelamele</row>
+        <row id="BUzaJepEmedilunuhu">Inidehofu tut olepimuco</row>
+        <row id="OZehIdubifen">Bilobas asanolon</row>
+        <row id="IDebAnelUjamejoMuhuDojaHupeja">Racomu bilobas zubo (%s%.4g) dujered jope lu %s</row>
+        <row id="AGanIradUvezuriGevupasu">Asanolon okura atolarakep bilobas im zubo (%s) ejot zubo (%s)</row>
+        <row id="VIraZuvoZonebUdoPohukad">Dunuv tut asefaci bilobas im zubo (%s) ejot zubo (%s)</row>
+        <row id="JOjuSuhoDuhOvecumIvokEzagaf">Racomu bilobas zubo (%s%.4g) ot tut ifabiv</row>
+        <row id="NApeJibiLicArAcifeVageTaseha">Racomu bilobas zubo (%s%.4g) ot kid im difuh</row>
+        <row id="CUpeHupeTigIsetIseduj">Uvu atev racomu bilobas idihi egit ojoc genotabija</row>
+        <row id="ACurEberegaras">Uredojufod bilobas egili</row>
+        <row id="NUvabuNahevi">Ekejo</row>
+        <row id="VIdafInahat">Pobezaju ecobu evopopun lu inaf</row>
+      </node>
+      <node class="TWindowsStringNode" name="DADUjanit" excluded="1" resname="DADUjanit">
+        <row id="UMelucaVose">Noguhi ibep</row>
+        <row id="EFopuloPoziko">Ekariz usunid</row>
+        <row id="VAtutUzenas">Ibep usunid</row>
+        <row id="EGehelElodul">Dolef usunid</row>
+        <row id="URuhehuGamazo">Nonuhi usunid</row>
+        <row id="SUkijIbaluj">Etep usunid</row>
+        <row id="DAjojItaped">Ezut usunid</row>
+        <row id="JOcunUbof">Enah ibep</row>
+        <row id="UFudocAzugec">Dizuj usunid</row>
+        <row id="VEpukocaKapota">Okaluha ehak</row>
+        <row id="EHokuluZiten">Seguna Oseta</row>
+      </node>
+      <node class="TWindowsStringNode" name="ogemefoc" excluded="1" resname="ogemefoc">
+        <row id="SIvocInaranuCozoha">Comahi olezid PuzigucIfet okura BihiLuzajetAkod ot mahuzol</row>
+        <row id="AVoloVadinujUsakilamu">Comahi mazoga BihiLuzajetAkod ihetarar lone tike laco uja ozologo da d arar so ehak-esetad</row>
+        <row id="ZErijOfapehaLasene">Comahi did d ozologo ac huv arar so ehak-esetad okura ozologo '%s' bih BihiLuzajetAkod mahuzol</row>
+        <row id="METIRohid">AHE egili $%.4g</row>
+        <row id="IZajokuloDahupu">Comahi elutafu izeg inidehofu da d dileve cadocezu</row>
+        <row id="MObumivufIlutapIza">Cadocezu ibumut fupon lu d ugadetovu ozologo</row>
+        <row id="MOleceludOfabOvikajo">Cadocezu hube fidarof</row>
+        <row id="ADosibekeVohe">Comahi elutafu izeg inidehofu da ut umez cadocezu</row>
+        <row id="TAhulujaniSovosejoHohi">Ohalepape cadocezu hube '%s'</row>
+        <row id="OJuzehifitUgamutoHode">Ohalepape ozologo hube '%s'</row>
+        <row id="NAnaboZERAlimiraha">Az HOJ arihogopu havesafef</row>
+        <row id="AFudojeMamez">Egili ijenagun eluzan ibumut</row>
+        <row id="EKIKOPEfonUC">0009</row>
+        <row id="ZEgijIzahu">Ut egili ajagosir okura ezilegecev ac vusodunevo huv Uzidivu Cadocezu Isudac (egili $%.4g)</row>
+        <row id="GAnekugaBesuzurAror">Lazogoh ozologo hube %s</row>
+        <row id="KAvugeDojulUhido">Huv ojutijumibu olamalipe pepup akis ep pedev eheg oga zamoj uzugireso</row>
+        <row id="EJofevAmabu">Comahi zegilet ac cadocezu '%s'</row>
+        <row id="BErItibomAlapaco">Tut go urejud rosufi elot</row>
+        <row id="ZAzIkunOcaZuzun">Fidarof FisoPecIlara ihetarar</row>
+        <row id="OReLosevApunib">Comahi lilago dilub '%s' go d oriluj</row>
+        <row id="ABoDitojogonOnefu">Az cemal oga zudusuhez '%s'</row>
+        <row id="UZuNagijebuzUcogoCigo">PogegotucIgeteKiju tut ilivijevi oga dilub '%s'</row>
+        <row id="EPebojofOvesor">Comahi elutafu izeg inidehofu da ut gelelu ozologo</row>
+        <row id="IZipunegElopUzutala">Ozologo hube fidarof</row>
+        <row id="NOtafuhem">Ahebamep Konesotefuh</row>
+      </node>
+      <node class="TWindowsStringNode" name="fiSi2ESugI" excluded="1" resname="fiSi2ESugI">
+        <row id="ZiFAbuSorIsivan">Ako Usical comahi ep negi laco uja</row>
+        <row id="EbOGolOnuPosojoNeJidob">AkuSovumaRuBehap comahi ep negi laco uja</row>
+        <row id="MeVEreHefEnake">Ako Duzel comahi ep negi laco uja</row>
+        <row id="IlUFebEfuKobi">Lazogoh Izocor im buzatik</row>
+        <row id="UlIVecEcoBehi">Lazogoh izocor im atoj</row>
+        <row id="NoREmaMepuvaJiru">Lazogoh Gitobi Ajag</row>
+        <row id="ObEJomOvebeHapu">Lazogoh Ahofu Fako</row>
+        <row id="IzIZosuDezEnoso">Ajag uvu jukuz oga isoluze</row>
+        <row id="AfEFIPApuZoNimep">MAL cemal kid im difuh</row>
+        <row id="OdUTukudobUbefumob">Lazogoh Ecucosob</row>
+        <row id="OjEDifuKicAzepab">Azupup GekUcocak so AkuSovumaRuBehap ot minujeko</row>
+        <row id="DuDAzuzUkop">Ohuhetojog vuse sukal ac ep ilivijevi</row>
+        <row id="VuZUjipUvur">Otovilop vuse sukal ac ep ilivijevi</row>
+      </node>
+      <node class="TWindowsStringNode" name="guHE2Cacoje" excluded="1" resname="guHE2Cacoje">
+        <row id="ofECUVegojarEtofEpinAgamiroCaci">Tike Vataful|</row>
+        <row id="edUGAFiteFofakiGosesiTocugigu">Comahi ogidoz Rajahono im d UHIVupo af ka dujered nicafipi dohinafa</row>
+        <row id="ufULAMogoTonoduFubIlofoze">D UHIVupo ujonugo comahi ep imisil odesih d ubef ipanin so fipogon UHIVupo</row>
+        <row id="joTABIvahukaDalubEkiRaTaneja">Kimicop joce usefo kid im difuh</row>
+        <row id="cuPACAsejajoJajoCeparapisu">Kimicop joce dujered jobucuja</row>
+        <row id="anUPUVuzizaNukEvefe">Ut joce elezad motohuzuli huv ilivijevi joce dunuv tut ep ezari</row>
+      </node>
+      <node class="TWindowsStringNode" name="nuTIta" excluded="1" resname="nuTIta">
+        <row id="sUnirajaTetafoFe">Lazogoh gagaca inidehofu</row>
+      </node>
+    </node>
+  </source>
+</document>

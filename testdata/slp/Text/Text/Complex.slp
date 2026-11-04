@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20140419063312" version="4.0.350" date="20140419063313" scan="12" scanned="20140419063312">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TTextSource" name="Akecidu.tet" original="cu" date="20070717155122">
+    <definition>
+      <item type="ctContext" before="uz="/>
+      <item type="ctText" before=";cemal="/>
+      <item type="ctIgnore" before=";"/>
+      <item type="ctComment" before=";catemor=" stringitem="1"/>
+      <item type="ctIgnore" before=";" after="\v\b|\e"/>
+    </definition>
+    <row id="uja" note="Izeg ot d catemor" notereadonly="1">
+      <native>Uja</native>
+      <lang id="fi">Huca</lang>
+      <lang id="de">Pegi</lang>
+      <lang id="ja">愱</lang>
+    </row>
+    <row id="kefas">
+      <native>Kefas</native>
+      <lang id="fi">Ditib</lang>
+      <lang id="de">Vuvo</lang>
+      <lang id="ja">鏼</lang>
+    </row>
+    <row id="afu" note="Fipogon catemor" notereadonly="1">
+      <native>Afu</native>
+      <lang id="fi">Regoh</lang>
+      <lang id="de">Ital</lang>
+      <lang id="ja" date="20091006180806">牛</lang>
+    </row>
+  </source>
+</document>

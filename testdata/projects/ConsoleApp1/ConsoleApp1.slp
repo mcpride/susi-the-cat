@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20261030135012" version="4.0.374" date="20261030174503" scan="2" scanned="20261030173104">
+  <lang id="de"/>
+  <source class="TNetResourceSource" name="Properties\Resources.resx" original="en" date="20261030134831">
+    <outputfile dir="." localized="&lt;body&gt;.&lt;net&gt;.&lt;ext&gt;"/>
+    <row id="STR_HELLO_WORLD" state="0" created="20261030135100">
+      <native>Hello, World!</native>
+      <lang id="de" date="20261030135331" status="3" savedtotm="1">Hallo, Welt!</lang>
+    </row>
+  </source>
+</document>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20140509064650" version="4.0.349" date="20140509073614" scan="2" scanned="20140509073538">
+  <lang id="fi"/>
+  <source class="TStringsSource" name="cu.usoka\*.nogasil" original="cu" date="20140508204138" usebom="0" subdirs="0">
+    <encodings>
+      <item language="me" encoding="unicode"/>
+    </encodings>
+    <node class="TStringsNode" name="KugoRinok.nogasil" created="20140509073538">
+    </node>
+    <node class="TStringsNode" name="Odivikogifa.nogasil" created="20140509073538">
+      <row id="Halob olaka ravubi">
+        <native>Halob olaka ravubi</native>
+        <lang id="fi">Umocoga zupç atucor eduhagihag</lang>
+      </row>
+      <row id="Hevof osiga">
+        <native>Hevof osiga</native>
+        <lang id="fi">Amo zojodoh</lang>
+      </row>
+    </node>
+    <node class="TStringsNode" name="Rico.nogasil" created="20140509073538">
+      <row id="9B0-K4-dis.ivul">adopu</row>
+      <row id="Q8A-EK-8PU.ivul">
+        <native>Ajogid</native>
+        <lang id="fi" date="20140509073555">Pasisajis</lang>
+      </row>
+      <row id="mId-Su-057.bonofiKebih">
+        <native>Obor</native>
+        <lang id="fi" date="20140509073558">Iàsuž</lang>
+      </row>
+    </node>
+  </source>
+  <excludedoriginals>
+    <item>adopu</item>
+  </excludedoriginals>
+</document>

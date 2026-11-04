@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document version="3.0.327" date="20120115122631" scan="14" scanned="20120115122616">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <source class="TXmlSource" name="duseduna.aga" original="cu" date="20091109072902" originalbom="1">
+    <properties>
+      <key name="ehak">
+        <key name="joce" expression="#;#;#"/>
+      </key>
+    </properties>
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TPictureData</class>
+    </excludeddatatypes>
+    <tag name="ehak">
+      <tag name="joce" value="Ficana Tonozo;Zedobel;Ahacapon">
+        <row id="0">
+          <native>Ficana Tonozo</native>
+          <lang id="fi">Takenidapid</lang>
+          <lang id="ja">ヨデヱテ</lang>
+        </row>
+        <row id="1">
+          <native>Zedobel</native>
+          <lang id="fi">dogejodi</lang>
+          <lang id="ja">雦薻</lang>
+        </row>
+        <row id="2">
+          <native>Ahacapon</native>
+          <lang id="fi">vuhumocitetepo</lang>
+          <lang id="ja">ガョペテ撶</lang>
+        </row>
+      </tag>
+      <tag name="joce" value="Jivosoz;Jofabi;Jofabi">
+        <row id="0">
+          <native>Jivosoz</native>
+          <lang id="fi">Nilic</lang>
+          <lang id="ja">カャメ</lang>
+        </row>
+        <row id="1">
+          <native>Jofabi</native>
+          <lang id="fi">nilic</lang>
+          <lang id="ja">バデヤ些</lang>
+        </row>
+        <row id="2">
+          <native>Jofabi</native>
+          <lang id="fi">arurerareha</lang>
+          <lang id="ja">ヤシブ蠉</lang>
+        </row>
+      </tag>
+      <tag name="joce" value="Ropug;Ajecajac;Ajecajac">
+        <row id="0">
+          <native>Ropug</native>
+          <lang id="fi">Afuvuh</lang>
+          <lang id="ja">賭倔</lang>
+        </row>
+        <row id="1">
+          <native>Ajecajac</native>
+          <lang id="fi">afuvuh</lang>
+          <lang id="ja">掸譭朌</lang>
+        </row>
+        <row id="2">
+          <native>Ajecajac</native>
+          <lang id="fi">romepolefide</lang>
+          <lang id="ja">丣蜓塘</lang>
+        </row>
+      </tag>
+    </tag>
+  </source>
+</document>

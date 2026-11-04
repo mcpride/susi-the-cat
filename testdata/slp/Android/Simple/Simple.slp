@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20120619175835" version="4.0.365" date="20161017072014" scan="6" scanned="20150323065203">
+  <lang id="fi"/>
+  <lang id="de"/>
+  <lang id="ja"/>
+  <lang id="id"/>
+  <source class="TAndroidSource" name="tuh\Zekaca.uhu" original="cu" date="20140611020324" packagename="ebu.ajosakume.zekaca" usedeprecatedids="1">
+    <excludeddatatypes>
+      <class>TAudioData</class>
+      <class>TBinaryData</class>
+      <class>TColorData</class>
+      <class>TPictureData</class>
+    </excludeddatatypes>
+    <node class="TAndroidPackageFolder" name="ebu.ajosakume.zekaca">
+      <node class="TAndroidPackageNode" name="uz">
+      </node>
+      <node class="TAndroidPackageNode" name="edovav">
+        <row id="unu_hube">
+          <native>Zekaca</native>
+          <lang id="fi" date="20120621063234">Ovofonanerifeh</lang>
+          <lang id="id" date="20161017062734" status="3">Go</lang>
+        </row>
+        <row id="hevof">
+          <native>Izeg ot d zekaca ilim</native>
+          <lang id="fi" date="20140611111519">Išdý da ovofonanerifeh godot. Išdý da ovofonanerifeh godot. Išdý da ovofonanerifeh godot. Išdý da ovofonanerifeh godot.</lang>
+        </row>
+        <row id="ivul_2">
+          <native>%1$t corure!</native>
+          <lang id="fi" date="20140611111509">%1$t ilagivezam!</lang>
+        </row>
+      </node>
+    </node>
+  </source>
+</document>

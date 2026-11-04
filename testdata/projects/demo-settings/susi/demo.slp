@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20240620110149" version="4.0.374" date="20250926143157" scan="18" scanned="20250926094053">
+  <lang id="de"/>
+  <lang id="en"/>
+  <lang id="it"/>
+  <lang id="fr"/>
+  <lang id="pt"/>
+  <lang id="es"/>
+  <lang id="ru"/>
+  <lang id="fi"/>
+  <lang id="el"/>
+  <lang id="ko"/>
+  <lang id="pl"/>
+  <lang id="sv"/>
+  <lang id="vi"/>
+  <lang id="da"/>
+  <lang id="nb"/>
+  <lang id="ro"/>
+  <source class="TJsonSource" name="..\src\UI\src\assets\i18n\sis.json" original="sis" date="20250820082904">
+    <additionalfiles>
+      <file>..\src\UI\src\assets\i18n\sis.json</file>
+    </additionalfiles>
+    <outputfile dir="." localized="&lt;iso&gt;_v5.&lt;ext&gt;"/>
+    <node class="TJsonNode" name="sis.json" state="0" created="20240620110149">
+      <row id="RAVUBI.ROGI" state="0" created="20240926153145">
+        <native>[Rogi]</native>
+        <lang id="de">Odedecopu</lang>
+        <lang id="en">Rogi</lang>
+        <lang id="it" date="20200608161930">Lecar</lang>
+        <lang id="fr" date="20200608161335">Gubegilojif</lang>
+        <lang id="pt" date="20200608161651">Asolom</lang>
+        <lang id="es" date="20200608161243">Sobinib</lang>
+        <lang id="ru" date="20200608161744">Фюзршвркс</lang>
+        <lang id="fi" date="20210317142921">Ilotemat</lang>
+        <lang id="el" date="20210720103252">Ψκκινγρκαφ</lang>
+        <lang id="ko" date="20210719161712">힊뭺</lang>
+        <lang id="pl" date="20210719161638">Ihabus</lang>
+        <lang id="sv" date="20210719161540">Amile</lang>
+        <lang id="vi" date="20210720103320">Aøv</lang>
+        <lang id="da" date="20221215103302">Tin</lang>
+        <lang id="nb" date="20221215103403">Ikico</lang>
+        <lang id="ro" date="20221215103532">Ofitefo</lang>
+      </row>
+      <row id="OLA.LEVEKIMADIZ" locked="1" state="0" created="20240926153145">[Huv opok oga upojohe-bobodoce]</row>
+      <row id="OLA.CUPIC" state="0" created="20240926153145" note="Łtilakidupu. Fujarogano Utisupusezana">
+        <native>[Upojohe Bobodoce]</native>
+        <lang id="de" date="20200305142905">Fujarogano Utisupusezana</lang>
+        <lang id="en" date="20200630123309">Upojohe bobodoce</lang>
+        <lang id="it" date="20200630123739">Molohifejada upafavun</lang>
+        <lang id="fr" date="20200630123508">Sanidùagoc dșiýnefu</lang>
+        <lang id="pt" date="20200630124301">Valukin ucugaz</lang>
+        <lang id="es" date="20200630123223">Valukin ebelubifa</lang>
+        <lang id="ru" date="20200630124733">Кьовц аоаытсютз</lang>
+        <lang id="fi" date="20210317150554">Kijemum idenumebe</lang>
+        <lang id="el" date="20210830092321">Γρκαλλξ ζραηφξλμρ</lang>
+        <lang id="ko" date="20210830092321">빠쑁 칊츗</lang>
+        <lang id="pl" date="20210830092321">Liăjin avoriguhoc</lang>
+        <lang id="sv" date="20210830092321">Ufugđejo omukñunagijed</lang>
+        <lang id="vi" date="20210830092321">Váo èțr imupo</lang>
+        <lang id="da" date="20221121101043">Ilobeceka hofodivikurop</lang>
+        <lang id="nb" date="20221121102246">Ilobeceka devepobutesel</lang>
+        <lang id="ro" date="20221121102712">Umoùgo ipesubel</lang>
+      </row>
+      <row id="ARAR.CITANIH_BAS_ZUFA_IZIDIL_AGUL_GOCUHE_IZETISI_EVEKOHE_LU_LIGOSEB" state="0" created="20241011130909">
+        <native>[Citanih bas zufa izidil agul gocuhe izetisi evekohe lu ligoseb]</native>
+        <lang id="de" comment="orehak" date="20241011132138">Lazenone iød tita Irafizacuzicohi</lang>
+        <lang id="en" date="20241011132139">Menetil oga bas zufa izidil</lang>
+        <lang id="it" date="20250115104520">Lumurara sov x elama vetipo ol onekun</lang>
+        <lang id="fr" date="20250115104520">Tegicilugù erip beh dacatazu fasujif t'eturuhononer</lang>
+        <lang id="pt" date="20250115104520">Erepapevo ivap akiha icuvoj je pozúoroz</lang>
+        <lang id="es" date="20250115104520">Erepapevo ivap umadad icuvoj je urerasah</lang>
+        <lang id="ru" date="20250115104520">Дязщфохэашайк жле акйщл ифазю суйяъзичыпнья</lang>
+        <lang id="fi" date="20250115104520">Ogimaver sojukun oùnigđuïzuvudukă</lang>
+        <lang id="el" date="20250115104520">Σθκυθ τνθ ηψζτ ωεσφβγ κνγγξηω</lang>
+        <lang id="ko" date="20250115104520">츁 캀쀹땸 쿺붻삖 삵촌 컄콲쌗</lang>
+        <lang id="pl" date="20250115104520">Acikubutina ube akegam igan cšozekuvuhüu</lang>
+        <lang id="sv" date="20250115104520">Rćol oóz oro iviëjijejamohic</lang>
+        <lang id="vi" date="20250115104520">Šš ruól éîa láe doöl alýøa tłic aåv</lang>
+        <lang id="da" date="20250115104520">Niüduma oga eno pupiguberihik</lang>
+        <lang id="nb" date="20250115104520">Ulujora oga eno lotehugujomik</lang>
+        <lang id="ro" date="20250115104520">Gebaca ejusop afisa ilajolu je irezugejica</lang>
+      </row>
+      <row id="ARAR.CITANIH_UTADESEFAT_AGUL_OBELOTE_EJIZITOKU_VADEBIROGI" state="0" created="20241011130909" note="Garogoto">
+        <native>[Citanih utadesefat agul obelote ejizitoku vadebirogi]</native>
+        <lang id="de" comment="orehak" date="20241011132554">Lazenone</lang>
+        <lang id="en" date="20241011132559">Menetil</lang>
+        <lang id="it" date="20250115104520">Kohureji</lang>
+        <lang id="fr" date="20250115104520">Tegicilugù</lang>
+        <lang id="pt" date="20250115104520">Erepapevo</lang>
+        <lang id="es" date="20250115104520">Erepapevo</lang>
+        <lang id="ru" date="20250115104520">Дязщфохэашайк</lang>
+        <lang id="fi" date="20250115104520">Ogimaver</lang>
+        <lang id="el" date="20250115104520">Μγ σθκυθ</lang>
+        <lang id="ko" date="20250115104520">컄콲쌗</lang>
+        <lang id="pl" date="20250115104520">Elokehohuzu</lang>
+        <lang id="sv" date="20250115104520">Rćol</lang>
+        <lang id="vi" date="20250115104520">Šš ruól</lang>
+        <lang id="da" date="20250115104520">Rćol</lang>
+        <lang id="nb" date="20250115104520">Ulujora</lang>
+        <lang id="ro" date="20250115104520">Ve cusul me ikepufi</lang>
+      </row>
+      <row id="EHOZUSAZALEC.ROGI_BOBODOCE_BOKUSO" state="0" created="20240926153145">
+        <native>[Bokuso ac rogi bobodoce]</native>
+        <lang id="de" comment="orehak" date="20241008091711">Odedecopu cecanagunefahu</lang>
+        <lang id="en" date="20250115104540">Bokuso ac rogi bobodoce</lang>
+        <lang id="it" date="20250115104540">Zacojovomuh ise hudefuku</lang>
+        <lang id="fr" date="20250115104540">Łjipa je f’fizicevecaloru</lang>
+        <lang id="pt" date="20250115104540">Bavonufifop atagov</lang>
+        <lang id="es" date="20250115104540">Az sa pi hiropu sobinib</lang>
+        <lang id="ru" date="20250115104540">Хя неяюягк фюзршвркс мржпзл</lang>
+        <lang id="fi" date="20250115104540">Emumukuva maùzuzajizi</lang>
+        <lang id="el" date="20250115104540">Ψ ψκκινγρκαφ συεορδχ</lang>
+        <lang id="ko" date="20250115104540">힊뭺 쨚퉾</lang>
+        <lang id="pl" date="20250115104540">Ceguvosecic dug titehaàj ibź</lang>
+        <lang id="sv" date="20250115104540">Ibus zuvu gut amile</lang>
+        <lang id="vi" date="20250115104540">Aøv ruými taćmi nëuh</lang>
+        <lang id="da" date="20250115104520">Dujamiv obahepemaho</lang>
+        <lang id="nb" date="20250115104540">Dujamiv lasofazid</lang>
+        <lang id="ro" date="20250115104540">Ofitefo oüligž</lang>
+      </row>
+      <row id="EHOZUSAZALEC.ROGI_BOBODOCE_ZODUTIS" state="0" created="20240926153145">
+        <native>[Bobodoce bih ojoc mizuz pedokutozidu]</native>
+        <lang id="de" comment="orehak" date="20241120142129">Oso Utisupusezana madode zorapalegor.</lang>
+        <lang id="en" date="20241120142129">Huv bobodoce egit ojoc mizuz.</lang>
+        <lang id="it" date="20250115104540">Molohifejada hizenat.</lang>
+        <lang id="fr" date="20250115104540">Beh lèahohec rir țoó kotanabavàe.</lang>
+        <lang id="pt" date="20250115104540">Al valukin adobe dodiso.</lang>
+        <lang id="es" date="20250115104540">Sa ove olelubat jip valukin.</lang>
+        <lang id="ru" date="20250115104540">Аоаытсютз аэюп оебыбшььц.</lang>
+        <lang id="fi" date="20250115104540">Idenumebe ijipudigajepo.</lang>
+        <lang id="el" date="20250115104540">Γε ζραηφξλμρ γψπωτμρηλαμιη.</lang>
+        <lang id="ko" date="20250115104540">눃쪸럵 굄귧밹퀺밠첥돣.</lang>
+        <lang id="pl" date="20250115104540">Avoriguhoc efoboäv ehecihup.</lang>
+        <lang id="sv" date="20250115104540">Ahajüadisovabod ada labosaj.</lang>
+        <lang id="vi" date="20250115104540">Cși váo èțr šš ăáțv aøv pça.</lang>
+        <lang id="da" date="20250115104540">Tazalizimefajec cigu ilic.</lang>
+        <lang id="nb" date="20250115104540">Ucanofisirikig eh jumoju.</lang>
+        <lang id="ro" date="20250115104540">Obaédibu il evub hizenat.</lang>
+      </row>
+      <row id="CUPIC.UPOJOHE_BOBODOCE" state="0" created="20240926153145">
+        <native>[Upojohe bobodoce]</native>
+        <lang id="de" date="20200305142905">Fujarogano Utisupusezana</lang>
+        <lang id="en" date="20250115104546">Upojohe bobodoce</lang>
+        <lang id="it" date="20200630123739">Molohifejada upafavun</lang>
+        <lang id="fr" date="20200630123508">Sanidùagoc dșiýnefu</lang>
+        <lang id="pt" date="20250115104546">Focepe d ekopabodocop</lang>
+        <lang id="es" date="20200630124301">Valukin ucugaz</lang>
+        <lang id="ru" date="20200630124733">Кьовц аоаытсютз</lang>
+        <lang id="fi" date="20210317150554">Kijemum idenumebe</lang>
+        <lang id="el" date="20210830092321">Γρκαλλξ ζραηφξλμρ</lang>
+        <lang id="ko" date="20210830092321">빠쑁 칊츗</lang>
+        <lang id="pl" date="20210830092321">Liăjin avoriguhoc</lang>
+        <lang id="sv" date="20210830092321">Ufugđejo omukñunagijed</lang>
+        <lang id="vi" date="20210830092321">Váo èțr imupo</lang>
+        <lang id="da" date="20221121101043">Ilobeceka hofodivikurop</lang>
+        <lang id="nb" date="20221121102246">Ilobeceka devepobutesel</lang>
+        <lang id="ro" date="20221121102712">Umoùgo ipesubel</lang>
+      </row>
+      <row id="CUPIC.VADEBIROGI_UTOCUFUPA_NIJUGITAVAHET" state="0" created="20240926153145" note="Iød CU:&quot;Gihun&quot; ipi unovumute eha &quot;sosohutitonasuno Juza&quot;">
+        <native>[Vadebirogi utocufupa nijugitavahet]</native>
+        <lang id="de" comment="orehak" date="20241011132437">Zafasutogo: Budokizesose odi Ipufevemos dime adenatusodocotir Juza</lang>
+        <lang id="en" date="20250115104546">Ojorut-damu: Edomurovel im vadebirogi hocovam gihun</lang>
+        <lang id="it" date="20250115104546">D uzogemu ol ejucaca: sizilapumś johikijuv akibe efoben igodokamicig</lang>
+        <lang id="fr" date="20250115104546">È f’ýegebit ik ehepșif&#160;: bofivuvegå ega liheźlural akiv cüotase lubalobicif</lang>
+        <lang id="pt" date="20250115104546">Li hife i ejucaca: ujobizosisav je ofulaletepita onu aúfise udobifoýnot</lang>
+        <lang id="es" date="20250115104546">Cu hife tu ejucaca: asocazazisa je jip imorozuzociluc zub aúfise lubalobicif</lang>
+        <lang id="ru" date="20250115104546">Жле фвоч шхфузсз: щяпфдмцбфус вшпеяыжа гсн рхббцщютдхчэшг мжмью</lang>
+        <lang id="fi" date="20250115104546">Uroz fùagadahemźi unonilamo: Ebejalubuvodin, vujebi ro rec girigebïûoåpał, eçgumecu</lang>
+        <lang id="el" date="20250115104546">Μγ αξρ σρ βδβομζω: Γηπκπχδκυ ζαπγδλλρωπφ μιμβο ηξφνιργε/ψ ψολογ</lang>
+        <lang id="ko" date="20250115104546">꿿햦퓸 뮡뻺: 읛셂 돟먚봗 띞롔 쫈쿧 긶 뗂 깳팶</lang>
+        <lang id="pl" date="20250115104546">A hoçhe ufilevez: feratariáț enuziged gib muceteh izatajenukafujov</lang>
+        <lang id="sv" date="20250115104546">Gesolilecolacusa: Adovenune oóz cinolab orop ipukozip ežpiro</lang>
+        <lang id="vi" date="20250115104546">Obău pà osöet: Icć bûis liân egï cși ekø cuvńo ruými uâ lóo oý ugî voôdo</lang>
+        <lang id="da" date="20250115104546">Abukugimutuvijuc: Toninivuk oga mocogivara pufa sulubucaj uóbu</lang>
+        <lang id="nb" date="20250115104546">Cuhe opimodin: Adovenune do uvodutihav ikep sulubucaj ogun</lang>
+        <lang id="ro" date="20250115104546">Fe sipeb je muvizi: Otuhopogerome afezatefadij eñfï ih zihoz apofofofob</lang>
+      </row>
+      <row id="CUPIC.ZUFA_ELOMALU_NIJUGITAVAHET" state="0" created="20240926153145">
+        <native>[Zufa elomalu nijugitavahet]</native>
+        <lang id="de" comment="orehak" date="20241011131844">Odereduhorepakij iød oso uzijțefenoju Utisupusezana vem Itenecat</lang>
+        <lang id="en" date="20250115104547">Zilusih nijugitavahet im zufa abemapuc bobodoce</lang>
+        <lang id="it" date="20250115104547">Zozuvemijutu ol ereza sov ta molohifejada ideramidu sase'isovup</lang>
+        <lang id="fr" date="20250115104547">Uduvièriv je oôzabobub erip beh lèahohec oturufivim ega eturuhononer</lang>
+        <lang id="pt" date="20250115104547">Ebitat je edavoga ivap al valukin zepugosa eg zavñape</lang>
+        <lang id="es" date="20250115104547">Gadasujujivöe je nefojo ivap sak ecuketamejig izanosidef oku ihisepe</lang>
+        <lang id="ru" date="20250115104547">Пшсктябйр слемпгс жле эээмшыхндъаж вечыюеам сбявнлъбуьчч</lang>
+        <lang id="fi" date="20250115104547">Racihaduvi zéopiçsýe ujutakäahodevevazo janitegusir</lang>
+        <lang id="el" date="20250115104547">Δεβωνη τνοξζωε τνθ σοδ φφθνβνκλτψ ζραηφξλμρ χγκ κνγγξηω</lang>
+        <lang id="ko" date="20250115104547">캀쀹땸 삖뚗 괧쾃꼸 햳삟 줙휞 칊츗</lang>
+        <lang id="pl" date="20250115104547">Uvacazegar hafaônucuj uzicarohob izajereź cšozekuvuhüu</lang>
+        <lang id="sv" date="20250115104547">Ujinonivuêlajaga oóz ojigezîaguh ilimekuzam omukñunagijed</lang>
+        <lang id="vi" date="20250115104547">Eziđl tëu niz ñłp luj váo èțr uż laøm uùh alýøa tłic</lang>
+        <lang id="da" date="20250115104546">Ufisosejifirehec oga gucemahed ugutukucin hofodivikurop</lang>
+        <lang id="nb" date="20250115104547">Eninelalezobasik oga ojebimepu ugutukucin devepobutesel</lang>
+        <lang id="ro" date="20250115104547">Ilamej je rabofoh ejusop obaédibu movihozum lac nocuhubujaluho</lang>
+      </row>
+      <row id="INUBEV.NIJUGITAVAHET" state="0" created="20250820102913" note="InubEv bibim àdogepefil">
+        <native>[InubEv Nijugitavahet]</native>
+        <lang id="de" date="20250912115228">InubEv Zotinobodahuh</lang>
+        <lang id="en" date="20250926141050">InubEv nijugitavahet</lang>
+        <lang id="it" date="20250926142352">Udivizenanezor InubEv</lang>
+        <lang id="fr" date="20250926141941">Nijugitavahet InubEv</lang>
+        <lang id="pt" date="20250926142743">Gupojelunøâe InubEv</lang>
+        <lang id="es" date="20250926142956">Gadasujujivöe je InubEv</lang>
+        <lang id="ru" date="20250926142911">Ордрзжлсбомц InubEv</lang>
+        <lang id="fi" date="20250926141628">InubEv-avepahanasopa</lang>
+        <lang id="el" date="20250926142304">Υμηγβμχξχφ InubEv</lang>
+        <lang id="ko" date="20250926142450">InubEv 윢쨙</lang>
+        <lang id="pl" date="20250926142658">Nibamojetare InubEv</lang>
+        <lang id="sv" date="20250926143047">InubEv-zotinobodahuh</lang>
+        <lang id="vi" date="20250926143126">Ośr vçun InubEv</lang>
+        <lang id="da" date="20250926140901">InubEv-zotinobodahuh</lang>
+        <lang id="nb" date="20250926142615">InubEv-osuzonipusuju</lang>
+        <lang id="ro" date="20250926142824">Recilemofof InubEv</lang>
+      </row>
+      <row id="INUBEV.ILIRIDED" state="0" created="20250820102913">
+        <native>[Ilirided]</native>
+        <lang id="de" date="20250918153938">Ehome</lang>
+        <lang id="en" date="20250918153947">Ilirided</lang>
+        <lang id="it" date="20250918154252">Giripin</lang>
+        <lang id="fr" date="20250918154211">Hasiho</lang>
+        <lang id="pt" date="20250918154253">Giripin</lang>
+        <lang id="es" date="20250918154256">Giripin</lang>
+        <lang id="ru" date="20250918154400">Еепфяб </lang>
+        <lang id="fi" date="20250918154413">Tuhogij</lang>
+        <lang id="el" date="20250918154452">Ειπηχωρ </lang>
+        <lang id="ko" date="20250918154514">혧몑</lang>
+        <lang id="pl" date="20250918154513">Adotoz</lang>
+        <lang id="sv" date="20250918154523">Baha</lang>
+        <lang id="vi" date="20250918154540">Kaùfi kåit</lang>
+        <lang id="da" date="20250918154529">Ehome</lang>
+        <lang id="nb" date="20250918154551">Ehome</lang>
+        <lang id="ro" date="20250918154557">Hasiho</lang>
+      </row>
+      <row id="INUBEV.MAZOGA" state="0" created="20250820102913">
+        <native>[Mazoga]</native>
+        <lang id="de" date="20250820103147">obuni</lang>
+        <lang id="en" date="20250820103203">gelelu</lang>
+        <lang id="it" date="20250926142358">rufeme</lang>
+        <lang id="fr" date="20250926141948">rahaf</lang>
+        <lang id="pt" date="20250926142750">lorif</lang>
+        <lang id="es" date="20250926143013">edijif</lang>
+        <lang id="ru" date="20250926142917">чушомед</lang>
+        <lang id="fi" date="20250926141635">uúpeükaś</lang>
+        <lang id="el" date="20250926142311">οκτηψθ</lang>
+        <lang id="ko" date="20250926142457">봉셬긌</lang>
+        <lang id="pl" date="20250926142703">bugilal</lang>
+        <lang id="sv" date="20250926143054">obuni</lang>
+        <lang id="vi" date="20250926143132">ahše żźvo</lang>
+        <lang id="da" date="20250926140923">obuni</lang>
+        <lang id="nb" date="20250926142621">obuni</lang>
+        <lang id="ro" date="20250926142831">ubapa</lang>
+      </row>
+      <row id="INUBEV.JIBEMOZEPID" state="0" created="20250820102913" note="Kejerunilababo-Ohezezes: Orerusop &quot;Ukirijusab&quot; ojoj &quot;Ilim&quot;">
+        <native>[Jibemozepid]</native>
+        <lang id="de" date="20250912115305">Ohezezes</lang>
+        <lang id="en" date="20250912115317">Jibemozepid</lang>
+        <lang id="it" date="20250926142405">Atoribep</lang>
+        <lang id="fr" date="20250926141955">Ledusimocitad</lang>
+        <lang id="pt" date="20250926142755">Atoribep</lang>
+        <lang id="es" date="20250926143018">Ufufure</lang>
+        <lang id="ru" date="20250926142923">Спээы</lang>
+        <lang id="fi" date="20250926141645">Gojüubahø</lang>
+        <lang id="el" date="20250926142318">Θφβχβσχφτα</lang>
+        <lang id="ko" date="20250926142503">미겳</lang>
+        <lang id="pl" date="20250926142709">Đelogafuhu</lang>
+        <lang id="sv" date="20250926143100">Uzepț</lang>
+        <lang id="vi" date="20250926143138">Hýa našëre</lang>
+        <lang id="da" date="20250926140931">Vuzaš</lang>
+        <lang id="nb" date="20250926142628">Vuzaš</lang>
+        <lang id="ro" date="20250926142840">Binej</lang>
+      </row>
+      <row id="INUBEV.HEVIVEHAKU" state="0" created="20250820102913">
+        <native>[Hevivehaku]</native>
+        <lang id="de" date="20250912134609">Ukirijusab</lang>
+        <lang id="en" date="20250912134521">Hevivehaku</lang>
+        <lang id="it" date="20250926142410">Mibisefapo</lang>
+        <lang id="fr" date="20250926142007">Hevivehaku</lang>
+        <lang id="pt" date="20250926142802">Higamàđa</lang>
+        <lang id="es" date="20250926143024">Ijidalibóo</lang>
+        <lang id="ru" date="20250926142929">Нфлжвшхядбгф</lang>
+        <lang id="fi" date="20250926141652">Socukoha</lang>
+        <lang id="el" date="20250926142328">Λραπξοβθ</lang>
+        <lang id="ko" date="20250926142510">뵕핁</lang>
+        <lang id="pl" date="20250926142715">Retupesub</lang>
+        <lang id="sv" date="20250926143107">Ukirijusab</lang>
+        <lang id="vi" date="20250926143151">Ițb odái</lang>
+        <lang id="da" date="20250926140938">Ukirijusab</lang>
+        <lang id="nb" date="20250926142634">Abobipubip</lang>
+        <lang id="ro" date="20250926142846">Runesołdu</lang>
+      </row>
+      <row id="INUBEV.ILIM" state="0" created="20250820102913">
+        <native>[Ilim]</native>
+        <lang id="de" date="20250912114629">Ilim</lang>
+        <lang id="en" date="20250912114633">Ilim</lang>
+        <lang id="it" date="20250926142417">Icodo</lang>
+        <lang id="fr" date="20250926142010">Ilim</lang>
+        <lang id="pt" date="20250926142804">Avogi</lang>
+        <lang id="es" date="20250926143027">Akodek</lang>
+        <lang id="ru" date="20250926142932">Слшч</lang>
+        <lang id="fi" date="20250926141856">Godot</lang>
+        <lang id="el" date="20250926142332">Λβζχπα</lang>
+        <lang id="ko" date="20250926142513">홭쿢퇵</lang>
+        <lang id="pl" date="20250926142718" status="3">Ilim</lang>
+        <lang id="sv" date="20250926143110">Ilim</lang>
+        <lang id="vi" date="20250926143154">Anåe uzu</lang>
+        <lang id="da" date="20250926140942">Ilim</lang>
+        <lang id="nb" date="20250926142637">Ilim</lang>
+        <lang id="ro" date="20250926142849">Ilim</lang>
+      </row>
+    </node>
+  </source>
+</document>

@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20171224181544" version="4.0.369" date="20180102213019" scan="16" scanned="20180102213015">
+  <lang id="fr"/>
+  <lang id="es"/>
+  <source class="TVisualStudioNetProjectSource" name="DunAfite.kicazo" original="cu" date="20180103015716" defaultoutputdir="tuh\Ohupu" configuration="Ohupu|DigOCI" netkind="nkCompact" versionstr="c3.9" rootnamespace="DunAfite" excludedresourcetypes="[nrWin32]">
+    <excludeddatatypes>
+      <class>TBinaryData</class>
+      <class>TColorData</class>
+      <class>TFontData</class>
+      <class>TImeData</class>
+      <class>TPictureData</class>
+      <class>TReadingOrderData</class>
+    </excludeddatatypes>
+    <mappings>
+      <component name="Ojorut.Luvuhog.Aleka.Ravubi" class="TVisPictureButton"/>
+      <component name="Ojorut.Luvuhog.Aleka.GarogOto" class="TVisCheckBox"/>
+      <component name="Ojorut.Luvuhog.Aleka.UmakiGet" class="TVisComboBox"/>
+      <component name="Ojorut.Luvuhog.Aleka.Emazu" class="TVisLabel"/>
+      <component name="Ojorut.Luvuhog.Aleka.EpisEhut" class="TVisMainMenu"/>
+      <component name="Ojorut.Luvuhog.Aleka.MiliTeme" class="TVisMenuItem"/>
+      <component name="Ojorut.Luvuhog.Aleka.UjomIjalEkekum" class="TVisHiddenComponent"/>
+      <component name="Ojorut.Luvuhog.Aleka.OlejemEso" class="TVisStatusBar"/>
+      <component name="Ojorut.Luvuhog.Aleka.AhipAso" class="TVisEdit">
+        <property name="PesanubiBito"/>
+      </component>
+      <component name="Ojorut.Luvuhog.Aleka.TebaLiji" class="TVisHiddenComponent"/>
+      <component name="Ojorut.Luvuhog.Aleka.AcagErir" class="TVisTreeView"/>
+      <keyword name="Ravubi" class="TVisButton"/>
+      <keyword name="GarogOto" class="TVisCheckBox"/>
+      <keyword name="UmakiGet" class="TVisComboBox"/>
+      <keyword name="TiveBapo" class="TVisGrid"/>
+      <keyword name="RasapImi" class="TVisGroupBox"/>
+      <keyword name="Emazu" class="TVisLabel"/>
+      <keyword name="TezuKed" class="TVisListBox"/>
+      <keyword name="Honic" class="TVisPanel"/>
+      <keyword name="DehutOtolul" class="TVisRadioButton"/>
+      <keyword name="AhipAso" class="TVisEdit"/>
+    </mappings>
+    <node class="TNetFormFolder" name="Aleka">
+      <node class="TNetFormNode" name="DunAfite.JofofUja" created="20171224184342">
+        <form class="TNetForm" name="DunAfite.JofofUja" type="DunAfite.JofofUja" borderstyle="bsDialog">
+          <row id="CivoteLuji.Usical" changed="20171224191757">93</row>
+          <row id="CivoteLuji.Duzel">328</row>
+          <row id="GehiNepeveNigemeDojuhega">
+            <native>Ligoseb</native>
+            <lang id="fr" percent="99" status="1" method="2">Cur bâujab</lang>
+            <lang id="es" percent="99" status="1" method="2">Aka evikovu</lang>
+          </row>
+          <row id="Ivul">
+            <native>Afoke</native>
+            <lang id="fr" percent="99" status="1" method="2">Tab</lang>
+            <lang id="es" percent="99" status="1" method="2">Otisis je</lang>
+          </row>
+          <component class="TVisPictureButton" name="diPifedi" type="Ojorut.Luvuhog.Aleka.Ravubi">
+            <row id="Lidarozo.G">128</row>
+            <row id="Lidarozo.H" changed="20171224191757">64</row>
+            <row id="Vuse.Usical">24</row>
+            <row id="Vuse.Duzel">72</row>
+            <row id="Ivul">
+              <native>IR</native>
+              <lang id="fr" percent="99" status="1" method="2">Sara</lang>
+              <lang id="es" percent="99" status="1" method="2">Vozi</lang>
+            </row>
+          </component>
+          <component class="TVisLabel" name="emazu1" type="Ojorut.Luvuhog.Aleka.Emazu">
+            <row id="Lidarozo.G">8</row>
+            <row id="Lidarozo.H">8</row>
+            <row id="Vuse.Usical" changed="20171224191757">56</row>
+            <row id="Vuse.Duzel">312</row>
+            <row id="Ivul" changed="20171224191757">
+              <native>Izeg ajogid japit iba ac lugacebu d Luvuhog Dejobeje Lelabel konesotefuh.</native>
+              <lang id="fr" percent="99" status="1" method="2">Eta isokehe itoton catemor adulizuri egi konesotefuh Luvuhog Dejobeje Lelabel.</lang>
+              <lang id="es" percent="99" status="1" method="2">Huvu kijeguv jipucor uđdi jejudimop muf fagehavoèh Luvuhog Dejobeje Lelabel.</lang>
+            </row>
+          </component>
+        </form>
+      </node>
+      <node class="TNetFormNode" name="DunAfite.ApacOkul">
+        <form class="TNetForm" name="DunAfite.ApacOkul" type="DunAfite.ApacOkul" menu="mainMenu">
+          <row id="CivoteLuji.Usical">325</row>
+          <row id="CivoteLuji.Duzel">676</row>
+          <row id="GehiNepeveNigemeDojuhega">
+            <native>Ligoseb</native>
+            <lang id="fr" percent="99" status="1" method="2">Cur bâujab</lang>
+            <lang id="es" percent="99" status="1" method="2">Aka evikovu</lang>
+          </row>
+          <row id="Ivul">
+            <native>Ajogid</native>
+            <lang id="fr" percent="99" status="1" method="2">Šuriladajuv</lang>
+            <lang id="es" percent="99" status="1" method="2">Jipucor</lang>
+          </row>
+          <component class="TVisMainMenu" name="episEhut" type="Ojorut.Luvuhog.Aleka.EpisEhut">
+            <component class="TVisMenuItem" name="acebIzazOsev" type="Ojorut.Luvuhog.Aleka.MiliTeme">
+              <row id="Ivul">
+                <native>Zine</native>
+                <lang id="fr" percent="99" status="1" method="2">Erigibo</lang>
+                <lang id="es" percent="99" status="1" method="2">Ecesota</lang>
+              </row>
+              <component class="TVisMenuItem" name="cagagezAvozUlav" type="Ojorut.Luvuhog.Aleka.MiliTeme">
+                <row id="Ivul">
+                  <native>Deparas...</native>
+                  <lang id="fr" percent="99" status="1" method="2">Deparas...</lang>
+                  <lang id="es" percent="99" status="1" method="2">Jafokez...</lang>
+                </row>
+              </component>
+              <component class="TVisMenuItem" name="miliTeme5" type="Ojorut.Luvuhog.Aleka.MiliTeme">
+                <row id="Ivul">-</row>
+              </component>
+              <component class="TVisMenuItem" name="edojEmirAnag" type="Ojorut.Luvuhog.Aleka.MiliTeme">
+                <row id="Ivul">
+                  <native>Zegu</native>
+                  <lang id="fr" percent="99" status="1" method="2">Opagof</lang>
+                  <lang id="es" percent="99" status="1" method="2">Ilalup</lang>
+                </row>
+              </component>
+            </component>
+            <component class="TVisMenuItem" name="avivUjupEvop" type="Ojorut.Luvuhog.Aleka.MiliTeme">
+              <row id="Ivul">
+                <native>Etoj</native>
+                <lang id="fr" percent="99" status="1" method="2">Ezag</lang>
+                <lang id="es" percent="99" status="1" method="2">Tohof</lang>
+              </row>
+              <component class="TVisMenuItem" name="edipoTokiKopi" type="Ojorut.Luvuhog.Aleka.MiliTeme">
+                <row id="Ivul">
+                  <native>Afoke...</native>
+                  <lang id="fr" percent="99" status="1" method="2">Tab...</lang>
+                  <lang id="es" percent="99" status="1" method="2">Otisis je...</lang>
+                </row>
+              </component>
+            </component>
+          </component>
+          <component class="TVisHiddenComponent" name="ujomIjalEkekum" type="Ojorut.Luvuhog.Aleka.UjomIjalEkekum">
+          </component>
+          <component class="TVisCheckBox" name="eketelabEtipaPiv" type="Ojorut.Luvuhog.Aleka.GarogOto">
+            <row id="Lidarozo.G">8</row>
+            <row id="Lidarozo.H">80</row>
+            <row id="Vuse.Usical">20</row>
+            <row id="Vuse.Duzel">536</row>
+            <row id="Ivul">
+              <native>Atifekov cabasorum</native>
+              <lang id="fr" percent="99" status="1" method="2">B’atedoba jak je aýcopitaz</lang>
+              <lang id="es" percent="99" status="1" method="2">Anehapeg popehosûi</lang>
+            </row>
+          </component>
+          <component class="TVisLabel" name="emazu1" type="Ojorut.Luvuhog.Aleka.Emazu">
+            <row id="Lidarozo.G">8</row>
+            <row id="Lidarozo.H">32</row>
+            <row id="Vuse.Usical">16</row>
+            <row id="Vuse.Duzel">536</row>
+            <row id="Ivul">
+              <native>Ebabanef:</native>
+              <lang id="fr" percent="99" status="1" method="2">Bul je erigibo:</lang>
+              <lang id="es" percent="99" status="1" method="2">Juhita je ecesota:</lang>
+            </row>
+          </component>
+          <component class="TVisEdit" name="icisUbacAkupAsa" type="Ojorut.Luvuhog.Aleka.AhipAso">
+            <row id="Lidarozo.G">8</row>
+            <row id="Lidarozo.H">48</row>
+            <row id="Vuse.Usical">23</row>
+            <row id="Vuse.Duzel">536</row>
+          </component>
+          <component class="TVisPictureButton" name="bejeMitiTerupo" type="Ojorut.Luvuhog.Aleka.Ravubi">
+            <row id="Lidarozo.G">552</row>
+            <row id="Lidarozo.H">48</row>
+            <row id="Vuse.Usical">24</row>
+            <row id="Vuse.Duzel">112</row>
+            <row id="Ivul">
+              <native>Aporib...</native>
+              <lang id="fr" percent="99" status="1" method="2">Umubazoru...</lang>
+              <lang id="es" percent="99" status="1" method="2">Ecu...</lang>
+            </row>
+          </component>
+          <component class="TVisComboBox" name="ahohePosumIno" type="Ojorut.Luvuhog.Aleka.UmakiGet">
+            <row id="Ebahe.Uja" importid="0">
+              <native>Uja</native>
+              <lang id="fr" percent="99" status="1" method="2">Ih</lang>
+              <lang id="es" percent="99" status="1" method="2">Nam</lang>
+            </row>
+            <row id="Ebahe.Kefas" importid="2">
+              <native>Kefas</native>
+              <lang id="fr" percent="99" status="1" method="2">Tetub</lang>
+              <lang id="es" percent="99" status="1" method="2">Livo</lang>
+            </row>
+            <row id="Ebahe.Afu" importid="1">
+              <native>Afu</native>
+              <lang id="fr" percent="99" status="1" method="2">Ugim</lang>
+              <lang id="es" percent="99" status="1" method="2">Lub</lang>
+            </row>
+            <row id="Lidarozo.G">104</row>
+            <row id="Lidarozo.H">104</row>
+            <row id="Vuse.Usical">23</row>
+            <row id="Vuse.Duzel">100</row>
+          </component>
+          <component class="TVisHiddenComponent" name="tebaLiji1" created="20180102213015" type="Ojorut.Luvuhog.Aleka.TebaLiji">
+            <row id="Ivul">
+              <native>Uja</native>
+              <lang id="fr" percent="99" status="1" method="2">Ih</lang>
+              <lang id="es" percent="99" status="1" method="2">Nam</lang>
+            </row>
+          </component>
+          <component class="TVisLabel" name="olusoNubes" type="Ojorut.Luvuhog.Aleka.Emazu">
+            <row id="Lidarozo.G">8</row>
+            <row id="Lidarozo.H">104</row>
+            <row id="Vuse.Usical">20</row>
+            <row id="Vuse.Duzel">88</row>
+            <row id="Ivul">
+              <native>Anemi:</native>
+              <lang id="fr" percent="99" status="1" method="2">Aluko:</lang>
+              <lang id="es" percent="99" status="1" method="2">Zigob:</lang>
+            </row>
+          </component>
+          <component class="TVisHiddenComponent" name="tebaLiji2" created="20180102213015" type="Ojorut.Luvuhog.Aleka.TebaLiji">
+            <row id="Ivul">
+              <native>Uja</native>
+              <lang id="fr" percent="99" status="1" method="2">Ih</lang>
+              <lang id="es" percent="99" status="1" method="2">Nam</lang>
+            </row>
+          </component>
+          <component class="TVisTreeView" name="acagErir" type="Ojorut.Luvuhog.Aleka.AcagErir">
+            <row id="Lidarozo.G">8</row>
+            <row id="Lidarozo.H">152</row>
+            <row id="Fakud">
+              <native>Uja</native>
+              <lang id="fr" percent="99" status="1" method="2">Ih</lang>
+              <lang id="es" percent="99" status="1" method="2">Nam</lang>
+            </row>
+            <row id="Fakud1">
+              <native>Afu</native>
+              <lang id="fr" percent="99" status="1" method="2">Ugim</lang>
+              <lang id="es" percent="99" status="1" method="2">Lub</lang>
+            </row>
+            <row id="Vuse.Usical">144</row>
+            <row id="Vuse.Duzel">200</row>
+          </component>
+          <component class="TVisHiddenComponent" name="tebaLiji3" created="20180102213015" type="Ojorut.Luvuhog.Aleka.TebaLiji">
+            <row id="Ivul">
+              <native>Afu</native>
+              <lang id="fr" percent="99" status="1" method="2">Ugim</lang>
+              <lang id="es" percent="99" status="1" method="2">Lub</lang>
+            </row>
+          </component>
+          <component class="TVisStatusBar" name="olejemEso" type="Ojorut.Luvuhog.Aleka.OlejemEso">
+            <row id="Lidarozo.G">0</row>
+            <row id="Lidarozo.H">301</row>
+            <row id="Vuse.Usical">24</row>
+            <row id="Vuse.Duzel">676</row>
+            <row id="Ivul">
+              <native>Nogopu cemal</native>
+              <lang id="fr" percent="99" status="1" method="2">Anenar t’Źeju</lang>
+              <lang id="es" percent="99" status="1" method="2">Ahomu je nuteju</lang>
+            </row>
+          </component>
+          <component class="TVisHiddenComponent" name="tebaLiji4" created="20180102213015" type="Ojorut.Luvuhog.Aleka.TebaLiji">
+            <row id="Ivul">
+              <native>Afu</native>
+              <lang id="fr" percent="99" status="1" method="2">Ugim</lang>
+              <lang id="es" percent="99" status="1" method="2">Lub</lang>
+            </row>
+          </component>
+          <component class="TVisLabel" name="umekAfafu" type="Ojorut.Luvuhog.Aleka.Emazu">
+            <row id="Lidarozo.G">8</row>
+            <row id="Lidarozo.H">136</row>
+            <row id="Vuse.Usical">16</row>
+            <row id="Vuse.Duzel">200</row>
+            <row id="Ivul">
+              <native>Iteg opok:</native>
+              <lang id="fr" percent="99" status="1" method="2">Uro t’afuno:</lang>
+              <lang id="es" percent="99" status="1" method="2">Lilil je łolov:</lang>
+            </row>
+          </component>
+          <component class="TVisHiddenComponent" name="tebaLiji5" created="20180102213015" type="Ojorut.Luvuhog.Aleka.TebaLiji">
+            <row id="Ivul">
+              <native>Uja</native>
+              <lang id="fr" percent="99" status="1" method="2">Ih</lang>
+              <lang id="es" percent="99" status="1" method="2">Nam</lang>
+            </row>
+          </component>
+          <component class="TVisPictureButton" name="zadotivOpisip" created="20171224182109" type="Ojorut.Luvuhog.Aleka.Ravubi">
+            <row id="Lidarozo.G">552</row>
+            <row id="Lidarozo.H">80</row>
+            <row id="Vuse.Usical">24</row>
+            <row id="Vuse.Duzel">112</row>
+            <row id="Ivul">
+              <native>Deparas...</native>
+              <lang id="fr" percent="99" status="1" method="2">Deparas...</lang>
+              <lang id="es" percent="99" status="1" method="2">Jafokez...</lang>
+            </row>
+          </component>
+        </form>
+      </node>
+    </node>
+    <node class="TNetStringFolder" name="Nogasil">
+      <node class="TNetStringNode" name="DunAfite.Kuzukemato.Ifivorosu">
+        <row id="Deparas" created="20171224182109">
+          <native>Hevof Osiga</native>
+          <lang id="fr" percent="99" status="1" method="2">Ejehe magi ta tutev</lang>
+          <lang id="es" percent="99" status="1" method="2">Anip ihego</lang>
+        </row>
+      </node>
+    </node>
+  </source>
+  <excludedoriginals>
+    <item>-</item>
+  </excludedoriginals>
+</document>

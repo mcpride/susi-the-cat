@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20140419063342" version="4.0.350" date="20140419063349" scan="5" scanned="20140419063344">
+  <lang id="fi"/>
+  <lang id="ja"/>
+  <source class="TTextSource" name="Adudah.tet" original="cu" date="20110720042120">
+    <definition>
+      <item type="ctContext"/>
+      <item type="ctText" before="\m" after="\v\b|\e" escape="seCpp"/>
+    </definition>
+    <row id="uja">
+      <native>Mucoju ecuj</native>
+      <lang id="fi" date="20110720132437">Huca goje</lang>
+      <lang id="ja" date="20110720141514">ンッゥョ</lang>
+    </row>
+    <row id="afu">
+      <native>Dolef ecuj#c#lLipoci ecuj</native>
+      <lang id="fi" date="20110720132442">Inujidêecic goje#nUnodil goje</lang>
+      <lang id="ja" date="20110720141524">愱#n牛</lang>
+    </row>
+  </source>
+</document>
