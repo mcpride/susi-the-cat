@@ -75,6 +75,8 @@ pub enum SourceKind {
     Po,
     /// Tab-separated i18n catalog (Susi extension, unknown to Sisulizer).
     Tsv,
+    /// Java resource bundle (`.properties`).
+    Properties,
     Other,
 }
 
@@ -85,6 +87,7 @@ impl SourceKind {
             SourceKind::Resx => "TNetResourceSource",
             SourceKind::Po => "TPoSource",
             SourceKind::Tsv => "TTsvSource",
+            SourceKind::Properties => "TJavaResourceSource",
             SourceKind::Other => "",
         }
     }
@@ -95,6 +98,7 @@ impl SourceKind {
             "TNetResourceSource" => SourceKind::Resx,
             "TPoSource" => SourceKind::Po,
             "TTsvSource" => SourceKind::Tsv,
+            "TJavaResourceSource" => SourceKind::Properties,
             _ => SourceKind::Other,
         }
     }
@@ -107,6 +111,7 @@ impl SourceKind {
             "resx" => Some(SourceKind::Resx),
             "po" | "pot" => Some(SourceKind::Po),
             "tsv" => Some(SourceKind::Tsv),
+            "properties" => Some(SourceKind::Properties),
             _ => None,
         }
     }
@@ -117,6 +122,7 @@ impl SourceKind {
             SourceKind::Resx => ".NET RESX",
             SourceKind::Po => "PO (gettext)",
             SourceKind::Tsv => "TSV (i18n catalog)",
+            SourceKind::Properties => "Java properties",
             SourceKind::Other => crate::i18n::t("Other"),
         }
     }
@@ -190,7 +196,11 @@ impl Source {
     }
 
     pub fn kind(&self) -> SourceKind {
-        SourceKind::from_class(self.class())
+        match SourceKind::from_class(self.class()) {
+            // Sisulizer's Java source also covers `.java` ListResourceBundles, which susi does not read.
+            SourceKind::Properties if !self.name().to_ascii_lowercase().ends_with(".properties") => SourceKind::Other,
+            k => k,
+        }
     }
 
     /// Source file name (relative to the project file, may contain wildcards).
@@ -233,6 +243,15 @@ impl Source {
         o.store(&mut self.attrs);
     }
 
+    /// Encoding of the localized files of a Java properties source.
+    pub fn properties_encoding(&self) -> crate::formats::properties::PropertiesEncoding {
+        crate::formats::properties::PropertiesEncoding::from_attrs(&self.attrs)
+    }
+
+    pub fn set_properties_encoding(&mut self, e: crate::formats::properties::PropertiesEncoding) {
+        e.store(&mut self.attrs);
+    }
+
     /// The `<outputfile>` element, if any.
     pub fn output_file(&self) -> Option<&Element> {
         self.items.iter().find_map(|i| match i {
@@ -248,6 +267,7 @@ impl Source {
             // gettext convention: one directory per language; templates (.pot) become .po.
             SourceKind::Po => "<iso>\\<body>.po".to_string(),
             SourceKind::Tsv => crate::formats::tsv::default_pattern(self.name()),
+            SourceKind::Properties => crate::formats::properties::default_pattern(self.name()),
             _ => "<sl>\\<file>".to_string(),
         };
         match self.output_file() {

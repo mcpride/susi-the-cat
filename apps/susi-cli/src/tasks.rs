@@ -295,7 +295,8 @@ fn add(t: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), String> {
         Some("resx" | "net" | "nettxt") => Some(SourceKind::Resx),
         Some("po" | "pot" | "gettext") => Some(SourceKind::Po),
         Some("tsv") => Some(SourceKind::Tsv),
-        Some(x) => return Err(tf!("Source type '{kind}' is not supported (json, resx, po, tsv)", kind = x)),
+        Some("properties" | "java") => Some(SourceKind::Properties),
+        Some(x) => return Err(tf!("Source type '{kind}' is not supported (json, resx, po, tsv, properties)", kind = x)),
     };
     if st.project.is_none() && !st.path.exists() {
         let mut p = Project::new();

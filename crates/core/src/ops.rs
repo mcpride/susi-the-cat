@@ -150,6 +150,7 @@ fn node_class(kind: SourceKind) -> &'static str {
         SourceKind::Resx => "TNetResourceNode",
         SourceKind::Po => "TPoNode",
         SourceKind::Tsv => "TTsvNode",
+        SourceKind::Properties => "TJavaResourceNode",
         _ => "TJsonNode",
     }
 }
@@ -163,7 +164,8 @@ fn container_for(src: &mut Source, rel_name: &str, wildcard: bool, create: bool)
     if !wildcard {
         let has_direct_rows = src.items.iter().any(|i| matches!(i, Item::Row(_)));
         let nodes: Vec<usize> = src.items.iter().enumerate().filter(|(_, i)| matches!(i, Item::Node(_))).map(|(i, _)| i).collect();
-        if has_direct_rows || (nodes.is_empty() && src.kind() == SourceKind::Resx) {
+        // Sisulizer keeps the rows of a single .resx/.properties file directly in the source.
+        if has_direct_rows || (nodes.is_empty() && matches!(src.kind(), SourceKind::Resx | SourceKind::Properties)) {
             return Some(Vec::new());
         }
         if nodes.len() == 1 {
@@ -192,6 +194,7 @@ pub fn scan_file(src: &Source, bytes: &[u8]) -> Result<Vec<ScannedString>> {
         SourceKind::Resx => formats::resx::scan(bytes),
         SourceKind::Po => formats::po::scan(bytes, &src.po_options()),
         SourceKind::Tsv => formats::tsv::scan(bytes),
+        SourceKind::Properties => formats::properties::scan(bytes),
         SourceKind::Other => Err(Error::Unsupported(crate::i18n::t("source type not supported by susi").into())),
     }
 }
@@ -286,11 +289,24 @@ fn update_row(r: &mut Row, s: &ScannedString, stamp: &str) -> bool {
 
 /// Scans one source. Missing or unreadable files are reported, not fatal.
 pub fn scan_source(p: &mut Project, si: usize) -> Result<ScanReport> {
+    scan_source_impl(p, si, false)
+}
+
+/// Parser of existing localized files whose translations a scan can take over.
+type TranslationsFn = fn(&[u8]) -> Result<Vec<(String, String)>>;
+
+/// `import_existing`: take over translations from existing localized files (always done for TSV,
+/// whose catalogs are their own localized files; for Java properties when the source is added).
+fn scan_source_impl(p: &mut Project, si: usize, import_existing: bool) -> Result<ScanReport> {
     let files = source_files(p, si)?;
     let (root, _) = source_location(p, p.sources.get(si).ok_or_else(|| Error::NotFound(format!("source #{si}")))?);
     let mut rep = ScanReport::default();
     let wildcard = p.sources.get(si).is_some_and(Source::is_wildcard);
-    let tsv = p.sources.get(si).is_some_and(|s| s.kind() == SourceKind::Tsv);
+    let importer: Option<TranslationsFn> = match p.sources.get(si).map(Source::kind) {
+        Some(SourceKind::Tsv) => Some(formats::tsv::translations),
+        Some(SourceKind::Properties) if import_existing => Some(formats::properties::translations),
+        _ => None,
+    };
     let mut newest = None;
     for f in &files {
         let Some(src) = p.sources.get_mut(si) else { break };
@@ -309,7 +325,7 @@ pub fn scan_source(p: &mut Project, si: usize) -> Result<ScanReport> {
         let node = NodeRef { source: si, path };
         let Some(items) = p.items_at_mut(&node) else { continue };
         let r = merge_rows(items, &scanned);
-        let imported = if tsv { import_tsv_translations(p, si, f, &node) } else { 0 };
+        let imported = importer.map_or(0, |parse| import_translations(p, si, f, &node, parse));
         rep.add(&ScanReport { files: 1, imported, ..r });
     }
     if let (false, Some(m), Some(src)) = (wildcard, newest, p.sources.get_mut(si)) {
@@ -318,9 +334,9 @@ pub fn scan_source(p: &mut Project, si: usize) -> Result<ScanReport> {
     Ok(rep)
 }
 
-/// Takes over the translations of the existing localized files of a TSV original (which may be the
+/// Takes over the translations of the existing localized files of an original (for TSV possibly the
 /// original itself, e.g. `de-core.tsv`) into empty cells. Returns the number of imported cells.
-fn import_tsv_translations(p: &mut Project, si: usize, file: &Path, node: &NodeRef) -> usize {
+fn import_translations(p: &mut Project, si: usize, file: &Path, node: &NodeRef, parse: TranslationsFn) -> usize {
     let Some(src) = p.sources.get(si) else { return 0 };
     let original = src.original();
     let found: Vec<(String, HashMap<String, String>)> = p
@@ -329,7 +345,7 @@ fn import_tsv_translations(p: &mut Project, si: usize, file: &Path, node: &NodeR
         .filter(|l| !l.is_pseudo() && l.id() != original)
         .filter_map(|l| {
             let bytes = std::fs::read(output_path(p, si, file, l.id())?).ok()?;
-            Some((l.id().to_string(), formats::tsv::translations(&bytes).ok()?.into_iter().collect()))
+            Some((l.id().to_string(), parse(&bytes).ok()?.into_iter().collect()))
         })
         .collect();
     let Some(items) = p.items_at_mut(node) else { return 0 };
@@ -366,7 +382,7 @@ pub fn scan_project(p: &mut Project, sources: Option<&[usize]>) -> Result<ScanRe
 pub fn add_source(p: &mut Project, file: &Path, original_lang: &str) -> Result<(usize, ScanReport)> {
     let name = file.file_name().map(|f| f.to_string_lossy().to_string()).unwrap_or_default();
     let kind = SourceKind::from_path(Path::new(&name))
-        .ok_or_else(|| Error::Unsupported(crate::tf!("{file}: only .json, .resx, .po, .pot and .tsv are supported", file = file.display())))?;
+        .ok_or_else(|| Error::Unsupported(crate::tf!("{file}: only .json, .resx, .po, .pot, .tsv and .properties are supported", file = file.display())))?;
     let base = p.base_dir();
     let abs = if file.is_absolute() { file.to_path_buf() } else { std::env::current_dir().map(|d| d.join(file)).unwrap_or_else(|_| file.to_path_buf()) };
     let rel = relative_path(&normalize(&base_abs(&base)), &normalize(&abs)).unwrap_or(abs);
@@ -379,7 +395,7 @@ pub fn add_source(p: &mut Project, file: &Path, original_lang: &str) -> Result<(
     src.set_output_pattern(&dir, &pattern);
     p.sources.push(src);
     let si = p.sources.len() - 1;
-    let rep = scan_source(p, si)?;
+    let rep = scan_source_impl(p, si, true)?;
     Ok((si, rep))
 }
 
@@ -435,6 +451,7 @@ pub fn build_content(src: &Source, original: &[u8], rows: &HashMap<&str, &Row>, 
             formats::po::build(original, &params)
         }
         SourceKind::Tsv => formats::tsv::build(original, &resolve),
+        SourceKind::Properties => formats::properties::build(original, src.properties_encoding(), &resolve),
         SourceKind::Other => Err(Error::Unsupported(crate::i18n::t("source type not supported by susi").into())),
     }
 }

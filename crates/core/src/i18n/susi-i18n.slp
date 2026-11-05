@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<document created="20261103155355" version="4.0.374" date="20261104100111" scan="3" scanned="20261104100111">
+<document created="20261103155355" version="4.0.374" date="20261105162922" scan="4" scanned="20261105162922">
   <lang id="en"/>
   <lang id="de"/>
-  <source class="TTsvSource" name="de-core.tsv" original="en" date="20261103231859">
+  <source class="TTsvSource" name="de-core.tsv" original="en" date="20261105162544">
     <outputfile dir="." localized="&lt;iso&gt;-core.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-core.tsv" state="0" created="20261103155355">
       <row id="Not translated" state="0" created="20261103155355" note="Status" notereadonly="1">
@@ -93,9 +93,9 @@
         <native>source type not supported by susi</native>
         <lang id="de" date="20261103155355" status="3">Quelltyp wird von susi nicht unterstützt</lang>
       </row>
-      <row id="{file}: only .json, .resx, .po, .pot and .tsv are supported" state="0" created="20261103155355" note="Scan / build / translation memory" notereadonly="1">
-        <native>{file}: only .json, .resx, .po, .pot and .tsv are supported</native>
-        <lang id="de" date="20261103155355" status="3">{file}: Nur .json, .resx, .po, .pot und .tsv werden unterstützt</lang>
+      <row id="{file}: only .json, .resx, .po, .pot, .tsv and .properties are supported" state="0" created="20261105162922" note="Scan / build / translation memory" notereadonly="1">
+        <native>{file}: only .json, .resx, .po, .pot, .tsv and .properties are supported</native>
+        <lang id="de" date="20261105162922" status="3">{file}: Nur .json, .resx, .po, .pot, .tsv und .properties werden unterstützt</lang>
       </row>
       <row id="@plural|{n} translation imported|{n} translations imported" state="0" created="20261103155355" note="Scan / build / translation memory#lContext: @plural" notereadonly="1">
         <native>{n} translation imported|{n} translations imported</native>
@@ -313,9 +313,17 @@
         <native>Original changed</native>
         <lang id="de" date="20261103232009" status="3">Original geändert</lang>
       </row>
+      <row id="Automatic (like the original)" state="0" created="20261105162922" note="Date filter" notereadonly="1">
+        <native>Automatic (like the original)</native>
+        <lang id="de" date="20261105162922" status="3">Automatisch (wie das Original)</lang>
+      </row>
+      <row id="ISO-8859-1 with Unicode escapes" state="0" created="20261105162922" note="Date filter" notereadonly="1">
+        <native>ISO-8859-1 with Unicode escapes</native>
+        <lang id="de" date="20261105162922" status="3">ISO-8859-1 mit Unicode-Escapes</lang>
+      </row>
     </node>
   </source>
-  <source class="TTsvSource" name="de-cli.tsv" original="en" date="20261103231859">
+  <source class="TTsvSource" name="de-cli.tsv" original="en" date="20261105162544">
     <outputfile dir="." localized="&lt;iso&gt;-cli.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-cli.tsv" state="0" created="20261103155355">
       <row id="susi-cli {version} – Susi the CAT (SlMake compatible)" state="0" created="20261103162607" note="Help: general" notereadonly="1">
@@ -458,17 +466,17 @@
         <native>Examples:</native>
         <lang id="de" date="20261103155355" status="3">Beispiele:</lang>
       </row>
-      <row id="Adds sources (.json, .resx, .po/.pot, .tsv; wildcards * and ? allowed) and scans them.\nIf the project does not exist, it is created." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
-        <native>Adds sources (.json, .resx, .po/.pot, .tsv; wildcards * and ? allowed) and scans them.#lIf the project does not exist, it is created.</native>
-        <lang id="de" date="20261103155355" status="3">Fügt Quellen (.json, .resx, .po/.pot, .tsv; Platzhalter * und ? erlaubt) hinzu und scannt sie.#lExistiert das Projekt nicht, wird es angelegt.</lang>
+      <row id="Adds sources (.json, .resx, .po/.pot, .tsv, .properties; wildcards * and ? allowed) and scans them.\nIf the project does not exist, it is created." state="0" created="20261105162922" note="Help: tasks" notereadonly="1">
+        <native>Adds sources (.json, .resx, .po/.pot, .tsv, .properties; wildcards * and ? allowed) and scans them.#lIf the project does not exist, it is created.</native>
+        <lang id="de" date="20261105162922" status="3">Fügt Quellen (.json, .resx, .po/.pot, .tsv, .properties; Platzhalter * und ? erlaubt) hinzu und scannt sie.#lExistiert das Projekt nicht, wird es angelegt.</lang>
       </row>
       <row id="Original language of the source (default: en)." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
         <native>Original language of the source (default: en).</native>
         <lang id="de" date="20261103155355" status="3">Originalsprache der Quelle (Standard: en).</lang>
       </row>
-      <row id="json, resx, po or tsv (default: by file extension)." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
-        <native>json, resx, po or tsv (default: by file extension).</native>
-        <lang id="de" date="20261103155355" status="3">json, resx, po oder tsv (Standard: anhand der Dateiendung).</lang>
+      <row id="json, resx, po, tsv or properties (default: by file extension)." state="0" created="20261105162922" note="Help: tasks" notereadonly="1">
+        <native>json, resx, po, tsv or properties (default: by file extension).</native>
+        <lang id="de" date="20261105162922" status="3">json, resx, po, tsv oder properties (Standard: anhand der Dateiendung).</lang>
       </row>
       <row id="Creates the localized files (Project | Build)." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
         <native>Creates the localized files (Project | Build).</native>
@@ -698,9 +706,9 @@
         <native>Import file (importing all localized files is not supported)</native>
         <lang id="de" date="20261103155355" status="3">Importdatei (Importieren aller lokalisierten Dateien wird nicht unterstützt)</lang>
       </row>
-      <row id="Source type '{kind}' is not supported (json, resx, po, tsv)" state="0" created="20261103155355" note="Messages" notereadonly="1">
-        <native>Source type '{kind}' is not supported (json, resx, po, tsv)</native>
-        <lang id="de" date="20261103155355" status="3">Quelltyp '{kind}' wird nicht unterstützt (json, resx, po, tsv)</lang>
+      <row id="Source type '{kind}' is not supported (json, resx, po, tsv, properties)" state="0" created="20261105162922" note="Messages" notereadonly="1">
+        <native>Source type '{kind}' is not supported (json, resx, po, tsv, properties)</native>
+        <lang id="de" date="20261105162922" status="3">Quelltyp '{kind}' wird nicht unterstützt (json, resx, po, tsv, properties)</lang>
       </row>
       <row id="New project {path}" state="0" created="20261103155355" note="Messages" notereadonly="1">
         <native>New project {path}</native>
@@ -844,7 +852,7 @@
       </row>
     </node>
   </source>
-  <source class="TTsvSource" name="de-gui.tsv" original="en" date="20261104095959">
+  <source class="TTsvSource" name="de-gui.tsv" original="en" date="20261105162544">
     <outputfile dir="." localized="&lt;iso&gt;-gui.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-gui.tsv" state="0" created="20261103155355">
       <row id="Information" state="0" created="20261103155355" note="Application, log" notereadonly="1">
@@ -1719,9 +1727,9 @@
         <native>Localization tool for Susi/Sisulizer projects (.slp).</native>
         <lang id="de" date="20261103155355" status="3">Lokalisierungswerkzeug für Susi/Sisulizer-Projekte (.slp).</lang>
       </row>
-      <row id="Supported sources: .NET RESX, JSON, PO/POT (gettext, with MO compilation), TSV (i18n catalogs). Exchange: Excel, CSV, Text, XLIFF, TMX." state="0" created="20261103155355" note="Dialogs" notereadonly="1">
-        <native>Supported sources: .NET RESX, JSON, PO/POT (gettext, with MO compilation), TSV (i18n catalogs). Exchange: Excel, CSV, Text, XLIFF, TMX.</native>
-        <lang id="de" date="20261103155355" status="3">Unterstützte Quellen: .NET RESX, JSON, PO/POT (gettext, mit MO-Kompilierung), TSV (i18n-Kataloge). Austausch: Excel, CSV, Text, XLIFF, TMX.</lang>
+      <row id="Supported sources: .NET RESX, JSON, PO/POT (gettext, with MO compilation), TSV (i18n catalogs), Java properties. Exchange: Excel, CSV, Text, XLIFF, TMX." state="0" created="20261105162922" note="Dialogs" notereadonly="1">
+        <native>Supported sources: .NET RESX, JSON, PO/POT (gettext, with MO compilation), TSV (i18n catalogs), Java properties. Exchange: Excel, CSV, Text, XLIFF, TMX.</native>
+        <lang id="de" date="20261105162922" status="3">Unterstützte Quellen: .NET RESX, JSON, PO/POT (gettext, mit MO-Kompilierung), TSV (i18n-Kataloge), Java properties. Austausch: Excel, CSV, Text, XLIFF, TMX.</lang>
       </row>
       <row id="Command line: susi-cli (SlMake compatible), AI integration: susi-cli mcp" state="0" created="20261103155355" note="Dialogs" notereadonly="1">
         <native>Command line: susi-cli (SlMake compatible), AI integration: susi-cli mcp</native>
@@ -1767,9 +1775,9 @@
         <native>{n} translation|{n} translations</native>
         <lang id="de" date="20261103155355" status="3">{n} Übersetzung|{n} Übersetzungen</lang>
       </row>
-      <row id="Supported sources (JSON, .NET RESX, PO, TSV)" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
-        <native>Supported sources (JSON, .NET RESX, PO, TSV)</native>
-        <lang id="de" date="20261103155355" status="3">Unterstützte Quellen (JSON, .NET RESX, PO, TSV)</lang>
+      <row id="Supported sources (JSON, .NET RESX, PO, TSV, Java)" state="0" created="20261105162922" note="Commands, file dialogs" notereadonly="1">
+        <native>Supported sources (JSON, .NET RESX, PO, TSV, Java)</native>
+        <lang id="de" date="20261105162922" status="3">Unterstützte Quellen (JSON, .NET RESX, PO, TSV, Java)</lang>
       </row>
       <row id="i18n catalogs (TSV)" state="0" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
         <native>i18n catalogs (TSV)</native>
@@ -1950,6 +1958,10 @@
       <row id="Show &quot;Translated on&quot; column" state="0" created="20261103232009" note="Date filter, date column" notereadonly="1">
         <native>Show "Translated on" column</native>
         <lang id="de" date="20261103232009" status="3">Spalte „Übersetzt am“ anzeigen</lang>
+      </row>
+      <row id="Encoding:" state="0" created="20261105162922" note="Date filter, date column" notereadonly="1">
+        <native>Encoding:</native>
+        <lang id="de" date="20261105162922" status="3">Kodierung:</lang>
       </row>
     </node>
   </source>

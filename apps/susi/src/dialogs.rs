@@ -3,6 +3,7 @@
 use std::path::PathBuf;
 
 use susi_core::formats::po::PoOptions;
+use susi_core::formats::properties::PropertiesEncoding;
 use susi_core::i18n::{Lang, t};
 use susi_core::lang;
 use susi_core::model::{RowRef, WriteMethod};
@@ -23,6 +24,8 @@ pub struct SourcePropsDialog {
     pub pattern: String,
     /// Options of a PO source.
     pub po: Option<PoOptions>,
+    /// Encoding of a Java properties source.
+    pub encoding: Option<PropertiesEncoding>,
 }
 
 pub struct RowPropsDialog {
@@ -281,6 +284,15 @@ fn source_props(app: &mut SusiApp, ui: &mut egui::Ui, s: &mut SourcePropsDialog)
         ui.label(t("File pattern:"));
         ui.text_edit_singleline(&mut s.pattern);
         ui.end_row();
+        if let Some(enc) = &mut s.encoding {
+            ui.label(t("Encoding:"));
+            egui::ComboBox::from_id_salt("encoding").selected_text(enc.label()).show_ui(ui, |ui| {
+                for e in PropertiesEncoding::ALL {
+                    ui.selectable_value(enc, e, e.label());
+                }
+            });
+            ui.end_row();
+        }
     });
     ui.small(t("Placeholders: <sl> language ID, <iso>, <net>, <file> file name, <body> name without extension, <ext> extension"));
     if let Some(po) = &mut s.po {
@@ -294,6 +306,9 @@ fn source_props(app: &mut SusiApp, ui: &mut egui::Ui, s: &mut SourcePropsDialog)
                 src.set_output_pattern(s.dir.trim(), s.pattern.trim());
                 if let Some(po) = &s.po {
                     src.set_po_options(po);
+                }
+                if let Some(enc) = s.encoding {
+                    src.set_properties_encoding(enc);
                 }
                 app.touched();
             }
@@ -585,7 +600,7 @@ fn about(ui: &mut egui::Ui) -> bool {
         });
     });
     ui.label(t("Localization tool for Susi/Sisulizer projects (.slp)."));
-    ui.label(t("Supported sources: .NET RESX, JSON, PO/POT (gettext, with MO compilation), TSV (i18n catalogs). Exchange: Excel, CSV, Text, XLIFF, TMX."));
+    ui.label(t("Supported sources: .NET RESX, JSON, PO/POT (gettext, with MO compilation), TSV (i18n catalogs), Java properties. Exchange: Excel, CSV, Text, XLIFF, TMX."));
     ui.label(t("Command line: susi-cli (SlMake compatible), AI integration: susi-cli mcp"));
     ui.separator();
     ui.small(t("Sisulizer is a product of Sisulizer Ltd. & Co KG. Susi is an independent new development."));

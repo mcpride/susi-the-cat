@@ -16,6 +16,7 @@ Supported sources are:
 * **JSON** (i18next/ngx-translate key trees)
 * **PO/gettext** (`.po`/`.pot`, including compilation to `.mo`)
 * **TSV i18n catalogs** (`.tsv`, the format of Susi's own catalogs; not supported by Sisulizer).
+* **Java resource bundles** (`.properties`).
 
 ---
 
@@ -245,7 +246,7 @@ susi-cli <tasks> project.slp [-q] [-a] [-w] [-e] [-h]
 
 | Task | SlMake | Description |
 |------|--------|-------------|
-| `add [file]` | – | Add a source (.json/.resx/.po/.pot/.tsv, wildcards allowed); creates the project if needed. `-type:json\|resx\|po\|tsv` forces the type |
+| `add [file]` | – | Add a source (.json/.resx/.po/.pot/.tsv/.properties, wildcards allowed); creates the project if needed. `-type:json\|resx\|po\|tsv\|properties` forces the type |
 | `scan` | `scan` | Scan sources |
 | `create` (`build`, `make`) | `create` | Create localized files (default task) |
 | `export [file]` | `export` | Export to `.xlsx`, `.csv`, `.txt`, `.xlf`, `.tmx` |
@@ -327,7 +328,8 @@ A human then reviews the translations in the GUI and sets them to *Translated* o
 - **Output**:
   - RESX by default `<body>.<net>.<ext>` (e.g. `Strings.de-DE.resx`), JSON `<sl>\<file>`,
     PO `<iso>\<body>.po` (e.g. `de\messages.po`, with `messages.mo` next to it), TSV: the language
-    code in the file name is replaced (`de-core.tsv` → `<iso>-core.<ext>`), otherwise `<iso>\<file>`.
+    code in the file name is replaced (`de-core.tsv` → `<iso>-core.<ext>`), otherwise `<iso>\<file>`,
+    Java properties `<body>_<iso>.<ext>` (e.g. `Messages_de.properties`, `Messages_pt_BR.properties`).
   - Patterns from the project's `<outputfile>` are evaluated: `<dir>`, `<parent>`, `<file>`,
     `<body>`, `<ext>`, `<sl>`, `<iso>`, `<ish>`, `<net>`, `<tag>`, `<win>`, `<lang>`.
 - **Translation memory**: TMX, by default `%APPDATA%\susi\susi-tm.tmx` (configurable). Exact
@@ -385,9 +387,32 @@ with the Susi-specific class `TTsvSource` (Sisulizer 4 cannot open such projects
 
 ---
 
-## Limitations (as of 0.1)
+## Java properties
 
-- Sources: RESX, JSON, PO and TSV. Other Sisulizer source types are preserved in the project but are
+Java resource bundles (`Messages.properties` with `Messages_de.properties`, `Messages_pt_BR.properties`
+etc. next to it) are stored with Sisulizer's class `TJavaResourceSource`, so Sisulizer projects with
+`.properties` sources can be opened, scanned and built. `.java` ListResourceBundles (the same
+Sisulizer source type) are preserved but not supported.
+
+- **Scan**: The file is read like `java.util.Properties.load` does (`key=value`, `key: value`,
+  `key value`, continuation lines, `#`/`!` comments, escapes including `\uXXXX`). Each key becomes a
+  row (row ID = key, as in Sisulizer); the comment lines directly above an entry become its note.
+  Entries with empty values are skipped. When the source is added, translations from existing
+  localized files (`Messages_de.properties`, …) are taken over into empty cells.
+- **Build**: The original is copied with the translated values; comments, blank lines, order,
+  separators and line endings are kept. Omitted entries (write method) are removed together with
+  their comment lines, so Java falls back to the parent bundle.
+- **Encoding** (source properties): *Automatic* keeps the style of the original: raw UTF-8 if it
+  contains UTF-8 text, otherwise ASCII with `\uXXXX` escapes, which all Java versions read (Java 8
+  and older read `.properties` as ISO-8859-1). *UTF-8* writes non-ASCII characters as they are
+  (Java 9+), *ISO-8859-1 with Unicode escapes* always escapes them. The choice is stored in the
+  Sisulizer attribute `encoding` (Sisulizer's `windows-1252` means escaped).
+
+---
+
+## Limitations
+
+- Sources: RESX, JSON, PO, TSV and Java properties. Other Sisulizer source types are preserved in the project but are
   neither scanned nor built.
 - No Sisulizer exchange packages (`.sle`/`.slz`) and no merging of projects.
 - No machine translation services. The MCP interface takes over this role.

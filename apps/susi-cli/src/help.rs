@@ -122,10 +122,12 @@ pub fn task(name: &str) -> String {
     match name {
         "add" => page(
             "susi-cli add file [options] project.slp",
-            t("Adds sources (.json, .resx, .po/.pot, .tsv; wildcards * and ? allowed) and scans them.\nIf the project does not exist, it is created."),
+            t(
+                "Adds sources (.json, .resx, .po/.pot, .tsv, .properties; wildcards * and ? allowed) and scans them.\nIf the project does not exist, it is created.",
+            ),
             &(lang_opt()
                 + &item("-origlang:X", t("Original language of the source (default: en)."))
-                + &item("-type:X", t("json, resx, po or tsv (default: by file extension)."))),
+                + &item("-type:X", t("json, resx, po, tsv or properties (default: by file extension)."))),
             &[
                 "susi-cli add src\\i18n\\en.json -origlang:en -lang:de;fr app.slp",
                 "susi-cli add *.resx app.slp",

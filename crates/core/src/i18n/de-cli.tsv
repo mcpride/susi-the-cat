@@ -41,9 +41,9 @@
 	Replace existing translations.	Vorhandene Übersetzungen ersetzen.
 	Example:	Beispiel:
 	Examples:	Beispiele:
-	Adds sources (.json, .resx, .po/.pot, .tsv; wildcards * and ? allowed) and scans them.\nIf the project does not exist, it is created.	Fügt Quellen (.json, .resx, .po/.pot, .tsv; Platzhalter * und ? erlaubt) hinzu und scannt sie.\nExistiert das Projekt nicht, wird es angelegt.
+	Adds sources (.json, .resx, .po/.pot, .tsv, .properties; wildcards * and ? allowed) and scans them.\nIf the project does not exist, it is created.	Fügt Quellen (.json, .resx, .po/.pot, .tsv, .properties; Platzhalter * und ? erlaubt) hinzu und scannt sie.\nExistiert das Projekt nicht, wird es angelegt.
 	Original language of the source (default: en).	Originalsprache der Quelle (Standard: en).
-	json, resx, po or tsv (default: by file extension).	json, resx, po oder tsv (Standard: anhand der Dateiendung).
+	json, resx, po, tsv or properties (default: by file extension).	json, resx, po, tsv oder properties (Standard: anhand der Dateiendung).
 	Creates the localized files (Project | Build).	Erstellt die lokalisierten Dateien (Projekt | Erstellen).
 	Translates duplicate strings with existing translations of the same original.	Übersetzt doppelte Zeichenfolgen mit bereits vorhandenen Übersetzungen desselben Originals.
 	Exports rows to a file: .xlsx (Excel), .csv, .txt (tab separated), .xlf/.xliff, .tmx.\nXLIFF with several languages creates one file per language (name.<language>.xlf).	Exportiert Zeilen in eine Datei: .xlsx (Excel), .csv, .txt (Tab-getrennt), .xlf/.xliff, .tmx.\nXLIFF mit mehreren Sprachen erzeugt je Sprache eine Datei (name.<sprache>.xlf).
@@ -105,7 +105,7 @@
 	Source file	Quelldatei
 	Export file	Exportdatei
 	Import file (importing all localized files is not supported)	Importdatei (Importieren aller lokalisierten Dateien wird nicht unterstützt)
-	Source type '{kind}' is not supported (json, resx, po, tsv)	Quelltyp '{kind}' wird nicht unterstützt (json, resx, po, tsv)
+	Source type '{kind}' is not supported (json, resx, po, tsv, properties)	Quelltyp '{kind}' wird nicht unterstützt (json, resx, po, tsv, properties)
 	New project {path}	Neues Projekt {path}
 	Language added: {name} ({lang})	Sprache hinzugefügt: {name} ({lang})
 	No files found: {files}	Keine Dateien gefunden: {files}

@@ -3,6 +3,7 @@
 pub mod json;
 pub mod mo;
 pub mod po;
+pub mod properties;
 pub mod resx;
 pub mod tsv;
 

@@ -198,3 +198,38 @@ fn tsv_catalog_is_its_own_localized_file() {
     let rep = ops::scan_project(&mut p, None).unwrap();
     assert_eq!((rep.new, rep.changed, rep.unused, rep.imported), (0, 0, 0, 0), "{:?}", rep.errors);
 }
+
+#[test]
+fn java_properties_import_and_build() {
+    let tmp = tempfile::tempdir().unwrap();
+    let res = tmp.path().join("res");
+    std::fs::create_dir_all(&res).unwrap();
+    let en = "# Main window\r\nwindow.title=Converter\r\n\r\n# Buttons\r\nbutton.ok = OK\r\nbutton.quit = Quit\r\nmessage=Converted {0} files\\n\\\r\n    successfully.\r\n";
+    std::fs::write(res.join("Converter.properties"), en).unwrap();
+    std::fs::write(res.join("Converter_de.properties"), "window.title=Konverter\nbutton.quit=Beenden\nobsolete=Alt\n").unwrap();
+    let mut p = susi_core::Project::new();
+    p.path = Some(tmp.path().join("app.slp"));
+    p.add_language("de");
+    p.add_language("pt-BR");
+    let (si, rep) = ops::add_source(&mut p, &res.join("Converter.properties"), "en").unwrap();
+    assert_eq!(p.sources[si].class(), "TJavaResourceSource");
+    assert_eq!(p.sources[si].output_pattern().1, "<body>_<iso>.<ext>");
+    assert_eq!((rep.new, rep.imported), (4, 2), "{:?}", rep.errors);
+    // Rows are stored directly in the source, as Sisulizer does.
+    assert!(p.sources[si].items.iter().all(|i| !matches!(i, susi_core::Item::Node(_))));
+    let msg = p.find_row("message").unwrap();
+    assert_eq!(p.row(&msg).unwrap().native.as_deref(), Some("Converted {0} files\nsuccessfully."));
+    assert_eq!(p.row(&p.find_row("button.ok").unwrap()).unwrap().note(), "Buttons");
+    p.row_mut(&msg).unwrap().set_translation("de", "{0} Dateien\nerfolgreich konvertiert.", susi_core::TranslationStatus::Translated);
+    p.row_mut(&msg).unwrap().set_translation("pt-BR", "{0} arquivos convertidos", susi_core::TranslationStatus::Translated);
+
+    let b = ops::build_project(&p, &[], None);
+    assert!(b.errors.is_empty(), "{:?}", b.errors);
+    let de = std::fs::read_to_string(res.join("Converter_de.properties")).unwrap();
+    assert_eq!(de, "# Main window\r\nwindow.title=Konverter\r\n\r\nbutton.quit = Beenden\r\nmessage={0} Dateien\\nerfolgreich konvertiert.\r\n");
+    let pt = std::fs::read_to_string(res.join("Converter_pt_BR.properties")).unwrap();
+    assert_eq!(pt, "\r\nmessage={0} arquivos convertidos\r\n");
+    // Rescanning does not import again and finds no changes; the localized files are no sources.
+    let rep = ops::scan_project(&mut p, None).unwrap();
+    assert_eq!((rep.new, rep.changed, rep.unused, rep.imported), (0, 0, 0, 0), "{:?}", rep.errors);
+}
