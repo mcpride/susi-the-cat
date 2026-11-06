@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.0](https://github.com/mcpride/susi-the-cat/compare/v0.2.1...v0.3.0) (2026-11-06)
+
+### Features
+
+* add Java resource bundles (.properties) support ([e847caf](https://github.com/mcpride/susi-the-cat/commit/e847caf32a4e6491262c6648a5aa3b6f33f2cf37))
+
 ## [0.2.1](https://github.com/mcpride/susi-the-cat/compare/v0.2.0...v0.2.1) (2026-11-04)
 
 ### Bug Fixes
