@@ -1,14 +1,16 @@
 # Susi the CAT
 
+![Meow](assets/app-icon/susi-256.png)
+
 **susi** ("Susi the CAT", CAT = computer-assisted translation) is a localization tool written in Rust. It is meant to replace the discontinued Sisulizer 4 and edits existing Sisulizer project files (`.slp`) directly.
 
 The project consists of three parts:
 
-| Program    | Purpose                                                                                |
-|------------|----------------------------------------------------------------------------------------|
-| `susi`     | Desktop GUI modeled on the Sisulizer user interface (tree, grid, filter, output)       |
-| `susi-cli` | Command line for build pipelines, compatible with `SlMake`, also hosts the MCP server  |
-| MCP        | `susi-cli mcp`: interface for AI agents (Model Context Protocol, stdio)                |
+| Program        | Purpose                                                                                |
+|----------------|----------------------------------------------------------------------------------------|
+| `susi`         | Desktop GUI modeled on the Sisulizer user interface (tree, grid, filter, output)       |
+| `susi-cli`     | Command line for build pipelines, compatible with `SlMake`, also hosts the MCP server  |
+| `susi-cli mcp` | MCP interface for AI agents (Model Context Protocol, stdio)                            |
 
 Supported sources are: 
 
@@ -17,6 +19,8 @@ Supported sources are:
 * **PO/gettext** (`.po`/`.pot`, including compilation to `.mo`)
 * **TSV i18n catalogs** (`.tsv`, the format of Susi's own catalogs; not supported by Sisulizer).
 * **Java resource bundles** (`.properties`).
+
+![Susi's graphical user interface in light theme](assets/susi-gui-01.jpg)
 
 ---
 
@@ -128,7 +132,7 @@ Notes:
 ## User interface (`susi`)
 
 ```powershell
-susi.exe [project.slp]
+.\susi [project.slp]
 ```
 
 Operation follows Sisulizer:
@@ -420,4 +424,4 @@ Sisulizer source type) are preserved but not supported.
 
 ## ATTENTION
 
-Before production use, do a trial run with copies of the real projects!
+Before production use on your own risk without warranties, do a trial run with copies of the real projects!
