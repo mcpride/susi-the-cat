@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.0](https://github.com/mcpride/susi-the-cat/compare/v0.3.0...v0.4.0) (2026-11-09)
+
+### Features
+
+* **gui:** resizable, horizontally scrollable columns in bottom panel lists ([7492369](https://github.com/mcpride/susi-the-cat/commit/7492369a4c9b54962929ed1e38c8ab170b8246d0))
+
 ## [0.3.0](https://github.com/mcpride/susi-the-cat/compare/v0.2.1...v0.3.0) (2026-11-06)
 
 ### Features

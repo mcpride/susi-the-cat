@@ -3636,7 +3636,7 @@ checksum = "7da8b5736845d9f2fcb837ea5d9e2628564b3b043a70948a3f0b778838c5fb4f"
 
 [[package]]
 name = "susi"
-version = "0.3.0"
+version = "0.4.0"
 dependencies = [
  "chrono",
  "eframe",
@@ -3650,7 +3650,7 @@ dependencies = [
 
 [[package]]
 name = "susi-cli"
-version = "0.3.0"
+version = "0.4.0"
 dependencies = [
  "serde_json",
  "susi-core",
@@ -3662,7 +3662,7 @@ dependencies = [
 
 [[package]]
 name = "susi-core"
-version = "0.3.0"
+version = "0.4.0"
 dependencies = [
  "calamine",
  "chrono",
@@ -3678,7 +3678,7 @@ dependencies = [
 
 [[package]]
 name = "susi-mcp"
-version = "0.3.0"
+version = "0.4.0"
 dependencies = [
  "rmcp",
  "schemars",
@@ -4999,7 +4999,7 @@ checksum = "e450f9b2ed1dff33c94c12589a87338689467b9c4f5d8a5710bd09a847d2c8a7"
 
 [[package]]
 name = "xtask"
-version = "0.3.0"
+version = "0.4.0"
 dependencies = [
  "ico",
  "resvg",
