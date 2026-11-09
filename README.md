@@ -166,6 +166,8 @@ Operation follows Sisulizer:
 - **Bottom tabs**:
   - Output, Validation (a click jumps to the cell), Search (including "Use as filter"),
     Statistics and Comments.
+  - The lists in Output, Validation, Search and Comments scroll horizontally like the grid, and
+    their columns can be resized the same way (widths last until the program is closed).
   - Editor: original, translation, comments, properties and translation memory suggestions with
     "Apply".
 - **Dialogs**: Languages, Add source, Source properties (write method, output pattern),

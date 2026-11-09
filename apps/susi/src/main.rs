@@ -7,6 +7,7 @@ mod app_icon;
 mod bottom;
 mod dialogs;
 mod grid;
+mod list;
 mod panels;
 #[cfg(test)]
 mod tests;

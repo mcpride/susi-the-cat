@@ -5,3 +5,4 @@
 /dist
 /node_modules
 /.serena
+/testdata/projects/ConsoleApp1/obj

@@ -295,6 +295,8 @@ pub struct SusiApp {
     pub col_widths: HashMap<String, f32>,
     /// Scroll offset of the sheet body (last frame).
     pub grid_offset: egui::Vec2,
+    /// Scroll offset of the list shown in the bottom panel (last frame).
+    pub list_offset: egui::Vec2,
     title: String,
 }
 
@@ -338,6 +340,7 @@ impl SusiApp {
             suggestions: None,
             col_widths: HashMap::new(),
             grid_offset: egui::Vec2::ZERO,
+            list_offset: egui::Vec2::ZERO,
             title: String::new(),
         };
         app.apply_theme(ctx);

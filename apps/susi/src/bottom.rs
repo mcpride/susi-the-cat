@@ -1,7 +1,6 @@
 //! Bottom area: output log, validation results, search, statistics, comments and text editor.
 
 use egui::{Color32, RichText, Ui};
-use egui_extras::{Column, TableBuilder};
 use susi_core::filter::RowFilter;
 use susi_core::i18n::{t, trn};
 use susi_core::model::RowRef;
@@ -11,6 +10,7 @@ use susi_core::validate::Severity;
 
 use crate::actions::Action;
 use crate::app::{BottomTab, LogKind, Nav, SusiApp};
+use crate::list::{self, col};
 use crate::panels::{SEARCH_IN, search_in_label, status_color};
 
 pub fn show(app: &mut SusiApp, ui: &mut Ui) {
@@ -51,36 +51,16 @@ fn output(app: &mut SusiApp, ui: &mut Ui) {
     if ui.small_button(t("Clear")).clicked() {
         app.log.clear();
     }
-    TableBuilder::new(ui)
-        .id_salt("log")
-        .striped(true)
-        .stick_to_bottom(true)
-        .auto_shrink(false)
-        .column(Column::exact(70.0))
-        .column(Column::exact(90.0))
-        .column(Column::remainder().clip(true))
-        .header(18.0, |mut h| {
-            h.col(|ui| {
-                ui.strong(t("Time"));
-            });
-            h.col(|ui| {
-                ui.strong(t("Type"));
-            });
-            h.col(|ui| {
-                ui.strong(t("Message"));
-            });
-        })
-        .body(|body| {
-            body.rows(18.0, app.log.len(), |mut row| {
-                let e = &app.log[row.index()];
-                row.col(|ui| small_label(ui, e.time.as_str()));
-                row.col(|ui| {
-                    let t = RichText::new(e.kind.label());
-                    small_label(ui, if let Some(c) = log_color(e.kind) { t.color(c) } else { t });
-                });
-                row.col(|ui| small_label(ui, e.message.as_str()));
-            });
+    let cols = [col(t("Time"), 70.0), col(t("Type"), 90.0), col(t("Message"), 400.0)];
+    app.list_offset = list::show(ui, "log", &cols, app.log.len(), true, |row| {
+        let e = &app.log[row.index()];
+        row.col(|ui| small_label(ui, e.time.as_str()));
+        row.col(|ui| {
+            let t = RichText::new(e.kind.label());
+            small_label(ui, if let Some(c) = log_color(e.kind) { t.color(c) } else { t });
         });
+        row.col(|ui| small_label(ui, e.message.as_str()));
+    });
 }
 
 fn validation(app: &mut SusiApp, ui: &mut Ui) {
@@ -89,41 +69,23 @@ fn validation(app: &mut SusiApp, ui: &mut Ui) {
         return;
     }
     let mut clicked: Option<(RowRef, String)> = None;
-    TableBuilder::new(ui)
-        .id_salt("issues")
-        .striped(true)
-        .auto_shrink(false)
-        .sense(egui::Sense::click())
-        .column(Column::exact(70.0))
-        .column(Column::initial(220.0).clip(true))
-        .column(Column::exact(70.0))
-        .column(Column::initial(260.0).clip(true))
-        .column(Column::remainder().clip(true))
-        .header(18.0, |mut h| {
-            for title in [t("Type"), t("Check"), t("Language"), t("Context"), t("Message")] {
-                h.col(|ui| {
-                    ui.strong(title);
-                });
-            }
-        })
-        .body(|body| {
-            body.rows(18.0, app.issues.len(), |mut row| {
-                let is = &app.issues[row.index()];
-                row.set_selected(app.selected.as_ref() == Some(&is.row) && app.lang.as_deref() == Some(is.lang.as_str()));
-                let (label, color) = match is.severity {
-                    Severity::Error => (t("Error"), Color32::from_rgb(220, 40, 40)),
-                    Severity::Warning => (t("Warning"), Color32::from_rgb(220, 140, 0)),
-                };
-                row.col(|ui| small_label(ui, RichText::new(label).color(color)));
-                row.col(|ui| small_label(ui, is.kind.label()));
-                row.col(|ui| small_label(ui, is.lang.as_str()));
-                row.col(|ui| small_label(ui, format!("{}: {}", is.source, is.context)));
-                row.col(|ui| small_label(ui, is.message.as_str()));
-                if row.response().clicked() {
-                    clicked = Some((is.row.clone(), is.lang.clone()));
-                }
-            });
-        });
+    let cols = [col(t("Type"), 70.0), col(t("Check"), 220.0), col(t("Language"), 70.0), col(t("Context"), 260.0), col(t("Message"), 300.0)];
+    app.list_offset = list::show(ui, "issues", &cols, app.issues.len(), false, |row| {
+        let is = &app.issues[row.index()];
+        row.set_selected(app.selected.as_ref() == Some(&is.row) && app.lang.as_deref() == Some(is.lang.as_str()));
+        let (label, color) = match is.severity {
+            Severity::Error => (t("Error"), Color32::from_rgb(220, 40, 40)),
+            Severity::Warning => (t("Warning"), Color32::from_rgb(220, 140, 0)),
+        };
+        row.col(|ui| small_label(ui, RichText::new(label).color(color)));
+        row.col(|ui| small_label(ui, is.kind.label()));
+        row.col(|ui| small_label(ui, is.lang.as_str()));
+        row.col(|ui| small_label(ui, format!("{}: {}", is.source, is.context)));
+        row.col(|ui| small_label(ui, is.message.as_str()));
+        if row.response().clicked() {
+            clicked = Some((is.row.clone(), is.lang.clone()));
+        }
+    });
     if let Some((r, l)) = clicked {
         app.select(r);
         app.lang = Some(l);
@@ -131,39 +93,23 @@ fn validation(app: &mut SusiApp, ui: &mut Ui) {
 }
 
 /// Clickable list of rows (search results, comments).
-fn row_list(app: &SusiApp, ui: &mut Ui, id: &str, rows: &[RowRef], third: &str, third_text: impl Fn(&susi_core::Row) -> String) -> Option<RowRef> {
+fn row_list(app: &mut SusiApp, ui: &mut Ui, id: &str, rows: &[RowRef], third: &str, third_text: impl Fn(&susi_core::Row) -> String) -> Option<RowRef> {
     let p = app.project.as_ref()?;
     let mut clicked = None;
-    TableBuilder::new(ui)
-        .id_salt(id)
-        .striped(true)
-        .auto_shrink(false)
-        .sense(egui::Sense::click())
-        .column(Column::initial(260.0).clip(true))
-        .column(Column::initial(320.0).clip(true))
-        .column(Column::remainder().clip(true))
-        .header(18.0, |mut h| {
-            for title in [t("Context"), t("Original"), third] {
-                h.col(|ui| {
-                    ui.strong(title);
-                });
-            }
-        })
-        .body(|body| {
-            body.rows(18.0, rows.len(), |mut row| {
-                let r = &rows[row.index()];
-                let Some(data) = p.row(r) else {
-                    return;
-                };
-                row.set_selected(app.selected.as_ref() == Some(r));
-                row.col(|ui| small_label(ui, p.context(r)));
-                row.col(|ui| small_label(ui, data.original().replace('\n', " ¶ ")));
-                row.col(|ui| small_label(ui, third_text(data).replace('\n', " ¶ ")));
-                if row.response().clicked() {
-                    clicked = Some(r.clone());
-                }
-            });
-        });
+    let cols = [col(t("Context"), 260.0), col(t("Original"), 320.0), col(third, 300.0)];
+    app.list_offset = list::show(ui, id, &cols, rows.len(), false, |row| {
+        let r = &rows[row.index()];
+        let Some(data) = p.row(r) else {
+            return;
+        };
+        row.set_selected(app.selected.as_ref() == Some(r));
+        row.col(|ui| small_label(ui, p.context(r)));
+        row.col(|ui| small_label(ui, data.original().replace('\n', " ¶ ")));
+        row.col(|ui| small_label(ui, third_text(data).replace('\n', " ¶ ")));
+        if row.response().clicked() {
+            clicked = Some(r.clone());
+        }
+    });
     clicked
 }
 

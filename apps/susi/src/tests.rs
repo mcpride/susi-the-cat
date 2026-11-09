@@ -229,6 +229,27 @@ fn switches_ui_language() {
     run(&ctx, &mut app, 1);
     assert_eq!(BottomTab::Output.label(), "Output");
 }
+/// Turns the mouse wheel horizontally over `pos` for a few frames.
+fn wheel_left(ctx: &egui::Context, app: &mut SusiApp, pos: egui::Pos2) {
+    let wheel = egui::Event::MouseWheel {
+        unit: egui::MouseWheelUnit::Point,
+        delta: egui::vec2(-300.0, 0.0),
+        phase: egui::TouchPhase::Move,
+        source: egui::MouseWheelSource::Wheel,
+        modifiers: egui::Modifiers::NONE,
+    };
+    for _ in 0..10 {
+        let input = egui::RawInput {
+            screen_rect: Some(egui::Rect::from_min_size(egui::Pos2::ZERO, egui::vec2(1400.0, 860.0))),
+            events: vec![egui::Event::PointerMoved(pos), wheel.clone()],
+            ..Default::default()
+        };
+        let mut out = ctx.run_ui(input, |ui| app.frame(ui));
+        out.textures_delta.clear();
+    }
+    run(ctx, app, 5);
+}
+
 /// The sheet with all languages is wider than the window and must scroll horizontally.
 #[test]
 fn sheet_scrolls_horizontally() {
@@ -237,24 +258,25 @@ fn sheet_scrolls_horizontally() {
     let mut app = app_with_fixture(&ctx, &tmp, "en");
     app.all_langs = true;
     run(&ctx, &mut app, 2);
-    let pos = egui::pos2(700.0, 400.0);
-    let wheel = |delta: egui::Vec2| egui::Event::MouseWheel {
-        unit: egui::MouseWheelUnit::Point,
-        delta,
-        phase: egui::TouchPhase::Move,
-        source: egui::MouseWheelSource::Wheel,
-        modifiers: egui::Modifiers::NONE,
-    };
-    for _ in 0..10 {
-        let input = egui::RawInput {
-            screen_rect: Some(egui::Rect::from_min_size(egui::Pos2::ZERO, egui::vec2(1400.0, 860.0))),
-            events: vec![egui::Event::PointerMoved(pos), wheel(egui::vec2(-300.0, 0.0))],
-            ..Default::default()
-        };
-        let mut out = ctx.run_ui(input, |ui| app.frame(ui));
-        out.textures_delta.clear();
-    }
-    run(&ctx, &mut app, 5);
+    wheel_left(&ctx, &mut app, egui::pos2(700.0, 400.0));
     assert!(app.grid_offset.x > 100.0, "sheet did not scroll horizontally: {:?}", app.grid_offset);
+    let _ = std::fs::remove_dir_all(&tmp);
+}
+
+/// Bottom panel lists fill the view by default and scroll horizontally once a column is widened.
+#[test]
+fn bottom_list_scrolls_horizontally() {
+    let tmp = std::env::temp_dir().join(format!("susi-gui-list-hscroll-{}", std::process::id()));
+    let ctx = egui::Context::default();
+    let mut app = app_with_fixture(&ctx, &tmp, "en");
+    app.tab = BottomTab::Output;
+    let pos = egui::pos2(700.0, 760.0);
+    run(&ctx, &mut app, 2);
+    wheel_left(&ctx, &mut app, pos);
+    assert_eq!(app.list_offset.x, 0.0, "list wider than the view by default");
+    ctx.data_mut(|d| d.insert_temp(crate::list::widths_id("log"), vec![None, None, Some(3000.0_f32)]));
+    run(&ctx, &mut app, 2);
+    wheel_left(&ctx, &mut app, pos);
+    assert!(app.list_offset.x > 100.0, "list did not scroll horizontally: {:?}", app.list_offset);
     let _ = std::fs::remove_dir_all(&tmp);
 }
