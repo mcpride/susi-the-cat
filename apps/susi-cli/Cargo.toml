@@ -21,6 +21,7 @@ path = "src/main.rs"
 [dependencies]
 susi-core = { workspace = true }
 susi-mcp = { workspace = true }
+susi-workflow = { workspace = true }
 tokio = { workspace = true }
 serde_json = { workspace = true }
 

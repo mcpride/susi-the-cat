@@ -45,6 +45,7 @@ pub fn general(version: &str) -> String {
         ("savetotm", t("Save translations to the translation memory")),
         ("info", t("Show languages, sources and progress")),
         ("mcp", t("Start the MCP server (stdio) for AI agents")),
+        ("workflow", t("Git workflow: get, save and publish translations")),
     ];
     let options = [
         ("-q", t("Quiet mode. Only errors are shown.")),
@@ -115,6 +116,37 @@ fn page(syntax: &str, desc: &str, opts: &str, examples: &[&str]) -> String {
             s += &format!("  {e}\n");
         }
     }
+    s
+}
+
+fn workflow() -> String {
+    let actions = item("status", t("State of the working copy (-online: also ask the server)."))
+        + &item("fetch", t("Get translation project: sets local changes aside and checks out\nthe latest version of the default branch."))
+        + &item("save", t("Save changes: builds the localized files, saves the project and\ncommits and pushes the project files to a personal branch."))
+        + &item("publish", t("Prepare publication: creates or updates the merge request."))
+        + &item("init", t("Creates the configuration template .susi/workflow.toml."))
+        + &item("config", t("Shows the effective configuration."))
+        + &item("login", t("Stores the access token (read from stdin) with git's credential helper."))
+        + &item("logout", t("Removes the stored access token."));
+    let opts = item("-online", t("status: run git fetch and query merge requests."))
+        + &item("-branch:B", t("fetch: check out branch B; save: save to the new branch B."))
+        + &item("-commit:C", t("fetch: check out commit, tag or branch C read-only."))
+        + &item("-message:M", t("save: commit message (default: configuration)."))
+        + &item("-prefix:P", t("save: semantic-release prefix (fix, feat, chore; empty: none)."))
+        + &item("-ciskip[:0]", t("save: skip (or run) the CI pipeline."))
+        + &item("-nobuild", t("save: do not build the localized files first."))
+        + &item("-title:T", t("publish: title of the merge request."))
+        + &item("-description:D", t("publish: description of the merge request."))
+        + &item("-reviewer:R", t("publish: reviewers (usernames, separated by ;)."))
+        + &item("-target:B", t("publish: target branch."));
+    let mut s = page(
+        "susi-cli workflow [action ...] [options] project.slp",
+        t("Git workflow for translators (configuration: .susi/workflow.toml, see README).\nActions are run in the given order (default: status):"),
+        &(actions + "\n" + &opts),
+        &["susi-cli workflow fetch app.slp", "susi-cli workflow save publish -reviewer:anna app.slp", "susi-cli workflow status -online app.slp"],
+    );
+    s += t("Never put access tokens into configuration files; susi only stores references to them.");
+    s += "\n";
     s
 }
 
@@ -236,6 +268,7 @@ pub fn task(name: &str) -> String {
             s += "\n  {\"servers\": {\"susi\": {\"command\": \"susi-cli\", \"args\": [\"mcp\"]}}}\n";
             s
         }
+        "workflow" => workflow(),
         _ => tf!("Unknown task '{name}'.", name = name) + "\n",
     }
 }

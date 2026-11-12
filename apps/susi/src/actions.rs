@@ -61,6 +61,8 @@ pub enum Action {
     Nav(Nav),
     Settings,
     About,
+    /// Git workflow command.
+    Workflow(crate::workflow_ui::Command),
 }
 
 /// Rows an action applies to.
@@ -125,6 +127,7 @@ impl SusiApp {
                 self.rows_stale = true;
             }
             Action::Nav(n) => self.navigate(n),
+            Action::Workflow(c) => crate::workflow_ui::run(self, c, ctx),
             other => self.run_project_action(other),
         }
     }

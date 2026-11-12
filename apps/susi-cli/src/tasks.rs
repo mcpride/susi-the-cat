@@ -68,7 +68,7 @@ impl State {
         Self { path, project: None, changed: false }
     }
 
-    fn load(&mut self, o: &Output<'_>) -> Result<&mut Project, String> {
+    pub(crate) fn load(&mut self, o: &Output<'_>) -> Result<&mut Project, String> {
         if self.project.is_none() {
             if !self.path.exists() {
                 return Err(tf!("Project file {path} not found", path = self.path.display()));
@@ -156,6 +156,7 @@ pub fn run_task(t: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), 
         "validate" => validate(t, st, o),
         "savetotm" => save_to_tm(t, st, o),
         "info" => info(st, o),
+        "workflow" => crate::workflow::run(t, st, o),
         other => Err(tf!("Task '{task}' cannot be run here", task = other)),
     }
 }

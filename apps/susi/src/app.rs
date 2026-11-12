@@ -297,6 +297,10 @@ pub struct SusiApp {
     pub grid_offset: egui::Vec2,
     /// Scroll offset of the list shown in the bottom panel (last frame).
     pub list_offset: egui::Vec2,
+    /// Git workflow of the open project (configured working copy).
+    pub workflow: Option<crate::workflow_ui::WorkflowUi>,
+    /// Running git action.
+    pub wf_job: Option<crate::workflow_ui::Job>,
     title: String,
 }
 
@@ -341,6 +345,8 @@ impl SusiApp {
             col_widths: HashMap::new(),
             grid_offset: egui::Vec2::ZERO,
             list_offset: egui::Vec2::ZERO,
+            workflow: None,
+            wf_job: None,
             title: String::new(),
         };
         app.apply_theme(ctx);
@@ -430,6 +436,7 @@ impl SusiApp {
         self.search.results.clear();
         self.stats = None;
         self.rows_stale = true;
+        crate::workflow_ui::detect(self);
     }
 
     pub fn open(&mut self, path: &Path) {
@@ -458,6 +465,12 @@ impl SusiApp {
                 self.dirty = false;
                 self.info(susi_core::tf!("Project saved: {path}", path = path.display()));
                 self.after_save();
+                if self.wf_job.is_none() {
+                    crate::workflow_ui::detect(self);
+                    if self.wf_job.is_none() {
+                        crate::workflow_ui::refresh(self, false);
+                    }
+                }
                 true
             }
             Err(e) => {
@@ -688,6 +701,7 @@ impl SusiApp {
         let ctx = ui.ctx().clone();
         self.handle_close_request(&ctx);
         self.handle_shortcuts(&ctx);
+        crate::workflow_ui::poll(self, &ctx);
         if self.rows_stale {
             self.refresh_rows();
         }

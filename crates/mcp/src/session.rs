@@ -14,6 +14,7 @@ use susi_core::status::{RowStatus, TranslationStatus};
 use susi_core::tm::{self, TranslateOptions, TranslationMemory};
 use susi_core::validate::{self, ValidateOptions, ValidationKind};
 use susi_core::{lang, ops, pseudo, slp, stats};
+use susi_workflow::{FetchOptions, StatusOptions, Workflow};
 
 pub type ToolResult = Result<Value, String>;
 
@@ -164,6 +165,42 @@ pub struct ListRowsInput {
     pub offset: usize,
     /// Maximum rows to return (default 100, max 1000).
     pub limit: Option<usize>,
+}
+
+#[derive(Debug, Clone, Default, serde::Deserialize, schemars::JsonSchema)]
+pub struct WorkflowFetchInput {
+    /// Branch to check out (default: the repository's default branch).
+    pub branch: Option<String>,
+    /// Specific commit, tag or remote branch to check out read-only (overrides `branch`).
+    pub commit: Option<String>,
+    /// Discard unsaved changes of the open project (default false: refuse when there are unsaved changes).
+    pub discard_changes: Option<bool>,
+}
+
+#[derive(Debug, Clone, Default, serde::Deserialize, schemars::JsonSchema)]
+pub struct WorkflowSaveInput {
+    /// Commit message without prefix (default: from the workflow configuration).
+    pub message: Option<String>,
+    /// Conventional commit type for semantic-release: fix | feat | chore | "" (default: configuration).
+    pub prefix: Option<String>,
+    /// Skip the CI pipeline (default: configuration).
+    pub ci_skip: Option<bool>,
+    /// Name of a new branch (default: generated from the configured pattern when on the default branch).
+    pub branch: Option<String>,
+    /// Build the localized files first (default: configuration).
+    pub build: Option<bool>,
+}
+
+#[derive(Debug, Clone, Default, serde::Deserialize, schemars::JsonSchema)]
+pub struct WorkflowPublishInput {
+    /// Merge request title (default: configuration).
+    pub title: Option<String>,
+    /// Merge request description (default: configuration).
+    pub description: Option<String>,
+    /// Reviewer usernames (default: configuration).
+    pub reviewers: Option<Vec<String>>,
+    /// Target branch (default: configuration or default branch).
+    pub target: Option<String>,
 }
 
 impl Session {
@@ -439,6 +476,75 @@ impl Session {
         Ok(v)
     }
 
+    fn workflow(&self) -> Result<Workflow, String> {
+        let path = self.project()?.path.clone().ok_or("project has no file name")?;
+        Workflow::detect(&path).map_err(err)?.ok_or_else(|| susi_workflow::Error::NotConfigured(path.display().to_string()).to_string())
+    }
+
+    pub fn workflow_status(&self, online: bool) -> ToolResult {
+        let wf = self.workflow()?;
+        let s = wf.status(self.project()?, StatusOptions { fetch: online, online }).map_err(err)?;
+        let mut v = serde_json::to_value(&s).map_err(err)?;
+        v["hint"] = json!(s.state.hint());
+        v["unsaved_project_changes"] = json!(self.dirty);
+        Ok(v)
+    }
+
+    pub fn workflow_fetch(&mut self, i: &WorkflowFetchInput) -> ToolResult {
+        if self.dirty && !i.discard_changes.unwrap_or(false) {
+            return Err("the open project has unsaved changes – call save_project and workflow_save first, or pass discard_changes=true".into());
+        }
+        let wf = self.workflow()?;
+        let r = wf.fetch(&FetchOptions { branch: i.branch.clone(), commit: i.commit.clone() }).map_err(err)?;
+        let path = self.project()?.path.clone().unwrap_or_default();
+        self.project = Some(slp::load(&path).map_err(err)?);
+        self.dirty = false;
+        Ok(json!({ "fetched": r, "git": wf.take_log() }))
+    }
+
+    pub fn workflow_save(&mut self, i: &WorkflowSaveInput) -> ToolResult {
+        let wf = self.workflow()?;
+        let mut build_errors = Vec::new();
+        if i.build.unwrap_or(wf.config().save.build) {
+            let p = self.project()?;
+            build_errors = ops::build_project(p, &p.language_ids(), None).errors;
+        }
+        if self.dirty {
+            self.save(None)?;
+        }
+        let mut opts = wf.save_defaults();
+        if let Some(m) = &i.message {
+            opts.message.clone_from(m);
+        }
+        if let Some(p) = &i.prefix {
+            opts.prefix.clone_from(p);
+        }
+        opts.ci_skip = i.ci_skip.unwrap_or(opts.ci_skip);
+        opts.branch.clone_from(&i.branch);
+        let r = wf.save(self.project()?, &opts).map_err(err)?;
+        Ok(json!({ "saved": r, "build_errors": build_errors, "git": wf.take_log() }))
+    }
+
+    pub fn workflow_publish(&self, i: &WorkflowPublishInput) -> ToolResult {
+        let wf = self.workflow()?;
+        let mut opts = wf.publish_defaults();
+        if let Some(v) = &i.title {
+            opts.title.clone_from(v);
+        }
+        if let Some(v) = &i.description {
+            opts.description.clone_from(v);
+        }
+        if let Some(v) = &i.reviewers {
+            opts.reviewers.clone_from(v);
+        }
+        if let Some(v) = &i.target {
+            opts.target.clone_from(v);
+        }
+        let forge = wf.forge().map_err(err)?;
+        let r = wf.publish(forge.as_ref(), &opts).map_err(err)?;
+        Ok(json!({ "published": r }))
+    }
+
     pub fn fill_pseudo(&mut self, lang: &str) -> ToolResult {
         let p = self.project_mut()?;
         if !p.has_language(lang) {
@@ -489,5 +595,7 @@ mod tests {
         assert!(de.contains("{0} öffnen"), "{de}");
         let saved = s.tm_save(&[]).unwrap();
         assert_eq!(saved["added"], 1);
+        let e = s.workflow_status(false).unwrap_err();
+        assert!(e.contains("not in a git working copy"), "{e}");
     }
 }
