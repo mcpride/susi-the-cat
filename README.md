@@ -342,7 +342,9 @@ copy once, and Susi then offers three plain-language actions (GUI menu and toolb
 
 The status bar shows the state (*Up to date*, *Update available*, *Changes not saved on the server*,
 *Saved, not published*, *In review*, *Published*, *Fixed version*) and a hint for the next step;
-clicking it asks the server. *Advanced settings* in the dialogs allow another branch, a specific
+clicking it asks the server. The last known merge request per branch is remembered in
+`.git/susi/merge-requests.json`, so *In review* also shows offline and after further saves.
+*Advanced settings* in the dialogs allow another branch, a specific
 commit/tag (read-only), another target branch, the commit prefix and CI skipping.
 
 Only the `.slp` file, the sources and outputs referenced by the project and `git.paths` are

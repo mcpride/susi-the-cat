@@ -1,11 +1,11 @@
 //! Server ("forge") abstraction: merge requests and users. GitLab is implemented in [`crate::gitlab`];
 //! GitHub can be added as a further implementation of [`Forge`].
 
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 use crate::Result;
 
-#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct User {
     pub id: u64,
     pub username: String,
@@ -19,7 +19,7 @@ impl User {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
 pub enum MergeRequestState {
     Open,
@@ -27,7 +27,7 @@ pub enum MergeRequestState {
     Closed,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct MergeRequest {
     /// Project-local number (`!12`).
     pub iid: u64,

@@ -237,15 +237,20 @@ fn finish(app: &mut SusiApp, outcome: Outcome) {
         Outcome::Detected(Ok(Some(b))) => {
             let (wf, s) = *b;
             app.info(tf!("Git workflow active ({path}): {state}", path = wf.root().display(), state = s.state.label()));
+            let check_request = s.merge_request.is_some();
             app.workflow = Some(WorkflowUi { wf: Arc::new(wf), status: None, users: Vec::new() });
             set_status(app, s);
+            if check_request {
+                refresh(app, true);
+            }
         }
         Outcome::Detected(Ok(None)) => app.workflow = None,
         Outcome::Status(Ok(s)) => set_status(app, s),
         Outcome::Fetched(Ok(r)) => fetched(app, &r),
         Outcome::Saved(Ok(r)) => {
             saved(app, &r);
-            refresh(app, false);
+            let online = status(app).is_some_and(|s| s.merge_request.is_some());
+            refresh(app, online);
         }
         Outcome::Published(Ok((save, r))) => {
             if let Some(s) = &save {

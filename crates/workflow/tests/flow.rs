@@ -6,7 +6,9 @@ use std::sync::Mutex;
 
 use susi_core::{Project, ops, slp};
 use susi_workflow::forge::MergeRequestQuery;
-use susi_workflow::{FetchOptions, Forge, MergeRequest, MergeRequestDraft, MergeRequestState, PublishOptions, State, StatusOptions, User, Workflow};
+use susi_workflow::{
+    FetchOptions, Forge, MergeRequest, MergeRequestDraft, MergeRequestState, PublishOptions, SaveOptions, State, StatusOptions, User, Workflow,
+};
 
 fn git(dir: &Path, args: &[&str]) -> String {
     let out = Command::new("git").arg("-C").arg(dir).args(args).output().unwrap();
@@ -120,6 +122,17 @@ fn check_publish(wf: &Workflow, branch: &str) {
     assert_eq!(candidates[0].username, "dev", "previous committers of the project come first");
 }
 
+/// After publishing, the merge request is remembered offline, also across further saves.
+fn check_saving_after_publish(wf: &Workflow, p: &mut Project, slp_path: &Path, opts: &SaveOptions) {
+    let st = wf.status(p, StatusOptions::default()).unwrap();
+    assert_eq!((st.state, st.merge_request.as_ref().map(|m| m.iid)), (State::InReview, Some(1)));
+    p.attrs.set("date", "20991231235959");
+    slp::save(p, slp_path).unwrap();
+    assert_eq!(wf.status(p, StatusOptions::default()).unwrap().merge_request.map(|m| m.iid), Some(1));
+    assert!(wf.save(p, opts).unwrap().pushed);
+    assert_eq!(wf.status(p, StatusOptions::default()).unwrap().state, State::InReview);
+}
+
 #[test]
 fn fetch_save_publish_cycle() {
     let tmp = tempfile::tempdir().unwrap();
@@ -162,6 +175,7 @@ fn fetch_save_publish_cycle() {
     assert!(again.nothing_to_do);
 
     check_publish(&wf, &saved.branch);
+    check_saving_after_publish(&wf, &mut p, &slp_path, &opts);
 
     // The merge request is merged and the branch removed on the server.
     git(&dev, &["push", "-q", "origin", "--delete", &saved.branch]);

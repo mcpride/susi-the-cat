@@ -1,5 +1,6 @@
 //! Workflow state and the actions "get translation project", "save changes" and "prepare publication".
 
+use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
 use std::sync::OnceLock;
 
@@ -13,6 +14,9 @@ use crate::git::{Change, Git, Snapshot};
 use crate::gitlab::GitLab;
 use crate::secret::{self, TokenRef};
 use crate::{Error, Result, paths};
+
+/// Last known merge request per branch, inside the git directory (never committed).
+const MERGE_REQUEST_CACHE: &str = "susi/merge-requests.json";
 
 /// State of the working copy from the translator's point of view.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize)]
@@ -165,6 +169,7 @@ pub struct Workflow {
     config: Config,
     files: Files,
     root: PathBuf,
+    git_dir: PathBuf,
     slp: PathBuf,
     /// Working copy path of the project directory (`l10n/`, empty at the root).
     prefix: String,
@@ -232,7 +237,7 @@ impl Workflow {
         let Some((config, files)) = config::load(user_config, &root.join(config::REPO_FILE), &git_dir.join(config::LOCAL_FILE))? else {
             return Ok(None);
         };
-        Ok(Some(Workflow { git: Git::new(&root), config, files, root, slp, prefix: prefix.trim().to_string(), default_branch: OnceLock::new() }))
+        Ok(Some(Workflow { git: Git::new(&root), config, files, root, git_dir, slp, prefix: prefix.trim().to_string(), default_branch: OnceLock::new() }))
     }
 
     /// Writes the configuration template `.susi/workflow.toml` into the working copy containing `slp`.
@@ -448,6 +453,9 @@ impl Workflow {
             other_requests: Vec::new(),
             warnings,
         };
+        if let Some(b) = st.branch.as_deref().filter(|b| *b != st.default_branch) {
+            st.merge_request = self.cached_merge_request(b);
+        }
         if opts.online && self.config.has_forge() {
             self.query_forge(&mut st);
         }
@@ -469,6 +477,7 @@ impl Workflow {
                         .find(|m| m.state == MergeRequestState::Open)
                         .or_else(|| list.iter().find(|m| m.state == MergeRequestState::Merged))
                         .cloned();
+                    self.remember_merge_request(b, st.merge_request.as_ref());
                 }
                 Err(e) => return st.warnings.push(e.to_string()),
             }
@@ -481,6 +490,41 @@ impl Workflow {
                     list.into_iter().filter(|m| Some(m.source_branch.as_str()) != st.branch.as_deref() && m.source_branch.starts_with(&stem)).collect();
             }
             Err(e) => st.warnings.push(e.to_string()),
+        }
+    }
+
+    fn merge_request_cache(&self) -> (PathBuf, BTreeMap<String, MergeRequest>) {
+        let path = self.git_dir.join(MERGE_REQUEST_CACHE);
+        let map = std::fs::read_to_string(&path).ok().and_then(|s| serde_json::from_str(&s).ok()).unwrap_or_default();
+        (path, map)
+    }
+
+    /// Last merge request seen on the server for `branch`, so the state is known offline too.
+    fn cached_merge_request(&self, branch: &str) -> Option<MergeRequest> {
+        self.merge_request_cache().1.remove(branch)
+    }
+
+    /// Remembers (`None`: forgets) the merge request of `branch`. Best effort: a failure only
+    /// affects the offline display.
+    fn remember_merge_request(&self, branch: &str, mr: Option<&MergeRequest>) {
+        let (path, mut map) = self.merge_request_cache();
+        let changed = match mr {
+            Some(mr) => map.insert(branch.to_string(), mr.clone()).as_ref() != Some(mr),
+            None => map.remove(branch).is_some(),
+        };
+        if !changed {
+            return;
+        }
+        let local = self.git.try_query(&["for-each-ref", "--format=%(refname:strip=2)", "refs/heads"]).unwrap_or_default();
+        let local: std::collections::HashSet<&str> = local.lines().map(str::trim).collect();
+        map.retain(|b, _| local.contains(b.as_str()));
+        if map.is_empty() {
+            let _ = std::fs::remove_file(&path);
+        } else if let Ok(json) = serde_json::to_string_pretty(&map) {
+            if let Some(dir) = path.parent() {
+                let _ = std::fs::create_dir_all(dir);
+            }
+            let _ = std::fs::write(&path, json);
         }
     }
 
@@ -703,11 +747,13 @@ impl Workflow {
             squash: opts.squash,
             remove_source_branch: opts.remove_source_branch,
         };
-        let q = MergeRequestQuery { source_branch: Some(branch), only_open: true, ..Default::default() };
-        match forge.merge_requests(&q)?.into_iter().next() {
-            Some(mr) => Ok(PublishReport { merge_request: forge.update_merge_request(mr.iid, &draft)?, created: false }),
-            None => Ok(PublishReport { merge_request: forge.create_merge_request(&draft)?, created: true }),
-        }
+        let q = MergeRequestQuery { source_branch: Some(branch.clone()), only_open: true, ..Default::default() };
+        let report = match forge.merge_requests(&q)?.into_iter().next() {
+            Some(mr) => PublishReport { merge_request: forge.update_merge_request(mr.iid, &draft)?, created: false },
+            None => PublishReport { merge_request: forge.create_merge_request(&draft)?, created: true },
+        };
+        self.remember_merge_request(&branch, Some(&report.merge_request));
+        Ok(report)
     }
 }
 
@@ -719,10 +765,13 @@ fn state_of(st: &Status) -> State {
     if branch == st.default_branch {
         return if st.behind > 0 { State::UpdateAvailable } else { State::UpToDate };
     }
+    // A deleted server branch beats a remembered open merge request (merged in the meantime).
+    if st.upstream_gone {
+        return State::Published;
+    }
     match st.merge_request.as_ref().map(|m| m.state) {
         Some(MergeRequestState::Open) => State::InReview,
         Some(MergeRequestState::Merged) => State::Published,
-        _ if st.upstream_gone => State::Published,
         _ => State::Saved,
     }
 }
