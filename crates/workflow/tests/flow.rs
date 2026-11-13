@@ -198,3 +198,27 @@ fn local_commits_on_the_default_branch_are_kept() {
     assert_eq!(git(&work, &["log", "-1", "--format=%s", &backup]), "local");
     assert_eq!(std::fs::read_to_string(work.join("README.txt")).unwrap(), "app\n");
 }
+
+#[test]
+fn uncommitted_configuration_survives_fetch() {
+    let tmp = tempfile::tempdir().unwrap();
+    let (dev, work) = setup(tmp.path());
+    // The configuration only exists in the working copy (not committed) or on a personal branch.
+    git(&dev, &["rm", "-q", "-r", ".susi"]);
+    git(&dev, &["commit", "-q", "-m", "no config"]);
+    git(&dev, &["push", "-q", "origin", "main"]);
+    git(&work, &["switch", "-q", "-c", "l10n/old"]);
+    std::fs::write(work.join("notes.txt"), "private\n").unwrap();
+    let slp_path = work.join("l10n").join("app.slp");
+    let wf = Workflow::detect_with(&slp_path, None).unwrap().unwrap();
+    let fetched = wf.fetch(&FetchOptions::default()).unwrap();
+    assert!(fetched.backup.is_some() && !work.join("notes.txt").exists());
+    assert_eq!(std::fs::read_to_string(work.join(".susi").join("workflow.toml")).unwrap(), CONFIG);
+    let wf = Workflow::detect_with(&slp_path, None).unwrap().expect("still configured after fetch");
+    let p = slp::load(&slp_path).unwrap();
+    let st = wf.status(&p, StatusOptions::default()).unwrap();
+    assert!(st.warnings.iter().any(|w| w.contains(".susi/workflow.toml")), "{:?}", st.warnings);
+    // Only the configuration is left: no further backup.
+    assert!(wf.fetch(&FetchOptions::default()).unwrap().backup.is_none());
+    assert!(work.join(".susi").join("workflow.toml").exists());
+}

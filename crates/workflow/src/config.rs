@@ -17,6 +17,8 @@ use susi_core::tf;
 use crate::secret::TokenRef;
 use crate::{Error, Result};
 
+/// Directory of the repository configuration, relative to the working copy root.
+pub const REPO_DIR: &str = ".susi";
 /// Repository configuration, relative to the working copy root.
 pub const REPO_FILE: &str = ".susi/workflow.toml";
 /// Working copy configuration, relative to the git directory.

@@ -158,3 +158,4 @@
 @plural	{n} changed file:|{n} changed files:	{n} geänderte Datei:|{n} geänderte Dateien:
 @plural	{n} changed file|{n} changed files	{n} geänderte Datei|{n} geänderte Dateien
 @plural	{n} commit not yet on the server|{n} commits not yet on the server	{n} Commit noch nicht auf dem Server|{n} Commits noch nicht auf dem Server
+	The workflow configuration {path} is not committed. A developer should commit it to the default branch.	Die Workflow-Konfiguration {path} ist nicht eingecheckt. Ein Entwickler sollte sie in den Standardzweig committen.

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<document created="20261103155355" version="4.0.374" date="20261112175203" scan="5" scanned="20261112175101">
+<document created="20261103155355" version="4.0.374" date="20261113115325" scan="6" scanned="20261113115325">
   <lang id="en"/>
   <lang id="de"/>
   <source class="TTsvSource" name="de-core.tsv" original="en" date="20261105162544">
@@ -1965,7 +1965,7 @@
       </row>
     </node>
   </source>
-  <source class="TTsvSource" name="de-workflow.tsv" original="en" date="20261112174654">
+  <source class="TTsvSource" name="de-workflow.tsv" original="en" date="20261113115207">
     <outputfile dir="." localized="&lt;iso&gt;-workflow.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-workflow.tsv" state="0" created="20261112175203">
       <row id="A fixed version is checked out. Get the translation project to continue working." state="0" created="20261112175203">
@@ -2587,6 +2587,10 @@
       <row id="@plural|{n} commit not yet on the server|{n} commits not yet on the server" state="0" created="20261112175203" note="Context: @plural" notereadonly="1">
         <native>{n} commit not yet on the server|{n} commits not yet on the server</native>
         <lang id="de" date="20261112175203" status="3">{n} Commit noch nicht auf dem Server|{n} Commits noch nicht auf dem Server</lang>
+      </row>
+      <row id="The workflow configuration {path} is not committed. A developer should commit it to the default branch." state="0" created="20261113115325">
+        <native>The workflow configuration {path} is not committed. A developer should commit it to the default branch.</native>
+        <lang id="de" date="20261113115325" status="3">Die Workflow-Konfiguration {path} ist nicht eingecheckt. Ein Entwickler sollte sie in den Standardzweig committen.</lang>
       </row>
     </node>
   </source>

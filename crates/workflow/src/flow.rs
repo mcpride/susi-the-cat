@@ -199,6 +199,11 @@ pub fn sanitize(s: &str) -> String {
     cleaned.trim_matches(['.', '-']).to_string()
 }
 
+/// Path (relative to the working copy root) inside the repository configuration directory.
+fn is_config_path(path: &str) -> bool {
+    path.strip_prefix(config::REPO_DIR).is_some_and(|r| r.is_empty() || r.starts_with('/'))
+}
+
 impl Workflow {
     /// Workflow for the project file `slp`, `None` if it is not in a configured git working copy.
     pub fn detect(slp: &Path) -> Result<Option<Workflow>> {
@@ -418,6 +423,9 @@ impl Workflow {
             warnings.push(tf!("The server could not be reached: {error}", error = e));
         }
         let snap = self.git.snapshot()?;
+        if let Some(c) = snap.changes.iter().find(|c| c.code == "??" && is_config_path(&c.path)) {
+            warnings.push(tf!("The workflow configuration {path} is not committed. A developer should commit it to the default branch.", path = c.path));
+        }
         let default_branch = self.default_branch();
         let changed = self.project_changes(p, &snap.changes);
         let on_default = snap.branch.as_deref() == Some(default_branch.as_str());
@@ -507,9 +515,13 @@ impl Workflow {
         let ts = now().format("%Y%m%d-%H%M%S").to_string();
         let mut backup = None;
         let snap = self.git.snapshot()?;
-        if !snap.changes.is_empty() {
+        // The workflow configuration stays in place (it may not be committed yet), everything else is set aside.
+        let config_path = self.root.join(config::REPO_FILE);
+        let kept_config = std::fs::read(&config_path).ok();
+        if snap.changes.iter().any(|c| !is_config_path(&c.path)) {
             let msg = format!("susi backup {ts} ({})", snap.branch.as_deref().unwrap_or("HEAD"));
-            self.git.run(&["stash", "push", "--include-untracked", "-m", &msg])?;
+            let exclude = format!(":(top,exclude){}", config::REPO_DIR);
+            self.git.run(&["stash", "push", "--include-untracked", "-m", &msg, "--", ":/", &exclude])?;
             backup = Some(msg);
         }
         let mut saved_commits = None;
@@ -521,16 +533,24 @@ impl Workflow {
             self.git.run(&["update-ref", &r, &format!("refs/heads/{branch}")])?;
             saved_commits = Some(r);
         }
+        // --discard-changes: only the configuration can still differ; the checked-out version wins.
         let target = match commit {
             Some(c) => {
-                self.git.run(&["switch", "--detach", c])?;
+                self.git.run(&["switch", "--discard-changes", "--detach", c])?;
                 c.to_string()
             }
             None => {
-                self.git.run(&["switch", "--force-create", &branch, "--track", &format!("{remote}/{branch}")])?;
+                self.git.run(&["switch", "--discard-changes", "--force-create", &branch, "--track", &format!("{remote}/{branch}")])?;
                 branch
             }
         };
+        if let Some(bytes) = kept_config.filter(|_| !config_path.exists()) {
+            // Not part of the checked-out version: keep the workflow enabled.
+            if let Some(dir) = config_path.parent() {
+                std::fs::create_dir_all(dir).map_err(|e| susi_core::Error::io(dir, e))?;
+            }
+            std::fs::write(&config_path, bytes).map_err(|e| susi_core::Error::io(&config_path, e))?;
+        }
         let commit = self.git.query(&["rev-parse", "--short", "HEAD"])?;
         Ok(FetchReport { target, commit, backup, saved_commits })
     }

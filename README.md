@@ -351,7 +351,9 @@ committed – never other changes in the working copy.
 ### Setup (developer)
 
 1. Clone the repository, then `susi-cli workflow init app.slp` creates `.susi/workflow.toml`;
-   adjust and commit it. The workflow is active when this file (or the working copy file below) exists.
+   adjust and commit it **to the default branch**. The workflow is active when this file (or the working
+   copy file below) exists. *Get translation project* never sets `.susi/` aside; if the checked-out
+   version lacks the file, it is kept as an uncommitted file and the status warns about it.
 2. Configure git for the translator: `git config --global user.name/user.email` and a credential
    helper (`git config --global credential.helper manager` on Windows). For working copies owned by
    another user: `git config --global --add safe.directory <path>`.
