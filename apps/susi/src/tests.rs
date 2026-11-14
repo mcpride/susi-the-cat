@@ -9,6 +9,7 @@ use susi_core::slp;
 use crate::actions::Action;
 use crate::app::{BottomTab, SusiApp};
 use crate::dialogs::{Dialog, ExportDialog, ImportDialog, PseudoDialog, TmDialog};
+use crate::workflow_ui::{FetchDialog, PublishDialog, SaveDialog, TokenDialog};
 
 fn run(ctx: &egui::Context, app: &mut SusiApp, frames: usize) {
     for _ in 0..frames {
@@ -156,6 +157,38 @@ fn render_all_views_and_dialogs(ui_language: &str) {
             comments: true,
             status: susi_core::status::TranslationStatus::Translated,
         }),
+        Dialog::WorkflowFetch(FetchDialog {
+            save_first: true,
+            pending: true,
+            advanced: true,
+            branch: "main".into(),
+            commit: String::new(),
+            default_branch: "main".into(),
+            branches: vec!["main".into(), "release".into()],
+        }),
+        Dialog::WorkflowSave(SaveDialog {
+            message: "Translations".into(),
+            prefix: "fix".into(),
+            ci_skip: true,
+            build: true,
+            branch: String::new(),
+            new_branch: true,
+            files: vec!["l10n/app.slp".into()],
+            advanced: true,
+        }),
+        Dialog::WorkflowPublish(PublishDialog {
+            title: "Translations".into(),
+            description: "Please review".into(),
+            reviewers: "anna; ben".into(),
+            target: "main".into(),
+            squash: true,
+            remove_source_branch: true,
+            advanced: true,
+            save: None,
+            build: true,
+            branches: vec!["main".into()],
+        }),
+        Dialog::WorkflowToken(TokenDialog { server: "https://gitlab.example.com (group/app)".into(), token: String::new(), has_token: true }),
     ];
     for d in dialogs {
         app.dialog = Some(d);
@@ -182,6 +215,7 @@ fn all_ui_glyphs_exist_in_default_fonts() {
         include_str!("dialogs.rs"),
         include_str!("app.rs"),
         include_str!("actions.rs"),
+        include_str!("workflow_ui.rs"),
     ];
     // Translations are shown in the same fonts.
     let i18n = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../crates/core/src/i18n");

@@ -46,7 +46,7 @@ pub static LANGUAGES: [LangInfo; 2] = [
     LangInfo {
         code: "de",
         name: "Deutsch",
-        sources: &[include_str!("i18n/de-core.tsv"), include_str!("i18n/de-cli.tsv"), include_str!("i18n/de-gui.tsv")],
+        sources: &[include_str!("i18n/de-core.tsv"), include_str!("i18n/de-cli.tsv"), include_str!("i18n/de-gui.tsv"), include_str!("i18n/de-workflow.tsv")],
         catalog: OnceLock::new(),
     },
 ];
@@ -404,7 +404,7 @@ mod tests {
     fn german_catalog_covers_all_sources() {
         let root = Path::new(env!("CARGO_MANIFEST_DIR")).join("..").join("..");
         let mut files = Vec::new();
-        for d in ["crates/core/src", "crates/mcp/src", "apps/susi/src", "apps/susi-cli/src"] {
+        for d in ["crates/core/src", "crates/mcp/src", "crates/workflow/src", "apps/susi/src", "apps/susi-cli/src"] {
             rust_files(&root.join(d), &mut files);
         }
         let mut used = BTreeSet::new();

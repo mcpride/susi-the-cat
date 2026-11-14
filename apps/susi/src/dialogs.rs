@@ -13,6 +13,7 @@ use susi_core::status::{RowStatus, TranslationStatus};
 
 use crate::actions::Action;
 use crate::app::SusiApp;
+use crate::workflow_ui::{self, FetchDialog, PublishDialog, SaveDialog, TokenDialog};
 
 pub struct SourcePropsDialog {
     pub index: usize,
@@ -92,6 +93,10 @@ pub enum Dialog {
     Pseudo(PseudoDialog),
     Settings(Box<Settings>),
     About,
+    WorkflowFetch(FetchDialog),
+    WorkflowSave(SaveDialog),
+    WorkflowPublish(PublishDialog),
+    WorkflowToken(TokenDialog),
 }
 
 /// Shows the open dialog (if any).
@@ -115,6 +120,10 @@ pub fn show(app: &mut SusiApp, ctx: &egui::Context) {
             Dialog::Pseudo(p) => pseudo(app, ui, p),
             Dialog::Settings(s) => settings(app, ui, s),
             Dialog::About => about(ui),
+            Dialog::WorkflowFetch(f) => workflow_ui::fetch_dialog(app, ui, f),
+            Dialog::WorkflowSave(s) => workflow_ui::save_dialog(app, ui, s),
+            Dialog::WorkflowPublish(p) => workflow_ui::publish_dialog(app, ui, p),
+            Dialog::WorkflowToken(t) => workflow_ui::token_dialog(app, ui, t),
         };
     });
     if modal.should_close() {
@@ -126,7 +135,7 @@ pub fn show(app: &mut SusiApp, ctx: &egui::Context) {
 }
 
 /// OK/Cancel row. Returns `Some(true)` for OK, `Some(false)` for cancel.
-fn ok_cancel(ui: &mut egui::Ui, ok: &str, enabled: bool) -> Option<bool> {
+pub fn ok_cancel(ui: &mut egui::Ui, ok: &str, enabled: bool) -> Option<bool> {
     ui.separator();
     ui.horizontal(|ui| {
         if ui.add_enabled(enabled, egui::Button::new(ok)).clicked() {

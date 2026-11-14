@@ -89,6 +89,7 @@ fn menu_bar(app: &mut SusiApp, ui: &mut egui::Ui) {
             cmd(ui, &mut acts, t("Create pseudo translation…"), Action::FillPseudo);
             cmd(ui, &mut acts, t("Remove pseudo translations"), Action::RemovePseudo);
         });
+        crate::workflow_ui::menu(app, ui, &mut acts);
         ui.menu_button(t("Tools"), |ui| {
             cmd(ui, &mut acts, t("Options…"), Action::Settings);
             ui.menu_button(t("User interface language"), |ui| ui_language_items(app, ui));
@@ -259,6 +260,7 @@ fn toolbar(app: &mut SusiApp, ui: &mut egui::Ui) {
         tool(ui, &mut acts, &format!("✔ {}", t("Validate")), t("Validate translations"), Action::Validate { missing: false });
         tool(ui, &mut acts, "🗄 TM", t("Translate with translation memory"), Action::TmTranslate);
         tool(ui, &mut acts, "📊", t("Statistics"), Action::Statistics);
+        crate::workflow_ui::toolbar(app, ui, &mut acts);
     });
     app.actions.extend(acts);
 }
@@ -277,7 +279,9 @@ fn language_combo(app: &mut SusiApp, ui: &mut egui::Ui) {
 }
 
 fn status_bar(app: &mut SusiApp, ui: &mut egui::Ui) {
+    let mut acts = Vec::new();
     ui.horizontal(|ui| {
+        crate::workflow_ui::status_bar(app, ui, &mut acts);
         let pos = app.selected_index().map(|i| i + 1).unwrap_or(0);
         ui.label(format!("{pos} / {}", app.rows.len()));
         ui.separator();
@@ -296,6 +300,7 @@ fn status_bar(app: &mut SusiApp, ui: &mut egui::Ui) {
             ui.label(p.display().to_string());
         }
     });
+    app.actions.extend(acts);
 }
 
 #[derive(Default)]

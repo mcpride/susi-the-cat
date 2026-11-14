@@ -10,14 +10,17 @@ use rmcp::{ServerHandler, tool, tool_handler, tool_router};
 use schemars::JsonSchema;
 use serde::Deserialize;
 
-use crate::session::{ListRowsInput, Session, ToolResult, TranslationInput};
+use crate::session::{ListRowsInput, Session, ToolResult, TranslationInput, WorkflowFetchInput, WorkflowPublishInput, WorkflowSaveInput};
 
 const INSTRUCTIONS: &str = "Susi the CAT (Sisulizer compatible). Typical AI translation workflow: \
 open_project(path) -> project_info -> list_rows(status=[\"untranslated\"], langs=[\"de\"]) -> \
 set_translations([{key, lang, text}], status defaults to 'auto') -> validate -> save_project. \
 Keep placeholders ({0}, {name}, %s, <tags>), leading/trailing spaces, line breaks and '&' hotkeys exactly as in the original; \
 respect max_chars and row comments. Rows marked do_not_translate must not be translated. \
-scan updates the project from the source files, build writes the localized files.";
+scan updates the project from the source files, build writes the localized files. \
+If the project is in a git working copy configured for the translation workflow (.susi/workflow.toml): \
+workflow_status -> workflow_fetch (latest version) -> translate -> workflow_save (commit + push to a personal branch) -> \
+workflow_publish (merge request for review).";
 
 #[derive(Clone)]
 pub struct SusiServer {
@@ -137,6 +140,12 @@ pub struct TmLookupInput {
     pub target_lang: String,
     /// Minimum fuzzy score (default 75).
     pub min_score: Option<u8>,
+}
+
+#[derive(Debug, Default, Deserialize, JsonSchema)]
+pub struct WorkflowStatusInput {
+    /// Run git fetch and query merge requests on the server (default false).
+    pub online: Option<bool>,
 }
 
 #[derive(Debug, Default, Deserialize, JsonSchema)]
@@ -287,6 +296,32 @@ impl SusiServer {
     #[tool(description = "Import translations from an exchange file (.xlsx, .csv, .txt, .xlf, .tmx).")]
     fn import(&self, Parameters(i): Parameters<ImportInput>) -> Result<String, String> {
         self.run(|s| s.import(&PathBuf::from(&i.path), &i.langs, i.overwrite.unwrap_or(true)))
+    }
+
+    #[tool(
+        description = "Git workflow state of the open project: up_to_date | update_available | modified | saved | in_review | published | detached, with changed project files, branch and merge request."
+    )]
+    fn workflow_status(&self, Parameters(i): Parameters<WorkflowStatusInput>) -> Result<String, String> {
+        self.run(|s| s.workflow_status(i.online.unwrap_or(false)))
+    }
+
+    #[tool(
+        description = "Get translation project: sets local changes aside (git stash) and checks out the latest version of the default branch (or a given branch/commit), then reopens the project."
+    )]
+    fn workflow_fetch(&self, Parameters(i): Parameters<WorkflowFetchInput>) -> Result<String, String> {
+        self.run(|s| s.workflow_fetch(&i))
+    }
+
+    #[tool(
+        description = "Save changes: builds the localized files, saves the project and commits/pushes the changed project files to a personal branch (created from the configured pattern when on the default branch)."
+    )]
+    fn workflow_save(&self, Parameters(i): Parameters<WorkflowSaveInput>) -> Result<String, String> {
+        self.run(|s| s.workflow_save(&i))
+    }
+
+    #[tool(description = "Prepare publication: creates or updates the merge request of the current branch (GitLab) with reviewers.")]
+    fn workflow_publish(&self, Parameters(i): Parameters<WorkflowPublishInput>) -> Result<String, String> {
+        self.run(|s| s.workflow_publish(&i))
     }
 
     #[tool(description = "Fill pseudo translations for a (pseudo) language to test the UI.")]

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<document created="20261103155355" version="4.0.374" date="20261105162922" scan="4" scanned="20261105162922">
+<document created="20261103155355" version="4.0.374" date="20261113115325" scan="6" scanned="20261113115325">
   <lang id="en"/>
   <lang id="de"/>
   <source class="TTsvSource" name="de-core.tsv" original="en" date="20261105162544">
@@ -1962,6 +1962,635 @@
       <row id="Encoding:" state="0" created="20261105162922" note="Date filter, date column" notereadonly="1">
         <native>Encoding:</native>
         <lang id="de" date="20261105162922" status="3">Kodierung:</lang>
+      </row>
+    </node>
+  </source>
+  <source class="TTsvSource" name="de-workflow.tsv" original="en" date="20261113115207">
+    <outputfile dir="." localized="&lt;iso&gt;-workflow.&lt;ext&gt;"/>
+    <node class="TTsvNode" name="de-workflow.tsv" state="0" created="20261112175203">
+      <row id="A fixed version is checked out. Get the translation project to continue working." state="0" created="20261112175203">
+        <native>A fixed version is checked out. Get the translation project to continue working.</native>
+        <lang id="de" date="20261112175203" status="3">Eine feste Version ist ausgecheckt. Holen Sie das Übersetzungsprojekt, um weiterzuarbeiten.</lang>
+      </row>
+      <row id="A newer version is available on the server: get the translation project." state="0" created="20261112175203">
+        <native>A newer version is available on the server: get the translation project.</native>
+        <lang id="de" date="20261112175203" status="3">Auf dem Server gibt es eine neuere Version: Holen Sie das Übersetzungsprojekt.</lang>
+      </row>
+      <row id="A personal branch is created for your changes." state="0" created="20261112175203">
+        <native>A personal branch is created for your changes.</native>
+        <lang id="de" date="20261112175203" status="3">Für Ihre Änderungen wird ein persönlicher Zweig angelegt.</lang>
+      </row>
+      <row id="Access token (input is visible; end with Enter):" state="0" created="20261112175203">
+        <native>Access token (input is visible; end with Enter):</native>
+        <lang id="de" date="20261112175203" status="3">Zugriffstoken (Eingabe ist sichtbar; mit Enter abschließen):</lang>
+      </row>
+      <row id="Access token stored, signed in as {user}." state="0" created="20261112175203">
+        <native>Access token stored, signed in as {user}.</native>
+        <lang id="de" date="20261112175203" status="3">Zugriffstoken gespeichert, angemeldet als {user}.</lang>
+      </row>
+      <row id="Access token:" state="0" created="20261112175203">
+        <native>Access token:</native>
+        <lang id="de" date="20261112175203" status="3">Zugriffstoken:</lang>
+      </row>
+      <row id="Access token: available" state="0" created="20261112175203">
+        <native>Access token: available</native>
+        <lang id="de" date="20261112175203" status="3">Zugriffstoken: vorhanden</lang>
+      </row>
+      <row id="Access token: missing (susi-cli workflow login)" state="0" created="20261112175203">
+        <native>Access token: missing (susi-cli workflow login)</native>
+        <lang id="de" date="20261112175203" status="3">Zugriffstoken: fehlt (susi-cli workflow login)</lang>
+      </row>
+      <row id="Add reviewer…" state="0" created="20261112175203">
+        <native>Add reviewer…</native>
+        <lang id="de" date="20261112175203" status="3">Prüfer hinzufügen…</lang>
+      </row>
+      <row id="Advanced settings" state="0" created="20261112175203">
+        <native>Advanced settings</native>
+        <lang id="de" date="20261112175203" status="3">Erweiterte Einstellungen</lang>
+      </row>
+      <row id="An access token is already stored." state="0" created="20261112175203">
+        <native>An access token is already stored.</native>
+        <lang id="de" date="20261112175203" status="3">Es ist bereits ein Zugriffstoken gespeichert.</lang>
+      </row>
+      <row id="Asking the server…" state="0" created="20261112175203">
+        <native>Asking the server…</native>
+        <lang id="de" date="20261112175203" status="3">Server wird abgefragt…</lang>
+      </row>
+      <row id="Branch:" state="0" created="20261112175203">
+        <native>Branch:</native>
+        <lang id="de" date="20261112175203" status="3">Zweig:</lang>
+      </row>
+      <row id="Branch: {branch} (default branch: {default})" state="0" created="20261112175203">
+        <native>Branch: {branch} (default branch: {default})</native>
+        <lang id="de" date="20261112175203" status="3">Zweig: {branch} (Standardzweig: {default})</lang>
+      </row>
+      <row id="Build the localized files first" state="0" created="20261112175203">
+        <native>Build the localized files first</native>
+        <lang id="de" date="20261112175203" status="3">Vorher die lokalisierten Dateien erstellen</lang>
+      </row>
+      <row id="Changes not saved on the server" state="0" created="20261112175203">
+        <native>Changes not saved on the server</native>
+        <lang id="de" date="20261112175203" status="3">Änderungen nicht auf dem Server gespeichert</lang>
+      </row>
+      <row id="Changes saved on the server ({branch}): {message}" state="0" created="20261112175203">
+        <native>Changes saved on the server ({branch}): {message}</native>
+        <lang id="de" date="20261112175203" status="3">Änderungen auf dem Server gespeichert ({branch}): {message}</lang>
+      </row>
+      <row id="Checking git working copy…" state="0" created="20261112175203">
+        <native>Checking git working copy…</native>
+        <lang id="de" date="20261112175203" status="3">Git-Arbeitskopie wird geprüft…</lang>
+      </row>
+      <row id="Checking state…" state="0" created="20261112175203">
+        <native>Checking state…</native>
+        <lang id="de" date="20261112175203" status="3">Zustand wird geprüft…</lang>
+      </row>
+      <row id="Click to refresh (asks the server)." state="0" created="20261112175203">
+        <native>Click to refresh (asks the server).</native>
+        <lang id="de" date="20261112175203" status="3">Klicken zum Aktualisieren (fragt den Server).</lang>
+      </row>
+      <row id="Combine the commits when merging (squash)" state="0" created="20261112175203">
+        <native>Combine the commits when merging (squash)</native>
+        <lang id="de" date="20261112175203" status="3">Commits beim Zusammenführen zusammenfassen (squash)</lang>
+      </row>
+      <row id="Configuration file: {path}" state="0" created="20261112175203">
+        <native>Configuration file: {path}</native>
+        <lang id="de" date="20261112175203" status="3">Konfigurationsdatei: {path}</lang>
+      </row>
+      <row id="Connection to {url} failed: {error}" state="0" created="20261112175203">
+        <native>Connection to {url} failed: {error}</native>
+        <lang id="de" date="20261112175203" status="3">Verbindung zu {url} fehlgeschlagen: {error}</lang>
+      </row>
+      <row id="Corrected translations (fix)" state="0" created="20261112175203">
+        <native>Corrected translations (fix)</native>
+        <lang id="de" date="20261112175203" status="3">Korrigierte Übersetzungen (fix)</lang>
+      </row>
+      <row id="Create a personal access token with the scope &quot;api&quot; in GitLab (user settings, access tokens) and paste it here. It is stored in the credential manager of the operating system, not in the project." state="0" created="20261112175203">
+        <native>Create a personal access token with the scope "api" in GitLab (user settings, access tokens) and paste it here. It is stored in the credential manager of the operating system, not in the project.</native>
+        <lang id="de" date="20261112175203" status="3">Erstellen Sie in GitLab ein persönliches Zugriffstoken mit dem Bereich „api“ (Benutzereinstellungen, Zugriffstokens) und fügen Sie es hier ein. Es wird in der Anmeldeinformationsverwaltung des Betriebssystems gespeichert, nicht im Projekt.</lang>
+      </row>
+      <row id="Create merge request" state="0" created="20261112175203">
+        <native>Create merge request</native>
+        <lang id="de" date="20261112175203" status="3">Merge Request erstellen</lang>
+      </row>
+      <row id="Creates a merge request: a reviewer checks your changes and adopts them." state="0" created="20261112175203">
+        <native>Creates a merge request: a reviewer checks your changes and adopts them.</native>
+        <lang id="de" date="20261112175203" status="3">Erstellt einen Merge Request: Ein Prüfer kontrolliert Ihre Änderungen und übernimmt sie.</lang>
+      </row>
+      <row id="Creates the configuration template .susi/workflow.toml." state="0" created="20261112175203">
+        <native>Creates the configuration template .susi/workflow.toml.</native>
+        <lang id="de" date="20261112175203" status="3">Legt die Konfigurationsvorlage .susi/workflow.toml an.</lang>
+      </row>
+      <row id="Default branch: {branch}" state="0" created="20261112175203">
+        <native>Default branch: {branch}</native>
+        <lang id="de" date="20261112175203" status="3">Standardzweig: {branch}</lang>
+      </row>
+      <row id="Delete the branch after merging" state="0" created="20261112175203">
+        <native>Delete the branch after merging</native>
+        <lang id="de" date="20261112175203" status="3">Zweig nach dem Zusammenführen löschen</lang>
+      </row>
+      <row id="Description:" state="0" created="20261112175203">
+        <native>Description:</native>
+        <lang id="de" date="20261112175203" status="3">Beschreibung:</lang>
+      </row>
+      <row id="Fixed version" state="0" created="20261112175203">
+        <native>Fixed version</native>
+        <lang id="de" date="20261112175203" status="3">Feste Version</lang>
+      </row>
+      <row id="Get" state="0" created="20261112175203">
+        <native>Get</native>
+        <lang id="de" date="20261112175203" status="3">Holen</lang>
+      </row>
+      <row id="Get translation project" state="0" created="20261112175203">
+        <native>Get translation project</native>
+        <lang id="de" date="20261112175203" status="3">Übersetzungsprojekt holen</lang>
+      </row>
+      <row id="Get translation project: latest version from the server" state="0" created="20261112175203">
+        <native>Get translation project: latest version from the server</native>
+        <lang id="de" date="20261112175203" status="3">Übersetzungsprojekt holen: neueste Version vom Server</lang>
+      </row>
+      <row id="Get translation project: sets local changes aside and checks out\nthe latest version of the default branch." state="0" created="20261112175203">
+        <native>Get translation project: sets local changes aside and checks out#lthe latest version of the default branch.</native>
+        <lang id="de" date="20261112175203" status="3">Übersetzungsprojekt holen: legt lokale Änderungen beiseite und checkt#ldie neueste Version des Standardzweigs aus.</lang>
+      </row>
+      <row id="Get translation project…" state="0" created="20261112175203">
+        <native>Get translation project…</native>
+        <lang id="de" date="20261112175203" status="3">Übersetzungsprojekt holen…</lang>
+      </row>
+      <row id="Gets the latest version of the translation project from the server and opens it." state="0" created="20261112175203">
+        <native>Gets the latest version of the translation project from the server and opens it.</native>
+        <lang id="de" date="20261112175203" status="3">Holt die neueste Version des Übersetzungsprojekts vom Server und öffnet sie.</lang>
+      </row>
+      <row id="Getting translation project…" state="0" created="20261112175203">
+        <native>Getting translation project…</native>
+        <lang id="de" date="20261112175203" status="3">Übersetzungsprojekt wird geholt…</lang>
+      </row>
+      <row id="Git workflow active ({path}): {state}" state="0" created="20261112175203">
+        <native>Git workflow active ({path}): {state}</native>
+        <lang id="de" date="20261112175203" status="3">Git-Workflow aktiv ({path}): {state}</lang>
+      </row>
+      <row id="Git workflow for translators (configuration: .susi/workflow.toml, see README).\nActions are run in the given order (default: status):" state="0" created="20261112175203">
+        <native>Git workflow for translators (configuration: .susi/workflow.toml, see README).#lActions are run in the given order (default: status):</native>
+        <lang id="de" date="20261112175203" status="3">Git-Workflow für Übersetzer (Konfiguration: .susi/workflow.toml, siehe README).#lAktionen werden in der angegebenen Reihenfolge ausgeführt (Standard: status):</lang>
+      </row>
+      <row id="Git workflow: get, save and publish translations" state="0" created="20261112175203">
+        <native>Git workflow: get, save and publish translations</native>
+        <lang id="de" date="20261112175203" status="3">Git-Workflow: Übersetzungen holen, zwischenspeichern und veröffentlichen</lang>
+      </row>
+      <row id="In review" state="0" created="20261112175203">
+        <native>In review</native>
+        <lang id="de" date="20261112175203" status="3">In Prüfung</lang>
+      </row>
+      <row id="Invalid access token" state="0" created="20261112175203">
+        <native>Invalid access token</native>
+        <lang id="de" date="20261112175203" status="3">Ungültiges Zugriffstoken</lang>
+      </row>
+      <row id="Invalid branch name &quot;{name}&quot;" state="0" created="20261112175203">
+        <native>Invalid branch name "{name}"</native>
+        <lang id="de" date="20261112175203" status="3">Ungültiger Zweigname "{name}"</lang>
+      </row>
+      <row id="Invalid token reference &quot;{value}&quot; (allowed: auto, env:NAME, credential, credential:USER, none). Never put the token itself into a configuration file." state="0" created="20261112175203">
+        <native>Invalid token reference "{value}" (allowed: auto, env:NAME, credential, credential:USER, none). Never put the token itself into a configuration file.</native>
+        <lang id="de" date="20261112175203" status="3">Ungültige Token-Referenz "{value}" (erlaubt: auto, env:NAME, credential, credential:USER, none). Tragen Sie niemals das Token selbst in eine Konfigurationsdatei ein.</lang>
+      </row>
+      <row id="Kind of change:" state="0" created="20261112175203">
+        <native>Kind of change:</native>
+        <lang id="de" date="20261112175203" status="3">Art der Änderung:</lang>
+      </row>
+      <row id="Loading reviewers…" state="0" created="20261112175203">
+        <native>Loading reviewers…</native>
+        <lang id="de" date="20261112175203" status="3">Prüfer werden geladen…</lang>
+      </row>
+      <row id="Local changes were set aside: {backup} (git stash list)" state="0" created="20261112175203">
+        <native>Local changes were set aside: {backup} (git stash list)</native>
+        <lang id="de" date="20261112175203" status="3">Lokale Änderungen wurden beiseitegelegt: {backup} (git stash list)</lang>
+      </row>
+      <row id="Local commits were kept in {backup}" state="0" created="20261112175203">
+        <native>Local commits were kept in {backup}</native>
+        <lang id="de" date="20261112175203" status="3">Lokale Commits wurden in {backup} aufbewahrt</lang>
+      </row>
+      <row id="Maintenance (chore)" state="0" created="20261112175203">
+        <native>Maintenance (chore)</native>
+        <lang id="de" date="20261112175203" status="3">Wartung (chore)</lang>
+      </row>
+      <row id="Merge request created:" state="0" created="20261112175203">
+        <native>Merge request created:</native>
+        <lang id="de" date="20261112175203" status="3">Merge Request erstellt:</lang>
+      </row>
+      <row id="Merge request updated:" state="0" created="20261112175203">
+        <native>Merge request updated:</native>
+        <lang id="de" date="20261112175203" status="3">Merge Request aktualisiert:</lang>
+      </row>
+      <row id="Merge request: !{iid} {title} ({url})" state="0" created="20261112175203">
+        <native>Merge request: !{iid} {title} ({url})</native>
+        <lang id="de" date="20261112175203" status="3">Merge Request: !{iid} {title} ({url})</lang>
+      </row>
+      <row id="Never put access tokens into configuration files; susi only stores references to them." state="0" created="20261112175203">
+        <native>Never put access tokens into configuration files; susi only stores references to them.</native>
+        <lang id="de" date="20261112175203" status="3">Tragen Sie niemals Zugriffstokens in Konfigurationsdateien ein; susi speichert nur Referenzen darauf.</lang>
+      </row>
+      <row id="New branch:" state="0" created="20261112175203">
+        <native>New branch:</native>
+        <lang id="de" date="20261112175203" status="3">Neuer Zweig:</lang>
+      </row>
+      <row id="New branch: {branch}" state="0" created="20261112175203">
+        <native>New branch: {branch}</native>
+        <lang id="de" date="20261112175203" status="3">Neuer Zweig: {branch}</lang>
+      </row>
+      <row id="New translations (feat)" state="0" created="20261112175203">
+        <native>New translations (feat)</native>
+        <lang id="de" date="20261112175203" status="3">Neue Übersetzungen (feat)</lang>
+      </row>
+      <row id="No access token for {url}. Store one (Workflow &gt; Sign in to the server…, susi-cli workflow login) or set {env}." state="0" created="20261112175203">
+        <native>No access token for {url}. Store one (Workflow &gt; Sign in to the server…, susi-cli workflow login) or set {env}.</native>
+        <lang id="de" date="20261112175203" status="3">Kein Zugriffstoken für {url}. Speichern Sie eines (Workflow &gt; Am Server anmelden…, susi-cli workflow login) oder setzen Sie {env}.</lang>
+      </row>
+      <row id="No changes to save." state="0" created="20261112175203">
+        <native>No changes to save.</native>
+        <lang id="de" date="20261112175203" status="3">Keine Änderungen zum Speichern.</lang>
+      </row>
+      <row id="No prefix" state="0" created="20261112175203">
+        <native>No prefix</native>
+        <lang id="de" date="20261112175203" status="3">Kein Präfix</lang>
+      </row>
+      <row id="No server is configured for merge requests (forge.provider = &quot;none&quot;)." state="0" created="20261112175203">
+        <native>No server is configured for merge requests (forge.provider = "none").</native>
+        <lang id="de" date="20261112175203" status="3">Für Merge Requests ist kein Server konfiguriert (forge.provider = "none").</lang>
+      </row>
+      <row id="Not all changes are saved on the server yet: save the changes first." state="0" created="20261112175203">
+        <native>Not all changes are saved on the server yet: save the changes first.</native>
+        <lang id="de" date="20261112175203" status="3">Noch nicht alle Änderungen sind auf dem Server gespeichert: Speichern Sie zuerst die Änderungen.</lang>
+      </row>
+      <row id="Open merge request in the browser" state="0" created="20261112175203">
+        <native>Open merge request in the browser</native>
+        <lang id="de" date="20261112175203" status="3">Merge Request im Browser öffnen</lang>
+      </row>
+      <row id="Other open translation merge request: !{iid} {title} ({branch})" state="0" created="20261112175203">
+        <native>Other open translation merge request: !{iid} {title} ({branch})</native>
+        <lang id="de" date="20261112175203" status="3">Weiterer offener Übersetzungs-Merge-Request: !{iid} {title} ({branch})</lang>
+      </row>
+      <row id="Please wait until the current git action has finished." state="0" created="20261112175203">
+        <native>Please wait until the current git action has finished.</native>
+        <lang id="de" date="20261112175203" status="3">Bitte warten Sie, bis die laufende Git-Aktion beendet ist.</lang>
+      </row>
+      <row id="Prepare publication" state="0" created="20261112175203">
+        <native>Prepare publication</native>
+        <lang id="de" date="20261112175203" status="3">Veröffentlichung vorbereiten</lang>
+      </row>
+      <row id="Prepare publication: create a merge request for review" state="0" created="20261112175203">
+        <native>Prepare publication: create a merge request for review</native>
+        <lang id="de" date="20261112175203" status="3">Veröffentlichung vorbereiten: Merge Request zur Prüfung erstellen</lang>
+      </row>
+      <row id="Prepare publication: creates or updates the merge request." state="0" created="20261112175203">
+        <native>Prepare publication: creates or updates the merge request.</native>
+        <lang id="de" date="20261112175203" status="3">Veröffentlichung vorbereiten: erstellt oder aktualisiert den Merge Request.</lang>
+      </row>
+      <row id="Prepare publication…" state="0" created="20261112175203">
+        <native>Prepare publication…</native>
+        <lang id="de" date="20261112175203" status="3">Veröffentlichung vorbereiten…</lang>
+      </row>
+      <row id="Preparing publication…" state="0" created="20261112175203">
+        <native>Preparing publication…</native>
+        <lang id="de" date="20261112175203" status="3">Veröffentlichung wird vorbereitet…</lang>
+      </row>
+      <row id="Project not found - check forge.url and forge.project in the workflow configuration." state="0" created="20261112175203">
+        <native>Project not found - check forge.url and forge.project in the workflow configuration.</native>
+        <lang id="de" date="20261112175203" status="3">Projekt nicht gefunden – prüfen Sie forge.url und forge.project in der Workflow-Konfiguration.</lang>
+      </row>
+      <row id="Publish" state="0" created="20261112175203">
+        <native>Publish</native>
+        <lang id="de" date="20261112175203" status="3">Veröffentlichen</lang>
+      </row>
+      <row id="Published" state="0" created="20261112175203">
+        <native>Published</native>
+        <lang id="de" date="20261112175203" status="3">Veröffentlicht</lang>
+      </row>
+      <row id="Refresh state" state="0" created="20261112175203">
+        <native>Refresh state</native>
+        <lang id="de" date="20261112175203" status="3">Zustand aktualisieren</lang>
+      </row>
+      <row id="Remove stored token" state="0" created="20261112175203">
+        <native>Remove stored token</native>
+        <lang id="de" date="20261112175203" status="3">Gespeichertes Token entfernen</lang>
+      </row>
+      <row id="Removes the stored access token." state="0" created="20261112175203">
+        <native>Removes the stored access token.</native>
+        <lang id="de" date="20261112175203" status="3">Entfernt das gespeicherte Zugriffstoken.</lang>
+      </row>
+      <row id="Reviewer &quot;{name}&quot; not found on the server" state="0" created="20261112175203">
+        <native>Reviewer "{name}" not found on the server</native>
+        <lang id="de" date="20261112175203" status="3">Prüfer "{name}" auf dem Server nicht gefunden</lang>
+      </row>
+      <row id="Reviewers:" state="0" created="20261112175203">
+        <native>Reviewers:</native>
+        <lang id="de" date="20261112175203" status="3">Prüfer:</lang>
+      </row>
+      <row id="Save changes" state="0" created="20261112175203">
+        <native>Save changes</native>
+        <lang id="de" date="20261112175203" status="3">Änderungen zwischenspeichern</lang>
+      </row>
+      <row id="Save changes on the server" state="0" created="20261112175203">
+        <native>Save changes on the server</native>
+        <lang id="de" date="20261112175203" status="3">Änderungen auf dem Server zwischenspeichern</lang>
+      </row>
+      <row id="Save changes: builds the localized files, saves the project and\ncommits and pushes the project files to a personal branch." state="0" created="20261112175203">
+        <native>Save changes: builds the localized files, saves the project and#lcommits and pushes the project files to a personal branch.</native>
+        <lang id="de" date="20261112175203" status="3">Änderungen zwischenspeichern: erstellt die lokalisierten Dateien, speichert das Projekt#lund überträgt die Projektdateien in einen persönlichen Zweig (commit und push).</lang>
+      </row>
+      <row id="Save changes…" state="0" created="20261112175203">
+        <native>Save changes…</native>
+        <lang id="de" date="20261112175203" status="3">Änderungen zwischenspeichern…</lang>
+      </row>
+      <row id="Save the open project first" state="0" created="20261112175203">
+        <native>Save the open project first</native>
+        <lang id="de" date="20261112175203" status="3">Zuerst das geöffnete Projekt speichern</lang>
+      </row>
+      <row id="Save your changes first: publishing needs your own branch." state="0" created="20261112175203">
+        <native>Save your changes first: publishing needs your own branch.</native>
+        <lang id="de" date="20261112175203" status="3">Speichern Sie zuerst Ihre Änderungen: Die Veröffentlichung benötigt einen eigenen Zweig.</lang>
+      </row>
+      <row id="Saved, not published" state="0" created="20261112175203">
+        <native>Saved, not published</native>
+        <lang id="de" date="20261112175203" status="3">Zwischengespeichert, nicht veröffentlicht</lang>
+      </row>
+      <row id="Saves the project and sends the changed files to the server." state="0" created="20261112175203">
+        <native>Saves the project and sends the changed files to the server.</native>
+        <lang id="de" date="20261112175203" status="3">Speichert das Projekt und überträgt die geänderten Dateien auf den Server.</lang>
+      </row>
+      <row id="Saving changes…" state="0" created="20261112175203">
+        <native>Saving changes…</native>
+        <lang id="de" date="20261112175203" status="3">Änderungen werden zwischengespeichert…</lang>
+      </row>
+      <row id="Server: {server}" state="0" created="20261112175203">
+        <native>Server: {server}</native>
+        <lang id="de" date="20261112175203" status="3">Server: {server}</lang>
+      </row>
+      <row id="Server: {url}, project {project}" state="0" created="20261112175203">
+        <native>Server: {url}, project {project}</native>
+        <lang id="de" date="20261112175203" status="3">Server: {url}, Projekt {project}</lang>
+      </row>
+      <row id="Shows the effective configuration." state="0" created="20261112175203">
+        <native>Shows the effective configuration.</native>
+        <lang id="de" date="20261112175203" status="3">Zeigt die wirksame Konfiguration.</lang>
+      </row>
+      <row id="Sign in" state="0" created="20261112175203">
+        <native>Sign in</native>
+        <lang id="de" date="20261112175203" status="3">Anmelden</lang>
+      </row>
+      <row id="Sign in to the server" state="0" created="20261112175203">
+        <native>Sign in to the server</native>
+        <lang id="de" date="20261112175203" status="3">Am Server anmelden</lang>
+      </row>
+      <row id="Sign in to the server first (access token)." state="0" created="20261112175203">
+        <native>Sign in to the server first (access token).</native>
+        <lang id="de" date="20261112175203" status="3">Melden Sie sich zuerst am Server an (Zugriffstoken).</lang>
+      </row>
+      <row id="Sign in to the server…" state="0" created="20261112175203">
+        <native>Sign in to the server…</native>
+        <lang id="de" date="20261112175203" status="3">Am Server anmelden…</lang>
+      </row>
+      <row id="Signing in…" state="0" created="20261112175203">
+        <native>Signing in…</native>
+        <lang id="de" date="20261112175203" status="3">Anmeldung läuft…</lang>
+      </row>
+      <row id="Skip the build pipeline (CI) on the server" state="0" created="20261112175203">
+        <native>Skip the build pipeline (CI) on the server</native>
+        <lang id="de" date="20261112175203" status="3">Build-Pipeline (CI) auf dem Server überspringen</lang>
+      </row>
+      <row id="Specific version:" state="0" created="20261112175203">
+        <native>Specific version:</native>
+        <lang id="de" date="20261112175203" status="3">Bestimmte Version:</lang>
+      </row>
+      <row id="State of the working copy (-online: also ask the server)." state="0" created="20261112175203">
+        <native>State of the working copy (-online: also ask the server).</native>
+        <lang id="de" date="20261112175203" status="3">Zustand der Arbeitskopie (-online: auch den Server fragen).</lang>
+      </row>
+      <row id="State: {state}" state="0" created="20261112175203">
+        <native>State: {state}</native>
+        <lang id="de" date="20261112175203" status="3">Zustand: {state}</lang>
+      </row>
+      <row id="Stores the access token (read from stdin) with git's credential helper." state="0" created="20261112175203">
+        <native>Stores the access token (read from stdin) with git's credential helper.</native>
+        <lang id="de" date="20261112175203" status="3">Speichert das Zugriffstoken (von stdin gelesen) mit dem Credential-Helper von git.</lang>
+      </row>
+      <row id="Target branch:" state="0" created="20261112175203">
+        <native>Target branch:</native>
+        <lang id="de" date="20261112175203" status="3">Zielzweig:</lang>
+      </row>
+      <row id="The access token has no permission for this action (scope &quot;api&quot; and at least the role Developer are required)." state="0" created="20261112175203">
+        <native>The access token has no permission for this action (scope "api" and at least the role Developer are required).</native>
+        <lang id="de" date="20261112175203" status="3">Das Zugriffstoken hat keine Berechtigung für diese Aktion (benötigt werden der Bereich "api" und mindestens die Rolle Developer).</lang>
+      </row>
+      <row id="The access token is missing, invalid or expired. Store a token with the scope &quot;api&quot; (Workflow &gt; Sign in to the server…) or set {env}." state="0" created="20261112175203">
+        <native>The access token is missing, invalid or expired. Store a token with the scope "api" (Workflow &gt; Sign in to the server…) or set {env}.</native>
+        <lang id="de" date="20261112175203" status="3">Das Zugriffstoken fehlt, ist ungültig oder abgelaufen. Speichern Sie ein Token mit dem Bereich "api" (Workflow &gt; Am Server anmelden…) oder setzen Sie {env}.</lang>
+      </row>
+      <row id="The branch &quot;{branch}&quot; does not exist on the server" state="0" created="20261112175203">
+        <native>The branch "{branch}" does not exist on the server</native>
+        <lang id="de" date="20261112175203" status="3">Der Zweig "{branch}" existiert nicht auf dem Server</lang>
+      </row>
+      <row id="The branch &quot;{branch}&quot; was already published and removed on the server. Get the translation project first." state="0" created="20261112175203">
+        <native>The branch "{branch}" was already published and removed on the server. Get the translation project first.</native>
+        <lang id="de" date="20261112175203" status="3">Der Zweig "{branch}" wurde bereits veröffentlicht und auf dem Server entfernt. Holen Sie zuerst das Übersetzungsprojekt.</lang>
+      </row>
+      <row id="The branch pattern must not be empty" state="0" created="20261112175203">
+        <native>The branch pattern must not be empty</native>
+        <lang id="de" date="20261112175203" status="3">Das Zweigmuster darf nicht leer sein</lang>
+      </row>
+      <row id="The git action ended unexpectedly." state="0" created="20261112175203">
+        <native>The git action ended unexpectedly.</native>
+        <lang id="de" date="20261112175203" status="3">Die Git-Aktion wurde unerwartet beendet.</lang>
+      </row>
+      <row id="The git remote must not be empty" state="0" created="20261112175203">
+        <native>The git remote must not be empty</native>
+        <lang id="de" date="20261112175203" status="3">Das Git-Remote darf nicht leer sein</lang>
+      </row>
+      <row id="The merge request is waiting for review. You can still save further changes." state="0" created="20261112175203">
+        <native>The merge request is waiting for review. You can still save further changes.</native>
+        <lang id="de" date="20261112175203" status="3">Der Merge Request wartet auf Prüfung. Sie können weiterhin Änderungen zwischenspeichern.</lang>
+      </row>
+      <row id="The open project has unsaved changes; it is saved first." state="0" created="20261112175203">
+        <native>The open project has unsaved changes; it is saved first.</native>
+        <lang id="de" date="20261112175203" status="3">Das geöffnete Projekt hat ungespeicherte Änderungen; es wird zuerst gespeichert.</lang>
+      </row>
+      <row id="The project is not in a git working copy configured for the translation workflow." state="0" created="20261112175203">
+        <native>The project is not in a git working copy configured for the translation workflow.</native>
+        <lang id="de" date="20261112175203" status="3">Das Projekt liegt nicht in einer für den Übersetzungs-Workflow konfigurierten Git-Arbeitskopie.</lang>
+      </row>
+      <row id="The project is not in a git working copy configured for the translation workflow:" state="0" created="20261112175203">
+        <native>The project is not in a git working copy configured for the translation workflow:</native>
+        <lang id="de" date="20261112175203" status="3">Das Projekt liegt nicht in einer für den Übersetzungs-Workflow konfigurierten Git-Arbeitskopie:</lang>
+      </row>
+      <row id="The server address cannot be derived from the remote URL &quot;{url}&quot;; set forge.url and forge.project." state="0" created="20261112175203">
+        <native>The server address cannot be derived from the remote URL "{url}"; set forge.url and forge.project.</native>
+        <lang id="de" date="20261112175203" status="3">Die Serveradresse lässt sich nicht aus der Remote-URL "{url}" ableiten; setzen Sie forge.url und forge.project.</lang>
+      </row>
+      <row id="The server could not be reached: {error}" state="0" created="20261112175203">
+        <native>The server could not be reached: {error}</native>
+        <lang id="de" date="20261112175203" status="3">Der Server ist nicht erreichbar: {error}</lang>
+      </row>
+      <row id="The stored access token was removed." state="0" created="20261112175203">
+        <native>The stored access token was removed.</native>
+        <lang id="de" date="20261112175203" status="3">Das gespeicherte Zugriffstoken wurde entfernt.</lang>
+      </row>
+      <row id="The token could not be stored: git has no credential helper (git config --global credential.helper manager) - alternatively set the environment variable {env}." state="0" created="20261112175203">
+        <native>The token could not be stored: git has no credential helper (git config --global credential.helper manager) - alternatively set the environment variable {env}.</native>
+        <lang id="de" date="20261112175203" status="3">Das Token konnte nicht gespeichert werden: git hat keinen Credential-Helper (git config --global credential.helper manager) – alternativ die Umgebungsvariable {env} setzen.</lang>
+      </row>
+      <row id="The translation project is up to date. Translate, then save your changes." state="0" created="20261112175203">
+        <native>The translation project is up to date. Translate, then save your changes.</native>
+        <lang id="de" date="20261112175203" status="3">Das Übersetzungsprojekt ist aktuell. Übersetzen Sie und speichern Sie dann Ihre Änderungen zwischen.</lang>
+      </row>
+      <row id="There are changes that are not yet saved on the server: save the changes." state="0" created="20261112175203">
+        <native>There are changes that are not yet saved on the server: save the changes.</native>
+        <lang id="de" date="20261112175203" status="3">Es gibt Änderungen, die noch nicht auf dem Server gespeichert sind: Speichern Sie die Änderungen zwischen.</lang>
+      </row>
+      <row id="Title:" state="0" created="20261112175203">
+        <native>Title:</native>
+        <lang id="de" date="20261112175203" status="3">Titel:</lang>
+      </row>
+      <row id="Translation project fetched: {target} ({commit})" state="0" created="20261112175203">
+        <native>Translation project fetched: {target} ({commit})</native>
+        <lang id="de" date="20261112175203" status="3">Übersetzungsprojekt geholt: {target} ({commit})</lang>
+      </row>
+      <row id="Unexpected answer from the server" state="0" created="20261112175203">
+        <native>Unexpected answer from the server</native>
+        <lang id="de" date="20261112175203" status="3">Unerwartete Antwort vom Server</lang>
+      </row>
+      <row id="Unknown provider &quot;{provider}&quot; (supported: gitlab, none)" state="0" created="20261112175203">
+        <native>Unknown provider "{provider}" (supported: gitlab, none)</native>
+        <lang id="de" date="20261112175203" status="3">Unbekannter Anbieter "{provider}" (unterstützt: gitlab, none)</lang>
+      </row>
+      <row id="Unknown workflow action '{action}' (possible: {actions})" state="0" created="20261112175203">
+        <native>Unknown workflow action '{action}' (possible: {actions})</native>
+        <lang id="de" date="20261112175203" status="3">Unbekannte Workflow-Aktion '{action}' (möglich: {actions})</lang>
+      </row>
+      <row id="Unsaved changes of previous tasks are discarded." state="0" created="20261112175203">
+        <native>Unsaved changes of previous tasks are discarded.</native>
+        <lang id="de" date="20261112175203" status="3">Ungespeicherte Änderungen vorheriger Tasks werden verworfen.</lang>
+      </row>
+      <row id="Unsaved changes of the open project will be lost." state="0" created="20261112175203">
+        <native>Unsaved changes of the open project will be lost.</native>
+        <lang id="de" date="20261112175203" status="3">Ungespeicherte Änderungen des geöffneten Projekts gehen verloren.</lang>
+      </row>
+      <row id="Up to date" state="0" created="20261112175203">
+        <native>Up to date</native>
+        <lang id="de" date="20261112175203" status="3">Aktuell</lang>
+      </row>
+      <row id="Update available" state="0" created="20261112175203">
+        <native>Update available</native>
+        <lang id="de" date="20261112175203" status="3">Aktualisierung verfügbar</lang>
+      </row>
+      <row id="Workflow" state="0" created="20261112175203">
+        <native>Workflow</native>
+        <lang id="de" date="20261112175203" status="3">Workflow</lang>
+      </row>
+      <row id="Working copy: {path}" state="0" created="20261112175203">
+        <native>Working copy: {path}</native>
+        <lang id="de" date="20261112175203" status="3">Arbeitskopie: {path}</lang>
+      </row>
+      <row id="Your changes are not saved on the server yet. They are set aside and can only be restored by a developer. Save the changes first if you want to keep working on them." state="0" created="20261112175203">
+        <native>Your changes are not saved on the server yet. They are set aside and can only be restored by a developer. Save the changes first if you want to keep working on them.</native>
+        <lang id="de" date="20261112175203" status="3">Ihre Änderungen sind noch nicht auf dem Server gespeichert. Sie werden beiseitegelegt und können nur von einem Entwickler wiederhergestellt werden. Speichern Sie die Änderungen zuerst zwischen, wenn Sie daran weiterarbeiten möchten.</lang>
+      </row>
+      <row id="Your changes are saved on the server first." state="0" created="20261112175203">
+        <native>Your changes are saved on the server first.</native>
+        <lang id="de" date="20261112175203" status="3">Ihre Änderungen werden zuerst auf dem Server zwischengespeichert.</lang>
+      </row>
+      <row id="Your changes are saved on the server. When you are done, prepare the publication." state="0" created="20261112175203">
+        <native>Your changes are saved on the server. When you are done, prepare the publication.</native>
+        <lang id="de" date="20261112175203" status="3">Ihre Änderungen sind auf dem Server gespeichert. Wenn Sie fertig sind, bereiten Sie die Veröffentlichung vor.</lang>
+      </row>
+      <row id="Your changes were accepted. Get the translation project to continue with the latest version." state="0" created="20261112175203">
+        <native>Your changes were accepted. Get the translation project to continue with the latest version.</native>
+        <lang id="de" date="20261112175203" status="3">Ihre Änderungen wurden übernommen. Holen Sie das Übersetzungsprojekt, um mit der neuesten Version weiterzuarbeiten.</lang>
+      </row>
+      <row id="automatic" state="0" created="20261112175203">
+        <native>automatic</native>
+        <lang id="de" date="20261112175203" status="3">automatisch</lang>
+      </row>
+      <row id="commit, tag (optional, read-only)" state="0" created="20261112175203">
+        <native>commit, tag (optional, read-only)</native>
+        <lang id="de" date="20261112175203" status="3">Commit, Tag (optional, schreibgeschützt)</lang>
+      </row>
+      <row id="fetch: check out branch B; save: save to the new branch B." state="0" created="20261112175203">
+        <native>fetch: check out branch B; save: save to the new branch B.</native>
+        <lang id="de" date="20261112175203" status="3">fetch: Zweig B auschecken; save: in den neuen Zweig B speichern.</lang>
+      </row>
+      <row id="fetch: check out commit, tag or branch C read-only." state="0" created="20261112175203">
+        <native>fetch: check out commit, tag or branch C read-only.</native>
+        <lang id="de" date="20261112175203" status="3">fetch: Commit, Tag oder Zweig C schreibgeschützt auschecken.</lang>
+      </row>
+      <row id="git does not know your name and e-mail address yet. A developer can set them with git config --global user.name / user.email." state="0" created="20261112175203">
+        <native>git does not know your name and e-mail address yet. A developer can set them with git config --global user.name / user.email.</native>
+        <lang id="de" date="20261112175203" status="3">git kennt Ihren Namen und Ihre E-Mail-Adresse noch nicht. Ein Entwickler kann sie mit git config --global user.name / user.email setzen.</lang>
+      </row>
+      <row id="git does not trust the working copy (it belongs to another user). A developer can allow it with: git config --global --add safe.directory &quot;{dir}&quot;" state="0" created="20261112175203">
+        <native>git does not trust the working copy (it belongs to another user). A developer can allow it with: git config --global --add safe.directory "{dir}"</native>
+        <lang id="de" date="20261112175203" status="3">git vertraut der Arbeitskopie nicht (sie gehört einem anderen Benutzer). Ein Entwickler kann sie erlauben mit: git config --global --add safe.directory "{dir}"</lang>
+      </row>
+      <row id="publish: description of the merge request." state="0" created="20261112175203">
+        <native>publish: description of the merge request.</native>
+        <lang id="de" date="20261112175203" status="3">publish: Beschreibung des Merge Requests.</lang>
+      </row>
+      <row id="publish: reviewers (usernames, separated by ;)." state="0" created="20261112175203">
+        <native>publish: reviewers (usernames, separated by ;).</native>
+        <lang id="de" date="20261112175203" status="3">publish: Prüfer (Benutzernamen, durch ; getrennt).</lang>
+      </row>
+      <row id="publish: target branch." state="0" created="20261112175203">
+        <native>publish: target branch.</native>
+        <lang id="de" date="20261112175203" status="3">publish: Zielzweig.</lang>
+      </row>
+      <row id="publish: title of the merge request." state="0" created="20261112175203">
+        <native>publish: title of the merge request.</native>
+        <lang id="de" date="20261112175203" status="3">publish: Titel des Merge Requests.</lang>
+      </row>
+      <row id="save: commit message (default: configuration)." state="0" created="20261112175203">
+        <native>save: commit message (default: configuration).</native>
+        <lang id="de" date="20261112175203" status="3">save: Commit-Nachricht (Standard: Konfiguration).</lang>
+      </row>
+      <row id="save: do not build the localized files first." state="0" created="20261112175203">
+        <native>save: do not build the localized files first.</native>
+        <lang id="de" date="20261112175203" status="3">save: die lokalisierten Dateien vorher nicht erstellen.</lang>
+      </row>
+      <row id="save: semantic-release prefix (fix, feat, chore; empty: none)." state="0" created="20261112175203">
+        <native>save: semantic-release prefix (fix, feat, chore; empty: none).</native>
+        <lang id="de" date="20261112175203" status="3">save: semantic-release-Präfix (fix, feat, chore; leer: keines).</lang>
+      </row>
+      <row id="save: skip (or run) the CI pipeline." state="0" created="20261112175203">
+        <native>save: skip (or run) the CI pipeline.</native>
+        <lang id="de" date="20261112175203" status="3">save: CI-Pipeline überspringen (oder ausführen).</lang>
+      </row>
+      <row id="status: run git fetch and query merge requests." state="0" created="20261112175203">
+        <native>status: run git fetch and query merge requests.</native>
+        <lang id="de" date="20261112175203" status="3">status: git fetch ausführen und Merge Requests abfragen.</lang>
+      </row>
+      <row id="user names, separated by ;" state="0" created="20261112175203">
+        <native>user names, separated by ;</native>
+        <lang id="de" date="20261112175203" status="3">Benutzernamen, durch ; getrennt</lang>
+      </row>
+      <row id="{path} already exists" state="0" created="20261112175203">
+        <native>{path} already exists</native>
+        <lang id="de" date="20261112175203" status="3">{path} existiert bereits</lang>
+      </row>
+      <row id="{path}: &quot;{key}&quot; looks like an access token. Configuration files must not contain secrets; use a reference such as token = &quot;credential&quot; or token = &quot;env:SUSI_FORGE_TOKEN&quot;." state="0" created="20261112175203">
+        <native>{path}: "{key}" looks like an access token. Configuration files must not contain secrets; use a reference such as token = "credential" or token = "env:SUSI_FORGE_TOKEN".</native>
+        <lang id="de" date="20261112175203" status="3">{path}: "{key}" sieht wie ein Zugriffstoken aus. Konfigurationsdateien dürfen keine Geheimnisse enthalten; verwenden Sie eine Referenz wie token = "credential" oder token = "env:SUSI_FORGE_TOKEN".</lang>
+      </row>
+      <row id="@plural|{n} changed file:|{n} changed files:" state="0" created="20261112175203" note="Context: @plural" notereadonly="1">
+        <native>{n} changed file:|{n} changed files:</native>
+        <lang id="de" date="20261112175203" status="3">{n} geänderte Datei:|{n} geänderte Dateien:</lang>
+      </row>
+      <row id="@plural|{n} changed file|{n} changed files" state="0" created="20261112175203" note="Context: @plural" notereadonly="1">
+        <native>{n} changed file|{n} changed files</native>
+        <lang id="de" date="20261112175203" status="3">{n} geänderte Datei|{n} geänderte Dateien</lang>
+      </row>
+      <row id="@plural|{n} commit not yet on the server|{n} commits not yet on the server" state="0" created="20261112175203" note="Context: @plural" notereadonly="1">
+        <native>{n} commit not yet on the server|{n} commits not yet on the server</native>
+        <lang id="de" date="20261112175203" status="3">{n} Commit noch nicht auf dem Server|{n} Commits noch nicht auf dem Server</lang>
+      </row>
+      <row id="The workflow configuration {path} is not committed. A developer should commit it to the default branch." state="0" created="20261113115325">
+        <native>The workflow configuration {path} is not committed. A developer should commit it to the default branch.</native>
+        <lang id="de" date="20261113115325" status="3">Die Workflow-Konfiguration {path} ist nicht eingecheckt. Ein Entwickler sollte sie in den Standardzweig committen.</lang>
       </row>
     </node>
   </source>

@@ -14,6 +14,7 @@ publish = false
 # internal
 susi-core = { path = "crates/core" }
 susi-mcp = { path = "crates/mcp" }
+susi-workflow = { path = "crates/workflow" }
 
 # external
 thiserror = "2"
@@ -34,6 +35,9 @@ rmcp = { version = "3.5", default-features = false, features = ["server", "macro
 tokio = { version = "1", features = ["rt-multi-thread", "macros", "io-std"] }
 schemars = "1"
 tempfile = "3"
+# git workflow: configuration files and the GitLab REST API (OS certificate store for self-hosted servers)
+toml = "1"
+ureq = { version = "3.5", default-features = false, features = ["rustls", "platform-verifier"] }
 sys-locale = "0.3"
 # app icon: rendering (xtask icons) and embedding into the Windows executables
 resvg = { version = "0.49", default-features = false }

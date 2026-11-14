@@ -28,6 +28,7 @@ pub const TASKS: &[&str] = &[
     "savetotm",
     "info",
     "mcp",
+    "workflow",
 ];
 
 /// SlMake tasks susi does not implement.
@@ -119,6 +120,7 @@ pub fn task_options(task: &str) -> &'static [&'static str] {
         "validate" => &["lang", "original", "all", "default", "name", "check", "since", "until", "datetype"],
         "savetotm" => &["lang", "tm", "status"],
         "mcp" => &["tm"],
+        "workflow" => &["online", "branch", "commit", "message", "prefix", "ciskip", "nobuild", "title", "description", "reviewer", "target"],
         _ => &[],
     }
 }

@@ -5,11 +5,13 @@
 //! susi-cli export Uebersetzung.xlsx -lang:de -status:untranslated app.slp
 //! susi-cli import Uebersetzung.xlsx -lang:de app.slp
 //! susi-cli mcp app.slp
+//! susi-cli workflow save publish app.slp
 //! ```
 
 pub mod args;
 pub mod help;
 pub mod tasks;
+pub mod workflow;
 
 use std::io::Write;
 

@@ -16,6 +16,7 @@ path = "src/main.rs"
 
 [dependencies]
 susi-core = { workspace = true }
+susi-workflow = { workspace = true }
 eframe = { workspace = true }
 # Since egui 0.37 the symbol/emoji fonts used for toolbar and menu icons are optional.
 egui = { workspace = true, features = ["monochrome_emoji_fonts"] }

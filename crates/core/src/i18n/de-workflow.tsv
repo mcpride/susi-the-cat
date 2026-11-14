@@ -1,0 +1,161 @@
+# Susi the CAT - German UI catalog: git workflow (susi-workflow crate, GUI, CLI, MCP).
+# Format: context<TAB>English source<TAB>translation. Escapes: \n \t \\. Context '@plural': one|other.
+# Keep {placeholders} identical. Checked by `cargo test -p susi-core i18n`.
+# Maintained with Susi itself: project susi-i18n.slp (see README, "Translating Susi").
+
+	A fixed version is checked out. Get the translation project to continue working.	Eine feste Version ist ausgecheckt. Holen Sie das Übersetzungsprojekt, um weiterzuarbeiten.
+	A newer version is available on the server: get the translation project.	Auf dem Server gibt es eine neuere Version: Holen Sie das Übersetzungsprojekt.
+	A personal branch is created for your changes.	Für Ihre Änderungen wird ein persönlicher Zweig angelegt.
+	Access token (input is visible; end with Enter):	Zugriffstoken (Eingabe ist sichtbar; mit Enter abschließen):
+	Access token stored, signed in as {user}.	Zugriffstoken gespeichert, angemeldet als {user}.
+	Access token:	Zugriffstoken:
+	Access token: available	Zugriffstoken: vorhanden
+	Access token: missing (susi-cli workflow login)	Zugriffstoken: fehlt (susi-cli workflow login)
+	Add reviewer…	Prüfer hinzufügen…
+	Advanced settings	Erweiterte Einstellungen
+	An access token is already stored.	Es ist bereits ein Zugriffstoken gespeichert.
+	Asking the server…	Server wird abgefragt…
+	Branch:	Zweig:
+	Branch: {branch} (default branch: {default})	Zweig: {branch} (Standardzweig: {default})
+	Build the localized files first	Vorher die lokalisierten Dateien erstellen
+	Changes not saved on the server	Änderungen nicht auf dem Server gespeichert
+	Changes saved on the server ({branch}): {message}	Änderungen auf dem Server gespeichert ({branch}): {message}
+	Checking git working copy…	Git-Arbeitskopie wird geprüft…
+	Checking state…	Zustand wird geprüft…
+	Click to refresh (asks the server).	Klicken zum Aktualisieren (fragt den Server).
+	Combine the commits when merging (squash)	Commits beim Zusammenführen zusammenfassen (squash)
+	Configuration file: {path}	Konfigurationsdatei: {path}
+	Connection to {url} failed: {error}	Verbindung zu {url} fehlgeschlagen: {error}
+	Corrected translations (fix)	Korrigierte Übersetzungen (fix)
+	Create a personal access token with the scope "api" in GitLab (user settings, access tokens) and paste it here. It is stored in the credential manager of the operating system, not in the project.	Erstellen Sie in GitLab ein persönliches Zugriffstoken mit dem Bereich „api“ (Benutzereinstellungen, Zugriffstokens) und fügen Sie es hier ein. Es wird in der Anmeldeinformationsverwaltung des Betriebssystems gespeichert, nicht im Projekt.
+	Create merge request	Merge Request erstellen
+	Creates a merge request: a reviewer checks your changes and adopts them.	Erstellt einen Merge Request: Ein Prüfer kontrolliert Ihre Änderungen und übernimmt sie.
+	Creates the configuration template .susi/workflow.toml.	Legt die Konfigurationsvorlage .susi/workflow.toml an.
+	Default branch: {branch}	Standardzweig: {branch}
+	Delete the branch after merging	Zweig nach dem Zusammenführen löschen
+	Description:	Beschreibung:
+	Fixed version	Feste Version
+	Get	Holen
+	Get translation project	Übersetzungsprojekt holen
+	Get translation project: latest version from the server	Übersetzungsprojekt holen: neueste Version vom Server
+	Get translation project: sets local changes aside and checks out\nthe latest version of the default branch.	Übersetzungsprojekt holen: legt lokale Änderungen beiseite und checkt\ndie neueste Version des Standardzweigs aus.
+	Get translation project…	Übersetzungsprojekt holen…
+	Gets the latest version of the translation project from the server and opens it.	Holt die neueste Version des Übersetzungsprojekts vom Server und öffnet sie.
+	Getting translation project…	Übersetzungsprojekt wird geholt…
+	Git workflow active ({path}): {state}	Git-Workflow aktiv ({path}): {state}
+	Git workflow for translators (configuration: .susi/workflow.toml, see README).\nActions are run in the given order (default: status):	Git-Workflow für Übersetzer (Konfiguration: .susi/workflow.toml, siehe README).\nAktionen werden in der angegebenen Reihenfolge ausgeführt (Standard: status):
+	Git workflow: get, save and publish translations	Git-Workflow: Übersetzungen holen, zwischenspeichern und veröffentlichen
+	In review	In Prüfung
+	Invalid access token	Ungültiges Zugriffstoken
+	Invalid branch name "{name}"	Ungültiger Zweigname "{name}"
+	Invalid token reference "{value}" (allowed: auto, env:NAME, credential, credential:USER, none). Never put the token itself into a configuration file.	Ungültige Token-Referenz "{value}" (erlaubt: auto, env:NAME, credential, credential:USER, none). Tragen Sie niemals das Token selbst in eine Konfigurationsdatei ein.
+	Kind of change:	Art der Änderung:
+	Loading reviewers…	Prüfer werden geladen…
+	Local changes were set aside: {backup} (git stash list)	Lokale Änderungen wurden beiseitegelegt: {backup} (git stash list)
+	Local commits were kept in {backup}	Lokale Commits wurden in {backup} aufbewahrt
+	Maintenance (chore)	Wartung (chore)
+	Merge request created:	Merge Request erstellt:
+	Merge request updated:	Merge Request aktualisiert:
+	Merge request: !{iid} {title} ({url})	Merge Request: !{iid} {title} ({url})
+	Never put access tokens into configuration files; susi only stores references to them.	Tragen Sie niemals Zugriffstokens in Konfigurationsdateien ein; susi speichert nur Referenzen darauf.
+	New branch:	Neuer Zweig:
+	New branch: {branch}	Neuer Zweig: {branch}
+	New translations (feat)	Neue Übersetzungen (feat)
+	No access token for {url}. Store one (Workflow > Sign in to the server…, susi-cli workflow login) or set {env}.	Kein Zugriffstoken für {url}. Speichern Sie eines (Workflow > Am Server anmelden…, susi-cli workflow login) oder setzen Sie {env}.
+	No changes to save.	Keine Änderungen zum Speichern.
+	No prefix	Kein Präfix
+	No server is configured for merge requests (forge.provider = "none").	Für Merge Requests ist kein Server konfiguriert (forge.provider = "none").
+	Not all changes are saved on the server yet: save the changes first.	Noch nicht alle Änderungen sind auf dem Server gespeichert: Speichern Sie zuerst die Änderungen.
+	Open merge request in the browser	Merge Request im Browser öffnen
+	Other open translation merge request: !{iid} {title} ({branch})	Weiterer offener Übersetzungs-Merge-Request: !{iid} {title} ({branch})
+	Please wait until the current git action has finished.	Bitte warten Sie, bis die laufende Git-Aktion beendet ist.
+	Prepare publication	Veröffentlichung vorbereiten
+	Prepare publication: create a merge request for review	Veröffentlichung vorbereiten: Merge Request zur Prüfung erstellen
+	Prepare publication: creates or updates the merge request.	Veröffentlichung vorbereiten: erstellt oder aktualisiert den Merge Request.
+	Prepare publication…	Veröffentlichung vorbereiten…
+	Preparing publication…	Veröffentlichung wird vorbereitet…
+	Project not found - check forge.url and forge.project in the workflow configuration.	Projekt nicht gefunden – prüfen Sie forge.url und forge.project in der Workflow-Konfiguration.
+	Publish	Veröffentlichen
+	Published	Veröffentlicht
+	Refresh state	Zustand aktualisieren
+	Remove stored token	Gespeichertes Token entfernen
+	Removes the stored access token.	Entfernt das gespeicherte Zugriffstoken.
+	Reviewer "{name}" not found on the server	Prüfer "{name}" auf dem Server nicht gefunden
+	Reviewers:	Prüfer:
+	Save changes	Änderungen zwischenspeichern
+	Save changes on the server	Änderungen auf dem Server zwischenspeichern
+	Save changes: builds the localized files, saves the project and\ncommits and pushes the project files to a personal branch.	Änderungen zwischenspeichern: erstellt die lokalisierten Dateien, speichert das Projekt\nund überträgt die Projektdateien in einen persönlichen Zweig (commit und push).
+	Save changes…	Änderungen zwischenspeichern…
+	Save the open project first	Zuerst das geöffnete Projekt speichern
+	Save your changes first: publishing needs your own branch.	Speichern Sie zuerst Ihre Änderungen: Die Veröffentlichung benötigt einen eigenen Zweig.
+	Saved, not published	Zwischengespeichert, nicht veröffentlicht
+	Saves the project and sends the changed files to the server.	Speichert das Projekt und überträgt die geänderten Dateien auf den Server.
+	Saving changes…	Änderungen werden zwischengespeichert…
+	Server: {server}	Server: {server}
+	Server: {url}, project {project}	Server: {url}, Projekt {project}
+	Shows the effective configuration.	Zeigt die wirksame Konfiguration.
+	Sign in	Anmelden
+	Sign in to the server	Am Server anmelden
+	Sign in to the server first (access token).	Melden Sie sich zuerst am Server an (Zugriffstoken).
+	Sign in to the server…	Am Server anmelden…
+	Signing in…	Anmeldung läuft…
+	Skip the build pipeline (CI) on the server	Build-Pipeline (CI) auf dem Server überspringen
+	Specific version:	Bestimmte Version:
+	State of the working copy (-online: also ask the server).	Zustand der Arbeitskopie (-online: auch den Server fragen).
+	State: {state}	Zustand: {state}
+	Stores the access token (read from stdin) with git's credential helper.	Speichert das Zugriffstoken (von stdin gelesen) mit dem Credential-Helper von git.
+	Target branch:	Zielzweig:
+	The access token has no permission for this action (scope "api" and at least the role Developer are required).	Das Zugriffstoken hat keine Berechtigung für diese Aktion (benötigt werden der Bereich "api" und mindestens die Rolle Developer).
+	The access token is missing, invalid or expired. Store a token with the scope "api" (Workflow > Sign in to the server…) or set {env}.	Das Zugriffstoken fehlt, ist ungültig oder abgelaufen. Speichern Sie ein Token mit dem Bereich "api" (Workflow > Am Server anmelden…) oder setzen Sie {env}.
+	The branch "{branch}" does not exist on the server	Der Zweig "{branch}" existiert nicht auf dem Server
+	The branch "{branch}" was already published and removed on the server. Get the translation project first.	Der Zweig "{branch}" wurde bereits veröffentlicht und auf dem Server entfernt. Holen Sie zuerst das Übersetzungsprojekt.
+	The branch pattern must not be empty	Das Zweigmuster darf nicht leer sein
+	The git action ended unexpectedly.	Die Git-Aktion wurde unerwartet beendet.
+	The git remote must not be empty	Das Git-Remote darf nicht leer sein
+	The merge request is waiting for review. You can still save further changes.	Der Merge Request wartet auf Prüfung. Sie können weiterhin Änderungen zwischenspeichern.
+	The open project has unsaved changes; it is saved first.	Das geöffnete Projekt hat ungespeicherte Änderungen; es wird zuerst gespeichert.
+	The project is not in a git working copy configured for the translation workflow.	Das Projekt liegt nicht in einer für den Übersetzungs-Workflow konfigurierten Git-Arbeitskopie.
+	The project is not in a git working copy configured for the translation workflow:	Das Projekt liegt nicht in einer für den Übersetzungs-Workflow konfigurierten Git-Arbeitskopie:
+	The server address cannot be derived from the remote URL "{url}"; set forge.url and forge.project.	Die Serveradresse lässt sich nicht aus der Remote-URL "{url}" ableiten; setzen Sie forge.url und forge.project.
+	The server could not be reached: {error}	Der Server ist nicht erreichbar: {error}
+	The stored access token was removed.	Das gespeicherte Zugriffstoken wurde entfernt.
+	The token could not be stored: git has no credential helper (git config --global credential.helper manager) - alternatively set the environment variable {env}.	Das Token konnte nicht gespeichert werden: git hat keinen Credential-Helper (git config --global credential.helper manager) – alternativ die Umgebungsvariable {env} setzen.
+	The translation project is up to date. Translate, then save your changes.	Das Übersetzungsprojekt ist aktuell. Übersetzen Sie und speichern Sie dann Ihre Änderungen zwischen.
+	There are changes that are not yet saved on the server: save the changes.	Es gibt Änderungen, die noch nicht auf dem Server gespeichert sind: Speichern Sie die Änderungen zwischen.
+	Title:	Titel:
+	Translation project fetched: {target} ({commit})	Übersetzungsprojekt geholt: {target} ({commit})
+	Unexpected answer from the server	Unerwartete Antwort vom Server
+	Unknown provider "{provider}" (supported: gitlab, none)	Unbekannter Anbieter "{provider}" (unterstützt: gitlab, none)
+	Unknown workflow action '{action}' (possible: {actions})	Unbekannte Workflow-Aktion '{action}' (möglich: {actions})
+	Unsaved changes of previous tasks are discarded.	Ungespeicherte Änderungen vorheriger Tasks werden verworfen.
+	Unsaved changes of the open project will be lost.	Ungespeicherte Änderungen des geöffneten Projekts gehen verloren.
+	Up to date	Aktuell
+	Update available	Aktualisierung verfügbar
+	Workflow	Workflow
+	Working copy: {path}	Arbeitskopie: {path}
+	Your changes are not saved on the server yet. They are set aside and can only be restored by a developer. Save the changes first if you want to keep working on them.	Ihre Änderungen sind noch nicht auf dem Server gespeichert. Sie werden beiseitegelegt und können nur von einem Entwickler wiederhergestellt werden. Speichern Sie die Änderungen zuerst zwischen, wenn Sie daran weiterarbeiten möchten.
+	Your changes are saved on the server first.	Ihre Änderungen werden zuerst auf dem Server zwischengespeichert.
+	Your changes are saved on the server. When you are done, prepare the publication.	Ihre Änderungen sind auf dem Server gespeichert. Wenn Sie fertig sind, bereiten Sie die Veröffentlichung vor.
+	Your changes were accepted. Get the translation project to continue with the latest version.	Ihre Änderungen wurden übernommen. Holen Sie das Übersetzungsprojekt, um mit der neuesten Version weiterzuarbeiten.
+	automatic	automatisch
+	commit, tag (optional, read-only)	Commit, Tag (optional, schreibgeschützt)
+	fetch: check out branch B; save: save to the new branch B.	fetch: Zweig B auschecken; save: in den neuen Zweig B speichern.
+	fetch: check out commit, tag or branch C read-only.	fetch: Commit, Tag oder Zweig C schreibgeschützt auschecken.
+	git does not know your name and e-mail address yet. A developer can set them with git config --global user.name / user.email.	git kennt Ihren Namen und Ihre E-Mail-Adresse noch nicht. Ein Entwickler kann sie mit git config --global user.name / user.email setzen.
+	git does not trust the working copy (it belongs to another user). A developer can allow it with: git config --global --add safe.directory "{dir}"	git vertraut der Arbeitskopie nicht (sie gehört einem anderen Benutzer). Ein Entwickler kann sie erlauben mit: git config --global --add safe.directory "{dir}"
+	publish: description of the merge request.	publish: Beschreibung des Merge Requests.
+	publish: reviewers (usernames, separated by ;).	publish: Prüfer (Benutzernamen, durch ; getrennt).
+	publish: target branch.	publish: Zielzweig.
+	publish: title of the merge request.	publish: Titel des Merge Requests.
+	save: commit message (default: configuration).	save: Commit-Nachricht (Standard: Konfiguration).
+	save: do not build the localized files first.	save: die lokalisierten Dateien vorher nicht erstellen.
+	save: semantic-release prefix (fix, feat, chore; empty: none).	save: semantic-release-Präfix (fix, feat, chore; leer: keines).
+	save: skip (or run) the CI pipeline.	save: CI-Pipeline überspringen (oder ausführen).
+	status: run git fetch and query merge requests.	status: git fetch ausführen und Merge Requests abfragen.
+	user names, separated by ;	Benutzernamen, durch ; getrennt
+	{path} already exists	{path} existiert bereits
+	{path}: "{key}" looks like an access token. Configuration files must not contain secrets; use a reference such as token = "credential" or token = "env:SUSI_FORGE_TOKEN".	{path}: "{key}" sieht wie ein Zugriffstoken aus. Konfigurationsdateien dürfen keine Geheimnisse enthalten; verwenden Sie eine Referenz wie token = "credential" oder token = "env:SUSI_FORGE_TOKEN".
+@plural	{n} changed file:|{n} changed files:	{n} geänderte Datei:|{n} geänderte Dateien:
+@plural	{n} changed file|{n} changed files	{n} geänderte Datei|{n} geänderte Dateien
+@plural	{n} commit not yet on the server|{n} commits not yet on the server	{n} Commit noch nicht auf dem Server|{n} Commits noch nicht auf dem Server
+	The workflow configuration {path} is not committed. A developer should commit it to the default branch.	Die Workflow-Konfiguration {path} ist nicht eingecheckt. Ein Entwickler sollte sie in den Standardzweig committen.

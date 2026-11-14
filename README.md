@@ -229,7 +229,7 @@ To add another language, create `xx-*.tsv` and register it in `LANGUAGES` in
 
 ### Translating Susi
 
-Susi maintains its own catalogs: `crates/core/src/i18n/susi-i18n.slp` has the three German
+Susi maintains its own catalogs: `crates/core/src/i18n/susi-i18n.slp` has the four German
 catalogs as TSV sources (original language English, see [TSV catalogs](#tsv-catalogs)).
 `cargo test -p susi-core i18n` checks that the project covers all catalogs and that building it
 reproduces them byte for byte.
@@ -303,7 +303,7 @@ Configuration, e.g. in VS Code `mcp.json` or in the Copilot CLI:
 
 Optionally a project is opened right away: `"args": ["mcp", "C:\\path\\app.slp"]`.
 
-Tools (21):
+Tools (25):
 
 - `open_project`, `create_project`, `save_project`, `project_info`
 - `list_rows` (filters including the date range `since`/`until`/`date_field`, paging; rows carry
@@ -314,6 +314,7 @@ Tools (21):
 - `validate`, `statistics`
 - `tm_translate`, `tm_lookup`, `tm_save`
 - `export`, `import`, `fill_pseudo`
+- `workflow_status`, `workflow_fetch`, `workflow_save`, `workflow_publish` (see [Git workflow](#git-workflow-gitlab))
 
 A typical agent workflow:
 
@@ -324,6 +325,96 @@ A typical agent workflow:
 5. `save_project`
 
 A human then reviews the translations in the GUI and sets them to *Translated* or *Complete*.
+
+---
+
+## Git workflow (GitLab)
+
+Translators work in a git working copy without knowing git: a developer prepares the working
+copy once, and Susi then offers three plain-language actions (GUI menu and toolbar *Workflow*,
+`susi-cli workflow`, MCP tools `workflow_*`):
+
+| Action                                 | What happens                                                                                                                                   |
+|----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Get translation project**            | `git fetch`, check out the latest commit of the default branch, clean up. Uncommitted changes go to `git stash`, local commits to a backup branch. |
+| **Save changes**                       | Build (optional), save the project, create a personal branch (`l10n/{user}/{date}`) when on the default branch, commit the project files and push. |
+| **Prepare publication**                | Create or update a GitLab merge request with reviewers (configured names or previous committers).                                              |
+
+The status bar shows the state (*Up to date*, *Update available*, *Changes not saved on the server*,
+*Saved, not published*, *In review*, *Published*, *Fixed version*) and a hint for the next step;
+clicking it asks the server. The last known merge request per branch is remembered in
+`.git/susi/merge-requests.json`, so *In review* also shows offline and after further saves.
+*Advanced settings* in the dialogs allow another branch, a specific
+commit/tag (read-only), another target branch, the commit prefix and CI skipping.
+
+Only the `.slp` file, the sources and outputs referenced by the project and `git.paths` are
+committed – never other changes in the working copy.
+
+### Setup (developer)
+
+1. Clone the repository, then `susi-cli workflow init app.slp` creates `.susi/workflow.toml`;
+   adjust and commit it **to the default branch**. The workflow is active when this file (or the working
+   copy file below) exists. *Get translation project* never sets `.susi/` aside; if the checked-out
+   version lacks the file, it is kept as an uncommitted file and the status warns about it.
+2. Configure git for the translator: `git config --global user.name/user.email` and a credential
+   helper (`git config --global credential.helper manager` on Windows). For working copies owned by
+   another user: `git config --global --add safe.directory <path>`.
+3. Create a GitLab personal access token with the scope `api` (role Developer or higher) and store it
+   with *Workflow → Sign in to the server…* or `susi-cli workflow login app.slp` (reads stdin).
+
+### Configuration
+
+Three TOML files with the same structure are merged (later files win):
+
+1. user defaults: `%APPDATA%\susi\workflow.toml`,
+2. repository: `.susi/workflow.toml` (checked in, shared by the team),
+3. working copy: `.git/susi/workflow.local.toml` (inside `.git`, can never be committed).
+
+```toml
+[forge]
+provider = "gitlab"        # gitlab | none (git only, no merge requests)
+# url = "https://gitlab.example.com"   # default: derived from the remote URL
+# project = "group/app"
+token = "auto"             # auto | env:VARIABLE | credential | credential:<user> | none
+
+[git]
+remote = "origin"
+# default_branch = "main"  # default: the remote's default branch
+branch_pattern = "l10n/{user}/{date}"   # placeholders {user} {date} {time} {project}
+# paths = ["docs/i18n"]    # further files saved together with the project
+
+[save]
+message = "Update translations ({project})"
+semantic_prefix = "fix"    # fix = patch release, feat = minor release, chore = no release, "" = none
+ci_skip = false            # GitLab: push option ci.skip, otherwise "[skip ci]" in the message
+build = true
+
+[publish]
+title = "Translations: {project} ({user}, {date})"
+description = "Translations updated with Susi."
+reviewers = []             # GitLab usernames
+offer_committers = true
+squash = false
+remove_source_branch = true
+```
+
+**Secrets**: configuration files only hold *references* to the token. Values that look like a token
+(`glpat-…`, `ghp_…`) are rejected. `auto` uses the environment variable `SUSI_FORGE_TOKEN`, then the
+token stored with git's credential helper (Windows Credential Manager); `credential` uses the git
+credentials themselves.
+
+### Command line and MCP
+
+```powershell
+susi-cli workflow status -online app.slp
+susi-cli workflow fetch app.slp
+susi-cli workflow save -message:"Spanish texts" -prefix:feat app.slp
+susi-cli workflow save publish -reviewer:anna app.slp
+```
+
+MCP: `workflow_status`, `workflow_fetch` (refuses to discard unsaved changes unless
+`discard_changes`), `workflow_save`, `workflow_publish`. The crate `susi-workflow` keeps the forge
+behind a trait so that GitHub can be added later.
 
 ---
 

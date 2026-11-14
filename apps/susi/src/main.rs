@@ -11,6 +11,7 @@ mod list;
 mod panels;
 #[cfg(test)]
 mod tests;
+mod workflow_ui;
 
 use std::path::PathBuf;
 
