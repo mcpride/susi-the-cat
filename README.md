@@ -19,6 +19,7 @@ Supported sources are:
 * **PO/gettext** (`.po`/`.pot`, including compilation to `.mo`)
 * **TSV i18n catalogs** (`.tsv`, the format of Susi's own catalogs; not supported by Sisulizer).
 * **Java resource bundles** (`.properties`).
+* **Android string resources** (`res/values/strings.xml`, localized to `res/values-b+<language>/`).
 
 ![Susi's graphical user interface in light theme](assets/susi-gui-01.jpg)
 
@@ -252,7 +253,7 @@ susi-cli <tasks> project.slp [-q] [-a] [-w] [-e] [-h]
 
 | Task | SlMake | Description |
 |------|--------|-------------|
-| `add [file]` | – | Add a source (.json/.resx/.po/.pot/.tsv/.properties, wildcards allowed); creates the project if needed. `-type:json\|resx\|po\|tsv\|properties` forces the type |
+| `add [file]` | – | Add a source (.json/.resx/.po/.pot/.tsv/.properties/Android .xml, wildcards allowed); creates the project if needed. `-type:json\|resx\|po\|tsv\|properties\|android` forces the type |
 | `scan` | `scan` | Scan sources |
 | `create` (`build`, `make`) | `create` | Create localized files (default task) |
 | `export [file]` | `export` | Export to `.xlsx`, `.csv`, `.txt`, `.xlf`, `.tmx` |
@@ -426,9 +427,13 @@ behind a trait so that GitHub can be added later.
   - RESX by default `<body>.<net>.<ext>` (e.g. `Strings.de-DE.resx`), JSON `<sl>\<file>`,
     PO `<iso>\<body>.po` (e.g. `de\messages.po`, with `messages.mo` next to it), TSV: the language
     code in the file name is replaced (`de-core.tsv` → `<iso>-core.<ext>`), otherwise `<iso>\<file>`,
-    Java properties `<body>_<iso>.<ext>` (e.g. `Messages_de.properties`, `Messages_pt_BR.properties`).
+    Java properties `<body>_<iso>.<ext>` (e.g. `Messages_de.properties`, `Messages_pt_BR.properties`),
+    Android `<parent>\values-b+<android>\<file>` (e.g. `res\values-b+de\strings.xml`,
+    `res\values-b+pt+BR\strings.xml`).
   - Patterns from the project's `<outputfile>` are evaluated: `<dir>`, `<parent>`, `<file>`,
-    `<body>`, `<ext>`, `<sl>`, `<iso>`, `<ish>`, `<net>`, `<tag>`, `<win>`, `<lang>`.
+    `<body>`, `<ext>`, `<sl>`, `<iso>`, `<ish>`, `<net>`, `<tag>`, `<win>`, `<lang>`,
+    `<android>` (BCP 47 subtags joined by `+`: `de`, `pt+BR`, `zh+Hans`) and `<androidr>` (legacy
+    Android qualifier: `de`, `pt-rBR`, `zh-rCN`, `iw` for Hebrew).
 - **Translation memory**: TMX, by default `%APPDATA%\susi\susi-tm.tmx` (configurable). Exact
   matches get the status *Auto translated*, fuzzy matches *Best guess*.
 - **Settings**: `%APPDATA%\susi\settings.json`. The directory can be overridden with
@@ -507,9 +512,54 @@ Sisulizer source type) are preserved but not supported.
 
 ---
 
+## Android string resources
+
+An Android values file (usually `app/src/main/res/values/strings.xml`, the default resources) is
+added like any other source (GUI: *Add source*, CLI:
+`susi-cli add app\src\main\res\values\strings.xml -lang:de;pt-BR app.slp`). It is stored with
+Sisulizer's class `TAndroidValuesSource`, the rows in a `TAndroidValuesGroup` node `string`, as
+Sisulizer does. Sisulizer's `TAndroidSource` (complete Android projects/APKs) is preserved but not
+supported.
+
+- **Localized files** go to the BCP 47 resource directories `values-b+<language>[+<region>]` of
+  Android 7.0 (API 24) and newer, as recommended by the Android documentation
+  ([Support different languages](https://developer.android.com/training/basics/supporting-devices/languages)):
+  `res/values-b+de/strings.xml`, `res/values-b+pt+BR/strings.xml`, `res/values-b+zh+Hans/strings.xml`.
+  If the project already has localized copies in legacy directories (`values-de`, `values-pt-rBR`)
+  and none in `values-b+…` directories, adding the source chooses the legacy pattern
+  `<parent>\values-<androidr>\<file>` instead, because both forms of the same locale would be
+  duplicate resources. Further qualifiers of the original directory are kept
+  (`values-night` → `values-b+de-night`).
+- **Scan**: `<string>` (also `<item type="string">`), the items of `<string-array>` and the
+  quantities of `<plurals>` become rows. Row IDs: the resource name, `name[0]`, `name[1]`, … for
+  array items, `name[one]`, `name[other]`, … for plurals; a `product` attribute is appended as
+  `[product=tablet]`. Skipped: `translatable="false"`, references (`@string/…`, `?attr/…`), empty
+  values and all other resource types (colors, dimensions, styles, …). The XML comments directly
+  above a resource become its note (a blank line separates file or section comments). When the
+  source is added, translations from existing localized files are taken over into empty cells.
+- **Texts** are shown the way Android displays them: entities and Android escapes (`\'`, `\"`,
+  `\n`, `\t`, `\@`, `\?`, `\uXXXX`) are resolved, double-quoted sections unquoted and whitespace
+  collapsed, so translators write `Don't` and line breaks instead of `Don\'t` and `\n`. Values with
+  styling tags (`<b>`, `<i>`, …) or `<xliff:g>` placeholders keep their tags; their text stays
+  XML-escaped (`&amp;`; a lone `&` is accepted). The build escapes the translations again
+  (apostrophes, quotes, line breaks, leading `@`/`?`, leading/trailing/multiple spaces as `\u0020`)
+  and keeps CDATA sections.
+- **Plurals**: Target languages need other quantities than the original (Polish `one`, `few`,
+  `many`, `other`; Japanese only `other`). The scan adds rows for the quantities the project
+  languages use (CLDR rules for integers) with the original text of `other`; after adding a
+  language, scan again. The build writes exactly the quantities of the target language (unknown
+  languages: those of the original).
+- **Build**: The original is copied with the translated values; comments, order, indentation,
+  BOM and line endings are kept. Non-localizable resources and omitted strings (write method) are
+  removed together with their comments, so Android falls back to the default resources. Arrays and
+  plurals are written as a whole when at least one of their items is written; items without
+  translation keep the original text.
+
+---
+
 ## Limitations
 
-- Sources: RESX, JSON, PO, TSV and Java properties. Other Sisulizer source types are preserved in the project but are
+- Sources: RESX, JSON, PO, TSV, Java properties and Android string resources. Other Sisulizer source types are preserved in the project but are
   neither scanned nor built.
 - No Sisulizer exchange packages (`.sle`/`.slz`) and no merging of projects.
 - No machine translation services. The MCP interface takes over this role.

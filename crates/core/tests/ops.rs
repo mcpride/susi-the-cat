@@ -233,3 +233,80 @@ fn java_properties_import_and_build() {
     let rep = ops::scan_project(&mut p, None).unwrap();
     assert_eq!((rep.new, rep.changed, rep.unused, rep.imported), (0, 0, 0, 0), "{:?}", rep.errors);
 }
+
+#[test]
+fn android_values_import_build_and_plurals() {
+    let tmp = tempfile::tempdir().unwrap();
+    let res = tmp.path().join("app").join("src").join("main").join("res");
+    for d in ["values", "values-b+de"] {
+        std::fs::create_dir_all(res.join(d)).unwrap();
+    }
+    let en = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<resources>\r\n    <!-- Title of the main screen -->\r\n    <string name=\"title\">Converter</string>\r\n    <string name=\"app_id\" translatable=\"false\">converter</string>\r\n    <string name=\"quit\">Don\\'t quit</string>\r\n    <dimen name=\"margin\">16dp</dimen>\r\n    <plurals name=\"files\">\r\n        <item quantity=\"one\">%d file</item>\r\n        <item quantity=\"other\">%d files</item>\r\n    </plurals>\r\n</resources>\r\n";
+    std::fs::write(res.join("values").join("strings.xml"), en).unwrap();
+    std::fs::write(
+        res.join("values-b+de").join("strings.xml"),
+        "<resources><string name=\"title\">Konverter</string><string name=\"obsolete\">Alt</string></resources>",
+    )
+    .unwrap();
+    let mut p = susi_core::Project::new();
+    p.path = Some(tmp.path().join("app.slp"));
+    p.add_language("de");
+    p.add_language("pl");
+    let (si, rep) = ops::add_source(&mut p, &res.join("values").join("strings.xml"), "en").unwrap();
+    assert_eq!(p.sources[si].class(), "TAndroidValuesSource");
+    assert_eq!(p.sources[si].output_pattern().1, "<parent>\\values-b+<android>\\<file>");
+    // title, quit and the plural quantities one/few/many/other (Polish needs few and many).
+    assert_eq!((rep.new, rep.imported), (6, 1), "{:?}", rep.errors);
+    // The rows are kept in the group node `string`, as Sisulizer does.
+    assert!(matches!(&p.sources[si].items[1], susi_core::Item::Node(n) if n.name() == "string" && n.class() == "TAndroidValuesGroup"));
+    let quit = p.find_row("quit").unwrap();
+    assert_eq!(p.row(&quit).unwrap().original(), "Don't quit");
+    assert_eq!(p.row(&p.find_row("title").unwrap()).unwrap().note(), "Title of the main screen");
+    let set = |p: &mut susi_core::Project, id: &str, lang: &str, text: &str| {
+        let r = p.find_row(id).unwrap();
+        p.row_mut(&r).unwrap().set_translation(lang, text, susi_core::TranslationStatus::Translated);
+    };
+    set(&mut p, "quit", "de", "Nicht beenden");
+    set(&mut p, "files[one]", "pl", "%d plik");
+    set(&mut p, "files[few]", "pl", "%d pliki");
+    set(&mut p, "files[many]", "pl", "%d plików");
+    set(&mut p, "files[other]", "pl", "%d pliku");
+
+    let b = ops::build_project(&p, &[], None);
+    assert!(b.errors.is_empty(), "{:?}", b.errors);
+    let de = std::fs::read_to_string(res.join("values-b+de").join("strings.xml")).unwrap();
+    assert_eq!(
+        de,
+        "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<resources>\r\n    <!-- Title of the main screen -->\r\n    <string name=\"title\">Konverter</string>\r\n    <string name=\"quit\">Nicht beenden</string>\r\n</resources>\r\n"
+    );
+    let pl = std::fs::read_to_string(res.join("values-b+pl").join("strings.xml")).unwrap();
+    assert!(pl.contains("<plurals name=\"files\">\r\n        <item quantity=\"one\">%d plik</item>\r\n        <item quantity=\"few\">%d pliki</item>\r\n        <item quantity=\"many\">%d plików</item>\r\n        <item quantity=\"other\">%d pliku</item>\r\n    </plurals>"), "{pl}");
+    assert!(!pl.contains("title") && !pl.contains("dimen"), "{pl}");
+    // Rescanning finds no changes; the localized files are no sources.
+    let rep = ops::scan_project(&mut p, None).unwrap();
+    assert_eq!((rep.new, rep.changed, rep.unused, rep.imported), (0, 0, 0, 0), "{:?}", rep.errors);
+}
+
+#[test]
+fn android_keeps_legacy_resource_directories() {
+    let tmp = tempfile::tempdir().unwrap();
+    let res = tmp.path().join("res");
+    for d in ["values", "values-pt-rBR"] {
+        std::fs::create_dir_all(res.join(d)).unwrap();
+    }
+    std::fs::write(res.join("values").join("strings.xml"), "<resources>\n    <string name=\"hello\">Hello</string>\n</resources>\n").unwrap();
+    std::fs::write(res.join("values-pt-rBR").join("strings.xml"), "<resources>\n    <string name=\"hello\">Olá</string>\n</resources>\n").unwrap();
+    let mut p = susi_core::Project::new();
+    p.path = Some(tmp.path().join("app.slp"));
+    p.add_language("pt-BR");
+    p.add_language("zh");
+    let (si, rep) = ops::add_source(&mut p, &res.join("values").join("strings.xml"), "en").unwrap();
+    assert_eq!(p.sources[si].output_pattern().1, "<parent>\\values-<androidr>\\<file>");
+    assert_eq!(rep.imported, 1, "{:?}", rep.errors);
+    let hello = p.find_row("hello").unwrap();
+    p.row_mut(&hello).unwrap().set_translation("zh", "你好", susi_core::TranslationStatus::Translated);
+    let b = ops::build_project(&p, &[], None);
+    assert!(b.errors.is_empty(), "{:?}", b.errors);
+    assert!(res.join("values-zh-rCN").join("strings.xml").is_file());
+    assert!(!res.join("values-b+pt+BR").exists());
+}

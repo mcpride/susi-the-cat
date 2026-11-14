@@ -77,6 +77,8 @@ pub enum SourceKind {
     Tsv,
     /// Java resource bundle (`.properties`).
     Properties,
+    /// Android string resources (`res/values/strings.xml`).
+    Android,
     Other,
 }
 
@@ -88,6 +90,7 @@ impl SourceKind {
             SourceKind::Po => "TPoSource",
             SourceKind::Tsv => "TTsvSource",
             SourceKind::Properties => "TJavaResourceSource",
+            SourceKind::Android => "TAndroidValuesSource",
             SourceKind::Other => "",
         }
     }
@@ -99,6 +102,7 @@ impl SourceKind {
             "TPoSource" => SourceKind::Po,
             "TTsvSource" => SourceKind::Tsv,
             "TJavaResourceSource" => SourceKind::Properties,
+            "TAndroidValuesSource" => SourceKind::Android,
             _ => SourceKind::Other,
         }
     }
@@ -112,6 +116,7 @@ impl SourceKind {
             "po" | "pot" => Some(SourceKind::Po),
             "tsv" => Some(SourceKind::Tsv),
             "properties" => Some(SourceKind::Properties),
+            "xml" => Some(SourceKind::Android),
             _ => None,
         }
     }
@@ -123,6 +128,7 @@ impl SourceKind {
             SourceKind::Po => "PO (gettext)",
             SourceKind::Tsv => "TSV (i18n catalog)",
             SourceKind::Properties => "Java properties",
+            SourceKind::Android => "Android strings",
             SourceKind::Other => crate::i18n::t("Other"),
         }
     }
@@ -268,6 +274,7 @@ impl Source {
             SourceKind::Po => "<iso>\\<body>.po".to_string(),
             SourceKind::Tsv => crate::formats::tsv::default_pattern(self.name()),
             SourceKind::Properties => crate::formats::properties::default_pattern(self.name()),
+            SourceKind::Android => crate::formats::android::default_pattern(self.name()),
             _ => "<sl>\\<file>".to_string(),
         };
         match self.output_file() {

@@ -151,9 +151,13 @@ fn node_class(kind: SourceKind) -> &'static str {
         SourceKind::Po => "TPoNode",
         SourceKind::Tsv => "TTsvNode",
         SourceKind::Properties => "TJavaResourceNode",
+        SourceKind::Android => "TAndroidValuesGroup",
         _ => "TJsonNode",
     }
 }
+
+/// Sisulizer keeps the rows of a single Android values file in the group node `string`.
+const ANDROID_GROUP: &str = "string";
 
 /// Item path of the container holding the rows of `file` (`rel_name` relative to the source dir).
 fn container_for(src: &mut Source, rel_name: &str, wildcard: bool, create: bool) -> Option<Vec<usize>> {
@@ -171,11 +175,17 @@ fn container_for(src: &mut Source, rel_name: &str, wildcard: bool, create: bool)
         if nodes.len() == 1 {
             return nodes.first().map(|i| vec![*i]);
         }
+        if src.kind() == SourceKind::Android
+            && let Some(i) = src.items.iter().position(|i| matches!(i, Item::Node(n) if n.name() == ANDROID_GROUP))
+        {
+            return Some(vec![i]);
+        }
     }
     if !create {
         return None;
     }
-    let mut node = Node::new(node_class(src.kind()), rel_name);
+    let name = if !wildcard && src.kind() == SourceKind::Android { ANDROID_GROUP } else { rel_name };
+    let mut node = Node::new(node_class(src.kind()), name);
     node.attrs.set("state", RowStatus::New.as_index().to_string());
     node.attrs.set("created", now_stamp());
     src.items.push(Item::Node(node));
@@ -188,8 +198,11 @@ fn rel_name(root: &Path, file: &Path) -> String {
         .unwrap_or_else(|_| file.file_name().map(|f| f.to_string_lossy().to_string()).unwrap_or_default())
 }
 
-pub fn scan_file(src: &Source, bytes: &[u8]) -> Result<Vec<ScannedString>> {
+/// Scans one original file; `langs` are the target languages of the project (Android plurals get
+/// rows for the plural quantities they need).
+pub fn scan_file(src: &Source, bytes: &[u8], langs: &[String]) -> Result<Vec<ScannedString>> {
     match src.kind() {
+        SourceKind::Android => formats::android::scan(bytes, langs),
         SourceKind::Json => formats::json::scan(bytes),
         SourceKind::Resx => formats::resx::scan(bytes),
         SourceKind::Po => formats::po::scan(bytes, &src.po_options()),
@@ -305,12 +318,15 @@ fn scan_source_impl(p: &mut Project, si: usize, import_existing: bool) -> Result
     let importer: Option<TranslationsFn> = match p.sources.get(si).map(Source::kind) {
         Some(SourceKind::Tsv) => Some(formats::tsv::translations),
         Some(SourceKind::Properties) if import_existing => Some(formats::properties::translations),
+        Some(SourceKind::Android) if import_existing => Some(formats::android::translations),
         _ => None,
     };
+    let original = p.sources.get(si).map(|s| s.original().to_string()).unwrap_or_default();
+    let langs: Vec<String> = p.languages.iter().filter(|l| !l.is_pseudo() && l.id() != original).map(|l| l.id().to_string()).collect();
     let mut newest = None;
     for f in &files {
         let Some(src) = p.sources.get_mut(si) else { break };
-        let scanned = match read_file(f).and_then(|b| scan_file(src, &b)) {
+        let scanned = match read_file(f).and_then(|b| scan_file(src, &b, &langs)) {
             Ok(s) => s,
             Err(e) => {
                 rep.errors.push(format!("{}: {e}", f.display()));
@@ -381,17 +397,25 @@ pub fn scan_project(p: &mut Project, sources: Option<&[usize]>) -> Result<ScanRe
 /// Adds a new source file (relative paths are stored relative to the project) and scans it.
 pub fn add_source(p: &mut Project, file: &Path, original_lang: &str) -> Result<(usize, ScanReport)> {
     let name = file.file_name().map(|f| f.to_string_lossy().to_string()).unwrap_or_default();
-    let kind = SourceKind::from_path(Path::new(&name))
-        .ok_or_else(|| Error::Unsupported(crate::tf!("{file}: only .json, .resx, .po, .pot, .tsv and .properties are supported", file = file.display())))?;
+    let kind = SourceKind::from_path(Path::new(&name)).ok_or_else(|| {
+        Error::Unsupported(crate::tf!("{file}: only .json, .resx, .po, .pot, .tsv, .properties and .xml are supported", file = file.display()))
+    })?;
     let base = p.base_dir();
     let abs = if file.is_absolute() { file.to_path_buf() } else { std::env::current_dir().map(|d| d.join(file)).unwrap_or_else(|_| file.to_path_buf()) };
-    let rel = relative_path(&normalize(&base_abs(&base)), &normalize(&abs)).unwrap_or(abs);
+    let rel = relative_path(&normalize(&base_abs(&base)), &normalize(&abs)).unwrap_or_else(|| abs.clone());
     let rel = rel.to_string_lossy().replace('/', "\\");
     if p.sources.iter().any(|s| s.name().eq_ignore_ascii_case(&rel)) {
         return Err(Error::Invalid(crate::tf!("source '{source}' is already part of the project", source = rel)));
     }
     let mut src = Source::new(kind, &rel, original_lang);
-    let (dir, pattern) = src.output_pattern();
+    let (dir, mut pattern) = src.output_pattern();
+    // Keep an Android project's legacy resource directories (`values-de`): BCP 47 directories for
+    // the same locales would be duplicate resources.
+    if kind == SourceKind::Android
+        && let Some(legacy) = formats::android::existing_pattern(&abs)
+    {
+        pattern = legacy;
+    }
     src.set_output_pattern(&dir, &pattern);
     p.sources.push(src);
     let si = p.sources.len() - 1;
@@ -452,6 +476,7 @@ pub fn build_content(src: &Source, original: &[u8], rows: &HashMap<&str, &Row>, 
         }
         SourceKind::Tsv => formats::tsv::build(original, &resolve),
         SourceKind::Properties => formats::properties::build(original, src.properties_encoding(), &resolve),
+        SourceKind::Android => formats::android::build(original, lang, &resolve),
         SourceKind::Other => Err(Error::Unsupported(crate::i18n::t("source type not supported by susi").into())),
     }
 }

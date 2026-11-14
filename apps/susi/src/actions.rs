@@ -350,17 +350,19 @@ impl SusiApp {
             pattern,
             po: (s.kind() == susi_core::SourceKind::Po).then(|| s.po_options()),
             encoding: (s.kind() == susi_core::SourceKind::Properties).then(|| s.properties_encoding()),
+            android: s.kind() == susi_core::SourceKind::Android,
         }));
     }
 
     fn add_source_dialog(&mut self) {
         let Some(files) = rfd::FileDialog::new()
-            .add_filter(t("Supported sources (JSON, .NET RESX, PO, TSV, Java)"), &["json", "resx", "po", "pot", "tsv", "properties"])
+            .add_filter(t("Supported sources (JSON, .NET RESX, PO, TSV, Java, Android)"), &["json", "resx", "po", "pot", "tsv", "properties", "xml"])
             .add_filter("JSON", &["json"])
             .add_filter(t(".NET resources"), &["resx"])
             .add_filter("PO/POT (gettext)", &["po", "pot"])
             .add_filter(t("i18n catalogs (TSV)"), &["tsv"])
             .add_filter("Java properties", &["properties"])
+            .add_filter(t("Android string resources"), &["xml"])
             .set_title(t("Add source"))
             .pick_files()
         else {

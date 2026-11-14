@@ -1,5 +1,6 @@
 //! File format scanners and builders.
 
+pub mod android;
 pub mod json;
 pub mod mo;
 pub mod po;

@@ -143,6 +143,38 @@ pub fn tag(id: &str) -> String {
     net(id)
 }
 
+/// Android BCP 47 qualifier without the `b+` prefix (`<android>`): subtags joined by `+`
+/// (`de`, `pt+BR`, `zh+Hans`), used as `values-b+<android>` (Android 7.0+).
+pub fn android(id: &str) -> String {
+    tag(id).replace('-', "+")
+}
+
+/// Legacy Android locale qualifier (`<androidr>`): language plus `-r` region (`de`, `pt-rBR`),
+/// understood by every Android version. Script subtags cannot be expressed (Chinese uses the
+/// regions CN/TW), and Hebrew, Indonesian and Yiddish use the old codes `iw`, `in` and `ji`.
+pub fn android_r(id: &str) -> String {
+    let iso = match id {
+        "zh" => "zh_CN".to_string(),
+        _ => iso(id),
+    };
+    let mut parts = iso.split('_');
+    let lang = parts.next().unwrap_or("").to_ascii_lowercase();
+    let mut out = match lang.as_str() {
+        "he" => "iw".to_string(),
+        "id" => "in".to_string(),
+        "yi" => "ji".to_string(),
+        _ => lang,
+    };
+    for p in parts {
+        let region = (p.len() == 2 && p.chars().all(|c| c.is_ascii_alphabetic())) || (p.len() == 3 && p.chars().all(|c| c.is_ascii_digit()));
+        if region {
+            out.push_str("-r");
+            out.push_str(&p.to_ascii_uppercase());
+        }
+    }
+    out
+}
+
 /// Windows code (`<win>`).
 pub fn win(id: &str) -> String {
     match lookup(id) {
@@ -183,7 +215,7 @@ pub fn expand_pattern(pattern: &str, ctx: &PatternContext<'_>) -> PathBuf {
     if !p.contains("<dir>") && !uses_parent {
         p = format!("<dir>{p}");
     }
-    let vars: [(&str, String); 14] = [
+    let vars: [(&str, String); 16] = [
         ("<file>", file_name.to_string()),
         ("<body>", body.to_string()),
         ("<ext>", ext.to_string()),
@@ -197,6 +229,8 @@ pub fn expand_pattern(pattern: &str, ctx: &PatternContext<'_>) -> PathBuf {
         ("<tag>", tag(ctx.lang)),
         ("<win>", win(ctx.lang)),
         ("<mfc>", win(ctx.lang)),
+        ("<android>", android(ctx.lang)),
+        ("<androidr>", android_r(ctx.lang)),
         ("<lang>", ctx.lang.to_string()),
     ];
     for (k, v) in vars {
@@ -218,6 +252,28 @@ mod tests {
         assert_eq!(expand_pattern("<sl>\\<file>", &ctx), Path::new("C:/p/i18n").join("pt-BR").join("sis.json"));
         let ctx = PatternContext { file: Path::new("C:/p/Res.resx"), source_dir: Path::new("C:/p"), out_dir: Path::new("C:/p"), lang: "de" };
         assert_eq!(expand_pattern("<body>.<net>.<ext>", &ctx), Path::new("C:/p").join("Res.de.resx"));
+        let ctx = PatternContext {
+            file: Path::new("C:/p/res/values/strings.xml"),
+            source_dir: Path::new("C:/p/res/values"),
+            out_dir: Path::new("C:/x"),
+            lang: "pt-BR",
+        };
+        assert_eq!(expand_pattern("<parent>\\values-b+<android>\\<file>", &ctx), Path::new("C:/p/res").join("values-b+pt+BR").join("strings.xml"));
+        assert_eq!(expand_pattern("<parent>\\values-<androidr>\\<file>", &ctx), Path::new("C:/p/res").join("values-pt-rBR").join("strings.xml"));
+    }
+
+    #[test]
+    fn android_qualifiers() {
+        assert_eq!(android("de"), "de");
+        assert_eq!(android("pt-BR"), "pt+BR");
+        assert_eq!(android("zh"), "zh+Hans");
+        assert_eq!(android("zh.tra"), "zh+Hant");
+        assert_eq!(android_r("de"), "de");
+        assert_eq!(android_r("pt_BR"), "pt-rBR");
+        assert_eq!(android_r("zh"), "zh-rCN");
+        assert_eq!(android_r("zh.tra"), "zh-rTW");
+        assert_eq!(android_r("he"), "iw");
+        assert_eq!(android_r("es-419"), "es-r419");
     }
 
     #[test]

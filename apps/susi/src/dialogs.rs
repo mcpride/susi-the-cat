@@ -27,6 +27,8 @@ pub struct SourcePropsDialog {
     pub po: Option<PoOptions>,
     /// Encoding of a Java properties source.
     pub encoding: Option<PropertiesEncoding>,
+    /// Android string resources (shows the Android placeholders).
+    pub android: bool,
 }
 
 pub struct RowPropsDialog {
@@ -304,6 +306,9 @@ fn source_props(app: &mut SusiApp, ui: &mut egui::Ui, s: &mut SourcePropsDialog)
         }
     });
     ui.small(t("Placeholders: <sl> language ID, <iso>, <net>, <file> file name, <body> name without extension, <ext> extension"));
+    if s.android {
+        ui.small(t("Android: <parent> resource directory, <android> BCP 47 qualifier for values-b+… (pt+BR), <androidr> legacy qualifier (pt-rBR)"));
+    }
     if let Some(po) = &mut s.po {
         po_options(ui, po);
     }
@@ -609,7 +614,7 @@ fn about(ui: &mut egui::Ui) -> bool {
         });
     });
     ui.label(t("Localization tool for Susi/Sisulizer projects (.slp)."));
-    ui.label(t("Supported sources: .NET RESX, JSON, PO/POT (gettext, with MO compilation), TSV (i18n catalogs), Java properties. Exchange: Excel, CSV, Text, XLIFF, TMX."));
+    ui.label(t("Supported sources: .NET RESX, JSON, PO/POT (gettext, with MO compilation), TSV (i18n catalogs), Java properties, Android string resources. Exchange: Excel, CSV, Text, XLIFF, TMX."));
     ui.label(t("Command line: susi-cli (SlMake compatible), AI integration: susi-cli mcp"));
     ui.separator();
     ui.small(t("Sisulizer is a product of Sisulizer Ltd. & Co KG. Susi is an independent new development."));

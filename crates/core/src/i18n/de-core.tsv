@@ -28,7 +28,7 @@ write method	All	Alle
 	{files} written, {unchanged} unchanged, {errors} errors	{files} erstellt, {unchanged} unverändert, {errors} Fehler
 	invalid wildcard '{file}': {error}	Ungültiger Platzhalter '{file}': {error}
 	source type not supported by susi	Quelltyp wird von susi nicht unterstützt
-	{file}: only .json, .resx, .po, .pot, .tsv and .properties are supported	{file}: Nur .json, .resx, .po, .pot, .tsv und .properties werden unterstützt
+	{file}: only .json, .resx, .po, .pot, .tsv, .properties and .xml are supported	{file}: Nur .json, .resx, .po, .pot, .tsv, .properties und .xml werden unterstützt
 @plural	{n} translation imported|{n} translations imported	{n} Übersetzung übernommen|{n} Übersetzungen übernommen
 	Other	Andere
 	source '{source}' is already part of the project	Quelle '{source}' ist bereits Teil des Projekts

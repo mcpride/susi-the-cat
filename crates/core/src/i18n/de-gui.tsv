@@ -231,7 +231,7 @@
 	Settings: {error}	Einstellungen: {error}
 	Version {version}	Version {version}
 	Localization tool for Susi/Sisulizer projects (.slp).	Lokalisierungswerkzeug für Susi/Sisulizer-Projekte (.slp).
-	Supported sources: .NET RESX, JSON, PO/POT (gettext, with MO compilation), TSV (i18n catalogs), Java properties. Exchange: Excel, CSV, Text, XLIFF, TMX.	Unterstützte Quellen: .NET RESX, JSON, PO/POT (gettext, mit MO-Kompilierung), TSV (i18n-Kataloge), Java properties. Austausch: Excel, CSV, Text, XLIFF, TMX.
+	Supported sources: .NET RESX, JSON, PO/POT (gettext, with MO compilation), TSV (i18n catalogs), Java properties, Android string resources. Exchange: Excel, CSV, Text, XLIFF, TMX.	Unterstützte Quellen: .NET RESX, JSON, PO/POT (gettext, mit MO-Kompilierung), TSV (i18n-Kataloge), Java properties, Android-String-Ressourcen. Austausch: Excel, CSV, Text, XLIFF, TMX.
 	Command line: susi-cli (SlMake compatible), AI integration: susi-cli mcp	Kommandozeile: susi-cli (SlMake-kompatibel), KI-Anbindung: susi-cli mcp
 	Sisulizer is a product of Sisulizer Ltd. & Co KG. Susi is an independent new development.	Sisulizer ist ein Produkt der Sisulizer Ltd. & Co KG. Susi ist eine unabhängige Neuentwicklung.
 # Commands, file dialogs
@@ -244,7 +244,8 @@
 	No language selected	Keine Sprache ausgewählt
 	Status "{status}" set for {count} ({lang})	Status „{status}“ für {count} ({lang}) gesetzt
 @plural	{n} translation|{n} translations	{n} Übersetzung|{n} Übersetzungen
-	Supported sources (JSON, .NET RESX, PO, TSV, Java)	Unterstützte Quellen (JSON, .NET RESX, PO, TSV, Java)
+	Supported sources (JSON, .NET RESX, PO, TSV, Java, Android)	Unterstützte Quellen (JSON, .NET RESX, PO, TSV, Java, Android)
+	Android string resources	Android-String-Ressourcen
 	i18n catalogs (TSV)	i18n-Kataloge (TSV)
 	.NET resources	.NET-Ressourcen
 	Source added: {path} – {summary}	Quelle hinzugefügt: {path} – {summary}
@@ -294,3 +295,4 @@
 	"Translated on" column	Spalte „Übersetzt am“
 	Show "Translated on" column	Spalte „Übersetzt am“ anzeigen
 	Encoding:	Kodierung:
+	Android: <parent> resource directory, <android> BCP 47 qualifier for values-b+… (pt+BR), <androidr> legacy qualifier (pt-rBR)	Android: <parent> Ressourcenverzeichnis, <android> BCP-47-Qualifizierer für values-b+… (pt+BR), <androidr> alter Qualifizierer (pt-rBR)
