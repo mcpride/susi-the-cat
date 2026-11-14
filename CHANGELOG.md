@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.6.0](https://github.com/mcpride/susi-the-cat/compare/v0.5.0...v0.6.0) (2026-11-14)
+
+### Features
+
+* **GUI:** add option to show configurable additional language columns in the translation grid ([0e74b71](https://github.com/mcpride/susi-the-cat/commit/0e74b715affbb0176cd76dbfb9a9f2efe3509482))
+
 ## [0.5.0](https://github.com/mcpride/susi-the-cat/compare/v0.4.0...v0.5.0) (2026-11-14)
 
 ### Features
