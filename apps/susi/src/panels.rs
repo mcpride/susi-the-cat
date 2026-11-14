@@ -148,6 +148,7 @@ fn view_menu(app: &mut SusiApp, ui: &mut egui::Ui) {
             app.all_langs = false;
             app.rows_stale = true;
         }
+        ui.menu_button(t("Additional languages"), |ui| extra_language_items(app, ui));
         ui.separator();
         ui.checkbox(&mut app.show_tree, t("Project tree"));
         ui.checkbox(&mut app.show_filter, t("Filter bar"));
@@ -164,6 +165,20 @@ fn view_menu(app: &mut SusiApp, ui: &mut egui::Ui) {
             let _ = app.settings.save();
         }
     });
+}
+
+/// Checkboxes for the languages shown in the single-language view in addition to the selected one.
+fn extra_language_items(app: &mut SusiApp, ui: &mut egui::Ui) {
+    let ids = app.project.as_ref().map(Project::language_ids).unwrap_or_default();
+    if ids.is_empty() {
+        ui.label(t("(none)"));
+    }
+    for id in ids {
+        let mut on = app.settings.extra_langs.contains(&id);
+        if ui.checkbox(&mut on, SusiApp::lang_label(&id)).on_hover_text(t("Also shown in the single-language view")).changed() {
+            app.toggle_extra_lang(&id);
+        }
+    }
 }
 
 fn project_menu(ui: &mut egui::Ui, acts: &mut Vec<Action>) {

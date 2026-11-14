@@ -39,6 +39,8 @@ pub struct Settings {
     pub show_comment_column: bool,
     /// Show the translation date column in the grid.
     pub show_date_column: bool,
+    /// Languages always shown in the single-language view in addition to the selected one.
+    pub extra_langs: Vec<String>,
     /// Pseudo translation options.
     pub pseudo: crate::pseudo::PseudoOptions,
     /// Dark UI theme.
@@ -58,6 +60,7 @@ impl Default for Settings {
             show_id_column: true,
             show_comment_column: true,
             show_date_column: true,
+            extra_langs: Vec::new(),
             pseudo: crate::pseudo::PseudoOptions::default(),
             dark_mode: false,
             ui_language: "auto".into(),

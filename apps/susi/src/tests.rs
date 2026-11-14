@@ -86,6 +86,27 @@ fn sheet_sorting_cycles_and_orders() {
     assert_eq!(SheetSort::next(app.sort, SortColumn::Date), None);
 }
 
+/// The single-language view shows the selected language plus the additional languages, in project order.
+#[test]
+fn single_language_view_adds_extra_languages() {
+    let ctx = egui::Context::default();
+    let mut app = app_with_fixture(&ctx, &std::env::temp_dir(), "en");
+    let ids = app.project.as_ref().unwrap().language_ids();
+    assert!(ids.len() >= 3, "fixture needs at least three languages: {ids:?}");
+    assert_eq!(app.visible_langs(), ids);
+
+    app.all_langs = false;
+    app.settings.extra_langs = vec![ids[1].clone(), ids[0].clone(), "xx".into()];
+    app.lang = Some(ids[2].clone());
+    assert_eq!(app.visible_langs(), ids[..3]);
+    app.lang = Some(ids[0].clone());
+    assert_eq!(app.visible_langs(), ids[..2]);
+    run(&ctx, &mut app, 2);
+
+    app.all_langs = true;
+    assert_eq!(app.visible_langs(), ids);
+}
+
 #[test]
 fn app_icon_decodes() {
     let icon = crate::app_icon::window_icon();

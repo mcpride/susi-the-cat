@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<document created="20261103155355" version="4.0.374" date="20261113115325" scan="6" scanned="20261113115325">
+<document created="20261103155355" version="4.0.374" date="20261114170649" scan="7" scanned="20261114170649">
   <lang id="en"/>
   <lang id="de"/>
   <source class="TTsvSource" name="de-core.tsv" original="en" date="20261105162544">
@@ -852,7 +852,7 @@
       </row>
     </node>
   </source>
-  <source class="TTsvSource" name="de-gui.tsv" original="en" date="20261105162544">
+  <source class="TTsvSource" name="de-gui.tsv" original="en" date="20261114170338">
     <outputfile dir="." localized="&lt;iso&gt;-gui.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-gui.tsv" state="0" created="20261103155355">
       <row id="Information" state="0" created="20261103155355" note="Application, log" notereadonly="1">
@@ -1018,6 +1018,14 @@
       <row id="Single language" state="0" created="20261103155355" note="Menus" notereadonly="1">
         <native>Single language</native>
         <lang id="de" date="20261103155355" status="3">Eine Sprache</lang>
+      </row>
+      <row id="Additional languages" state="0" created="20261114170649" note="Menus" notereadonly="1">
+        <native>Additional languages</native>
+        <lang id="de" date="20261114170649" status="3">Zusätzliche Sprachen</lang>
+      </row>
+      <row id="Also shown in the single-language view" state="0" created="20261114170649" note="Menus" notereadonly="1">
+        <native>Also shown in the single-language view</native>
+        <lang id="de" date="20261114170649" status="3">Auch in der Ansicht mit einer Sprache anzeigen</lang>
       </row>
       <row id="Project tree" state="0" created="20261103155355" note="Menus" notereadonly="1">
         <native>Project tree</native>
@@ -1965,7 +1973,7 @@
       </row>
     </node>
   </source>
-  <source class="TTsvSource" name="de-workflow.tsv" original="en" date="20261113115207">
+  <source class="TTsvSource" name="de-workflow.tsv" original="en" date="20261114163849">
     <outputfile dir="." localized="&lt;iso&gt;-workflow.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-workflow.tsv" state="0" created="20261112175203">
       <row id="A fixed version is checked out. Get the translation project to continue working." state="0" created="20261112175203">

@@ -263,7 +263,7 @@ pub struct SusiApp {
     pub tm: Option<TranslationMemory>,
     /// Selected language (status column, single-language view, editor).
     pub lang: Option<String>,
-    /// Show all languages side by side (otherwise only `lang`).
+    /// Show all languages side by side (otherwise only `lang` plus `settings.extra_langs`).
     pub all_langs: bool,
     /// Selected tree node; `None` = "All".
     pub tree: Option<NodeRef>,
@@ -544,7 +544,25 @@ impl SusiApp {
         let Some(p) = &self.project else {
             return Vec::new();
         };
-        if self.all_langs { p.language_ids() } else { self.lang.iter().cloned().collect() }
+        let ids = p.language_ids();
+        if self.all_langs {
+            return ids;
+        }
+        ids.into_iter().filter(|l| self.lang.as_ref() == Some(l) || self.settings.extra_langs.contains(l)).collect()
+    }
+
+    /// Toggles a language shown in the single-language view in addition to the selected one and saves the setting.
+    pub fn toggle_extra_lang(&mut self, id: &str) {
+        let extra = &mut self.settings.extra_langs;
+        match extra.iter().position(|l| l == id) {
+            Some(i) => {
+                extra.remove(i);
+            }
+            None => extra.push(id.to_string()),
+        }
+        if let Err(e) = self.settings.save() {
+            self.warn(susi_core::tf!("Settings could not be saved: {error}", error = e));
+        }
     }
 
     pub fn refresh_rows(&mut self) {
