@@ -52,7 +52,8 @@ fn setup(tmp: &Path) -> (PathBuf, PathBuf) {
     git(&dev, &["commit", "-q", "-m", "init"]);
     git(&dev, &["remote", "add", "origin", server.to_str().unwrap()]);
     git(&dev, &["push", "-q", "origin", "main"]);
-    git(tmp, &["clone", "-q", server.to_str().unwrap(), work.to_str().unwrap()]);
+    // autocrlf must already apply to the checkout (Windows runners default to `true`).
+    git(tmp, &["clone", "-q", "-c", "core.autocrlf=false", server.to_str().unwrap(), work.to_str().unwrap()]);
     configure(&work, "Anna Müller");
     (dev, work)
 }
@@ -126,7 +127,8 @@ fn check_publish(wf: &Workflow, branch: &str) {
 fn check_saving_after_publish(wf: &Workflow, p: &mut Project, slp_path: &Path, opts: &SaveOptions) {
     let st = wf.status(p, StatusOptions::default()).unwrap();
     assert_eq!((st.state, st.merge_request.as_ref().map(|m| m.iid)), (State::InReview, Some(1)));
-    p.attrs.set("date", "20991231235959");
+    // A real change: `slp::save` overwrites `date` with the current second, which may be unchanged.
+    p.record_scan();
     slp::save(p, slp_path).unwrap();
     assert_eq!(wf.status(p, StatusOptions::default()).unwrap().merge_request.map(|m| m.iid), Some(1));
     assert!(wf.save(p, opts).unwrap().pushed);
@@ -149,7 +151,8 @@ fn fetch_save_publish_cycle() {
     // Translate: the localized file is created; an unrelated file must not be saved.
     let report = ops::build_project(&p, &["de".to_string()], None);
     assert!(!report.written.is_empty(), "{report:?}");
-    p.touch();
+    // Not `touch()`: within the same second as `setup`, the file would be written unchanged.
+    p.record_scan();
     slp::save(&mut p, &slp_path).unwrap();
     std::fs::write(work.join("notes.txt"), "private\n").unwrap();
     let st = wf.status(&p, StatusOptions::default()).unwrap();
