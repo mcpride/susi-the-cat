@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.7.0](https://github.com/mcpride/susi-the-cat/compare/v0.6.0...v0.7.0) (2026-11-14)
+
+### Features
+
+* add support for Android string resources ([8417333](https://github.com/mcpride/susi-the-cat/commit/8417333868efdd08065a0e96d76d611fe241f04f))
+
 ## [0.6.0](https://github.com/mcpride/susi-the-cat/compare/v0.5.0...v0.6.0) (2026-11-14)
 
 ### Features
