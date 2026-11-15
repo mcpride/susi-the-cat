@@ -27,6 +27,8 @@ pub enum ValidationKind {
     HotkeyCount,
     DuplicateTranslation,
     ControlCharacters,
+    IcuSyntax,
+    IcuCases,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Serialize)]
@@ -37,7 +39,7 @@ pub enum Severity {
 }
 
 impl ValidationKind {
-    pub const ALL: [ValidationKind; 14] = [
+    pub const ALL: [ValidationKind; 16] = [
         Self::MissingTranslation,
         Self::Format,
         Self::Tags,
@@ -52,6 +54,8 @@ impl ValidationKind {
         Self::HotkeyCount,
         Self::DuplicateTranslation,
         Self::ControlCharacters,
+        Self::IcuSyntax,
+        Self::IcuCases,
     ];
 
     /// Label in the current UI language (validation names).
@@ -71,6 +75,8 @@ impl ValidationKind {
             Self::HotkeyCount => t("Invalid number of hotkeys"),
             Self::DuplicateTranslation => t("Duplicate translation"),
             Self::ControlCharacters => t("Invalid control characters"),
+            Self::IcuSyntax => t("Invalid ICU message"),
+            Self::IcuCases => t("Incomplete ICU cases"),
         }
     }
 
@@ -90,6 +96,8 @@ impl ValidationKind {
             Self::HotkeyCount => "hotkey",
             Self::DuplicateTranslation => "duplicate",
             Self::ControlCharacters => "control",
+            Self::IcuSyntax => "icu",
+            Self::IcuCases => "icucases",
         }
     }
 
@@ -99,7 +107,7 @@ impl ValidationKind {
 
     pub fn severity(self) -> Severity {
         match self {
-            Self::Format | Self::Tags | Self::CharacterLength | Self::AllSpaces | Self::ControlCharacters => Severity::Error,
+            Self::Format | Self::Tags | Self::CharacterLength | Self::AllSpaces | Self::ControlCharacters | Self::IcuSyntax => Severity::Error,
             _ => Severity::Warning,
         }
     }
@@ -281,20 +289,47 @@ fn ends_with_any(s: &str, set: &[char]) -> bool {
     s.trim_end().chars().last().is_some_and(|c| set.contains(&c))
 }
 
-fn check_pair(orig: &str, tr: &str, max_chars: usize, kinds: &[ValidationKind]) -> Vec<(ValidationKind, String)> {
+/// Checks a translation into `lang` against its original.
+fn check_pair(orig: &str, tr: &str, lang: &str, max_chars: usize, kinds: &[ValidationKind]) -> Vec<(ValidationKind, String)> {
     let mut out = Vec::new();
     let on = |k: ValidationKind| kinds.contains(&k);
     if on(ValidationKind::AllSpaces) && tr.trim().is_empty() && !orig.trim().is_empty() {
         out.push((ValidationKind::AllSpaces, t("The translation contains only spaces.").into()));
     }
+    // ICU messages (typed, plural or select arguments) are compared by their arguments: the
+    // generic placeholder rules misread nested cases such as `other{{count} files}`.
+    let icu = crate::icu::parse(orig).ok().filter(|a| crate::icu::is_complex(a)).map(|o| (o, crate::icu::parse(tr)));
     if on(ValidationKind::Format) {
-        let (a, b) = (placeholders(orig), placeholders(tr));
-        if a != b {
+        let pair = match &icu {
+            Some((o, Ok(t))) => Some((crate::icu::signature_list(o), crate::icu::signature_list(t))),
+            Some((_, Err(_))) => None,
+            None => Some((placeholders(orig), placeholders(tr))),
+        };
+        if let Some((a, b)) = pair.filter(|(a, b)| a != b) {
             out.push((
                 ValidationKind::Format,
                 crate::tf!("Placeholders in the original {a}, in the translation {b}.", a = format!("{a:?}"), b = format!("{b:?}")),
             ));
         }
+    }
+    match &icu {
+        Some((_, Err(e))) if on(ValidationKind::IcuSyntax) => {
+            out.push((ValidationKind::IcuSyntax, crate::tf!("ICU syntax error in the translation: {error}.", error = e)));
+        }
+        Some((o, Ok(t))) if on(ValidationKind::IcuCases) => {
+            for m in crate::icu::missing_cases(o, t, crate::formats::android::plural_categories(lang)) {
+                let msg = match m {
+                    crate::icu::Missing::Plural { arg, categories } => {
+                        crate::tf!("{{arg}}: plural forms of {lang} missing: {cases}", arg = arg, lang = lang, cases = categories.join(", "))
+                    }
+                    crate::icu::Missing::Select { arg, cases } => {
+                        crate::tf!("{{arg}}: cases of the original missing: {cases}", arg = arg, cases = cases.join(", "))
+                    }
+                };
+                out.push((ValidationKind::IcuCases, msg));
+            }
+        }
+        _ => {}
     }
     if on(ValidationKind::Tags) {
         let (a, b) = (tags(orig), tags(tr));
@@ -381,6 +416,12 @@ pub fn validate(p: &Project, opts: &ValidateOptions, rows: Option<&[RowRef]>) ->
         {
             push(&mut issues, orig_lang, ValidationKind::ControlCharacters, crate::tf!("The original contains control characters: {chars}.", chars = chars));
         }
+        if kinds.contains(&ValidationKind::IcuSyntax)
+            && crate::icu::looks_like_icu(row.original())
+            && let Err(e) = crate::icu::parse(row.original())
+        {
+            push(&mut issues, orig_lang, ValidationKind::IcuSyntax, crate::tf!("ICU syntax error in the original: {error}.", error = e));
+        }
         for l in langs.iter().filter(|l| l.as_str() != orig_lang) {
             if p.languages.iter().any(|x| x.id() == l && x.is_pseudo()) {
                 continue;
@@ -391,7 +432,7 @@ pub fn validate(p: &Project, opts: &ValidateOptions, rows: Option<&[RowRef]>) ->
                 }
                 continue;
             };
-            for (k, m) in check_pair(row.original(), tr, row.max_chars(), &kinds) {
+            for (k, m) in check_pair(row.original(), tr, l, row.max_chars(), &kinds) {
                 push(&mut issues, l, k, m);
             }
             if kinds.contains(&ValidationKind::DuplicateTranslation) {
@@ -522,7 +563,7 @@ mod tests {
     #[test]
     fn pair_checks() {
         let all = ValidateOptions::default().kinds;
-        let k = |o: &str, t: &str| check_pair(o, t, 0, &all).into_iter().map(|x| x.0).collect::<Vec<_>>();
+        let k = |o: &str, t: &str| check_pair(o, t, "de", 0, &all).into_iter().map(|x| x.0).collect::<Vec<_>>();
         assert!(k("Hello {0}.", "Hallo {0}.").is_empty());
         assert_eq!(k("Hello {0}", "Hallo"), vec![ValidationKind::Format]);
         assert_eq!(k(" Name:", "Name:"), vec![ValidationKind::WhiteSpace]);
@@ -530,8 +571,33 @@ mod tests {
         assert_eq!(k("a\nb", "ab"), vec![ValidationKind::NewLine]);
         assert_eq!(k("<b>x</b>", "x"), vec![ValidationKind::Tags]);
         assert_eq!(k("&File", "Datei"), vec![ValidationKind::HotkeyCount]);
-        assert_eq!(check_pair("abc", "abcd", 3, &all)[0].0, ValidationKind::CharacterLength);
+        assert_eq!(check_pair("abc", "abcd", "de", 3, &all)[0].0, ValidationKind::CharacterLength);
         assert_eq!(k("Save", "Speichern\u{7F}"), vec![ValidationKind::ControlCharacters]);
+    }
+
+    #[test]
+    fn icu_messages() {
+        let all = ValidateOptions::default().kinds;
+        let check = |o: &str, t: &str, lang: &str| check_pair(o, t, lang, 0, &all);
+        let kinds = |o: &str, t: &str, lang: &str| check(o, t, lang).into_iter().map(|x| x.0).collect::<Vec<_>>();
+        let wombats = "{count, plural, =0{no wombats} one{1 wombat} other{{count} wombats}}";
+        // Nested `{count}` is no i18next `{{…}}` placeholder: a correct translation passes.
+        assert_eq!(kinds(wombats, "{count, plural, =0{keine Wombats} one{1 Wombat} other{{count} Wombats}}", "de"), vec![]);
+        assert!(placeholders(wombats) != placeholders("{count, plural, =0{keine Wombats} one{1 Wombat} other{{count} Wombats}}"));
+        // Translated keyword, renamed argument, broken braces.
+        let e = check(wombats, "{count, plural, =0{keine} eins{1 Wombat} other{{count} Wombats}}", "de");
+        assert_eq!(e.iter().map(|x| x.0).collect::<Vec<_>>(), vec![ValidationKind::IcuSyntax]);
+        assert!(e[0].1.contains("'eins' is no plural category"), "{}", e[0].1);
+        assert_eq!(kinds(wombats, "{anzahl, plural, one{1 Wombat} other{{anzahl} Wombats}}", "de"), vec![ValidationKind::Format]);
+        assert_eq!(kinds(wombats, "{count, plural, one{1 Wombat} other{{count} Wombats}", "de"), vec![ValidationKind::IcuSyntax]);
+        // Polish needs few and many; select cases of the original must stay.
+        let m = check(wombats, "{count, plural, one{1 wombat} other{{count} wombatów}}", "pl");
+        assert_eq!(m.iter().map(|x| x.0).collect::<Vec<_>>(), vec![ValidationKind::IcuCases]);
+        assert_eq!(m[0].1, "{count}: plural forms of pl missing: few, many");
+        let gender = "{g, select, male{his} female{her} other{their}} file";
+        assert_eq!(check(gender, "{g, select, male{seine} other{ihre}} Datei", "de")[0].1, "{g}: cases of the original missing: female");
+        // Not ICU: .NET format strings keep the generic placeholder check.
+        assert_eq!(kinds("{0:N2} of {1}", "{0:N2} von", "de"), vec![ValidationKind::Format]);
     }
 
     #[test]

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<document created="20261103155355" version="4.0.374" date="20261115131719" scan="12" scanned="20261115131719">
+<document created="20261103155355" version="4.0.374" date="20261115134104" scan="13" scanned="20261115134104">
   <lang id="en"/>
   <lang id="de"/>
-  <source class="TTsvSource" name="de-core.tsv" original="en" date="20261115131620">
+  <source class="TTsvSource" name="de-core.tsv" original="en" date="20261115133958">
     <outputfile dir="." localized="&lt;iso&gt;-core.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-core.tsv" state="0" created="20261103155355">
       <row id="Not translated" state="0" created="20261103155355" note="Status" notereadonly="1">
@@ -241,6 +241,14 @@
         <native>Invalid control characters</native>
         <lang id="de" date="20261115112356" status="3">Ungültige Steuerzeichen</lang>
       </row>
+      <row id="Invalid ICU message" state="0" created="20261115134104" note="Validation" notereadonly="1">
+        <native>Invalid ICU message</native>
+        <lang id="de" date="20261115134104" status="3">Ungültige ICU-Nachricht</lang>
+      </row>
+      <row id="Incomplete ICU cases" state="0" created="20261115134104" note="Validation" notereadonly="1">
+        <native>Incomplete ICU cases</native>
+        <lang id="de" date="20261115134104" status="3">Unvollständige ICU-Fälle</lang>
+      </row>
       <row id="The translation contains only spaces." state="0" created="20261103155355" note="Validation" notereadonly="1">
         <native>The translation contains only spaces.</native>
         <lang id="de" date="20261103155355" status="3">Die Übersetzung enthält nur Leerzeichen.</lang>
@@ -284,6 +292,58 @@
       <row id="{name} at position {pos}" state="0" created="20261115112356" note="Validation" notereadonly="1">
         <native>{name} at position {pos}</native>
         <lang id="de" date="20261115112356" status="3">{name} an Position {pos}</lang>
+      </row>
+      <row id="ICU syntax error in the translation: {error}." state="0" created="20261115134104" note="Validation" notereadonly="1">
+        <native>ICU syntax error in the translation: {error}.</native>
+        <lang id="de" date="20261115134104" status="3">ICU-Syntaxfehler in der Übersetzung: {error}.</lang>
+      </row>
+      <row id="ICU syntax error in the original: {error}." state="0" created="20261115134104" note="Validation" notereadonly="1">
+        <native>ICU syntax error in the original: {error}.</native>
+        <lang id="de" date="20261115134104" status="3">ICU-Syntaxfehler im Original: {error}.</lang>
+      </row>
+      <row id="{{arg}}: plural forms of {lang} missing: {cases}" state="0" created="20261115134104" note="Validation" notereadonly="1">
+        <native>{{arg}}: plural forms of {lang} missing: {cases}</native>
+        <lang id="de" date="20261115134104" status="3">{{arg}}: Pluralformen für {lang} fehlen: {cases}</lang>
+      </row>
+      <row id="{{arg}}: cases of the original missing: {cases}" state="0" created="20261115134104" note="Validation" notereadonly="1">
+        <native>{{arg}}: cases of the original missing: {cases}</native>
+        <lang id="de" date="20261115134104" status="3">{{arg}}: Fälle des Originals fehlen: {cases}</lang>
+      </row>
+      <row id="'{' at position {pos} is not closed" state="0" created="20261115134104" note="Validation" notereadonly="1">
+        <native>'{' at position {pos} is not closed</native>
+        <lang id="de" date="20261115134104" status="3">'{' an Position {pos} wird nicht geschlossen</lang>
+      </row>
+      <row id="'}' at position {pos} has no matching '{'" state="0" created="20261115134104" note="Validation" notereadonly="1">
+        <native>'}' at position {pos} has no matching '{'</native>
+        <lang id="de" date="20261115134104" status="3">'}' an Position {pos} hat keine passende '{'</lang>
+      </row>
+      <row id="argument name expected at position {pos}" state="0" created="20261115134104" note="Validation" notereadonly="1">
+        <native>argument name expected at position {pos}</native>
+        <lang id="de" date="20261115134104" status="3">Argumentname erwartet an Position {pos}</lang>
+      </row>
+      <row id="',' or '}' expected at position {pos}" state="0" created="20261115134104" note="Validation" notereadonly="1">
+        <native>',' or '}' expected at position {pos}</native>
+        <lang id="de" date="20261115134104" status="3">',' oder '}' erwartet an Position {pos}</lang>
+      </row>
+      <row id="case and '{' expected at position {pos}" state="0" created="20261115134104" note="Validation" notereadonly="1">
+        <native>case and '{' expected at position {pos}</native>
+        <lang id="de" date="20261115134104" status="3">Fall und '{' erwartet an Position {pos}</lang>
+      </row>
+      <row id="number expected after 'offset:' at position {pos}" state="0" created="20261115134104" note="Validation" notereadonly="1">
+        <native>number expected after 'offset:' at position {pos}</native>
+        <lang id="de" date="20261115134104" status="3">Zahl nach 'offset:' erwartet an Position {pos}</lang>
+      </row>
+      <row id="{{arg}}: unknown type '{kind}'" state="0" created="20261115134104" note="Validation" notereadonly="1">
+        <native>{{arg}}: unknown type '{kind}'</native>
+        <lang id="de" date="20261115134104" status="3">{{arg}}: unbekannter Typ '{kind}'</lang>
+      </row>
+      <row id="{{arg}}: '{case}' is no plural category (zero, one, two, few, many, other, =N)" state="0" created="20261115134104" note="Validation" notereadonly="1">
+        <native>{{arg}}: '{case}' is no plural category (zero, one, two, few, many, other, =N)</native>
+        <lang id="de" date="20261115134104" status="3">{{arg}}: '{case}' ist keine Pluralkategorie (zero, one, two, few, many, other, =N)</lang>
+      </row>
+      <row id="{{arg}}: the case 'other' is missing" state="0" created="20261115134104" note="Validation" notereadonly="1">
+        <native>{{arg}}: the case 'other' is missing</native>
+        <lang id="de" date="20261115134104" status="3">{{arg}}: der Fall 'other' fehlt</lang>
       </row>
       <row id="Not translated." state="0" created="20261103155355" note="Validation" notereadonly="1">
         <native>Not translated.</native>

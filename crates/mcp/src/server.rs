@@ -117,7 +117,7 @@ pub struct BuildInput {
 pub struct ValidateInput {
     #[serde(default)]
     pub langs: Vec<String>,
-    /// Checks: missing, format, tags, whitespace, newline, period, colon, exclamation, question, length, allspaces, hotkey, duplicate, control (default: all but missing).
+    /// Checks: missing, format, tags, whitespace, newline, period, colon, exclamation, question, length, allspaces, hotkey, duplicate, control, icu, icucases (default: all but missing).
     #[serde(default)]
     pub kinds: Vec<String>,
 }

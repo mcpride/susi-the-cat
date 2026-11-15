@@ -293,6 +293,23 @@ susi-cli validate -lang:de -w app.slp
 susi-cli export open.xlsx -lang:de;fr -status:untranslated app.slp
 ```
 
+**Checks** of `validate` (`-check:a;b`, default: all except `missing`; GUI: *Validation*):
+
+| Keyword | Checks | Severity |
+|---|---|---|
+| `missing` | Untranslated rows | Warning |
+| `format` | Placeholders: .NET `{0}`/`{name}`, i18next `{{x}}`, printf `%s`, Qt `%1`/`%L1`/`%n`, WebExtension `$NAME$`; ICU messages by their arguments (`{count, plural}`) | Error |
+| `tags` | Markup tags (`<b>`, `<br/>`) | Error |
+| `whitespace`, `newline` | Leading/trailing spaces, line breaks | Warning |
+| `period`, `colon`, `exclamation`, `question` | End punctuation (including full-width and Spanish forms) | Warning |
+| `length` | Maximum number of characters of the row | Error |
+| `allspaces` | Translation consists of spaces only | Error |
+| `hotkey` | Number of `&` mnemonics | Warning |
+| `duplicate` | The same original translated differently | Warning |
+| `control` | Control characters such as DEL in originals and translations | Error |
+| `icu` | ICU MessageFormat syntax of translations and of originals that use it: braces, the mandatory `other` case, plural categories (a translated `eins{…}`), argument types | Error |
+| `icucases` | ICU plural forms the target language needs (CLDR, e.g. Polish `few` and `many`; `=1` counts as `one`) and the select cases of the original | Warning |
+
 **Test reports in GitLab CI**: `validate -junit:file` also writes the result to a
 [JUnit XML report](https://docs.gitlab.com/ci/testing/unit_test_reports/). Errors become failed
 tests, with `-w` warnings as well (the same rule as for the exit code); without findings the file
@@ -604,8 +621,9 @@ as a source (`susi-cli add lib\l10n\app_en.arb -lang:de;pt-BR app.slp`) and stor
 
 - **Scan**: Every string entry is a row (row ID = key); the `description` of its `@key` metadata
   becomes the note. Messages are ICU MessageFormat strings: plurals and selects
-  (`{count, plural, one{…} other{…}}`) stay inside one row. `@@` entries are not translated. When
-  the source is added, translations from existing localized files are taken over.
+  (`{count, plural, one{…} other{…}}`) stay inside one row and are validated as ICU messages
+  (checks `icu` and `icucases`). `@@` entries are not translated. When the source is added,
+  translations from existing localized files are taken over.
 - **Build**: `app_<iso>.arb` (`app_de.arb`, `app_pt_BR.arb`) with the messages, the `@@` entries
   and `@@locale` set to the target language; the `@key` metadata stays in the template, where
   `flutter gen-l10n` reads it. Key order, indentation, BOM and line endings are kept. Omitted

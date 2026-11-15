@@ -7,6 +7,7 @@ pub mod exchange;
 pub mod filter;
 pub mod formats;
 pub mod i18n;
+pub mod icu;
 pub mod lang;
 pub mod model;
 pub mod ops;
