@@ -310,3 +310,152 @@ fn android_keeps_legacy_resource_directories() {
     assert!(res.join("values-zh-rCN").join("strings.xml").is_file());
     assert!(!res.join("values-b+pt+BR").exists());
 }
+
+#[test]
+fn resw_language_directories_import_and_build() {
+    let tmp = tempfile::tempdir().unwrap();
+    let strings = tmp.path().join("App").join("Strings");
+    for d in ["en-US", "de"] {
+        std::fs::create_dir_all(strings.join(d)).unwrap();
+    }
+    let resw = |data: &str| format!("<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<root>\r\n{data}</root>\r\n");
+    let en = resw(
+        "  <data name=\"Greeting.Text\" xml:space=\"preserve\">\r\n    <value>Hello</value>\r\n    <comment>Main page</comment>\r\n  </data>\r\n  \
+         <data name=\"Quit\" xml:space=\"preserve\">\r\n    <value>Quit</value>\r\n  </data>\r\n",
+    );
+    std::fs::write(strings.join("en-US").join("Resources.resw"), en).unwrap();
+    std::fs::write(strings.join("de").join("Resources.resw"), resw("  <data name=\"Greeting.Text\">\r\n    <value>Hallo</value>\r\n  </data>\r\n")).unwrap();
+    let mut p = susi_core::Project::new();
+    p.path = Some(tmp.path().join("app.slp"));
+    p.add_language("de");
+    p.add_language("pt-BR");
+    let (si, rep) = ops::add_source(&mut p, &strings.join("en-US").join("Resources.resw"), "en-US").unwrap();
+    assert_eq!((p.sources[si].class(), p.sources[si].kind()), ("TNetResourceSource", susi_core::SourceKind::Resx));
+    assert_eq!(p.sources[si].output_pattern().1, r"<parent>\<net>\<file>");
+    // Existing translations are taken over; the localized files are no sources.
+    assert_eq!((rep.new, rep.imported), (2, 1), "{:?}", rep.errors);
+    let quit = p.find_row("Quit").unwrap();
+    p.row_mut(&quit).unwrap().set_translation("pt-BR", "Sair", susi_core::TranslationStatus::Translated);
+    let b = ops::build_project(&p, &[], None);
+    assert!(b.errors.is_empty(), "{:?}", b.errors);
+    let de = std::fs::read_to_string(strings.join("de").join("Resources.resw")).unwrap();
+    assert!(de.contains("<value>Hallo</value>") && !de.contains("Quit"), "{de}");
+    let pt = std::fs::read_to_string(strings.join("pt-BR").join("Resources.resw")).unwrap();
+    assert!(pt.contains("<value>Sair</value>") && pt.contains("\r\n"), "{pt}");
+    let rep = ops::scan_project(&mut p, None).unwrap();
+    assert_eq!((rep.new, rep.changed, rep.unused, rep.imported), (0, 0, 0, 0), "{:?}", rep.errors);
+}
+
+#[test]
+fn flutter_arb_import_and_build() {
+    let tmp = tempfile::tempdir().unwrap();
+    let l10n = tmp.path().join("lib").join("l10n");
+    std::fs::create_dir_all(&l10n).unwrap();
+    let en = "{\n  \"@@locale\": \"en\",\n  \"title\": \"Wombats\",\n  \"@title\": { \"description\": \"App title\" },\n  \
+              \"count\": \"{n, plural, one{1 wombat} other{{n} wombats}}\",\n  \"@count\": { \"placeholders\": { \"n\": { \"type\": \"int\" } } }\n}\n";
+    std::fs::write(l10n.join("app_en.arb"), en).unwrap();
+    std::fs::write(l10n.join("app_de.arb"), "{\n  \"@@locale\": \"de\",\n  \"title\": \"Wombats (de)\"\n}\n").unwrap();
+    let mut p = susi_core::Project::new();
+    p.path = Some(tmp.path().join("app.slp"));
+    p.add_language("de");
+    p.add_language("pt-BR");
+    let (si, rep) = ops::add_source(&mut p, &l10n.join("app_en.arb"), "en").unwrap();
+    assert_eq!((p.sources[si].class(), p.sources[si].output_pattern().1.as_str()), ("TArbSource", "app_<iso>.<ext>"));
+    assert_eq!((rep.new, rep.imported), (2, 1), "{:?}", rep.errors);
+    let title = p.find_row("title").unwrap();
+    assert_eq!(p.row(&title).unwrap().note(), "App title");
+    let count = p.find_row("count").unwrap();
+    p.row_mut(&count).unwrap().set_translation("pt-BR", "{n, plural, one{1 vombate} other{{n} vombates}}", susi_core::TranslationStatus::Translated);
+    let b = ops::build_project(&p, &[], None);
+    assert!(b.errors.is_empty(), "{:?}", b.errors);
+    let pt = std::fs::read_to_string(l10n.join("app_pt_BR.arb")).unwrap();
+    assert_eq!(pt, "{\n  \"@@locale\": \"pt_BR\",\n  \"count\": \"{n, plural, one{1 vombate} other{{n} vombates}}\"\n}\n");
+    let rep = ops::scan_project(&mut p, None).unwrap();
+    assert_eq!((rep.new, rep.changed, rep.unused, rep.imported), (0, 0, 0, 0), "{:?}", rep.errors);
+}
+
+#[test]
+fn webextension_messages_import_and_build() {
+    let tmp = tempfile::tempdir().unwrap();
+    let locales = tmp.path().join("extension").join("_locales");
+    for d in ["en", "de"] {
+        std::fs::create_dir_all(locales.join(d)).unwrap();
+    }
+    let en = "{\n  \"extName\": { \"message\": \"Tab Saver\", \"description\": \"Name of the extension.\" },\n  \
+              \"greeting\": { \"message\": \"Hello, $USER$!\", \"placeholders\": { \"user\": { \"content\": \"$1\" } } }\n}\n";
+    std::fs::write(locales.join("en").join("messages.json"), en).unwrap();
+    std::fs::write(locales.join("de").join("messages.json"), "{ \"extName\": { \"message\": \"Tab-Sicherer\" } }").unwrap();
+    let mut p = susi_core::Project::new();
+    p.path = Some(tmp.path().join("app.slp"));
+    p.add_language("de");
+    p.add_language("pt-BR");
+    let (si, rep) = ops::add_source(&mut p, &locales.join("en").join("messages.json"), "en").unwrap();
+    assert_eq!((p.sources[si].class(), p.sources[si].output_pattern().1.as_str()), ("TWebExtensionSource", r"<parent>\<iso>\<file>"));
+    assert_eq!((rep.new, rep.imported), (2, 1), "{:?}", rep.errors);
+    let greeting = p.find_row("greeting").unwrap();
+    p.row_mut(&greeting).unwrap().set_translation("pt-BR", "Olá, $USER$!", susi_core::TranslationStatus::Translated);
+    let b = ops::build_project(&p, &[], None);
+    assert!(b.errors.is_empty(), "{:?}", b.errors);
+    let pt: serde_json::Value = serde_json::from_slice(&std::fs::read(locales.join("pt_BR").join("messages.json")).unwrap()).unwrap();
+    assert_eq!(pt, serde_json::json!({ "greeting": { "message": "Olá, $USER$!", "placeholders": { "user": { "content": "$1" } } } }));
+    let rep = ops::scan_project(&mut p, None).unwrap();
+    assert_eq!((rep.new, rep.changed, rep.unused, rep.imported), (0, 0, 0, 0), "{:?}", rep.errors);
+}
+
+#[test]
+fn qt_ts_import_build_and_numerus_forms() {
+    use susi_core::TranslationStatus::{BestGuess, Translated};
+    let tmp = tempfile::tempdir().unwrap();
+    let i18n = tmp.path().join("i18n");
+    std::fs::create_dir_all(&i18n).unwrap();
+    let ts = |lang: &str, body: &str| {
+        format!(
+            "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<!DOCTYPE TS>\n<TS version=\"2.1\" language=\"{lang}\">\n<context>\n    <name>Main</name>\n{body}</context>\n</TS>\n"
+        )
+    };
+    let msg = |source: &str, translation: &str| format!("    <message>\n        <source>{source}</source>\n        {translation}\n    </message>\n");
+    let numerus = |forms: &[&str]| {
+        let forms: String = forms.iter().map(|f| format!("            <numerusform>{f}</numerusform>\n")).collect();
+        format!(
+            "    <message numerus=\"yes\">\n        <source>%n file(s)</source>\n        <translation type=\"unfinished\">\n{forms}        </translation>\n    </message>\n"
+        )
+    };
+    // lupdate's files: German partly translated (the plural only as a draft), Polish with the greeting.
+    let de = msg("Hello", "<translation>Hallo</translation>")
+        + &numerus(&["%n Datei", "%n Dateien"])
+        + &msg("Old", "<translation type=\"vanished\">Alt</translation>");
+    std::fs::write(i18n.join("app_de.ts"), ts("de", &de)).unwrap();
+    std::fs::write(i18n.join("app_pl.ts"), ts("pl", &(msg("Hello", "<translation>Cześć</translation>") + &numerus(&["", "", ""])))).unwrap();
+    let mut p = susi_core::Project::new();
+    p.path = Some(tmp.path().join("app.slp"));
+    p.add_language("de");
+    p.add_language("pl");
+    // The German file is the original and its own localized file.
+    let (si, rep) = ops::add_source(&mut p, &i18n.join("app_de.ts"), "en").unwrap();
+    assert_eq!((p.sources[si].class(), p.sources[si].output_pattern().1.as_str()), ("TQtTsSource", "app_<iso>.<ext>"));
+    // Polish needs three numerus forms; German drafts become best guesses.
+    assert_eq!((rep.new, rep.imported), (4, 4), "{:?}", rep.errors);
+    let forms: Vec<_> = (0..3).map(|k| p.find_row(&format!("Main|%n file(s)[{k}]")).unwrap()).collect();
+    assert_eq!(p.row(&forms[0]).unwrap().tstatus("de"), BestGuess);
+    assert_eq!(p.row(&p.find_row("Main|Hello").unwrap()).unwrap().text("pl"), Some("Cześć"));
+    for (r, t) in forms.iter().zip(["%n plik", "%n pliki", "%n plików"]) {
+        p.row_mut(r).unwrap().set_translation("pl", t, Translated);
+    }
+
+    let b = ops::build_project(&p, &[], None);
+    assert!(b.errors.is_empty(), "{:?}", b.errors);
+    let pl = std::fs::read_to_string(i18n.join("app_pl.ts")).unwrap();
+    assert!(
+        pl.contains("<translation>\n            <numerusform>%n plik</numerusform>\n            <numerusform>%n pliki</numerusform>\n            <numerusform>%n plików</numerusform>\n        </translation>"),
+        "{pl}"
+    );
+    assert!(pl.contains("language=\"pl\"") && !pl.contains("Alt"), "{pl}");
+    let de = std::fs::read_to_string(i18n.join("app_de.ts")).unwrap();
+    assert!(de.contains("<translation type=\"vanished\">Alt</translation>") && de.contains("<translation>Hallo</translation>"), "{de}");
+    assert!(
+        de.contains("<translation type=\"unfinished\">\n            <numerusform>%n Datei</numerusform>\n            <numerusform>%n Dateien</numerusform>"),
+        "{de}"
+    );
+    let rep = ops::scan_project(&mut p, None).unwrap();
+    assert_eq!((rep.new, rep.changed, rep.unused, rep.imported), (0, 0, 0, 0), "{:?}", rep.errors);
+}

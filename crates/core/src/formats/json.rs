@@ -63,19 +63,30 @@ fn detect_indent(text: &str) -> String {
 /// Builds a localized JSON file. `resolve(id, original)` returns the text to write, or `None` to
 /// omit the item. `keep_non_strings` copies numbers/booleans/null (write method All).
 pub fn build(original: &[u8], resolve: &dyn Fn(&str, &str) -> Option<String>, keep_non_strings: bool) -> Result<Vec<u8>> {
-    let style = TextStyle::detect(original);
-    let (text, _) = crate::xml::decode_text(original)?;
-    let v: Value = serde_json::from_str(&text).map_err(|e| Error::Json(e.to_string()))?;
+    let (v, text, style) = read(original)?;
     let out = match transform(&v, "", resolve, keep_non_strings, 0)? {
         Some(o) => o,
         None if v.is_array() => Value::Array(Vec::new()),
         None => Value::Object(Map::new()),
     };
-    let indent = detect_indent(&text);
+    write_like(&out, &text, style)
+}
+
+/// Parses a JSON file and returns the value, the decoded text and its line ending/BOM style.
+pub(super) fn read(bytes: &[u8]) -> Result<(Value, String, TextStyle)> {
+    let style = TextStyle::detect(bytes);
+    let (text, _) = crate::xml::decode_text(bytes)?;
+    let v = serde_json::from_str(&text).map_err(|e| Error::Json(e.to_string()))?;
+    Ok((v, text, style))
+}
+
+/// Pretty-prints `v` with the indentation of the original `text` and its `style`.
+pub(super) fn write_like(v: &Value, text: &str, style: TextStyle) -> Result<Vec<u8>> {
+    let indent = detect_indent(text);
     let mut buf = Vec::new();
     let fmt = serde_json::ser::PrettyFormatter::with_indent(indent.as_bytes());
     let mut ser = serde_json::Serializer::with_formatter(&mut buf, fmt);
-    out.serialize(&mut ser).map_err(|e| Error::Json(e.to_string()))?;
+    v.serialize(&mut ser).map_err(|e| Error::Json(e.to_string()))?;
     let s = String::from_utf8(buf).map_err(|e| Error::Json(e.to_string()))?;
     Ok(style.apply(&s))
 }

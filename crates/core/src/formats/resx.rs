@@ -1,8 +1,9 @@
-//! .NET resource files (`.resx`).
+//! .NET resource files (`.resx`) and their UWP/WinUI variant (`.resw`, same schema).
 //!
 //! Localizable items are `<data>` elements without a `type`/`mimetype` (i.e. strings) whose name
 //! does not start with `>>` (designer metadata). Localized files are copies of the original with
-//! the non-string items removed and the string values replaced.
+//! the non-string items removed and the string values replaced. `.resw` files are localized in one
+//! directory per language (`Strings\en-US\Resources.resw` → `Strings\de\Resources.resw`).
 
 use super::ScannedString;
 use crate::error::{Error, Result};
@@ -82,6 +83,28 @@ pub fn build(original: &[u8], resolve: &dyn Fn(&str, &str) -> Option<String>) ->
     Ok(xml::write_document(&doc))
 }
 
+/// Translations of an existing localized file (taken over when the source is added).
+pub fn translations(bytes: &[u8]) -> Result<Vec<(String, String)>> {
+    Ok(scan(bytes)?.into_iter().map(|s| (s.id, s.text)).collect())
+}
+
+/// Whether a source name denotes a UWP/WinUI resource file.
+pub fn is_resw(name: &str) -> bool {
+    name.to_ascii_lowercase().ends_with(".resw")
+}
+
+/// Default pattern of a `.resw`: a sibling language directory when the original lies in one
+/// (`Strings\en-US\Resources.resw` → `<parent>\<net>\<file>`), otherwise a language directory next
+/// to it (`<net>\<file>`).
+pub fn resw_default_pattern(file_name: &str) -> String {
+    let mut parts = file_name.rsplit(['\\', '/']);
+    parts.next();
+    match parts.next() {
+        Some(dir) if crate::lang::is_known(dir) => "<parent>\\<net>\\<file>".into(),
+        _ => "<net>\\<file>".into(),
+    }
+}
+
 /// Removes the indentation text node in front of a dropped element.
 fn drop_trailing_ws(out: &mut Vec<Node>) {
     if let Some(Node::Text(t)) = out.last()
@@ -116,5 +139,15 @@ mod tests {
         assert!(s.contains("text/microsoft-resx"));
         assert!(s.contains("\r\n"));
         assert_eq!(scan(s.as_bytes()).unwrap().len(), 1);
+        assert_eq!(translations(s.as_bytes()).unwrap(), [("Hello".to_string(), "Hallo & willkommen".to_string())]);
+    }
+
+    #[test]
+    fn resw_patterns() {
+        assert!(is_resw("Strings\\en-US\\Resources.resw") && !is_resw("Strings.resx"));
+        assert_eq!(resw_default_pattern("Strings\\en-US\\Resources.resw"), "<parent>\\<net>\\<file>");
+        assert_eq!(resw_default_pattern("App/Strings/en/Resources.resw"), "<parent>\\<net>\\<file>");
+        assert_eq!(resw_default_pattern("Strings\\Resources.resw"), "<net>\\<file>");
+        assert_eq!(resw_default_pattern("Resources.resw"), "<net>\\<file>");
     }
 }

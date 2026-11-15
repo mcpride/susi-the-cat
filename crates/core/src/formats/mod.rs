@@ -1,14 +1,51 @@
 //! File format scanners and builders.
 
 pub mod android;
+pub mod arb;
 pub mod json;
 pub mod mo;
 pub mod po;
 pub mod properties;
 pub mod resx;
+pub mod ts;
 pub mod tsv;
+pub mod webext;
+
+use std::path::Path;
 
 use crate::model::{Row, WriteMethod};
+
+/// Whether `s` reads as a locale: a known language id (`de`, `pt_BR`) or a known language with
+/// region/script subtags (`de_DE`, `zh_Hant_TW`, `es_419`).
+fn looks_like_locale(s: &str) -> bool {
+    if crate::lang::is_known(s) {
+        return true;
+    }
+    let mut parts = s.split(['_', '-']);
+    let primary = parts.next().unwrap_or("");
+    let subtags: Vec<&str> = parts.collect();
+    let subtag = |p: &&str| match p.len() {
+        2 | 4 => p.chars().all(|c| c.is_ascii_alphabetic()),
+        3 => p.chars().all(|c| c.is_ascii_digit()),
+        _ => false,
+    };
+    matches!(primary.len(), 2 | 3) && crate::lang::is_known(primary) && !subtags.is_empty() && subtags.iter().all(subtag)
+}
+
+/// Default pattern of files named after their locale (Flutter ARB, Qt TS): the locale of the
+/// original is replaced (`app_en.arb` → `app_<iso>.<ext>`, `app_de_DE.ts` → `app_<iso>.<ext>`,
+/// `en.arb` → `<iso>.<ext>`), otherwise appended (`<body>_<iso>.<ext>`).
+pub fn locale_suffix_pattern(file_name: &str) -> String {
+    let base = file_name.rsplit(['\\', '/']).next().unwrap_or(file_name);
+    let stem = Path::new(base).file_stem().and_then(|s| s.to_str()).unwrap_or("");
+    if looks_like_locale(stem) {
+        return "<iso>.<ext>".into();
+    }
+    stem.match_indices('_')
+        .map(|(i, _)| i)
+        .find(|&i| looks_like_locale(&stem[i + 1..]))
+        .map_or_else(|| "<body>_<iso>.<ext>".to_string(), |i| format!("{}_<iso>.<ext>", &stem[..i]))
+}
 
 /// A localizable string found in an original file.
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -61,5 +98,22 @@ impl TextStyle {
         }
         out.extend_from_slice(s.as_bytes());
         out
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn locale_suffix_patterns() {
+        assert_eq!(locale_suffix_pattern("lib\\l10n\\app_en.arb"), "app_<iso>.<ext>");
+        assert_eq!(locale_suffix_pattern("intl_pt_BR.arb"), "intl_<iso>.<ext>");
+        assert_eq!(locale_suffix_pattern("i18n/myapp_de_DE.ts"), "myapp_<iso>.<ext>");
+        assert_eq!(locale_suffix_pattern("app_ui_zh_Hant_TW.ts"), "app_ui_<iso>.<ext>");
+        assert_eq!(locale_suffix_pattern("l10n/en.arb"), "<iso>.<ext>");
+        assert_eq!(locale_suffix_pattern("es_419.ts"), "<iso>.<ext>");
+        assert_eq!(locale_suffix_pattern("strings.arb"), "<body>_<iso>.<ext>");
+        assert_eq!(locale_suffix_pattern("app_core.ts"), "<body>_<iso>.<ext>");
     }
 }

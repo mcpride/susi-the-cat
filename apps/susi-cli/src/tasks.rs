@@ -295,12 +295,15 @@ fn add(t: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), String> {
     let kind = match t.value("type").map(str::to_ascii_lowercase).as_deref() {
         None => None,
         Some("json") => Some(SourceKind::Json),
-        Some("resx" | "net" | "nettxt") => Some(SourceKind::Resx),
+        Some("resx" | "resw" | "net" | "nettxt") => Some(SourceKind::Resx),
         Some("po" | "pot" | "gettext") => Some(SourceKind::Po),
         Some("tsv") => Some(SourceKind::Tsv),
         Some("properties" | "java") => Some(SourceKind::Properties),
         Some("android" | "xml") => Some(SourceKind::Android),
-        Some(x) => return Err(tf!("Source type '{kind}' is not supported (json, resx, po, tsv, properties, android)", kind = x)),
+        Some("arb" | "flutter") => Some(SourceKind::Arb),
+        Some("webext" | "webextension") => Some(SourceKind::WebExtension),
+        Some("ts" | "qt") => Some(SourceKind::QtTs),
+        Some(x) => return Err(tf!("Source type '{kind}' is not supported (json, resx, po, tsv, properties, android, arb, webext, ts)", kind = x)),
     };
     if st.project.is_none() && !st.path.exists() {
         let mut p = Project::new();
