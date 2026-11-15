@@ -310,3 +310,94 @@ fn android_keeps_legacy_resource_directories() {
     assert!(res.join("values-zh-rCN").join("strings.xml").is_file());
     assert!(!res.join("values-b+pt+BR").exists());
 }
+
+#[test]
+fn resw_language_directories_import_and_build() {
+    let tmp = tempfile::tempdir().unwrap();
+    let strings = tmp.path().join("App").join("Strings");
+    for d in ["en-US", "de"] {
+        std::fs::create_dir_all(strings.join(d)).unwrap();
+    }
+    let resw = |data: &str| format!("<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<root>\r\n{data}</root>\r\n");
+    let en = resw(
+        "  <data name=\"Greeting.Text\" xml:space=\"preserve\">\r\n    <value>Hello</value>\r\n    <comment>Main page</comment>\r\n  </data>\r\n  \
+         <data name=\"Quit\" xml:space=\"preserve\">\r\n    <value>Quit</value>\r\n  </data>\r\n",
+    );
+    std::fs::write(strings.join("en-US").join("Resources.resw"), en).unwrap();
+    std::fs::write(strings.join("de").join("Resources.resw"), resw("  <data name=\"Greeting.Text\">\r\n    <value>Hallo</value>\r\n  </data>\r\n")).unwrap();
+    let mut p = susi_core::Project::new();
+    p.path = Some(tmp.path().join("app.slp"));
+    p.add_language("de");
+    p.add_language("pt-BR");
+    let (si, rep) = ops::add_source(&mut p, &strings.join("en-US").join("Resources.resw"), "en-US").unwrap();
+    assert_eq!((p.sources[si].class(), p.sources[si].kind()), ("TNetResourceSource", susi_core::SourceKind::Resx));
+    assert_eq!(p.sources[si].output_pattern().1, r"<parent>\<net>\<file>");
+    // Existing translations are taken over; the localized files are no sources.
+    assert_eq!((rep.new, rep.imported), (2, 1), "{:?}", rep.errors);
+    let quit = p.find_row("Quit").unwrap();
+    p.row_mut(&quit).unwrap().set_translation("pt-BR", "Sair", susi_core::TranslationStatus::Translated);
+    let b = ops::build_project(&p, &[], None);
+    assert!(b.errors.is_empty(), "{:?}", b.errors);
+    let de = std::fs::read_to_string(strings.join("de").join("Resources.resw")).unwrap();
+    assert!(de.contains("<value>Hallo</value>") && !de.contains("Quit"), "{de}");
+    let pt = std::fs::read_to_string(strings.join("pt-BR").join("Resources.resw")).unwrap();
+    assert!(pt.contains("<value>Sair</value>") && pt.contains("\r\n"), "{pt}");
+    let rep = ops::scan_project(&mut p, None).unwrap();
+    assert_eq!((rep.new, rep.changed, rep.unused, rep.imported), (0, 0, 0, 0), "{:?}", rep.errors);
+}
+
+#[test]
+fn flutter_arb_import_and_build() {
+    let tmp = tempfile::tempdir().unwrap();
+    let l10n = tmp.path().join("lib").join("l10n");
+    std::fs::create_dir_all(&l10n).unwrap();
+    let en = "{\n  \"@@locale\": \"en\",\n  \"title\": \"Wombats\",\n  \"@title\": { \"description\": \"App title\" },\n  \
+              \"count\": \"{n, plural, one{1 wombat} other{{n} wombats}}\",\n  \"@count\": { \"placeholders\": { \"n\": { \"type\": \"int\" } } }\n}\n";
+    std::fs::write(l10n.join("app_en.arb"), en).unwrap();
+    std::fs::write(l10n.join("app_de.arb"), "{\n  \"@@locale\": \"de\",\n  \"title\": \"Wombats (de)\"\n}\n").unwrap();
+    let mut p = susi_core::Project::new();
+    p.path = Some(tmp.path().join("app.slp"));
+    p.add_language("de");
+    p.add_language("pt-BR");
+    let (si, rep) = ops::add_source(&mut p, &l10n.join("app_en.arb"), "en").unwrap();
+    assert_eq!((p.sources[si].class(), p.sources[si].output_pattern().1.as_str()), ("TArbSource", "app_<iso>.<ext>"));
+    assert_eq!((rep.new, rep.imported), (2, 1), "{:?}", rep.errors);
+    let title = p.find_row("title").unwrap();
+    assert_eq!(p.row(&title).unwrap().note(), "App title");
+    let count = p.find_row("count").unwrap();
+    p.row_mut(&count).unwrap().set_translation("pt-BR", "{n, plural, one{1 vombate} other{{n} vombates}}", susi_core::TranslationStatus::Translated);
+    let b = ops::build_project(&p, &[], None);
+    assert!(b.errors.is_empty(), "{:?}", b.errors);
+    let pt = std::fs::read_to_string(l10n.join("app_pt_BR.arb")).unwrap();
+    assert_eq!(pt, "{\n  \"@@locale\": \"pt_BR\",\n  \"count\": \"{n, plural, one{1 vombate} other{{n} vombates}}\"\n}\n");
+    let rep = ops::scan_project(&mut p, None).unwrap();
+    assert_eq!((rep.new, rep.changed, rep.unused, rep.imported), (0, 0, 0, 0), "{:?}", rep.errors);
+}
+
+#[test]
+fn webextension_messages_import_and_build() {
+    let tmp = tempfile::tempdir().unwrap();
+    let locales = tmp.path().join("extension").join("_locales");
+    for d in ["en", "de"] {
+        std::fs::create_dir_all(locales.join(d)).unwrap();
+    }
+    let en = "{\n  \"extName\": { \"message\": \"Tab Saver\", \"description\": \"Name of the extension.\" },\n  \
+              \"greeting\": { \"message\": \"Hello, $USER$!\", \"placeholders\": { \"user\": { \"content\": \"$1\" } } }\n}\n";
+    std::fs::write(locales.join("en").join("messages.json"), en).unwrap();
+    std::fs::write(locales.join("de").join("messages.json"), "{ \"extName\": { \"message\": \"Tab-Sicherer\" } }").unwrap();
+    let mut p = susi_core::Project::new();
+    p.path = Some(tmp.path().join("app.slp"));
+    p.add_language("de");
+    p.add_language("pt-BR");
+    let (si, rep) = ops::add_source(&mut p, &locales.join("en").join("messages.json"), "en").unwrap();
+    assert_eq!((p.sources[si].class(), p.sources[si].output_pattern().1.as_str()), ("TWebExtensionSource", r"<parent>\<iso>\<file>"));
+    assert_eq!((rep.new, rep.imported), (2, 1), "{:?}", rep.errors);
+    let greeting = p.find_row("greeting").unwrap();
+    p.row_mut(&greeting).unwrap().set_translation("pt-BR", "Olá, $USER$!", susi_core::TranslationStatus::Translated);
+    let b = ops::build_project(&p, &[], None);
+    assert!(b.errors.is_empty(), "{:?}", b.errors);
+    let pt: serde_json::Value = serde_json::from_slice(&std::fs::read(locales.join("pt_BR").join("messages.json")).unwrap()).unwrap();
+    assert_eq!(pt, serde_json::json!({ "greeting": { "message": "Olá, $USER$!", "placeholders": { "user": { "content": "$1" } } } }));
+    let rep = ops::scan_project(&mut p, None).unwrap();
+    assert_eq!((rep.new, rep.changed, rep.unused, rep.imported), (0, 0, 0, 0), "{:?}", rep.errors);
+}

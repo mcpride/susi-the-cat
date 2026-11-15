@@ -152,6 +152,8 @@ fn node_class(kind: SourceKind) -> &'static str {
         SourceKind::Tsv => "TTsvNode",
         SourceKind::Properties => "TJavaResourceNode",
         SourceKind::Android => "TAndroidValuesGroup",
+        SourceKind::Arb => "TArbNode",
+        SourceKind::WebExtension => "TWebExtensionNode",
         _ => "TJsonNode",
     }
 }
@@ -208,6 +210,8 @@ pub fn scan_file(src: &Source, bytes: &[u8], langs: &[String]) -> Result<Vec<Sca
         SourceKind::Po => formats::po::scan(bytes, &src.po_options()),
         SourceKind::Tsv => formats::tsv::scan(bytes),
         SourceKind::Properties => formats::properties::scan(bytes),
+        SourceKind::Arb => formats::arb::scan(bytes),
+        SourceKind::WebExtension => formats::webext::scan(bytes),
         SourceKind::Other => Err(Error::Unsupported(crate::i18n::t("source type not supported by susi").into())),
     }
 }
@@ -319,6 +323,9 @@ fn scan_source_impl(p: &mut Project, si: usize, import_existing: bool) -> Result
         Some(SourceKind::Tsv) => Some(formats::tsv::translations),
         Some(SourceKind::Properties) if import_existing => Some(formats::properties::translations),
         Some(SourceKind::Android) if import_existing => Some(formats::android::translations),
+        Some(SourceKind::Resx) if import_existing => Some(formats::resx::translations),
+        Some(SourceKind::Arb) if import_existing => Some(formats::arb::translations),
+        Some(SourceKind::WebExtension) if import_existing => Some(formats::webext::translations),
         _ => None,
     };
     let original = p.sources.get(si).map(|s| s.original().to_string()).unwrap_or_default();
@@ -396,9 +403,8 @@ pub fn scan_project(p: &mut Project, sources: Option<&[usize]>) -> Result<ScanRe
 
 /// Adds a new source file (relative paths are stored relative to the project) and scans it.
 pub fn add_source(p: &mut Project, file: &Path, original_lang: &str) -> Result<(usize, ScanReport)> {
-    let name = file.file_name().map(|f| f.to_string_lossy().to_string()).unwrap_or_default();
-    let kind = SourceKind::from_path(Path::new(&name)).ok_or_else(|| {
-        Error::Unsupported(crate::tf!("{file}: only .json, .resx, .po, .pot, .tsv, .properties and .xml are supported", file = file.display()))
+    let kind = SourceKind::from_path(file).ok_or_else(|| {
+        Error::Unsupported(crate::tf!("{file}: only .json, .resx, .resw, .po, .pot, .tsv, .properties, .xml and .arb are supported", file = file.display()))
     })?;
     let base = p.base_dir();
     let abs = if file.is_absolute() { file.to_path_buf() } else { std::env::current_dir().map(|d| d.join(file)).unwrap_or_else(|_| file.to_path_buf()) };
@@ -477,6 +483,8 @@ pub fn build_content(src: &Source, original: &[u8], rows: &HashMap<&str, &Row>, 
         SourceKind::Tsv => formats::tsv::build(original, &resolve),
         SourceKind::Properties => formats::properties::build(original, src.properties_encoding(), &resolve),
         SourceKind::Android => formats::android::build(original, lang, &resolve),
+        SourceKind::Arb => formats::arb::build(original, lang, &resolve),
+        SourceKind::WebExtension => formats::webext::build(original, &resolve),
         SourceKind::Other => Err(Error::Unsupported(crate::i18n::t("source type not supported by susi").into())),
     }
 }

@@ -93,7 +93,7 @@ pub struct LangInput {
 
 #[derive(Debug, Deserialize, JsonSchema)]
 pub struct AddSourceInput {
-    /// Path of a .json, .resx, .po, .pot, .tsv or .properties file, or of an Android values file (res/values/strings.xml).
+    /// Path of a .json, .resx, .resw, .po, .pot, .tsv, .properties or .arb file, an Android values file (res/values/strings.xml) or WebExtension messages (_locales/<lang>/messages.json).
     pub file: String,
     /// Language of the texts in the file (default "en").
     pub original_lang: Option<String>,
@@ -248,7 +248,9 @@ impl SusiServer {
         self.run(|s| s.add_language(&i.lang))
     }
 
-    #[tool(description = "Add a source file (.json, .resx, .po, .pot, .tsv, .properties or Android res/values/*.xml) to the project and scan it.")]
+    #[tool(
+        description = "Add a source file (.json, .resx, .resw, .po, .pot, .tsv, .properties, .arb, Android res/values/*.xml or WebExtension _locales/<lang>/messages.json) to the project and scan it."
+    )]
     fn add_source(&self, Parameters(i): Parameters<AddSourceInput>) -> Result<String, String> {
         self.run(|s| s.add_source(&PathBuf::from(&i.file), i.original_lang.as_deref().unwrap_or("en")))
     }

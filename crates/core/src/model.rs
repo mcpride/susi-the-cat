@@ -79,6 +79,10 @@ pub enum SourceKind {
     Properties,
     /// Android string resources (`res/values/strings.xml`).
     Android,
+    /// Flutter/Dart Application Resource Bundle (`.arb`, Susi extension).
+    Arb,
+    /// Browser extension messages (`_locales/<lang>/messages.json`, Susi extension).
+    WebExtension,
     Other,
 }
 
@@ -91,6 +95,8 @@ impl SourceKind {
             SourceKind::Tsv => "TTsvSource",
             SourceKind::Properties => "TJavaResourceSource",
             SourceKind::Android => "TAndroidValuesSource",
+            SourceKind::Arb => "TArbSource",
+            SourceKind::WebExtension => "TWebExtensionSource",
             SourceKind::Other => "",
         }
     }
@@ -103,16 +109,21 @@ impl SourceKind {
             "TTsvSource" => SourceKind::Tsv,
             "TJavaResourceSource" => SourceKind::Properties,
             "TAndroidValuesSource" => SourceKind::Android,
+            "TArbSource" => SourceKind::Arb,
+            "TWebExtensionSource" => SourceKind::WebExtension,
             _ => SourceKind::Other,
         }
     }
 
-    /// Detects the kind of a file from its extension.
+    /// Detects the kind of a file from its extension (`.resw` is a RESX file) and, for browser
+    /// extension messages, its location `_locales/<lang>/messages.json`.
     pub fn from_path(path: &Path) -> Option<Self> {
         let ext = path.extension()?.to_str()?.to_ascii_lowercase();
         match ext.as_str() {
+            "json" if crate::formats::webext::is_messages_file(path) => Some(SourceKind::WebExtension),
             "json" => Some(SourceKind::Json),
-            "resx" => Some(SourceKind::Resx),
+            "resx" | "resw" => Some(SourceKind::Resx),
+            "arb" => Some(SourceKind::Arb),
             "po" | "pot" => Some(SourceKind::Po),
             "tsv" => Some(SourceKind::Tsv),
             "properties" => Some(SourceKind::Properties),
@@ -129,6 +140,8 @@ impl SourceKind {
             SourceKind::Tsv => "TSV (i18n catalog)",
             SourceKind::Properties => "Java properties",
             SourceKind::Android => "Android strings",
+            SourceKind::Arb => "Flutter ARB",
+            SourceKind::WebExtension => "WebExtension messages",
             SourceKind::Other => crate::i18n::t("Other"),
         }
     }
@@ -269,12 +282,15 @@ impl Source {
     /// Output directory (relative to the source file directory) and localized file pattern.
     pub fn output_pattern(&self) -> (String, String) {
         let default_pattern = match self.kind() {
+            SourceKind::Resx if crate::formats::resx::is_resw(self.name()) => crate::formats::resx::resw_default_pattern(self.name()),
             SourceKind::Resx => "<body>.<net>.<ext>".to_string(),
             // gettext convention: one directory per language; templates (.pot) become .po.
             SourceKind::Po => "<iso>\\<body>.po".to_string(),
             SourceKind::Tsv => crate::formats::tsv::default_pattern(self.name()),
             SourceKind::Properties => crate::formats::properties::default_pattern(self.name()),
             SourceKind::Android => crate::formats::android::default_pattern(self.name()),
+            SourceKind::Arb => crate::formats::arb::default_pattern(self.name()),
+            SourceKind::WebExtension => "<parent>\\<iso>\\<file>".to_string(),
             _ => "<sl>\\<file>".to_string(),
         };
         match self.output_file() {

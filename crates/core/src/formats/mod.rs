@@ -1,12 +1,14 @@
 //! File format scanners and builders.
 
 pub mod android;
+pub mod arb;
 pub mod json;
 pub mod mo;
 pub mod po;
 pub mod properties;
 pub mod resx;
 pub mod tsv;
+pub mod webext;
 
 use crate::model::{Row, WriteMethod};
 

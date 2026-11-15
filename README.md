@@ -14,12 +14,15 @@ The project consists of three parts:
 
 Supported sources are: 
 
-* **.NET RESX** (`.resx`)
+* **.NET RESX** (`.resx`) and **UWP/WinUI resources** (`.resw`, localized to `Strings/<language>/`)
 * **JSON** (i18next/ngx-translate key trees)
 * **PO/gettext** (`.po`/`.pot`, including compilation to `.mo`)
 * **TSV i18n catalogs** (`.tsv`, the format of Susi's own catalogs; not supported by Sisulizer).
 * **Java resource bundles** (`.properties`).
 * **Android string resources** (`res/values/strings.xml`, localized to `res/values-b+<language>/`).
+* **Flutter ARB** (`lib/l10n/app_en.arb`, Application Resource Bundles; not supported by Sisulizer).
+* **WebExtension messages** (`_locales/en/messages.json` of Chrome/Firefox/Edge extensions; not
+  supported by Sisulizer).
 
 ![Susi's graphical user interface in light theme](assets/susi-gui-01.jpg)
 
@@ -253,7 +256,7 @@ susi-cli <tasks> project.slp [-q] [-a] [-w] [-e] [-h]
 
 | Task | SlMake | Description |
 |------|--------|-------------|
-| `add [file]` | – | Add a source (.json/.resx/.po/.pot/.tsv/.properties/Android .xml, wildcards allowed); creates the project if needed. `-type:json\|resx\|po\|tsv\|properties\|android` forces the type |
+| `add [file]` | – | Add a source (.json/.resx/.resw/.po/.pot/.tsv/.properties/Android .xml/.arb/`_locales/<lang>/messages.json`, wildcards allowed); creates the project if needed. `-type:json\|resx\|po\|tsv\|properties\|android\|arb\|webext` checks the type |
 | `scan` | `scan` | Scan sources |
 | `create` (`build`, `make`) | `create` | Create localized files (default task) |
 | `export [file]` | `export` | Export to `.xlsx`, `.csv`, `.txt`, `.xlf`, `.tmx` |
@@ -447,7 +450,10 @@ behind a trait so that GitHub can be added later.
     code in the file name is replaced (`de-core.tsv` → `<iso>-core.<ext>`), otherwise `<iso>\<file>`,
     Java properties `<body>_<iso>.<ext>` (e.g. `Messages_de.properties`, `Messages_pt_BR.properties`),
     Android `<parent>\values-b+<android>\<file>` (e.g. `res\values-b+de\strings.xml`,
-    `res\values-b+pt+BR\strings.xml`).
+    `res\values-b+pt+BR\strings.xml`), RESW `<parent>\<net>\<file>` (e.g.
+    `Strings\de\Resources.resw`), ARB: the language code in the file name is replaced
+    (`app_en.arb` → `app_<iso>.<ext>`), WebExtension messages `<parent>\<iso>\<file>` (e.g.
+    `_locales\pt_BR\messages.json`).
   - Patterns from the project's `<outputfile>` are evaluated: `<dir>`, `<parent>`, `<file>`,
     `<body>`, `<ext>`, `<sl>`, `<iso>`, `<ish>`, `<net>`, `<tag>`, `<win>`, `<lang>`,
     `<android>` (BCP 47 subtags joined by `+`: `de`, `pt+BR`, `zh+Hans`) and `<androidr>` (legacy
@@ -575,9 +581,54 @@ supported.
 
 ---
 
+## UWP/WinUI resources (`.resw`)
+
+`.resw` files have the RESX schema and are handled like RESX (Sisulizer class
+`TNetResourceSource`), but are localized in one directory per language, as UWP and WinUI expect:
+`Strings\en-US\Resources.resw` → `Strings\de\Resources.resw`, `Strings\pt-BR\Resources.resw`
+(pattern `<parent>\<net>\<file>`; an original outside a language directory gets the language
+directories next to it, `<net>\<file>`). Row IDs are the resource names including the property
+(`Greeting.Text`). When a RESX or RESW source is added, translations from existing localized files
+are taken over into empty cells.
+
+---
+
+## Flutter ARB
+
+The template ARB file (usually `lib/l10n/app_en.arb`, `template-arb-file` in `l10n.yaml`) is added
+as a source (`susi-cli add lib\l10n\app_en.arb -lang:de;pt-BR app.slp`) and stored with the class
+`TArbSource` (a Susi extension).
+
+- **Scan**: Every string entry is a row (row ID = key); the `description` of its `@key` metadata
+  becomes the note. Messages are ICU MessageFormat strings: plurals and selects
+  (`{count, plural, one{…} other{…}}`) stay inside one row. `@@` entries are not translated. When
+  the source is added, translations from existing localized files are taken over.
+- **Build**: `app_<iso>.arb` (`app_de.arb`, `app_pt_BR.arb`) with the messages, the `@@` entries
+  and `@@locale` set to the target language; the `@key` metadata stays in the template, where
+  `flutter gen-l10n` reads it. Key order, indentation, BOM and line endings are kept. Omitted
+  messages (write method) fall back to the template.
+
+---
+
+## WebExtension messages
+
+The messages of the default locale of a Chrome/Firefox/Edge extension
+(`_locales/en/messages.json`, see `default_locale` in `manifest.json`) are recognized by their
+location and stored with the class `TWebExtensionSource` (a Susi extension).
+
+- **Scan**: Every entry is a row (row ID = key, text = `message`, note = `description`). The
+  placeholders `$NAME$` are checked by the validation like other placeholders. When the source is
+  added, translations from existing locales are taken over.
+- **Build**: `_locales/<iso>/messages.json` (`de`, `pt_BR`) with the translated `message`;
+  `description` and `placeholders` are copied, since every locale file needs the placeholder
+  definitions of its messages. Omitted messages fall back to the default locale.
+
+---
+
 ## Limitations
 
-- Sources: RESX, JSON, PO, TSV, Java properties and Android string resources. Other Sisulizer source types are preserved in the project but are
+- Sources: RESX/RESW, JSON, PO, TSV, Java properties, Android string resources, Flutter ARB and
+  WebExtension messages. Other Sisulizer source types are preserved in the project but are
   neither scanned nor built.
 - No Sisulizer exchange packages (`.sle`/`.slz`) and no merging of projects.
 - No machine translation services. The MCP interface takes over this role.
