@@ -87,8 +87,12 @@ fn validation(app: &mut SusiApp, ui: &mut Ui) {
         }
     });
     if let Some((r, l)) = clicked {
+        // Issues of the original carry the original language, which may be no project language.
+        let is_lang = app.project.as_ref().is_some_and(|p| p.has_language(&l));
         app.select(r);
-        app.lang = Some(l);
+        if is_lang {
+            app.lang = Some(l);
+        }
     }
 }
 

@@ -66,6 +66,7 @@ write method	All	Alle
 	Translation consists of spaces only	Übersetzung besteht nur aus Leerzeichen
 	Invalid number of hotkeys	Ungültige Anzahl von Tastenkürzeln
 	Duplicate translation	Doppelte Übersetzung
+	Invalid control characters	Ungültige Steuerzeichen
 	The translation contains only spaces.	Die Übersetzung enthält nur Leerzeichen.
 	Placeholders in the original {a}, in the translation {b}.	Platzhalter im Original {a}, in der Übersetzung {b}.
 	Tags in the original {a}, in the translation {b}.	Tags im Original {a}, in der Übersetzung {b}.
@@ -74,6 +75,9 @@ write method	All	Alle
 	The original ends with '{c}', the translation does not.	Das Original endet mit '{c}', die Übersetzung nicht.
 	The translation has {n} characters, {max} are allowed.	Die Übersetzung hat {n} Zeichen, erlaubt sind {max}.
 	Hotkeys (&): original {a}, translation {b}.	Tastenkürzel (&): Original {a}, Übersetzung {b}.
+	The original contains control characters: {chars}.	Das Original enthält Steuerzeichen: {chars}.
+	The translation contains control characters: {chars}.	Die Übersetzung enthält Steuerzeichen: {chars}.
+	{name} at position {pos}	{name} an Position {pos}
 	Not translated.	Nicht übersetzt.
 	"{original}" has been translated differently: {list}	„{original}“ wurde unterschiedlich übersetzt: {list}
 # Statistics

@@ -24,6 +24,7 @@ pub enum ValidationKind {
     AllSpaces,
     HotkeyCount,
     DuplicateTranslation,
+    ControlCharacters,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Serialize)]
@@ -34,7 +35,7 @@ pub enum Severity {
 }
 
 impl ValidationKind {
-    pub const ALL: [ValidationKind; 13] = [
+    pub const ALL: [ValidationKind; 14] = [
         Self::MissingTranslation,
         Self::Format,
         Self::Tags,
@@ -48,6 +49,7 @@ impl ValidationKind {
         Self::AllSpaces,
         Self::HotkeyCount,
         Self::DuplicateTranslation,
+        Self::ControlCharacters,
     ];
 
     /// Label in the current UI language (validation names).
@@ -66,6 +68,7 @@ impl ValidationKind {
             Self::AllSpaces => t("Translation consists of spaces only"),
             Self::HotkeyCount => t("Invalid number of hotkeys"),
             Self::DuplicateTranslation => t("Duplicate translation"),
+            Self::ControlCharacters => t("Invalid control characters"),
         }
     }
 
@@ -84,6 +87,7 @@ impl ValidationKind {
             Self::AllSpaces => "allspaces",
             Self::HotkeyCount => "hotkey",
             Self::DuplicateTranslation => "duplicate",
+            Self::ControlCharacters => "control",
         }
     }
 
@@ -93,7 +97,7 @@ impl ValidationKind {
 
     pub fn severity(self) -> Severity {
         match self {
-            Self::Format | Self::Tags | Self::CharacterLength | Self::AllSpaces => Severity::Error,
+            Self::Format | Self::Tags | Self::CharacterLength | Self::AllSpaces | Self::ControlCharacters => Severity::Error,
             _ => Severity::Warning,
         }
     }
@@ -213,6 +217,44 @@ fn hotkeys(s: &str) -> usize {
     n
 }
 
+/// Abbreviations of the ASCII control characters U+0000–U+001F.
+const C0_NAMES: [&str; 32] = [
+    "NUL", "SOH", "STX", "ETX", "EOT", "ENQ", "ACK", "BEL", "BS", "HT", "LF", "VT", "FF", "CR", "SO", "SI", "DLE", "DC1", "DC2", "DC3", "DC4", "NAK", "SYN",
+    "ETB", "CAN", "EM", "SUB", "ESC", "FS", "GS", "RS", "US",
+];
+
+/// Control characters (Unicode category Cc: ASCII U+0000–U+001F, DEL U+007F and C1 U+0080–U+009F)
+/// except tab and line breaks, as `(1-based character position, character)`. They have no meaning
+/// in UI texts and usually slip in through broken imports or encodings.
+pub fn control_chars(s: &str) -> Vec<(usize, char)> {
+    s.chars().enumerate().filter(|(_, c)| c.is_control() && !matches!(c, '\t' | '\n' | '\r')).map(|(i, c)| (i + 1, c)).collect()
+}
+
+/// `DEL (U+007F)`, `NUL (U+0000)`; C1 characters as plain `U+0085`.
+fn control_char_name(c: char) -> String {
+    let code = c as u32;
+    match code {
+        0..=0x1F => format!("{} (U+{code:04X})", C0_NAMES[code as usize]),
+        0x7F => "DEL (U+007F)".into(),
+        _ => format!("U+{code:04X}"),
+    }
+}
+
+/// Lists the control characters of `s` (the first five) with their positions; `None` without any.
+fn control_char_list(s: &str) -> Option<String> {
+    const MAX: usize = 5;
+    let found = control_chars(s);
+    if found.is_empty() {
+        return None;
+    }
+    let mut list: Vec<String> =
+        found.iter().take(MAX).map(|(pos, c)| crate::tf!("{name} at position {pos}", name = control_char_name(*c), pos = pos)).collect();
+    if found.len() > MAX {
+        list.push("…".into());
+    }
+    Some(list.join(", "))
+}
+
 /// End punctuation equivalents (incl. full-width, Arabic, Greek/Spanish forms).
 fn ends_with_any(s: &str, set: &[char]) -> bool {
     s.trim_end().chars().last().is_some_and(|c| set.contains(&c))
@@ -277,6 +319,11 @@ fn check_pair(orig: &str, tr: &str, max_chars: usize, kinds: &[ValidationKind]) 
             out.push((ValidationKind::HotkeyCount, crate::tf!("Hotkeys (&): original {a}, translation {b}.", a = a, b = b)));
         }
     }
+    if on(ValidationKind::ControlCharacters)
+        && let Some(chars) = control_char_list(tr)
+    {
+        out.push((ValidationKind::ControlCharacters, crate::tf!("The translation contains control characters: {chars}.", chars = chars)));
+    }
     out
 }
 
@@ -307,6 +354,12 @@ pub fn validate(p: &Project, opts: &ValidateOptions, rows: Option<&[RowRef]>) ->
                 message,
             });
         };
+        // The original is shared by all languages: reported once, under the original language.
+        if kinds.contains(&ValidationKind::ControlCharacters)
+            && let Some(chars) = control_char_list(row.original())
+        {
+            push(&mut issues, orig_lang, ValidationKind::ControlCharacters, crate::tf!("The original contains control characters: {chars}.", chars = chars));
+        }
         for l in langs.iter().filter(|l| l.as_str() != orig_lang) {
             if p.languages.iter().any(|x| x.id() == l && x.is_pseudo()) {
                 continue;
@@ -366,5 +419,40 @@ mod tests {
         assert_eq!(k("<b>x</b>", "x"), vec![ValidationKind::Tags]);
         assert_eq!(k("&File", "Datei"), vec![ValidationKind::HotkeyCount]);
         assert_eq!(check_pair("abc", "abcd", 3, &all)[0].0, ValidationKind::CharacterLength);
+        assert_eq!(k("Save", "Speichern\u{7F}"), vec![ValidationKind::ControlCharacters]);
+    }
+
+    #[test]
+    fn control_characters() {
+        // Tab and line breaks are legitimate; DEL, the other C0 characters and C1 are not.
+        assert!(control_chars("a\tb\r\nc\n").is_empty());
+        assert_eq!(control_chars("Öffnen\u{7F}"), vec![(7, '\u{7F}')]);
+        assert_eq!(control_chars("\0a\u{1B}b\u{85}"), vec![(1, '\0'), (3, '\u{1B}'), (5, '\u{85}')]);
+        assert_eq!(control_char_list("ab\u{7F}").as_deref(), Some("DEL (U+007F) at position 3"));
+        assert_eq!(control_char_list("\u{0}\u{85}").as_deref(), Some("NUL (U+0000) at position 1, U+0085 at position 2"));
+        assert!(control_char_list(&"\u{7F}".repeat(7)).unwrap().ends_with("at position 5, …"));
+        assert_eq!(control_char_list("plain"), None);
+    }
+
+    #[test]
+    fn control_characters_in_original_and_translation() {
+        let slp = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<document>\n  <lang id=\"de\"/>\n  <lang id=\"en\"/>\n  \
+                   <source class=\"TJsonSource\" name=\"a.json\" original=\"en\">\n    <node class=\"TJsonNode\" name=\"a.json\">\n      \
+                   <row id=\"OPEN\"><native>Open\u{7F}</native><lang id=\"de\" status=\"3\">Öffnen\u{7F}</lang></row>\n      \
+                   <row id=\"SAVE\"><native>Save</native><lang id=\"de\" status=\"3\">Speichern</lang></row>\n    </node>\n  </source>\n</document>\n";
+        let p = crate::slp::parse(slp.as_bytes()).unwrap();
+        let issues = validate(&p, &ValidateOptions::default(), None);
+        let found: Vec<(&str, &str, ValidationKind, Severity)> = issues.iter().map(|i| (i.context.as_str(), i.lang.as_str(), i.kind, i.severity)).collect();
+        assert_eq!(
+            found,
+            vec![
+                ("a.json/OPEN", "en", ValidationKind::ControlCharacters, Severity::Error),
+                ("a.json/OPEN", "de", ValidationKind::ControlCharacters, Severity::Error)
+            ]
+        );
+        assert!(issues[0].message.contains("DEL (U+007F) at position 5"), "{}", issues[0].message);
+        let only_format = ValidateOptions { kinds: vec![ValidationKind::Format], ..Default::default() };
+        assert!(validate(&p, &only_format, None).is_empty());
+        assert_eq!(ValidationKind::from_keyword("control"), Some(ValidationKind::ControlCharacters));
     }
 }
