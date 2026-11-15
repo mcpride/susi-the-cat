@@ -9,6 +9,7 @@ use std::time::Duration;
 use egui::{Color32, RichText};
 use susi_core::i18n::{t, trn};
 use susi_core::tf;
+use susi_workflow::forge::{Provider, published_message};
 use susi_workflow::{FetchOptions, FetchReport, PublishOptions, PublishReport, SaveOptions, SaveReport, State, Status, StatusOptions, User, Workflow};
 
 use crate::actions::Action;
@@ -109,12 +110,16 @@ pub struct PublishDialog {
     pub save: Option<SaveOptions>,
     pub build: bool,
     pub branches: Vec<String>,
+    /// GitHub (pull requests) instead of GitLab (merge requests).
+    pub github: bool,
 }
 
 pub struct TokenDialog {
     pub server: String,
     pub token: String,
     pub has_token: bool,
+    /// GitHub token instructions instead of GitLab ones.
+    pub github: bool,
 }
 
 /// Prefix choices of "Save changes" in plain language: (prefix, label).
@@ -257,8 +262,9 @@ fn finish(app: &mut SusiApp, outcome: Outcome) {
                 saved(app, s);
             }
             let mr = &r.merge_request;
-            let msg = if r.created { t("Merge request created:") } else { t("Merge request updated:") };
-            app.info(format!("{msg} !{} {} ({})", mr.iid, mr.title, mr.url));
+            let provider = status(app).and_then(|s| s.provider);
+            let reference = provider.unwrap_or(Provider::GitLab).reference(mr.iid);
+            app.info(format!("{} {reference} {} ({})", published_message(provider, r.created), mr.title, mr.url));
             refresh(app, true);
         }
         Outcome::Users(Ok(users)) => {
@@ -434,6 +440,7 @@ fn open_publish(app: &mut SusiApp) {
         save,
         build: wf.config().save.build,
         branches,
+        github: wf.provider() == Some(Provider::GitHub),
     }));
     if app.workflow.as_ref().is_some_and(|w| w.users.is_empty()) {
         start(app, t("Loading reviewers…"), true, |wf| Outcome::Users(wf.forge().and_then(|f| wf.reviewer_candidates(f.as_ref())).map_err(err)));
@@ -448,7 +455,14 @@ fn open_token(app: &mut SusiApp) {
         Ok((url, project)) => format!("{url} ({project})"),
         Err(e) => e.to_string(),
     };
-    app.dialog = Some(Dialog::WorkflowToken(TokenDialog { server, token: String::new(), has_token: wf.has_token() }));
+    let github = wf.provider() == Some(Provider::GitHub);
+    app.dialog = Some(Dialog::WorkflowToken(TokenDialog { server, token: String::new(), has_token: wf.has_token(), github }));
+}
+
+/// Whether the server is GitHub (pull requests); from the last known state, so that drawing the
+/// menus does not run git.
+fn github(app: &SusiApp) -> bool {
+    status(app).is_some_and(|s| s.provider == Some(Provider::GitHub))
 }
 
 fn busy(app: &SusiApp) -> bool {
@@ -474,7 +488,8 @@ pub fn menu(app: &SusiApp, ui: &mut egui::Ui, acts: &mut Vec<Action>) {
         ui.separator();
         item(ui, t("Refresh state"), Command::Refresh, idle);
         let has_mr = status(app).is_some_and(|s| s.merge_request.is_some());
-        item(ui, t("Open merge request in the browser"), Command::OpenRequest, has_mr);
+        let open = if github(app) { t("Open pull request in the browser") } else { t("Open merge request in the browser") };
+        item(ui, open, Command::OpenRequest, has_mr);
         ui.separator();
         item(ui, t("Sign in to the server…"), Command::TokenDialog, idle);
     });
@@ -490,7 +505,12 @@ pub fn toolbar(app: &SusiApp, ui: &mut egui::Ui, acts: &mut Vec<Action>) {
     let buttons = [
         ("📥", t("Get"), t("Get translation project: latest version from the server"), Command::FetchDialog),
         ("📤", t("Save"), t("Save changes on the server"), Command::SaveDialog),
-        ("🚀", t("Publish"), t("Prepare publication: create a merge request for review"), Command::PublishDialog),
+        (
+            "🚀",
+            t("Publish"),
+            if github(app) { t("Prepare publication: create a pull request for review") } else { t("Prepare publication: create a merge request for review") },
+            Command::PublishDialog,
+        ),
     ];
     for (icon, text, hint, c) in buttons {
         if ui.add_enabled(idle, egui::Button::new(format!("{icon} {text}"))).on_hover_text(hint).clicked() {
@@ -513,13 +533,13 @@ pub fn status_bar(app: &SusiApp, ui: &mut egui::Ui, acts: &mut Vec<Action>) {
     if let Some(b) = &s.branch {
         text += &format!(" [{b}]");
     }
-    let mut hint = s.state.hint();
+    let mut hint = s.hint();
     if !s.changed.is_empty() {
         hint += "\n";
         hint += &trn(s.changed.len(), "{n} changed file", "{n} changed files");
     }
     if let Some(mr) = &s.merge_request {
-        hint += &format!("\n!{} {}", mr.iid, mr.title);
+        hint += &format!("\n{} {}", s.reference(mr.iid), mr.title);
     }
     hint += "\n";
     hint += t("Click to refresh (asks the server).");
@@ -677,7 +697,11 @@ fn split_names(s: &str) -> Vec<String> {
 
 pub fn publish_dialog(app: &mut SusiApp, ui: &mut egui::Ui, d: &mut PublishDialog) -> bool {
     ui.heading(t("Prepare publication"));
-    ui.label(t("Creates a merge request: a reviewer checks your changes and adopts them."));
+    ui.label(if d.github {
+        t("Creates a pull request: a reviewer checks your changes and adopts them.")
+    } else {
+        t("Creates a merge request: a reviewer checks your changes and adopts them.")
+    });
     if d.save.is_some() {
         ui.label(t("Your changes are saved on the server first."));
     }
@@ -706,14 +730,18 @@ pub fn publish_dialog(app: &mut SusiApp, ui: &mut egui::Ui, d: &mut PublishDialo
             ui.label(t("Target branch:"));
             branch_combo(ui, "wf-target", &mut d.target, &d.branches);
         });
-        ui.checkbox(&mut d.squash, t("Combine the commits when merging (squash)"));
-        ui.checkbox(&mut d.remove_source_branch, t("Delete the branch after merging"));
+        // GitHub decides both when merging and in the repository settings.
+        if !d.github {
+            ui.checkbox(&mut d.squash, t("Combine the commits when merging (squash)"));
+            ui.checkbox(&mut d.remove_source_branch, t("Delete the branch after merging"));
+        }
         if d.save.is_some() {
             ui.checkbox(&mut d.build, t("Build the localized files first"));
         }
     });
     let ready = !d.title.trim().is_empty() && !busy(app);
-    match ok_cancel(ui, t("Create merge request"), ready) {
+    let create = if d.github { t("Create pull request") } else { t("Create merge request") };
+    match ok_cancel(ui, create, ready) {
         Some(true) => {
             if d.save.is_some() && !save_project(app) {
                 return false;
@@ -737,9 +765,15 @@ pub fn publish_dialog(app: &mut SusiApp, ui: &mut egui::Ui, d: &mut PublishDialo
 pub fn token_dialog(app: &mut SusiApp, ui: &mut egui::Ui, d: &mut TokenDialog) -> bool {
     ui.heading(t("Sign in to the server"));
     ui.label(tf!("Server: {server}", server = d.server));
-    ui.label(t(
-        "Create a personal access token with the scope \"api\" in GitLab (user settings, access tokens) and paste it here. It is stored in the credential manager of the operating system, not in the project.",
-    ));
+    ui.label(if d.github {
+        t(
+            "Create a fine-grained personal access token in GitHub (Settings, Developer settings, Personal access tokens) for this repository with the repository permissions \"Contents\" and \"Pull requests\" (read and write) and paste it here. It is stored in the credential manager of the operating system, not in the project.",
+        )
+    } else {
+        t(
+            "Create a personal access token with the scope \"api\" in GitLab (user settings, access tokens) and paste it here. It is stored in the credential manager of the operating system, not in the project.",
+        )
+    });
     ui.horizontal(|ui| {
         ui.label(t("Access token:"));
         ui.add(egui::TextEdit::singleline(&mut d.token).password(true).desired_width(300.0));

@@ -4,6 +4,7 @@ use std::io::BufRead;
 
 use susi_core::i18n::{t, trn};
 use susi_core::{ops, slp, tf};
+use susi_workflow::forge::{Provider, published_message};
 use susi_workflow::{FetchOptions, Status, StatusOptions, Workflow};
 
 use crate::args::TaskArgs;
@@ -60,7 +61,8 @@ pub fn run(a: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), Strin
 
 fn print_status(s: &Status, o: &mut Output<'_>) {
     o.info(tf!("State: {state}", state = s.state.label()));
-    o.info(s.state.hint());
+    o.info(s.hint());
+    let github = s.provider == Some(Provider::GitHub);
     o.info(tf!("Branch: {branch} (default branch: {default})", branch = s.branch.as_deref().unwrap_or("-"), default = s.default_branch));
     if !s.changed.is_empty() {
         o.info(trn(s.changed.len(), "{n} changed file:", "{n} changed files:"));
@@ -72,10 +74,20 @@ fn print_status(s: &Status, o: &mut Output<'_>) {
         o.info(trn(s.unpushed, "{n} commit not yet on the server", "{n} commits not yet on the server"));
     }
     if let Some(mr) = &s.merge_request {
-        o.info(tf!("Merge request: !{iid} {title} ({url})", iid = mr.iid, title = mr.title, url = mr.url));
+        let reference = s.reference(mr.iid);
+        o.info(if github {
+            tf!("Pull request: {reference} {title} ({url})", reference = reference, title = mr.title, url = mr.url)
+        } else {
+            tf!("Merge request: {reference} {title} ({url})", reference = reference, title = mr.title, url = mr.url)
+        });
     }
     for mr in &s.other_requests {
-        o.note(tf!("Other open translation merge request: !{iid} {title} ({branch})", iid = mr.iid, title = mr.title, branch = mr.source_branch));
+        let reference = s.reference(mr.iid);
+        o.note(if github {
+            tf!("Other open translation pull request: {reference} {title} ({branch})", reference = reference, title = mr.title, branch = mr.source_branch)
+        } else {
+            tf!("Other open translation merge request: {reference} {title} ({branch})", reference = reference, title = mr.title, branch = mr.source_branch)
+        });
     }
     for w in &s.warnings {
         o.warn(w);
@@ -167,8 +179,9 @@ fn publish(a: &TaskArgs, wf: &Workflow, o: &mut Output<'_>) -> Result<(), String
     let forge = wf.forge().map_err(|e| e.to_string())?;
     let r = wf.publish(forge.as_ref(), &opts).map_err(|e| e.to_string())?;
     let mr = &r.merge_request;
-    let msg = if r.created { t("Merge request created:") } else { t("Merge request updated:") };
-    o.info(format!("{msg} !{} {} ({})", mr.iid, mr.title, mr.url));
+    let provider = wf.provider();
+    let reference = provider.unwrap_or(Provider::GitLab).reference(mr.iid);
+    o.info(format!("{} {reference} {} ({})", published_message(provider, r.created), mr.title, mr.url));
     Ok(())
 }
 
@@ -180,7 +193,9 @@ fn config(wf: &Workflow, o: &mut Output<'_>) -> Result<(), String> {
     o.info(tf!("Default branch: {branch}", branch = wf.default_branch()));
     if wf.config().has_forge() {
         match wf.forge_location() {
-            Ok((url, project)) => o.info(tf!("Server: {url}, project {project}", url = url, project = project)),
+            Ok((url, project)) => {
+                o.info(tf!("Server: {url} ({provider}), project {project}", url = url, provider = wf.provider().map_or("-", Provider::name), project = project))
+            }
             Err(e) => o.warn(e.to_string()),
         }
         o.info(if wf.has_token() { t("Access token: available") } else { t("Access token: missing (susi-cli workflow login)") });

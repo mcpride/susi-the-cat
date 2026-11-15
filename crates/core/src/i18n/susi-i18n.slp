@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<document created="20261103155355" version="4.0.374" date="20261115134104" scan="13" scanned="20261115134104">
+<document created="20261103155355" version="4.0.374" date="20261115140835" scan="14" scanned="20261115140835">
   <lang id="en"/>
   <lang id="de"/>
-  <source class="TTsvSource" name="de-core.tsv" original="en" date="20261115133958">
+  <source class="TTsvSource" name="de-core.tsv" original="en" date="20261115135338">
     <outputfile dir="." localized="&lt;iso&gt;-core.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-core.tsv" state="0" created="20261103155355">
       <row id="Not translated" state="0" created="20261103155355" note="Status" notereadonly="1">
@@ -399,7 +399,7 @@
       </row>
     </node>
   </source>
-  <source class="TTsvSource" name="de-cli.tsv" original="en" date="20261115131620">
+  <source class="TTsvSource" name="de-cli.tsv" original="en" date="20261115135338">
     <outputfile dir="." localized="&lt;iso&gt;-cli.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-cli.tsv" state="0" created="20261103155355">
       <row id="susi-cli {version} – Susi the CAT (SlMake compatible)" state="0" created="20261103162607" note="Help: general" notereadonly="1">
@@ -932,7 +932,7 @@
       </row>
     </node>
   </source>
-  <source class="TTsvSource" name="de-gui.tsv" original="en" date="20261115131620">
+  <source class="TTsvSource" name="de-gui.tsv" original="en" date="20261115135338">
     <outputfile dir="." localized="&lt;iso&gt;-gui.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-gui.tsv" state="0" created="20261103155355">
       <row id="Information" state="0" created="20261103155355" note="Application, log" notereadonly="1">
@@ -2065,7 +2065,7 @@
       </row>
     </node>
   </source>
-  <source class="TTsvSource" name="de-workflow.tsv" original="en" date="20261114163849">
+  <source class="TTsvSource" name="de-workflow.tsv" original="en" date="20261115140751">
     <outputfile dir="." localized="&lt;iso&gt;-workflow.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-workflow.tsv" state="0" created="20261112175203">
       <row id="A fixed version is checked out. Get the translation project to continue working." state="0" created="20261112175203">
@@ -2168,13 +2168,25 @@
         <native>Create a personal access token with the scope "api" in GitLab (user settings, access tokens) and paste it here. It is stored in the credential manager of the operating system, not in the project.</native>
         <lang id="de" date="20261112175203" status="3">Erstellen Sie in GitLab ein persönliches Zugriffstoken mit dem Bereich „api“ (Benutzereinstellungen, Zugriffstokens) und fügen Sie es hier ein. Es wird in der Anmeldeinformationsverwaltung des Betriebssystems gespeichert, nicht im Projekt.</lang>
       </row>
+      <row id="Create a fine-grained personal access token in GitHub (Settings, Developer settings, Personal access tokens) for this repository with the repository permissions &quot;Contents&quot; and &quot;Pull requests&quot; (read and write) and paste it here. It is stored in the credential manager of the operating system, not in the project." state="0" created="20261115140835">
+        <native>Create a fine-grained personal access token in GitHub (Settings, Developer settings, Personal access tokens) for this repository with the repository permissions "Contents" and "Pull requests" (read and write) and paste it here. It is stored in the credential manager of the operating system, not in the project.</native>
+        <lang id="de" date="20261115140835" status="3">Erstellen Sie in GitHub ein feingranulares persönliches Zugriffstoken (Settings, Developer settings, Personal access tokens) für dieses Repository mit den Repository-Berechtigungen „Contents“ und „Pull requests“ (Lesen und Schreiben) und fügen Sie es hier ein. Es wird in der Anmeldeinformationsverwaltung des Betriebssystems gespeichert, nicht im Projekt.</lang>
+      </row>
       <row id="Create merge request" state="0" created="20261112175203">
         <native>Create merge request</native>
         <lang id="de" date="20261112175203" status="3">Merge Request erstellen</lang>
       </row>
+      <row id="Create pull request" state="0" created="20261115140835">
+        <native>Create pull request</native>
+        <lang id="de" date="20261115140835" status="3">Pull Request erstellen</lang>
+      </row>
       <row id="Creates a merge request: a reviewer checks your changes and adopts them." state="0" created="20261112175203">
         <native>Creates a merge request: a reviewer checks your changes and adopts them.</native>
         <lang id="de" date="20261112175203" status="3">Erstellt einen Merge Request: Ein Prüfer kontrolliert Ihre Änderungen und übernimmt sie.</lang>
+      </row>
+      <row id="Creates a pull request: a reviewer checks your changes and adopts them." state="0" created="20261115140835">
+        <native>Creates a pull request: a reviewer checks your changes and adopts them.</native>
+        <lang id="de" date="20261115140835" status="3">Erstellt einen Pull Request: Ein Prüfer kontrolliert Ihre Änderungen und übernimmt sie.</lang>
       </row>
       <row id="Creates the configuration template .susi/workflow.toml." state="0" created="20261112175203">
         <native>Creates the configuration template .susi/workflow.toml.</native>
@@ -2276,13 +2288,33 @@
         <native>Merge request created:</native>
         <lang id="de" date="20261112175203" status="3">Merge Request erstellt:</lang>
       </row>
+      <row id="Pull request created:" state="0" created="20261115140835">
+        <native>Pull request created:</native>
+        <lang id="de" date="20261115140835" status="3">Pull Request erstellt:</lang>
+      </row>
       <row id="Merge request updated:" state="0" created="20261112175203">
         <native>Merge request updated:</native>
         <lang id="de" date="20261112175203" status="3">Merge Request aktualisiert:</lang>
       </row>
-      <row id="Merge request: !{iid} {title} ({url})" state="0" created="20261112175203">
-        <native>Merge request: !{iid} {title} ({url})</native>
-        <lang id="de" date="20261112175203" status="3">Merge Request: !{iid} {title} ({url})</lang>
+      <row id="Pull request updated:" state="0" created="20261115140835">
+        <native>Pull request updated:</native>
+        <lang id="de" date="20261115140835" status="3">Pull Request aktualisiert:</lang>
+      </row>
+      <row id="{reference} was created, but the reviewers could not be requested: {error}" state="0" created="20261115140835">
+        <native>{reference} was created, but the reviewers could not be requested: {error}</native>
+        <lang id="de" date="20261115140835" status="3">{reference} wurde erstellt, aber die Prüfer konnten nicht angefragt werden: {error}</lang>
+      </row>
+      <row id="{reference} was updated, but the reviewers could not be requested: {error}" state="0" created="20261115140835">
+        <native>{reference} was updated, but the reviewers could not be requested: {error}</native>
+        <lang id="de" date="20261115140835" status="3">{reference} wurde aktualisiert, aber die Prüfer konnten nicht angefragt werden: {error}</lang>
+      </row>
+      <row id="Merge request: {reference} {title} ({url})" state="0" created="20261115140835">
+        <native>Merge request: {reference} {title} ({url})</native>
+        <lang id="de" date="20261115140835" status="3">Merge Request: {reference} {title} ({url})</lang>
+      </row>
+      <row id="Pull request: {reference} {title} ({url})" state="0" created="20261115140835">
+        <native>Pull request: {reference} {title} ({url})</native>
+        <lang id="de" date="20261115140835" status="3">Pull Request: {reference} {title} ({url})</lang>
       </row>
       <row id="Never put access tokens into configuration files; susi only stores references to them." state="0" created="20261112175203">
         <native>Never put access tokens into configuration files; susi only stores references to them.</native>
@@ -2312,9 +2344,9 @@
         <native>No prefix</native>
         <lang id="de" date="20261112175203" status="3">Kein Präfix</lang>
       </row>
-      <row id="No server is configured for merge requests (forge.provider = &quot;none&quot;)." state="0" created="20261112175203">
-        <native>No server is configured for merge requests (forge.provider = "none").</native>
-        <lang id="de" date="20261112175203" status="3">Für Merge Requests ist kein Server konfiguriert (forge.provider = "none").</lang>
+      <row id="No server is configured for merge or pull requests (forge.provider = &quot;none&quot;)." state="0" created="20261115140835">
+        <native>No server is configured for merge or pull requests (forge.provider = "none").</native>
+        <lang id="de" date="20261115140835" status="3">Für Merge oder Pull Requests ist kein Server konfiguriert (forge.provider = "none").</lang>
       </row>
       <row id="Not all changes are saved on the server yet: save the changes first." state="0" created="20261112175203">
         <native>Not all changes are saved on the server yet: save the changes first.</native>
@@ -2324,9 +2356,17 @@
         <native>Open merge request in the browser</native>
         <lang id="de" date="20261112175203" status="3">Merge Request im Browser öffnen</lang>
       </row>
-      <row id="Other open translation merge request: !{iid} {title} ({branch})" state="0" created="20261112175203">
-        <native>Other open translation merge request: !{iid} {title} ({branch})</native>
-        <lang id="de" date="20261112175203" status="3">Weiterer offener Übersetzungs-Merge-Request: !{iid} {title} ({branch})</lang>
+      <row id="Open pull request in the browser" state="0" created="20261115140835">
+        <native>Open pull request in the browser</native>
+        <lang id="de" date="20261115140835" status="3">Pull Request im Browser öffnen</lang>
+      </row>
+      <row id="Other open translation merge request: {reference} {title} ({branch})" state="0" created="20261115140835">
+        <native>Other open translation merge request: {reference} {title} ({branch})</native>
+        <lang id="de" date="20261115140835" status="3">Weiterer offener Übersetzungs-Merge-Request: {reference} {title} ({branch})</lang>
+      </row>
+      <row id="Other open translation pull request: {reference} {title} ({branch})" state="0" created="20261115140835">
+        <native>Other open translation pull request: {reference} {title} ({branch})</native>
+        <lang id="de" date="20261115140835" status="3">Weiterer offener Übersetzungs-Pull-Request: {reference} {title} ({branch})</lang>
       </row>
       <row id="Please wait until the current git action has finished." state="0" created="20261112175203">
         <native>Please wait until the current git action has finished.</native>
@@ -2340,9 +2380,13 @@
         <native>Prepare publication: create a merge request for review</native>
         <lang id="de" date="20261112175203" status="3">Veröffentlichung vorbereiten: Merge Request zur Prüfung erstellen</lang>
       </row>
-      <row id="Prepare publication: creates or updates the merge request." state="0" created="20261112175203">
-        <native>Prepare publication: creates or updates the merge request.</native>
-        <lang id="de" date="20261112175203" status="3">Veröffentlichung vorbereiten: erstellt oder aktualisiert den Merge Request.</lang>
+      <row id="Prepare publication: create a pull request for review" state="0" created="20261115140835">
+        <native>Prepare publication: create a pull request for review</native>
+        <lang id="de" date="20261115140835" status="3">Veröffentlichung vorbereiten: Pull Request zur Prüfung erstellen</lang>
+      </row>
+      <row id="Prepare publication: creates or updates the merge request (GitLab)\nor pull request (GitHub)." state="0" created="20261115140835">
+        <native>Prepare publication: creates or updates the merge request (GitLab)#lor pull request (GitHub).</native>
+        <lang id="de" date="20261115140835" status="3">Veröffentlichung vorbereiten: erstellt oder aktualisiert den Merge Request (GitLab)#loder Pull Request (GitHub).</lang>
       </row>
       <row id="Prepare publication…" state="0" created="20261112175203">
         <native>Prepare publication…</native>
@@ -2355,6 +2399,10 @@
       <row id="Project not found - check forge.url and forge.project in the workflow configuration." state="0" created="20261112175203">
         <native>Project not found - check forge.url and forge.project in the workflow configuration.</native>
         <lang id="de" date="20261112175203" status="3">Projekt nicht gefunden – prüfen Sie forge.url und forge.project in der Workflow-Konfiguration.</lang>
+      </row>
+      <row id="Repository not found or not accessible with the access token - check forge.url and forge.project in the workflow configuration and the repositories the token may access." state="0" created="20261115140835">
+        <native>Repository not found or not accessible with the access token - check forge.url and forge.project in the workflow configuration and the repositories the token may access.</native>
+        <lang id="de" date="20261115140835" status="3">Repository nicht gefunden oder mit dem Zugriffstoken nicht erreichbar – prüfen Sie forge.url und forge.project in der Workflow-Konfiguration und die Repositorys, auf die das Token zugreifen darf.</lang>
       </row>
       <row id="Publish" state="0" created="20261112175203">
         <native>Publish</native>
@@ -2424,9 +2472,9 @@
         <native>Server: {server}</native>
         <lang id="de" date="20261112175203" status="3">Server: {server}</lang>
       </row>
-      <row id="Server: {url}, project {project}" state="0" created="20261112175203">
-        <native>Server: {url}, project {project}</native>
-        <lang id="de" date="20261112175203" status="3">Server: {url}, Projekt {project}</lang>
+      <row id="Server: {url} ({provider}), project {project}" state="0" created="20261115140835">
+        <native>Server: {url} ({provider}), project {project}</native>
+        <lang id="de" date="20261115140835" status="3">Server: {url} ({provider}), Projekt {project}</lang>
       </row>
       <row id="Shows the effective configuration." state="0" created="20261112175203">
         <native>Shows the effective configuration.</native>
@@ -2480,9 +2528,25 @@
         <native>The access token has no permission for this action (scope "api" and at least the role Developer are required).</native>
         <lang id="de" date="20261112175203" status="3">Das Zugriffstoken hat keine Berechtigung für diese Aktion (benötigt werden der Bereich "api" und mindestens die Rolle Developer).</lang>
       </row>
+      <row id="The access token has no permission for this action (repository permissions &quot;Contents&quot; and &quot;Pull requests&quot;: read and write)." state="0" created="20261115140835">
+        <native>The access token has no permission for this action (repository permissions "Contents" and "Pull requests": read and write).</native>
+        <lang id="de" date="20261115140835" status="3">Das Zugriffstoken hat keine Berechtigung für diese Aktion (Repository-Berechtigungen "Contents" und "Pull requests": Lesen und Schreiben).</lang>
+      </row>
       <row id="The access token is missing, invalid or expired. Store a token with the scope &quot;api&quot; (Workflow &gt; Sign in to the server…) or set {env}." state="0" created="20261112175203">
         <native>The access token is missing, invalid or expired. Store a token with the scope "api" (Workflow &gt; Sign in to the server…) or set {env}.</native>
         <lang id="de" date="20261112175203" status="3">Das Zugriffstoken fehlt, ist ungültig oder abgelaufen. Speichern Sie ein Token mit dem Bereich "api" (Workflow &gt; Am Server anmelden…) oder setzen Sie {env}.</lang>
+      </row>
+      <row id="The GitHub API rate limit is exceeded; try again later." state="0" created="20261115140835">
+        <native>The GitHub API rate limit is exceeded; try again later.</native>
+        <lang id="de" date="20261115140835" status="3">Das Anfragelimit der GitHub-API ist erschöpft; versuchen Sie es später erneut.</lang>
+      </row>
+      <row id="The access token is not authorized for the organization's single sign-on (SAML SSO): authorize it in the token settings on GitHub." state="0" created="20261115140835">
+        <native>The access token is not authorized for the organization's single sign-on (SAML SSO): authorize it in the token settings on GitHub.</native>
+        <lang id="de" date="20261115140835" status="3">Das Zugriffstoken ist für das Single Sign-on (SAML SSO) der Organisation nicht freigegeben: Geben Sie es in den Token-Einstellungen auf GitHub frei.</lang>
+      </row>
+      <row id="The access token is missing, invalid or expired. Store a fine-grained token with the repository permissions &quot;Contents&quot; and &quot;Pull requests&quot; (read and write) or a classic token with the scope &quot;repo&quot; (Workflow &gt; Sign in to the server…), or set {env}." state="0" created="20261115140835">
+        <native>The access token is missing, invalid or expired. Store a fine-grained token with the repository permissions "Contents" and "Pull requests" (read and write) or a classic token with the scope "repo" (Workflow &gt; Sign in to the server…), or set {env}.</native>
+        <lang id="de" date="20261115140835" status="3">Das Zugriffstoken fehlt, ist ungültig oder abgelaufen. Speichern Sie ein feingranulares Token mit den Repository-Berechtigungen "Contents" und "Pull requests" (Lesen und Schreiben) oder ein klassisches Token mit dem Bereich "repo" (Workflow &gt; Am Server anmelden…) oder setzen Sie {env}.</lang>
       </row>
       <row id="The branch &quot;{branch}&quot; does not exist on the server" state="0" created="20261112175203">
         <native>The branch "{branch}" does not exist on the server</native>
@@ -2507,6 +2571,10 @@
       <row id="The merge request is waiting for review. You can still save further changes." state="0" created="20261112175203">
         <native>The merge request is waiting for review. You can still save further changes.</native>
         <lang id="de" date="20261112175203" status="3">Der Merge Request wartet auf Prüfung. Sie können weiterhin Änderungen zwischenspeichern.</lang>
+      </row>
+      <row id="The pull request is waiting for review. You can still save further changes." state="0" created="20261115140835">
+        <native>The pull request is waiting for review. You can still save further changes.</native>
+        <lang id="de" date="20261115140835" status="3">Der Pull Request wartet auf Prüfung. Sie können weiterhin Änderungen zwischenspeichern.</lang>
       </row>
       <row id="The open project has unsaved changes; it is saved first." state="0" created="20261112175203">
         <native>The open project has unsaved changes; it is saved first.</native>
@@ -2556,9 +2624,9 @@
         <native>Unexpected answer from the server</native>
         <lang id="de" date="20261112175203" status="3">Unerwartete Antwort vom Server</lang>
       </row>
-      <row id="Unknown provider &quot;{provider}&quot; (supported: gitlab, none)" state="0" created="20261112175203">
-        <native>Unknown provider "{provider}" (supported: gitlab, none)</native>
-        <lang id="de" date="20261112175203" status="3">Unbekannter Anbieter "{provider}" (unterstützt: gitlab, none)</lang>
+      <row id="Unknown provider &quot;{provider}&quot; (supported: auto, gitlab, github, none)" state="0" created="20261115140835">
+        <native>Unknown provider "{provider}" (supported: auto, gitlab, github, none)</native>
+        <lang id="de" date="20261115140835" status="3">Unbekannter Anbieter "{provider}" (unterstützt: auto, gitlab, github, none)</lang>
       </row>
       <row id="Unknown workflow action '{action}' (possible: {actions})" state="0" created="20261112175203">
         <native>Unknown workflow action '{action}' (possible: {actions})</native>
@@ -2628,21 +2696,21 @@
         <native>git does not trust the working copy (it belongs to another user). A developer can allow it with: git config --global --add safe.directory "{dir}"</native>
         <lang id="de" date="20261112175203" status="3">git vertraut der Arbeitskopie nicht (sie gehört einem anderen Benutzer). Ein Entwickler kann sie erlauben mit: git config --global --add safe.directory "{dir}"</lang>
       </row>
-      <row id="publish: description of the merge request." state="0" created="20261112175203">
-        <native>publish: description of the merge request.</native>
-        <lang id="de" date="20261112175203" status="3">publish: Beschreibung des Merge Requests.</lang>
+      <row id="publish: description of the merge/pull request." state="0" created="20261115140835">
+        <native>publish: description of the merge/pull request.</native>
+        <lang id="de" date="20261115140835" status="3">publish: Beschreibung des Merge/Pull Requests.</lang>
       </row>
-      <row id="publish: reviewers (usernames, separated by ;)." state="0" created="20261112175203">
-        <native>publish: reviewers (usernames, separated by ;).</native>
-        <lang id="de" date="20261112175203" status="3">publish: Prüfer (Benutzernamen, durch ; getrennt).</lang>
+      <row id="publish: reviewers (usernames, GitHub teams as org/team; separated by ;)." state="0" created="20261115140835">
+        <native>publish: reviewers (usernames, GitHub teams as org/team; separated by ;).</native>
+        <lang id="de" date="20261115140835" status="3">publish: Prüfer (Benutzernamen, GitHub-Teams als org/team; durch ; getrennt).</lang>
       </row>
       <row id="publish: target branch." state="0" created="20261112175203">
         <native>publish: target branch.</native>
         <lang id="de" date="20261112175203" status="3">publish: Zielzweig.</lang>
       </row>
-      <row id="publish: title of the merge request." state="0" created="20261112175203">
-        <native>publish: title of the merge request.</native>
-        <lang id="de" date="20261112175203" status="3">publish: Titel des Merge Requests.</lang>
+      <row id="publish: title of the merge/pull request." state="0" created="20261115140835">
+        <native>publish: title of the merge/pull request.</native>
+        <lang id="de" date="20261115140835" status="3">publish: Titel des Merge/Pull Requests.</lang>
       </row>
       <row id="save: commit message (default: configuration)." state="0" created="20261112175203">
         <native>save: commit message (default: configuration).</native>
@@ -2660,9 +2728,9 @@
         <native>save: skip (or run) the CI pipeline.</native>
         <lang id="de" date="20261112175203" status="3">save: CI-Pipeline überspringen (oder ausführen).</lang>
       </row>
-      <row id="status: run git fetch and query merge requests." state="0" created="20261112175203">
-        <native>status: run git fetch and query merge requests.</native>
-        <lang id="de" date="20261112175203" status="3">status: git fetch ausführen und Merge Requests abfragen.</lang>
+      <row id="status: run git fetch and query merge/pull requests." state="0" created="20261115140835">
+        <native>status: run git fetch and query merge/pull requests.</native>
+        <lang id="de" date="20261115140835" status="3">status: git fetch ausführen und Merge/Pull Requests abfragen.</lang>
       </row>
       <row id="user names, separated by ;" state="0" created="20261112175203">
         <native>user names, separated by ;</native>

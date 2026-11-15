@@ -1,9 +1,54 @@
-//! Server ("forge") abstraction: merge requests and users. GitLab is implemented in [`crate::gitlab`];
-//! GitHub can be added as a further implementation of [`Forge`].
+//! Server ("forge") abstraction: merge requests and users. Implementations: GitLab
+//! ([`crate::gitlab`], merge requests) and GitHub ([`crate::github`], pull requests); the
+//! workflow calls both "merge requests".
 
 use serde::{Deserialize, Serialize};
 
 use crate::Result;
+
+/// Kind of server.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "lowercase")]
+pub enum Provider {
+    GitLab,
+    GitHub,
+}
+
+impl Provider {
+    pub fn name(self) -> &'static str {
+        match self {
+            Provider::GitLab => "GitLab",
+            Provider::GitHub => "GitHub",
+        }
+    }
+
+    /// Server kind of a web address for `provider = "auto"`: GitHub for github.com and GitHub
+    /// Enterprise Cloud (`*.ghe.com`), otherwise GitLab. GitHub Enterprise Server needs
+    /// `provider = "github"`.
+    pub fn detect(url: &str) -> Provider {
+        let host = url.split_once("://").map_or(url, |(_, r)| r).split(['/', ':']).next().unwrap_or("").to_ascii_lowercase();
+        if host == "github.com" || host == "www.github.com" || host.ends_with(".ghe.com") { Provider::GitHub } else { Provider::GitLab }
+    }
+
+    /// How the server writes a request number: `!12` (GitLab), `#12` (GitHub).
+    pub fn reference(self, iid: u64) -> String {
+        match self {
+            Provider::GitLab => format!("!{iid}"),
+            Provider::GitHub => format!("#{iid}"),
+        }
+    }
+}
+
+/// Message after publishing, in the server's terms (merge request, pull request).
+pub fn published_message(provider: Option<Provider>, created: bool) -> &'static str {
+    use susi_core::i18n::t;
+    match (provider == Some(Provider::GitHub), created) {
+        (true, true) => t("Pull request created:"),
+        (true, false) => t("Pull request updated:"),
+        (false, true) => t("Merge request created:"),
+        (false, false) => t("Merge request updated:"),
+    }
+}
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct User {
@@ -114,5 +159,15 @@ mod tests {
         assert_eq!(parse_remote("C:/repos/app.git"), None);
         assert_eq!(parse_remote("/srv/git/app.git"), None);
         assert_eq!(parse_remote("file:///srv/git/app.git"), None);
+        assert_eq!(parse_remote("git@github.com:octo/app.git"), Some(("https://github.com".into(), "octo/app".into())));
+    }
+
+    #[test]
+    fn detects_providers() {
+        assert_eq!(Provider::detect("https://github.com"), Provider::GitHub);
+        assert_eq!(Provider::detect("https://octocorp.ghe.com"), Provider::GitHub);
+        assert_eq!(Provider::detect("https://gitlab.example.com"), Provider::GitLab);
+        assert_eq!(Provider::detect("https://github.example.com:8443"), Provider::GitLab, "Enterprise Server is configured explicitly");
+        assert_eq!((Provider::GitLab.reference(7), Provider::GitHub.reference(7)), ("!7".to_string(), "#7".to_string()));
     }
 }

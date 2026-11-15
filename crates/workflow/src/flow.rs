@@ -9,8 +9,9 @@ use susi_core::i18n::t;
 use susi_core::{Project, tf};
 
 use crate::config::{self, Config, Files};
-use crate::forge::{self, Forge, MergeRequest, MergeRequestDraft, MergeRequestQuery, MergeRequestState, User};
+use crate::forge::{self, Forge, MergeRequest, MergeRequestDraft, MergeRequestQuery, MergeRequestState, Provider, User};
 use crate::git::{Change, Git, Snapshot};
+use crate::github::GitHub;
 use crate::gitlab::GitLab;
 use crate::secret::{self, TokenRef};
 use crate::{Error, Result, paths};
@@ -52,13 +53,14 @@ impl State {
         .to_string()
     }
 
-    /// What to do next.
-    pub fn hint(self) -> String {
+    /// What to do next; `provider` chooses the server's term (merge request, pull request).
+    pub fn hint(self, provider: Option<Provider>) -> String {
         match self {
             State::UpToDate => t("The translation project is up to date. Translate, then save your changes."),
             State::UpdateAvailable => t("A newer version is available on the server: get the translation project."),
             State::Modified => t("There are changes that are not yet saved on the server: save the changes."),
             State::Saved => t("Your changes are saved on the server. When you are done, prepare the publication."),
+            State::InReview if provider == Some(Provider::GitHub) => t("The pull request is waiting for review. You can still save further changes."),
             State::InReview => t("The merge request is waiting for review. You can still save further changes."),
             State::Published => t("Your changes were accepted. Get the translation project to continue with the latest version."),
             State::Detached => t("A fixed version is checked out. Get the translation project to continue working."),
@@ -78,6 +80,8 @@ pub struct StatusOptions {
 #[derive(Debug, Clone, PartialEq, Serialize)]
 pub struct Status {
     pub state: State,
+    /// Kind of server (`None`: git only).
+    pub provider: Option<Provider>,
     /// `None` when detached.
     pub branch: Option<String>,
     pub default_branch: String,
@@ -97,6 +101,16 @@ pub struct Status {
 }
 
 impl Status {
+    /// What to do next.
+    pub fn hint(&self) -> String {
+        self.state.hint(self.provider)
+    }
+
+    /// The server's notation of the merge request number (`!12`, `#12`).
+    pub fn reference(&self, iid: u64) -> String {
+        self.provider.unwrap_or(Provider::GitLab).reference(iid)
+    }
+
     pub fn on_default_branch(&self) -> bool {
         self.branch.as_deref() == Some(self.default_branch.as_str())
     }
@@ -443,6 +457,7 @@ impl Workflow {
         };
         let mut st = Status {
             state: State::UpToDate,
+            provider: self.provider(),
             branch: snap.branch,
             default_branch,
             changed,
@@ -626,7 +641,9 @@ impl Workflow {
         }
         let changed = self.project_changes(p, &snap.changes);
         let unpushed = self.unpushed(&snap);
-        let message = config::commit_message(&opts.prefix, &opts.message, opts.ci_skip && !self.config.is_gitlab());
+        // GitLab skips the pipeline with a push option, GitHub Actions and others with "[skip ci]".
+        let push_option = opts.ci_skip && self.provider() == Some(Provider::GitLab);
+        let message = config::commit_message(&opts.prefix, &opts.message, opts.ci_skip && !push_option);
         let mut report = SaveReport {
             branch: current.clone().unwrap_or_default(),
             created_branch: false,
@@ -657,13 +674,23 @@ impl Workflow {
             report.commit = self.git.try_query(&["rev-parse", "--short", "HEAD"]);
         }
         let mut push = vec!["push", "-u"];
-        if opts.ci_skip && self.config.is_gitlab() {
+        if push_option {
             push.extend(["-o", "ci.skip"]);
         }
         push.extend([self.remote(), report.branch.as_str()]);
         self.git.run(&push)?;
         report.pushed = true;
         Ok(report)
+    }
+
+    /// Kind of server: configured, or for `auto` derived from its address; `None` for git only.
+    pub fn provider(&self) -> Option<Provider> {
+        match self.config.forge.provider.trim().to_ascii_lowercase().as_str() {
+            "none" | "" => None,
+            "gitlab" => Some(Provider::GitLab),
+            "github" => Some(Provider::GitHub),
+            _ => Some(self.forge_location().map_or(Provider::GitLab, |(url, _)| Provider::detect(&url))),
+        }
     }
 
     /// Web address and project path of the server.
@@ -704,7 +731,7 @@ impl Workflow {
     /// Server client according to the configuration.
     pub fn forge(&self) -> Result<Box<dyn Forge>> {
         if !self.config.has_forge() {
-            return Err(Error::Workflow(t("No server is configured for merge requests (forge.provider = \"none\").").to_string()));
+            return Err(Error::Workflow(t("No server is configured for merge or pull requests (forge.provider = \"none\").").to_string()));
         }
         let (url, project) = self.forge_location()?;
         let token = self.token(&url)?;
@@ -715,7 +742,10 @@ impl Workflow {
                 env = secret::ENV_TOKEN
             )));
         }
-        Ok(Box::new(GitLab::new(&url, &project, token)))
+        Ok(match self.provider() {
+            Some(Provider::GitHub) => Box::new(GitHub::new(&url, &project, token)),
+            _ => Box::new(GitLab::new(&url, &project, token)),
+        })
     }
 
     /// Reviewer candidates: project members, previous committers of the project file first.
