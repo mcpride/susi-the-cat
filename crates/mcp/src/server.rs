@@ -20,7 +20,7 @@ respect max_chars and row comments. Rows marked do_not_translate must not be tra
 scan updates the project from the source files, build writes the localized files. \
 If the project is in a git working copy configured for the translation workflow (.susi/workflow.toml): \
 workflow_status -> workflow_fetch (latest version) -> translate -> workflow_save (commit + push to a personal branch) -> \
-workflow_publish (merge request for review).";
+workflow_publish (GitLab merge request or GitHub pull request for review).";
 
 #[derive(Clone)]
 pub struct SusiServer {
@@ -144,7 +144,7 @@ pub struct TmLookupInput {
 
 #[derive(Debug, Default, Deserialize, JsonSchema)]
 pub struct WorkflowStatusInput {
-    /// Run git fetch and query merge requests on the server (default false).
+    /// Run git fetch and query merge/pull requests on the server (default false).
     pub online: Option<bool>,
 }
 
@@ -301,7 +301,7 @@ impl SusiServer {
     }
 
     #[tool(
-        description = "Git workflow state of the open project: up_to_date | update_available | modified | saved | in_review | published | detached, with changed project files, branch and merge request."
+        description = "Git workflow state of the open project: up_to_date | update_available | modified | saved | in_review | published | detached, with changed project files, branch, provider (gitlab, github) and merge/pull request."
     )]
     fn workflow_status(&self, Parameters(i): Parameters<WorkflowStatusInput>) -> Result<String, String> {
         self.run(|s| s.workflow_status(i.online.unwrap_or(false)))
@@ -321,7 +321,7 @@ impl SusiServer {
         self.run(|s| s.workflow_save(&i))
     }
 
-    #[tool(description = "Prepare publication: creates or updates the merge request of the current branch (GitLab) with reviewers.")]
+    #[tool(description = "Prepare publication: creates or updates the merge request (GitLab) or pull request (GitHub) of the current branch with reviewers.")]
     fn workflow_publish(&self, Parameters(i): Parameters<WorkflowPublishInput>) -> Result<String, String> {
         self.run(|s| s.workflow_publish(&i))
     }

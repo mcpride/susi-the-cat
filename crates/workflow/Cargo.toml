@@ -1,6 +1,6 @@
 [package]
 name = "susi-workflow"
-description = "Git workflow for translators: get the project, save changes to a branch, open a GitLab merge request"
+description = "Git workflow for translators: get the project, save changes to a branch, open a GitLab merge request or GitHub pull request"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true

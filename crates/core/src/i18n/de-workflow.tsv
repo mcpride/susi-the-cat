@@ -28,8 +28,11 @@
 	Connection to {url} failed: {error}	Verbindung zu {url} fehlgeschlagen: {error}
 	Corrected translations (fix)	Korrigierte Übersetzungen (fix)
 	Create a personal access token with the scope "api" in GitLab (user settings, access tokens) and paste it here. It is stored in the credential manager of the operating system, not in the project.	Erstellen Sie in GitLab ein persönliches Zugriffstoken mit dem Bereich „api“ (Benutzereinstellungen, Zugriffstokens) und fügen Sie es hier ein. Es wird in der Anmeldeinformationsverwaltung des Betriebssystems gespeichert, nicht im Projekt.
+	Create a fine-grained personal access token in GitHub (Settings, Developer settings, Personal access tokens) for this repository with the repository permissions "Contents" and "Pull requests" (read and write) and paste it here. It is stored in the credential manager of the operating system, not in the project.	Erstellen Sie in GitHub ein feingranulares persönliches Zugriffstoken (Settings, Developer settings, Personal access tokens) für dieses Repository mit den Repository-Berechtigungen „Contents“ und „Pull requests“ (Lesen und Schreiben) und fügen Sie es hier ein. Es wird in der Anmeldeinformationsverwaltung des Betriebssystems gespeichert, nicht im Projekt.
 	Create merge request	Merge Request erstellen
+	Create pull request	Pull Request erstellen
 	Creates a merge request: a reviewer checks your changes and adopts them.	Erstellt einen Merge Request: Ein Prüfer kontrolliert Ihre Änderungen und übernimmt sie.
+	Creates a pull request: a reviewer checks your changes and adopts them.	Erstellt einen Pull Request: Ein Prüfer kontrolliert Ihre Änderungen und übernimmt sie.
 	Creates the configuration template .susi/workflow.toml.	Legt die Konfigurationsvorlage .susi/workflow.toml an.
 	Default branch: {branch}	Standardzweig: {branch}
 	Delete the branch after merging	Zweig nach dem Zusammenführen löschen
@@ -55,8 +58,13 @@
 	Local commits were kept in {backup}	Lokale Commits wurden in {backup} aufbewahrt
 	Maintenance (chore)	Wartung (chore)
 	Merge request created:	Merge Request erstellt:
+	Pull request created:	Pull Request erstellt:
 	Merge request updated:	Merge Request aktualisiert:
-	Merge request: !{iid} {title} ({url})	Merge Request: !{iid} {title} ({url})
+	Pull request updated:	Pull Request aktualisiert:
+	{reference} was created, but the reviewers could not be requested: {error}	{reference} wurde erstellt, aber die Prüfer konnten nicht angefragt werden: {error}
+	{reference} was updated, but the reviewers could not be requested: {error}	{reference} wurde aktualisiert, aber die Prüfer konnten nicht angefragt werden: {error}
+	Merge request: {reference} {title} ({url})	Merge Request: {reference} {title} ({url})
+	Pull request: {reference} {title} ({url})	Pull Request: {reference} {title} ({url})
 	Never put access tokens into configuration files; susi only stores references to them.	Tragen Sie niemals Zugriffstokens in Konfigurationsdateien ein; susi speichert nur Referenzen darauf.
 	New branch:	Neuer Zweig:
 	New branch: {branch}	Neuer Zweig: {branch}
@@ -64,17 +72,21 @@
 	No access token for {url}. Store one (Workflow > Sign in to the server…, susi-cli workflow login) or set {env}.	Kein Zugriffstoken für {url}. Speichern Sie eines (Workflow > Am Server anmelden…, susi-cli workflow login) oder setzen Sie {env}.
 	No changes to save.	Keine Änderungen zum Speichern.
 	No prefix	Kein Präfix
-	No server is configured for merge requests (forge.provider = "none").	Für Merge Requests ist kein Server konfiguriert (forge.provider = "none").
+	No server is configured for merge or pull requests (forge.provider = "none").	Für Merge oder Pull Requests ist kein Server konfiguriert (forge.provider = "none").
 	Not all changes are saved on the server yet: save the changes first.	Noch nicht alle Änderungen sind auf dem Server gespeichert: Speichern Sie zuerst die Änderungen.
 	Open merge request in the browser	Merge Request im Browser öffnen
-	Other open translation merge request: !{iid} {title} ({branch})	Weiterer offener Übersetzungs-Merge-Request: !{iid} {title} ({branch})
+	Open pull request in the browser	Pull Request im Browser öffnen
+	Other open translation merge request: {reference} {title} ({branch})	Weiterer offener Übersetzungs-Merge-Request: {reference} {title} ({branch})
+	Other open translation pull request: {reference} {title} ({branch})	Weiterer offener Übersetzungs-Pull-Request: {reference} {title} ({branch})
 	Please wait until the current git action has finished.	Bitte warten Sie, bis die laufende Git-Aktion beendet ist.
 	Prepare publication	Veröffentlichung vorbereiten
 	Prepare publication: create a merge request for review	Veröffentlichung vorbereiten: Merge Request zur Prüfung erstellen
-	Prepare publication: creates or updates the merge request.	Veröffentlichung vorbereiten: erstellt oder aktualisiert den Merge Request.
+	Prepare publication: create a pull request for review	Veröffentlichung vorbereiten: Pull Request zur Prüfung erstellen
+	Prepare publication: creates or updates the merge request (GitLab)\nor pull request (GitHub).	Veröffentlichung vorbereiten: erstellt oder aktualisiert den Merge Request (GitLab)\noder Pull Request (GitHub).
 	Prepare publication…	Veröffentlichung vorbereiten…
 	Preparing publication…	Veröffentlichung wird vorbereitet…
 	Project not found - check forge.url and forge.project in the workflow configuration.	Projekt nicht gefunden – prüfen Sie forge.url und forge.project in der Workflow-Konfiguration.
+	Repository not found or not accessible with the access token - check forge.url and forge.project in the workflow configuration and the repositories the token may access.	Repository nicht gefunden oder mit dem Zugriffstoken nicht erreichbar – prüfen Sie forge.url und forge.project in der Workflow-Konfiguration und die Repositorys, auf die das Token zugreifen darf.
 	Publish	Veröffentlichen
 	Published	Veröffentlicht
 	Refresh state	Zustand aktualisieren
@@ -92,7 +104,7 @@
 	Saves the project and sends the changed files to the server.	Speichert das Projekt und überträgt die geänderten Dateien auf den Server.
 	Saving changes…	Änderungen werden zwischengespeichert…
 	Server: {server}	Server: {server}
-	Server: {url}, project {project}	Server: {url}, Projekt {project}
+	Server: {url} ({provider}), project {project}	Server: {url} ({provider}), Projekt {project}
 	Shows the effective configuration.	Zeigt die wirksame Konfiguration.
 	Sign in	Anmelden
 	Sign in to the server	Am Server anmelden
@@ -106,13 +118,18 @@
 	Stores the access token (read from stdin) with git's credential helper.	Speichert das Zugriffstoken (von stdin gelesen) mit dem Credential-Helper von git.
 	Target branch:	Zielzweig:
 	The access token has no permission for this action (scope "api" and at least the role Developer are required).	Das Zugriffstoken hat keine Berechtigung für diese Aktion (benötigt werden der Bereich "api" und mindestens die Rolle Developer).
+	The access token has no permission for this action (repository permissions "Contents" and "Pull requests": read and write).	Das Zugriffstoken hat keine Berechtigung für diese Aktion (Repository-Berechtigungen "Contents" und "Pull requests": Lesen und Schreiben).
 	The access token is missing, invalid or expired. Store a token with the scope "api" (Workflow > Sign in to the server…) or set {env}.	Das Zugriffstoken fehlt, ist ungültig oder abgelaufen. Speichern Sie ein Token mit dem Bereich "api" (Workflow > Am Server anmelden…) oder setzen Sie {env}.
+	The GitHub API rate limit is exceeded; try again later.	Das Anfragelimit der GitHub-API ist erschöpft; versuchen Sie es später erneut.
+	The access token is not authorized for the organization's single sign-on (SAML SSO): authorize it in the token settings on GitHub.	Das Zugriffstoken ist für das Single Sign-on (SAML SSO) der Organisation nicht freigegeben: Geben Sie es in den Token-Einstellungen auf GitHub frei.
+	The access token is missing, invalid or expired. Store a fine-grained token with the repository permissions "Contents" and "Pull requests" (read and write) or a classic token with the scope "repo" (Workflow > Sign in to the server…), or set {env}.	Das Zugriffstoken fehlt, ist ungültig oder abgelaufen. Speichern Sie ein feingranulares Token mit den Repository-Berechtigungen "Contents" und "Pull requests" (Lesen und Schreiben) oder ein klassisches Token mit dem Bereich "repo" (Workflow > Am Server anmelden…) oder setzen Sie {env}.
 	The branch "{branch}" does not exist on the server	Der Zweig "{branch}" existiert nicht auf dem Server
 	The branch "{branch}" was already published and removed on the server. Get the translation project first.	Der Zweig "{branch}" wurde bereits veröffentlicht und auf dem Server entfernt. Holen Sie zuerst das Übersetzungsprojekt.
 	The branch pattern must not be empty	Das Zweigmuster darf nicht leer sein
 	The git action ended unexpectedly.	Die Git-Aktion wurde unerwartet beendet.
 	The git remote must not be empty	Das Git-Remote darf nicht leer sein
 	The merge request is waiting for review. You can still save further changes.	Der Merge Request wartet auf Prüfung. Sie können weiterhin Änderungen zwischenspeichern.
+	The pull request is waiting for review. You can still save further changes.	Der Pull Request wartet auf Prüfung. Sie können weiterhin Änderungen zwischenspeichern.
 	The open project has unsaved changes; it is saved first.	Das geöffnete Projekt hat ungespeicherte Änderungen; es wird zuerst gespeichert.
 	The project is not in a git working copy configured for the translation workflow.	Das Projekt liegt nicht in einer für den Übersetzungs-Workflow konfigurierten Git-Arbeitskopie.
 	The project is not in a git working copy configured for the translation workflow:	Das Projekt liegt nicht in einer für den Übersetzungs-Workflow konfigurierten Git-Arbeitskopie:
@@ -125,7 +142,7 @@
 	Title:	Titel:
 	Translation project fetched: {target} ({commit})	Übersetzungsprojekt geholt: {target} ({commit})
 	Unexpected answer from the server	Unerwartete Antwort vom Server
-	Unknown provider "{provider}" (supported: gitlab, none)	Unbekannter Anbieter "{provider}" (unterstützt: gitlab, none)
+	Unknown provider "{provider}" (supported: auto, gitlab, github, none)	Unbekannter Anbieter "{provider}" (unterstützt: auto, gitlab, github, none)
 	Unknown workflow action '{action}' (possible: {actions})	Unbekannte Workflow-Aktion '{action}' (möglich: {actions})
 	Unsaved changes of previous tasks are discarded.	Ungespeicherte Änderungen vorheriger Tasks werden verworfen.
 	Unsaved changes of the open project will be lost.	Ungespeicherte Änderungen des geöffneten Projekts gehen verloren.
@@ -143,15 +160,15 @@
 	fetch: check out commit, tag or branch C read-only.	fetch: Commit, Tag oder Zweig C schreibgeschützt auschecken.
 	git does not know your name and e-mail address yet. A developer can set them with git config --global user.name / user.email.	git kennt Ihren Namen und Ihre E-Mail-Adresse noch nicht. Ein Entwickler kann sie mit git config --global user.name / user.email setzen.
 	git does not trust the working copy (it belongs to another user). A developer can allow it with: git config --global --add safe.directory "{dir}"	git vertraut der Arbeitskopie nicht (sie gehört einem anderen Benutzer). Ein Entwickler kann sie erlauben mit: git config --global --add safe.directory "{dir}"
-	publish: description of the merge request.	publish: Beschreibung des Merge Requests.
-	publish: reviewers (usernames, separated by ;).	publish: Prüfer (Benutzernamen, durch ; getrennt).
+	publish: description of the merge/pull request.	publish: Beschreibung des Merge/Pull Requests.
+	publish: reviewers (usernames, GitHub teams as org/team; separated by ;).	publish: Prüfer (Benutzernamen, GitHub-Teams als org/team; durch ; getrennt).
 	publish: target branch.	publish: Zielzweig.
-	publish: title of the merge request.	publish: Titel des Merge Requests.
+	publish: title of the merge/pull request.	publish: Titel des Merge/Pull Requests.
 	save: commit message (default: configuration).	save: Commit-Nachricht (Standard: Konfiguration).
 	save: do not build the localized files first.	save: die lokalisierten Dateien vorher nicht erstellen.
 	save: semantic-release prefix (fix, feat, chore; empty: none).	save: semantic-release-Präfix (fix, feat, chore; leer: keines).
 	save: skip (or run) the CI pipeline.	save: CI-Pipeline überspringen (oder ausführen).
-	status: run git fetch and query merge requests.	status: git fetch ausführen und Merge Requests abfragen.
+	status: run git fetch and query merge/pull requests.	status: git fetch ausführen und Merge/Pull Requests abfragen.
 	user names, separated by ;	Benutzernamen, durch ; getrennt
 	{path} already exists	{path} existiert bereits
 	{path}: "{key}" looks like an access token. Configuration files must not contain secrets; use a reference such as token = "credential" or token = "env:SUSI_FORGE_TOKEN".	{path}: "{key}" sieht wie ein Zugriffstoken aus. Konfigurationsdateien dürfen keine Geheimnisse enthalten; verwenden Sie eine Referenz wie token = "credential" oder token = "env:SUSI_FORGE_TOKEN".

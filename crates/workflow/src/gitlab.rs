@@ -1,11 +1,10 @@
 //! GitLab REST API (v4) client for merge requests.
 
-use std::time::Duration;
-
 use serde_json::{Value, json};
 use susi_core::tf;
 
 use crate::forge::{Forge, MergeRequest, MergeRequestDraft, MergeRequestQuery, MergeRequestState, User};
+use crate::http::{Http, encode};
 use crate::{Error, Result};
 
 pub struct GitLab {
@@ -14,19 +13,7 @@ pub struct GitLab {
     /// URL-encoded project path (`group%2Fapp`).
     project: String,
     token: Option<String>,
-    agent: ureq::Agent,
-}
-
-fn encode(s: &str) -> String {
-    let mut out = String::new();
-    for b in s.bytes() {
-        if b.is_ascii_alphanumeric() || b"-_.~".contains(&b) {
-            out.push(char::from(b));
-        } else {
-            out.push_str(&format!("%{b:02X}"));
-        }
-    }
-    out
+    http: Http,
 }
 
 fn user(v: &Value) -> Option<User> {
@@ -59,19 +46,10 @@ fn merge_request(v: &Value) -> Option<MergeRequest> {
 impl GitLab {
     /// `url`: web address of the server (`https://gitlab.example.com`), `project`: `group/app`.
     pub fn new(url: &str, project: &str, token: Option<String>) -> Self {
-        let tls = ureq::tls::TlsConfig::builder().root_certs(ureq::tls::RootCerts::PlatformVerifier).build();
-        let agent = ureq::Agent::config_builder()
-            .http_status_as_error(false)
-            .timeout_global(Some(Duration::from_secs(30)))
-            .tls_config(tls)
-            .user_agent(concat!("susi/", env!("CARGO_PKG_VERSION")))
-            .build()
-            .new_agent();
-        Self { api: format!("{}/api/v4", url.trim_end_matches('/')), project: encode(project.trim_matches('/')), token, agent }
+        Self { api: format!("{}/api/v4", url.trim_end_matches('/')), project: encode(project.trim_matches('/')), token, http: Http::new() }
     }
 
-    fn check(&self, status: u16, body: &str) -> Result<Value> {
-        let v: Value = if body.trim().is_empty() { Value::Null } else { serde_json::from_str(body).unwrap_or(Value::String(body.to_string())) };
+    fn check(&self, status: u16, v: Value, body: &str) -> Result<Value> {
         if status < 400 {
             return Ok(v);
         }
@@ -94,28 +72,10 @@ impl GitLab {
     }
 
     fn send(&self, method: &str, path: &str, body: Option<&Value>) -> Result<Value> {
-        let url = format!("{}{path}", self.api);
         let auth = self.token.as_ref().map(|t| format!("Bearer {t}"));
-        let result = match (method, body) {
-            ("GET", _) => {
-                let mut r = self.agent.get(&url);
-                if let Some(a) = &auth {
-                    r = r.header("Authorization", a);
-                }
-                r.call()
-            }
-            (m, b) => {
-                let mut r = if m == "PUT" { self.agent.put(&url) } else { self.agent.post(&url) };
-                if let Some(a) = &auth {
-                    r = r.header("Authorization", a);
-                }
-                r.header("Content-Type", "application/json").send(b.map(Value::to_string).unwrap_or_default())
-            }
-        };
-        let mut resp = result.map_err(|e| Error::Forge(tf!("Connection to {url} failed: {error}", url = self.api, error = e)))?;
-        let status = resp.status().as_u16();
-        let text = resp.body_mut().read_to_string().map_err(|e| Error::Forge(e.to_string()))?;
-        self.check(status, &text)
+        let headers: Vec<(&str, &str)> = auth.iter().map(|a| ("Authorization", a.as_str())).collect();
+        let r = self.http.send(method, &format!("{}{path}", self.api), &headers, body, &self.api)?;
+        self.check(r.status, r.body, &r.text)
     }
 
     fn get(&self, path: &str) -> Result<Value> {
@@ -219,6 +179,7 @@ impl Forge for GitLab {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::http::test_server::serve;
 
     #[test]
     fn encodes_project_paths() {
@@ -234,46 +195,13 @@ mod tests {
         assert_eq!((mr.iid, mr.state, mr.reviewers[0].username.as_str()), (7, MergeRequestState::Merged, "bob"));
     }
 
-    /// Minimal HTTP server answering `count` requests; returns the received requests (head and body).
-    fn serve(count: usize, answer: fn(&str) -> (u16, String)) -> (String, std::thread::JoinHandle<Vec<String>>) {
-        use std::io::{BufRead, BufReader, Read, Write};
-        let listener = std::net::TcpListener::bind("127.0.0.1:0").unwrap();
-        let url = format!("http://{}", listener.local_addr().unwrap());
-        let handle = std::thread::spawn(move || {
-            let mut seen = Vec::new();
-            for stream in listener.incoming().take(count) {
-                let mut stream = stream.unwrap();
-                let mut reader = BufReader::new(stream.try_clone().unwrap());
-                let mut head = String::new();
-                loop {
-                    let mut line = String::new();
-                    reader.read_line(&mut line).unwrap();
-                    if line == "\r\n" || line.is_empty() {
-                        break;
-                    }
-                    head.push_str(&line);
-                }
-                let len = head.lines().find_map(|l| l.to_lowercase().strip_prefix("content-length:").map(|v| v.trim().parse::<usize>().unwrap())).unwrap_or(0);
-                let mut body = vec![0; len];
-                reader.read_exact(&mut body).unwrap();
-                let request = format!("{head}\n{}", String::from_utf8_lossy(&body));
-                let (status, text) = answer(request.lines().next().unwrap());
-                write!(stream, "HTTP/1.1 {status} X\r\nContent-Type: application/json\r\nContent-Length: {}\r\nConnection: close\r\n\r\n{text}", text.len())
-                    .unwrap();
-                seen.push(request);
-            }
-            seen
-        });
-        (url, handle)
-    }
-
     #[test]
     fn creates_merge_requests_with_reviewers() {
         let (url, server) = serve(2, |line| {
             if line.starts_with("GET /api/v4/projects/group%2Fapp/members/all") {
-                (200, r#"[{"id": 2, "username": "bob", "name": "Bob"}, {"id": 9, "username": "project_1_bot_x", "name": "Bot"}]"#.into())
+                (200, "", r#"[{"id": 2, "username": "bob", "name": "Bob"}, {"id": 9, "username": "project_1_bot_x", "name": "Bot"}]"#.into())
             } else {
-                (201, r#"{"iid": 3, "title": "T", "web_url": "u", "state": "opened", "source_branch": "l10n/a", "target_branch": "main"}"#.into())
+                (201, "", r#"{"iid": 3, "title": "T", "web_url": "u", "state": "opened", "source_branch": "l10n/a", "target_branch": "main"}"#.into())
             }
         });
         let gl = GitLab::new(&url, "group/app", Some("secret".into()));
@@ -288,16 +216,16 @@ mod tests {
         let mr = gl.create_merge_request(&d).unwrap();
         assert_eq!((mr.iid, mr.state), (3, MergeRequestState::Open));
         let seen = server.join().unwrap();
-        assert!(seen[1].starts_with("POST /api/v4/projects/group%2Fapp/merge_requests "), "{}", seen[1]);
-        assert!(seen[1].to_lowercase().contains("authorization: bearer secret"));
-        let body: Value = serde_json::from_str(seen[1].split("\r\n\n").nth(1).unwrap_or_else(|| seen[1].rsplit('\n').next().unwrap())).unwrap();
+        assert!(seen[1].line.starts_with("POST /api/v4/projects/group%2Fapp/merge_requests "), "{}", seen[1].line);
+        assert!(seen[1].head.to_lowercase().contains("authorization: bearer secret"));
+        let body = seen[1].json();
         assert_eq!(body["reviewer_ids"], json!([2]));
         assert_eq!(body["source_branch"], json!("l10n/a"));
     }
 
     #[test]
     fn reports_authentication_errors() {
-        let (url, server) = serve(1, |_| (401, r#"{"message": "401 Unauthorized"}"#.into()));
+        let (url, server) = serve(1, |_| (401, "", r#"{"message": "401 Unauthorized"}"#.into()));
         let err = GitLab::new(&url, "group/app", None).current_user().unwrap_err().to_string();
         assert!(err.contains("401 Unauthorized") && err.contains(crate::secret::ENV_TOKEN), "{err}");
         server.join().unwrap();

@@ -204,6 +204,40 @@ fn fetch_save_publish_cycle() {
 }
 
 #[test]
+fn github_working_copies() {
+    use susi_workflow::forge::Provider;
+    let tmp = tempfile::tempdir().unwrap();
+    let (_dev, work) = setup(tmp.path());
+    let slp_path = work.join("l10n").join("app.slp");
+    // The working copy file overrides the repository: `auto` recognizes github.com.
+    let local = work.join(".git").join("susi").join("workflow.local.toml");
+    std::fs::create_dir_all(local.parent().unwrap()).unwrap();
+    std::fs::write(&local, "[forge]\nprovider = \"auto\"\nurl = \"https://github.com\"\nproject = \"octo/app\"\n").unwrap();
+    let wf = Workflow::detect_with(&slp_path, None).unwrap().unwrap();
+    assert_eq!(wf.provider(), Some(Provider::GitHub));
+    let err = wf.forge().err().unwrap().to_string();
+    assert!(err.contains("https://github.com"), "no token: {err}");
+
+    // GitHub has no push option to skip CI: "[skip ci]" goes into the commit message.
+    let mut p = slp::load(&slp_path).unwrap();
+    ops::build_project(&p, &["de".to_string()], None);
+    p.record_scan();
+    slp::save(&mut p, &slp_path).unwrap();
+    let opts = SaveOptions { ci_skip: true, ..wf.save_defaults() };
+    assert!(wf.save(&p, &opts).unwrap().pushed);
+    assert_eq!(git(&work, &["log", "-1", "--format=%s"]), "fix: Update translations (app) [skip ci]");
+    let st = wf.status(&p, StatusOptions::default()).unwrap();
+    assert_eq!((st.provider, st.reference(5)), (Some(Provider::GitHub), "#5".to_string()));
+    assert!(State::InReview.hint(st.provider).contains("pull request"));
+
+    // Other servers stay GitLab with `auto`; `none` has no server.
+    std::fs::write(&local, "[forge]\nprovider = \"auto\"\nurl = \"https://git.example.com\"\nproject = \"group/app\"\n").unwrap();
+    assert_eq!(Workflow::detect_with(&slp_path, None).unwrap().unwrap().provider(), Some(Provider::GitLab));
+    std::fs::write(&local, "[forge]\nprovider = \"none\"\n").unwrap();
+    assert_eq!(Workflow::detect_with(&slp_path, None).unwrap().unwrap().provider(), None);
+}
+
+#[test]
 fn local_commits_on_the_default_branch_are_kept() {
     let tmp = tempfile::tempdir().unwrap();
     let (_dev, work) = setup(tmp.path());

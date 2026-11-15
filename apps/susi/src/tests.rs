@@ -208,8 +208,23 @@ fn render_all_views_and_dialogs(ui_language: &str) {
             save: None,
             build: true,
             branches: vec!["main".into()],
+            github: false,
         }),
-        Dialog::WorkflowToken(TokenDialog { server: "https://gitlab.example.com (group/app)".into(), token: String::new(), has_token: true }),
+        Dialog::WorkflowPublish(PublishDialog {
+            title: "Translations".into(),
+            description: String::new(),
+            reviewers: "octo/translators".into(),
+            target: "main".into(),
+            squash: false,
+            remove_source_branch: false,
+            advanced: true,
+            save: None,
+            build: false,
+            branches: vec!["main".into()],
+            github: true,
+        }),
+        Dialog::WorkflowToken(TokenDialog { server: "https://gitlab.example.com (group/app)".into(), token: String::new(), has_token: true, github: false }),
+        Dialog::WorkflowToken(TokenDialog { server: "https://github.com (octo/app)".into(), token: String::new(), has_token: false, github: true }),
     ];
     for d in dialogs {
         app.dialog = Some(d);

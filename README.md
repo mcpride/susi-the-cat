@@ -355,7 +355,7 @@ Tools (25):
 - `validate`, `statistics`
 - `tm_translate`, `tm_lookup`, `tm_save`
 - `export`, `import`, `fill_pseudo`
-- `workflow_status`, `workflow_fetch`, `workflow_save`, `workflow_publish` (see [Git workflow](#git-workflow-gitlab))
+- `workflow_status`, `workflow_fetch`, `workflow_save`, `workflow_publish` (see [Git workflow](#git-workflow-gitlab-github))
 
 A typical agent workflow:
 
@@ -369,7 +369,7 @@ A human then reviews the translations in the GUI and sets them to *Translated* o
 
 ---
 
-## Git workflow (GitLab)
+## Git workflow (GitLab, GitHub)
 
 Translators work in a git working copy without knowing git: a developer prepares the working
 copy once, and Susi then offers three plain-language actions (GUI menu and toolbar *Workflow*,
@@ -379,7 +379,7 @@ copy once, and Susi then offers three plain-language actions (GUI menu and toolb
 |----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Get translation project**            | `git fetch`, check out the latest commit of the default branch, clean up. Uncommitted changes go to `git stash`, local commits to a backup branch. |
 | **Save changes**                       | Build (optional), save the project, create a personal branch (`l10n/{user}/{date}`) when on the default branch, commit the project files and push. |
-| **Prepare publication**                | Create or update a GitLab merge request with reviewers (configured names or previous committers).                                              |
+| **Prepare publication**                | Create or update a GitLab merge request or GitHub pull request with reviewers (configured names or previous committers).                       |
 
 The status bar shows the state (*Up to date*, *Update available*, *Changes not saved on the server*,
 *Saved, not published*, *In review*, *Published*, *Fixed version*) and a hint for the next step;
@@ -400,8 +400,14 @@ committed – never other changes in the working copy.
 2. Configure git for the translator: `git config --global user.name/user.email` and a credential
    helper (`git config --global credential.helper manager` on Windows). For working copies owned by
    another user: `git config --global --add safe.directory <path>`.
-3. Create a GitLab personal access token with the scope `api` (role Developer or higher) and store it
-   with *Workflow → Sign in to the server…* or `susi-cli workflow login app.slp` (reads stdin).
+3. Create an access token and store it with *Workflow → Sign in to the server…* or
+   `susi-cli workflow login app.slp` (reads stdin):
+   - **GitLab**: personal access token with the scope `api` (role Developer or higher).
+   - **GitHub**: fine-grained personal access token for the repository with the repository
+     permissions *Contents* and *Pull requests* (read and write), or a classic token with the
+     scope `repo`. Organizations with SAML single sign-on require the token to be authorized for
+     the organization. Alternatively `token = "credential"` uses the login of git itself (Git
+     Credential Manager signs in to GitHub with a token that may call the API).
 
 ### Configuration
 
@@ -413,9 +419,9 @@ Three TOML files with the same structure are merged (later files win):
 
 ```toml
 [forge]
-provider = "gitlab"        # gitlab | none (git only, no merge requests)
+provider = "auto"          # auto (github.com: github, otherwise gitlab) | gitlab | github | none (git only)
 # url = "https://gitlab.example.com"   # default: derived from the remote URL
-# project = "group/app"
+# project = "group/app"    # GitHub: owner/repo
 token = "auto"             # auto | env:VARIABLE | credential | credential:<user> | none
 
 [git]
@@ -427,20 +433,37 @@ branch_pattern = "l10n/{user}/{date}"   # placeholders {user} {date} {time} {pro
 [save]
 message = "Update translations ({project})"
 semantic_prefix = "fix"    # fix = patch release, feat = minor release, chore = no release, "" = none
-ci_skip = false            # GitLab: push option ci.skip, otherwise "[skip ci]" in the message
+ci_skip = false            # GitLab: push option ci.skip, GitHub and others: "[skip ci]" in the message
 build = true
 
 [publish]
 title = "Translations: {project} ({user}, {date})"
 description = "Translations updated with Susi."
-reviewers = []             # GitLab usernames
+reviewers = []             # user names (GitHub teams: org/team)
 offer_committers = true
-squash = false
+squash = false             # GitLab only (GitHub: repository settings)
 remove_source_branch = true
 ```
 
+### GitHub
+
+With `provider = "auto"` (the default), remotes on `github.com` and GitHub Enterprise Cloud
+(`*.ghe.com`) use GitHub; GitHub Enterprise Server needs `provider = "github"` and, if the remote
+URL does not show it, `url = "https://github.example.com"` (API: `<url>/api/v3`).
+
+- Pull requests take the place of merge requests (`#12` instead of `!12`); the dialogs and
+  messages use GitHub's terms.
+- Reviewers are user logins or teams written as `org/team`. Users are checked against the
+  repository's collaborators before the pull request is created; the author cannot review their
+  own pull request and is left out. Reviewer candidates are the collaborators (or, without push
+  access to that list, the users who can be assigned).
+- Squashing and deleting the branch after merging are no per-pull-request settings on GitHub:
+  they are chosen when merging and configured in the repository settings (*Automatically
+  delete head branches*), so the dialog does not offer them.
+- *Skip the CI pipeline* writes `[skip ci]` into the commit message, which GitHub Actions honors.
+
 **Secrets**: configuration files only hold *references* to the token. Values that look like a token
-(`glpat-…`, `ghp_…`) are rejected. `auto` uses the environment variable `SUSI_FORGE_TOKEN`, then the
+(`glpat-…`, `ghp_…`, `github_pat_…`) are rejected. `auto` uses the environment variable `SUSI_FORGE_TOKEN`, then the
 token stored with git's credential helper (Windows Credential Manager); `credential` uses the git
 credentials themselves.
 
@@ -454,8 +477,8 @@ susi-cli workflow save publish -reviewer:anna app.slp
 ```
 
 MCP: `workflow_status`, `workflow_fetch` (refuses to discard unsaved changes unless
-`discard_changes`), `workflow_save`, `workflow_publish`. The crate `susi-workflow` keeps the forge
-behind a trait so that GitHub can be added later.
+`discard_changes`), `workflow_save`, `workflow_publish`. The crate `susi-workflow` keeps the server
+behind the trait `Forge` (implementations for GitLab and GitHub).
 
 ---
 

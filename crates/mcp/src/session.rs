@@ -485,7 +485,7 @@ impl Session {
         let wf = self.workflow()?;
         let s = wf.status(self.project()?, StatusOptions { fetch: online, online }).map_err(err)?;
         let mut v = serde_json::to_value(&s).map_err(err)?;
-        v["hint"] = json!(s.state.hint());
+        v["hint"] = json!(s.hint());
         v["unsaved_project_changes"] = json!(self.dirty);
         Ok(v)
     }

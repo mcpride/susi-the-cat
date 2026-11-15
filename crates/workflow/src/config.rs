@@ -38,7 +38,8 @@ pub struct Config {
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(default)]
 pub struct ForgeConfig {
-    /// `gitlab` or `none` (git only, without merge requests).
+    /// `auto` (GitHub for github.com and `*.ghe.com`, otherwise GitLab), `gitlab`, `github` or
+    /// `none` (git only, without merge requests).
     pub provider: String,
     /// Web address of the server, e.g. `https://gitlab.example.com` (empty: derived from the remote URL).
     pub url: String,
@@ -50,7 +51,7 @@ pub struct ForgeConfig {
 
 impl Default for ForgeConfig {
     fn default() -> Self {
-        Self { provider: "gitlab".into(), url: String::new(), project: String::new(), token: "auto".into() }
+        Self { provider: "auto".into(), url: String::new(), project: String::new(), token: "auto".into() }
     }
 }
 
@@ -143,9 +144,9 @@ pub const TEMPLATE: &str = r#"# Susi translation workflow (see README, "Git work
 # Personal overrides: .git/susi/workflow.local.toml; user defaults: %APPDATA%\susi\workflow.toml
 
 [forge]
-provider = "gitlab"        # gitlab | none (git only)
+provider = "auto"          # auto (github.com: github, otherwise gitlab) | gitlab | github | none (git only)
 # url = "https://gitlab.example.com"   # default: derived from the remote URL
-# project = "group/app"                # default: derived from the remote URL
+# project = "group/app"                # default: derived from the remote URL (GitHub: owner/repo)
 token = "auto"             # auto | env:VARIABLE | credential | credential:<user> | none
 
 [git]
@@ -164,9 +165,9 @@ build = true
 title = "Translations: {project} ({user}, {date})"
 description = "Translations updated with Susi."
 # target_branch = "main"
-reviewers = []             # GitLab usernames
+reviewers = []             # user names (GitHub teams: org/team)
 offer_committers = true
-squash = false
+squash = false             # GitLab only (GitHub: repository settings)
 remove_source_branch = true
 "#;
 
@@ -243,8 +244,8 @@ impl Config {
     pub fn validate(&self) -> Result<()> {
         TokenRef::parse(&self.forge.token)?;
         match self.forge.provider.trim().to_ascii_lowercase().as_str() {
-            "gitlab" | "none" | "" => {}
-            other => return Err(Error::Config(tf!("Unknown provider \"{provider}\" (supported: gitlab, none)", provider = other))),
+            "auto" | "gitlab" | "github" | "none" | "" => {}
+            other => return Err(Error::Config(tf!("Unknown provider \"{provider}\" (supported: auto, gitlab, github, none)", provider = other))),
         }
         if self.git.remote.trim().is_empty() {
             return Err(Error::Config(susi_core::i18n::t("The git remote must not be empty").to_string()));
@@ -257,10 +258,6 @@ impl Config {
 
     pub fn has_forge(&self) -> bool {
         !matches!(self.forge.provider.trim().to_ascii_lowercase().as_str(), "none" | "")
-    }
-
-    pub fn is_gitlab(&self) -> bool {
-        self.forge.provider.trim().eq_ignore_ascii_case("gitlab")
     }
 
     /// The effective configuration as TOML.
@@ -329,6 +326,10 @@ mod tests {
         assert!(load(None, &repo, &none).is_err());
         let repo = write(tmp.path(), "d.toml", "[forge]\ntoken = \"env:MY_TOKEN\"\n");
         assert!(load(None, &repo, &none).unwrap().is_some());
+        let repo = write(tmp.path(), "e.toml", "[forge]\nprovider = \"GitHub\"\n");
+        assert!(load(None, &repo, &none).unwrap().is_some());
+        let repo = write(tmp.path(), "f.toml", "[forge]\ntoken = \"github_pat_11ABCDEF\"\n");
+        assert!(load(None, &repo, &none).is_err(), "GitHub tokens are recognized as secrets");
     }
 
     #[test]

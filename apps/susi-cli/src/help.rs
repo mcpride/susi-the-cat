@@ -123,21 +123,21 @@ fn workflow() -> String {
     let actions = item("status", t("State of the working copy (-online: also ask the server)."))
         + &item("fetch", t("Get translation project: sets local changes aside and checks out\nthe latest version of the default branch."))
         + &item("save", t("Save changes: builds the localized files, saves the project and\ncommits and pushes the project files to a personal branch."))
-        + &item("publish", t("Prepare publication: creates or updates the merge request."))
+        + &item("publish", t("Prepare publication: creates or updates the merge request (GitLab)\nor pull request (GitHub)."))
         + &item("init", t("Creates the configuration template .susi/workflow.toml."))
         + &item("config", t("Shows the effective configuration."))
         + &item("login", t("Stores the access token (read from stdin) with git's credential helper."))
         + &item("logout", t("Removes the stored access token."));
-    let opts = item("-online", t("status: run git fetch and query merge requests."))
+    let opts = item("-online", t("status: run git fetch and query merge/pull requests."))
         + &item("-branch:B", t("fetch: check out branch B; save: save to the new branch B."))
         + &item("-commit:C", t("fetch: check out commit, tag or branch C read-only."))
         + &item("-message:M", t("save: commit message (default: configuration)."))
         + &item("-prefix:P", t("save: semantic-release prefix (fix, feat, chore; empty: none)."))
         + &item("-ciskip[:0]", t("save: skip (or run) the CI pipeline."))
         + &item("-nobuild", t("save: do not build the localized files first."))
-        + &item("-title:T", t("publish: title of the merge request."))
-        + &item("-description:D", t("publish: description of the merge request."))
-        + &item("-reviewer:R", t("publish: reviewers (usernames, separated by ;)."))
+        + &item("-title:T", t("publish: title of the merge/pull request."))
+        + &item("-description:D", t("publish: description of the merge/pull request."))
+        + &item("-reviewer:R", t("publish: reviewers (usernames, GitHub teams as org/team; separated by ;)."))
         + &item("-target:B", t("publish: target branch."));
     let mut s = page(
         "susi-cli workflow [action ...] [options] project.slp",
