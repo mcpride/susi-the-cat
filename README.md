@@ -288,6 +288,24 @@ susi-cli validate -lang:de -w app.slp
 susi-cli export open.xlsx -lang:de;fr -status:untranslated app.slp
 ```
 
+**Test reports in GitLab CI**: `validate -junit:file` also writes the result to a
+[JUnit XML report](https://docs.gitlab.com/ci/testing/unit_test_reports/). Errors become failed
+tests, with `-w` warnings as well (the same rule as for the exit code); without findings the file
+is still written, without tests. Each finding is a test case named `[language] context: check`
+in a suite per source, with the message, the original and the translation as failure text.
+GitLab shows them in the merge request and in the pipeline's *Tests* tab:
+
+```yaml
+susi-validate:
+  stage: test
+  script:
+    - susi-cli validate -junit:susi-junit.xml -w l10n/app.slp
+  artifacts:
+    when: always
+    reports:
+      junit: susi-junit.xml
+```
+
 SlMake options without an equivalent in susi (e.g. `-ignorecase`) are ignored with a notice.
 Unsupported tasks and translation engines (`-engine:` other than `tm`) abort with an error
 message.

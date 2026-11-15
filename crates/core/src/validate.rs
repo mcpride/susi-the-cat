@@ -1,11 +1,13 @@
 //! Translation validation (Prüfen | Übersetzung prüfen).
 
-use std::collections::{BTreeMap, HashMap};
+use std::collections::{BTreeMap, HashMap, HashSet};
+use std::fmt::Write as _;
+use std::path::Path;
 
 use serde::Serialize;
 
 use crate::i18n::t;
-use crate::model::{Project, RowRef};
+use crate::model::{Project, RowRef, Source};
 use crate::status::TranslationStatus;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize)]
@@ -397,6 +399,94 @@ pub fn validate(p: &Project, opts: &ValidateOptions, rows: Option<&[RowRef]>) ->
     issues
 }
 
+/// JUnit XML report of `issues` (e.g. for GitLab CI unit test reports): one failed test case per
+/// issue (class name = source, name = language, context and check). Without issues the report
+/// contains an empty test suite.
+pub fn junit_xml(p: &Project, issues: &[&Issue]) -> String {
+    let suite = p.path.as_deref().and_then(Path::file_name).map(|f| f.to_string_lossy().to_string()).unwrap_or_else(|| "susi".into());
+    let n = issues.len();
+    let mut out = String::from("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+    let _ = writeln!(out, "<testsuites name=\"susi-cli validate\" tests=\"{n}\" failures=\"{n}\" errors=\"0\">");
+    let _ = write!(out, "  <testsuite name=\"{}\" tests=\"{n}\" failures=\"{n}\" errors=\"0\" skipped=\"0\"", junit_escape(&suite, true));
+    if issues.is_empty() {
+        out.push_str("/>\n</testsuites>\n");
+        return out;
+    }
+    out.push_str(">\n");
+    // GitLab keeps only the first of several test cases with the same name.
+    let mut names = HashSet::new();
+    for i in issues {
+        let base = format!("[{}] {}: {}", i.lang, i.context, i.kind.label());
+        let mut name = base.clone();
+        for k in 2.. {
+            if names.insert(name.clone()) {
+                break;
+            }
+            name = format!("{base} ({k})");
+        }
+        let _ = write!(out, "    <testcase classname=\"{}\" name=\"{}\"", junit_escape(&i.source, true), junit_escape(&name, true));
+        if let Some(file) = p.sources.get(i.row.source).and_then(|s| junit_file(p, s)) {
+            let _ = write!(out, " file=\"{}\"", junit_escape(&file, true));
+        }
+        let severity = match i.severity {
+            Severity::Error => t("Error"),
+            Severity::Warning => t("Warning"),
+        };
+        let mut body = format!("{severity}: {}", i.message);
+        if let Some(row) = p.row(&i.row) {
+            let orig_lang = p.original_lang(&i.row);
+            let _ = write!(body, "\n{}: {}", crate::tf!("Original ({lang})", lang = orig_lang), row.original());
+            if let Some(text) = row.text(&i.lang).filter(|_| i.lang != orig_lang && i.kind != ValidationKind::MissingTranslation) {
+                let _ = write!(body, "\n{}: {text}", crate::tf!("Translation – {lang}", lang = i.lang));
+            }
+        }
+        let _ = writeln!(
+            out,
+            ">\n      <failure type=\"{}\" message=\"{}\">{}</failure>\n    </testcase>",
+            i.kind.keyword(),
+            junit_escape(&i.message, true),
+            junit_escape(&body, false)
+        );
+    }
+    out.push_str("  </testsuite>\n</testsuites>\n");
+    out
+}
+
+/// Path of a source file for the JUnit `file` attribute: resolved against the project directory,
+/// relative to the working directory where possible, with `/`; `None` for wildcard sources.
+fn junit_file(p: &Project, s: &Source) -> Option<String> {
+    let name = s.name();
+    if name.is_empty() || name.contains(['*', '?']) {
+        return None;
+    }
+    let path = crate::ops::normalize(&p.base_dir().join(name.replace('\\', "/")));
+    let path = std::env::current_dir().ok().and_then(|cwd| path.strip_prefix(cwd).ok().map(Path::to_path_buf)).unwrap_or(path);
+    Some(path.to_string_lossy().replace('\\', "/"))
+}
+
+/// XML escaping for the JUnit report. Control characters (mostly not allowed in XML 1.0) and the
+/// non-characters U+FFFE/U+FFFF are written visibly as `[U+007F]`.
+fn junit_escape(s: &str, attr: bool) -> String {
+    let mut out = String::with_capacity(s.len());
+    for c in s.chars() {
+        match c {
+            '&' => out.push_str("&amp;"),
+            '<' => out.push_str("&lt;"),
+            '>' => out.push_str("&gt;"),
+            '"' if attr => out.push_str("&quot;"),
+            '\n' if attr => out.push_str("&#10;"),
+            '\t' if attr => out.push_str("&#9;"),
+            '\r' => out.push_str("&#13;"),
+            '\n' | '\t' => out.push(c),
+            c if c.is_control() || c == '\u{FFFE}' || c == '\u{FFFF}' => {
+                let _ = write!(out, "[U+{:04X}]", c as u32);
+            }
+            c => out.push(c),
+        }
+    }
+    out
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -434,13 +524,22 @@ mod tests {
         assert_eq!(control_char_list("plain"), None);
     }
 
+    /// Project with source `a.json` (original English, German translation) containing `rows`.
+    fn project(rows: &str) -> Project {
+        let slp = format!(
+            "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<document>\n  <lang id=\"de\"/>\n  <lang id=\"en\"/>\n  \
+             <source class=\"TJsonSource\" name=\"a.json\" original=\"en\">\n    <node class=\"TJsonNode\" name=\"a.json\">\n{rows}\n    \
+             </node>\n  </source>\n</document>\n"
+        );
+        crate::slp::parse(slp.as_bytes()).unwrap()
+    }
+
+    const CONTROL_ROWS: &str = "<row id=\"OPEN\"><native>Open\u{7F}</native><lang id=\"de\" status=\"3\">Öffnen &amp; los\u{7F}</lang></row>\n\
+                                <row id=\"SAVE\"><native>Save</native><lang id=\"de\" status=\"3\">Speichern</lang></row>";
+
     #[test]
     fn control_characters_in_original_and_translation() {
-        let slp = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<document>\n  <lang id=\"de\"/>\n  <lang id=\"en\"/>\n  \
-                   <source class=\"TJsonSource\" name=\"a.json\" original=\"en\">\n    <node class=\"TJsonNode\" name=\"a.json\">\n      \
-                   <row id=\"OPEN\"><native>Open\u{7F}</native><lang id=\"de\" status=\"3\">Öffnen\u{7F}</lang></row>\n      \
-                   <row id=\"SAVE\"><native>Save</native><lang id=\"de\" status=\"3\">Speichern</lang></row>\n    </node>\n  </source>\n</document>\n";
-        let p = crate::slp::parse(slp.as_bytes()).unwrap();
+        let p = project(CONTROL_ROWS);
         let issues = validate(&p, &ValidateOptions::default(), None);
         let found: Vec<(&str, &str, ValidationKind, Severity)> = issues.iter().map(|i| (i.context.as_str(), i.lang.as_str(), i.kind, i.severity)).collect();
         assert_eq!(
@@ -454,5 +553,44 @@ mod tests {
         let only_format = ValidateOptions { kinds: vec![ValidationKind::Format], ..Default::default() };
         assert!(validate(&p, &only_format, None).is_empty());
         assert_eq!(ValidationKind::from_keyword("control"), Some(ValidationKind::ControlCharacters));
+    }
+
+    #[test]
+    fn junit_report() {
+        let mut p = project(CONTROL_ROWS);
+        p.path = Some(std::path::PathBuf::from("l10n").join("app.slp"));
+        let issues = validate(&p, &ValidateOptions::default(), None);
+        // The first issue twice: GitLab ignores repeated names, so the second one gets a suffix.
+        let xml = junit_xml(&p, &[&issues[0], &issues[1], &issues[0]]);
+        assert!(!xml.contains('\u{7F}'), "control characters must not reach the XML");
+        let doc = crate::xml::parse_str(&xml).unwrap();
+        assert_eq!((doc.root.name.as_str(), doc.root.attr("tests"), doc.root.attr("failures")), ("testsuites", Some("3"), Some("3")));
+        let suite = doc.root.child("testsuite").unwrap();
+        assert_eq!(suite.attr("name"), Some("app.slp"));
+        let cases: Vec<_> = suite.elements().collect();
+        let names: Vec<_> = cases.iter().map(|c| c.attr("name").unwrap()).collect();
+        assert_eq!(
+            names,
+            [
+                "[en] a.json/OPEN: Invalid control characters",
+                "[de] a.json/OPEN: Invalid control characters",
+                "[en] a.json/OPEN: Invalid control characters (2)"
+            ]
+        );
+        assert_eq!((cases[1].attr("classname"), cases[1].attr("file")), (Some("a.json"), Some("l10n/a.json")));
+        let failure = cases[1].child("failure").unwrap();
+        assert_eq!(failure.attr("type"), Some("control"));
+        assert_eq!(failure.attr("message"), Some(issues[1].message.as_str()));
+        assert_eq!(
+            failure.text(),
+            "Error: The translation contains control characters: DEL (U+007F) at position 13.\nOriginal (en): Open[U+007F]\nTranslation – de: Öffnen & los[U+007F]"
+        );
+        // The original's issue shows no translation.
+        assert!(!cases[0].child("failure").unwrap().text().contains("Translation"));
+
+        // Without issues the report is still written, with an empty test suite.
+        let doc = crate::xml::parse_str(&junit_xml(&p, &[])).unwrap();
+        assert_eq!(doc.root.attr("tests"), Some("0"));
+        assert_eq!(doc.root.child("testsuite").map(|s| s.elements().count()), Some(0));
     }
 }

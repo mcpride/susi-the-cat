@@ -252,8 +252,14 @@ pub fn task(name: &str) -> String {
                         t("Specific checks:")
                     ),
                 )
+                + &item(
+                    "-junit:file",
+                    t(
+                        "Also writes the result to a JUnit XML file (e.g. for GitLab CI):\nerrors as failed tests, with -w warnings too; without findings\nthe file contains no tests.",
+                    ),
+                )
                 + &date_opts()),
-            &["susi-cli validate -since:yesterday -datetype:translated app.slp"],
+            &["susi-cli validate -since:yesterday -datetype:translated app.slp", "susi-cli validate -junit:susi-junit.xml -w app.slp"],
         ),
         "savetotm" => page(
             "susi-cli savetotm [options] project.slp",

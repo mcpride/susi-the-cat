@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<document created="20261103155355" version="4.0.374" date="20261115112356" scan="9" scanned="20261115112356">
+<document created="20261103155355" version="4.0.374" date="20261115121206" scan="10" scanned="20261115121206">
   <lang id="en"/>
   <lang id="de"/>
   <source class="TTsvSource" name="de-core.tsv" original="en" date="20261115112249">
@@ -339,7 +339,7 @@
       </row>
     </node>
   </source>
-  <source class="TTsvSource" name="de-cli.tsv" original="en" date="20261114181915">
+  <source class="TTsvSource" name="de-cli.tsv" original="en" date="20261115121136">
     <outputfile dir="." localized="&lt;iso&gt;-cli.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-cli.tsv" state="0" created="20261103155355">
       <row id="susi-cli {version} – Susi the CAT (SlMake compatible)" state="0" created="20261103162607" note="Help: general" notereadonly="1">
@@ -589,6 +589,10 @@
       <row id="Specific checks:" state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
         <native>Specific checks:</native>
         <lang id="de" date="20261103155355" status="3">Bestimmte Prüfungen:</lang>
+      </row>
+      <row id="Also writes the result to a JUnit XML file (e.g. for GitLab CI):\nerrors as failed tests, with -w warnings too; without findings\nthe file contains no tests." state="0" created="20261115121206" note="Help: tasks" notereadonly="1">
+        <native>Also writes the result to a JUnit XML file (e.g. for GitLab CI):#lerrors as failed tests, with -w warnings too; without findings#lthe file contains no tests.</native>
+        <lang id="de" date="20261115121206" status="3">Schreibt das Ergebnis zusätzlich in eine JUnit-XML-Datei (z. B. für GitLab CI):#lFehler als fehlgeschlagene Tests, mit -w auch Warnungen; ohne Befund#lenthält die Datei keine Tests.</lang>
       </row>
       <row id="Saves translations to the translation memory." state="0" created="20261103155355" note="Help: tasks" notereadonly="1">
         <native>Saves translations to the translation memory.</native>

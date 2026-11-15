@@ -85,12 +85,24 @@ fn full_pipeline() {
     assert_eq!(r.code, 2, "{}{}", r.out, r.err);
     assert!(r.err.contains("{0}") || r.err.contains("menu.open"), "{}", r.err);
 
+    // The same as a JUnit report for GitLab CI (directories are created): one failed test.
+    let junit = d.join("reports").join("susi-junit.xml");
+    let junit_arg = format!("-junit:{}", s(&junit));
+    let r = run(&["validate", "-lang:de", &junit_arg, &s(&slp)]);
+    assert!(r.code == 1 && r.out.contains("Report created"), "{}{}", r.out, r.err);
+    let xml = std::fs::read_to_string(&junit).unwrap();
+    assert_eq!(xml.matches("<testcase ").count(), 1, "{xml}");
+    assert!(xml.contains("<failure type=\"format\"") && xml.contains("menu") && xml.contains("[de]"), "{xml}");
+
     // Fix it via a second import (overwrite is the default).
     translate_csv(&csv, |o| if o == "Open {0}" { "{0} öffnen".into() } else { String::new() });
     let r = run(&["import", &s(&csv), "-lang:de", &s(&slp)]);
     assert_eq!(r.code, 0, "{}", r.err);
-    let r = run(&["validate", "-lang:de", &s(&slp), "-w"]);
+    let r = run(&["validate", "-lang:de", &junit_arg, &s(&slp), "-w"]);
     assert_eq!(r.code, 0, "{}{}", r.out, r.err);
+    // Without findings the report is written anyway, without test cases.
+    let xml = std::fs::read_to_string(&junit).unwrap();
+    assert!(xml.contains("tests=\"0\"") && !xml.contains("<testcase"), "{xml}");
 
     // Review export of today's translations; date options also restrict validate and report.
     let review = d.join("review.csv");
@@ -150,6 +162,18 @@ fn errors_and_result_codes() {
     assert_eq!(r.code, 1, "{}{}", r.out, r.err);
     let r = run(&["validate", "-all", &s(&slp)]);
     assert_eq!(r.code, 0);
+
+    // In the JUnit report, warnings are failed tests only with -w (as for the result code).
+    let junit = dir.path().join("junit.xml");
+    let junit_arg = format!("--junit={}", s(&junit));
+    let r = run(&["validate", "-all", &junit_arg, &s(&slp)]);
+    assert_eq!(r.code, 0, "{}{}", r.out, r.err);
+    assert!(!std::fs::read_to_string(&junit).unwrap().contains("<testcase"));
+    let r = run(&["validate", "-all", &junit_arg, &s(&slp), "-w"]);
+    assert_eq!(r.code, 1, "{}{}", r.out, r.err);
+    assert!(std::fs::read_to_string(&junit).unwrap().contains("<failure type=\"missing\""));
+    let r = run(&["validate", "-junit", &s(&slp)]);
+    assert!(r.code == 1 && r.err.contains("-junit"), "{}", r.err);
 
     // -nosave keeps the project unchanged.
     let before = std::fs::read(&slp).unwrap();

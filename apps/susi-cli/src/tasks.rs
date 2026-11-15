@@ -21,6 +21,8 @@ pub struct Output<'a> {
     pub err: &'a mut dyn Write,
     pub quiet: bool,
     pub detailed: bool,
+    /// `-w`: warnings also determine the result code.
+    pub warning_codes: bool,
     pub errors: usize,
     pub warnings: usize,
 }
@@ -482,6 +484,11 @@ fn validate(t: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), Stri
         opts.kinds =
             checks.iter().map(|k| ValidationKind::from_keyword(k).ok_or_else(|| tf!("Unknown check '{check}'", check = k))).collect::<Result<_, _>>()?;
     }
+    let junit = match (t.flag("junit"), t.value("junit")) {
+        (_, Some(f)) if !f.trim().is_empty() => Some(PathBuf::from(f)),
+        (true, v) => return Err(tf!("Invalid value for -{name}: \"{value}\"", name = "junit", value = v.unwrap_or_default())),
+        _ => None,
+    };
     let p = st.load(o)?;
     opts.langs = languages(t, p)?;
     let rows = row_selection(t, p, &opts.langs, None, o)?;
@@ -502,6 +509,15 @@ fn validate(t: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), Stri
     }
     let (errors, warnings) = (trn(errors, "{n} error", "{n} errors"), trn(warnings, "{n} warning", "{n} warnings"));
     o.info(tf!("Validation finished: {errors}, {warnings}", errors = errors, warnings = warnings));
+    if let Some(file) = junit {
+        // Failed tests are what fails the job: errors, and warnings only with -w.
+        let failed: Vec<&validate::Issue> = issues.iter().filter(|i| i.severity == Severity::Error || o.warning_codes).collect();
+        if let Some(dir) = file.parent().filter(|d| !d.as_os_str().is_empty()) {
+            std::fs::create_dir_all(dir).map_err(|e| format!("{}: {e}", dir.display()))?;
+        }
+        std::fs::write(&file, validate::junit_xml(p, &failed)).map_err(|e| format!("{}: {e}", file.display()))?;
+        o.info(tf!("Report created: {path}", path = file.display()));
+    }
     Ok(())
 }
 
