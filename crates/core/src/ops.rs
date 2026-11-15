@@ -154,6 +154,7 @@ fn node_class(kind: SourceKind) -> &'static str {
         SourceKind::Android => "TAndroidValuesGroup",
         SourceKind::Arb => "TArbNode",
         SourceKind::WebExtension => "TWebExtensionNode",
+        SourceKind::QtTs => "TQtTsNode",
         _ => "TJsonNode",
     }
 }
@@ -212,6 +213,7 @@ pub fn scan_file(src: &Source, bytes: &[u8], langs: &[String]) -> Result<Vec<Sca
         SourceKind::Properties => formats::properties::scan(bytes),
         SourceKind::Arb => formats::arb::scan(bytes),
         SourceKind::WebExtension => formats::webext::scan(bytes),
+        SourceKind::QtTs => formats::ts::scan(bytes, langs),
         SourceKind::Other => Err(Error::Unsupported(crate::i18n::t("source type not supported by susi").into())),
     }
 }
@@ -326,6 +328,12 @@ fn scan_source_impl(p: &mut Project, si: usize, import_existing: bool) -> Result
         Some(SourceKind::Resx) if import_existing => Some(formats::resx::translations),
         Some(SourceKind::Arb) if import_existing => Some(formats::arb::translations),
         Some(SourceKind::WebExtension) if import_existing => Some(formats::webext::translations),
+        Some(SourceKind::QtTs) if import_existing => Some(formats::ts::translations),
+        _ => None,
+    };
+    // Unfinished Qt translations are taken over as best guesses.
+    let drafts: Option<TranslationsFn> = match p.sources.get(si).map(Source::kind) {
+        Some(SourceKind::QtTs) if import_existing => Some(formats::ts::drafts),
         _ => None,
     };
     let original = p.sources.get(si).map(|s| s.original().to_string()).unwrap_or_default();
@@ -348,7 +356,8 @@ fn scan_source_impl(p: &mut Project, si: usize, import_existing: bool) -> Result
         let node = NodeRef { source: si, path };
         let Some(items) = p.items_at_mut(&node) else { continue };
         let r = merge_rows(items, &scanned);
-        let imported = importer.map_or(0, |parse| import_translations(p, si, f, &node, parse));
+        let imported = importer.map_or(0, |parse| import_translations(p, si, f, &node, parse, TranslationStatus::Translated))
+            + drafts.map_or(0, |parse| import_translations(p, si, f, &node, parse, TranslationStatus::BestGuess));
         rep.add(&ScanReport { files: 1, imported, ..r });
     }
     if let (false, Some(m), Some(src)) = (wildcard, newest, p.sources.get_mut(si)) {
@@ -358,8 +367,9 @@ fn scan_source_impl(p: &mut Project, si: usize, import_existing: bool) -> Result
 }
 
 /// Takes over the translations of the existing localized files of an original (for TSV possibly the
-/// original itself, e.g. `de-core.tsv`) into empty cells. Returns the number of imported cells.
-fn import_translations(p: &mut Project, si: usize, file: &Path, node: &NodeRef, parse: TranslationsFn) -> usize {
+/// original itself, e.g. `de-core.tsv`) into empty cells with `status`. Returns the number of
+/// imported cells.
+fn import_translations(p: &mut Project, si: usize, file: &Path, node: &NodeRef, parse: TranslationsFn, status: TranslationStatus) -> usize {
     let Some(src) = p.sources.get(si) else { return 0 };
     let original = src.original();
     let found: Vec<(String, HashMap<String, String>)> = p
@@ -379,7 +389,7 @@ fn import_translations(p: &mut Project, si: usize, file: &Path, node: &NodeRef, 
             if let Some(t) = tr.get(r.id())
                 && r.text(lang).is_none()
             {
-                r.set_translation(lang, t, TranslationStatus::Translated);
+                r.set_translation(lang, t, status);
                 n += 1;
             }
         }
@@ -404,7 +414,10 @@ pub fn scan_project(p: &mut Project, sources: Option<&[usize]>) -> Result<ScanRe
 /// Adds a new source file (relative paths are stored relative to the project) and scans it.
 pub fn add_source(p: &mut Project, file: &Path, original_lang: &str) -> Result<(usize, ScanReport)> {
     let kind = SourceKind::from_path(file).ok_or_else(|| {
-        Error::Unsupported(crate::tf!("{file}: only .json, .resx, .resw, .po, .pot, .tsv, .properties, .xml and .arb are supported", file = file.display()))
+        Error::Unsupported(crate::tf!(
+            "{file}: only .json, .resx, .resw, .po, .pot, .tsv, .properties, .xml, .arb and .ts are supported",
+            file = file.display()
+        ))
     })?;
     let base = p.base_dir();
     let abs = if file.is_absolute() { file.to_path_buf() } else { std::env::current_dir().map(|d| d.join(file)).unwrap_or_else(|_| file.to_path_buf()) };
@@ -467,8 +480,9 @@ fn rows_for_file<'a>(p: &'a Project, si: usize, file: &Path) -> HashMap<&'a str,
     map
 }
 
-/// Produces the localized content of one original file.
-pub fn build_content(src: &Source, original: &[u8], rows: &HashMap<&str, &Row>, lang: &str) -> Result<Vec<u8>> {
+/// Produces the localized content of one original file. `own_file`: the localized file is the
+/// original itself (TSV catalogs, Qt TS files of a target language).
+pub fn build_content(src: &Source, original: &[u8], rows: &HashMap<&str, &Row>, lang: &str, own_file: bool) -> Result<Vec<u8>> {
     let method = src.write_method();
     let resolve = |id: &str, orig: &str| select_output(method, rows.get(id).copied(), lang, orig);
     match src.kind() {
@@ -485,6 +499,15 @@ pub fn build_content(src: &Source, original: &[u8], rows: &HashMap<&str, &Row>, 
         SourceKind::Android => formats::android::build(original, lang, &resolve),
         SourceKind::Arb => formats::arb::build(original, lang, &resolve),
         SourceKind::WebExtension => formats::webext::build(original, &resolve),
+        SourceKind::QtTs => {
+            // A TS file lists all messages, whatever the write method; drafts stay unfinished.
+            let translation = |id: &str| {
+                let row = rows.get(id)?;
+                let finished = !matches!(row.tstatus(lang), TranslationStatus::ForReview | TranslationStatus::BestGuess);
+                row.build_text(lang).map(|t| (t.to_string(), finished))
+            };
+            formats::ts::build(original, lang, own_file, &translation)
+        }
         SourceKind::Other => Err(Error::Unsupported(crate::i18n::t("source type not supported by susi").into())),
     }
 }
@@ -569,12 +592,13 @@ fn write_output(out: PathBuf, bytes: &[u8], rep: &mut BuildReport) {
 #[allow(clippy::too_many_arguments)]
 fn build_one(p: &Project, si: usize, src: &Source, f: &Path, original: &[u8], rows: &HashMap<&str, &Row>, lang: &str, rep: &mut BuildReport) {
     let Some(out) = output_path(p, si, f, lang) else { return };
-    // A TSV catalog may hold the translations of one language itself (e.g. `de-core.tsv`).
-    if out == *f && src.kind() != SourceKind::Tsv {
+    // A TSV catalog or Qt TS file may hold the translations of one language itself (e.g.
+    // `de-core.tsv`, `app_de.ts`).
+    if out == *f && !matches!(src.kind(), SourceKind::Tsv | SourceKind::QtTs) {
         rep.errors.push(crate::tf!("{file}: output file equals the original file (check the output pattern)", file = out.display()));
         return;
     }
-    let bytes = match build_content(src, original, rows, lang) {
+    let bytes = match build_content(src, original, rows, lang, out == *f) {
         Ok(b) => b,
         Err(e) => {
             rep.errors.push(format!("{}: {e}", f.display()));

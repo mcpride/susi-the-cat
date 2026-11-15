@@ -357,8 +357,8 @@ impl SusiApp {
     fn add_source_dialog(&mut self) {
         let Some(files) = rfd::FileDialog::new()
             .add_filter(
-                t("Supported sources (JSON, .NET RESX/RESW, PO, TSV, Java, Android, ARB)"),
-                &["json", "resx", "resw", "po", "pot", "tsv", "properties", "xml", "arb"],
+                t("Supported sources (JSON, .NET RESX/RESW, PO, TSV, Java, Android, ARB, Qt TS)"),
+                &["json", "resx", "resw", "po", "pot", "tsv", "properties", "xml", "arb", "ts"],
             )
             .add_filter(t("JSON (also WebExtension messages.json)"), &["json"])
             .add_filter(t(".NET resources"), &["resx", "resw"])
@@ -367,6 +367,7 @@ impl SusiApp {
             .add_filter("Java properties", &["properties"])
             .add_filter(t("Android string resources"), &["xml"])
             .add_filter("Flutter ARB", &["arb"])
+            .add_filter("Qt Linguist (TS)", &["ts"])
             .set_title(t("Add source"))
             .pick_files()
         else {

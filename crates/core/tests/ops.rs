@@ -401,3 +401,61 @@ fn webextension_messages_import_and_build() {
     let rep = ops::scan_project(&mut p, None).unwrap();
     assert_eq!((rep.new, rep.changed, rep.unused, rep.imported), (0, 0, 0, 0), "{:?}", rep.errors);
 }
+
+#[test]
+fn qt_ts_import_build_and_numerus_forms() {
+    use susi_core::TranslationStatus::{BestGuess, Translated};
+    let tmp = tempfile::tempdir().unwrap();
+    let i18n = tmp.path().join("i18n");
+    std::fs::create_dir_all(&i18n).unwrap();
+    let ts = |lang: &str, body: &str| {
+        format!(
+            "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<!DOCTYPE TS>\n<TS version=\"2.1\" language=\"{lang}\">\n<context>\n    <name>Main</name>\n{body}</context>\n</TS>\n"
+        )
+    };
+    let msg = |source: &str, translation: &str| format!("    <message>\n        <source>{source}</source>\n        {translation}\n    </message>\n");
+    let numerus = |forms: &[&str]| {
+        let forms: String = forms.iter().map(|f| format!("            <numerusform>{f}</numerusform>\n")).collect();
+        format!(
+            "    <message numerus=\"yes\">\n        <source>%n file(s)</source>\n        <translation type=\"unfinished\">\n{forms}        </translation>\n    </message>\n"
+        )
+    };
+    // lupdate's files: German partly translated (the plural only as a draft), Polish with the greeting.
+    let de = msg("Hello", "<translation>Hallo</translation>")
+        + &numerus(&["%n Datei", "%n Dateien"])
+        + &msg("Old", "<translation type=\"vanished\">Alt</translation>");
+    std::fs::write(i18n.join("app_de.ts"), ts("de", &de)).unwrap();
+    std::fs::write(i18n.join("app_pl.ts"), ts("pl", &(msg("Hello", "<translation>Cześć</translation>") + &numerus(&["", "", ""])))).unwrap();
+    let mut p = susi_core::Project::new();
+    p.path = Some(tmp.path().join("app.slp"));
+    p.add_language("de");
+    p.add_language("pl");
+    // The German file is the original and its own localized file.
+    let (si, rep) = ops::add_source(&mut p, &i18n.join("app_de.ts"), "en").unwrap();
+    assert_eq!((p.sources[si].class(), p.sources[si].output_pattern().1.as_str()), ("TQtTsSource", "app_<iso>.<ext>"));
+    // Polish needs three numerus forms; German drafts become best guesses.
+    assert_eq!((rep.new, rep.imported), (4, 4), "{:?}", rep.errors);
+    let forms: Vec<_> = (0..3).map(|k| p.find_row(&format!("Main|%n file(s)[{k}]")).unwrap()).collect();
+    assert_eq!(p.row(&forms[0]).unwrap().tstatus("de"), BestGuess);
+    assert_eq!(p.row(&p.find_row("Main|Hello").unwrap()).unwrap().text("pl"), Some("Cześć"));
+    for (r, t) in forms.iter().zip(["%n plik", "%n pliki", "%n plików"]) {
+        p.row_mut(r).unwrap().set_translation("pl", t, Translated);
+    }
+
+    let b = ops::build_project(&p, &[], None);
+    assert!(b.errors.is_empty(), "{:?}", b.errors);
+    let pl = std::fs::read_to_string(i18n.join("app_pl.ts")).unwrap();
+    assert!(
+        pl.contains("<translation>\n            <numerusform>%n plik</numerusform>\n            <numerusform>%n pliki</numerusform>\n            <numerusform>%n plików</numerusform>\n        </translation>"),
+        "{pl}"
+    );
+    assert!(pl.contains("language=\"pl\"") && !pl.contains("Alt"), "{pl}");
+    let de = std::fs::read_to_string(i18n.join("app_de.ts")).unwrap();
+    assert!(de.contains("<translation type=\"vanished\">Alt</translation>") && de.contains("<translation>Hallo</translation>"), "{de}");
+    assert!(
+        de.contains("<translation type=\"unfinished\">\n            <numerusform>%n Datei</numerusform>\n            <numerusform>%n Dateien</numerusform>"),
+        "{de}"
+    );
+    let rep = ops::scan_project(&mut p, None).unwrap();
+    assert_eq!((rep.new, rep.changed, rep.unused, rep.imported), (0, 0, 0, 0), "{:?}", rep.errors);
+}

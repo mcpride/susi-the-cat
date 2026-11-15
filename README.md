@@ -23,6 +23,8 @@ Supported sources are:
 * **Flutter ARB** (`lib/l10n/app_en.arb`, Application Resource Bundles; not supported by Sisulizer).
 * **WebExtension messages** (`_locales/en/messages.json` of Chrome/Firefox/Edge extensions; not
   supported by Sisulizer).
+* **Qt Linguist** (`.ts` files of `lupdate`, compiled to `.qm` by `lrelease`; not supported by
+  Sisulizer).
 
 ![Susi's graphical user interface in light theme](assets/susi-gui-01.jpg)
 
@@ -256,7 +258,7 @@ susi-cli <tasks> project.slp [-q] [-a] [-w] [-e] [-h]
 
 | Task | SlMake | Description |
 |------|--------|-------------|
-| `add [file]` | – | Add a source (.json/.resx/.resw/.po/.pot/.tsv/.properties/Android .xml/.arb/`_locales/<lang>/messages.json`, wildcards allowed); creates the project if needed. `-type:json\|resx\|po\|tsv\|properties\|android\|arb\|webext` checks the type |
+| `add [file]` | – | Add a source (.json/.resx/.resw/.po/.pot/.tsv/.properties/Android .xml/.arb/Qt .ts/`_locales/<lang>/messages.json`, wildcards allowed); creates the project if needed. `-type:json\|resx\|po\|tsv\|properties\|android\|arb\|webext\|ts` checks the type |
 | `scan` | `scan` | Scan sources |
 | `create` (`build`, `make`) | `create` | Create localized files (default task) |
 | `export [file]` | `export` | Export to `.xlsx`, `.csv`, `.txt`, `.xlf`, `.tmx` |
@@ -453,7 +455,8 @@ behind a trait so that GitHub can be added later.
     `res\values-b+pt+BR\strings.xml`), RESW `<parent>\<net>\<file>` (e.g.
     `Strings\de\Resources.resw`), ARB: the language code in the file name is replaced
     (`app_en.arb` → `app_<iso>.<ext>`), WebExtension messages `<parent>\<iso>\<file>` (e.g.
-    `_locales\pt_BR\messages.json`).
+    `_locales\pt_BR\messages.json`), Qt TS: the language code in the file name is replaced
+    (`app_de.ts` → `app_<iso>.<ext>`).
   - Patterns from the project's `<outputfile>` are evaluated: `<dir>`, `<parent>`, `<file>`,
     `<body>`, `<ext>`, `<sl>`, `<iso>`, `<ish>`, `<net>`, `<tag>`, `<win>`, `<lang>`,
     `<android>` (BCP 47 subtags joined by `+`: `de`, `pt+BR`, `zh+Hans`) and `<androidr>` (legacy
@@ -625,11 +628,40 @@ location and stored with the class `TWebExtensionSource` (a Susi extension).
 
 ---
 
+## Qt Linguist (`.ts`)
+
+Qt's `lupdate` extracts the texts of the C++/QML code into one TS file per language
+(`i18n/app_de.ts`, `i18n/app_pl.ts`); `lrelease` compiles them to `.qm`. Susi works on the TS files,
+never on the code: one of them is added as the source and stored with the class `TQtTsSource` (a
+Susi extension), e.g. `susi-cli add i18n\app_de.ts -origlang:en -lang:de;pl app.slp`. The original
+may be the file of a target language; it is then its own localized file, like the TSV catalogs.
+
+- **Scan**: Every `<message>` is a row. Row ID: `context|source`, with a disambiguation comment
+  `context|source|comment`, for ID-based translations (`qsTrId`) the message `id`. The note
+  combines the disambiguation comment and the developer comment (`//:`, `<extracomment>`). Plural
+  messages (`numerus="yes"`) get one row per numerus form, `…[0]`, `…[1]`, …, as many as the project
+  languages need under Qt's rules (German 2, Polish 3, Japanese 1, Arabic 6); after adding a
+  language, scan again. Messages marked `vanished` or `obsolete` are skipped. When the source is
+  added, finished translations of the existing TS files are taken over as *Translated*,
+  unfinished ones with text as *Best guess*.
+- **Build**: The language code in the file name is replaced (`app_de.ts` → `app_<iso>.<ext>`:
+  `app_pl.ts`, `app_pt_BR.ts`) and `language` is set. Every message is written, whatever the write
+  method: finished translations without `type`, best guesses, translations for review and missing
+  ones with `type="unfinished"`; plural messages get exactly the numerus forms of the target
+  language. Obsolete messages and translator comments stay only in the file of the original's own
+  language. The files are formatted the way lupdate writes them (`&apos;`, `<byte value="xa0"/>`,
+  empty `<translation></translation>`), so lupdate (after code changes) and Susi (scan, translate,
+  build) can update the same files in turn.
+- **Validation** compares Qt placeholders (`%1`, `%L1`, `%n`) and `&` mnemonics.
+- TypeScript files share the extension `.ts`; adding one reports that it is not a TS file.
+
+---
+
 ## Limitations
 
-- Sources: RESX/RESW, JSON, PO, TSV, Java properties, Android string resources, Flutter ARB and
-  WebExtension messages. Other Sisulizer source types are preserved in the project but are
-  neither scanned nor built.
+- Sources: RESX/RESW, JSON, PO, TSV, Java properties, Android string resources, Flutter ARB,
+  WebExtension messages and Qt Linguist TS. Other Sisulizer source types are preserved in the
+  project but are neither scanned nor built.
 - No Sisulizer exchange packages (`.sle`/`.slz`) and no merging of projects.
 - No machine translation services. The MCP interface takes over this role.
 - No visual form editor.

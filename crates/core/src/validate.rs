@@ -131,7 +131,7 @@ impl Default for ValidateOptions {
 }
 
 /// Format placeholders: .NET `{0}`/`{0:N2}`/`{name}`, ICU/i18next `{{x}}`, printf `%s`/`%1$d`
-/// (`%%` excluded), WebExtension `$name$` (case-insensitive).
+/// (`%%` excluded), Qt `%1`/`%L1`/`%n`, WebExtension `$name$` (case-insensitive).
 pub fn placeholders(s: &str) -> Vec<String> {
     let mut out = Vec::new();
     let chars: Vec<(usize, char)> = s.char_indices().collect();
@@ -163,6 +163,16 @@ pub fn placeholders(s: &str) -> Vec<String> {
             if let Some(conv) = rest[spec_len..].chars().next().filter(|ch| "sdifuxXcpeEgGo@".contains(*ch)) {
                 out.push(format!("%{}{}", &rest[..spec_len], conv));
                 i += 1 + spec_len + 1;
+                continue;
+            }
+            // Qt: `%1`..`%99`, `%L1` (localized number), `%n`/`%Ln` (count of a plural message).
+            let qt = rest.strip_prefix('L').unwrap_or(rest);
+            let digits = qt.chars().take_while(char::is_ascii_digit).take(2).count();
+            let len = if digits > 0 { digits } else { usize::from(qt.starts_with('n')) };
+            if len > 0 && !qt.starts_with('0') {
+                let end = rest.len() - qt.len() + len;
+                out.push(format!("%{}", &rest[..end]));
+                i += 1 + end;
                 continue;
             }
         } else if c == '$' {
@@ -505,6 +515,8 @@ mod tests {
         assert_eq!(placeholders("{0} of {1:N2} {{name}} %s %1$d 100%%"), vec!["%1$d", "%s", "{0}", "{1:N2}", "{{name}}"]);
         assert!(placeholders("{ not one }").is_empty());
         assert_eq!(placeholders("Hi $USER$, $Count$ tabs for $5 or $$"), vec!["$count$", "$user$"]);
+        assert_eq!(placeholders("%1 of %L2 files, %n left (%Ln), 100% done, %0"), vec!["%1", "%L2", "%Ln", "%n"]);
+        assert_eq!(placeholders("%1$s and %10"), vec!["%1$s", "%10"]);
     }
 
     #[test]

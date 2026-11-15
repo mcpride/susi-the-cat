@@ -302,7 +302,8 @@ fn add(t: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), String> {
         Some("android" | "xml") => Some(SourceKind::Android),
         Some("arb" | "flutter") => Some(SourceKind::Arb),
         Some("webext" | "webextension") => Some(SourceKind::WebExtension),
-        Some(x) => return Err(tf!("Source type '{kind}' is not supported (json, resx, po, tsv, properties, android, arb, webext)", kind = x)),
+        Some("ts" | "qt") => Some(SourceKind::QtTs),
+        Some(x) => return Err(tf!("Source type '{kind}' is not supported (json, resx, po, tsv, properties, android, arb, webext, ts)", kind = x)),
     };
     if st.project.is_none() && !st.path.exists() {
         let mut p = Project::new();

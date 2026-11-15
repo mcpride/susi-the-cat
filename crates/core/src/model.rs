@@ -83,6 +83,8 @@ pub enum SourceKind {
     Arb,
     /// Browser extension messages (`_locales/<lang>/messages.json`, Susi extension).
     WebExtension,
+    /// Qt Linguist translation source (`.ts`, Susi extension).
+    QtTs,
     Other,
 }
 
@@ -97,6 +99,7 @@ impl SourceKind {
             SourceKind::Android => "TAndroidValuesSource",
             SourceKind::Arb => "TArbSource",
             SourceKind::WebExtension => "TWebExtensionSource",
+            SourceKind::QtTs => "TQtTsSource",
             SourceKind::Other => "",
         }
     }
@@ -111,6 +114,7 @@ impl SourceKind {
             "TAndroidValuesSource" => SourceKind::Android,
             "TArbSource" => SourceKind::Arb,
             "TWebExtensionSource" => SourceKind::WebExtension,
+            "TQtTsSource" => SourceKind::QtTs,
             _ => SourceKind::Other,
         }
     }
@@ -124,6 +128,7 @@ impl SourceKind {
             "json" => Some(SourceKind::Json),
             "resx" | "resw" => Some(SourceKind::Resx),
             "arb" => Some(SourceKind::Arb),
+            "ts" => Some(SourceKind::QtTs),
             "po" | "pot" => Some(SourceKind::Po),
             "tsv" => Some(SourceKind::Tsv),
             "properties" => Some(SourceKind::Properties),
@@ -142,6 +147,7 @@ impl SourceKind {
             SourceKind::Android => "Android strings",
             SourceKind::Arb => "Flutter ARB",
             SourceKind::WebExtension => "WebExtension messages",
+            SourceKind::QtTs => "Qt Linguist TS",
             SourceKind::Other => crate::i18n::t("Other"),
         }
     }
@@ -289,7 +295,7 @@ impl Source {
             SourceKind::Tsv => crate::formats::tsv::default_pattern(self.name()),
             SourceKind::Properties => crate::formats::properties::default_pattern(self.name()),
             SourceKind::Android => crate::formats::android::default_pattern(self.name()),
-            SourceKind::Arb => crate::formats::arb::default_pattern(self.name()),
+            SourceKind::Arb | SourceKind::QtTs => crate::formats::locale_suffix_pattern(self.name()),
             SourceKind::WebExtension => "<parent>\\<iso>\\<file>".to_string(),
             _ => "<sl>\\<file>".to_string(),
         };

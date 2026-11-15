@@ -7,8 +7,6 @@
 //! `@@locale` set to the target language; the `@key` metadata stays in the template, which is
 //! where Flutter's `gen-l10n` reads it.
 
-use std::path::Path;
-
 use serde_json::{Map, Value};
 
 use super::ScannedString;
@@ -67,14 +65,6 @@ pub fn build(original: &[u8], lang: &str, resolve: &dyn Fn(&str, &str) -> Option
     super::json::write_like(&Value::Object(out), &text, style)
 }
 
-/// Default localized file pattern: the locale suffix of the template is replaced
-/// (`app_en.arb` → `app_<iso>.<ext>`, `en.arb` → `<iso>.<ext>`), otherwise appended.
-pub fn default_pattern(file_name: &str) -> String {
-    let base = file_name.rsplit(['\\', '/']).next().unwrap_or(file_name);
-    let stem = Path::new(base).file_stem().and_then(|s| s.to_str()).unwrap_or("");
-    if crate::lang::is_known(stem) { "<iso>.<ext>".into() } else { super::properties::default_pattern(file_name) }
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -110,13 +100,5 @@ mod tests {
             "{\r\n  \"@@locale\": \"pt_BR\",\r\n  \"@@last_modified\": \"2026-11-01\",\r\n  \"helloWorld\": \"Olá, mundo!\",\r\n  \"nWombats\": \"{count, plural, =0{nenhum vombate} one{1 vombate} other{{count} vombates}}\"\r\n}\r\n"
         );
         assert_eq!(translations(s.as_bytes()).unwrap().len(), 2);
-    }
-
-    #[test]
-    fn default_patterns() {
-        assert_eq!(default_pattern("lib\\l10n\\app_en.arb"), "app_<iso>.<ext>");
-        assert_eq!(default_pattern("intl_pt_BR.arb"), "intl_<iso>.<ext>");
-        assert_eq!(default_pattern("l10n/en.arb"), "<iso>.<ext>");
-        assert_eq!(default_pattern("strings.arb"), "<body>_<iso>.<ext>");
     }
 }

@@ -614,7 +614,7 @@ fn about(ui: &mut egui::Ui) -> bool {
         });
     });
     ui.label(t("Localization tool for Susi/Sisulizer projects (.slp)."));
-    ui.label(t("Supported sources: .NET RESX/RESW, JSON, PO/POT (gettext, with MO compilation), TSV (i18n catalogs), Java properties, Android string resources, Flutter ARB, WebExtension messages. Exchange: Excel, CSV, Text, XLIFF, TMX."));
+    ui.label(t("Supported sources: .NET RESX/RESW, JSON, PO/POT (gettext, with MO compilation), TSV (i18n catalogs), Java properties, Android string resources, Flutter ARB, WebExtension messages, Qt Linguist TS. Exchange: Excel, CSV, Text, XLIFF, TMX."));
     ui.label(t("Command line: susi-cli (SlMake compatible), AI integration: susi-cli mcp"));
     ui.separator();
     ui.small(t("Sisulizer is a product of Sisulizer Ltd. & Co KG. Susi is an independent new development."));
