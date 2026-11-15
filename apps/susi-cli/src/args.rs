@@ -117,7 +117,7 @@ pub fn task_options(task: &str) -> &'static [&'static str] {
         "report" => &["items", "lang", "since", "until", "datetype"],
         "scan" | "remove" => FILTER,
         "translate" => &["lang", "engine", "first", "tm", "fuzzy", "overwrite"],
-        "validate" => &["lang", "original", "all", "default", "name", "check", "since", "until", "datetype"],
+        "validate" => &["lang", "original", "all", "default", "name", "check", "since", "until", "datetype", "junit"],
         "savetotm" => &["lang", "tm", "status"],
         "mcp" => &["tm"],
         "workflow" => &["online", "branch", "commit", "message", "prefix", "ciskip", "nobuild", "title", "description", "reviewer", "target"],

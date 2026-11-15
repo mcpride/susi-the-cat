@@ -492,7 +492,8 @@ fn plain_cell(ui: &mut Ui, col: &Col, c: &BodyCtx<'_>, r: &RowRef, data: &Row) {
         }
         Col::Status => status_cell(ui, data, c.cur_lang),
         Col::Original => {
-            fill_cell(ui, c.pal.lavender);
+            let problem = c.issue_cells.contains(&(r.clone(), c.p.original_lang(r).to_string()));
+            fill_cell(ui, if problem { c.pal.problem } else { c.pal.lavender });
             cell_label(ui, data.original());
         }
         Col::Note => {

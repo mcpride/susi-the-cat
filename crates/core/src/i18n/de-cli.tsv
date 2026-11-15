@@ -68,6 +68,7 @@
 	All checks (including missing translations).	Alle Prüfungen (inkl. fehlender Übersetzungen).
 	Default checks.	Standardprüfungen.
 	Specific checks:	Bestimmte Prüfungen:
+	Also writes the result to a JUnit XML file (e.g. for GitLab CI):\nerrors as failed tests, with -w warnings too; without findings\nthe file contains no tests.	Schreibt das Ergebnis zusätzlich in eine JUnit-XML-Datei (z. B. für GitLab CI):\nFehler als fehlgeschlagene Tests, mit -w auch Warnungen; ohne Befund\nenthält die Datei keine Tests.
 	Saves translations to the translation memory.	Speichert Übersetzungen im Translation Memory.
 	TMX file	TMX-Datei
 	Default:	Standard:

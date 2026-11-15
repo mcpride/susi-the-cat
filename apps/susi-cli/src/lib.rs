@@ -91,7 +91,7 @@ pub fn run_with(args: &[String], out: &mut dyn Write, err: &mut dyn Write) -> i3
         print_error(err, t("Project file (.slp) missing (see: susi-cli -h)"));
         return 1;
     };
-    let mut o = Output { out, err, quiet: inv.quiet, detailed: inv.detailed, errors: 0, warnings: 0 };
+    let mut o = Output { out, err, quiet: inv.quiet, detailed: inv.detailed, warning_codes: inv.warning_codes, errors: 0, warnings: 0 };
     o.info(format!("susi-cli {VERSION}"));
     let mut st = State::new(path);
     for t in &inv.tasks {

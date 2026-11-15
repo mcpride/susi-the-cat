@@ -1,11 +1,13 @@
 //! Translation validation (Prüfen | Übersetzung prüfen).
 
-use std::collections::{BTreeMap, HashMap};
+use std::collections::{BTreeMap, HashMap, HashSet};
+use std::fmt::Write as _;
+use std::path::Path;
 
 use serde::Serialize;
 
 use crate::i18n::t;
-use crate::model::{Project, RowRef};
+use crate::model::{Project, RowRef, Source};
 use crate::status::TranslationStatus;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize)]
@@ -24,6 +26,7 @@ pub enum ValidationKind {
     AllSpaces,
     HotkeyCount,
     DuplicateTranslation,
+    ControlCharacters,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Serialize)]
@@ -34,7 +37,7 @@ pub enum Severity {
 }
 
 impl ValidationKind {
-    pub const ALL: [ValidationKind; 13] = [
+    pub const ALL: [ValidationKind; 14] = [
         Self::MissingTranslation,
         Self::Format,
         Self::Tags,
@@ -48,6 +51,7 @@ impl ValidationKind {
         Self::AllSpaces,
         Self::HotkeyCount,
         Self::DuplicateTranslation,
+        Self::ControlCharacters,
     ];
 
     /// Label in the current UI language (validation names).
@@ -66,6 +70,7 @@ impl ValidationKind {
             Self::AllSpaces => t("Translation consists of spaces only"),
             Self::HotkeyCount => t("Invalid number of hotkeys"),
             Self::DuplicateTranslation => t("Duplicate translation"),
+            Self::ControlCharacters => t("Invalid control characters"),
         }
     }
 
@@ -84,6 +89,7 @@ impl ValidationKind {
             Self::AllSpaces => "allspaces",
             Self::HotkeyCount => "hotkey",
             Self::DuplicateTranslation => "duplicate",
+            Self::ControlCharacters => "control",
         }
     }
 
@@ -93,7 +99,7 @@ impl ValidationKind {
 
     pub fn severity(self) -> Severity {
         match self {
-            Self::Format | Self::Tags | Self::CharacterLength | Self::AllSpaces => Severity::Error,
+            Self::Format | Self::Tags | Self::CharacterLength | Self::AllSpaces | Self::ControlCharacters => Severity::Error,
             _ => Severity::Warning,
         }
     }
@@ -213,6 +219,44 @@ fn hotkeys(s: &str) -> usize {
     n
 }
 
+/// Abbreviations of the ASCII control characters U+0000–U+001F.
+const C0_NAMES: [&str; 32] = [
+    "NUL", "SOH", "STX", "ETX", "EOT", "ENQ", "ACK", "BEL", "BS", "HT", "LF", "VT", "FF", "CR", "SO", "SI", "DLE", "DC1", "DC2", "DC3", "DC4", "NAK", "SYN",
+    "ETB", "CAN", "EM", "SUB", "ESC", "FS", "GS", "RS", "US",
+];
+
+/// Control characters (Unicode category Cc: ASCII U+0000–U+001F, DEL U+007F and C1 U+0080–U+009F)
+/// except tab and line breaks, as `(1-based character position, character)`. They have no meaning
+/// in UI texts and usually slip in through broken imports or encodings.
+pub fn control_chars(s: &str) -> Vec<(usize, char)> {
+    s.chars().enumerate().filter(|(_, c)| c.is_control() && !matches!(c, '\t' | '\n' | '\r')).map(|(i, c)| (i + 1, c)).collect()
+}
+
+/// `DEL (U+007F)`, `NUL (U+0000)`; C1 characters as plain `U+0085`.
+fn control_char_name(c: char) -> String {
+    let code = c as u32;
+    match code {
+        0..=0x1F => format!("{} (U+{code:04X})", C0_NAMES[code as usize]),
+        0x7F => "DEL (U+007F)".into(),
+        _ => format!("U+{code:04X}"),
+    }
+}
+
+/// Lists the control characters of `s` (the first five) with their positions; `None` without any.
+fn control_char_list(s: &str) -> Option<String> {
+    const MAX: usize = 5;
+    let found = control_chars(s);
+    if found.is_empty() {
+        return None;
+    }
+    let mut list: Vec<String> =
+        found.iter().take(MAX).map(|(pos, c)| crate::tf!("{name} at position {pos}", name = control_char_name(*c), pos = pos)).collect();
+    if found.len() > MAX {
+        list.push("…".into());
+    }
+    Some(list.join(", "))
+}
+
 /// End punctuation equivalents (incl. full-width, Arabic, Greek/Spanish forms).
 fn ends_with_any(s: &str, set: &[char]) -> bool {
     s.trim_end().chars().last().is_some_and(|c| set.contains(&c))
@@ -277,6 +321,11 @@ fn check_pair(orig: &str, tr: &str, max_chars: usize, kinds: &[ValidationKind]) 
             out.push((ValidationKind::HotkeyCount, crate::tf!("Hotkeys (&): original {a}, translation {b}.", a = a, b = b)));
         }
     }
+    if on(ValidationKind::ControlCharacters)
+        && let Some(chars) = control_char_list(tr)
+    {
+        out.push((ValidationKind::ControlCharacters, crate::tf!("The translation contains control characters: {chars}.", chars = chars)));
+    }
     out
 }
 
@@ -307,6 +356,12 @@ pub fn validate(p: &Project, opts: &ValidateOptions, rows: Option<&[RowRef]>) ->
                 message,
             });
         };
+        // The original is shared by all languages: reported once, under the original language.
+        if kinds.contains(&ValidationKind::ControlCharacters)
+            && let Some(chars) = control_char_list(row.original())
+        {
+            push(&mut issues, orig_lang, ValidationKind::ControlCharacters, crate::tf!("The original contains control characters: {chars}.", chars = chars));
+        }
         for l in langs.iter().filter(|l| l.as_str() != orig_lang) {
             if p.languages.iter().any(|x| x.id() == l && x.is_pseudo()) {
                 continue;
@@ -344,6 +399,94 @@ pub fn validate(p: &Project, opts: &ValidateOptions, rows: Option<&[RowRef]>) ->
     issues
 }
 
+/// JUnit XML report of `issues` (e.g. for GitLab CI unit test reports): one failed test case per
+/// issue (class name = source, name = language, context and check). Without issues the report
+/// contains an empty test suite.
+pub fn junit_xml(p: &Project, issues: &[&Issue]) -> String {
+    let suite = p.path.as_deref().and_then(Path::file_name).map(|f| f.to_string_lossy().to_string()).unwrap_or_else(|| "susi".into());
+    let n = issues.len();
+    let mut out = String::from("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+    let _ = writeln!(out, "<testsuites name=\"susi-cli validate\" tests=\"{n}\" failures=\"{n}\" errors=\"0\">");
+    let _ = write!(out, "  <testsuite name=\"{}\" tests=\"{n}\" failures=\"{n}\" errors=\"0\" skipped=\"0\"", junit_escape(&suite, true));
+    if issues.is_empty() {
+        out.push_str("/>\n</testsuites>\n");
+        return out;
+    }
+    out.push_str(">\n");
+    // GitLab keeps only the first of several test cases with the same name.
+    let mut names = HashSet::new();
+    for i in issues {
+        let base = format!("[{}] {}: {}", i.lang, i.context, i.kind.label());
+        let mut name = base.clone();
+        for k in 2.. {
+            if names.insert(name.clone()) {
+                break;
+            }
+            name = format!("{base} ({k})");
+        }
+        let _ = write!(out, "    <testcase classname=\"{}\" name=\"{}\"", junit_escape(&i.source, true), junit_escape(&name, true));
+        if let Some(file) = p.sources.get(i.row.source).and_then(|s| junit_file(p, s)) {
+            let _ = write!(out, " file=\"{}\"", junit_escape(&file, true));
+        }
+        let severity = match i.severity {
+            Severity::Error => t("Error"),
+            Severity::Warning => t("Warning"),
+        };
+        let mut body = format!("{severity}: {}", i.message);
+        if let Some(row) = p.row(&i.row) {
+            let orig_lang = p.original_lang(&i.row);
+            let _ = write!(body, "\n{}: {}", crate::tf!("Original ({lang})", lang = orig_lang), row.original());
+            if let Some(text) = row.text(&i.lang).filter(|_| i.lang != orig_lang && i.kind != ValidationKind::MissingTranslation) {
+                let _ = write!(body, "\n{}: {text}", crate::tf!("Translation – {lang}", lang = i.lang));
+            }
+        }
+        let _ = writeln!(
+            out,
+            ">\n      <failure type=\"{}\" message=\"{}\">{}</failure>\n    </testcase>",
+            i.kind.keyword(),
+            junit_escape(&i.message, true),
+            junit_escape(&body, false)
+        );
+    }
+    out.push_str("  </testsuite>\n</testsuites>\n");
+    out
+}
+
+/// Path of a source file for the JUnit `file` attribute: resolved against the project directory,
+/// relative to the working directory where possible, with `/`; `None` for wildcard sources.
+fn junit_file(p: &Project, s: &Source) -> Option<String> {
+    let name = s.name();
+    if name.is_empty() || name.contains(['*', '?']) {
+        return None;
+    }
+    let path = crate::ops::normalize(&p.base_dir().join(name.replace('\\', "/")));
+    let path = std::env::current_dir().ok().and_then(|cwd| path.strip_prefix(cwd).ok().map(Path::to_path_buf)).unwrap_or(path);
+    Some(path.to_string_lossy().replace('\\', "/"))
+}
+
+/// XML escaping for the JUnit report. Control characters (mostly not allowed in XML 1.0) and the
+/// non-characters U+FFFE/U+FFFF are written visibly as `[U+007F]`.
+fn junit_escape(s: &str, attr: bool) -> String {
+    let mut out = String::with_capacity(s.len());
+    for c in s.chars() {
+        match c {
+            '&' => out.push_str("&amp;"),
+            '<' => out.push_str("&lt;"),
+            '>' => out.push_str("&gt;"),
+            '"' if attr => out.push_str("&quot;"),
+            '\n' if attr => out.push_str("&#10;"),
+            '\t' if attr => out.push_str("&#9;"),
+            '\r' => out.push_str("&#13;"),
+            '\n' | '\t' => out.push(c),
+            c if c.is_control() || c == '\u{FFFE}' || c == '\u{FFFF}' => {
+                let _ = write!(out, "[U+{:04X}]", c as u32);
+            }
+            c => out.push(c),
+        }
+    }
+    out
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -366,5 +509,88 @@ mod tests {
         assert_eq!(k("<b>x</b>", "x"), vec![ValidationKind::Tags]);
         assert_eq!(k("&File", "Datei"), vec![ValidationKind::HotkeyCount]);
         assert_eq!(check_pair("abc", "abcd", 3, &all)[0].0, ValidationKind::CharacterLength);
+        assert_eq!(k("Save", "Speichern\u{7F}"), vec![ValidationKind::ControlCharacters]);
+    }
+
+    #[test]
+    fn control_characters() {
+        // Tab and line breaks are legitimate; DEL, the other C0 characters and C1 are not.
+        assert!(control_chars("a\tb\r\nc\n").is_empty());
+        assert_eq!(control_chars("Öffnen\u{7F}"), vec![(7, '\u{7F}')]);
+        assert_eq!(control_chars("\0a\u{1B}b\u{85}"), vec![(1, '\0'), (3, '\u{1B}'), (5, '\u{85}')]);
+        assert_eq!(control_char_list("ab\u{7F}").as_deref(), Some("DEL (U+007F) at position 3"));
+        assert_eq!(control_char_list("\u{0}\u{85}").as_deref(), Some("NUL (U+0000) at position 1, U+0085 at position 2"));
+        assert!(control_char_list(&"\u{7F}".repeat(7)).unwrap().ends_with("at position 5, …"));
+        assert_eq!(control_char_list("plain"), None);
+    }
+
+    /// Project with source `a.json` (original English, German translation) containing `rows`.
+    fn project(rows: &str) -> Project {
+        let slp = format!(
+            "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<document>\n  <lang id=\"de\"/>\n  <lang id=\"en\"/>\n  \
+             <source class=\"TJsonSource\" name=\"a.json\" original=\"en\">\n    <node class=\"TJsonNode\" name=\"a.json\">\n{rows}\n    \
+             </node>\n  </source>\n</document>\n"
+        );
+        crate::slp::parse(slp.as_bytes()).unwrap()
+    }
+
+    const CONTROL_ROWS: &str = "<row id=\"OPEN\"><native>Open\u{7F}</native><lang id=\"de\" status=\"3\">Öffnen &amp; los\u{7F}</lang></row>\n\
+                                <row id=\"SAVE\"><native>Save</native><lang id=\"de\" status=\"3\">Speichern</lang></row>";
+
+    #[test]
+    fn control_characters_in_original_and_translation() {
+        let p = project(CONTROL_ROWS);
+        let issues = validate(&p, &ValidateOptions::default(), None);
+        let found: Vec<(&str, &str, ValidationKind, Severity)> = issues.iter().map(|i| (i.context.as_str(), i.lang.as_str(), i.kind, i.severity)).collect();
+        assert_eq!(
+            found,
+            vec![
+                ("a.json/OPEN", "en", ValidationKind::ControlCharacters, Severity::Error),
+                ("a.json/OPEN", "de", ValidationKind::ControlCharacters, Severity::Error)
+            ]
+        );
+        assert!(issues[0].message.contains("DEL (U+007F) at position 5"), "{}", issues[0].message);
+        let only_format = ValidateOptions { kinds: vec![ValidationKind::Format], ..Default::default() };
+        assert!(validate(&p, &only_format, None).is_empty());
+        assert_eq!(ValidationKind::from_keyword("control"), Some(ValidationKind::ControlCharacters));
+    }
+
+    #[test]
+    fn junit_report() {
+        let mut p = project(CONTROL_ROWS);
+        p.path = Some(std::path::PathBuf::from("l10n").join("app.slp"));
+        let issues = validate(&p, &ValidateOptions::default(), None);
+        // The first issue twice: GitLab ignores repeated names, so the second one gets a suffix.
+        let xml = junit_xml(&p, &[&issues[0], &issues[1], &issues[0]]);
+        assert!(!xml.contains('\u{7F}'), "control characters must not reach the XML");
+        let doc = crate::xml::parse_str(&xml).unwrap();
+        assert_eq!((doc.root.name.as_str(), doc.root.attr("tests"), doc.root.attr("failures")), ("testsuites", Some("3"), Some("3")));
+        let suite = doc.root.child("testsuite").unwrap();
+        assert_eq!(suite.attr("name"), Some("app.slp"));
+        let cases: Vec<_> = suite.elements().collect();
+        let names: Vec<_> = cases.iter().map(|c| c.attr("name").unwrap()).collect();
+        assert_eq!(
+            names,
+            [
+                "[en] a.json/OPEN: Invalid control characters",
+                "[de] a.json/OPEN: Invalid control characters",
+                "[en] a.json/OPEN: Invalid control characters (2)"
+            ]
+        );
+        assert_eq!((cases[1].attr("classname"), cases[1].attr("file")), (Some("a.json"), Some("l10n/a.json")));
+        let failure = cases[1].child("failure").unwrap();
+        assert_eq!(failure.attr("type"), Some("control"));
+        assert_eq!(failure.attr("message"), Some(issues[1].message.as_str()));
+        assert_eq!(
+            failure.text(),
+            "Error: The translation contains control characters: DEL (U+007F) at position 13.\nOriginal (en): Open[U+007F]\nTranslation – de: Öffnen & los[U+007F]"
+        );
+        // The original's issue shows no translation.
+        assert!(!cases[0].child("failure").unwrap().text().contains("Translation"));
+
+        // Without issues the report is still written, with an empty test suite.
+        let doc = crate::xml::parse_str(&junit_xml(&p, &[])).unwrap();
+        assert_eq!(doc.root.attr("tests"), Some("0"));
+        assert_eq!(doc.root.child("testsuite").map(|s| s.elements().count()), Some(0));
     }
 }
