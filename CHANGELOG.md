@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://github.com/mcpride/susi-the-cat/compare/v0.7.0...v0.8.0) (2026-11-15)
+
+### Features
+
+* add validation for invalid control characters ([af70bcd](https://github.com/mcpride/susi-the-cat/commit/af70bcd3b77cef3650bd444d4c4d7ab8bafe803b))
+* **CLI:** add JUnit XML report for validation results ([19037d0](https://github.com/mcpride/susi-the-cat/commit/19037d0e34d3f88604fbb2c895a99092a867804a))
+
 ## [0.7.0](https://github.com/mcpride/susi-the-cat/compare/v0.6.0...v0.7.0) (2026-11-14)
 
 ### Features
