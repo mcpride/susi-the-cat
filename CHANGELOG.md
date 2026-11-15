@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.9.0](https://github.com/mcpride/susi-the-cat/compare/v0.8.0...v0.9.0) (2026-11-15)
+
+### Features
+
+* add ICU MessageFormat validation ([6b04744](https://github.com/mcpride/susi-the-cat/commit/6b047448c69fb1fc8a8c88295c6d12ca6255bdde))
+* add support for .resw, Flutter ARB and WebExtension messages ([c11f19e](https://github.com/mcpride/susi-the-cat/commit/c11f19ee149344726a692d3b472cef322d98ed13))
+* add support for Qt Linguist TS files ([7c66187](https://github.com/mcpride/susi-the-cat/commit/7c661876e60a47e443a4706976066487a568eec4))
+
 ## [0.8.0](https://github.com/mcpride/susi-the-cat/compare/v0.7.0...v0.8.0) (2026-11-15)
 
 ### Features
