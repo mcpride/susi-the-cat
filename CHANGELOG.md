@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.0](https://github.com/mcpride/susi-the-cat/compare/v0.9.0...v0.10.0) (2026-11-15)
+
+### Features
+
+* add GitHub support to the git workflow ([5087808](https://github.com/mcpride/susi-the-cat/commit/50878080a1e2a505df7327c4f0606a4ec1937513))
+* add GitHub support to the git workflow ([af71e82](https://github.com/mcpride/susi-the-cat/commit/af71e82424e49d925bf50f75daa2bdf6aaf82efb)), closes [#12](https://github.com/mcpride/susi-the-cat/issues/12)
+
 ## [0.9.0](https://github.com/mcpride/susi-the-cat/compare/v0.8.0...v0.9.0) (2026-11-15)
 
 ### Features
