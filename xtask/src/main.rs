@@ -7,6 +7,8 @@
 //! - `test`  – run all tests
 //! - `dist`  – release build (icon and version info required on Windows); copies `susi`, `susi-cli`,
 //!   `README.md` and `CHANGELOG.md` to `dist/`
+//! - `sbom`  – CycloneDX SBOM (JSON) of `susi` and `susi-cli` for the host platform into `dist/`
+//!   (`susi.cdx.json`, `susi-cli.cdx.json`; requires `cargo install cargo-cyclonedx --locked`)
 //! - `icons` – renders `assets/app-icon/susi.svg` to `susi.ico` (16–256 px) and `susi-256.png`
 //! - `set-version <x.y.z>` – sets the workspace version in `Cargo.toml` and `Cargo.lock` (used by semantic-release)
 
@@ -23,10 +25,11 @@ fn main() -> ExitCode {
         Some("lint") => lint(),
         Some("test") => test(),
         Some("dist") => dist(),
+        Some("sbom") => sbom(),
         Some("icons") => icons(),
         Some("set-version") => set_version(args.get(1).map(String::as_str)),
         _ => {
-            eprintln!("usage: cargo xtask <ci|fmt|lint|test|dist|icons|set-version <x.y.z>>");
+            eprintln!("usage: cargo xtask <ci|fmt|lint|test|dist|sbom|icons|set-version <x.y.z>>");
             return ExitCode::from(2);
         }
     };
@@ -71,13 +74,16 @@ fn ci() -> Result {
     test()
 }
 
+/// The applications shipped in `dist/` (package and executable names).
+const APPS: [&str; 2] = ["susi", "susi-cli"];
+
 fn dist() -> Result {
     // Release executables must carry the icon and version info (see apps/*/build.rs).
     cargo_env(&["build", "--release", "-p", "susi", "-p", "susi-cli"], &[("SUSI_REQUIRE_WINRES", "1")])?;
     let root = root();
     let dist = root.join("dist");
     std::fs::create_dir_all(&dist).map_err(|e| format!("{}: {e}", dist.display()))?;
-    for name in ["susi", "susi-cli"] {
+    for name in APPS {
         let file = format!("{name}{}", std::env::consts::EXE_SUFFIX);
         let from = root.join("target").join("release").join(&file);
         let to = dist.join(&file);
@@ -91,6 +97,50 @@ fn dist() -> Result {
         }
     }
     Ok(())
+}
+
+/// Directories of the workspace members (`members` in Cargo.toml: `crates/*`, `apps/*`, `xtask`).
+fn member_dirs(root: &Path) -> Vec<PathBuf> {
+    let mut dirs = vec![root.join("xtask")];
+    for group in ["crates", "apps"] {
+        let entries = std::fs::read_dir(root.join(group)).into_iter().flatten().flatten();
+        dirs.extend(entries.map(|e| e.path()).filter(|p| p.join("Cargo.toml").is_file()));
+    }
+    dirs
+}
+
+/// CycloneDX SBOM per application with cargo-cyclonedx: the dependencies built for the host
+/// platform (the release target in CI) with versions, licenses and checksums; build dependencies
+/// are listed with scope "excluded", dev-dependencies not at all.
+fn sbom() -> Result {
+    let root = root();
+    let dist = root.join("dist");
+    std::fs::create_dir_all(&dist).map_err(|e| format!("{}: {e}", dist.display()))?;
+    // Reproducible: the time of the checked-out commit instead of the current time.
+    let epoch = std::env::var("SOURCE_DATE_EPOCH").ok().or_else(|| {
+        let out = Command::new("git").args(["log", "-1", "--format=%ct"]).current_dir(&root).output().ok()?;
+        out.status.success().then(|| String::from_utf8_lossy(&out.stdout).trim().to_string())
+    });
+    let env: Vec<(&str, &str)> = epoch.iter().map(|e| ("SOURCE_DATE_EPOCH", e.as_str())).collect();
+    cargo_env(&["cyclonedx", "--format", "json", "--spec-version", "1.6", "--quiet"], &env)
+        .map_err(|e| format!("{e}; cargo-cyclonedx is required: cargo install cargo-cyclonedx --locked"))?;
+    // cargo-cyclonedx writes `<package>.cdx.json` next to the manifest of every workspace member.
+    for dir in member_dirs(&root) {
+        for path in std::fs::read_dir(&dir).into_iter().flatten().flatten().map(|e| e.path()) {
+            let Some(package) = path.file_name().and_then(|n| n.to_str()).and_then(|n| n.strip_suffix(".cdx.json")) else { continue };
+            if APPS.contains(&package) {
+                let to = dist.join(format!("{package}.cdx.json"));
+                std::fs::rename(&path, &to).map_err(|e| format!("{} → {}: {e}", path.display(), to.display()))?;
+                eprintln!("{}", to.display());
+            } else {
+                std::fs::remove_file(&path).map_err(|e| format!("{}: {e}", path.display()))?;
+            }
+        }
+    }
+    match APPS.iter().map(|a| dist.join(format!("{a}.cdx.json"))).find(|p| !p.is_file()) {
+        Some(missing) => Err(format!("{} was not created", missing.display())),
+        None => Ok(()),
+    }
 }
 
 fn set_version(version: Option<&str>) -> Result {

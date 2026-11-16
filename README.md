@@ -42,6 +42,7 @@ Prerequisites:
 ```powershell
 cargo build --release          # target\release\susi.exe and susi-cli.exe
 cargo xtask dist               # release build (with icon and version info) and copy to dist\
+cargo xtask sbom               # CycloneDX SBOM per app into dist\ (cargo install cargo-cyclonedx --locked)
 cargo xtask ci                 # rustfmt --check, clippy -D warnings, all tests
 cargo xtask fmt | lint | test
 cargo xtask icons              # render assets\app-icon\susi.svg to susi.ico and susi-256.png
@@ -117,9 +118,12 @@ The integration tests run against synthetic fixtures that are part of the worksp
    For a release it prepends the notes to `CHANGELOG.md`, sets the version in `Cargo.toml` and
    `Cargo.lock` (`cargo xtask set-version`), commits these files as `chore(release): x.y.z [skip ci]`,
    creates the tag `vx.y.z` and a draft GitHub release.
-3. **build** – checks out the tag and runs `cargo xtask dist` on each platform; the archives
-   `susi-the-cat-x.y.z-windows-x64.zip`, `…-linux-x64.tar.gz` and `…-macos-arm64.tar.gz` (with
-   `susi`, `susi-cli`, `README.md`, `CHANGELOG.md` and a `.sha256` file each) are attached to the release.
+3. **build** – checks out the tag and runs `cargo xtask dist` and `cargo xtask sbom` on each
+   platform; the archives `susi-the-cat-x.y.z-windows-x64.zip`, `…-linux-x64.tar.gz` and
+   `…-macos-arm64.tar.gz` (with `susi`, `susi-cli`, their SBOMs `susi.cdx.json` and
+   `susi-cli.cdx.json`, `README.md`, `CHANGELOG.md` and a `.sha256` file each) are attached to the
+   release, and the SBOMs also on their own (`susi-the-cat-x.y.z-<platform>-susi.cdx.json`,
+   `…-susi-cli.cdx.json`).
 4. **publish** – publishes the draft once all archives are attached.
 
 Notes:
@@ -127,6 +131,13 @@ Notes:
 - The release tooling is pinned in `package.json`/`package-lock.json` (Node.js ≥ 24.10). Local
   preview of the next version: `npm ci`, then `npx semantic-release --dry-run --no-ci` (needs a
   `GITHUB_TOKEN` with access to the repository).
+- **SBOM**: [cargo-cyclonedx](https://github.com/CycloneDX/cyclonedx-rust-cargo) (pinned in the
+  workflow) writes CycloneDX 1.6 JSON per application with the dependencies built for that platform
+  (versions, licenses, package URLs, crates.io checksums, dependency graph). Build dependencies are
+  listed with scope `excluded`, dev-dependencies and the release tooling are not included. The
+  timestamp is the commit time (`SOURCE_DATE_EPOCH`), so the SBOM is reproducible. Tools such as
+  syft, grype or Dependency-Track read it directly. (syft itself finds no dependencies in plain
+  Rust executables and lists the whole workspace, npm tooling included, when scanning the sources.)
 - The tag of the last release must exist (initially `v0.2.0`); without any `v*` tag semantic-release
   would start with 1.0.0.
 - If `main` is a protected branch, the GitHub Actions bot must be allowed to push the release commit.

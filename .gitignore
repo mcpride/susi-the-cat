@@ -6,3 +6,5 @@
 /node_modules
 /.serena
 /testdata/projects/ConsoleApp1/obj
+# SBOMs of cargo-cyclonedx (cargo xtask sbom moves them to dist/)
+*.cdx.json

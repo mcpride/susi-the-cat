@@ -4,8 +4,8 @@ name: CI
 # on Windows, Linux and macOS. A push to main then runs semantic-release: it derives the next
 # version from the Conventional Commits since the last `v*` tag, updates CHANGELOG.md, Cargo.toml
 # and Cargo.lock, commits and tags the release and creates a draft GitHub release. The build jobs
-# compile the tagged commit on every platform and attach the archives; the last job publishes the
-# release once all of them are attached.
+# compile the tagged commit on every platform and attach the archives and a CycloneDX SBOM per
+# application; the last job publishes the release once all of them are attached.
 on:
   push:
     branches: [main]
@@ -104,8 +104,13 @@ jobs:
           persist-credentials: false
       - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-cyclonedx@0.5.10
       # Release build into dist/; on Windows with icon and version info (rc.exe is required).
       - run: cargo xtask dist
+      # CycloneDX SBOM per application (dependencies of this platform) into dist/.
+      - run: cargo xtask sbom
       - name: Package and upload
         shell: bash
         env:
@@ -123,7 +128,14 @@ jobs:
             tar -czf "$archive" "$name"
             shasum -a 256 "$archive" > "$archive.sha256"
           fi
-          gh release upload "v${VERSION}" "$archive" "$archive.sha256" --clobber --repo "$GITHUB_REPOSITORY"
+          # The SBOMs are in the archive and also attached on their own (for scanners).
+          assets=("$archive" "$archive.sha256")
+          for sbom in "$name"/*.cdx.json; do
+            asset="$name-$(basename "$sbom")"
+            cp "$sbom" "$asset"
+            assets+=("$asset")
+          done
+          gh release upload "v${VERSION}" "${assets[@]}" --clobber --repo "$GITHUB_REPOSITORY"
 
   publish:
     name: publish release
