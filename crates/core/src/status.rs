@@ -6,7 +6,7 @@
 
 use serde::{Deserialize, Serialize};
 
-use crate::i18n::t;
+use crate::i18n::{Lang, current, tr};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
@@ -39,13 +39,18 @@ impl TranslationStatus {
 
     /// Label in the current UI language.
     pub fn label(self) -> &'static str {
+        self.label_in(current())
+    }
+
+    /// Label in the UI language `lang`.
+    pub fn label_in(self, lang: Lang) -> &'static str {
         match self {
-            Self::NotTranslated => t("Not translated"),
-            Self::BestGuess => t("Best guess"),
-            Self::AutoTranslated => t("Auto translated"),
-            Self::Translated => t("Translated"),
-            Self::ForReview => t("For review"),
-            Self::Complete => t("Complete"),
+            Self::NotTranslated => tr(lang, "Not translated"),
+            Self::BestGuess => tr(lang, "Best guess"),
+            Self::AutoTranslated => tr(lang, "Auto translated"),
+            Self::Translated => tr(lang, "Translated"),
+            Self::ForReview => tr(lang, "For review"),
+            Self::Complete => tr(lang, "Complete"),
         }
     }
 
@@ -121,11 +126,16 @@ impl RowStatus {
 
     /// Label in the current UI language.
     pub fn label(self) -> &'static str {
+        self.label_in(current())
+    }
+
+    /// Label in the UI language `lang`.
+    pub fn label_in(self, lang: Lang) -> &'static str {
         match self {
-            Self::New => t("New"),
-            Self::Unused => t("Unused"),
-            Self::InUse => t("In use"),
-            Self::Changed => t("Changed"),
+            Self::New => tr(lang, "New"),
+            Self::Unused => tr(lang, "Unused"),
+            Self::InUse => tr(lang, "In use"),
+            Self::Changed => tr(lang, "Changed"),
         }
     }
 

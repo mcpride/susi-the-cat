@@ -108,7 +108,12 @@ pub fn name_en(id: &str) -> String {
 
 /// Display name in the current UI language.
 pub fn name(id: &str) -> String {
-    if crate::i18n::current() == crate::i18n::Lang::DE { name_de(id) } else { name_en(id) }
+    name_in(crate::i18n::current(), id)
+}
+
+/// Display name in the UI language `ui` (English for languages without names of their own).
+pub fn name_in(ui: crate::i18n::Lang, id: &str) -> String {
+    if ui == crate::i18n::Lang::DE { name_de(id) } else { name_en(id) }
 }
 
 /// Whether `s` is the id, German or English name of language `id`.

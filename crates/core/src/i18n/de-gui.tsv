@@ -199,6 +199,8 @@
 	Row status column	Zeilenstatus-Spalte
 	"Max. characters" column	Spalte „Max. Zeichen“
 	Include "Do not translate" rows	„Nicht übersetzen“-Zeilen einschließen
+	Language of column headers and status values:	Sprache der Spaltenüberschriften und Statuswerte:
+	As the user interface ({lang})	Wie die Benutzeroberfläche ({lang})
 	Import	Importieren
 	Overwrite existing translations	Vorhandene Übersetzungen überschreiben
 	Skip rows whose original has changed	Zeilen mit geändertem Original überspringen

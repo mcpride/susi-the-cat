@@ -170,6 +170,7 @@ fn render_all_views_and_dialogs(ui_language: &str) {
             row_status_column: true,
             max_chars_column: true,
             include_locked: true,
+            label_lang: "en".into(),
         }),
         Dialog::Import(ImportDialog {
             path: tmp.join("import.xlsx"),

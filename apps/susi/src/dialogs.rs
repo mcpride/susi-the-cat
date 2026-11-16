@@ -2,6 +2,7 @@
 
 use std::path::PathBuf;
 
+use susi_core::exchange::ExchangeFormat;
 use susi_core::formats::po::PoOptions;
 use susi_core::formats::properties::PropertiesEncoding;
 use susi_core::i18n::{Lang, t};
@@ -50,6 +51,8 @@ pub struct ExportDialog {
     pub row_status_column: bool,
     pub max_chars_column: bool,
     pub include_locked: bool,
+    /// UI language of headers and status values (tables only): empty = user interface language.
+    pub label_lang: String,
 }
 
 pub struct ImportDialog {
@@ -442,6 +445,13 @@ fn export(app: &mut SusiApp, ui: &mut egui::Ui, d: &mut ExportDialog) -> bool {
     ui.checkbox(&mut d.row_status_column, t("Row status column"));
     ui.checkbox(&mut d.max_chars_column, t("\"Max. characters\" column"));
     ui.checkbox(&mut d.include_locked, t("Include \"Do not translate\" rows"));
+    // XLIFF and TMX have no labels of their own.
+    if matches!(ExchangeFormat::from_path(&d.path), Some(ExchangeFormat::Excel | ExchangeFormat::Csv | ExchangeFormat::Text)) {
+        ui.horizontal(|ui| {
+            ui.label(t("Language of column headers and status values:"));
+            label_language_combo(ui, &mut d.label_lang);
+        });
+    }
     match ok_cancel(ui, t("Export"), d.langs.iter().any(|(_, on)| *on)) {
         Some(true) => {
             app.export(d);
@@ -450,6 +460,18 @@ fn export(app: &mut SusiApp, ui: &mut egui::Ui, d: &mut ExportDialog) -> bool {
         Some(false) => true,
         None => false,
     }
+}
+
+/// Language of exported labels: empty (as the user interface) or a UI language code.
+fn label_language_combo(ui: &mut egui::Ui, value: &mut String) {
+    let as_ui = susi_core::tf!("As the user interface ({lang})", lang = susi_core::i18n::current().name());
+    let text = Lang::all().find(|l| l.code() == value.as_str()).map_or_else(|| as_ui.clone(), |l| l.name().to_string());
+    egui::ComboBox::from_id_salt("exp-label-lang").selected_text(text).show_ui(ui, |ui| {
+        ui.selectable_value(value, String::new(), as_ui);
+        for l in Lang::all() {
+            ui.selectable_value(value, l.code().to_string(), l.name());
+        }
+    });
 }
 
 fn status_combo(ui: &mut egui::Ui, id: &str, value: &mut TranslationStatus) {

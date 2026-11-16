@@ -1,8 +1,8 @@
 //! Exchange with translators: Excel (`.xlsx`), delimited text (`.csv`/`.txt`) and XLIFF 1.2.
 //!
-//! Table layout (one header row, labels in the current UI language):
+//! Table layout (one header row, labels in a UI language, by default the current one):
 //! `Source | Context | Original [en] | German [de] | German [de] Status | German [de] Comment | … | Row status | Row comment`.
-//! Import identifies columns by their header (English or German), rows by source + context (fallback: original text).
+//! Import identifies columns by their header (in any UI language), rows by source + context (fallback: original text).
 
 use std::collections::HashMap;
 use std::path::Path;
@@ -10,7 +10,7 @@ use std::path::Path;
 use serde::Serialize;
 
 use crate::error::{Error, Result, read_file, write_file};
-use crate::i18n::t;
+use crate::i18n::{Lang, t, tr};
 use crate::lang;
 use crate::model::{Project, Row, RowRef};
 use crate::status::{RowStatus, TranslationStatus};
@@ -37,6 +37,15 @@ pub struct ExportOptions {
     pub row_comment_column: bool,
     pub max_chars_column: bool,
     pub include_locked: bool,
+    /// UI language of the column headers, status values and worksheet name of tables (Excel,
+    /// CSV, text); `None` = the current UI language.
+    pub label_lang: Option<Lang>,
+}
+
+impl ExportOptions {
+    fn label_lang(&self) -> Lang {
+        self.label_lang.unwrap_or_else(crate::i18n::current)
+    }
 }
 
 impl Default for ExportOptions {
@@ -52,6 +61,7 @@ impl Default for ExportOptions {
             row_comment_column: true,
             max_chars_column: false,
             include_locked: false,
+            label_lang: None,
         }
     }
 }
@@ -103,8 +113,8 @@ impl ImportReport {
     }
 }
 
-fn lang_header(id: &str) -> String {
-    format!("{} [{id}]", lang::name(id))
+fn lang_header(ui: Lang, id: &str) -> String {
+    format!("{} [{id}]", lang::name_in(ui, id))
 }
 
 fn target_langs(p: &Project, langs: &[String]) -> Vec<String> {
@@ -141,26 +151,27 @@ pub fn export_table(p: &Project, opts: &ExportOptions) -> Table {
         v.dedup();
         v
     };
+    let ui = opts.label_lang();
     let orig_header = if originals.len() == 1 { format!("Original [{}]", originals[0]) } else { "Original".to_string() };
-    let mut headers = vec![t("Source").to_string(), t("Context").to_string(), orig_header];
+    let mut headers = vec![tr(ui, "Source").to_string(), tr(ui, "Context").to_string(), orig_header];
     for l in &langs {
-        let h = lang_header(l);
+        let h = lang_header(ui, l);
         headers.push(h.clone());
         if opts.status_columns {
             headers.push(format!("{h} Status"));
         }
         if opts.comment_columns {
-            headers.push(format!("{h} {}", t("Comment")));
+            headers.push(format!("{h} {}", tr(ui, "Comment")));
         }
     }
     if opts.row_status_column {
-        headers.push(t("Row status").into());
+        headers.push(tr(ui, "Row status").into());
     }
     if opts.row_comment_column {
-        headers.push(t("Row comment").into());
+        headers.push(tr(ui, "Row comment").into());
     }
     if opts.max_chars_column {
-        headers.push(t("Max. characters").into());
+        headers.push(tr(ui, "Max. characters").into());
     }
     let mut rows = Vec::new();
     for r in export_rows(p, opts) {
@@ -173,14 +184,14 @@ pub fn export_table(p: &Project, opts: &ExportOptions) -> Table {
             let own = l.as_str() == orig;
             rec.push(if own { row.original().to_string() } else { row.text(l).unwrap_or("").to_string() });
             if opts.status_columns {
-                rec.push(if own { String::new() } else { row.tstatus(l).label().to_string() });
+                rec.push(if own { String::new() } else { row.tstatus(l).label_in(ui).to_string() });
             }
             if opts.comment_columns {
                 rec.push(row.translation(l).map(|t| t.comment().to_string()).unwrap_or_default());
             }
         }
         if opts.row_status_column {
-            rec.push(row.status().label().into());
+            rec.push(row.status().label_in(ui).into());
         }
         if opts.row_comment_column {
             rec.push(row.note().into());
@@ -216,22 +227,34 @@ fn header_lang(h: &str) -> Option<String> {
     lang::known_languages().map(|(id, _)| id).find(|id| lang::matches_name(id, h)).map(str::to_string)
 }
 
+/// `s` without `suffix` (ASCII case-insensitive).
+fn strip_suffix_ci<'a>(s: &'a str, suffix: &str) -> Option<&'a str> {
+    let cut = s.len().checked_sub(suffix.len())?;
+    (s.is_char_boundary(cut) && s[cut..].eq_ignore_ascii_case(suffix)).then(|| &s[..cut])
+}
+
+/// Column of a header written in any UI language (tables may come from another Susi user).
 fn classify(h: &str) -> Col {
     let t = h.trim();
     let lower = t.to_lowercase();
-    match lower.as_str() {
-        "quelle" | "source" | "datei" | "file" => return Col::Source,
-        "kontext" | "context" | "id" | "schlüssel" | "key" => return Col::Context,
-        "zeilenkommentar" | "row comment" | "kommentar" | "comment" => return Col::RowComment,
-        _ => {}
+    // Further names used in hand-made tables.
+    let is = |english: &str, extra: &[&str]| crate::i18n::matches_any(english, t) || extra.contains(&lower.as_str());
+    if is("Source", &["datei", "file"]) {
+        return Col::Source;
+    }
+    if is("Context", &["id", "schlüssel", "key"]) {
+        return Col::Context;
+    }
+    if is("Row comment", &[]) || is("Comment", &[]) {
+        return Col::RowComment;
     }
     if lower.starts_with("original") {
         return Col::Original;
     }
-    if let Some(base) = t.strip_suffix(" Status").or_else(|| t.strip_suffix(" status")) {
+    if let Some(base) = strip_suffix_ci(t, " Status") {
         return header_lang(base).map_or(Col::Ignore, Col::Status);
     }
-    if let Some(base) = t.strip_suffix(" Kommentar").or_else(|| t.strip_suffix(" Comment")).or_else(|| t.strip_suffix(" comment")) {
+    if let Some(base) = Lang::all().find_map(|l| strip_suffix_ci(t, &format!(" {}", tr(l, "Comment")))) {
         return header_lang(base).map_or(Col::Ignore, Col::Comment);
     }
     header_lang(t).map_or(Col::Ignore, Col::Text)
@@ -376,12 +399,13 @@ pub fn import_table(p: &mut Project, t: &Table, opts: &ImportOptions) -> Result<
 // ---------------------------------------------------------------------------------------------
 // Excel
 
-pub fn write_xlsx(t: &Table, path: &Path) -> Result<()> {
+/// Writes the table as a workbook; `ui`: UI language of the worksheet name.
+pub fn write_xlsx(t: &Table, path: &Path, ui: Lang) -> Result<()> {
     use rust_xlsxwriter::{Color, Format, FormatBorder, Workbook};
     let xe = |e: rust_xlsxwriter::XlsxError| Error::Excel(e.to_string());
     let mut wb = Workbook::new();
     let ws = wb.add_worksheet();
-    ws.set_name(crate::i18n::t("Translation")).map_err(xe)?;
+    ws.set_name(tr(ui, "Translation")).map_err(xe)?;
     let head = Format::new().set_bold().set_background_color(Color::RGB(0x00DD_E6F0)).set_border_bottom(FormatBorder::Thin);
     let wrap = Format::new().set_text_wrap();
     for (c, h) in t.headers.iter().enumerate() {
@@ -685,7 +709,7 @@ pub fn per_language_path(path: &Path, lang: &str) -> std::path::PathBuf {
 pub fn export_file(p: &Project, path: &Path, opts: &ExportOptions) -> Result<Vec<std::path::PathBuf>> {
     match format_of(path)? {
         ExchangeFormat::Excel => {
-            write_xlsx(&export_table(p, opts), path)?;
+            write_xlsx(&export_table(p, opts), path, opts.label_lang())?;
             Ok(vec![path.to_path_buf()])
         }
         ExchangeFormat::Csv => {
@@ -787,10 +811,47 @@ mod tests {
         let t = export_table(&p, &ExportOptions::default());
         let dir = tempfile::tempdir().unwrap();
         let f = dir.path().join("x.xlsx");
-        write_xlsx(&t, &f).unwrap();
+        write_xlsx(&t, &f, Lang::EN).unwrap();
         let back = read_xlsx(&f).unwrap();
         assert_eq!(back.headers, t.headers);
         assert_eq!(back.rows[0][3], "Hallo");
         assert_eq!(back.rows[1][2].replace("\r\n", "\n"), "Line 1\nLine \"2\"; x");
+    }
+
+    #[test]
+    fn labels_in_another_ui_language() {
+        use calamine::Reader;
+        crate::i18n::set_current(Lang::DE);
+        let p = project();
+        let opts = ExportOptions { row_status_column: true, ..Default::default() };
+        let de = export_table(&p, &opts);
+        assert_eq!(de.headers[..6], ["Quelle", "Kontext", "Original [en]", "Deutsch [de]", "Deutsch [de] Status", "Deutsch [de] Kommentar"]);
+        assert_eq!(de.rows[0][4], "Übersetzt");
+        let en = export_table(&p, &ExportOptions { label_lang: Some(Lang::EN), ..opts.clone() });
+        assert_eq!(en.headers[..6], ["Source", "Context", "Original [en]", "German [de]", "German [de] Status", "German [de] Comment"]);
+        let row_status = p.row(&p.find_row("hello").unwrap()).unwrap().status();
+        assert_eq!((en.rows[0][4].as_str(), en.headers[9].as_str(), en.rows[0][9].as_str()), ("Translated", "Row status", row_status.label_in(Lang::EN)));
+        assert_ne!(row_status.label_in(Lang::EN), row_status.label_in(Lang::DE));
+        let dir = tempfile::tempdir().unwrap();
+        let f = dir.path().join("en.xlsx");
+        export_file(&p, &f, &ExportOptions { label_lang: Some(Lang::EN), ..opts.clone() }).unwrap();
+        assert_eq!(calamine::open_workbook_auto(&f).unwrap().sheet_names(), ["Translation"]);
+        assert_eq!(read_xlsx(&f).unwrap().headers, en.headers);
+
+        // The import recognizes the headers and status values of any UI language.
+        crate::i18n::set_current(Lang::EN);
+        let mut de = de;
+        let col = |h: &str| de.headers.iter().position(|x| x == h).unwrap();
+        let (text, status, comment) = (col("Französisch [fr]"), col("Französisch [fr] Status"), col("Französisch [fr] Kommentar"));
+        de.rows[1][text] = "Ligne".into();
+        de.rows[1][status] = TranslationStatus::Complete.label_in(Lang::DE).into();
+        de.rows[1][comment] = "Bitte prüfen".into();
+        de.rows[1][col("Zeilenkommentar")] = "Notiz".into();
+        let mut q = project();
+        let rep = import_table(&mut q, &de, &ImportOptions::default()).unwrap();
+        assert_eq!((rep.updated, rep.not_found), (1, 0), "{rep:?}");
+        let row = q.row(&q.find_row("multi").unwrap()).unwrap();
+        assert_eq!((row.text("fr"), row.tstatus("fr"), row.note()), (Some("Ligne"), TranslationStatus::Complete, "Notiz"));
+        assert_eq!(row.translation("fr").map(|t| t.comment()), Some("Bitte prüfen"));
     }
 }

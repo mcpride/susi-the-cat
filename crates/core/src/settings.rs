@@ -47,6 +47,9 @@ pub struct Settings {
     pub dark_mode: bool,
     /// User interface language: `auto` (system language) or a code such as `en`, `de`.
     pub ui_language: String,
+    /// UI language of column headers and status values of exported tables (last choice in the
+    /// export dialog): empty = the user interface language, otherwise a code such as `en`, `de`.
+    pub export_label_language: String,
 }
 
 impl Default for Settings {
@@ -64,6 +67,7 @@ impl Default for Settings {
             pseudo: crate::pseudo::PseudoOptions::default(),
             dark_mode: false,
             ui_language: "auto".into(),
+            export_label_language: String::new(),
         }
     }
 }
