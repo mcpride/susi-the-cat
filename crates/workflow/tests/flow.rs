@@ -75,6 +75,7 @@ impl FakeForge {
             target_branch: d.target_branch.clone(),
             author: None,
             reviewers: Vec::new(),
+            assignees: Vec::new(),
         }
     }
 }
@@ -118,9 +119,24 @@ fn check_publish(wf: &Workflow, branch: &str) {
     let drafts = forge.drafts.lock().unwrap().clone();
     assert_eq!((drafts[0].source_branch.as_str(), drafts[0].target_branch.as_str()), (branch, "main"));
     assert_eq!(drafts[0].reviewers, ["bob"]);
+    assert!(drafts[0].assignees.is_empty(), "reviewers by default");
     assert_eq!(drafts[1].title, "New title");
     let candidates = wf.reviewer_candidates(&forge).unwrap();
     assert_eq!(candidates[0].username, "dev", "previous committers of the project come first");
+
+    // Teams working with assignees instead of reviewers.
+    let local = wf.root().join(".git").join("susi").join("workflow.local.toml");
+    std::fs::create_dir_all(local.parent().unwrap()).unwrap();
+    let bob = |on: bool| if on { vec!["bob".to_string()] } else { Vec::new() };
+    for (assign_as, reviewers, assignees) in [("assignees", false, true), ("both", true, true)] {
+        std::fs::write(&local, format!("[publish]\nassign_as = \"{assign_as}\"\n")).unwrap();
+        let wf = Workflow::detect_with(wf.slp(), None).unwrap().unwrap();
+        let forge = FakeForge::default();
+        wf.publish(&forge, &popts).unwrap();
+        let draft = forge.drafts.lock().unwrap()[0].clone();
+        assert_eq!((draft.reviewers, draft.assignees), (bob(reviewers), bob(assignees)), "{assign_as}");
+    }
+    std::fs::remove_file(&local).unwrap();
 }
 
 /// After publishing, the merge request is remembered offline, also across further saves.

@@ -104,6 +104,8 @@ pub struct PublishConfig {
     pub target_branch: String,
     /// Usernames proposed as reviewers.
     pub reviewers: Vec<String>,
+    /// How the chosen people are entered in the merge request.
+    pub assign_as: AssignAs,
     /// Offer previous committers of the project as reviewers.
     pub offer_committers: bool,
     pub squash: bool,
@@ -117,10 +119,35 @@ impl Default for PublishConfig {
             description: "Translations updated with Susi.".into(),
             target_branch: String::new(),
             reviewers: Vec::new(),
+            assign_as: AssignAs::default(),
             offer_committers: true,
             squash: false,
             remove_source_branch: true,
         }
+    }
+}
+
+/// Role of the people chosen when publishing (`publish.assign_as`): some teams work with
+/// reviewers, others with assignees.
+#[derive(Debug, Clone, Copy, Default, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "lowercase")]
+pub enum AssignAs {
+    /// Reviewers of the merge request (GitHub: requested reviews).
+    #[default]
+    Reviewers,
+    /// Assignees of the merge request.
+    Assignees,
+    /// Reviewers and assignees.
+    Both,
+}
+
+impl AssignAs {
+    pub fn reviewers(self) -> bool {
+        matches!(self, AssignAs::Reviewers | AssignAs::Both)
+    }
+
+    pub fn assignees(self) -> bool {
+        matches!(self, AssignAs::Assignees | AssignAs::Both)
     }
 }
 
@@ -166,6 +193,7 @@ title = "Translations: {project} ({user}, {date})"
 description = "Translations updated with Susi."
 # target_branch = "main"
 reviewers = []             # user names (GitHub teams: org/team)
+assign_as = "reviewers"    # reviewers | assignees | both (GitHub teams can only review)
 offer_committers = true
 squash = false             # GitLab only (GitHub: repository settings)
 remove_source_branch = true
@@ -330,6 +358,23 @@ mod tests {
         assert!(load(None, &repo, &none).unwrap().is_some());
         let repo = write(tmp.path(), "f.toml", "[forge]\ntoken = \"github_pat_11ABCDEF\"\n");
         assert!(load(None, &repo, &none).is_err(), "GitHub tokens are recognized as secrets");
+        let repo = write(tmp.path(), "g.toml", "[publish]\nassign_as = \"owners\"\n");
+        assert!(matches!(load(None, &repo, &none), Err(Error::Config(m)) if m.contains("assignees")), "the valid values are named");
+    }
+
+    #[test]
+    fn assignment_roles() {
+        let tmp = tempfile::tempdir().unwrap();
+        let none = tmp.path().join("none.toml");
+        let role = |value: &str| {
+            let repo = write(tmp.path(), "r.toml", &format!("[publish]\nassign_as = \"{value}\"\n"));
+            let a = load(None, &repo, &none).unwrap().unwrap().0.publish.assign_as;
+            (a, a.reviewers(), a.assignees())
+        };
+        assert_eq!(role("reviewers"), (AssignAs::Reviewers, true, false));
+        assert_eq!(role("assignees"), (AssignAs::Assignees, false, true));
+        assert_eq!(role("both"), (AssignAs::Both, true, true));
+        assert!(Config::default().to_toml().contains("assign_as = \"reviewers\""));
     }
 
     #[test]
