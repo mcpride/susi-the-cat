@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.12.0](https://github.com/mcpride/susi-the-cat/compare/v0.11.0...v0.12.0) (2026-11-16)
+
+### Features
+
+* choose the language of exported table headers ([14bd468](https://github.com/mcpride/susi-the-cat/commit/14bd4680a745612ed2dc4013d629a2a855b373e3))
+
 ## [0.11.0](https://github.com/mcpride/susi-the-cat/compare/v0.10.0...v0.11.0) (2026-11-16)
 
 ### Features
