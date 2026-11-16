@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.11.0](https://github.com/mcpride/susi-the-cat/compare/v0.10.0...v0.11.0) (2026-11-16)
+
+### Features
+
+* configurable merge request role for reviewers (publish.assign_as) ([df6060f](https://github.com/mcpride/susi-the-cat/commit/df6060fe0dd071a45faf299cb6f7523b67c0bd60))
+
 ## [0.10.0](https://github.com/mcpride/susi-the-cat/compare/v0.9.0...v0.10.0) (2026-11-15)
 
 ### Features
