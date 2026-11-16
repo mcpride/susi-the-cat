@@ -221,8 +221,11 @@ GUI and CLI are available in English and German. English is the default and fall
   `SUSI_LANG` → GUI setting → system language → English. For build pipelines a fixed language is
   recommended, e.g. `-uilang:en`.
 - **MCP** always answers in English.
-- **Exchange files** (Excel/CSV) get column headers and status names in the user interface
-  language. On import, both English and German headers and status names are recognized.
+- **Exchange files** (Excel/CSV/text) get column headers, status names and the worksheet name in
+  the user interface language. The export dialog offers another language (*Language of column
+  headers and status values*; the choice is remembered in `settings.json`,
+  `export_label_language`); in the CLI `-uilang:` decides. On import, headers and status names
+  are recognized in every user interface language, regardless of the current one.
 
 Texts are written in English in the code and serve as keys. The catalogs
 `crates/core/src/i18n/de-*.tsv` (`core`, `cli`, `gui`) contain one entry per line:

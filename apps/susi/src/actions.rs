@@ -597,10 +597,16 @@ impl SusiApp {
             row_status_column: d.row_status_column,
             max_chars_column: d.max_chars_column,
             include_locked: d.include_locked,
+            label_lang: self.settings.export_label_language.clone(),
         }));
     }
 
     pub fn export(&mut self, d: &ExportDialog) {
+        // Remembered: exports for the same translators usually need the same language.
+        if self.settings.export_label_language != d.label_lang {
+            self.settings.export_label_language.clone_from(&d.label_lang);
+            let _ = self.settings.save();
+        }
         let Some(p) = &self.project else {
             return;
         };
@@ -612,6 +618,7 @@ impl SusiApp {
             row_status_column: d.row_status_column,
             max_chars_column: d.max_chars_column,
             include_locked: d.include_locked,
+            label_lang: susi_core::i18n::Lang::from_code(&d.label_lang),
             ..Default::default()
         };
         match susi_core::exchange::export_file(p, &d.path, &opts) {
