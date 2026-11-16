@@ -440,10 +440,17 @@ build = true
 title = "Translations: {project} ({user}, {date})"
 description = "Translations updated with Susi."
 reviewers = []             # user names (GitHub teams: org/team)
+assign_as = "reviewers"    # reviewers | assignees | both (GitHub teams can only review)
 offer_committers = true
 squash = false             # GitLab only (GitHub: repository settings)
 remove_source_branch = true
 ```
+
+`publish.assign_as` decides how the people chosen in *Prepare publication* (`reviewers`, the
+dialog, `-reviewer:`) are entered in the merge request: as **reviewers** (default), as
+**assignees** (for teams that work with assignees) or as **both**. When a merge request is
+updated, only the configured role changes; the other one stays as it is. GitLab Free keeps only
+one reviewer and one assignee per merge request.
 
 ### GitHub
 
@@ -457,6 +464,9 @@ URL does not show it, `url = "https://github.example.com"` (API: `<url>/api/v3`)
   repository's collaborators before the pull request is created; the author cannot review their
   own pull request and is left out. Reviewer candidates are the collaborators (or, without push
   access to that list, the users who can be assigned).
+- Assignees (`assign_as = "assignees"` or `"both"`) are users only; the author may be assigned. With
+  `"both"`, teams are requested as reviewers and not assigned; with `"assignees"`, a team is
+  rejected before the pull request is created.
 - Squashing and deleting the branch after merging are no per-pull-request settings on GitHub:
   they are chosen when merging and configured in the repository settings (*Automatically
   delete head branches*), so the dialog does not offer them.

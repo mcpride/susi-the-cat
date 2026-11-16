@@ -83,6 +83,8 @@ pub struct MergeRequest {
     pub target_branch: String,
     pub author: Option<User>,
     pub reviewers: Vec<User>,
+    #[serde(default)]
+    pub assignees: Vec<User>,
 }
 
 /// Content of a merge request to create or update.
@@ -94,6 +96,8 @@ pub struct MergeRequestDraft {
     pub description: String,
     /// Usernames; empty on update keeps the current reviewers.
     pub reviewers: Vec<String>,
+    /// Usernames; empty on update keeps the current assignees.
+    pub assignees: Vec<String>,
     pub squash: bool,
     pub remove_source_branch: bool,
 }

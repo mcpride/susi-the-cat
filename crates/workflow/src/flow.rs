@@ -165,7 +165,8 @@ pub struct PublishOptions {
     pub description: String,
     /// Target branch (empty: configured target or default branch).
     pub target: String,
-    /// Usernames.
+    /// Usernames of the people who check the changes: reviewers and/or assignees of the merge
+    /// request according to `publish.assign_as`.
     pub reviewers: Vec<String>,
     pub squash: bool,
     pub remove_source_branch: bool,
@@ -768,12 +769,15 @@ impl Workflow {
             return Err(Error::Workflow(t("Not all changes are saved on the server yet: save the changes first.").to_string()));
         }
         let target = if opts.target.trim().is_empty() { self.target_branch() } else { opts.target.trim().to_string() };
+        let people: Vec<String> = opts.reviewers.iter().map(|r| r.trim().trim_start_matches('@').to_string()).filter(|r| !r.is_empty()).collect();
+        let assign_as = self.config.publish.assign_as;
         let draft = MergeRequestDraft {
             source_branch: branch.clone(),
             target_branch: target,
             title: opts.title.trim().to_string(),
             description: opts.description.clone(),
-            reviewers: opts.reviewers.iter().map(|r| r.trim().trim_start_matches('@').to_string()).filter(|r| !r.is_empty()).collect(),
+            reviewers: if assign_as.reviewers() { people.clone() } else { Vec::new() },
+            assignees: if assign_as.assignees() { people } else { Vec::new() },
             squash: opts.squash,
             remove_source_branch: opts.remove_source_branch,
         };

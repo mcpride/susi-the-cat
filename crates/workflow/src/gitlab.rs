@@ -26,6 +26,7 @@ fn user(v: &Value) -> Option<User> {
 
 fn merge_request(v: &Value) -> Option<MergeRequest> {
     let s = |k: &str| v.get(k).and_then(Value::as_str).unwrap_or_default().to_string();
+    let users = |k: &str| v.get(k).and_then(Value::as_array).map(|a| a.iter().filter_map(user).collect()).unwrap_or_default();
     let state = match v.get("state")?.as_str()? {
         "merged" => MergeRequestState::Merged,
         "closed" => MergeRequestState::Closed,
@@ -39,7 +40,8 @@ fn merge_request(v: &Value) -> Option<MergeRequest> {
         source_branch: s("source_branch"),
         target_branch: s("target_branch"),
         author: v.get("author").and_then(user),
-        reviewers: v.get("reviewers").and_then(Value::as_array).map(|a| a.iter().filter_map(user).collect()).unwrap_or_default(),
+        reviewers: users("reviewers"),
+        assignees: users("assignees"),
     })
 }
 
@@ -82,7 +84,8 @@ impl GitLab {
         self.send("GET", path, None)
     }
 
-    fn reviewer_ids(&self, names: &[String]) -> Result<Vec<u64>> {
+    /// User ids of reviewers or assignees.
+    fn user_ids(&self, names: &[String]) -> Result<Vec<u64>> {
         if names.is_empty() {
             return Ok(Vec::new());
         }
@@ -114,8 +117,14 @@ impl GitLab {
         if create {
             b["source_branch"] = json!(d.source_branch);
         }
-        if create || !d.reviewers.is_empty() {
-            b["reviewer_ids"] = json!(self.reviewer_ids(&d.reviewers)?);
+        // Empty lists keep the current people of an existing merge request.
+        let reviewers = self.user_ids(&d.reviewers)?;
+        if !reviewers.is_empty() {
+            b["reviewer_ids"] = json!(reviewers);
+        }
+        let assignees = if d.assignees == d.reviewers { reviewers } else { self.user_ids(&d.assignees)? };
+        if !assignees.is_empty() {
+            b["assignee_ids"] = json!(assignees);
         }
         Ok(b)
     }
@@ -220,7 +229,40 @@ mod tests {
         assert!(seen[1].head.to_lowercase().contains("authorization: bearer secret"));
         let body = seen[1].json();
         assert_eq!(body["reviewer_ids"], json!([2]));
+        assert!(body.get("assignee_ids").is_none(), "{body}");
         assert_eq!(body["source_branch"], json!("l10n/a"));
+    }
+
+    #[test]
+    fn assigns_merge_requests() {
+        let (url, server) = serve(4, |line| {
+            if line.starts_with("GET /api/v4/projects/group%2Fapp/members/all") {
+                (200, "", r#"[{"id": 2, "username": "bob", "name": "Bob"}]"#.into())
+            } else {
+                (
+                    200,
+                    "",
+                    r#"{"iid": 3, "title": "T", "web_url": "u", "state": "opened", "source_branch": "l10n/a", "target_branch": "main",
+                    "assignees": [{"id": 2, "username": "bob", "name": "Bob"}]}"#
+                        .into(),
+                )
+            }
+        });
+        let gl = GitLab::new(&url, "group/app", Some("secret".into()));
+        // Assignees only: the reviewers stay as they are.
+        let mr = gl.update_merge_request(3, &MergeRequestDraft { title: "T".into(), assignees: vec!["@bob".into()], ..Default::default() }).unwrap();
+        assert_eq!(mr.assignees[0].username, "bob");
+        // Both roles: the users are looked up once.
+        let both = MergeRequestDraft { title: "T".into(), reviewers: vec!["bob".into()], assignees: vec!["bob".into()], ..Default::default() };
+        gl.update_merge_request(3, &both).unwrap();
+        let seen = server.join().unwrap();
+        let lines: Vec<String> = seen.iter().map(|r| r.line.split([' ', '?']).take(2).collect::<Vec<_>>().join(" ")).collect();
+        let (get, put) = ("GET /api/v4/projects/group%2Fapp/members/all", "PUT /api/v4/projects/group%2Fapp/merge_requests/3");
+        assert_eq!(lines, [get, put, get, put]);
+        let body = seen[1].json();
+        assert_eq!((body.get("reviewer_ids"), &body["assignee_ids"]), (None, &json!([2])));
+        let body = seen[3].json();
+        assert_eq!((&body["reviewer_ids"], &body["assignee_ids"]), (&json!([2]), &json!([2])));
     }
 
     #[test]

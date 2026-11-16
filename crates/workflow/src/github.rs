@@ -2,7 +2,8 @@
 //! GitHub Enterprise Server).
 //!
 //! Pull requests are the workflow's merge requests. Reviewers are user logins or teams written as
-//! `org/team`; the author cannot review their own pull request and is left out. GitHub has no
+//! `org/team`; the author cannot review their own pull request and is left out. Assignees are
+//! users only (teams can only review). GitHub has no
 //! per-pull-request settings for squashing and deleting the branch (both are repository settings
 //! and the choice when merging), so these draft fields are ignored.
 
@@ -57,6 +58,10 @@ fn is_bot(v: &Value) -> bool {
     v.get("type").and_then(Value::as_str) == Some("Bot") || v.get("login").and_then(Value::as_str).is_some_and(|l| l.ends_with("[bot]"))
 }
 
+fn users(v: &Value, key: &str) -> Vec<User> {
+    v.get(key).and_then(Value::as_array).map(|a| a.iter().filter_map(user).collect()).unwrap_or_default()
+}
+
 fn pull_request(v: &Value) -> Option<MergeRequest> {
     let s = |k: &str| v.get(k).and_then(Value::as_str).unwrap_or_default().to_string();
     let branch = |k: &str| v.get(k).and_then(|b| b.get("ref")).and_then(Value::as_str).unwrap_or_default().to_string();
@@ -73,7 +78,8 @@ fn pull_request(v: &Value) -> Option<MergeRequest> {
         source_branch: branch("head"),
         target_branch: branch("base"),
         author: v.get("user").and_then(user),
-        reviewers: v.get("requested_reviewers").and_then(Value::as_array).map(|a| a.iter().filter_map(user).collect()).unwrap_or_default(),
+        reviewers: users(v, "requested_reviewers"),
+        assignees: users(v, "assignees"),
     })
 }
 
@@ -81,14 +87,19 @@ fn parsed(v: &Value) -> Result<MergeRequest> {
     pull_request(v).ok_or_else(|| Error::Forge(t("Unexpected answer from the server").to_string()))
 }
 
+/// Team slug of a name written `org/team`.
+fn team(name: &str) -> Option<&str> {
+    name.trim().trim_start_matches('@').rsplit_once('/').map(|(_, team)| team).filter(|team| !team.is_empty())
+}
+
 /// Reviewer names split into user logins and team slugs (`org/team` → `team`).
 fn split_reviewers(names: &[String]) -> (Vec<String>, Vec<String>) {
     let mut users = Vec::new();
     let mut teams = Vec::new();
     for n in names.iter().map(|n| n.trim().trim_start_matches('@')).filter(|n| !n.is_empty()) {
-        match n.rsplit_once('/') {
-            Some((_, team)) if !team.is_empty() => teams.push(team.to_string()),
-            _ => users.push(n.to_string()),
+        match team(n) {
+            Some(team) => teams.push(team.to_string()),
+            None => users.push(n.to_string()),
         }
     }
     (users, teams)
@@ -139,9 +150,15 @@ impl GitHub {
         self.login.get_or_init(|| self.current_user().ok().map(|u| u.username)).as_deref()
     }
 
-    /// Checks that the reviewers are collaborators before the pull request is created (when the
-    /// collaborators can be listed).
-    fn check_reviewers(&self, users: &[String]) -> Result<()> {
+    /// Checks the people before the pull request is created or changed: teams can only review,
+    /// users must be collaborators (when the collaborators can be listed).
+    fn check_people(&self, d: &MergeRequestDraft) -> Result<()> {
+        // With assign_as = "both" a team is in both lists: it reviews and is not assigned.
+        if let Some(n) = d.assignees.iter().find(|n| team(n).is_some() && !d.reviewers.contains(n)) {
+            return Err(Error::Forge(tf!("GitHub can only assign users, not teams (\"{name}\"); teams can only be requested as reviewers.", name = n.trim())));
+        }
+        let mut users = split_reviewers(&d.reviewers).0;
+        users.extend(split_reviewers(&d.assignees).0);
         if users.is_empty() {
             return Ok(());
         }
@@ -168,20 +185,43 @@ impl GitHub {
         Ok(pull_request(&v))
     }
 
-    /// Requests the reviews of a pull request that was just created or updated: a failure is
-    /// reported together with the pull request, which exists in any case.
-    fn with_reviewers(&self, pr: MergeRequest, names: &[String], created: bool) -> Result<MergeRequest> {
-        match self.request_reviewers(pr.iid, names) {
-            Ok(updated) => Ok(updated.unwrap_or(pr)),
+    /// Assigns the users (teams only review); returns the assignees (`None` without users).
+    fn assign(&self, number: u64, names: &[String]) -> Result<Option<Vec<User>>> {
+        let logins = split_reviewers(names).0;
+        if logins.is_empty() {
+            return Ok(None);
+        }
+        let body = json!({ "assignees": logins });
+        let v = self.send("POST", &format!("{}/issues/{number}/assignees", self.repo_path()), Some(&body))?;
+        Ok(Some(users(&v, "assignees")))
+    }
+
+    /// Requests the reviews and assigns the users of a pull request that was just created or
+    /// updated: a failure is reported together with the pull request, which exists in any case.
+    fn with_people(&self, pr: MergeRequest, d: &MergeRequestDraft, created: bool) -> Result<MergeRequest> {
+        let reference = Provider::GitHub.reference(pr.iid);
+        let mut pr = match self.request_reviewers(pr.iid, &d.reviewers) {
+            Ok(updated) => updated.unwrap_or(pr),
             Err(e) => {
-                let reference = Provider::GitHub.reference(pr.iid);
-                Err(Error::Forge(if created {
+                return Err(Error::Forge(if created {
                     tf!("{reference} was created, but the reviewers could not be requested: {error}", reference = reference, error = e)
                 } else {
                     tf!("{reference} was updated, but the reviewers could not be requested: {error}", reference = reference, error = e)
-                }))
+                }));
+            }
+        };
+        match self.assign(pr.iid, &d.assignees) {
+            Ok(Some(assignees)) => pr.assignees = assignees,
+            Ok(None) => {}
+            Err(e) => {
+                return Err(Error::Forge(if created {
+                    tf!("{reference} was created, but the assignees could not be set: {error}", reference = reference, error = e)
+                } else {
+                    tf!("{reference} was updated, but the assignees could not be set: {error}", reference = reference, error = e)
+                }));
             }
         }
+        Ok(pr)
     }
 }
 
@@ -256,17 +296,17 @@ impl Forge for GitHub {
     }
 
     fn create_merge_request(&self, d: &MergeRequestDraft) -> Result<MergeRequest> {
-        self.check_reviewers(&split_reviewers(&d.reviewers).0)?;
+        self.check_people(d)?;
         let body = json!({ "title": d.title, "body": d.description, "head": d.source_branch, "base": d.target_branch });
         let pr = parsed(&self.send("POST", &format!("{}/pulls", self.repo_path()), Some(&body))?)?;
-        self.with_reviewers(pr, &d.reviewers, true)
+        self.with_people(pr, d, true)
     }
 
     fn update_merge_request(&self, iid: u64, d: &MergeRequestDraft) -> Result<MergeRequest> {
-        self.check_reviewers(&split_reviewers(&d.reviewers).0)?;
+        self.check_people(d)?;
         let body = json!({ "title": d.title, "body": d.description, "base": d.target_branch });
         let pr = parsed(&self.send("PATCH", &format!("{}/pulls/{iid}", self.repo_path()), Some(&body))?)?;
-        self.with_reviewers(pr, &d.reviewers, false)
+        self.with_people(pr, d, false)
     }
 }
 
@@ -285,7 +325,7 @@ mod tests {
 
     const PR: &str = r#"{"number": 5, "title": "T", "html_url": "https://github.com/octo/app/pull/5", "state": "open", "merged_at": null,
         "head": {"ref": "l10n/anna/2026-11-15"}, "base": {"ref": "main"}, "user": {"login": "anna", "id": 1},
-        "requested_reviewers": [{"login": "bob", "id": 2}]}"#;
+        "requested_reviewers": [{"login": "bob", "id": 2}], "assignees": [{"login": "anna", "id": 1}]}"#;
 
     #[test]
     fn parses_pull_requests() {
@@ -293,6 +333,7 @@ mod tests {
         let pr = pull_request(&v).unwrap();
         assert_eq!((pr.iid, pr.state, pr.source_branch.as_str(), pr.target_branch.as_str()), (5, MergeRequestState::Open, "l10n/anna/2026-11-15", "main"));
         assert_eq!((pr.author.unwrap().username, pr.reviewers[0].username.clone()), ("anna".to_string(), "bob".to_string()));
+        assert_eq!(pr.assignees[0].username, "anna");
         v["state"] = json!("closed");
         assert_eq!(pull_request(&v).unwrap().state, MergeRequestState::Closed);
         v["merged_at"] = json!("2026-11-16T10:00:00Z");
@@ -323,6 +364,7 @@ mod tests {
             description: "D".into(),
             // The author is left out; teams are written org/team.
             reviewers: vec!["bob".into(), "Anna".into(), "octo/translators".into()],
+            assignees: Vec::new(),
             squash: true,
             remove_source_branch: true,
         };
@@ -349,6 +391,41 @@ mod tests {
         );
         assert_eq!(seen[2].json(), json!({"title": "T", "body": "D", "head": "l10n/anna/2026-11-15", "base": "main"}));
         assert_eq!(seen[4].json(), json!({"reviewers": ["bob"], "team_reviewers": ["translators"]}));
+    }
+
+    #[test]
+    fn assigns_users_of_pull_requests() {
+        let (url, server) = serve(6, |line| {
+            if line.starts_with("GET /api/v3/repos/octo/app/collaborators") {
+                (200, "", r#"[{"login": "bob", "id": 2}, {"login": "anna", "id": 1}]"#.into())
+            } else if line.starts_with("GET /api/v3/user ") {
+                (200, "", r#"{"login": "anna", "id": 1}"#.into())
+            } else if line.contains("/issues/5/assignees") {
+                (201, "", r#"{"number": 5, "assignees": [{"login": "anna", "id": 1}, {"login": "bob", "id": 2}]}"#.into())
+            } else {
+                (201, "", PR.into())
+            }
+        });
+        let gh = GitHub::new(&url, "octo/app", Some("secret".into()));
+        // assign_as = "both": the author can be assigned, the team only reviews.
+        let people: Vec<String> = vec!["bob".into(), "anna".into(), "octo/translators".into()];
+        let d = MergeRequestDraft { title: "T".into(), reviewers: people.clone(), assignees: people, ..Default::default() };
+        let pr = gh.create_merge_request(&d).unwrap();
+        assert_eq!(pr.assignees.iter().map(|u| u.username.as_str()).collect::<Vec<_>>(), ["anna", "bob"]);
+        let seen = server.join().unwrap();
+        assert!(seen[5].line.starts_with("POST /api/v3/repos/octo/app/issues/5/assignees "), "{}", seen[5].line);
+        assert_eq!(seen[4].json(), json!({"reviewers": ["bob"], "team_reviewers": ["translators"]}));
+        assert_eq!(seen[5].json(), json!({"assignees": ["bob", "anna"]}));
+    }
+
+    #[test]
+    fn teams_cannot_be_assigned() {
+        let (url, server) = serve(0, |_| (500, "", String::new()));
+        let gh = GitHub::new(&url, "octo/app", Some("secret".into()));
+        let d = MergeRequestDraft { assignees: vec!["octo/translators".into()], ..Default::default() };
+        let err = gh.create_merge_request(&d).unwrap_err().to_string();
+        assert!(err.contains("\"octo/translators\""), "{err}");
+        assert!(server.join().unwrap().is_empty(), "no pull request was created");
     }
 
     #[test]

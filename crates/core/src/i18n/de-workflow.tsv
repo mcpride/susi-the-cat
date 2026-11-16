@@ -63,6 +63,9 @@
 	Pull request updated:	Pull Request aktualisiert:
 	{reference} was created, but the reviewers could not be requested: {error}	{reference} wurde erstellt, aber die Prüfer konnten nicht angefragt werden: {error}
 	{reference} was updated, but the reviewers could not be requested: {error}	{reference} wurde aktualisiert, aber die Prüfer konnten nicht angefragt werden: {error}
+	{reference} was created, but the assignees could not be set: {error}	{reference} wurde erstellt, aber die Personen konnten nicht zugewiesen werden: {error}
+	{reference} was updated, but the assignees could not be set: {error}	{reference} wurde aktualisiert, aber die Personen konnten nicht zugewiesen werden: {error}
+	GitHub can only assign users, not teams ("{name}"); teams can only be requested as reviewers.	GitHub kann nur Benutzer zuweisen, keine Teams ("{name}"); Teams können nur als Prüfer angefragt werden.
 	Merge request: {reference} {title} ({url})	Merge Request: {reference} {title} ({url})
 	Pull request: {reference} {title} ({url})	Pull Request: {reference} {title} ({url})
 	Never put access tokens into configuration files; susi only stores references to them.	Tragen Sie niemals Zugriffstokens in Konfigurationsdateien ein; susi speichert nur Referenzen darauf.
