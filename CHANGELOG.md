@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.13.0](https://github.com/mcpride/susi-the-cat/compare/v0.12.0...v0.13.0) (2026-11-18)
+
+### Features
+
+* add screenshots as context for translators ([4902582](https://github.com/mcpride/susi-the-cat/commit/4902582dcb011dd0db44a133a02706c09dc58d82))
+
 ## [0.12.0](https://github.com/mcpride/susi-the-cat/compare/v0.11.0...v0.12.0) (2026-11-16)
 
 ### Features
