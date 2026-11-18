@@ -5,12 +5,12 @@ use std::sync::{Arc, Mutex};
 
 use rmcp::handler::server::router::tool::ToolRouter;
 use rmcp::handler::server::wrapper::Parameters;
-use rmcp::model::{Implementation, ServerCapabilities, ServerConfig};
+use rmcp::model::{CallToolResult, ContentBlock, Implementation, ServerCapabilities, ServerConfig};
 use rmcp::{ServerHandler, tool, tool_handler, tool_router};
 use schemars::JsonSchema;
 use serde::Deserialize;
 
-use crate::session::{ListRowsInput, Session, ToolResult, TranslationInput, WorkflowFetchInput, WorkflowPublishInput, WorkflowSaveInput};
+use crate::session::{ListRowsInput, ScreenshotKeyInput, Session, ToolResult, TranslationInput, WorkflowFetchInput, WorkflowPublishInput, WorkflowSaveInput};
 
 const INSTRUCTIONS: &str = "Susi the CAT (Sisulizer compatible). Typical AI translation workflow: \
 open_project(path) -> project_info -> list_rows(status=[\"untranslated\"], langs=[\"de\"]) -> \
@@ -20,7 +20,9 @@ respect max_chars and row comments. Rows marked do_not_translate must not be tra
 scan updates the project from the source files, build writes the localized files. \
 If the project is in a git working copy configured for the translation workflow (.susi/workflow.toml): \
 workflow_status -> workflow_fetch (latest version) -> translate -> workflow_save (commit + push to a personal branch) -> \
-workflow_publish (GitLab merge request or GitHub pull request for review).";
+workflow_publish (GitLab merge request or GitHub pull request for review). \
+Rows may have screenshots (list_rows/get_row: screenshots [{id, title, area}], area = [x, y, width, height] in pixels): \
+if the meaning, tone or available space of a text is unclear, look at them with get_screenshot(id) before translating.";
 
 #[derive(Clone)]
 pub struct SusiServer {
@@ -163,6 +165,34 @@ pub struct ExportInput {
     /// Only rows with these statuses in any exported language.
     #[serde(default)]
     pub status: Vec<String>,
+    /// Screenshots of the exported rows: auto (default: embedded in Excel, otherwise linked) | none | link | embed.
+    pub screenshots: Option<String>,
+}
+
+#[derive(Debug, Deserialize, JsonSchema)]
+pub struct ScreenshotIdInput {
+    /// Screenshot id as returned by list_rows/get_row (`screenshots[].id`).
+    pub id: String,
+}
+
+#[derive(Debug, Deserialize, JsonSchema)]
+pub struct AttachScreenshotInput {
+    /// Absolute path of a PNG or JPEG image.
+    pub path: String,
+    /// Rows the screenshot shows, optionally with the area of their text.
+    #[serde(default)]
+    pub keys: Vec<ScreenshotKeyInput>,
+    /// Screenshot id (default: from the file name; an existing id gets the new image and keeps its links).
+    pub id: Option<String>,
+    pub title: Option<String>,
+}
+
+#[derive(Debug, Deserialize, JsonSchema)]
+pub struct DetachScreenshotInput {
+    pub id: String,
+    /// Rows to unlink; without keys the screenshot is removed.
+    #[serde(default)]
+    pub keys: Vec<ScreenshotKeyInput>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -292,7 +322,29 @@ impl SusiServer {
 
     #[tool(description = "Export rows for translators (.xlsx, .csv, .txt, .xlf, .tmx).")]
     fn export(&self, Parameters(i): Parameters<ExportInput>) -> Result<String, String> {
-        self.run(|s| s.export(&PathBuf::from(&i.path), &i.langs, &i.status))
+        self.run(|s| s.export(&PathBuf::from(&i.path), &i.langs, &i.status, i.screenshots.as_deref()))
+    }
+
+    #[tool(
+        description = "Get a screenshot of rows as image, with the rows it shows (key, original, area = [x, y, width, height] in pixels). Use it to see where and in which context a text appears and how much space it has."
+    )]
+    fn get_screenshot(&self, Parameters(i): Parameters<ScreenshotIdInput>) -> Result<CallToolResult, String> {
+        use base64::Engine as _;
+        let (bytes, mime, info) = self.with(|s| s.screenshot(&i.id))??;
+        let data = base64::engine::general_purpose::STANDARD.encode(bytes);
+        Ok(CallToolResult::success(vec![ContentBlock::image(data, mime), ContentBlock::text(text(Ok(info))?)]))
+    }
+
+    #[tool(
+        description = "Attach a screenshot (PNG/JPEG file) to rows, optionally with the area of each text. Stored next to the project (<project>.files/) and saved with save_project."
+    )]
+    fn attach_screenshot(&self, Parameters(i): Parameters<AttachScreenshotInput>) -> Result<String, String> {
+        self.run(|s| s.attach_screenshot(&PathBuf::from(&i.path), &i.keys, i.id.as_deref(), i.title.as_deref()))
+    }
+
+    #[tool(description = "Unlink a screenshot from rows (keys), or remove it entirely (no keys).")]
+    fn detach_screenshot(&self, Parameters(i): Parameters<DetachScreenshotInput>) -> Result<String, String> {
+        self.run(|s| s.detach_screenshot(&i.id, &i.keys))
     }
 
     #[tool(description = "Import translations from an exchange file (.xlsx, .csv, .txt, .xlf, .tmx).")]

@@ -3,13 +3,14 @@
 //! Rows are addressed by `key` (context: node names and row id joined by `/`, as shown in the
 //! GUI's "Kontext" column) and, if the key is ambiguous, the `source` index.
 
-use std::collections::HashMap;
 use std::path::{Path, PathBuf};
 
 use serde_json::{Value, json};
-use susi_core::exchange::{self, ExportOptions, ImportOptions};
+use susi_core::exchange::{self, ExportOptions, ImportOptions, ScreenshotExport};
 use susi_core::filter::{DateField, RowFilter, SearchIn, parse_date};
+use susi_core::keys::{KeyError, RowKeys};
 use susi_core::model::{Project, RowRef, display_stamp};
+use susi_core::screenshots::{Area, Link, ScreenshotIndex, ScreenshotStore};
 use susi_core::status::{RowStatus, TranslationStatus};
 use susi_core::tm::{self, TranslateOptions, TranslationMemory};
 use susi_core::validate::{self, ValidateOptions, ValidationKind};
@@ -25,6 +26,10 @@ pub struct Session {
     pub tm: Option<TranslationMemory>,
     /// TM file; default from the user settings.
     pub tm_path: Option<PathBuf>,
+    /// Screenshots of the project (`<project>.files/`), saved with it.
+    pub shots: Option<ScreenshotStore>,
+    /// Why the screenshots could not be loaded.
+    pub shots_error: Option<String>,
 }
 
 fn err(e: impl std::fmt::Display) -> String {
@@ -39,33 +44,19 @@ fn parse_statuses(v: &[String]) -> Result<Vec<TranslationStatus>, String> {
     v.iter().map(|s| parse_status(s)).collect()
 }
 
-/// Row lookup table for one project state.
-struct Keys {
-    map: HashMap<String, Vec<RowRef>>,
-}
+/// Row lookup table for one project state: context first, then the plain row id (see [`RowKeys`]).
+struct Keys(RowKeys);
 
 impl Keys {
     fn new(p: &Project) -> Self {
-        let mut map: HashMap<String, Vec<RowRef>> = HashMap::new();
-        for r in p.rows() {
-            map.entry(p.context(&r)).or_default().push(r);
-        }
-        Self { map }
+        Self(RowKeys::new(p))
     }
 
-    fn find(&self, p: &Project, key: &str, source: Option<usize>) -> Result<RowRef, String> {
-        let mut c: Vec<&RowRef> = self.map.get(key).map(|v| v.iter().collect()).unwrap_or_default();
-        if c.is_empty() {
-            c = self.map.values().flatten().filter(|r| p.row(r).is_some_and(|x| x.id() == key)).collect();
-        }
-        if let Some(s) = source {
-            c.retain(|r| r.source == s);
-        }
-        match c.as_slice() {
-            [r] => Ok((*r).clone()),
-            [] => Err(format!("row '{key}' not found")),
-            _ => Err(format!("row key '{key}' is ambiguous ({} matches) – pass 'source'", c.len())),
-        }
+    fn find(&self, key: &str, source: Option<usize>) -> Result<RowRef, String> {
+        self.0.find(key, source).map_err(|e| match e {
+            KeyError::NotFound => format!("row '{key}' not found"),
+            KeyError::Ambiguous(n) => format!("row key '{key}' is ambiguous ({n} matches) – pass 'source'"),
+        })
     }
 }
 
@@ -123,6 +114,35 @@ pub fn row_json(p: &Project, r: &RowRef, langs: &[String]) -> Value {
     v
 }
 
+/// Adds `screenshots: [{id, title, area}]` to a row object if the row has screenshots.
+fn add_screenshots(v: &mut Value, shots: &ScreenshotStore, idx: &ScreenshotIndex, r: &RowRef) {
+    let list: Vec<Value> = shots
+        .links_of(idx, r)
+        .iter()
+        .map(|(s, l)| {
+            let mut o = json!({ "id": s.id, "title": s.label() });
+            if let Some(a) = l.area {
+                o["area"] = json!(<[u32; 4]>::from(a));
+            }
+            o
+        })
+        .collect();
+    if !list.is_empty() {
+        v["screenshots"] = json!(list);
+    }
+}
+
+/// Rows of a screenshot link.
+#[derive(Debug, Clone, Default, serde::Deserialize, schemars::JsonSchema)]
+pub struct ScreenshotKeyInput {
+    /// Row key (context as returned by list_rows, or a row id); wildcards * and ? select several rows.
+    pub key: String,
+    /// Source index, only needed if the key is ambiguous.
+    pub source: Option<usize>,
+    /// Area of the text in the image in pixels: [x, y, width, height].
+    pub area: Option<[u32; 4]>,
+}
+
 #[derive(Debug, Clone, Default, serde::Deserialize, schemars::JsonSchema)]
 pub struct TranslationInput {
     /// Row key (context) as returned by list_rows.
@@ -161,6 +181,8 @@ pub struct ListRowsInput {
     pub until: Option<String>,
     /// Timestamp for since/until: any (default) | created (row added by a scan) | changed (original changed) | translated (translation of `langs` edited).
     pub date_field: Option<String>,
+    /// Only rows with (true) or without (false) a linked screenshot.
+    pub has_screenshot: Option<bool>,
     #[serde(default)]
     pub offset: usize,
     /// Maximum rows to return (default 100, max 1000).
@@ -228,6 +250,10 @@ impl Session {
         let p = slp::load(path).map_err(err)?;
         self.project = Some(p);
         self.dirty = false;
+        (self.shots, self.shots_error) = match ScreenshotStore::open(path) {
+            Ok(s) => (Some(s), None),
+            Err(e) => (None, Some(e.to_string())),
+        };
         self.info()
     }
 
@@ -240,6 +266,7 @@ impl Session {
         slp::save(&mut p, path).map_err(err)?;
         self.project = Some(p);
         self.dirty = false;
+        (self.shots, self.shots_error) = (Some(ScreenshotStore::new(path)), None);
         self.info()
     }
 
@@ -249,6 +276,10 @@ impl Session {
         p.touch();
         slp::save(p, &target).map_err(err)?;
         p.path = Some(target.clone());
+        if let Some(shots) = self.shots.as_mut() {
+            shots.relocate(&target).map_err(err)?;
+            shots.save().map_err(err)?;
+        }
         self.dirty = false;
         if let Some(tm) = self.tm.as_mut().filter(|t| t.dirty) {
             tm.save().map_err(err)?;
@@ -269,7 +300,21 @@ impl Session {
             .collect();
         let st = stats::statistics(p, None);
         let langs: Vec<Value> = st.languages.iter().map(|l| json!({ "id": l.lang, "name": lang::name_en(&l.lang), "translated_percent": (l.percent() * 10.0).round() / 10.0, "untranslated": l.status[0] })).collect();
-        Ok(json!({ "path": p.path, "dirty": self.dirty, "rows": st.rows, "words": st.words, "languages": langs, "sources": sources }))
+        let mut v = json!({ "path": p.path, "dirty": self.dirty, "rows": st.rows, "words": st.words, "languages": langs, "sources": sources });
+        if let Some(shots) = self.shots.as_ref().filter(|s| !s.is_empty()) {
+            let idx = shots.index(p);
+            v["screenshots"] =
+                json!({ "count": shots.len(), "rows_with_screenshots": idx.rows().len(), "orphaned_links": idx.orphan_count(), "dir": shots.dir() });
+        }
+        if let Some(e) = &self.shots_error {
+            v["screenshot_error"] = json!(e);
+        }
+        Ok(v)
+    }
+
+    /// Screenshot links resolved against the project (`None` without screenshots).
+    fn shot_index(&self, p: &Project) -> Option<(&ScreenshotStore, ScreenshotIndex)> {
+        self.shots.as_ref().filter(|s| !s.is_empty()).map(|s| (s, s.index(p)))
     }
 
     pub fn list_rows(&self, q: &ListRowsInput) -> ToolResult {
@@ -293,19 +338,104 @@ impl Session {
                 .unwrap_or_default(),
             since: date_bound(q.since.as_deref(), false)?,
             until: date_bound(q.until.as_deref(), true)?,
+            has_screenshot: q.has_screenshot,
             ..Default::default()
         };
+        let shots = self.shot_index(p);
+        let f = RowFilter { screenshot_rows: std::sync::Arc::new(shots.as_ref().map(|(_, i)| i.rows()).unwrap_or_default()), ..f };
         let rows = f.apply(p);
         let langs = if q.langs.is_empty() { p.language_ids() } else { q.langs.clone() };
         let limit = q.limit.unwrap_or(100).clamp(1, 1000);
-        let page: Vec<Value> = rows.iter().skip(q.offset).take(limit).map(|r| row_json(p, r, &langs)).collect();
+        let page: Vec<Value> = rows
+            .iter()
+            .skip(q.offset)
+            .take(limit)
+            .map(|r| {
+                let mut v = row_json(p, r, &langs);
+                if let Some((s, i)) = &shots {
+                    add_screenshots(&mut v, s, i, r);
+                }
+                v
+            })
+            .collect();
         Ok(json!({ "total": rows.len(), "offset": q.offset, "returned": page.len(), "rows": page }))
     }
 
     pub fn get_row(&self, key: &str, source: Option<usize>) -> ToolResult {
         let p = self.project()?;
-        let r = Keys::new(p).find(p, key, source)?;
-        Ok(row_json(p, &r, &p.language_ids()))
+        let r = Keys::new(p).find(key, source)?;
+        let mut v = row_json(p, &r, &p.language_ids());
+        if let Some((s, i)) = self.shot_index(p) {
+            add_screenshots(&mut v, s, &i, &r);
+        }
+        Ok(v)
+    }
+
+    /// Image of screenshot `id` (bytes, MIME type) and its rows with areas.
+    pub fn screenshot(&self, id: &str) -> Result<(Vec<u8>, &'static str, Value), String> {
+        let p = self.project()?;
+        let shots = self.shots.as_ref().ok_or("the project has no screenshots")?;
+        let s = shots.get(id).ok_or_else(|| format!("screenshot '{id}' not found"))?;
+        let path = shots.image_dir().join(&s.file);
+        let bytes = std::fs::read(&path).map_err(|e| format!("{}: {e}", path.display()))?;
+        let mime = if susi_core::screenshots::image_kind(&bytes) == Some("png") { "image/png" } else { "image/jpeg" };
+        let idx = shots.index(p);
+        let rows: Vec<Value> = idx
+            .rows()
+            .into_iter()
+            .flat_map(|r| shots.links_of(&idx, &r).into_iter().filter(|(x, _)| x.id == s.id).map(move |(_, l)| (r.clone(), l.area)))
+            .map(|(r, area)| {
+                let mut o = json!({ "key": p.context(&r), "source": r.source, "original": p.row(&r).map(|x| x.original()).unwrap_or("") });
+                if let Some(a) = area {
+                    o["area"] = json!(<[u32; 4]>::from(a));
+                }
+                o
+            })
+            .collect();
+        let info = json!({ "id": s.id, "title": s.title, "width": s.width, "height": s.height, "rows": rows, "orphaned_links": shots.orphans(&idx).len() });
+        Ok((bytes, mime, info))
+    }
+
+    /// Adds an image file as screenshot (or replaces the image of `id`) and links it to rows.
+    pub fn attach_screenshot(&mut self, path: &Path, keys: &[ScreenshotKeyInput], id: Option<&str>, title: Option<&str>) -> ToolResult {
+        let p = self.project.as_ref().ok_or("no project open – call open_project first")?;
+        let index = RowKeys::new(p);
+        let mut links = Vec::new();
+        let mut errors = Vec::new();
+        for k in keys {
+            let rows = index.select(&k.key, k.source);
+            if rows.is_empty() {
+                errors.push(format!("no row matches '{}'", k.key));
+            }
+            links.extend(rows.iter().map(|r| Link::to_row(p, r, k.area.map(Area::from).and_then(|a| (a.w > 0 && a.h > 0).then_some(a)))));
+        }
+        let shots = match (&self.shots_error, self.shots.as_mut()) {
+            (Some(e), _) => return Err(format!("screenshots unavailable: {e}")),
+            (None, None) => return Err("project has no file name – save it first".into()),
+            (None, Some(s)) => s,
+        };
+        let id = shots.add_file(path, id, title).map_err(err)?;
+        let linked = shots.link(&id, links).map_err(err)?;
+        self.dirty = true;
+        Ok(json!({ "id": id, "linked_rows": linked, "errors": errors }))
+    }
+
+    /// Removes the links of screenshot `id` to the given rows, or the screenshot without keys.
+    pub fn detach_screenshot(&mut self, id: &str, keys: &[ScreenshotKeyInput]) -> ToolResult {
+        let p = self.project.as_ref().ok_or("no project open – call open_project first")?;
+        let shots = self.shots.as_mut().ok_or("the project has no screenshots")?;
+        if shots.get(id).is_none() {
+            return Err(format!("screenshot '{id}' not found"));
+        }
+        if keys.is_empty() {
+            shots.remove(id);
+            self.dirty = true;
+            return Ok(json!({ "removed": id }));
+        }
+        let index = RowKeys::new(p);
+        let n: usize = keys.iter().flat_map(|k| index.select(&k.key, k.source)).map(|r| shots.unlink_row(p, id, &r)).sum();
+        self.dirty |= n > 0;
+        Ok(json!({ "unlinked": n }))
     }
 
     pub fn set_translations(&mut self, items: &[TranslationInput]) -> ToolResult {
@@ -318,7 +448,7 @@ impl Session {
                 if !p.has_language(&it.lang) {
                     return Err(format!("language '{}' is not part of the project", it.lang));
                 }
-                let r = keys.find(p, &it.key, it.source)?;
+                let r = keys.find(&it.key, it.source)?;
                 if p.original_lang(&r) == it.lang {
                     return Err(format!("'{}' is the original language of this row", it.lang));
                 }
@@ -351,7 +481,7 @@ impl Session {
         let mut n = 0;
         let mut errors = Vec::new();
         for k in keys_in {
-            match keys.find(p, k, source) {
+            match keys.find(k, source) {
                 Ok(r) => {
                     if p.row_mut(&r).is_some_and(|row| row.set_tstatus(lang, st)) {
                         n += 1;
@@ -375,7 +505,7 @@ impl Session {
         max_chars: Option<usize>,
     ) -> ToolResult {
         let p = self.project_mut()?;
-        let r = Keys::new(p).find(p, key, source)?;
+        let r = Keys::new(p).find(key, source)?;
         let row = p.row_mut(&r).ok_or("row vanished")?;
         if let Some(c) = comment {
             row.set_note(c);
@@ -422,7 +552,10 @@ impl Session {
         if !kinds.is_empty() {
             opts.kinds = kinds.iter().map(|k| ValidationKind::from_keyword(k).ok_or_else(|| format!("unknown validation '{k}'"))).collect::<Result<_, _>>()?;
         }
-        let issues = validate::validate(p, &opts, None);
+        let mut issues = validate::validate(p, &opts, None);
+        if let Some(shots) = self.shots.as_ref().filter(|_| opts.kinds.contains(&ValidationKind::Screenshot)) {
+            issues.extend(shots.issues(p, None));
+        }
         Ok(json!({ "count": issues.len(), "issues": issues }))
     }
 
@@ -461,9 +594,13 @@ impl Session {
         Ok(json!({ "added": n, "tm_size": tm.len(), "tm_path": tm.path }))
     }
 
-    pub fn export(&self, path: &Path, langs: &[String], statuses: &[String]) -> ToolResult {
-        let opts = ExportOptions { langs: langs.to_vec(), statuses: parse_statuses(statuses)?, ..Default::default() };
-        let files = exchange::export_file(self.project()?, path, &opts).map_err(err)?;
+    pub fn export(&self, path: &Path, langs: &[String], statuses: &[String], screenshots: Option<&str>) -> ToolResult {
+        let screenshots = match screenshots {
+            Some(m) => ScreenshotExport::from_keyword(m).ok_or_else(|| format!("unknown screenshots mode '{m}' (auto|none|link|embed)"))?,
+            None => ScreenshotExport::Auto,
+        };
+        let opts = ExportOptions { langs: langs.to_vec(), statuses: parse_statuses(statuses)?, screenshots, ..Default::default() };
+        let files = exchange::export_file(self.project()?, path, &opts, self.shots.as_ref()).map_err(err)?;
         Ok(json!({ "files": files }))
     }
 

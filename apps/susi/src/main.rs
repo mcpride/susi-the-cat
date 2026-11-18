@@ -9,6 +9,7 @@ mod dialogs;
 mod grid;
 mod list;
 mod panels;
+mod shots;
 #[cfg(test)]
 mod tests;
 mod workflow_ui;

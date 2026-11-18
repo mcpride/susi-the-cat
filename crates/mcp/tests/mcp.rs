@@ -90,3 +90,56 @@ async fn translate_over_mcp() {
     let _ = server.await;
     assert!(slp.exists());
 }
+
+#[tokio::test]
+async fn screenshots_over_mcp() {
+    let dir = tempfile::tempdir().unwrap();
+    let json_file = dir.path().join("app.json");
+    std::fs::write(&json_file, r#"{"menu":{"open":"Open","close":"Close"}}"#).unwrap();
+    let png = dir.path().join("menu.png");
+    std::fs::write(&png, susi_core::screenshots::solid_png(120, 80, [10, 20, 30])).unwrap();
+    let slp = dir.path().join("app.slp");
+
+    let (server_io, client_io) = tokio::io::duplex(256 * 1024);
+    let server = tokio::spawn(async move {
+        let s = SusiServer::new(Session::new()).serve(server_io).await.unwrap();
+        let _ = s.waiting().await;
+    });
+    let client = Client.serve(client_io).await.unwrap();
+    assert!(!call(&client, "create_project", json!({"path": slp.to_string_lossy(), "languages": ["en", "de"]})).await.0);
+    assert!(!call(&client, "add_source", json!({"file": json_file.to_string_lossy()})).await.0);
+
+    let keys = json!([{"key": "*menu.open", "area": [5, 5, 40, 12]}, {"key": "nothing"}]);
+    let (e, t) = call(&client, "attach_screenshot", json!({"path": png.to_string_lossy(), "keys": keys, "title": "Menu"})).await;
+    assert!(!e, "{t}");
+    let v: Value = serde_json::from_str(&t).unwrap();
+    assert_eq!((v["id"].as_str(), v["linked_rows"].as_u64()), (Some("menu"), Some(1)), "{t}");
+    assert!(v["errors"][0].as_str().unwrap().contains("nothing"), "{t}");
+
+    let (_, t) = call(&client, "list_rows", json!({"has_screenshot": true})).await;
+    let v: Value = serde_json::from_str(&t).unwrap();
+    assert_eq!(v["total"], 1, "{t}");
+    assert_eq!(v["rows"][0]["screenshots"], json!([{"id": "menu", "title": "Menu", "area": [5, 5, 40, 12]}]));
+
+    let res = client.call_tool(CallToolRequestParams::new("get_screenshot").with_arguments(json!({"id": "menu"}).as_object().cloned().unwrap())).await.unwrap();
+    assert_ne!(res.is_error, Some(true));
+    let image = res.content[0].as_image().expect("image content");
+    assert_eq!(image.mime_type, "image/png");
+    assert!(image.data.starts_with("iVBORw0KGgo"), "base64 PNG");
+    let info = res.content[1].as_text().unwrap().text.clone();
+    assert!(info.contains("\"original\": \"Open\"") && info.contains("\"width\": 120"), "{info}");
+    let res = client.call_tool(CallToolRequestParams::new("get_screenshot").with_arguments(json!({"id": "nope"}).as_object().cloned().unwrap())).await.unwrap();
+    assert_eq!(res.is_error, Some(true));
+
+    assert!(!call(&client, "save_project", json!({})).await.0);
+    assert!(dir.path().join("app.files").join("screenshots.json").is_file());
+    let (e, t) = call(&client, "validate", json!({"kinds": ["screenshot"]})).await;
+    assert!(!e && t.contains("\"count\": 0"), "{t}");
+    let (e, t) = call(&client, "project_info", json!({})).await;
+    assert!(!e && t.contains("\"rows_with_screenshots\": 1"), "{t}");
+    let (e, t) = call(&client, "detach_screenshot", json!({"id": "menu", "keys": [{"key": "*menu.open"}]})).await;
+    assert!(!e && t.contains("\"unlinked\": 1"), "{t}");
+
+    client.cancel().await.unwrap();
+    let _ = server.await;
+}

@@ -411,7 +411,9 @@ impl Workflow {
 
     fn project_changes(&self, p: &Project, changes: &[Change]) -> Vec<String> {
         let files = self.project_paths(p);
-        let mut changed: Vec<String> = changes.iter().map(|c| c.path.clone()).filter(|f| paths::matches(f, &files, &self.config.git.paths)).collect();
+        let mut extra = self.config.git.paths.clone();
+        extra.extend(paths::project_dirs(&self.slp, &self.prefix));
+        let mut changed: Vec<String> = changes.iter().map(|c| c.path.clone()).filter(|f| paths::matches(f, &files, &extra)).collect();
         changed.sort();
         changed.dedup();
         changed

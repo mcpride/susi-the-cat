@@ -50,6 +50,9 @@ pub struct Settings {
     /// UI language of column headers and status values of exported tables (last choice in the
     /// export dialog): empty = the user interface language, otherwise a code such as `en`, `de`.
     pub export_label_language: String,
+    /// Screenshots in exports (last choice in the export dialog): keyword of
+    /// [`crate::exchange::ScreenshotExport`] (`auto`, `none`, `link`, `embed`).
+    pub export_screenshots: String,
 }
 
 impl Default for Settings {
@@ -68,6 +71,7 @@ impl Default for Settings {
             dark_mode: false,
             ui_language: "auto".into(),
             export_label_language: String::new(),
+            export_screenshots: "auto".into(),
         }
     }
 }

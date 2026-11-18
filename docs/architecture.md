@@ -133,6 +133,8 @@ flowchart TB
         stats["stats<br/>statistics, reports"]
         pseudo["pseudo<br/>pseudo translation"]
         filter["filter<br/>row filters, date ranges"]
+        screenshots["screenshots<br/>images linked to rows"]
+        keys["keys<br/>rows by context or id"]
     end
     subgraph formats_layer["File formats - formats/"]
         formats["json, resx, po + mo, tsv, properties,<br/>android, arb, webext, ts"]
@@ -168,7 +170,9 @@ flowchart TB
 | `ops`       | `add_source`, `scan_source`/`scan_project`, `merge_rows`, `build_project`, output path resolution |
 | `formats::*`| One module per source type with `scan`, `build` and (where applicable) `translations` to import existing localized files |
 | `tm`        | TMX 1.4 translation memory: exact and fuzzy lookup, `translate_project`, `save_to_tm`             |
-| `exchange`  | Export/import of a project table to Excel, delimited text, XLIFF 1.2 and TMX                      |
+| `exchange`  | Export/import of a project table to Excel, delimited text, XLIFF 1.2 and TMX, including the screenshots of the exported rows |
+| `screenshots` | `ScreenshotStore`: screenshots linked to rows (with areas) in `<project>.files/`, never in the `.slp`; manifest import, refresh, prune; `ScreenshotIndex` resolves links to rows |
+| `keys`      | `RowKeys`: rows by context, row id or wildcard pattern (screenshot links, MCP)                    |
 | `validate`  | Placeholder, tag, whitespace, punctuation, length, hotkey, duplicate, control character and ICU checks; JUnit XML |
 | `icu`       | Light ICU MessageFormat parser (arguments, plural/select cases) used by validation                |
 | `stats`     | Per-language statistics; text/HTML/JSON reports                                                   |
@@ -324,6 +328,7 @@ lives in one struct, `SusiApp` (`app.rs`); the UI is re-rendered from that state
 | `dialogs.rs`     | Modal dialogs: languages, add source, source/row properties, export, import, TM, pseudo, options |
 | `actions.rs`     | `Action` enum and `run_actions`: the only place that mutates the project         |
 | `workflow_ui.rs` | Git workflow state display, background jobs and the workflow dialogs           |
+| `shots.rs`       | Screenshots: bottom tab with marked areas, paste and drag & drop, screenshot manager |
 | `tests.rs`       | Headless rendering tests against real projects                                   |
 
 ### 4.1 Frame loop and action queue
@@ -383,6 +388,7 @@ can replace SlMake in existing build pipelines.
 | `help.rs`     | General and per-task help texts                                             |
 | `tasks.rs`    | One function per task; `Output` message sink with SlMake semantics          |
 | `workflow.rs` | `workflow` task: `init`, `config`, `status`, `fetch`, `save`, `publish`, `login`, `logout` |
+| `screenshot.rs` | `screenshot` task: `list`, `add`, `link`, `unlink`, `remove`, `prune`, `refresh`, `import` |
 
 ```mermaid
 flowchart TD
@@ -394,8 +400,8 @@ flowchart TD
     mcp -- yes --> serve["tokio runtime:<br/>susi_mcp::serve_stdio"]
     mcp -- no --> state["State: project loaded lazily on first use"]
     state --> tasks["tasks::run_task for each task in order<br/>add, scan, create, export, import, translate,<br/>validate, report, remove, workflow, ..."]
-    tasks --> save{"Project changed?<br/>no errors or -forcesave,<br/>not -nosave"}
-    save -- yes --> write["slp::save"]
+    tasks --> save{"Project or screenshots changed?<br/>no errors or -forcesave,<br/>not -nosave"}
+    save -- yes --> write["slp::save,<br/>ScreenshotStore::save"]
     save -- no --> code
     write --> code["Exit code<br/>-w: 2 errors, 1 warnings / else: 1 errors"]
 ```
@@ -417,7 +423,7 @@ flowchart LR
     client["MCP client<br/>AI agent"]
     subgraph susi_mcp["susi-mcp"]
         server["SusiServer<br/>rmcp tool router,<br/>JSON schemas via schemars"]
-        session["Session<br/>open project, dirty flag, TM"]
+        session["Session<br/>open project, dirty flag, TM, screenshots"]
     end
     core["susi-core"]
     wf["susi-workflow"]
@@ -428,10 +434,12 @@ flowchart LR
     session --> wf
 ```
 
-- `server.rs` declares the 25 tools with `#[tool]` attributes and input structs deriving
+- `server.rs` declares the 28 tools with `#[tool]` attributes and input structs deriving
   `JsonSchema`; each tool locks the session and delegates.
 - `session.rs` returns `serde_json::Value` results and is unit-testable without a transport.
-- Rows are addressed by their context key (plus the source index if ambiguous).
+  `get_screenshot` is the only tool with image content (base64 PNG/JPEG plus a JSON text).
+- Rows are addressed by their context key (plus the source index if ambiguous), resolved by
+  `susi_core::keys::RowKeys`.
 - Tool output is always English, regardless of the user's UI language. Nothing but protocol
   messages may be written to stdout.
 
@@ -439,6 +447,7 @@ flowchart LR
 |---------------|-----------------------------------------------------------------------------|
 | Project       | `open_project`, `create_project`, `save_project`, `project_info`, `add_language`, `add_source` |
 | Rows          | `list_rows`, `get_row`, `set_translations`, `set_status`, `set_row_properties` |
+| Screenshots   | `get_screenshot`, `attach_screenshot`, `detach_screenshot`                  |
 | Operations    | `scan`, `build`, `validate`, `statistics`, `fill_pseudo`                    |
 | TM / exchange | `tm_translate`, `tm_lookup`, `tm_save`, `export`, `import`                  |
 | Git workflow  | `workflow_status`, `workflow_fetch`, `workflow_save`, `workflow_publish`    |
@@ -564,6 +573,10 @@ Compatibility with existing Sisulizer projects is the central constraint:
 - Builders copy the original file and only replace values; `TextStyle` restores BOM, CRLF and the
   trailing newline of the original.
 - Before overwriting a project, `slp::save` keeps the previous version as `*.~slp`.
+- Data Sisulizer does not know stays out of the `.slp`: Sisulizer drops unknown elements and
+  attributes when it saves a project (verified with SlMake 4.0.374). Screenshots therefore live
+  in `<project>.files/`, and their links address rows by source and context so they survive
+  scans; links to vanished rows are reported as orphaned.
 
 ### 8.2 User interface localization
 
@@ -585,6 +598,7 @@ Compatibility with existing Sisulizer projects is the central constraint:
 | Merge request cache      | `.git/susi/merge-requests.json`                  | `susi-workflow`           |
 | Forge token              | git credential helper (Windows Credential Manager) or `SUSI_FORGE_TOKEN` | *Sign in*, `workflow login` |
 | UI language override     | `SUSI_LANG`, CLI `-uilang:`                      | user                      |
+| Screenshots              | `<project>.files/screenshots.json` and `screenshots/` next to the `.slp` | GUI, CLI, MCP (with the project) |
 
 ### 8.4 Error handling and code rules
 

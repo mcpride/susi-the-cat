@@ -134,6 +134,11 @@ pub struct RowFilter {
     pub since: Option<String>,
     /// Latest timestamp (`yyyymmddhhnnss`, inclusive).
     pub until: Option<String>,
+    /// Rows with (`true`) or without (`false`) a linked screenshot, see `screenshot_rows`.
+    pub has_screenshot: Option<bool>,
+    /// Rows with a screenshot, set by the caller from `ScreenshotIndex::rows` (not persisted).
+    #[serde(skip)]
+    pub screenshot_rows: std::sync::Arc<std::collections::HashSet<RowRef>>,
 }
 
 impl RowFilter {
@@ -146,6 +151,7 @@ impl RowFilter {
             && self.locked.is_none()
             && self.invalidated.is_none()
             && self.marked.is_none()
+            && self.has_screenshot.is_none()
             && !self.has_date_range()
     }
 
@@ -198,6 +204,9 @@ impl RowFilter {
             return false;
         }
         if self.locked.is_some_and(|v| v != row.locked()) || self.marked.is_some_and(|v| v != row.marked()) {
+            return false;
+        }
+        if self.has_screenshot.is_some_and(|v| v != self.screenshot_rows.contains(r)) {
             return false;
         }
         let orig = p.original_lang(r);
@@ -267,6 +276,18 @@ mod tests {
         let f = RowFilter { text: "hallo".into(), search_in: SearchIn::Original, ..Default::default() };
         assert!(f.apply(&p).is_empty());
         assert_eq!(RowFilter::default().apply(&p).len(), 2);
+    }
+
+    #[test]
+    fn screenshot_presence() {
+        let p = project();
+        let hello = p.find_row("hello").unwrap();
+        let rows = std::sync::Arc::new([hello.clone()].into_iter().collect());
+        let with = RowFilter { has_screenshot: Some(true), screenshot_rows: rows, ..Default::default() };
+        assert!(!with.is_empty());
+        assert_eq!(with.apply(&p), [hello]);
+        let without = RowFilter { has_screenshot: Some(false), ..with };
+        assert_eq!(without.apply(&p), [p.find_row("bye").unwrap()]);
     }
 
     #[test]

@@ -313,6 +313,7 @@ fn table(app: &mut SusiApp, ui: &mut Ui, langs: &[String]) -> Events {
         widths: &widths,
         pal: Palette::new(ui.visuals().dark_mode),
         issue_cells: &app.issue_cells,
+        shots: &app.shot_index,
     };
     let cell_edit = &mut app.cell_edit;
     let out = egui::ScrollArea::both().id_salt("grid-body").auto_shrink(false).show(ui, |ui| body(ui, &ctx, scroll_to, cell_edit, &mut ev));
@@ -397,6 +398,8 @@ struct BodyCtx<'a> {
     widths: &'a [f32],
     pal: Palette,
     issue_cells: &'a std::collections::HashSet<(RowRef, String)>,
+    /// Rows with screenshots (camera in the context cell).
+    shots: &'a susi_core::screenshots::ScreenshotIndex,
 }
 
 fn body(ui: &mut Ui, c: &BodyCtx<'_>, scroll_to: Option<usize>, cell_edit: &mut Option<crate::app::CellEdit>, ev: &mut Events) {
@@ -489,6 +492,9 @@ fn plain_cell(ui: &mut Ui, col: &Col, c: &BodyCtx<'_>, r: &RowRef, data: &Row) {
         Col::Context => {
             fill_cell(ui, c.pal.lavender);
             cell_label(ui, &c.p.context(r));
+            if c.shots.has(r) {
+                crate::shots::camera_marker(ui);
+            }
         }
         Col::Status => status_cell(ui, data, c.cur_lang),
         Col::Original => {

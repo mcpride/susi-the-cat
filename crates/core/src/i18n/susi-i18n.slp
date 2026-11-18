@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<document created="20261103155355" version="4.0.374" date="20261116220944" scan="16" scanned="20261116220944">
+<document created="20261103155355" version="4.0.374" date="20261118172059" scan="20" scanned="20261118170729">
   <lang id="en"/>
   <lang id="de"/>
-  <source class="TTsvSource" name="de-core.tsv" original="en" date="20261115135338">
+  <source class="TTsvSource" name="de-core.tsv" original="en" date="20261118152711">
     <outputfile dir="." localized="&lt;iso&gt;-core.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-core.tsv" state="0" created="20261103155355">
       <row id="Not translated" state="0" created="20261103155355" note="Status" notereadonly="1">
@@ -185,6 +185,18 @@
         <native>unknown exchange format: {path}</native>
         <lang id="de" date="20261103155355" status="3">unbekanntes Austauschformat: {path}</lang>
       </row>
+      <row id="Screenshot" state="0" created="20261118152930" note="Exchange (Excel/CSV/XLIFF)" notereadonly="1">
+        <native>Screenshot</native>
+        <lang id="de" date="20261118152930" status="3">Screenshot</lang>
+      </row>
+      <row id="Screenshots" state="0" created="20261118152930" note="Exchange (Excel/CSV/XLIFF)" notereadonly="1">
+        <native>Screenshots</native>
+        <lang id="de" date="20261118152930" status="3">Screenshots</lang>
+      </row>
+      <row id="No." state="0" created="20261118152930" note="Exchange (Excel/CSV/XLIFF)" notereadonly="1">
+        <native>No.</native>
+        <lang id="de" date="20261118152930" status="3">Nr.</lang>
+      </row>
       <row id="Missing translation" state="0" created="20261103155355" note="Validation" notereadonly="1">
         <native>Missing translation</native>
         <lang id="de" date="20261103155355" status="3">Fehlende Übersetzung</lang>
@@ -248,6 +260,10 @@
       <row id="Incomplete ICU cases" state="0" created="20261115134104" note="Validation" notereadonly="1">
         <native>Incomplete ICU cases</native>
         <lang id="de" date="20261115134104" status="3">Unvollständige ICU-Fälle</lang>
+      </row>
+      <row id="Missing screenshot" state="0" created="20261118152930" note="Validation" notereadonly="1">
+        <native>Missing screenshot</native>
+        <lang id="de" date="20261118152930" status="3">Fehlender Screenshot</lang>
       </row>
       <row id="The translation contains only spaces." state="0" created="20261103155355" note="Validation" notereadonly="1">
         <native>The translation contains only spaces.</native>
@@ -397,9 +413,25 @@
         <native>ISO-8859-1 with Unicode escapes</native>
         <lang id="de" date="20261105162922" status="3">ISO-8859-1 mit Unicode-Escapes</lang>
       </row>
+      <row id="image format (PNG or JPEG expected)" state="0" created="20261118152930" note="Screenshots" notereadonly="1">
+        <native>image format (PNG or JPEG expected)</native>
+        <lang id="de" date="20261118152930" status="3">Bildformat (PNG oder JPEG erwartet)</lang>
+      </row>
+      <row id="image format (PNG or JPEG expected): {path}" state="0" created="20261118152930" note="Screenshots" notereadonly="1">
+        <native>image format (PNG or JPEG expected): {path}</native>
+        <lang id="de" date="20261118152930" status="3">Bildformat (PNG oder JPEG erwartet): {path}</lang>
+      </row>
+      <row id="{path}: screenshot index version {version}" state="0" created="20261118152930" note="Screenshots" notereadonly="1">
+        <native>{path}: screenshot index version {version}</native>
+        <lang id="de" date="20261118152930" status="3">{path}: Version {version} des Screenshot-Index</lang>
+      </row>
+      <row id="Screenshot &quot;{title}&quot; is missing: {file}" state="0" created="20261118152930" note="Screenshots" notereadonly="1">
+        <native>Screenshot "{title}" is missing: {file}</native>
+        <lang id="de" date="20261118152930" status="3">Screenshot „{title}“ fehlt: {file}</lang>
+      </row>
     </node>
   </source>
-  <source class="TTsvSource" name="de-cli.tsv" original="en" date="20261115135338">
+  <source class="TTsvSource" name="de-cli.tsv" original="en" date="20261118153954">
     <outputfile dir="." localized="&lt;iso&gt;-cli.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-cli.tsv" state="0" created="20261103155355">
       <row id="susi-cli {version} – Susi the CAT (SlMake compatible)" state="0" created="20261103162607" note="Help: general" notereadonly="1">
@@ -930,9 +962,177 @@
         <native>{n} row matches the date filter|{n} rows match the date filter</native>
         <lang id="de" date="20261103232009" status="3">{n} Zeile entspricht dem Datumsfilter|{n} Zeilen entsprechen dem Datumsfilter</lang>
       </row>
+      <row id="Manage screenshots of rows (context for translators)" state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>Manage screenshots of rows (context for translators)</native>
+        <lang id="de" date="20261118153954" status="3">Screenshots zu Zeilen verwalten (Kontext für Übersetzer)</lang>
+      </row>
+      <row id="Screenshots as context for translators. They are stored next to the project in\n&lt;project&gt;.files/ (screenshots.json and the images); the project file stays unchanged." state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>Screenshots as context for translators. They are stored next to the project in#l&lt;project&gt;.files/ (screenshots.json and the images); the project file stays unchanged.</native>
+        <lang id="de" date="20261118153954" status="3">Screenshots als Kontext für Übersetzer. Sie liegen neben dem Projekt in#l&lt;Projekt&gt;.files/ (screenshots.json und die Bilder); die Projektdatei bleibt unverändert.</lang>
+      </row>
+      <row id="Lists the screenshots and their links (default)." state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>Lists the screenshots and their links (default).</native>
+        <lang id="de" date="20261118153954" status="3">Listet die Screenshots und ihre Verknüpfungen auf (Standard).</lang>
+      </row>
+      <row id="Adds image files (PNG, JPEG); with -key also links them." state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>Adds image files (PNG, JPEG); with -key also links them.</native>
+        <lang id="de" date="20261118153954" status="3">Fügt Bilddateien hinzu (PNG, JPEG); mit -key werden sie auch verknüpft.</lang>
+      </row>
+      <row id="Links screenshot ID to the rows given by -key." state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>Links screenshot ID to the rows given by -key.</native>
+        <lang id="de" date="20261118153954" status="3">Verknüpft Screenshot ID mit den Zeilen aus -key.</lang>
+      </row>
+      <row id="Removes the links of screenshot ID to the rows given by -key." state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>Removes the links of screenshot ID to the rows given by -key.</native>
+        <lang id="de" date="20261118153954" status="3">Entfernt die Verknüpfungen von Screenshot ID zu den Zeilen aus -key.</lang>
+      </row>
+      <row id="Removes screenshots." state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>Removes screenshots.</native>
+        <lang id="de" date="20261118153954" status="3">Entfernt Screenshots.</lang>
+      </row>
+      <row id="Removes links to rows that no longer exist and unused image files." state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>Removes links to rows that no longer exist and unused image files.</native>
+        <lang id="de" date="20261118153954" status="3">Entfernt Verknüpfungen zu nicht mehr vorhandenen Zeilen und unbenutzte Bilddateien.</lang>
+      </row>
+      <row id="Reads changed origin files again (links stay)." state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>Reads changed origin files again (links stay).</native>
+        <lang id="de" date="20261118153954" status="3">Liest geänderte Herkunftsdateien neu ein (Verknüpfungen bleiben).</lang>
+      </row>
+      <row id="Imports a manifest of a UI test run (schema of screenshots.json, file paths\nrelative to the manifest); importing again replaces the screenshots." state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>Imports a manifest of a UI test run (schema of screenshots.json, file paths#lrelative to the manifest); importing again replaces the screenshots.</native>
+        <lang id="de" date="20261118153954" status="3">Importiert das Manifest eines UI-Testlaufs (Schema von screenshots.json, Dateipfade#lrelativ zum Manifest); ein erneuter Import ersetzt die Screenshots.</lang>
+      </row>
+      <row id="Rows: contexts or row ids separated by ;, wildcards * and ? allowed." state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>Rows: contexts or row ids separated by ;, wildcards * and ? allowed.</native>
+        <lang id="de" date="20261118153954" status="3">Zeilen: Kontexte oder Zeilen-IDs, getrennt durch ;, Platzhalter * und ? erlaubt.</lang>
+      </row>
+      <row id="Only rows of this source." state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>Only rows of this source.</native>
+        <lang id="de" date="20261118153954" status="3">Nur Zeilen dieser Quelle.</lang>
+      </row>
+      <row id="add: id of the screenshot (default: from the file name; an existing id\ngets the new image)." state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>add: id of the screenshot (default: from the file name; an existing id#lgets the new image).</native>
+        <lang id="de" date="20261118153954" status="3">add: ID des Screenshots (Standard: aus dem Dateinamen; eine vorhandene ID#lerhält das neue Bild).</lang>
+      </row>
+      <row id="add: title." state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>add: title.</native>
+        <lang id="de" date="20261118153954" status="3">add: Titel.</lang>
+      </row>
+      <row id="add/link: area of the text in the image (pixels)." state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>add/link: area of the text in the image (pixels).</native>
+        <lang id="de" date="20261118153954" status="3">add/link: Bereich des Textes im Bild (Pixel).</lang>
+      </row>
+      <row id="import: removes screenshots missing in the manifest." state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>import: removes screenshots missing in the manifest.</native>
+        <lang id="de" date="20261118153954" status="3">import: entfernt Screenshots, die im Manifest fehlen.</lang>
+      </row>
+      <row id="Screenshots of the exported rows: auto (default) embeds them in Excel on a second\nworksheet and copies them next to other formats (&lt;name&gt;_screenshots/):" state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>Screenshots of the exported rows: auto (default) embeds them in Excel on a second#lworksheet and copies them next to other formats (&lt;name&gt;_screenshots/):</native>
+        <lang id="de" date="20261118153954" status="3">Screenshots der exportierten Zeilen: auto (Standard) bettet sie in Excel auf einem zweiten#lTabellenblatt ein und kopiert sie bei anderen Formaten daneben (&lt;Name&gt;_screenshots/):</lang>
+      </row>
+      <row id="Unknown screenshot action '{action}' (possible: {actions})" state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>Unknown screenshot action '{action}' (possible: {actions})</native>
+        <lang id="de" date="20261118153954" status="3">Unbekannte Screenshot-Aktion '{action}' (möglich: {actions})</lang>
+      </row>
+      <row id="Image file missing" state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>Image file missing</native>
+        <lang id="de" date="20261118153954" status="3">Bilddatei fehlt</lang>
+      </row>
+      <row id="Image file missing: {path}" state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>Image file missing: {path}</native>
+        <lang id="de" date="20261118153954" status="3">Bilddatei fehlt: {path}</lang>
+      </row>
+      <row id="-id can only be used with a single image" state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>-id can only be used with a single image</native>
+        <lang id="de" date="20261118153954" status="3">-id ist nur mit einem einzelnen Bild möglich</lang>
+      </row>
+      <row id="Screenshot id missing" state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>Screenshot id missing</native>
+        <lang id="de" date="20261118153954" status="3">Screenshot-ID fehlt</lang>
+      </row>
+      <row id="Manifest file missing" state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>Manifest file missing</native>
+        <lang id="de" date="20261118153954" status="3">Manifest-Datei fehlt</lang>
+      </row>
+      <row id="Option -key is missing (contexts or row ids, wildcards * and ?)" state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>Option -key is missing (contexts or row ids, wildcards * and ?)</native>
+        <lang id="de" date="20261118153954" status="3">Option -key fehlt (Kontexte oder Zeilen-IDs, Platzhalter * und ?)</lang>
+      </row>
+      <row id="No row matches the key &quot;{key}&quot;" state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>No row matches the key "{key}"</native>
+        <lang id="de" date="20261118153954" status="3">Keine Zeile passt zum Schlüssel "{key}"</lang>
+      </row>
+      <row id="Screenshot added: {id}" state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>Screenshot added: {id}</native>
+        <lang id="de" date="20261118153954" status="3">Screenshot hinzugefügt: {id}</lang>
+      </row>
+      <row id="Screenshot removed: {id}" state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>Screenshot removed: {id}</native>
+        <lang id="de" date="20261118153954" status="3">Screenshot entfernt: {id}</lang>
+      </row>
+      <row id="Screenshot updated: {id}" state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>Screenshot updated: {id}</native>
+        <lang id="de" date="20261118153954" status="3">Screenshot aktualisiert: {id}</lang>
+      </row>
+      <row id="Screenshot not found: {id}" state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>Screenshot not found: {id}</native>
+        <lang id="de" date="20261118153954" status="3">Screenshot nicht gefunden: {id}</lang>
+      </row>
+      <row id="Origin file of screenshot {id} not found" state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>Origin file of screenshot {id} not found</native>
+        <lang id="de" date="20261118153954" status="3">Herkunftsdatei von Screenshot {id} nicht gefunden</lang>
+      </row>
+      <row id="(no matching row)" state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>(no matching row)</native>
+        <lang id="de" date="20261118153954" status="3">(keine passende Zeile)</lang>
+      </row>
+      <row id="Screenshots saved: {path}" state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>Screenshots saved: {path}</native>
+        <lang id="de" date="20261118153954" status="3">Screenshots gespeichert: {path}</lang>
+      </row>
+      <row id="Screenshots: {summary} ({path})" state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>Screenshots: {summary} ({path})</native>
+        <lang id="de" date="20261118153954" status="3">Screenshots: {summary} ({path})</lang>
+      </row>
+      <row id="{added} screenshots added, {replaced} replaced, {removed} removed, {links} links" state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>{added} screenshots added, {replaced} replaced, {removed} removed, {links} links</native>
+        <lang id="de" date="20261118153954" status="3">{added} Screenshots hinzugefügt, {replaced} ersetzt, {removed} entfernt, {links} Verknüpfungen</lang>
+      </row>
+      <row id="{links} orphaned links removed, {files} unused image files deleted" state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>{links} orphaned links removed, {files} unused image files deleted</native>
+        <lang id="de" date="20261118153954" status="3">{links} verwaiste Verknüpfungen entfernt, {files} unbenutzte Bilddateien gelöscht</lang>
+      </row>
+      <row id="{updated} screenshots updated, {unchanged} unchanged" state="0" created="20261118153954" note="Screenshots" notereadonly="1">
+        <native>{updated} screenshots updated, {unchanged} unchanged</native>
+        <lang id="de" date="20261118153954" status="3">{updated} Screenshots aktualisiert, {unchanged} unverändert</lang>
+      </row>
+      <row id="@plural|{n} screenshot|{n} screenshots" state="0" created="20261118153954" note="Screenshots#lContext: @plural" notereadonly="1">
+        <native>{n} screenshot|{n} screenshots</native>
+        <lang id="de" date="20261118153954" status="3">{n} Screenshot|{n} Screenshots</lang>
+      </row>
+      <row id="@plural|{n} link|{n} links" state="0" created="20261118153954" note="Screenshots#lContext: @plural" notereadonly="1">
+        <native>{n} link|{n} links</native>
+        <lang id="de" date="20261118153954" status="3">{n} Verknüpfung|{n} Verknüpfungen</lang>
+      </row>
+      <row id="@plural|{n} orphaned link|{n} orphaned links" state="0" created="20261118153954" note="Screenshots#lContext: @plural" notereadonly="1">
+        <native>{n} orphaned link|{n} orphaned links</native>
+        <lang id="de" date="20261118153954" status="3">{n} verwaiste Verknüpfung|{n} verwaiste Verknüpfungen</lang>
+      </row>
+      <row id="@plural|{n} row linked|{n} rows linked" state="0" created="20261118153954" note="Screenshots#lContext: @plural" notereadonly="1">
+        <native>{n} row linked|{n} rows linked</native>
+        <lang id="de" date="20261118153954" status="3">{n} Zeile verknüpft|{n} Zeilen verknüpft</lang>
+      </row>
+      <row id="@plural|{n} link removed|{n} links removed" state="0" created="20261118153954" note="Screenshots#lContext: @plural" notereadonly="1">
+        <native>{n} link removed|{n} links removed</native>
+        <lang id="de" date="20261118153954" status="3">{n} Verknüpfung entfernt|{n} Verknüpfungen entfernt</lang>
+      </row>
+      <row id="@plural|{n} link does not match any row|{n} links do not match any row" state="0" created="20261118153954" note="Screenshots#lContext: @plural" notereadonly="1">
+        <native>{n} link does not match any row|{n} links do not match any row</native>
+        <lang id="de" date="20261118153954" status="3">{n} Verknüpfung passt zu keiner Zeile|{n} Verknüpfungen passen zu keiner Zeile</lang>
+      </row>
     </node>
   </source>
-  <source class="TTsvSource" name="de-gui.tsv" original="en" date="20261116220903">
+  <source class="TTsvSource" name="de-gui.tsv" original="en" date="20261118155242">
     <outputfile dir="." localized="&lt;iso&gt;-gui.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-gui.tsv" state="0" created="20261103155355">
       <row id="Information" state="0" created="20261103155355" note="Application, log" notereadonly="1">
@@ -2070,6 +2270,206 @@
       <row id="Android: &lt;parent&gt; resource directory, &lt;android&gt; BCP 47 qualifier for values-b+… (pt+BR), &lt;androidr&gt; legacy qualifier (pt-rBR)" state="0" created="20261114182102" note="Date filter, date column" notereadonly="1">
         <native>Android: &lt;parent&gt; resource directory, &lt;android&gt; BCP 47 qualifier for values-b+… (pt+BR), &lt;androidr&gt; legacy qualifier (pt-rBR)</native>
         <lang id="de" date="20261114182102" status="3">Android: &lt;parent&gt; Ressourcenverzeichnis, &lt;android&gt; BCP-47-Qualifizierer für values-b+… (pt+BR), &lt;androidr&gt; alter Qualifizierer (pt-rBR)</lang>
+      </row>
+      <row id="Screenshots…" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Screenshots…</native>
+        <lang id="de" date="20261118155320" status="3">Screenshots…</lang>
+      </row>
+      <row id="Import screenshot manifest…" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Import screenshot manifest…</native>
+        <lang id="de" date="20261118155320" status="3">Screenshot-Manifest importieren…</lang>
+      </row>
+      <row id="Import screenshot manifest" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Import screenshot manifest</native>
+        <lang id="de" date="20261118155320" status="3">Screenshot-Manifest importieren</lang>
+      </row>
+      <row id="Screenshot manifest" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Screenshot manifest</native>
+        <lang id="de" date="20261118155320" status="3">Screenshot-Manifest</lang>
+      </row>
+      <row id="Add screenshot to all rows…" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Add screenshot to all rows…</native>
+        <lang id="de" date="20261118155320" status="3">Screenshot zu allen Zeilen hinzufügen…</lang>
+      </row>
+      <row id="Add for this row…" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Add for this row…</native>
+        <lang id="de" date="20261118155320" status="3">Für diese Zeile hinzufügen…</lang>
+      </row>
+      <row id="Add for all rows of the view…" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Add for all rows of the view…</native>
+        <lang id="de" date="20261118155320" status="3">Für alle Zeilen der Ansicht hinzufügen…</lang>
+      </row>
+      <row id="Paste from the clipboard" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Paste from the clipboard</native>
+        <lang id="de" date="20261118155320" status="3">Aus der Zwischenablage einfügen</lang>
+      </row>
+      <row id="Screenshot:" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Screenshot:</native>
+        <lang id="de" date="20261118155320" status="3">Screenshot:</lang>
+      </row>
+      <row id="Any" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Any</native>
+        <lang id="de" date="20261118155320" status="3">Beliebig</lang>
+      </row>
+      <row id="With screenshot" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>With screenshot</native>
+        <lang id="de" date="20261118155320" status="3">Mit Screenshot</lang>
+      </row>
+      <row id="Without screenshot" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Without screenshot</native>
+        <lang id="de" date="20261118155320" status="3">Ohne Screenshot</lang>
+      </row>
+      <row id="Screenshots:" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Screenshots:</native>
+        <lang id="de" date="20261118155320" status="3">Screenshots:</lang>
+      </row>
+      <row id="Automatic (embedded in Excel, otherwise as links)" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Automatic (embedded in Excel, otherwise as links)</native>
+        <lang id="de" date="20261118155320" status="3">Automatisch (in Excel eingebettet, sonst als Links)</lang>
+      </row>
+      <row id="None" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>None</native>
+        <lang id="de" date="20261118155320" status="3">Keine</lang>
+      </row>
+      <row id="As links (images copied next to the export)" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>As links (images copied next to the export)</native>
+        <lang id="de" date="20261118155320" status="3">Als Links (Bilder werden neben den Export kopiert)</lang>
+      </row>
+      <row id="Embedded (Excel, second worksheet)" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Embedded (Excel, second worksheet)</native>
+        <lang id="de" date="20261118155320" status="3">Eingebettet (Excel, zweites Tabellenblatt)</lang>
+      </row>
+      <row id="Add…" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Add…</native>
+        <lang id="de" date="20261118155320" status="3">Hinzufügen…</lang>
+      </row>
+      <row id="Add image files and link them to the selected row" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Add image files and link them to the selected row</native>
+        <lang id="de" date="20261118155320" status="3">Bilddateien hinzufügen und mit der ausgewählten Zeile verknüpfen</lang>
+      </row>
+      <row id="Add screenshots" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Add screenshots</native>
+        <lang id="de" date="20261118155320" status="3">Screenshots hinzufügen</lang>
+      </row>
+      <row id="Images (PNG, JPEG)" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Images (PNG, JPEG)</native>
+        <lang id="de" date="20261118155320" status="3">Bilder (PNG, JPEG)</lang>
+      </row>
+      <row id="Paste" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Paste</native>
+        <lang id="de" date="20261118155320" status="3">Einfügen</lang>
+      </row>
+      <row id="Paste an image from the clipboard (Ctrl+V)" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Paste an image from the clipboard (Ctrl+V)</native>
+        <lang id="de" date="20261118155320" status="3">Bild aus der Zwischenablage einfügen (Strg+V)</lang>
+      </row>
+      <row id="Link existing…" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Link existing…</native>
+        <lang id="de" date="20261118155320" status="3">Vorhandenen verknüpfen…</lang>
+      </row>
+      <row id="Mark area" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Mark area</native>
+        <lang id="de" date="20261118155320" status="3">Bereich markieren</lang>
+      </row>
+      <row id="Drag a rectangle over the image where the text appears" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Drag a rectangle over the image where the text appears</native>
+        <lang id="de" date="20261118155320" status="3">Rechteck über die Stelle im Bild ziehen, an der der Text erscheint</lang>
+      </row>
+      <row id="Clear area" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Clear area</native>
+        <lang id="de" date="20261118155320" status="3">Bereich entfernen</lang>
+      </row>
+      <row id="Remove link" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Remove link</native>
+        <lang id="de" date="20261118155320" status="3">Verknüpfung entfernen</lang>
+      </row>
+      <row id="Remove the screenshot from the selected row" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Remove the screenshot from the selected row</native>
+        <lang id="de" date="20261118155320" status="3">Screenshot von der ausgewählten Zeile lösen</lang>
+      </row>
+      <row id="Manage…" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Manage…</native>
+        <lang id="de" date="20261118155320" status="3">Verwalten…</lang>
+      </row>
+      <row id="Select a row to see its screenshots." state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Select a row to see its screenshots.</native>
+        <lang id="de" date="20261118155320" status="3">Zeile auswählen, um ihre Screenshots zu sehen.</lang>
+      </row>
+      <row id="No screenshot is linked to the selected row. Add one, paste one (Ctrl+V) or drop image files here." state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>No screenshot is linked to the selected row. Add one, paste one (Ctrl+V) or drop image files here.</native>
+        <lang id="de" date="20261118155320" status="3">Mit der ausgewählten Zeile ist kein Screenshot verknüpft. Hinzufügen, einfügen (Strg+V) oder Bilddateien hierher ziehen.</lang>
+      </row>
+      <row id="Save the project first to add screenshots." state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Save the project first to add screenshots.</native>
+        <lang id="de" date="20261118155320" status="3">Zum Hinzufügen von Screenshots das Projekt zuerst speichern.</lang>
+      </row>
+      <row id="Screenshot pasted: {id}" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Screenshot pasted: {id}</native>
+        <lang id="de" date="20261118155320" status="3">Screenshot eingefügt: {id}</lang>
+      </row>
+      <row id="The pasted image could not be converted." state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>The pasted image could not be converted.</native>
+        <lang id="de" date="20261118155320" status="3">Das eingefügte Bild konnte nicht umgewandelt werden.</lang>
+      </row>
+      <row id="Screenshots: {error}" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Screenshots: {error}</native>
+        <lang id="de" date="20261118155320" status="3">Screenshots: {error}</lang>
+      </row>
+      <row id="Folder: {path}" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Folder: {path}</native>
+        <lang id="de" date="20261118155320" status="3">Ordner: {path}</lang>
+      </row>
+      <row id="Id" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Id</native>
+        <lang id="de" date="20261118155320" status="3">ID</lang>
+      </row>
+      <row id="Title" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Title</native>
+        <lang id="de" date="20261118155320" status="3">Titel</lang>
+      </row>
+      <row id="Size" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Size</native>
+        <lang id="de" date="20261118155320" status="3">Größe</lang>
+      </row>
+      <row id="Links" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Links</native>
+        <lang id="de" date="20261118155320" status="3">Verknüpfungen</lang>
+      </row>
+      <row id="Remove screenshot" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Remove screenshot</native>
+        <lang id="de" date="20261118155320" status="3">Screenshot entfernen</lang>
+      </row>
+      <row id="No screenshots yet." state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>No screenshots yet.</native>
+        <lang id="de" date="20261118155320" status="3">Noch keine Screenshots.</lang>
+      </row>
+      <row id="Import manifest…" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Import manifest…</native>
+        <lang id="de" date="20261118155320" status="3">Manifest importieren…</lang>
+      </row>
+      <row id="Screenshots of a UI test run (screenshots.json schema)" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Screenshots of a UI test run (screenshots.json schema)</native>
+        <lang id="de" date="20261118155320" status="3">Screenshots eines UI-Testlaufs (Schema von screenshots.json)</lang>
+      </row>
+      <row id="Refresh" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Refresh</native>
+        <lang id="de" date="20261118155320" status="3">Aktualisieren</lang>
+      </row>
+      <row id="Read changed origin files again" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Read changed origin files again</native>
+        <lang id="de" date="20261118155320" status="3">Geänderte Herkunftsdateien neu einlesen</lang>
+      </row>
+      <row id="Clean up" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Clean up</native>
+        <lang id="de" date="20261118155320" status="3">Aufräumen</lang>
+      </row>
+      <row id="Remove links to rows that no longer exist and unused image files" state="0" created="20261118155320" note="Screenshots" notereadonly="1">
+        <native>Remove links to rows that no longer exist and unused image files</native>
+        <lang id="de" date="20261118155320" status="3">Verknüpfungen zu nicht mehr vorhandenen Zeilen und unbenutzte Bilddateien entfernen</lang>
+      </row>
+      <row id="@plural|Screenshots added: {ids} (linked to {n} row)|Screenshots added: {ids} (linked to {n} rows)" state="0" created="20261118155320" note="Screenshots#lContext: @plural" notereadonly="1">
+        <native>Screenshots added: {ids} (linked to {n} row)|Screenshots added: {ids} (linked to {n} rows)</native>
+        <lang id="de" date="20261118155320" status="3">Screenshots hinzugefügt: {ids} (mit {n} Zeile verknüpft)|Screenshots hinzugefügt: {ids} (mit {n} Zeilen verknüpft)</lang>
       </row>
     </node>
   </source>

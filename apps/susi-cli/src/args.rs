@@ -29,6 +29,7 @@ pub const TASKS: &[&str] = &[
     "info",
     "mcp",
     "workflow",
+    "screenshot",
 ];
 
 /// SlMake tasks susi does not implement.
@@ -88,6 +89,7 @@ pub fn task_options(task: &str) -> &'static [&'static str] {
             "since",
             "until",
             "datetype",
+            "screenshots",
         ],
         "import" => &[
             "lang",
@@ -120,6 +122,7 @@ pub fn task_options(task: &str) -> &'static [&'static str] {
         "validate" => &["lang", "original", "all", "default", "name", "check", "since", "until", "datetype", "junit"],
         "savetotm" => &["lang", "tm", "status"],
         "mcp" => &["tm"],
+        "screenshot" => &["key", "source", "id", "title", "area", "prune"],
         "workflow" => &["online", "branch", "commit", "message", "prefix", "ciskip", "nobuild", "title", "description", "reviewer", "target"],
         _ => &[],
     }
@@ -221,7 +224,9 @@ pub fn parse(args: &[String]) -> Result<Invocation, String> {
     let mut inv = Invocation::default();
     let mut leading: Vec<String> = Vec::new();
     for arg in args {
-        if let Some(t) = canonical_task(arg) {
+        // The first argument of `screenshot` is its action, even if named like a task (add, remove, import).
+        let action = inv.tasks.last().is_some_and(|t| t.name == "screenshot" && t.files.is_empty()) && split_option(arg).is_none();
+        if !action && let Some(t) = canonical_task(arg) {
             inv.tasks.push(TaskArgs { name: t.to_string(), ..Default::default() });
             continue;
         }

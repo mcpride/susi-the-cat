@@ -2,7 +2,7 @@
 
 use std::path::PathBuf;
 
-use susi_core::exchange::ExchangeFormat;
+use susi_core::exchange::{ExchangeFormat, ScreenshotExport};
 use susi_core::formats::po::PoOptions;
 use susi_core::formats::properties::PropertiesEncoding;
 use susi_core::i18n::{Lang, t};
@@ -53,6 +53,8 @@ pub struct ExportDialog {
     pub include_locked: bool,
     /// UI language of headers and status values (tables only): empty = user interface language.
     pub label_lang: String,
+    /// Screenshots of the exported rows.
+    pub screenshots: ScreenshotExport,
 }
 
 pub struct ImportDialog {
@@ -102,6 +104,8 @@ pub enum Dialog {
     WorkflowSave(SaveDialog),
     WorkflowPublish(PublishDialog),
     WorkflowToken(TokenDialog),
+    /// Screenshot manager.
+    Screenshots,
 }
 
 /// Shows the open dialog (if any).
@@ -129,6 +133,7 @@ pub fn show(app: &mut SusiApp, ctx: &egui::Context) {
             Dialog::WorkflowSave(s) => workflow_ui::save_dialog(app, ui, s),
             Dialog::WorkflowPublish(p) => workflow_ui::publish_dialog(app, ui, p),
             Dialog::WorkflowToken(t) => workflow_ui::token_dialog(app, ui, t),
+            Dialog::Screenshots => crate::shots::manager(app, ui),
         };
     });
     if modal.should_close() {
@@ -452,6 +457,16 @@ fn export(app: &mut SusiApp, ui: &mut egui::Ui, d: &mut ExportDialog) -> bool {
             label_language_combo(ui, &mut d.label_lang);
         });
     }
+    if app.shots.as_ref().is_some_and(|s| !s.is_empty()) && ExchangeFormat::from_path(&d.path) != Some(ExchangeFormat::Tmx) {
+        ui.horizontal(|ui| {
+            ui.label(t("Screenshots:"));
+            egui::ComboBox::from_id_salt("exp-shots").selected_text(screenshot_export_label(d.screenshots)).show_ui(ui, |ui| {
+                for m in ScreenshotExport::ALL {
+                    ui.selectable_value(&mut d.screenshots, m, screenshot_export_label(m));
+                }
+            });
+        });
+    }
     match ok_cancel(ui, t("Export"), d.langs.iter().any(|(_, on)| *on)) {
         Some(true) => {
             app.export(d);
@@ -459,6 +474,15 @@ fn export(app: &mut SusiApp, ui: &mut egui::Ui, d: &mut ExportDialog) -> bool {
         }
         Some(false) => true,
         None => false,
+    }
+}
+
+fn screenshot_export_label(m: ScreenshotExport) -> &'static str {
+    match m {
+        ScreenshotExport::Auto => t("Automatic (embedded in Excel, otherwise as links)"),
+        ScreenshotExport::None => t("None"),
+        ScreenshotExport::Link => t("As links (images copied next to the export)"),
+        ScreenshotExport::Embed => t("Embedded (Excel, second worksheet)"),
     }
 }
 

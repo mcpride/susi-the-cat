@@ -21,6 +21,7 @@ eframe = { workspace = true }
 # Since egui 0.37 the symbol/emoji fonts used for toolbar and menu icons are optional.
 egui = { workspace = true, features = ["monochrome_emoji_fonts"] }
 egui_extras = { workspace = true }
+image = { workspace = true }
 rfd = { workspace = true }
 serde_json = { workspace = true }
 chrono = { workspace = true }

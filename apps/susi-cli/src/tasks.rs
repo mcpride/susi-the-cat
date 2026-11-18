@@ -3,10 +3,11 @@
 use std::io::Write;
 use std::path::{Path, PathBuf};
 
-use susi_core::exchange::{self, ExportOptions, ImportOptions};
+use susi_core::exchange::{self, ExportOptions, ImportOptions, ScreenshotExport};
 use susi_core::filter::{DateField, RowFilter, parse_date};
 use susi_core::i18n::{self, trn};
 use susi_core::model::{Project, RowRef, SourceKind};
+use susi_core::screenshots::ScreenshotStore;
 use susi_core::settings::Settings;
 use susi_core::status::{TranslationStatus, parse_row_status_list, parse_status_list};
 use susi_core::tm::{self, TranslateOptions, TranslationMemory};
@@ -53,7 +54,7 @@ impl Output<'_> {
         }
     }
 
-    fn core(&self, e: &susi_core::Error) -> String {
+    pub(crate) fn core(&self, e: &susi_core::Error) -> String {
         if self.detailed { format!("{e} ({e:?})") } else { e.to_string() }
     }
 }
@@ -63,11 +64,25 @@ pub struct State {
     pub path: PathBuf,
     pub project: Option<Project>,
     pub changed: bool,
+    /// Screenshots of the project, loaded on first use and saved separately (`<project>.files/`).
+    pub shots: Option<ScreenshotStore>,
 }
 
 impl State {
     pub fn new(path: PathBuf) -> Self {
-        Self { path, project: None, changed: false }
+        Self { path, project: None, changed: false, shots: None }
+    }
+
+    /// The project and its screenshots.
+    pub(crate) fn project_and_screenshots(&mut self, o: &Output<'_>) -> Result<(&mut Project, &mut ScreenshotStore), String> {
+        self.load(o)?;
+        if self.shots.is_none() {
+            self.shots = Some(ScreenshotStore::open(&self.path).map_err(|e| o.core(&e))?);
+        }
+        match (self.project.as_mut(), self.shots.as_mut()) {
+            (Some(p), Some(s)) => Ok((p, s)),
+            _ => Err(i18n::t("Project not loaded").to_string()),
+        }
     }
 
     pub(crate) fn load(&mut self, o: &Output<'_>) -> Result<&mut Project, String> {
@@ -159,6 +174,7 @@ pub fn run_task(t: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), 
         "savetotm" => save_to_tm(t, st, o),
         "info" => info(st, o),
         "workflow" => crate::workflow::run(t, st, o),
+        "screenshot" => crate::screenshot::run(t, st, o),
         other => Err(tf!("Task '{task}' cannot be run here", task = other)),
     }
 }
@@ -378,7 +394,12 @@ fn export(t: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), String
     if exchange::ExchangeFormat::from_path(&file).is_none() {
         return Err(tf!("{file}: unknown format (.xlsx, .csv, .txt, .xlf, .xliff, .tmx)", file = file.display()));
     }
-    let p = st.load(o)?;
+    let screenshots = match t.value("screenshots") {
+        Some(v) => ScreenshotExport::from_keyword(v)
+            .ok_or_else(|| tf!("Invalid value for -{name}: \"{value}\"", name = "screenshots", value = v) + " (auto, none, link, embed)")?,
+        None => ScreenshotExport::Auto,
+    };
+    let (p, shots) = st.project_and_screenshots(o)?;
     let langs = languages(t, p)?;
     let rows = row_selection(t, p, &langs, sources(t, p)?, o)?;
     let opts = ExportOptions {
@@ -387,9 +408,10 @@ fn export(t: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), String
         row_statuses: t.value("rowstatus").map(parse_row_status_list).transpose()?.unwrap_or_default(),
         rows,
         include_locked: t.value("readonly").is_some_and(|v| v.eq_ignore_ascii_case("true")),
+        screenshots,
         ..Default::default()
     };
-    let files = exchange::export_file(p, &file, &opts).map_err(|e| o.core(&e))?;
+    let files = exchange::export_file(p, &file, &opts, Some(shots)).map_err(|e| o.core(&e))?;
     for f in files {
         o.info(tf!("Exported: {path}", path = f.display()));
     }
@@ -492,10 +514,13 @@ fn validate(t: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), Stri
         (true, v) => return Err(tf!("Invalid value for -{name}: \"{value}\"", name = "junit", value = v.unwrap_or_default())),
         _ => None,
     };
-    let p = st.load(o)?;
+    let (p, shots) = st.project_and_screenshots(o)?;
     opts.langs = languages(t, p)?;
     let rows = row_selection(t, p, &opts.langs, None, o)?;
-    let issues = validate::validate(p, &opts, rows.as_deref());
+    let mut issues = validate::validate(p, &opts, rows.as_deref());
+    if opts.kinds.contains(&ValidationKind::Screenshot) {
+        issues.extend(shots.issues(p, rows.as_deref()));
+    }
     let (mut errors, mut warnings) = (0, 0);
     for i in &issues {
         let msg = format!("[{}] {} {}: {} – {}", i.lang, i.source, i.context, i.kind.label(), i.message);
@@ -604,6 +629,11 @@ fn info(st: &mut State, o: &mut Output<'_>) -> Result<(), String> {
         let output = format!("{dir}\\{file}");
         let details = tf!("Original: {lang}, {rows} rows, output: {output}", lang = src.original(), rows = src.row_count(), output = output);
         lines.push(format!("  #{i} {} [{}] {details}", src.name(), src.kind().label()));
+    }
+    let (p, shots) = st.project_and_screenshots(o)?;
+    if !shots.is_empty() {
+        let summary = crate::screenshot::screenshot_summary(shots, shots.index(p).orphan_count());
+        lines.push(tf!("Screenshots: {summary} ({path})", summary = summary, path = shots.dir().display()));
     }
     for l in lines {
         o.info(l);

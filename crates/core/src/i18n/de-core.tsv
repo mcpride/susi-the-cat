@@ -52,6 +52,9 @@ write method	All	Alle
 	workbook has no worksheet	Arbeitsmappe ohne Tabellenblatt
 	not an XLIFF file	keine XLIFF-Datei
 	unknown exchange format: {path}	unbekanntes Austauschformat: {path}
+	Screenshot	Screenshot
+	Screenshots	Screenshots
+	No.	Nr.
 # Validation
 	Missing translation	Fehlende Übersetzung
 	Inconsistent format string	Inkonsistente Formatzeichenfolge
@@ -69,6 +72,7 @@ write method	All	Alle
 	Invalid control characters	Ungültige Steuerzeichen
 	Invalid ICU message	Ungültige ICU-Nachricht
 	Incomplete ICU cases	Unvollständige ICU-Fälle
+	Missing screenshot	Fehlender Screenshot
 	The translation contains only spaces.	Die Übersetzung enthält nur Leerzeichen.
 	Placeholders in the original {a}, in the translation {b}.	Platzhalter im Original {a}, in der Übersetzung {b}.
 	Tags in the original {a}, in the translation {b}.	Tags im Original {a}, in der Übersetzung {b}.
@@ -109,3 +113,9 @@ write method	All	Alle
 	Original changed	Original geändert
 	Automatic (like the original)	Automatisch (wie das Original)
 	ISO-8859-1 with Unicode escapes	ISO-8859-1 mit Unicode-Escapes
+
+# Screenshots
+	image format (PNG or JPEG expected)	Bildformat (PNG oder JPEG erwartet)
+	image format (PNG or JPEG expected): {path}	Bildformat (PNG oder JPEG erwartet): {path}
+	{path}: screenshot index version {version}	{path}: Version {version} des Screenshot-Index
+	Screenshot "{title}" is missing: {file}	Screenshot „{title}“ fehlt: {file}

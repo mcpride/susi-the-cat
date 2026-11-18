@@ -64,6 +64,12 @@ pub fn repo_files(p: &Project, slp_dir: &Path, prefix: &str) -> Vec<String> {
     files
 }
 
+/// Folders belonging to project `slp` as working copy paths: `<stem>.files/` (screenshots).
+pub fn project_dirs(slp: &Path, prefix: &str) -> Vec<String> {
+    let dir = susi_core::screenshots::files_dir(slp);
+    dir.file_name().and_then(|n| n.to_str()).and_then(|n| repo_path(prefix, n)).into_iter().collect()
+}
+
 /// Whether a changed working copy path belongs to the project files or extra configured paths
 /// (case-insensitive on Windows).
 pub fn matches(path: &str, files: &[String], extra: &[String]) -> bool {
@@ -102,5 +108,13 @@ mod tests {
         assert!(matches("docs/i18n/x.md", &files, &extra));
         assert!(!matches("docs/i18n2/x.md", &files, &extra));
         assert!(!matches("src/main.rs", &files, &extra));
+    }
+
+    #[test]
+    fn screenshot_folder_belongs_to_the_project() {
+        let dirs = project_dirs(Path::new("l10n").join("app.slp").as_path(), "l10n/");
+        assert_eq!(dirs, ["l10n/app.files"]);
+        assert!(matches("l10n/app.files/screenshots/login.1a2b3c4d.png", &[], &dirs));
+        assert!(matches("l10n/app.files/screenshots.json", &[], &dirs));
     }
 }
