@@ -641,10 +641,7 @@ impl SusiApp {
         if r.translation(lang).map(|t| t.text.as_str()).unwrap_or("") == text {
             return;
         }
-        let status = match r.tstatus(lang) {
-            TranslationStatus::NotTranslated | TranslationStatus::BestGuess | TranslationStatus::AutoTranslated => TranslationStatus::Translated,
-            s => s,
-        };
+        let status = r.tstatus(lang).after_edit();
         r.set_translation(lang, text, status);
         self.issue_cells.remove(&(row.clone(), lang.to_string()));
         self.touched();

@@ -8,7 +8,7 @@ use susi_core::status::{RowStatus, TranslationStatus};
 
 use crate::actions::Action;
 use crate::app::{Nav, SheetSort, SortColumn, SusiApp};
-use crate::panels::{row_menu_items, status_color};
+use crate::panels::{column_items, row_menu_items, status_color};
 
 const ROW_HEIGHT: f32 = 20.0;
 
@@ -241,6 +241,15 @@ impl Col {
         }
     }
 
+    /// Language of the column commands in the context menu of the title.
+    fn menu_lang<'a>(&'a self, cur_lang: Option<&'a str>) -> Option<&'a str> {
+        match self {
+            Self::Lang(l) => Some(l),
+            Self::Status => cur_lang,
+            _ => None,
+        }
+    }
+
     fn sort_hint(&self) -> &'static str {
         match self {
             Self::Date => t("Click to sort: newest first, oldest first, unsorted"),
@@ -319,7 +328,7 @@ fn table(app: &mut SusiApp, ui: &mut Ui, langs: &[String]) -> Events {
     let out = egui::ScrollArea::both().id_salt("grid-body").auto_shrink(false).show(ui, |ui| body(ui, &ctx, scroll_to, cell_edit, &mut ev));
     app.grid_offset = out.state.clamped_offset();
     let h = Header { rect: header_rect, offset_x: app.grid_offset.x, cols: &cols, widths: &widths, cur_lang: app.lang.as_deref(), sort: app.sort };
-    let (resized, sort_clicked) = header(ui, &h);
+    let (resized, sort_clicked) = header(ui, &h, &mut ev.actions);
     if let Some((i, w)) = resized {
         app.col_widths.insert(cols[i].key(), w);
     }
@@ -340,8 +349,9 @@ struct Header<'a> {
 }
 
 /// Draws the header row. Returns a column width changed by dragging (or reset by double click) a
-/// separator, and the sortable column whose title was clicked.
-fn header(ui: &mut Ui, h: &Header<'_>) -> (Option<(usize, f32)>, Option<SortColumn>) {
+/// separator, and the sortable column whose title was clicked. The context menu of a language or
+/// status column title adds the column commands to `acts`.
+fn header(ui: &mut Ui, h: &Header<'_>, acts: &mut Vec<Action>) -> (Option<(usize, f32)>, Option<SortColumn>) {
     let Header { rect, offset_x, cols, widths, cur_lang, sort } = *h;
     let painter = ui.painter_at(rect);
     let visuals = ui.visuals().clone();
@@ -362,6 +372,16 @@ fn header(ui: &mut Ui, h: &Header<'_>) -> (Option<(usize, f32)>, Option<SortColu
             if resp.on_hover_text(col.sort_hint()).clicked() {
                 sort_clicked = Some(c);
             }
+        }
+        if let Some(lang) = col.menu_lang(cur_lang)
+            && title_rect.width() > 0.0
+        {
+            let resp = ui.interact(title_rect, ui.scope_id().with(("grid-col-menu", col.key())), Sense::click());
+            resp.context_menu(|ui| {
+                ui.label(RichText::new(SusiApp::lang_label(lang)).strong());
+                ui.separator();
+                column_items(ui, acts, Some(lang));
+            });
         }
         let galley = painter.layout_no_wrap(col.title(cur_lang, sort), font.clone(), visuals.strong_text_color());
         painter.with_clip_rect(cell.intersect(rect)).galley(

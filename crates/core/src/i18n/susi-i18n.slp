@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<document created="20261103155355" version="4.0.374" date="20261118172059" scan="20" scanned="20261118170729">
+<document created="20261103155355" version="4.0.374" date="20261118190714" scan="21" scanned="20261118190714">
   <lang id="en"/>
   <lang id="de"/>
-  <source class="TTsvSource" name="de-core.tsv" original="en" date="20261118152711">
+  <source class="TTsvSource" name="de-core.tsv" original="en" date="20261118190444">
     <outputfile dir="." localized="&lt;iso&gt;-core.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-core.tsv" state="0" created="20261103155355">
       <row id="Not translated" state="0" created="20261103155355" note="Status" notereadonly="1">
@@ -431,7 +431,7 @@
       </row>
     </node>
   </source>
-  <source class="TTsvSource" name="de-cli.tsv" original="en" date="20261118153954">
+  <source class="TTsvSource" name="de-cli.tsv" original="en" date="20261118190444">
     <outputfile dir="." localized="&lt;iso&gt;-cli.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-cli.tsv" state="0" created="20261103155355">
       <row id="susi-cli {version} – Susi the CAT (SlMake compatible)" state="0" created="20261103162607" note="Help: general" notereadonly="1">
@@ -1132,7 +1132,7 @@
       </row>
     </node>
   </source>
-  <source class="TTsvSource" name="de-gui.tsv" original="en" date="20261118155242">
+  <source class="TTsvSource" name="de-gui.tsv" original="en" date="20261118190548">
     <outputfile dir="." localized="&lt;iso&gt;-gui.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-gui.tsv" state="0" created="20261103155355">
       <row id="Information" state="0" created="20261103155355" note="Application, log" notereadonly="1">
@@ -1386,6 +1386,14 @@
       <row id="Set status of all visible rows" state="0" created="20261103155355" note="Menus" notereadonly="1">
         <native>Set status of all visible rows</native>
         <lang id="de" date="20261103155355" status="3">Status aller sichtbaren Zeilen setzen</lang>
+      </row>
+      <row id="Copy original into all visible rows…" state="0" created="20261118190714" note="Menus" notereadonly="1">
+        <native>Copy original into all visible rows…</native>
+        <lang id="de" date="20261118190714" status="3">Original in alle sichtbaren Zeilen übernehmen…</lang>
+      </row>
+      <row id="Clear translations of all visible rows…" state="0" created="20261118190714" note="Menus" notereadonly="1">
+        <native>Clear translations of all visible rows…</native>
+        <lang id="de" date="20261118190714" status="3">Übersetzungen aller sichtbaren Zeilen löschen…</lang>
       </row>
       <row id="Row" state="0" created="20261103155355" note="Menus" notereadonly="1">
         <native>Row</native>
@@ -2470,6 +2478,50 @@
       <row id="@plural|Screenshots added: {ids} (linked to {n} row)|Screenshots added: {ids} (linked to {n} rows)" state="0" created="20261118155320" note="Screenshots#lContext: @plural" notereadonly="1">
         <native>Screenshots added: {ids} (linked to {n} row)|Screenshots added: {ids} (linked to {n} rows)</native>
         <lang id="de" date="20261118155320" status="3">Screenshots hinzugefügt: {ids} (mit {n} Zeile verknüpft)|Screenshots hinzugefügt: {ids} (mit {n} Zeilen verknüpft)</lang>
+      </row>
+      <row id="Copies the original text into the visible rows of the column {lang}." state="0" created="20261118190714" note="Screenshots" notereadonly="1">
+        <native>Copies the original text into the visible rows of the column {lang}.</native>
+        <lang id="de" date="20261118190714" status="3">Übernimmt den Originaltext in die sichtbaren Zeilen der Spalte {lang}.</lang>
+      </row>
+      <row id="Empty cells: {empty}, cells with a translation: {translated}" state="0" created="20261118190714" note="Screenshots" notereadonly="1">
+        <native>Empty cells: {empty}, cells with a translation: {translated}</native>
+        <lang id="de" date="20261118190714" status="3">Leere Zellen: {empty}, Zellen mit Übersetzung: {translated}</lang>
+      </row>
+      <row id="Rows marked &quot;Do not translate&quot; and excluded rows are skipped." state="0" created="20261118190714" note="Screenshots" notereadonly="1">
+        <native>Rows marked "Do not translate" and excluded rows are skipped.</native>
+        <lang id="de" date="20261118190714" status="3">Zeilen mit „Nicht übersetzen“ und ausgeschlossene Zeilen werden übersprungen.</lang>
+      </row>
+      <row id="Nothing to copy in the column {lang}" state="0" created="20261118190714" note="Screenshots" notereadonly="1">
+        <native>Nothing to copy in the column {lang}</native>
+        <lang id="de" date="20261118190714" status="3">In der Spalte {lang} gibt es nichts zu übernehmen</lang>
+      </row>
+      <row id="Original copied into {count} ({lang})" state="0" created="20261118190714" note="Screenshots" notereadonly="1">
+        <native>Original copied into {count} ({lang})</native>
+        <lang id="de" date="20261118190714" status="3">Original in {count} übernommen ({lang})</lang>
+      </row>
+      <row id="@plural|{n} cell|{n} cells" state="0" created="20261118190714" note="Screenshots#lContext: @plural" notereadonly="1">
+        <native>{n} cell|{n} cells</native>
+        <lang id="de" date="20261118190714" status="3">{n} Zelle|{n} Zellen</lang>
+      </row>
+      <row id="Clear translations" state="0" created="20261118190714" note="Screenshots" notereadonly="1">
+        <native>Clear translations</native>
+        <lang id="de" date="20261118190714" status="3">Übersetzungen löschen</lang>
+      </row>
+      <row id="Delete {count} in the visible rows of the column {lang}?" state="0" created="20261118190714" note="Screenshots" notereadonly="1">
+        <native>Delete {count} in the visible rows of the column {lang}?</native>
+        <lang id="de" date="20261118190714" status="3">{count} in den sichtbaren Zeilen der Spalte {lang} löschen?</lang>
+      </row>
+      <row id="Their comments are deleted as well. This cannot be undone." state="0" created="20261118190714" note="Screenshots" notereadonly="1">
+        <native>Their comments are deleted as well. This cannot be undone.</native>
+        <lang id="de" date="20261118190714" status="3">Ihre Kommentare werden ebenfalls gelöscht. Das lässt sich nicht rückgängig machen.</lang>
+      </row>
+      <row id="The column {lang} has no translations in the visible rows" state="0" created="20261118190714" note="Screenshots" notereadonly="1">
+        <native>The column {lang} has no translations in the visible rows</native>
+        <lang id="de" date="20261118190714" status="3">Die Spalte {lang} hat in den sichtbaren Zeilen keine Übersetzungen</lang>
+      </row>
+      <row id="{count} deleted ({lang})" state="0" created="20261118190714" note="Screenshots" notereadonly="1">
+        <native>{count} deleted ({lang})</native>
+        <lang id="de" date="20261118190714" status="3">{count} gelöscht ({lang})</lang>
       </row>
     </node>
   </source>

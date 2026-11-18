@@ -6,9 +6,11 @@ use susi_core::i18n::Lang;
 use susi_core::settings::Settings;
 use susi_core::slp;
 
-use crate::actions::Action;
+use susi_core::ops::CopyTargets;
+
+use crate::actions::{Action, Scope};
 use crate::app::{BottomTab, SusiApp};
-use crate::dialogs::{Dialog, ExportDialog, ImportDialog, PseudoDialog, TmDialog};
+use crate::dialogs::{ClearColumnDialog, CopyOriginalDialog, Dialog, ExportDialog, ImportDialog, PseudoDialog, TmDialog};
 use crate::workflow_ui::{FetchDialog, PublishDialog, SaveDialog, TokenDialog};
 
 fn run(ctx: &egui::Context, app: &mut SusiApp, frames: usize) {
@@ -107,6 +109,56 @@ fn single_language_view_adds_extra_languages() {
     assert_eq!(app.visible_langs(), ids);
 }
 
+/// Column commands act on the visible rows of one language column, here not the current language.
+#[test]
+fn column_commands() {
+    use susi_core::status::TranslationStatus;
+    let ctx = egui::Context::default();
+    let mut app = app_with_fixture(&ctx, &std::env::temp_dir(), "en");
+    run(&ctx, &mut app, 2);
+    let current = app.lang.clone().unwrap();
+    let lang = app.project.as_ref().unwrap().language_ids().into_iter().find(|l| *l != current).unwrap();
+    let rows = app.rows.clone();
+    let cells = |app: &SusiApp, l: &str| -> Vec<Option<String>> {
+        let p = app.project.as_ref().unwrap();
+        rows.iter().map(|r| p.row(r).unwrap().text(l).map(str::to_string)).collect()
+    };
+    let others = cells(&app, &current);
+    assert!(cells(&app, &lang).iter().any(Option::is_some), "fixture needs translations in {lang}");
+
+    // Clearing asks first.
+    app.actions.push(Action::ClearColumn(Some(lang.clone())));
+    run(&ctx, &mut app, 1);
+    let Some(Dialog::ClearColumn(d)) = app.dialog.take() else { panic!("no confirmation") };
+    assert!(!app.dirty);
+    app.clear_column(&d);
+    assert!(cells(&app, &lang).iter().all(Option::is_none));
+    assert_eq!(cells(&app, &current), others);
+    assert!(app.dirty);
+
+    // Copying the original fills the empty cells; then nothing is left to copy.
+    app.actions.push(Action::CopyOriginalInColumn(Some(lang.clone())));
+    run(&ctx, &mut app, 1);
+    let Some(Dialog::CopyOriginal(d)) = app.dialog.take() else { panic!("no copy dialog") };
+    assert_eq!(d.targets.translated, 0);
+    app.copy_original_in_column(&d);
+    let p = app.project.as_ref().unwrap();
+    for r in &rows {
+        let row = p.row(r).unwrap();
+        let copied = !row.locked() && !row.excluded() && !row.raw && !row.original().is_empty();
+        assert_eq!(row.text(&lang), copied.then(|| row.original()), "{}", row.id());
+    }
+    app.actions.push(Action::CopyOriginalInColumn(Some(lang.clone())));
+    run(&ctx, &mut app, 1);
+    assert!(app.dialog.is_none());
+
+    app.actions.push(Action::SetStatusIn(Scope::View, Some(lang.clone()), TranslationStatus::Complete));
+    run(&ctx, &mut app, 1);
+    let p = app.project.as_ref().unwrap();
+    assert!(rows.iter().map(|r| p.row(r).unwrap()).filter(|row| row.text(&lang).is_some()).all(|row| row.tstatus(&lang) == TranslationStatus::Complete));
+    assert_eq!(cells(&app, &current), others);
+}
+
 #[test]
 fn app_icon_decodes() {
     let icon = crate::app_icon::window_icon();
@@ -160,6 +212,13 @@ fn render_all_views_and_dialogs(ui_language: &str) {
         Dialog::Confirm { then: Action::Exit },
         Dialog::TmTranslate(TmDialog { overwrite: false, fuzzy: true, only_view: false, only_lang: false }),
         Dialog::Pseudo(PseudoDialog { lang: "qps".into(), options: app.settings.pseudo.clone(), overwrite: false }),
+        Dialog::CopyOriginal(CopyOriginalDialog {
+            lang: "de".into(),
+            rows: app.rows.clone(),
+            targets: CopyTargets { empty: 2, translated: 5 },
+            overwrite: true,
+        }),
+        Dialog::ClearColumn(ClearColumnDialog { lang: "de".into(), rows: app.rows.clone() }),
         Dialog::Settings(Box::new(app.settings.clone())),
         Dialog::Export(ExportDialog {
             path: tmp.join("export.xlsx"),

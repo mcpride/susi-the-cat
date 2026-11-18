@@ -69,6 +69,8 @@
 	Clear validation results	Prüfungsergebnisse löschen
 	Column	Spalte
 	Set status of all visible rows	Status aller sichtbaren Zeilen setzen
+	Copy original into all visible rows…	Original in alle sichtbaren Zeilen übernehmen…
+	Clear translations of all visible rows…	Übersetzungen aller sichtbaren Zeilen löschen…
 	Row	Zeile
 	Status	Status
 	Toggle do not translate	Nicht übersetzen ein/aus
@@ -351,3 +353,14 @@
 	Clean up	Aufräumen
 	Remove links to rows that no longer exist and unused image files	Verknüpfungen zu nicht mehr vorhandenen Zeilen und unbenutzte Bilddateien entfernen
 @plural	Screenshots added: {ids} (linked to {n} row)|Screenshots added: {ids} (linked to {n} rows)	Screenshots hinzugefügt: {ids} (mit {n} Zeile verknüpft)|Screenshots hinzugefügt: {ids} (mit {n} Zeilen verknüpft)
+	Copies the original text into the visible rows of the column {lang}.	Übernimmt den Originaltext in die sichtbaren Zeilen der Spalte {lang}.
+	Empty cells: {empty}, cells with a translation: {translated}	Leere Zellen: {empty}, Zellen mit Übersetzung: {translated}
+	Rows marked "Do not translate" and excluded rows are skipped.	Zeilen mit „Nicht übersetzen“ und ausgeschlossene Zeilen werden übersprungen.
+	Nothing to copy in the column {lang}	In der Spalte {lang} gibt es nichts zu übernehmen
+	Original copied into {count} ({lang})	Original in {count} übernommen ({lang})
+@plural	{n} cell|{n} cells	{n} Zelle|{n} Zellen
+	Clear translations	Übersetzungen löschen
+	Delete {count} in the visible rows of the column {lang}?	{count} in den sichtbaren Zeilen der Spalte {lang} löschen?
+	Their comments are deleted as well. This cannot be undone.	Ihre Kommentare werden ebenfalls gelöscht. Das lässt sich nicht rückgängig machen.
+	The column {lang} has no translations in the visible rows	Die Spalte {lang} hat in den sichtbaren Zeilen keine Übersetzungen
+	{count} deleted ({lang})	{count} gelöscht ({lang})

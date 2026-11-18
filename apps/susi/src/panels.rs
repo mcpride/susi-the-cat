@@ -211,22 +211,32 @@ fn column_menu(app: &mut SusiApp, ui: &mut egui::Ui, acts: &mut Vec<Action>) {
             }
         }
         ui.separator();
-        ui.menu_button(t("Set status of all visible rows"), |ui| {
-            for s in TranslationStatus::ALL {
-                cmd(ui, acts, s.label(), Action::SetStatusIn(Scope::View, s));
-            }
-        });
+        column_items(ui, acts, None);
     });
+}
+
+/// Commands for the visible rows of a language column (`None`: the current language), in the menu
+/// "Column" and the context menu of a column header.
+pub fn column_items(ui: &mut egui::Ui, acts: &mut Vec<Action>, lang: Option<&str>) {
+    let lang = lang.map(str::to_string);
+    ui.menu_button(t("Set status of all visible rows"), |ui| status_buttons(ui, acts, |s| Action::SetStatusIn(Scope::View, lang.clone(), s)));
+    cmd(ui, acts, t("Copy original into all visible rows…"), Action::CopyOriginalInColumn(lang.clone()));
+    cmd(ui, acts, t("Clear translations of all visible rows…"), Action::ClearColumn(lang));
+}
+
+/// One entry per translation status, with its color.
+fn status_buttons(ui: &mut egui::Ui, acts: &mut Vec<Action>, action: impl Fn(TranslationStatus) -> Action) {
+    for s in TranslationStatus::ALL {
+        if ui.button(RichText::new(format!("■ {}", s.label())).color(status_color(s))).clicked() {
+            acts.push(action(s));
+            ui.close();
+        }
+    }
 }
 
 fn status_submenu(ui: &mut egui::Ui, acts: &mut Vec<Action>) {
     ui.menu_button(t("Status"), |ui| {
-        for s in TranslationStatus::ALL {
-            if ui.button(RichText::new(format!("■ {}", s.label())).color(status_color(s))).clicked() {
-                acts.push(Action::SetStatus(s));
-                ui.close();
-            }
-        }
+        status_buttons(ui, acts, Action::SetStatus);
     });
 }
 
@@ -427,14 +437,7 @@ fn tree_label_events(r: &egui::Response, node: &NodeRef, out: &mut TreeOut) {
 
 /// Context menu entries applying to all rows of a tree node.
 fn scope_items(ui: &mut egui::Ui, acts: &mut Vec<Action>, scope: &Scope) {
-    ui.menu_button(t("Status (current language)"), |ui| {
-        for s in TranslationStatus::ALL {
-            if ui.button(RichText::new(format!("■ {}", s.label())).color(status_color(s))).clicked() {
-                acts.push(Action::SetStatusIn(scope.clone(), s));
-                ui.close();
-            }
-        }
-    });
+    ui.menu_button(t("Status (current language)"), |ui| status_buttons(ui, acts, |s| Action::SetStatusIn(scope.clone(), None, s)));
     cmd(ui, acts, t("Do not translate"), Action::SetLockedIn(scope.clone(), true));
     cmd(ui, acts, t("Allow translation"), Action::SetLockedIn(scope.clone(), false));
     cmd(ui, acts, t("Clear new status"), Action::ClearNewIn(scope.clone()));

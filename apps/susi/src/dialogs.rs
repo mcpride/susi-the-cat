@@ -5,9 +5,10 @@ use std::path::PathBuf;
 use susi_core::exchange::{ExchangeFormat, ScreenshotExport};
 use susi_core::formats::po::PoOptions;
 use susi_core::formats::properties::PropertiesEncoding;
-use susi_core::i18n::{Lang, t};
+use susi_core::i18n::{Lang, t, trn};
 use susi_core::lang;
 use susi_core::model::{RowRef, WriteMethod};
+use susi_core::ops::CopyTargets;
 use susi_core::pseudo::{PseudoCase, PseudoKind, PseudoOptions};
 use susi_core::settings::Settings;
 use susi_core::status::{RowStatus, TranslationStatus};
@@ -78,6 +79,22 @@ pub struct PseudoDialog {
     pub overwrite: bool,
 }
 
+/// Copying the original into the visible rows of a language column.
+pub struct CopyOriginalDialog {
+    pub lang: String,
+    /// Visible rows when the dialog was opened.
+    pub rows: Vec<RowRef>,
+    pub targets: CopyTargets,
+    pub overwrite: bool,
+}
+
+/// Confirmation before clearing the translations of the visible rows of a language column.
+pub struct ClearColumnDialog {
+    pub lang: String,
+    /// Visible rows with a translation in `lang`.
+    pub rows: Vec<RowRef>,
+}
+
 pub enum Dialog {
     /// Unsaved changes; `then` runs after saving or discarding.
     Confirm {
@@ -98,6 +115,8 @@ pub enum Dialog {
     Import(ImportDialog),
     TmTranslate(TmDialog),
     Pseudo(PseudoDialog),
+    CopyOriginal(CopyOriginalDialog),
+    ClearColumn(ClearColumnDialog),
     Settings(Box<Settings>),
     About,
     WorkflowFetch(FetchDialog),
@@ -127,6 +146,8 @@ pub fn show(app: &mut SusiApp, ctx: &egui::Context) {
             Dialog::Import(i) => import(app, ui, i),
             Dialog::TmTranslate(t) => tm_translate(app, ui, t),
             Dialog::Pseudo(p) => pseudo(app, ui, p),
+            Dialog::CopyOriginal(c) => copy_original(app, ui, c),
+            Dialog::ClearColumn(c) => clear_column(app, ui, c),
             Dialog::Settings(s) => settings(app, ui, s),
             Dialog::About => about(ui),
             Dialog::WorkflowFetch(f) => workflow_ui::fetch_dialog(app, ui, f),
@@ -579,6 +600,40 @@ fn pseudo(app: &mut SusiApp, ui: &mut egui::Ui, d: &mut PseudoDialog) -> bool {
     match ok_cancel(ui, t("Create"), !d.lang.trim().is_empty()) {
         Some(true) => {
             app.fill_pseudo(d);
+            true
+        }
+        Some(false) => true,
+        None => false,
+    }
+}
+
+fn copy_original(app: &mut SusiApp, ui: &mut egui::Ui, d: &mut CopyOriginalDialog) -> bool {
+    ui.heading(t("Copy original"));
+    ui.label(susi_core::tf!("Copies the original text into the visible rows of the column {lang}.", lang = SusiApp::lang_label(&d.lang)));
+    ui.label(susi_core::tf!("Empty cells: {empty}, cells with a translation: {translated}", empty = d.targets.empty, translated = d.targets.translated));
+    ui.add_enabled(d.targets.translated > 0, egui::Checkbox::new(&mut d.overwrite, t("Overwrite existing translations")));
+    ui.small(t("Rows marked \"Do not translate\" and excluded rows are skipped."));
+    match ok_cancel(ui, t("Copy original"), d.targets.count(d.overwrite) > 0) {
+        Some(true) => {
+            app.copy_original_in_column(d);
+            true
+        }
+        Some(false) => true,
+        None => false,
+    }
+}
+
+fn clear_column(app: &mut SusiApp, ui: &mut egui::Ui, d: &mut ClearColumnDialog) -> bool {
+    ui.heading(t("Clear translations"));
+    ui.label(susi_core::tf!(
+        "Delete {count} in the visible rows of the column {lang}?",
+        count = trn(d.rows.len(), "{n} translation", "{n} translations"),
+        lang = SusiApp::lang_label(&d.lang)
+    ));
+    ui.label(t("Their comments are deleted as well. This cannot be undone."));
+    match ok_cancel(ui, t("Clear translations"), true) {
+        Some(true) => {
+            app.clear_column(d);
             true
         }
         Some(false) => true,

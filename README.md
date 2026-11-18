@@ -185,6 +185,12 @@ Operation follows Sisulizer:
     `Esc` cancels. Double-clicking multi-line text opens it in the Editor tab.
   - Editing changes the status *Not translated*, *Best guess* or *Auto translated* to
     *Translated*.
+  - Column commands (menu *Column* for the selected language, or right-click the header of a
+    language or status column): set the status of all visible rows, copy the original into the
+    visible rows (empty cells only, or also overwriting translations) and clear the translations
+    of the visible rows after a confirmation. Copying skips rows marked "Do not translate" and
+    excluded rows and changes the status like editing; clearing also removes the translation
+    comments.
 - **Filter** (right): translation status, row status (new, modified, unused, in use), date,
   marked, locked, with/without screenshot and text. When a filter is active, the notice "Special filters on!" appears.
   See [Reviewing recent changes](#reviewing-recent-changes).
