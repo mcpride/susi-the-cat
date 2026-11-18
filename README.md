@@ -57,13 +57,20 @@ crates/core   susi-core: project model (.slp read/write), RESX/JSON/PO scan and 
               statistics, pseudo translation, filters, settings,
               i18n (user interface language, catalogs in crates/core/src/i18n/*.tsv)
 crates/mcp    susi-mcp: MCP server (rmcp, stdio)
+crates/workflow
+              susi-workflow: git workflow for translators (GitLab merge requests, GitHub pull requests)
 apps/susi     GUI (egui/eframe)
 apps/susi-cli CLI (SlMake compatible) + `mcp` task
 xtask         automation (cargo xtask …)
 assets        app icon (see below)
+docs          architecture overview
 testdata      test fixtures (see below)
 .github       CI and release workflow; release tooling in package.json and .releaserc.json (see below)
 ```
+
+How the applications and crates fit together (dependencies, data model, scan/build pipeline,
+GUI, CLI, MCP server, git workflow, CI) is described with diagrams in the
+[architecture overview](docs/architecture.md).
 
 ### App icon (`assets/app-icon/`)
 
