@@ -146,3 +146,47 @@
 	Only rows changed until D (a date without time includes the whole day).	Nur bis D geänderte Zeilen (ein Datum ohne Uhrzeit schließt den ganzen Tag ein).
 	Timestamp checked by -since/-until:	Von -since/-until geprüfter Zeitstempel:
 @plural	{n} row matches the date filter|{n} rows match the date filter	{n} Zeile entspricht dem Datumsfilter|{n} Zeilen entsprechen dem Datumsfilter
+
+# Screenshots
+	Manage screenshots of rows (context for translators)	Screenshots zu Zeilen verwalten (Kontext für Übersetzer)
+	Screenshots as context for translators. They are stored next to the project in\n<project>.files/ (screenshots.json and the images); the project file stays unchanged.	Screenshots als Kontext für Übersetzer. Sie liegen neben dem Projekt in\n<Projekt>.files/ (screenshots.json und die Bilder); die Projektdatei bleibt unverändert.
+	Lists the screenshots and their links (default).	Listet die Screenshots und ihre Verknüpfungen auf (Standard).
+	Adds image files (PNG, JPEG); with -key also links them.	Fügt Bilddateien hinzu (PNG, JPEG); mit -key werden sie auch verknüpft.
+	Links screenshot ID to the rows given by -key.	Verknüpft Screenshot ID mit den Zeilen aus -key.
+	Removes the links of screenshot ID to the rows given by -key.	Entfernt die Verknüpfungen von Screenshot ID zu den Zeilen aus -key.
+	Removes screenshots.	Entfernt Screenshots.
+	Removes links to rows that no longer exist and unused image files.	Entfernt Verknüpfungen zu nicht mehr vorhandenen Zeilen und unbenutzte Bilddateien.
+	Reads changed origin files again (links stay).	Liest geänderte Herkunftsdateien neu ein (Verknüpfungen bleiben).
+	Imports a manifest of a UI test run (schema of screenshots.json, file paths\nrelative to the manifest); importing again replaces the screenshots.	Importiert das Manifest eines UI-Testlaufs (Schema von screenshots.json, Dateipfade\nrelativ zum Manifest); ein erneuter Import ersetzt die Screenshots.
+	Rows: contexts or row ids separated by ;, wildcards * and ? allowed.	Zeilen: Kontexte oder Zeilen-IDs, getrennt durch ;, Platzhalter * und ? erlaubt.
+	Only rows of this source.	Nur Zeilen dieser Quelle.
+	add: id of the screenshot (default: from the file name; an existing id\ngets the new image).	add: ID des Screenshots (Standard: aus dem Dateinamen; eine vorhandene ID\nerhält das neue Bild).
+	add: title.	add: Titel.
+	add/link: area of the text in the image (pixels).	add/link: Bereich des Textes im Bild (Pixel).
+	import: removes screenshots missing in the manifest.	import: entfernt Screenshots, die im Manifest fehlen.
+	Screenshots of the exported rows: auto (default) embeds them in Excel on a second\nworksheet and copies them next to other formats (<name>_screenshots/):	Screenshots der exportierten Zeilen: auto (Standard) bettet sie in Excel auf einem zweiten\nTabellenblatt ein und kopiert sie bei anderen Formaten daneben (<Name>_screenshots/):
+	Unknown screenshot action '{action}' (possible: {actions})	Unbekannte Screenshot-Aktion '{action}' (möglich: {actions})
+	Image file missing	Bilddatei fehlt
+	Image file missing: {path}	Bilddatei fehlt: {path}
+	-id can only be used with a single image	-id ist nur mit einem einzelnen Bild möglich
+	Screenshot id missing	Screenshot-ID fehlt
+	Manifest file missing	Manifest-Datei fehlt
+	Option -key is missing (contexts or row ids, wildcards * and ?)	Option -key fehlt (Kontexte oder Zeilen-IDs, Platzhalter * und ?)
+	No row matches the key "{key}"	Keine Zeile passt zum Schlüssel "{key}"
+	Screenshot added: {id}	Screenshot hinzugefügt: {id}
+	Screenshot removed: {id}	Screenshot entfernt: {id}
+	Screenshot updated: {id}	Screenshot aktualisiert: {id}
+	Screenshot not found: {id}	Screenshot nicht gefunden: {id}
+	Origin file of screenshot {id} not found	Herkunftsdatei von Screenshot {id} nicht gefunden
+	(no matching row)	(keine passende Zeile)
+	Screenshots saved: {path}	Screenshots gespeichert: {path}
+	Screenshots: {summary} ({path})	Screenshots: {summary} ({path})
+	{added} screenshots added, {replaced} replaced, {removed} removed, {links} links	{added} Screenshots hinzugefügt, {replaced} ersetzt, {removed} entfernt, {links} Verknüpfungen
+	{links} orphaned links removed, {files} unused image files deleted	{links} verwaiste Verknüpfungen entfernt, {files} unbenutzte Bilddateien gelöscht
+	{updated} screenshots updated, {unchanged} unchanged	{updated} Screenshots aktualisiert, {unchanged} unverändert
+@plural	{n} screenshot|{n} screenshots	{n} Screenshot|{n} Screenshots
+@plural	{n} link|{n} links	{n} Verknüpfung|{n} Verknüpfungen
+@plural	{n} orphaned link|{n} orphaned links	{n} verwaiste Verknüpfung|{n} verwaiste Verknüpfungen
+@plural	{n} row linked|{n} rows linked	{n} Zeile verknüpft|{n} Zeilen verknüpft
+@plural	{n} link removed|{n} links removed	{n} Verknüpfung entfernt|{n} Verknüpfungen entfernt
+@plural	{n} link does not match any row|{n} links do not match any row	{n} Verknüpfung passt zu keiner Zeile|{n} Verknüpfungen passen zu keiner Zeile

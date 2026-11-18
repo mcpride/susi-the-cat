@@ -299,3 +299,55 @@
 	Show "Translated on" column	Spalte „Übersetzt am“ anzeigen
 	Encoding:	Kodierung:
 	Android: <parent> resource directory, <android> BCP 47 qualifier for values-b+… (pt+BR), <androidr> legacy qualifier (pt-rBR)	Android: <parent> Ressourcenverzeichnis, <android> BCP-47-Qualifizierer für values-b+… (pt+BR), <androidr> alter Qualifizierer (pt-rBR)
+
+# Screenshots
+	Screenshots…	Screenshots…
+	Import screenshot manifest…	Screenshot-Manifest importieren…
+	Import screenshot manifest	Screenshot-Manifest importieren
+	Screenshot manifest	Screenshot-Manifest
+	Add screenshot to all rows…	Screenshot zu allen Zeilen hinzufügen…
+	Add for this row…	Für diese Zeile hinzufügen…
+	Add for all rows of the view…	Für alle Zeilen der Ansicht hinzufügen…
+	Paste from the clipboard	Aus der Zwischenablage einfügen
+	Screenshot:	Screenshot:
+	Any	Beliebig
+	With screenshot	Mit Screenshot
+	Without screenshot	Ohne Screenshot
+	Screenshots:	Screenshots:
+	Automatic (embedded in Excel, otherwise as links)	Automatisch (in Excel eingebettet, sonst als Links)
+	None	Keine
+	As links (images copied next to the export)	Als Links (Bilder werden neben den Export kopiert)
+	Embedded (Excel, second worksheet)	Eingebettet (Excel, zweites Tabellenblatt)
+	Add…	Hinzufügen…
+	Add image files and link them to the selected row	Bilddateien hinzufügen und mit der ausgewählten Zeile verknüpfen
+	Add screenshots	Screenshots hinzufügen
+	Images (PNG, JPEG)	Bilder (PNG, JPEG)
+	Paste	Einfügen
+	Paste an image from the clipboard (Ctrl+V)	Bild aus der Zwischenablage einfügen (Strg+V)
+	Link existing…	Vorhandenen verknüpfen…
+	Mark area	Bereich markieren
+	Drag a rectangle over the image where the text appears	Rechteck über die Stelle im Bild ziehen, an der der Text erscheint
+	Clear area	Bereich entfernen
+	Remove link	Verknüpfung entfernen
+	Remove the screenshot from the selected row	Screenshot von der ausgewählten Zeile lösen
+	Manage…	Verwalten…
+	Select a row to see its screenshots.	Zeile auswählen, um ihre Screenshots zu sehen.
+	No screenshot is linked to the selected row. Add one, paste one (Ctrl+V) or drop image files here.	Mit der ausgewählten Zeile ist kein Screenshot verknüpft. Hinzufügen, einfügen (Strg+V) oder Bilddateien hierher ziehen.
+	Save the project first to add screenshots.	Zum Hinzufügen von Screenshots das Projekt zuerst speichern.
+	Screenshot pasted: {id}	Screenshot eingefügt: {id}
+	The pasted image could not be converted.	Das eingefügte Bild konnte nicht umgewandelt werden.
+	Screenshots: {error}	Screenshots: {error}
+	Folder: {path}	Ordner: {path}
+	Id	ID
+	Title	Titel
+	Size	Größe
+	Links	Verknüpfungen
+	Remove screenshot	Screenshot entfernen
+	No screenshots yet.	Noch keine Screenshots.
+	Import manifest…	Manifest importieren…
+	Screenshots of a UI test run (screenshots.json schema)	Screenshots eines UI-Testlaufs (Schema von screenshots.json)
+	Refresh	Aktualisieren
+	Read changed origin files again	Geänderte Herkunftsdateien neu einlesen
+	Clean up	Aufräumen
+	Remove links to rows that no longer exist and unused image files	Verknüpfungen zu nicht mehr vorhandenen Zeilen und unbenutzte Bilddateien entfernen
+@plural	Screenshots added: {ids} (linked to {n} row)|Screenshots added: {ids} (linked to {n} rows)	Screenshots hinzugefügt: {ids} (mit {n} Zeile verknüpft)|Screenshots hinzugefügt: {ids} (mit {n} Zeilen verknüpft)

@@ -10,6 +10,7 @@
 
 pub mod args;
 pub mod help;
+pub mod screenshot;
 pub mod tasks;
 pub mod workflow;
 
@@ -105,9 +106,11 @@ pub fn run_with(args: &[String], out: &mut dyn Write, err: &mut dyn Write) -> i3
 }
 
 fn save(inv: &Invocation, st: &mut State, o: &mut Output<'_>) {
-    let Some(p) = st.project.as_mut().filter(|_| st.changed) else {
+    let project = st.project.as_mut().filter(|_| st.changed);
+    let shots = st.shots.as_mut().filter(|s| s.is_dirty());
+    if project.is_none() && shots.is_none() {
         return;
-    };
+    }
     if inv.nosave && !inv.forcesave {
         o.info(t("Project was changed but not saved (-nosave)"));
         return;
@@ -116,10 +119,18 @@ fn save(inv: &Invocation, st: &mut State, o: &mut Output<'_>) {
         o.info(t("Project was not saved because of errors (see -forcesave)"));
         return;
     }
-    p.touch();
-    match slp::save(p, &st.path) {
-        Ok(()) => o.info(tf!("Project saved: {path}", path = st.path.display())),
-        Err(e) => o.error(format!("{}: {e}", st.path.display())),
+    if let Some(p) = project {
+        p.touch();
+        match slp::save(p, &st.path) {
+            Ok(()) => o.info(tf!("Project saved: {path}", path = st.path.display())),
+            Err(e) => o.error(format!("{}: {e}", st.path.display())),
+        }
+    }
+    if let Some(s) = shots {
+        match s.save() {
+            Ok(()) => o.info(tf!("Screenshots saved: {path}", path = s.index_path().display())),
+            Err(e) => o.error(e.to_string()),
+        }
     }
 }
 

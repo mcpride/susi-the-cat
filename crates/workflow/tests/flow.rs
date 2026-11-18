@@ -289,3 +289,25 @@ fn uncommitted_configuration_survives_fetch() {
     assert!(wf.fetch(&FetchOptions::default()).unwrap().backup.is_none());
     assert!(work.join(".susi").join("workflow.toml").exists());
 }
+
+#[test]
+fn screenshots_are_saved_with_the_project() {
+    use susi_core::screenshots::{Link, ScreenshotStore, solid_png};
+    let tmp = tempfile::tempdir().unwrap();
+    let (_dev, work) = setup(tmp.path());
+    let slp_path = work.join("l10n").join("app.slp");
+    let wf = Workflow::detect_with(&slp_path, None).unwrap().expect("configured");
+    let p = slp::load(&slp_path).unwrap();
+    let mut shots = ScreenshotStore::open(&slp_path).unwrap();
+    let id = shots.add_bytes(&solid_png(4, 4, [1, 2, 3]), Some("main"), None).unwrap();
+    shots.link(&id, [Link::to_row(&p, &p.find_row("hello").unwrap(), None)]).unwrap();
+    shots.save().unwrap();
+
+    let st = wf.status(&p, StatusOptions::default()).unwrap();
+    assert_eq!(st.state, State::Modified);
+    assert!(st.changed.contains(&"l10n/app.files/screenshots.json".to_string()), "{:?}", st.changed);
+    assert!(wf.save(&p, &wf.save_defaults()).unwrap().pushed);
+    let files = git(&work, &["show", "--name-only", "--format=", "HEAD"]);
+    assert!(files.contains("l10n/app.files/screenshots.json") && files.contains("l10n/app.files/screenshots/main."), "{files}");
+    assert_eq!(wf.status(&p, StatusOptions::default()).unwrap().state, State::Saved);
+}

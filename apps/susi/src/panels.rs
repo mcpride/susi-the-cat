@@ -8,6 +8,7 @@ use susi_core::status::{RowStatus, TranslationStatus};
 
 use crate::actions::{Action, Scope};
 use crate::app::{Nav, SusiApp};
+use crate::shots::ShotCmd;
 
 pub fn status_color(s: TranslationStatus) -> Color32 {
     let [r, g, b] = s.color();
@@ -191,6 +192,9 @@ fn project_menu(ui: &mut egui::Ui, acts: &mut Vec<Action>) {
         cmd(ui, acts, t("Remove unused rows"), Action::RemoveUnused);
         cmd(ui, acts, t("Clear new status (all rows)"), Action::ClearNewIn(Scope::All));
         ui.separator();
+        cmd(ui, acts, t("Screenshots…"), Action::Screenshot(ShotCmd::Manager));
+        cmd(ui, acts, t("Import screenshot manifest…"), Action::Screenshot(ShotCmd::ImportManifest));
+        ui.separator();
         cmd(ui, acts, t("Statistics"), Action::Statistics);
         cmd(ui, acts, t("Save report…"), Action::Report);
     });
@@ -239,6 +243,12 @@ pub fn row_menu_items(ui: &mut egui::Ui, acts: &mut Vec<Action>) {
     cmd(ui, acts, t("Toggle do not translate"), Action::ToggleLocked);
     cmd(ui, acts, t("Toggle mark"), Action::ToggleMarked);
     cmd(ui, acts, t("Toggle excluded"), Action::ToggleExcluded);
+    ui.separator();
+    ui.menu_button(t("Screenshot"), |ui| {
+        cmd(ui, acts, t("Add for this row…"), Action::Screenshot(ShotCmd::Add(None)));
+        cmd(ui, acts, t("Add for all rows of the view…"), Action::Screenshot(ShotCmd::Add(Some(Scope::View))));
+        cmd(ui, acts, t("Paste from the clipboard"), Action::Screenshot(ShotCmd::Paste));
+    });
     ui.separator();
     cmd(ui, acts, t("First row"), Action::Nav(Nav::First));
     cmd(ui, acts, t("Previous row"), Action::Nav(Nav::Prev));
@@ -428,6 +438,7 @@ fn scope_items(ui: &mut egui::Ui, acts: &mut Vec<Action>, scope: &Scope) {
     cmd(ui, acts, t("Do not translate"), Action::SetLockedIn(scope.clone(), true));
     cmd(ui, acts, t("Allow translation"), Action::SetLockedIn(scope.clone(), false));
     cmd(ui, acts, t("Clear new status"), Action::ClearNewIn(scope.clone()));
+    cmd(ui, acts, t("Add screenshot to all rows…"), Action::Screenshot(ShotCmd::Add(Some(scope.clone()))));
     ui.separator();
     cmd(ui, acts, t("Statistics"), Action::Statistics);
     cmd(ui, acts, t("Validate"), Action::Validate { missing: false });
@@ -493,6 +504,19 @@ fn filter_panel(app: &mut SusiApp, ui: &mut egui::Ui) {
         changed |= ui.checkbox(&mut f.only_marked, t("Only marked rows")).changed();
         changed |= ui.checkbox(&mut f.only_locked, t("Only \"Do not translate\"")).changed();
         changed |= ui.checkbox(&mut f.show_excluded, t("Show excluded")).changed();
+        let shot_label = |v: Option<bool>| match v {
+            None => t("Any"),
+            Some(true) => t("With screenshot"),
+            Some(false) => t("Without screenshot"),
+        };
+        ui.horizontal(|ui| {
+            ui.label(t("Screenshot:"));
+            egui::ComboBox::from_id_salt("filter-shot").selected_text(shot_label(f.screenshot)).show_ui(ui, |ui| {
+                for v in [None, Some(true), Some(false)] {
+                    changed |= ui.selectable_value(&mut f.screenshot, v, shot_label(v)).changed();
+                }
+            });
+        });
         ui.separator();
         ui.strong(t("Text"));
         changed |= ui.add(egui::TextEdit::singleline(&mut f.text).hint_text(t("Filter text")).desired_width(f32::INFINITY)).changed();

@@ -29,6 +29,8 @@ pub enum ValidationKind {
     ControlCharacters,
     IcuSyntax,
     IcuCases,
+    /// Linked screenshot image missing (reported by `ScreenshotStore::issues`).
+    Screenshot,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Serialize)]
@@ -39,7 +41,7 @@ pub enum Severity {
 }
 
 impl ValidationKind {
-    pub const ALL: [ValidationKind; 16] = [
+    pub const ALL: [ValidationKind; 17] = [
         Self::MissingTranslation,
         Self::Format,
         Self::Tags,
@@ -56,6 +58,7 @@ impl ValidationKind {
         Self::ControlCharacters,
         Self::IcuSyntax,
         Self::IcuCases,
+        Self::Screenshot,
     ];
 
     /// Label in the current UI language (validation names).
@@ -77,6 +80,7 @@ impl ValidationKind {
             Self::ControlCharacters => t("Invalid control characters"),
             Self::IcuSyntax => t("Invalid ICU message"),
             Self::IcuCases => t("Incomplete ICU cases"),
+            Self::Screenshot => t("Missing screenshot"),
         }
     }
 
@@ -98,6 +102,7 @@ impl ValidationKind {
             Self::ControlCharacters => "control",
             Self::IcuSyntax => "icu",
             Self::IcuCases => "icucases",
+            Self::Screenshot => "screenshot",
         }
     }
 

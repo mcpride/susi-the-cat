@@ -2,7 +2,7 @@
 
 use std::path::PathBuf;
 
-use susi_core::exchange::{ExportOptions, ImportOptions};
+use susi_core::exchange::{ExportOptions, ImportOptions, ScreenshotExport};
 use susi_core::i18n::{t, trn};
 use susi_core::model::{NodeRef, Project, RowRef};
 use susi_core::status::{RowStatus, TranslationStatus};
@@ -63,6 +63,8 @@ pub enum Action {
     About,
     /// Git workflow command.
     Workflow(crate::workflow_ui::Command),
+    /// Screenshot command.
+    Screenshot(crate::shots::ShotCmd),
 }
 
 /// Rows an action applies to.
@@ -128,6 +130,7 @@ impl SusiApp {
             }
             Action::Nav(n) => self.navigate(n),
             Action::Workflow(c) => crate::workflow_ui::run(self, c, ctx),
+            Action::Screenshot(c) => crate::shots::run(self, c, ctx),
             other => self.run_project_action(other),
         }
     }
@@ -246,7 +249,7 @@ impl SusiApp {
         }
     }
 
-    fn rows_of(&self, scope: &Scope) -> Vec<RowRef> {
+    pub(crate) fn rows_of(&self, scope: &Scope) -> Vec<RowRef> {
         match (scope, &self.project) {
             (Scope::All, Some(p)) => p.rows(),
             (Scope::Node(n), Some(p)) => p.rows_in(n),
@@ -482,7 +485,10 @@ impl SusiApp {
         if missing {
             opts.kinds = ValidationKind::ALL.to_vec();
         }
-        let issues = validate::validate(p, &opts, None);
+        let mut issues = validate::validate(p, &opts, None);
+        if let Some(shots) = &self.shots {
+            issues.extend(shots.issues(p, None));
+        }
         let errors = issues.iter().filter(|i| i.severity == Severity::Error).count();
         let msg = susi_core::tf!(
             "Validation: {errors}, {warnings}",
@@ -598,13 +604,16 @@ impl SusiApp {
             max_chars_column: d.max_chars_column,
             include_locked: d.include_locked,
             label_lang: self.settings.export_label_language.clone(),
+            screenshots: ScreenshotExport::from_keyword(&self.settings.export_screenshots).unwrap_or_default(),
         }));
     }
 
     pub fn export(&mut self, d: &ExportDialog) {
         // Remembered: exports for the same translators usually need the same language.
-        if self.settings.export_label_language != d.label_lang {
+        let shots = d.screenshots.keyword();
+        if self.settings.export_label_language != d.label_lang || self.settings.export_screenshots != shots {
             self.settings.export_label_language.clone_from(&d.label_lang);
+            self.settings.export_screenshots = shots.to_string();
             let _ = self.settings.save();
         }
         let Some(p) = &self.project else {
@@ -619,9 +628,10 @@ impl SusiApp {
             max_chars_column: d.max_chars_column,
             include_locked: d.include_locked,
             label_lang: susi_core::i18n::Lang::from_code(&d.label_lang),
+            screenshots: d.screenshots,
             ..Default::default()
         };
-        match susi_core::exchange::export_file(p, &d.path, &opts) {
+        match susi_core::exchange::export_file(p, &d.path, &opts, self.shots.as_ref()) {
             Ok(files) => {
                 for f in files {
                     self.info(susi_core::tf!("Exported: {path}", path = f.display()));

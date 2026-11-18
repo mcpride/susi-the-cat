@@ -48,11 +48,12 @@ pub enum BottomTab {
     Statistics,
     Comments,
     Editor,
+    Screenshots,
 }
 
 impl BottomTab {
-    pub const ALL: [BottomTab; 6] =
-        [BottomTab::Output, BottomTab::Validation, BottomTab::Search, BottomTab::Statistics, BottomTab::Comments, BottomTab::Editor];
+    pub const ALL: [BottomTab; 7] =
+        [BottomTab::Output, BottomTab::Validation, BottomTab::Search, BottomTab::Statistics, BottomTab::Comments, BottomTab::Editor, BottomTab::Screenshots];
 
     pub fn label(self) -> &'static str {
         match self {
@@ -62,6 +63,7 @@ impl BottomTab {
             BottomTab::Statistics => t("Statistics"),
             BottomTab::Comments => t("Comments"),
             BottomTab::Editor => t("Text editor"),
+            BottomTab::Screenshots => t("Screenshots"),
         }
     }
 }
@@ -156,6 +158,8 @@ pub struct FilterState {
     /// Bounds of [`DatePeriod::Range`] as typed (see [`parse_date`]); empty = open.
     pub date_from: String,
     pub date_to: String,
+    /// Only rows with (`true`) or without (`false`) a screenshot.
+    pub screenshot: Option<bool>,
 }
 
 impl Default for FilterState {
@@ -173,6 +177,7 @@ impl Default for FilterState {
             date_field: DateField::Any,
             date_from: String::new(),
             date_to: String::new(),
+            screenshot: None,
         }
     }
 }
@@ -187,6 +192,7 @@ impl FilterState {
             || self.only_locked
             || self.show_excluded
             || self.date_period != DatePeriod::Any
+            || self.screenshot.is_some()
     }
 
     /// Timestamp bounds of the date filter; unparsable range bounds are ignored.
@@ -231,6 +237,7 @@ impl FilterState {
             date_field: self.date_field,
             since,
             until,
+            has_screenshot: self.screenshot,
             ..Default::default()
         })
     }
@@ -301,6 +308,11 @@ pub struct SusiApp {
     pub workflow: Option<crate::workflow_ui::WorkflowUi>,
     /// Running git action.
     pub wf_job: Option<crate::workflow_ui::Job>,
+    /// Screenshots of the project (`None` for a project without a file or an unreadable index).
+    pub shots: Option<susi_core::screenshots::ScreenshotStore>,
+    /// Screenshot links resolved against the project.
+    pub shot_index: susi_core::screenshots::ScreenshotIndex,
+    pub shot_ui: crate::shots::ShotUi,
     title: String,
 }
 
@@ -347,6 +359,9 @@ impl SusiApp {
             list_offset: egui::Vec2::ZERO,
             workflow: None,
             wf_job: None,
+            shots: None,
+            shot_index: Default::default(),
+            shot_ui: Default::default(),
             title: String::new(),
         };
         app.apply_theme(ctx);
@@ -414,6 +429,8 @@ impl SusiApp {
     pub fn structure_changed(&mut self) {
         self.touched();
         self.rows_stale = true;
+        // Rows may have appeared or disappeared: screenshot links resolve differently.
+        self.rebuild_shot_index();
     }
 
     /// Replaces the current project (after loading or creating one).
@@ -436,6 +453,7 @@ impl SusiApp {
         self.search.results.clear();
         self.stats = None;
         self.rows_stale = true;
+        self.load_screenshots();
         crate::workflow_ui::detect(self);
     }
 
@@ -464,6 +482,12 @@ impl SusiApp {
             Ok(()) => {
                 self.dirty = false;
                 self.info(susi_core::tf!("Project saved: {path}", path = path.display()));
+                match self.shots.as_mut().map(susi_core::screenshots::ScreenshotStore::save) {
+                    Some(Err(e)) => self.error(susi_core::tf!("Screenshots: {error}", error = e)),
+                    Some(Ok(())) => {}
+                    // first save of a new project
+                    None => self.load_screenshots(),
+                }
                 self.after_save();
                 if self.wf_job.is_none() {
                     crate::workflow_ui::detect(self);
@@ -485,6 +509,10 @@ impl SusiApp {
             return false;
         };
         let path = if path.extension().is_none() { path.with_extension("slp") } else { path };
+        // The screenshots go along to `<new name>.files/`.
+        if let Some(Err(e)) = self.shots.as_mut().map(|s| s.relocate(&path)) {
+            self.error(susi_core::tf!("Screenshots: {error}", error = e));
+        }
         if let Some(p) = self.project.as_mut() {
             p.path = Some(path.clone());
         }
@@ -573,7 +601,12 @@ impl SusiApp {
         };
         let langs = if self.all_langs { Vec::new() } else { self.lang.iter().cloned().collect() };
         self.rows = match self.filter.to_row_filter(langs, self.tree.clone()) {
-            Some(f) => f.apply(p),
+            Some(mut f) => {
+                if f.has_screenshot.is_some() {
+                    f.screenshot_rows = std::sync::Arc::new(self.shot_index.rows());
+                }
+                f.apply(p)
+            }
             None => Vec::new(),
         };
         if let Some(s) = self.sort {
@@ -719,6 +752,7 @@ impl SusiApp {
         let ctx = ui.ctx().clone();
         self.handle_close_request(&ctx);
         self.handle_shortcuts(&ctx);
+        crate::shots::handle_input(self, &ctx);
         crate::workflow_ui::poll(self, &ctx);
         if self.rows_stale {
             self.refresh_rows();

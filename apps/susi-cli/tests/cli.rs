@@ -216,3 +216,55 @@ fn real_project_info() {
     assert!(r.out.contains("Languages:"), "{}", r.out);
     assert_eq!(std::fs::read(&slp).unwrap(), before, "read-only task must not save");
 }
+
+#[test]
+fn screenshots() {
+    use susi_core::screenshots::{ScreenshotStore, solid_png};
+    let (dir, slp) = fixture();
+    let before = std::fs::read(&slp).unwrap();
+    let ui = dir.path().join("ui-tests");
+    std::fs::create_dir_all(&ui).unwrap();
+    std::fs::write(ui.join("menu.png"), solid_png(300, 200, [9, 9, 9])).unwrap();
+    std::fs::write(ui.join("title.png"), solid_png(100, 50, [1, 1, 1])).unwrap();
+
+    let r = run(&["screenshot", "add", &s(&ui.join("menu.png")), "-key:*/menu.*", "-title:Menu", "-area:10,10,80,20", &s(&slp)]);
+    assert_eq!(r.code, 0, "{}{}", r.out, r.err);
+    assert!(r.out.contains("Screenshot added: menu") && r.out.contains("2 rows linked"), "{}", r.out);
+    let manifest = ui.join("manifest.json");
+    let json = r#"{"screenshots": [{"id": "start", "file": "title.png", "title": "Start",
+        "links": [{"key": "title", "area": [1, 1, 50, 10]}, {"key": "nothing"}]}]}"#;
+    std::fs::write(&manifest, json).unwrap();
+    let r = run(&["screenshot", "import", &s(&manifest), &s(&slp)]);
+    assert_eq!(r.code, 0, "{}{}", r.out, r.err);
+    assert!(r.out.contains("1 screenshots added, 0 replaced, 0 removed, 2 links") && r.out.contains("1 link does not match any row"), "{}", r.out);
+    assert_eq!(std::fs::read(&slp).unwrap(), before, "screenshots never change the project file");
+
+    let r = run(&["screenshot", "list", &s(&slp)]);
+    assert!(r.out.contains("menu  \"Menu\"  300 × 200  2 links") && r.out.contains("(no matching row)"), "{}", r.out);
+    assert!(r.out.contains("2 screenshots, 1 orphaned link"), "{}", r.out);
+    assert!(run(&["info", &s(&slp)]).out.contains("Screenshots: 2 screenshots, 1 orphaned link"));
+
+    // Export with embedded screenshots; the re-import ignores them.
+    let xlsx = dir.path().join("t.xlsx");
+    let r = run(&["export", &s(&xlsx), "-lang:de", "-screenshots:embed", &s(&slp)]);
+    assert_eq!(r.code, 0, "{}{}", r.out, r.err);
+    let t = exchange::read_xlsx(&xlsx).unwrap();
+    assert_eq!(t.headers.last().map(String::as_str), Some("Screenshot"));
+    assert!(t.rows.iter().any(|r| r.last().is_some_and(|c| c == "Menu (#2)")), "{:?}", t.rows);
+    let r = run(&["import", &s(&xlsx), "-lang:de", &s(&slp)]);
+    assert_eq!((r.code, r.err.as_str()), (0, ""), "{}", r.out);
+    let csv = dir.path().join("t.csv");
+    assert_eq!(run(&["export", &s(&csv), "-lang:de", "-screenshots:link", &s(&slp)]).code, 0);
+    assert_eq!(std::fs::read_dir(dir.path().join("t_screenshots")).unwrap().count(), 2);
+    assert_ne!(run(&["export", &s(&csv), "-screenshots:pictures", &s(&slp)]).code, 0);
+
+    let r = run(&["screenshot", "prune", &s(&slp)]);
+    assert!(r.out.contains("1 orphaned links removed, 0 unused image files deleted"), "{}", r.out);
+    std::fs::remove_file(ScreenshotStore::open(&slp).unwrap().image_path("menu").unwrap()).unwrap();
+    let r = run(&["validate", "-check:screenshot", "-w", &s(&slp)]);
+    assert_eq!(r.code, 1, "{}{}", r.out, r.err);
+    assert!(r.out.matches("Missing screenshot").count() == 2, "{}", r.out);
+    let r = run(&["screenshot", "remove", "menu", "nope", &s(&slp)]);
+    assert!(r.out.contains("Screenshot removed: menu") && r.err.contains("Screenshot not found: nope"), "{}{}", r.out, r.err);
+    assert!(run(&["screenshot", "frobnicate", &s(&slp)]).err.contains("Unknown screenshot action"));
+}

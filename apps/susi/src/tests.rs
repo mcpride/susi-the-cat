@@ -171,6 +171,7 @@ fn render_all_views_and_dialogs(ui_language: &str) {
             max_chars_column: true,
             include_locked: true,
             label_lang: "en".into(),
+            screenshots: susi_core::exchange::ScreenshotExport::Embed,
         }),
         Dialog::Import(ImportDialog {
             path: tmp.join("import.xlsx"),
@@ -226,6 +227,7 @@ fn render_all_views_and_dialogs(ui_language: &str) {
         }),
         Dialog::WorkflowToken(TokenDialog { server: "https://gitlab.example.com (group/app)".into(), token: String::new(), has_token: true, github: false }),
         Dialog::WorkflowToken(TokenDialog { server: "https://github.com (octo/app)".into(), token: String::new(), has_token: false, github: true }),
+        Dialog::Screenshots,
     ];
     for d in dialogs {
         app.dialog = Some(d);
@@ -236,6 +238,74 @@ fn render_all_views_and_dialogs(ui_language: &str) {
     run(&ctx, &mut app, 2);
 
     assert!(!app.dirty, "rendering alone must not modify the project");
+    let _ = std::fs::remove_dir_all(&tmp);
+}
+
+#[test]
+fn screenshots_of_rows() {
+    use crate::shots::ShotCmd;
+    use susi_core::screenshots::{Area, Link, ScreenshotStore, solid_png};
+    let tmp = std::env::temp_dir().join(format!("susi-gui-shots-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&tmp);
+    let ctx = egui::Context::default();
+    let mut app = app_with_fixture(&ctx, &tmp, "en");
+    app.refresh_rows();
+    let (first, second) = (app.rows[0].clone(), app.rows[1].clone());
+    // A project without a file has no screenshots.
+    app.paste_image(&egui::ColorImage::new([2, 2], vec![egui::Color32::RED; 4]));
+    assert!(app.shots.is_none() && !app.dirty);
+
+    // Give the project a file (it is never saved here) with a screenshot linked to the first row.
+    let slp = tmp.join("demo.slp");
+    let mut store = ScreenshotStore::new(&slp);
+    store.add_bytes(&solid_png(320, 200, [200, 210, 220]), Some("main"), Some("Main window")).unwrap();
+    let p = app.project.as_mut().unwrap();
+    p.path = Some(slp.clone());
+    store.link("main", [Link::to_row(p, &first, Area::parse("20,30,100,20"))]).unwrap();
+    store.save().unwrap();
+    app.load_screenshots();
+    assert!(app.shot_index.has(&first) && !app.shot_index.has(&second));
+
+    app.select(first.clone());
+    app.tab = BottomTab::Screenshots;
+    app.show_bottom = true;
+    run(&ctx, &mut app, 3);
+    assert_eq!(app.shot_ui.texture_count(), 1, "image shown");
+
+    app.filter.screenshot = Some(true);
+    app.refresh_rows();
+    assert_eq!(app.rows, std::slice::from_ref(&first));
+    app.filter.screenshot = Some(false);
+    app.refresh_rows();
+    assert!(!app.rows.contains(&first) && app.rows.contains(&second));
+    app.filter = crate::app::FilterState::default();
+    app.refresh_rows();
+
+    // A marked area replaces the stored one.
+    app.actions.push(Action::Screenshot(ShotCmd::SetArea("main".into(), Area::parse("1,2,30,10"))));
+    run(&ctx, &mut app, 1);
+    assert!(app.dirty);
+    let shots = app.shots.as_ref().unwrap();
+    assert_eq!(shots.links_of(&app.shot_index, &first)[0].1.area, Area::parse("1,2,30,10"));
+
+    // Pasted images and added files are linked to the selected row.
+    app.select(second.clone());
+    app.paste_image(&egui::ColorImage::new([4, 3], vec![egui::Color32::BLUE; 12]));
+    let file = tmp.join("dialog.png");
+    std::fs::write(&file, solid_png(10, 10, [0, 0, 0])).unwrap();
+    app.add_screenshot_files(&[file], std::slice::from_ref(&first));
+    let shots = app.shots.as_ref().unwrap();
+    assert_eq!(shots.len(), 3);
+    assert_eq!((shots.links_of(&app.shot_index, &second).len(), shots.links_of(&app.shot_index, &first).len()), (1, 2));
+    assert_eq!(app.tab, BottomTab::Screenshots);
+
+    app.dialog = Some(Dialog::Screenshots);
+    run(&ctx, &mut app, 2);
+    assert!(app.dialog.is_some());
+    // Removing the screenshot also removes its marker.
+    app.actions.push(Action::Screenshot(ShotCmd::Remove("main".into())));
+    run(&ctx, &mut app, 1);
+    assert_eq!(app.shots.as_ref().unwrap().links_of(&app.shot_index, &first).len(), 1);
     let _ = std::fs::remove_dir_all(&tmp);
 }
 
@@ -253,6 +323,7 @@ fn all_ui_glyphs_exist_in_default_fonts() {
         include_str!("app.rs"),
         include_str!("actions.rs"),
         include_str!("workflow_ui.rs"),
+        include_str!("shots.rs"),
     ];
     // Translations are shown in the same fonts.
     let i18n = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../crates/core/src/i18n");

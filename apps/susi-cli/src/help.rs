@@ -46,6 +46,7 @@ pub fn general(version: &str) -> String {
         ("info", t("Show languages, sources and progress")),
         ("mcp", t("Start the MCP server (stdio) for AI agents")),
         ("workflow", t("Git workflow: get, save and publish translations")),
+        ("screenshot", t("Manage screenshots of rows (context for translators)")),
     ];
     let options = [
         ("-q", t("Quiet mode. Only errors are shown.")),
@@ -194,7 +195,16 @@ pub fn task(name: &str) -> String {
                 + &item("-rowstatus:S", &format!("{} new, unused, inuse, changed", t("Row status:")))
                 + &item("-readonly:S", t("true = also export \"Do not translate\" rows"))
                 + &filter_opts()
-                + &date_opts()),
+                + &date_opts()
+                + &item(
+                    "-screenshots:S",
+                    &format!(
+                        "{}\nauto, none, link, embed",
+                        t(
+                            "Screenshots of the exported rows: auto (default) embeds them in Excel on a second\nworksheet and copies them next to other formats (<name>_screenshots/):"
+                        )
+                    ),
+                )),
             &[
                 "susi-cli export Translation.xlsx -lang:fi;de app.slp",
                 "susi-cli export de.xlf -lang:de -status:untranslated;review app.slp",
@@ -252,7 +262,7 @@ pub fn task(name: &str) -> String {
                 + &item(
                     "-check:S",
                     &format!(
-                        "{}\nmissing, format, tags, whitespace, newline, period, colon,\nexclamation, question, length, allspaces, hotkey, duplicate, control, icu, icucases",
+                        "{}\nmissing, format, tags, whitespace, newline, period, colon,\nexclamation, question, length, allspaces, hotkey, duplicate, control, icu, icucases,\nscreenshot",
                         t("Specific checks:")
                     ),
                 )
@@ -280,6 +290,42 @@ pub fn task(name: &str) -> String {
             s
         }
         "workflow" => workflow(),
+        "screenshot" => screenshot(),
         _ => tf!("Unknown task '{name}'.", name = name) + "\n",
     }
+}
+
+fn screenshot() -> String {
+    let actions = item("list", t("Lists the screenshots and their links (default)."))
+        + &item("add F...", t("Adds image files (PNG, JPEG); with -key also links them."))
+        + &item("link ID", t("Links screenshot ID to the rows given by -key."))
+        + &item("unlink ID", t("Removes the links of screenshot ID to the rows given by -key."))
+        + &item("remove ID...", t("Removes screenshots."))
+        + &item("prune", t("Removes links to rows that no longer exist and unused image files."))
+        + &item("refresh [ID...]", t("Reads changed origin files again (links stay)."))
+        + &item(
+            "import F",
+            t(
+                "Imports a manifest of a UI test run (schema of screenshots.json, file paths\nrelative to the manifest); importing again replaces the screenshots.",
+            ),
+        );
+    let opts = item("-key:K", t("Rows: contexts or row ids separated by ;, wildcards * and ? allowed."))
+        + &item("-source:S", t("Only rows of this source."))
+        + &item("-id:X", t("add: id of the screenshot (default: from the file name; an existing id\ngets the new image)."))
+        + &item("-title:T", t("add: title."))
+        + &item("-area:x,y,w,h", t("add/link: area of the text in the image (pixels)."))
+        + &item("-prune", t("import: removes screenshots missing in the manifest."));
+    page(
+        "susi-cli screenshot [action] [arguments] [options] project.slp",
+        t(
+            "Screenshots as context for translators. They are stored next to the project in\n<project>.files/ (screenshots.json and the images); the project file stays unchanged.",
+        ),
+        &(actions + "\n" + &opts),
+        &[
+            "susi-cli screenshot add login.png -key:*LOGIN.* -title:\"Login dialog\" app.slp",
+            "susi-cli screenshot link login -key:LOGIN.TITLE -area:120,40,260,24 app.slp",
+            "susi-cli screenshot import ui-tests\\out\\screenshots.json -prune app.slp",
+            "susi-cli export Translation.xlsx -lang:de -screenshots:embed app.slp",
+        ],
+    )
 }

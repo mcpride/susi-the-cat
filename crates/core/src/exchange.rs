@@ -3,18 +3,66 @@
 //! Table layout (one header row, labels in a UI language, by default the current one):
 //! `Source | Context | Original [en] | German [de] | German [de] Status | German [de] Comment | … | Row status | Row comment`.
 //! Import identifies columns by their header (in any UI language), rows by source + context (fallback: original text).
+//!
+//! Screenshots linked to the exported rows (see [`crate::screenshots`]) are added as a `Screenshot`
+//! column: in Excel by default as links to a second worksheet showing each image once with numbered
+//! frames around the marked areas, otherwise as relative paths of images copied to
+//! `<name>_screenshots/` (XLIFF: `<context-group>` per trans-unit). Import ignores them.
 
 use std::collections::HashMap;
-use std::path::Path;
+use std::path::{Path, PathBuf};
 
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 use crate::error::{Error, Result, read_file, write_file};
 use crate::i18n::{Lang, t, tr};
 use crate::lang;
 use crate::model::{Project, Row, RowRef};
+use crate::screenshots::{Area, Screenshot, ScreenshotStore};
 use crate::status::{RowStatus, TranslationStatus};
 use crate::xml::{self, escape_attr, escape_text};
+
+/// How screenshots linked to the exported rows are included.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Default, Serialize, Deserialize)]
+#[serde(rename_all = "lowercase")]
+pub enum ScreenshotExport {
+    /// `Embed` for Excel workbooks, `Link` for the other formats.
+    #[default]
+    Auto,
+    None,
+    /// Images copied next to the export (`<name>_screenshots/`), referenced by relative path.
+    Link,
+    /// Excel: images on a second worksheet with numbered frames; other formats like `Link`.
+    Embed,
+}
+
+impl ScreenshotExport {
+    pub const ALL: [ScreenshotExport; 4] = [Self::Auto, Self::None, Self::Link, Self::Embed];
+
+    /// Keyword of the CLI (`-screenshots:`) and MCP.
+    pub fn keyword(self) -> &'static str {
+        match self {
+            Self::Auto => "auto",
+            Self::None => "none",
+            Self::Link => "link",
+            Self::Embed => "embed",
+        }
+    }
+
+    pub fn from_keyword(s: &str) -> Option<Self> {
+        let s = s.trim().to_ascii_lowercase();
+        Self::ALL.into_iter().find(|m| m.keyword() == s)
+    }
+
+    /// `Some(embed)` if screenshots are exported to `format`.
+    fn mode(self, format: ExchangeFormat) -> Option<bool> {
+        match (self, format) {
+            (Self::None, _) | (_, ExchangeFormat::Tmx) => None,
+            (Self::Auto | Self::Embed, ExchangeFormat::Excel) => Some(true),
+            _ => Some(false),
+        }
+    }
+}
 
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct Table {
@@ -40,6 +88,8 @@ pub struct ExportOptions {
     /// UI language of the column headers, status values and worksheet name of tables (Excel,
     /// CSV, text); `None` = the current UI language.
     pub label_lang: Option<Lang>,
+    /// Screenshots of the exported rows (only with a store passed to [`export_file`]).
+    pub screenshots: ScreenshotExport,
 }
 
 impl ExportOptions {
@@ -62,6 +112,7 @@ impl Default for ExportOptions {
             max_chars_column: false,
             include_locked: false,
             label_lang: None,
+            screenshots: ScreenshotExport::Auto,
         }
     }
 }
@@ -144,6 +195,11 @@ pub fn export_rows(p: &Project, opts: &ExportOptions) -> Vec<RowRef> {
 
 /// Builds the exchange table.
 pub fn export_table(p: &Project, opts: &ExportOptions) -> Table {
+    table_of(p, opts, &export_rows(p, opts), None)
+}
+
+/// The exchange table of `rows`, with a screenshot column if `shots` is given.
+fn table_of(p: &Project, opts: &ExportOptions, rows: &[RowRef], shots: Option<&ShotPlan<'_>>) -> Table {
     let langs = target_langs(p, &opts.langs);
     let originals: Vec<String> = {
         let mut v: Vec<String> = p.sources.iter().map(|s| s.original().to_string()).collect();
@@ -173,13 +229,16 @@ pub fn export_table(p: &Project, opts: &ExportOptions) -> Table {
     if opts.max_chars_column {
         headers.push(tr(ui, "Max. characters").into());
     }
-    let mut rows = Vec::new();
-    for r in export_rows(p, opts) {
-        let Some(row) = p.row(&r) else {
+    if shots.is_some() {
+        headers.push(tr(ui, "Screenshot").into());
+    }
+    let mut out = Vec::new();
+    for r in rows {
+        let Some(row) = p.row(r) else {
             continue;
         };
-        let orig = p.original_lang(&r);
-        let mut rec = vec![p.sources.get(r.source).map(|s| s.name().to_string()).unwrap_or_default(), p.context(&r), row.original().to_string()];
+        let orig = p.original_lang(r);
+        let mut rec = vec![p.sources.get(r.source).map(|s| s.name().to_string()).unwrap_or_default(), p.context(r), row.original().to_string()];
         for l in &langs {
             let own = l.as_str() == orig;
             rec.push(if own { row.original().to_string() } else { row.text(l).unwrap_or("").to_string() });
@@ -199,9 +258,12 @@ pub fn export_table(p: &Project, opts: &ExportOptions) -> Table {
         if opts.max_chars_column {
             rec.push(if row.max_chars() > 0 { row.max_chars().to_string() } else { String::new() });
         }
-        rows.push(rec);
+        if let Some(s) = shots {
+            rec.push(s.cell(r));
+        }
+        out.push(rec);
     }
-    Table { headers, rows }
+    Table { headers, rows: out }
 }
 
 #[derive(Debug, Clone, PartialEq)]
@@ -247,6 +309,10 @@ fn classify(h: &str) -> Col {
     }
     if is("Row comment", &[]) || is("Comment", &[]) {
         return Col::RowComment;
+    }
+    // Exported for information only; never mistaken for a language column.
+    if is("Screenshot", &["screenshots"]) {
+        return Col::Ignore;
     }
     if lower.starts_with("original") {
         return Col::Original;
@@ -401,13 +467,40 @@ pub fn import_table(p: &mut Project, t: &Table, opts: &ImportOptions) -> Result<
 
 /// Writes the table as a workbook; `ui`: UI language of the worksheet name.
 pub fn write_xlsx(t: &Table, path: &Path, ui: Lang) -> Result<()> {
-    use rust_xlsxwriter::{Color, Format, FormatBorder, Workbook};
-    let xe = |e: rust_xlsxwriter::XlsxError| Error::Excel(e.to_string());
-    let mut wb = Workbook::new();
+    write_workbook(t, path, ui, None)
+}
+
+fn xe(e: rust_xlsxwriter::XlsxError) -> Error {
+    Error::Excel(e.to_string())
+}
+
+fn header_format() -> rust_xlsxwriter::Format {
+    use rust_xlsxwriter::{Color, Format, FormatBorder};
+    Format::new().set_bold().set_background_color(Color::RGB(0x00DD_E6F0)).set_border_bottom(FormatBorder::Thin)
+}
+
+/// Screenshots of an Excel export: the screenshot column of the table links each row to its first
+/// screenshot on a second worksheet.
+struct Workbook<'a> {
+    plan: &'a ShotPlan<'a>,
+    /// Table rows (without header) in order.
+    rows: &'a [RowRef],
+    p: &'a Project,
+}
+
+fn write_workbook(t: &Table, path: &Path, ui: Lang, shots: Option<&Workbook<'_>>) -> Result<()> {
+    use rust_xlsxwriter::{Format, Url};
+    let mut wb = rust_xlsxwriter::Workbook::new();
+    let sheet = tr(ui, "Screenshots");
+    let layout = match shots.filter(|s| s.plan.embed) {
+        Some(s) => s.plan.layout()?,
+        None => Vec::new(),
+    };
     let ws = wb.add_worksheet();
     ws.set_name(tr(ui, "Translation")).map_err(xe)?;
-    let head = Format::new().set_bold().set_background_color(Color::RGB(0x00DD_E6F0)).set_border_bottom(FormatBorder::Thin);
+    let head = header_format();
     let wrap = Format::new().set_text_wrap();
+    let shot_col = shots.and(t.headers.len().checked_sub(1));
     for (c, h) in t.headers.iter().enumerate() {
         let c = u16::try_from(c).map_err(|_| Error::Excel(crate::i18n::t("too many columns").into()))?;
         ws.write_string_with_format(0, c, h, &head).map_err(xe)?;
@@ -420,14 +513,25 @@ pub fn write_xlsx(t: &Table, path: &Path, ui: Lang) -> Result<()> {
         };
         ws.set_column_width(c, width).map_err(xe)?;
     }
-    for (r, rec) in t.rows.iter().enumerate() {
-        let r = u32::try_from(r + 1).map_err(|_| Error::Excel(crate::i18n::t("too many rows").into()))?;
-        for (c, v) in rec.iter().enumerate() {
+    for (ri, rec) in t.rows.iter().enumerate() {
+        let r = u32::try_from(ri + 1).map_err(|_| Error::Excel(crate::i18n::t("too many rows").into()))?;
+        for (ci, v) in rec.iter().enumerate() {
             if v.is_empty() {
                 continue;
             }
-            let c = u16::try_from(c).map_err(|_| Error::Excel(crate::i18n::t("too many columns").into()))?;
-            if v.contains('\n') {
+            let c = u16::try_from(ci).map_err(|_| Error::Excel(crate::i18n::t("too many columns").into()))?;
+            // The screenshot column links to the first screenshot of the row.
+            let link = shots.filter(|_| shot_col == Some(ci)).and_then(|s| {
+                let first = s.plan.marks.get(s.rows.get(ri)?)?.first()?;
+                if s.plan.embed {
+                    Some(format!("internal:'{}'!A{}", sheet.replace('\'', "''"), layout.get(first.shot)?.title_row + 1))
+                } else {
+                    Some(format!("file:///{}", s.plan.rel(s.plan.shots.get(first.shot)?)))
+                }
+            });
+            if let Some(link) = link {
+                ws.write_url_with_text(r, c, Url::new(link), v).map_err(xe)?;
+            } else if v.contains('\n') {
                 ws.write_string_with_format(r, c, v, &wrap).map_err(xe)?;
             } else {
                 ws.write_string(r, c, v).map_err(xe)?;
@@ -440,7 +544,207 @@ pub fn write_xlsx(t: &Table, path: &Path, ui: Lang) -> Result<()> {
         let last_row = u32::try_from(t.rows.len()).unwrap_or(u32::MAX);
         ws.autofilter(0, 0, last_row, last_col).map_err(xe)?;
     }
+    if let Some(s) = shots.filter(|s| s.plan.embed) {
+        let ws = wb.add_worksheet();
+        ws.set_name(sheet).map_err(xe)?;
+        s.write_sheet(ws, &layout, ui)?;
+    }
     wb.save(path).map_err(xe)
+}
+
+// ---------------------------------------------------------------------------------------------
+// Screenshots
+
+/// A screenshot shown for an exported row.
+#[derive(Debug, Clone)]
+struct Mark {
+    /// Position in [`ShotPlan::shots`].
+    shot: usize,
+    /// Number of the row on that screenshot (1-based).
+    no: usize,
+    row: RowRef,
+    /// Marked area, clipped to the image.
+    area: Option<Area>,
+}
+
+/// The screenshots (with an existing image) of the exported rows.
+struct ShotPlan<'a> {
+    store: &'a ScreenshotStore,
+    /// Excel: on a second worksheet instead of copied files.
+    embed: bool,
+    /// Folder of the copied images next to the export (`<name>_screenshots`) and its name.
+    dir: PathBuf,
+    dir_name: String,
+    /// In order of first use.
+    shots: Vec<&'a Screenshot>,
+    marks: HashMap<RowRef, Vec<Mark>>,
+    /// Per entry of `shots`: its rows in export order.
+    by_shot: Vec<Vec<Mark>>,
+}
+
+impl<'a> ShotPlan<'a> {
+    /// `None` if none of `rows` has a screenshot.
+    fn new(p: &Project, store: &'a ScreenshotStore, rows: &[RowRef], embed: bool, export: &Path) -> Option<Self> {
+        let idx = store.index(p);
+        let images = store.image_dir();
+        let mut shots: Vec<&'a Screenshot> = Vec::new();
+        let mut by_shot: Vec<Vec<Mark>> = Vec::new();
+        let mut marks: HashMap<RowRef, Vec<Mark>> = HashMap::new();
+        let mut pos: HashMap<&'a str, usize> = HashMap::new();
+        for r in rows {
+            for (s, l) in store.links_of(&idx, r) {
+                if !images.join(&s.file).is_file() {
+                    continue;
+                }
+                let k = *pos.entry(s.id.as_str()).or_insert_with(|| {
+                    shots.push(s);
+                    by_shot.push(Vec::new());
+                    shots.len() - 1
+                });
+                let m = Mark { shot: k, no: by_shot[k].len() + 1, row: r.clone(), area: l.area.and_then(|a| a.clip(s.width, s.height)) };
+                by_shot[k].push(m.clone());
+                marks.entry(r.clone()).or_default().push(m);
+            }
+        }
+        if shots.is_empty() {
+            return None;
+        }
+        let stem = export.file_stem().map(|s| s.to_string_lossy().into_owned()).unwrap_or_else(|| "export".into());
+        let dir_name = format!("{stem}_screenshots");
+        Some(Self { store, embed, dir: export.with_file_name(&dir_name), dir_name, shots, marks, by_shot })
+    }
+
+    /// Reference of a copied image relative to the export.
+    fn rel(&self, s: &Screenshot) -> String {
+        format!("{}/{}", self.dir_name, s.file)
+    }
+
+    /// Text of the screenshot column for row `r`.
+    fn cell(&self, r: &RowRef) -> String {
+        let Some(marks) = self.marks.get(r) else {
+            return String::new();
+        };
+        let mut v: Vec<String> = marks
+            .iter()
+            .filter_map(|m| {
+                let s = self.shots.get(m.shot)?;
+                Some(if self.embed { format!("{} (#{})", s.label(), m.no) } else { self.rel(s) })
+            })
+            .collect();
+        v.dedup();
+        v.join(if self.embed { ", " } else { "\n" })
+    }
+
+    /// Copies the images to [`Self::dir`].
+    fn copy_images(&self) -> Result<()> {
+        let from = self.store.image_dir();
+        for s in &self.shots {
+            write_file(&self.dir.join(&s.file), &read_file(&from.join(&s.file))?)?;
+        }
+        Ok(())
+    }
+
+    /// Rows and scaling of the images on the screenshot worksheet.
+    fn layout(&self) -> Result<Vec<SheetImage>> {
+        let from = self.store.image_dir();
+        let mut out = Vec::new();
+        let mut row = 0u32;
+        for (s, marks) in self.shots.iter().zip(&self.by_shot) {
+            let image = rust_xlsxwriter::Image::new_from_buffer(&read_file(&from.join(&s.file))?).map_err(xe)?;
+            let dpi = |d: f64| if d > 0.0 { 96.0 / d } else { 1.0 };
+            let (dx, dy) = (dpi(image.width_dpi()), dpi(image.height_dpi()));
+            let scale = (SHEET_IMAGE_WIDTH / (image.width() * dx).max(1.0)).min(1.0);
+            let image = image.set_scale_width(scale).set_scale_height(scale);
+            let place = SheetImage { title_row: row, image, fx: dx * scale, fy: dy * scale };
+            // title, image, table header, one row per mark, blank row
+            row += 1 + image_rows(&place) + 1 + u32::try_from(marks.len()).unwrap_or(u32::MAX / 2) + 1;
+            out.push(place);
+        }
+        Ok(out)
+    }
+
+    /// XLIFF `<context-group>`s of row `r`.
+    fn xliff(&self, r: &RowRef) -> String {
+        let mut s = String::new();
+        for m in self.marks.get(r).into_iter().flatten() {
+            let Some(shot) = self.shots.get(m.shot) else {
+                continue;
+            };
+            s.push_str("        <context-group purpose=\"information\">\n");
+            s.push_str(&format!("          <context context-type=\"x-screenshot\">{}</context>\n", escape_text(&self.rel(shot))));
+            if let Some(a) = m.area {
+                s.push_str(&format!("          <context context-type=\"x-screenshot-area\">{a}</context>\n"));
+            }
+            s.push_str("        </context-group>\n");
+        }
+        s
+    }
+}
+
+/// Widest screenshot on the screenshot worksheet, in pixels.
+const SHEET_IMAGE_WIDTH: f64 = 900.0;
+/// Default row height of a worksheet in pixels.
+const SHEET_ROW_HEIGHT: f64 = 20.0;
+
+/// Position of one screenshot on the screenshot worksheet.
+struct SheetImage {
+    title_row: u32,
+    image: rust_xlsxwriter::Image,
+    /// Image pixels → displayed pixels (scaling and DPI).
+    fx: f64,
+    fy: f64,
+}
+
+impl Workbook<'_> {
+    /// Per screenshot: title, image with a numbered frame per marked area, then a table
+    /// `No. | Context | Original` of the rows shown.
+    fn write_sheet(&self, ws: &mut rust_xlsxwriter::Worksheet, layout: &[SheetImage], ui: Lang) -> Result<()> {
+        use rust_xlsxwriter::{Color, Format, Shape, ShapeFont, ShapeFormat, ShapeLine};
+        let red = Color::RGB(0x00E0_2020);
+        let frame = ShapeFormat::new().set_no_fill().set_line(&ShapeLine::new().set_color(red).set_width(2.0));
+        let font = ShapeFont::new().set_bold().set_color(red).set_size(9);
+        let (head, bold, wrap) = (header_format(), Format::new().set_bold().set_font_size(12), Format::new().set_text_wrap());
+        ws.set_column_width(0, 8).map_err(xe)?;
+        ws.set_column_width(1, 40).map_err(xe)?;
+        ws.set_column_width(2, 60).map_err(xe)?;
+        for (k, (shot, place)) in self.plan.shots.iter().zip(layout).enumerate() {
+            let title = if shot.title.is_empty() { shot.id.clone() } else { format!("{} ({})", shot.title, shot.id) };
+            ws.write_string_with_format(place.title_row, 0, title, &bold).map_err(xe)?;
+            let top = place.title_row + 1;
+            ws.insert_image(top, 0, &place.image).map_err(xe)?;
+            let marks = &self.plan.by_shot[k];
+            for m in marks {
+                let Some(a) = m.area else {
+                    continue;
+                };
+                let px = |v: u32, f: f64| (f64::from(v) * f).round() as u32;
+                let shape = Shape::textbox()
+                    .set_text(m.no.to_string())
+                    .set_width(px(a.w, place.fx).max(6))
+                    .set_height(px(a.h, place.fy).max(6))
+                    .set_format(&frame)
+                    .set_font(&font);
+                ws.insert_shape_with_offset(top, 0, &shape, px(a.x, place.fx), px(a.y, place.fy)).map_err(xe)?;
+            }
+            let mut r = top + image_rows(place);
+            for (c, h) in [tr(ui, "No."), tr(ui, "Context"), "Original"].into_iter().enumerate() {
+                ws.write_string_with_format(r, c as u16, h, &head).map_err(xe)?;
+            }
+            for m in marks {
+                r += 1;
+                let original = self.p.row(&m.row).map(|x| x.original().to_string()).unwrap_or_default();
+                ws.write_number(r, 0, m.no as f64).map_err(xe)?;
+                ws.write_string(r, 1, self.p.context(&m.row)).map_err(xe)?;
+                ws.write_string_with_format(r, 2, original, &wrap).map_err(xe)?;
+            }
+        }
+        Ok(())
+    }
+}
+
+fn image_rows(place: &SheetImage) -> u32 {
+    let h = place.image.height() * place.fy;
+    (h / SHEET_ROW_HEIGHT).ceil() as u32 + 1
 }
 
 pub fn read_xlsx(path: &Path) -> Result<Table> {
@@ -540,6 +844,10 @@ fn status_from_xliff(state: Option<&str>, default: TranslationStatus) -> Transla
 
 /// XLIFF 1.2 document for one target language (one `<file>` per source).
 pub fn export_xliff(p: &Project, lang: &str, opts: &ExportOptions) -> String {
+    xliff_of(p, lang, opts, None)
+}
+
+fn xliff_of(p: &Project, lang: &str, opts: &ExportOptions, shots: Option<&ShotPlan<'_>>) -> String {
     let o = ExportOptions { langs: vec![lang.to_string()], ..opts.clone() };
     let rows = export_rows(p, &o);
     let mut s = String::from("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xliff version=\"1.2\" xmlns=\"urn:oasis:names:tc:xliff:document:1.2\">\n");
@@ -568,6 +876,9 @@ pub fn export_xliff(p: &Project, lang: &str, opts: &ExportOptions) -> String {
             s.push_str(&format!("        <source>{}</source>\n", escape_text(row.original())));
             let st = row.tstatus(lang);
             s.push_str(&format!("        <target state=\"{}\">{}</target>\n", xliff_state(st), escape_text(row.text(lang).unwrap_or(""))));
+            if let Some(shots) = shots {
+                s.push_str(&shots.xliff(r));
+            }
             if !row.note().is_empty() {
                 s.push_str(&format!("        <note from=\"developer\">{}</note>\n", escape_text(row.note())));
             }
@@ -705,30 +1016,33 @@ pub fn per_language_path(path: &Path, lang: &str) -> std::path::PathBuf {
     path.with_file_name(format!("{stem}.{lang}.{ext}"))
 }
 
-/// Exports to `path` (format by extension). Returns the written files.
-pub fn export_file(p: &Project, path: &Path, opts: &ExportOptions) -> Result<Vec<std::path::PathBuf>> {
-    match format_of(path)? {
+/// Exports to `path` (format by extension). With `shots`, the screenshots of the exported rows are
+/// included as set by [`ExportOptions::screenshots`]. Returns the written files (and the folder of
+/// copied screenshots).
+pub fn export_file(p: &Project, path: &Path, opts: &ExportOptions, shots: Option<&ScreenshotStore>) -> Result<Vec<PathBuf>> {
+    let format = format_of(path)?;
+    let rows = if format == ExchangeFormat::Tmx { Vec::new() } else { export_rows(p, opts) };
+    let plan = shots.zip(opts.screenshots.mode(format)).and_then(|(st, embed)| ShotPlan::new(p, st, &rows, embed, path));
+    let mut out = match format {
         ExchangeFormat::Excel => {
-            write_xlsx(&export_table(p, opts), path, opts.label_lang())?;
-            Ok(vec![path.to_path_buf()])
+            let book = plan.as_ref().map(|plan| Workbook { plan, rows: &rows, p });
+            write_workbook(&table_of(p, opts, &rows, plan.as_ref()), path, opts.label_lang(), book.as_ref())?;
+            vec![path.to_path_buf()]
         }
-        ExchangeFormat::Csv => {
-            write_file(path, &write_delimited(&export_table(p, opts), ';'))?;
-            Ok(vec![path.to_path_buf()])
-        }
-        ExchangeFormat::Text => {
-            write_file(path, &write_delimited(&export_table(p, opts), '\t'))?;
-            Ok(vec![path.to_path_buf()])
+        ExchangeFormat::Csv | ExchangeFormat::Text => {
+            let delim = if format == ExchangeFormat::Csv { ';' } else { '\t' };
+            write_file(path, &write_delimited(&table_of(p, opts, &rows, plan.as_ref()), delim))?;
+            vec![path.to_path_buf()]
         }
         ExchangeFormat::Xliff => {
             let langs = target_langs(p, &opts.langs);
             let mut out = Vec::new();
             for l in &langs {
                 let target = if langs.len() == 1 { path.to_path_buf() } else { per_language_path(path, l) };
-                write_file(&target, export_xliff(p, l, opts).as_bytes())?;
+                write_file(&target, xliff_of(p, l, opts, plan.as_ref()).as_bytes())?;
                 out.push(target);
             }
-            Ok(out)
+            out
         }
         ExchangeFormat::Tmx => {
             let mut copy = p.clone();
@@ -737,9 +1051,14 @@ pub fn export_file(p: &Project, path: &Path, opts: &ExportOptions) -> Result<Vec
             let statuses = if opts.statuses.is_empty() { all } else { opts.statuses.clone() };
             crate::tm::save_to_tm(&mut copy, &mut tm, &opts.langs, &statuses, false);
             tm.save_as(path)?;
-            Ok(vec![path.to_path_buf()])
+            vec![path.to_path_buf()]
         }
+    };
+    if let Some(plan) = plan.as_ref().filter(|p| !p.embed) {
+        plan.copy_images()?;
+        out.push(plan.dir.clone());
     }
+    Ok(out)
 }
 
 /// Imports translations from `path` (format by extension).
@@ -834,7 +1153,7 @@ mod tests {
         assert_ne!(row_status.label_in(Lang::EN), row_status.label_in(Lang::DE));
         let dir = tempfile::tempdir().unwrap();
         let f = dir.path().join("en.xlsx");
-        export_file(&p, &f, &ExportOptions { label_lang: Some(Lang::EN), ..opts.clone() }).unwrap();
+        export_file(&p, &f, &ExportOptions { label_lang: Some(Lang::EN), ..opts.clone() }, None).unwrap();
         assert_eq!(calamine::open_workbook_auto(&f).unwrap().sheet_names(), ["Translation"]);
         assert_eq!(read_xlsx(&f).unwrap().headers, en.headers);
 
@@ -853,5 +1172,86 @@ mod tests {
         let row = q.row(&q.find_row("multi").unwrap()).unwrap();
         assert_eq!((row.text("fr"), row.tstatus("fr"), row.note()), (Some("Ligne"), TranslationStatus::Complete, "Notiz"));
         assert_eq!(row.translation("fr").map(|t| t.comment()), Some("Bitte prüfen"));
+    }
+
+    /// Project with a screenshot linked to row `hello` (with area) and an orphaned link.
+    fn with_screenshot(dir: &Path) -> (Project, ScreenshotStore) {
+        use crate::screenshots::{Link, solid_png};
+        let mut p = project();
+        p.path = Some(dir.join("app.slp"));
+        let mut st = ScreenshotStore::new(p.path.as_ref().unwrap());
+        st.add_bytes(&solid_png(200, 100, [200, 200, 200]), Some("main"), Some("Main window")).unwrap();
+        let hello = p.find_row("hello").unwrap();
+        st.link("main", [Link::to_row(&p, &hello, Area::parse("10,10,50,20")), Link { source: None, key: "gone".into(), area: None }]).unwrap();
+        (p, st)
+    }
+
+    fn zip_entry(file: &Path, name: &str) -> String {
+        let mut z = zip::ZipArchive::new(std::fs::File::open(file).unwrap()).unwrap();
+        let mut s = String::new();
+        std::io::Read::read_to_string(&mut z.by_name(name).unwrap(), &mut s).unwrap();
+        s
+    }
+
+    #[test]
+    fn xlsx_embeds_screenshots_on_a_second_sheet() {
+        use calamine::Reader;
+        let dir = tempfile::tempdir().unwrap();
+        let (p, st) = with_screenshot(dir.path());
+        let f = dir.path().join("x.xlsx");
+        let opts = ExportOptions { label_lang: Some(Lang::EN), ..Default::default() };
+        assert_eq!(export_file(&p, &f, &opts, Some(&st)).unwrap(), std::slice::from_ref(&f), "embedded: no image folder");
+        let mut wb = calamine::open_workbook_auto(&f).unwrap();
+        assert_eq!(wb.sheet_names(), ["Translation", "Screenshots"]);
+        let t = read_xlsx(&f).unwrap();
+        assert_eq!(t.headers.last().map(String::as_str), Some("Screenshot"));
+        assert_eq!((t.rows[0].last().unwrap().as_str(), t.rows[1].last().unwrap().as_str()), ("Main window (#1)", ""));
+        let sheet = wb.worksheet_range("Screenshots").unwrap();
+        let cells: Vec<String> = sheet.cells().map(|(_, _, c)| c.to_string()).collect();
+        for want in ["Main window (main)", "No.", "Context", "Original", "1", "hello", "Hello"] {
+            assert!(cells.iter().any(|c| c == want), "{want} missing in {cells:?}");
+        }
+        assert!(zip_entry(&f, "xl/worksheets/sheet1.xml").contains("location=\"'Screenshots'!A1\""));
+        let drawing = zip_entry(&f, "xl/drawings/drawing1.xml");
+        assert!(drawing.contains("<xdr:pic>") && drawing.contains("<xdr:sp ") && drawing.contains("<a:t>1</a:t>"), "{drawing}");
+
+        // Re-import ignores the screenshot column and the second sheet.
+        let mut q = project();
+        let rep = import_file(&mut q, &f, &ImportOptions::default()).unwrap();
+        assert_eq!((rep.not_found, rep.unknown_languages.len()), (0, 0), "{rep:?}");
+        // Without a store or with `None` there is no screenshot column.
+        let plain = ExportOptions { screenshots: ScreenshotExport::None, ..opts.clone() };
+        export_file(&p, &f, &plain, Some(&st)).unwrap();
+        assert!(!read_xlsx(&f).unwrap().headers.contains(&"Screenshot".to_string()));
+        assert_eq!(calamine::open_workbook_auto(&f).unwrap().sheet_names().len(), 1);
+    }
+
+    #[test]
+    fn csv_and_xliff_reference_copied_screenshots() {
+        let dir = tempfile::tempdir().unwrap();
+        let (p, st) = with_screenshot(dir.path());
+        let file = &st.get("main").unwrap().file;
+        let opts = ExportOptions { label_lang: Some(Lang::EN), langs: vec!["de".into()], ..Default::default() };
+
+        let csv = dir.path().join("out").join("x.csv");
+        let files = export_file(&p, &csv, &opts, Some(&st)).unwrap();
+        let copies = dir.path().join("out").join("x_screenshots");
+        assert_eq!(files, [csv.clone(), copies.clone()]);
+        assert!(copies.join(file).is_file());
+        let t = read_delimited(&read_file(&csv).unwrap(), None).unwrap();
+        assert_eq!(t.rows[0].last().unwrap(), &format!("x_screenshots/{file}"));
+        let mut q = project();
+        assert_eq!(import_file(&mut q, &csv, &ImportOptions::default()).unwrap().not_found, 0);
+
+        let xlf = dir.path().join("y.xlf");
+        export_file(&p, &xlf, &opts, Some(&st)).unwrap();
+        let x = String::from_utf8(read_file(&xlf).unwrap()).unwrap();
+        assert!(x.contains(&format!("<context context-type=\"x-screenshot\">y_screenshots/{file}</context>")), "{x}");
+        assert!(x.contains("<context context-type=\"x-screenshot-area\">10,10,50,20</context>"));
+        assert!(dir.path().join("y_screenshots").join(file).is_file());
+        let mut q = project();
+        let rep = import_file(&mut q, &xlf, &ImportOptions::default()).unwrap();
+        assert_eq!(rep.not_found, 0, "{rep:?}");
+        assert_eq!(classify("Screenshot"), Col::Ignore);
     }
 }

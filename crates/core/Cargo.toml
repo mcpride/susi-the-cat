@@ -17,9 +17,11 @@ serde_json = { workspace = true }
 quick-xml = { workspace = true }
 chrono = { workspace = true }
 glob = { workspace = true }
+sha2 = { workspace = true }
 calamine = { workspace = true }
 rust_xlsxwriter = { workspace = true }
 sys-locale = { workspace = true }
 
 [dev-dependencies]
 tempfile = { workspace = true }
+zip = { workspace = true }

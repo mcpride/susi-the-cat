@@ -32,6 +32,7 @@ pub fn show(app: &mut SusiApp, ui: &mut Ui) {
         BottomTab::Statistics => statistics(app, ui),
         BottomTab::Comments => comments(app, ui),
         BottomTab::Editor => editor(app, ui),
+        BottomTab::Screenshots => crate::shots::tab(app, ui),
     }
 }
 

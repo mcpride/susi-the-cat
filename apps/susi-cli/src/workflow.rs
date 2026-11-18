@@ -138,6 +138,11 @@ fn save(a: &TaskArgs, st: &mut State, wf: &Workflow, o: &mut Output<'_>) -> Resu
         st.changed = false;
         o.info(tf!("Project saved: {path}", path = st.path.display()));
     }
+    // Screenshots changed by earlier tasks of this call belong into the commit.
+    if let Some(shots) = st.shots.as_mut().filter(|s| s.is_dirty()) {
+        shots.save().map_err(|e| e.to_string())?;
+        o.info(tf!("Screenshots saved: {path}", path = shots.index_path().display()));
+    }
     let mut opts = wf.save_defaults();
     if let Some(m) = a.value("message") {
         opts.message = m.to_string();

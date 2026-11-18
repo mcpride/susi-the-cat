@@ -177,7 +177,8 @@ Operation follows Sisulizer:
   - Sorting: clicking the header of "Translated on" cycles through newest first → oldest first →
     unsorted (document order); rows without a translation date stay at the end. Clicking
     "Context" cycles through A–Z → Z–A → unsorted. An arrow marks the sorted column.
-  - A colored bar shows the translation status, a triangle indicates a comment.
+  - A colored bar shows the translation status, a triangle indicates a comment, a camera
+    a [screenshot](#screenshots).
   - The grid scrolls horizontally and vertically; the header row stays fixed. Resize columns by
     dragging the separator in the column header; a double-click resets the width.
   - In-cell editing: `F2`/`Enter` or double-click; `Enter` accepts and moves to the next row,
@@ -185,7 +186,7 @@ Operation follows Sisulizer:
   - Editing changes the status *Not translated*, *Best guess* or *Auto translated* to
     *Translated*.
 - **Filter** (right): translation status, row status (new, modified, unused, in use), date,
-  marked, locked and text. When a filter is active, the notice "Special filters on!" appears.
+  marked, locked, with/without screenshot and text. When a filter is active, the notice "Special filters on!" appears.
   See [Reviewing recent changes](#reviewing-recent-changes).
 - **Bottom tabs**:
   - Output, Validation (a click jumps to the cell), Search (including "Use as filter"),
@@ -194,8 +195,11 @@ Operation follows Sisulizer:
     their columns can be resized the same way (widths last until the program is closed).
   - Editor: original, translation, comments, properties and translation memory suggestions with
     "Apply".
+  - Screenshots: the screenshots of the selected row with its marked area, see
+    [Screenshots](#screenshots).
 - **Dialogs**: Languages, Add source, Source properties (write method, output pattern),
-  Row properties, Export, Import, Translate with translation memory, Pseudo translation, Options.
+  Row properties, Export, Import, Translate with translation memory, Pseudo translation,
+  Screenshots, Options.
 
 Unsaved changes are prompted for when closing, opening or creating a project.
 
@@ -291,13 +295,15 @@ susi-cli <tasks> project.slp [-q] [-a] [-w] [-e] [-h]
 | `report [file]` | `report` | Report (`.html`, `.txt`, `.json`, otherwise stdout) |
 | `remove` | `remove` | Remove unused rows |
 | `fillpseudo` / `removepseudo` | same | Pseudo translation |
-| `info` | – | Languages, sources, progress |
+| `info` | – | Languages, sources, progress, screenshots |
 | `mcp` | – | Start the MCP server |
+| `screenshot [action]` | – | Manage [screenshots](#screenshots): `list`, `add`, `link`, `unlink`, `remove`, `prune`, `refresh`, `import` (manifest of UI tests) |
 
 Important options are `-lang:de;fr`, `-status:…`, `-include:` and `-exclude:` (sources),
 `-since:`, `-until:` and `-datetype:` (date filter, see
 [Reviewing recent changes](#reviewing-recent-changes)),
-`-overwrite`, `-tm:[file]`, `-fuzzy:N`, `-nosave` and `-forcesave`. Instead of `-opt:value`,
+`-overwrite`, `-tm:[file]`, `-fuzzy:N`, `-screenshots:auto|none|link|embed` (export), `-nosave`
+and `-forcesave`. Instead of `-opt:value`,
 `--opt=value` is accepted as well. `-uilang:en|de` selects the output language. `susi-cli <task> -h`
 prints help for a task.
 
@@ -365,11 +371,14 @@ Configuration, e.g. in VS Code `mcp.json` or in the Copilot CLI:
 
 Optionally a project is opened right away: `"args": ["mcp", "C:\\path\\app.slp"]`.
 
-Tools (25):
+Tools (28):
 
 - `open_project`, `create_project`, `save_project`, `project_info`
-- `list_rows` (filters including the date range `since`/`until`/`date_field`, paging; rows carry
-  their created/changed and translation dates), `get_row`
+- `list_rows` (filters including the date range `since`/`until`/`date_field` and
+  `has_screenshot`, paging; rows carry their created/changed and translation dates and their
+  screenshots), `get_row`
+- `get_screenshot` (the image itself plus the rows it shows), `attach_screenshot`,
+  `detach_screenshot` (see [Screenshots](#screenshots))
 - `set_translations` (batch; default status *Auto translated*), `set_status`,
   `set_row_properties`
 - `add_language`, `add_source`, `scan`, `build`
@@ -513,6 +522,96 @@ behind the trait `Forge` (implementations for GitLab and GitHub).
 
 ---
 
+## Screenshots
+
+Screenshots show translators where a text appears, how much space it has and what it refers to.
+A screenshot is linked to one or more rows, optionally with the area where the text appears.
+
+**Storage.** Screenshots are kept next to the project, never in the `.slp`: Sisulizer drops
+unknown content when it saves a project, and embedded images would bloat the file.
+
+```
+app.slp
+app.files/
+  screenshots.json             screenshots and their links
+  screenshots/
+    login-dialog.3f9a2c1d.png
+```
+
+Image names contain the first characters of the SHA-256 hash of the content, so an unchanged
+image is never copied twice and git sees a replaced image as a new file. The folder is saved
+together with the project (also by the [git workflow](#git-workflow-gitlab-github)), and
+*Save as* copies it to the new name.
+
+```json
+{
+  "version": 1,
+  "screenshots": [
+    {
+      "id": "login-dialog",
+      "file": "login-dialog.3f9a2c1d.png",
+      "title": "Login dialog",
+      "width": 1280, "height": 800,
+      "created": "20261118101500",
+      "origin": "../ui-tests/out/login.png",
+      "origin_hash": "3f9a2c1d…",
+      "links": [
+        { "source": "src\\assets\\i18n\\en.json", "key": "en.json/LOGIN.TITLE", "area": [120, 40, 260, 24] }
+      ]
+    }
+  ]
+}
+```
+
+- `key` is the context of a row (as in the *Context* column and in exchange files) or a row id;
+  the wildcards `*` and `?` select several rows. `source` restricts the key to one source.
+- `area` is `[x, y, width, height]` in image pixels.
+- `origin` is the file the image was taken from; *Refresh* (`screenshot refresh`) reads changed
+  origin files again, the links stay.
+- Links to rows that no longer exist (for example after *Remove unused rows*) are shown as
+  orphaned; *Clean up* (`screenshot prune`) removes them and unused image files.
+
+**User interface.** The *Screenshots* tab shows the screenshots of the selected row with its area
+highlighted (the areas of other rows faintly). Images are added with *Add…*, by pasting
+(`Ctrl+V`) or by dropping image files on the window; *Mark area* lets you drag a rectangle over
+the image. The context menus of rows and tree nodes add a screenshot to the row, the view or a
+node. *Project → Screenshots…* lists all screenshots with title, size and links. A new project
+must be saved before it can have screenshots.
+
+**UI tests.** UI tests (e.g. Playwright) can write a manifest with the schema of
+`screenshots.json`; `file` is relative to the manifest and is the only required field:
+
+```json
+{ "screenshots": [
+  { "id": "login", "file": "login.png", "title": "Login dialog",
+    "links": [ { "key": "*LOGIN.TITLE", "area": [120, 40, 260, 24] } ] } ] }
+```
+
+```powershell
+susi-cli screenshot import ui-tests\out\screenshots.json -prune app.slp
+```
+
+The import adds or replaces the listed screenshots (importing the same manifest again changes
+nothing); `-prune` removes the screenshots that are missing in the manifest. Further actions:
+`susi-cli screenshot -h`.
+
+**Export.** Screenshots of the exported rows are included (`-screenshots:`, export dialog):
+
+| Format    | `auto` (default)                                                                                                       | `link`                                                       |
+|-----------|------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|
+| Excel     | Second worksheet *Screenshots*: each image once with numbered frames around the marked areas and a table *No. / Context / Original*; the *Screenshot* column links to it (`embed`) | *Screenshot* column with links to the images copied to `<name>_screenshots/` |
+| CSV, TXT  | *Screenshot* column with relative paths of the images copied to `<name>_screenshots/`                                  | same                                                         |
+| XLIFF 1.2 | `<context-group purpose="information">` per trans-unit with `x-screenshot` (path) and `x-screenshot-area`; images copied | same                                                         |
+| TMX       | –                                                                                                                      | –                                                            |
+
+`none` turns screenshots off. The import ignores the screenshot column and the second worksheet.
+
+**MCP and validation.** `list_rows` and `get_row` return `screenshots: [{id, title, area}]`, and
+`get_screenshot` returns the image itself, so AI agents can look at it before translating. The
+validation check `screenshot` reports rows whose screenshot image is missing.
+
+---
+
 ## Files and formats
 
 - **Project**: Susi/Sisulizer `.slp` (XML). Unknown elements and attributes are preserved on save.
@@ -538,6 +637,7 @@ behind the trait `Forge` (implementations for GitLab and GitHub).
   `SUSI_CONFIG_DIR`.
 - **Exchange**: Excel `.xlsx`, `.csv`, tab-separated `.txt`, XLIFF 1.2 (`.xlf`, one file per
   language when several languages are exported) and `.tmx`.
+- **Screenshots**: `<project>.files/` next to the project, see [Screenshots](#screenshots).
 
 ---
 
