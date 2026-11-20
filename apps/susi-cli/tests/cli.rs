@@ -268,3 +268,40 @@ fn screenshots() {
     assert!(r.out.contains("Screenshot removed: menu") && r.err.contains("Screenshot not found: nope"), "{}{}", r.out, r.err);
     assert!(run(&["screenshot", "frobnicate", &s(&slp)]).err.contains("Unknown screenshot action"));
 }
+
+#[test]
+fn copy_languages() {
+    let (dir, slp) = fixture();
+    let text = |key: &str, lang: &str| {
+        let p = susi_core::slp::load(&slp).unwrap();
+        p.rows().into_iter().find(|r| p.row(r).unwrap().id().ends_with(key)).and_then(|r| p.row(&r).unwrap().text(lang).map(str::to_string))
+    };
+    let r = run(&["copy", "-from:de", "-lang:fr", &s(&slp)]);
+    assert!(r.code == 0 && r.out.contains("0 cells copied from German (de) to French (fr)"), "{}{}", r.out, r.err);
+
+    let csv = dir.path().join("de.csv");
+    assert_eq!(run(&["export", &s(&csv), "-lang:de", &s(&slp)]).code, 0);
+    translate_csv(&csv, |o| format!("DE {o}"));
+    assert_eq!(run(&["import", &s(&csv), "-lang:de", &s(&slp)]).code, 0);
+    let r = run(&["copy", "-from:de", "-lang:fr", &s(&slp)]);
+    assert!(r.code == 0 && r.out.contains("4 cells copied from German (de) to French (fr)"), "{}{}", r.out, r.err);
+    assert_eq!(text("Greeting", "fr").as_deref(), Some("DE Hello"));
+
+    // Existing translations are kept unless -overwrite is given; sources and the original as source.
+    let r = run(&["copy", "-lang:fr", &s(&slp)]);
+    assert!(r.out.contains("0 cells copied from the original") && r.out.contains("4 cells with a translation were kept"), "{}", r.out);
+    let r = run(&["copy", "-lang:fr", "-overwrite", "-include:Strings.resx", &s(&slp)]);
+    assert!(r.code == 0 && r.out.contains("1 cell copied from the original to French (fr)"), "{}{}", r.out, r.err);
+    assert_eq!(text("Greeting", "fr").as_deref(), Some("Hello"));
+    assert_eq!(text("title", "fr").as_deref(), Some("DE Hello."));
+
+    let project = s(&slp);
+    for (args, error) in [
+        (["copy", "-from:de", "-overwrite"], "-lang missing"),
+        (["copy", "-from:fr", "-lang:de;fr"], "must not contain the same language"),
+        (["copy", "-from:xx", "-lang:fr"], "does not contain the language \"xx\""),
+    ] {
+        let r = run(&[&args[..], &[project.as_str()]].concat());
+        assert!(r.code == 1 && r.err.contains(error), "{args:?}: {}{}", r.out, r.err);
+    }
+}

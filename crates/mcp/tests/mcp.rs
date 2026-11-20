@@ -92,6 +92,56 @@ async fn translate_over_mcp() {
 }
 
 #[tokio::test]
+async fn copy_over_mcp() {
+    let dir = tempfile::tempdir().unwrap();
+    let json_file = dir.path().join("app.json");
+    std::fs::write(&json_file, r#"{"menu":{"open":"Open {0}","close":"Close"}}"#).unwrap();
+    let slp = dir.path().join("app.slp");
+    let (server_io, client_io) = tokio::io::duplex(64 * 1024);
+    let server = tokio::spawn(async move {
+        let s = SusiServer::new(Session::new()).serve(server_io).await.unwrap();
+        let _ = s.waiting().await;
+    });
+    let client = Client.serve(client_io).await.unwrap();
+    let json = |t: &str| serde_json::from_str::<Value>(t).unwrap();
+
+    let (e, t) = call(&client, "create_project", json!({"path": slp.to_string_lossy(), "languages": ["en", "de", "de-CH"]})).await;
+    assert!(!e, "{t}");
+    let (e, t) = call(&client, "add_source", json!({"file": json_file.to_string_lossy()})).await;
+    assert!(!e, "{t}");
+    let (_, t) = call(&client, "list_rows", json!({})).await;
+    let rows = json(&t)["rows"].as_array().unwrap().clone();
+    let key = |original: &str| rows.iter().find(|r| r["original"] == original).unwrap()["key"].as_str().unwrap().to_string();
+    let (open, close) = (key("Open {0}"), key("Close"));
+    let items = json!([{"key": open, "lang": "de", "text": "{0} öffnen"}, {"key": close, "lang": "de", "text": "Schließen"}]);
+    assert!(!call(&client, "set_translations", json!({ "items": items })).await.0);
+
+    let (e, t) = call(&client, "copy_translations", json!({"from": "de", "lang": "de-CH"})).await;
+    assert!(!e && json(&t)["copied"] == 2, "{t}");
+    let items = json!([{"key": close, "lang": "de-CH", "text": "Schliessen"}]);
+    assert!(!call(&client, "set_translations", json!({ "items": items })).await.0);
+    let (_, t) = call(&client, "copy_translations", json!({"from": "de", "lang": "de-CH"})).await;
+    assert_eq!((json(&t)["copied"].clone(), json(&t)["kept"].clone()), (json!(0), json!(1)), "{t}");
+
+    // The original into one row, overwriting; unknown keys are reported per key.
+    let (e, t) = call(&client, "copy_translations", json!({"lang": "de-CH", "keys": [close, "nope"], "overwrite": true})).await;
+    assert!(!e && json(&t)["copied"] == 1 && json(&t)["errors"].as_array().unwrap().len() == 1, "{t}");
+    let (_, t) = call(&client, "get_row", json!({ "key": close })).await;
+    assert_eq!(json(&t)["translations"]["de-CH"]["text"], "Close", "{t}");
+
+    for (args, error) in [
+        (json!({"from": "de-CH", "lang": "de-CH"}), "different"),
+        (json!({"lang": "fr"}), "'fr' is not part of the project"),
+        (json!({"lang": "de", "source": 7}), "source 7 does not exist"),
+    ] {
+        let (e, t) = call(&client, "copy_translations", args).await;
+        assert!(e && t.contains(error), "{t}");
+    }
+    client.cancel().await.unwrap();
+    let _ = server.await;
+}
+
+#[tokio::test]
 async fn screenshots_over_mcp() {
     let dir = tempfile::tempdir().unwrap();
     let json_file = dir.path().join("app.json");

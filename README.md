@@ -299,6 +299,7 @@ susi-cli <tasks> project.slp [-q] [-a] [-w] [-e] [-h]
 | `translate` | `translate` | Translate using the translation memory |
 | `savetotm` | – | Save translations to the TM |
 | `duplicate` | `duplicate` | Translate duplicate strings |
+| `copy` | – | Copy the original or another language (`-from:`) into the `-lang:` languages, e.g. `de-CH` from `de`; empty cells only unless `-overwrite` (GUI: *Copy from*) |
 | `validate` | `validate` | Validate translations |
 | `report [file]` | `report` | Report (`.html`, `.txt`, `.json`, otherwise stdout) |
 | `remove` | `remove` | Remove unused rows |
@@ -310,7 +311,7 @@ susi-cli <tasks> project.slp [-q] [-a] [-w] [-e] [-h]
 Important options are `-lang:de;fr`, `-status:…`, `-include:` and `-exclude:` (sources),
 `-since:`, `-until:` and `-datetype:` (date filter, see
 [Reviewing recent changes](#reviewing-recent-changes)),
-`-overwrite`, `-tm:[file]`, `-fuzzy:N`, `-screenshots:auto|none|link|embed` (export), `-nosave`
+`-overwrite`, `-from:` (copy), `-tm:[file]`, `-fuzzy:N`, `-screenshots:auto|none|link|embed` (export), `-nosave`
 and `-forcesave`. Instead of `-opt:value`,
 `--opt=value` is accepted as well. `-uilang:en|de` selects the output language. `susi-cli <task> -h`
 prints help for a task.
@@ -324,6 +325,7 @@ Pipeline example:
 
 ```powershell
 susi-cli scan create -w app.slp
+susi-cli copy -from:de -lang:de-CH create -lang:de-CH app.slp
 susi-cli validate -lang:de -w app.slp
 susi-cli export open.xlsx -lang:de;fr -status:untranslated app.slp
 ```
@@ -379,7 +381,7 @@ Configuration, e.g. in VS Code `mcp.json` or in the Copilot CLI:
 
 Optionally a project is opened right away: `"args": ["mcp", "C:\\path\\app.slp"]`.
 
-Tools (28):
+Tools (29):
 
 - `open_project`, `create_project`, `save_project`, `project_info`
 - `list_rows` (filters including the date range `since`/`until`/`date_field` and
@@ -389,6 +391,8 @@ Tools (28):
   `detach_screenshot` (see [Screenshots](#screenshots))
 - `set_translations` (batch; default status *Auto translated*), `set_status`,
   `set_row_properties`
+- `copy_translations` (the original or another language into one language, for all rows, a
+  source or given keys, without passing the texts through the agent; like *Copy from* in the GUI)
 - `add_language`, `add_source`, `scan`, `build`
 - `validate`, `statistics`
 - `tm_translate`, `tm_lookup`, `tm_save`
