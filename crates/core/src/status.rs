@@ -37,6 +37,15 @@ impl TranslationStatus {
         self as u32
     }
 
+    /// Status after the text of a cell was edited: *Not translated*, *Best guess* and
+    /// *Auto translated* become *Translated*, all others are kept.
+    pub fn after_edit(self) -> Self {
+        match self {
+            Self::NotTranslated | Self::BestGuess | Self::AutoTranslated => Self::Translated,
+            s => s,
+        }
+    }
+
     /// Label in the current UI language.
     pub fn label(self) -> &'static str {
         self.label_in(current())

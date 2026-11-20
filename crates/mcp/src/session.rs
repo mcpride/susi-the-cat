@@ -496,6 +496,41 @@ impl Session {
         Ok(json!({ "updated": n, "errors": errors }))
     }
 
+    /// Copies the original (`from` = `None`) or the translations in `from` into `lang` for the rows
+    /// of `keys_in` (all rows, or all rows of `source`, without keys).
+    pub fn copy_translations(&mut self, from: Option<&str>, lang: &str, keys_in: &[String], source: Option<usize>, overwrite: bool) -> ToolResult {
+        let p = self.project_mut()?;
+        if let Some(l) = std::iter::once(lang).chain(from).find(|l| !p.has_language(l)) {
+            return Err(format!("language '{l}' is not part of the project"));
+        }
+        if from == Some(lang) {
+            return Err("from and lang must be different languages".into());
+        }
+        if let Some(si) = source.filter(|&si| si >= p.sources.len()) {
+            return Err(format!("source {si} does not exist ({} sources)", p.sources.len()));
+        }
+        let mut errors = Vec::new();
+        let rows: Vec<RowRef> = if keys_in.is_empty() {
+            p.rows().into_iter().filter(|r| source.is_none_or(|si| r.source == si)).collect()
+        } else {
+            let keys = Keys::new(p);
+            keys_in
+                .iter()
+                .filter_map(|k| match keys.find(k, source) {
+                    Ok(r) => Some(r),
+                    Err(e) => {
+                        errors.push(json!({ "key": k, "error": e }));
+                        None
+                    }
+                })
+                .collect()
+        };
+        let kept = if overwrite { 0 } else { ops::copy_targets(p, &rows, from, lang).translated };
+        let copied = ops::copy_cells(p, &rows, from, lang, overwrite).len();
+        self.dirty |= copied > 0;
+        Ok(json!({ "copied": copied, "kept": kept, "errors": errors }))
+    }
+
     pub fn set_row_props(
         &mut self,
         key: &str,

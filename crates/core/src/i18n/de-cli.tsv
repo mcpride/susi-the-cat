@@ -190,3 +190,13 @@
 @plural	{n} row linked|{n} rows linked	{n} Zeile verknüpft|{n} Zeilen verknüpft
 @plural	{n} link removed|{n} links removed	{n} Verknüpfung entfernt|{n} Verknüpfungen entfernt
 @plural	{n} link does not match any row|{n} links do not match any row	{n} Verknüpfung passt zu keiner Zeile|{n} Verknüpfungen passen zu keiner Zeile
+
+# Copy
+	Copy the original or another language	Original oder eine andere Sprache übernehmen
+	Copies the original or the translations of another language into the given languages\n(Row/Column | Copy from), e.g. to fill de-CH from de. Only empty cells are filled unless\n-overwrite is given. Rows marked "Do not translate", excluded rows and rows without text to\ncopy are skipped; the status changes as when editing a cell.	Übernimmt das Original oder die Übersetzungen einer anderen Sprache in die angegebenen\nSprachen (Zeile/Spalte | Übernehmen), z. B. um de-CH aus de zu füllen. Ohne -overwrite werden\nnur leere Zellen gefüllt. Zeilen mit „Nicht übersetzen“, ausgeschlossene Zeilen und Zeilen\nohne Text zum Übernehmen werden übersprungen; der Status ändert sich wie beim Bearbeiten.
+	Target languages, separated by ; (required).	Zielsprachen, getrennt durch ; (erforderlich).
+	Language to copy from (default: the original).	Sprache, aus der übernommen wird (Standard: das Original).
+	-from and -lang must not contain the same language ({lang})	-from und -lang dürfen nicht dieselbe Sprache enthalten ({lang})
+@plural	{n} cell copied from the original to {name} ({lang})|{n} cells copied from the original to {name} ({lang})	{n} Zelle aus dem Original in {name} ({lang}) übernommen|{n} Zellen aus dem Original in {name} ({lang}) übernommen
+@plural	{n} cell copied from {from} to {name} ({lang})|{n} cells copied from {from} to {name} ({lang})	{n} Zelle aus {from} in {name} ({lang}) übernommen|{n} Zellen aus {from} in {name} ({lang}) übernommen
+@plural	{n} cell with a translation was kept (-overwrite replaces it)|{n} cells with a translation were kept (-overwrite replaces them)	{n} Zelle mit Übersetzung beibehalten (-overwrite ersetzt sie)|{n} Zellen mit Übersetzung beibehalten (-overwrite ersetzt sie)

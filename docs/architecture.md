@@ -126,7 +126,7 @@ Dependency rules:
 ```mermaid
 flowchart TB
     subgraph ops_layer["Operations - called by GUI, CLI and MCP"]
-        ops["ops<br/>add source, scan, build"]
+        ops["ops<br/>add source, scan, build,<br/>copy and clear cells"]
         exchange["exchange<br/>XLSX, CSV/TXT, XLIFF, TMX"]
         tm["tm<br/>translation memory"]
         validate["validate<br/>checks, JUnit report"]
@@ -167,7 +167,7 @@ flowchart TB
 | `slp`       | Parse and serialize `.slp` files byte-faithfully (BOM, CRLF, entities, Sisulizer's `#c`/`#l` line-break coding); backup `*.~slp` on save |
 | `xml`       | Small DOM on top of `quick-xml` that keeps attribute order, unknown elements and whitespace       |
 | `status`    | `TranslationStatus` (Not translated … Complete) and `RowStatus` (New, Changed, Unused, In use) with their `.slp` encodings |
-| `ops`       | `add_source`, `scan_source`/`scan_project`, `merge_rows`, `build_project`, output path resolution |
+| `ops`       | `add_source`, `scan_source`/`scan_project`, `merge_rows`, `build_project`, output path resolution; cell commands for many rows: `copy_cells` (from the original or another language, with `copy_targets` as dry run) and `clear_translations` |
 | `formats::*`| One module per source type with `scan`, `build` and (where applicable) `translations` to import existing localized files |
 | `tm`        | TMX 1.4 translation memory: exact and fuzzy lookup, `translate_project`, `save_to_tm`             |
 | `exchange`  | Export/import of a project table to Excel, delimited text, XLIFF 1.2 and TMX, including the screenshots of the exported rows |
@@ -321,8 +321,8 @@ lives in one struct, `SusiApp` (`app.rs`); the UI is re-rendered from that state
 |------------------|---------------------------------------------------------------------------------|
 | `main.rs`        | Window setup, starts `SusiApp` with an optional `.slp` argument                 |
 | `app.rs`         | `SusiApp` state: project, TM, selection, filter, sort, log, issues, dialogs, settings |
-| `panels.rs`      | Menu bar, toolbar, project tree, filter panel, status bar                       |
-| `grid.rs`        | Central translation sheet: columns, in-cell editing, sorting, column widths     |
+| `panels.rs`      | Menu bar, toolbar, project tree, filter panel, status bar; the row and column commands shared with the context menus |
+| `grid.rs`        | Central translation sheet: columns, in-cell editing, sorting, column widths, context menus of cells and column headers |
 | `bottom.rs`      | Bottom tabs: output, validation, search, statistics, comments, editor with TM suggestions |
 | `list.rs`        | Reusable scrollable/resizable list used by the bottom tabs                      |
 | `dialogs.rs`     | Modal dialogs: languages, add source, source/row properties, export, import, TM, pseudo, options |
@@ -337,6 +337,12 @@ Widgets never call `susi-core` directly. Menus, toolbar buttons, context menus a
 an `Action` (e.g. `Scan`, `Build`, `SetStatus(..)`, `Workflow(..)`) into a queue; `run_actions`
 executes the queue at the end of the frame. This keeps rendering free of side effects, gives one
 place for the unsaved-changes guard and makes the GUI testable headlessly.
+
+Row and column commands are built by the same functions (`panels::row_menu_items`,
+`panels::column_items`), so they have the same names and order in the menus *Row*, *Column* and
+*Edit* and in the context menus of cells and column headers. Row actions change the selected cell;
+column actions (`SetStatusIn`, `CopyInColumn`, `ClearColumn`) take the visible rows and open a
+dialog with the affected cell counts or a confirmation before calling `ops`.
 
 ```mermaid
 flowchart TD
@@ -410,6 +416,9 @@ Tasks share one `State`, so `susi-cli scan create validate app.slp` loads the pr
 saves it once at the end. A failing task stops the chain; the project is then not saved unless
 `-forcesave` is given.
 
+Tasks call the same `susi-core` functions as the GUI commands, so both follow the same rules; for
+example `copy` (`-from:de -lang:de-CH`) uses `ops::copy_cells` like *Copy from* in the GUI.
+
 ---
 
 ## 6. MCP server (`susi-mcp`)
@@ -434,7 +443,7 @@ flowchart LR
     session --> wf
 ```
 
-- `server.rs` declares the 28 tools with `#[tool]` attributes and input structs deriving
+- `server.rs` declares the 29 tools with `#[tool]` attributes and input structs deriving
   `JsonSchema`; each tool locks the session and delegates.
 - `session.rs` returns `serde_json::Value` results and is unit-testable without a transport.
   `get_screenshot` is the only tool with image content (base64 PNG/JPEG plus a JSON text).
@@ -446,7 +455,7 @@ flowchart LR
 | Group         | Tools                                                                       |
 |---------------|-----------------------------------------------------------------------------|
 | Project       | `open_project`, `create_project`, `save_project`, `project_info`, `add_language`, `add_source` |
-| Rows          | `list_rows`, `get_row`, `set_translations`, `set_status`, `set_row_properties` |
+| Rows          | `list_rows`, `get_row`, `set_translations`, `set_status`, `set_row_properties`, `copy_translations` |
 | Screenshots   | `get_screenshot`, `attach_screenshot`, `detach_screenshot`                  |
 | Operations    | `scan`, `build`, `validate`, `statistics`, `fill_pseudo`                    |
 | TM / exchange | `tm_translate`, `tm_lookup`, `tm_save`, `export`, `import`                  |

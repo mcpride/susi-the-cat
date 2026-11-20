@@ -163,7 +163,7 @@ Operation follows Sisulizer:
 
 - **Menus**: File, Edit, Search, View, Project, Validation, Column, Row, Translation, Tools,
   Help. Keyboard shortcuts: `Ctrl+S`, `Ctrl+O`, `Ctrl+N`, `Ctrl+F`, `F5` (scan),
-  `F9` (build).
+  `F9` (build). The current language is selected at the end of *View* (or by clicking a cell).
 - **Project tree** (left): "All", with the sources and their nodes below. The context menu offers
   properties, scanning/building a single source, setting the status of all rows of a node and
   "Remove source".
@@ -185,6 +185,14 @@ Operation follows Sisulizer:
     `Esc` cancels. Double-clicking multi-line text opens it in the Editor tab.
   - Editing changes the status *Not translated*, *Best guess* or *Auto translated* to
     *Translated*.
+  - Row and column commands have the same names and order: *Status*, *Copy from* (a submenu with
+    *Original* and the other project languages, e.g. to fill `de-CH` from `de`) and *Clear
+    translation*. The row commands (menus *Row* and *Edit*, context menu of a cell) change the
+    selected cell. The column commands (menu *Column* for the current language, or right-click the
+    header of a language or status column) change the visible rows: copying opens a dialog
+    (empty cells only, or also overwriting translations), clearing asks for confirmation. Copying
+    skips rows marked "Do not translate", excluded rows and rows without text to copy, and
+    changes the status like editing; clearing also removes the translation comments.
 - **Filter** (right): translation status, row status (new, modified, unused, in use), date,
   marked, locked, with/without screenshot and text. When a filter is active, the notice "Special filters on!" appears.
   See [Reviewing recent changes](#reviewing-recent-changes).
@@ -291,6 +299,7 @@ susi-cli <tasks> project.slp [-q] [-a] [-w] [-e] [-h]
 | `translate` | `translate` | Translate using the translation memory |
 | `savetotm` | – | Save translations to the TM |
 | `duplicate` | `duplicate` | Translate duplicate strings |
+| `copy` | – | Copy the original or another language (`-from:`) into the `-lang:` languages, e.g. `de-CH` from `de`; empty cells only unless `-overwrite` (GUI: *Copy from*) |
 | `validate` | `validate` | Validate translations |
 | `report [file]` | `report` | Report (`.html`, `.txt`, `.json`, otherwise stdout) |
 | `remove` | `remove` | Remove unused rows |
@@ -302,7 +311,7 @@ susi-cli <tasks> project.slp [-q] [-a] [-w] [-e] [-h]
 Important options are `-lang:de;fr`, `-status:…`, `-include:` and `-exclude:` (sources),
 `-since:`, `-until:` and `-datetype:` (date filter, see
 [Reviewing recent changes](#reviewing-recent-changes)),
-`-overwrite`, `-tm:[file]`, `-fuzzy:N`, `-screenshots:auto|none|link|embed` (export), `-nosave`
+`-overwrite`, `-from:` (copy), `-tm:[file]`, `-fuzzy:N`, `-screenshots:auto|none|link|embed` (export), `-nosave`
 and `-forcesave`. Instead of `-opt:value`,
 `--opt=value` is accepted as well. `-uilang:en|de` selects the output language. `susi-cli <task> -h`
 prints help for a task.
@@ -316,6 +325,7 @@ Pipeline example:
 
 ```powershell
 susi-cli scan create -w app.slp
+susi-cli copy -from:de -lang:de-CH create -lang:de-CH app.slp
 susi-cli validate -lang:de -w app.slp
 susi-cli export open.xlsx -lang:de;fr -status:untranslated app.slp
 ```
@@ -371,7 +381,7 @@ Configuration, e.g. in VS Code `mcp.json` or in the Copilot CLI:
 
 Optionally a project is opened right away: `"args": ["mcp", "C:\\path\\app.slp"]`.
 
-Tools (28):
+Tools (29):
 
 - `open_project`, `create_project`, `save_project`, `project_info`
 - `list_rows` (filters including the date range `since`/`until`/`date_field` and
@@ -381,6 +391,8 @@ Tools (28):
   `detach_screenshot` (see [Screenshots](#screenshots))
 - `set_translations` (batch; default status *Auto translated*), `set_status`,
   `set_row_properties`
+- `copy_translations` (the original or another language into one language, for all rows, a
+  source or given keys, without passing the texts through the agent; like *Copy from* in the GUI)
 - `add_language`, `add_source`, `scan`, `build`
 - `validate`, `statistics`
 - `tm_translate`, `tm_lookup`, `tm_save`

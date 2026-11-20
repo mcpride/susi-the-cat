@@ -11,7 +11,7 @@ use susi_core::validate::{self, Severity, ValidateOptions, ValidationKind};
 use susi_core::{ops, pseudo, slp, stats};
 
 use crate::app::{BottomTab, Nav, SusiApp};
-use crate::dialogs::{Dialog, ExportDialog, ImportDialog, PseudoDialog, RowPropsDialog, SourcePropsDialog, TmDialog};
+use crate::dialogs::{ClearColumnDialog, CopyDialog, Dialog, ExportDialog, ImportDialog, PseudoDialog, RowPropsDialog, SourcePropsDialog, TmDialog};
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum Action {
@@ -47,15 +47,26 @@ pub enum Action {
     ResetFilter,
     /// Status of the selected cell (selected row, current language).
     SetStatus(TranslationStatus),
-    /// Status of all rows of a scope in the current language.
-    SetStatusIn(Scope, TranslationStatus),
+    /// Status of all rows of a scope in a language (`None`: the current language).
+    SetStatusIn(Scope, Option<String>, TranslationStatus),
+    /// Copies the original (`from` = `None`) or the translations in `from` into the visible rows of
+    /// a language column (`lang` = `None`: the current language); opens a dialog.
+    CopyInColumn {
+        from: Option<String>,
+        lang: Option<String>,
+    },
+    /// Clears the translations of the visible rows of a language column (`None`: the current
+    /// language) after confirmation.
+    ClearColumn(Option<String>),
     ToggleLocked,
     ToggleMarked,
     ToggleExcluded,
     SetLockedIn(Scope, bool),
     ClearNewIn(Scope),
     RowProperties,
-    CopyOriginal,
+    /// Copies the original (`None`) or the translation in a language into the selected cell
+    /// (selected row, current language).
+    CopyIntoCell(Option<String>),
     ClearTranslation,
     EditCell,
     Nav(Nav),
@@ -179,7 +190,9 @@ impl SusiApp {
     fn run_row_action(&mut self, a: Action) {
         match a {
             Action::SetStatus(s) => self.set_status(s),
-            Action::SetStatusIn(scope, s) => self.set_status_in(scope, s),
+            Action::SetStatusIn(scope, lang, s) => self.set_status_in(scope, lang, s),
+            Action::CopyInColumn { from, lang } => self.copy_dialog(from, lang),
+            Action::ClearColumn(lang) => self.clear_column_dialog(lang),
             Action::SetLockedIn(scope, on) => self.for_rows_in(scope, |r| r.set_locked(on)),
             Action::ClearNewIn(scope) => self.for_rows_in(scope, |r| {
                 if r.status() == RowStatus::New {
@@ -190,7 +203,7 @@ impl SusiApp {
             Action::ToggleMarked => self.with_selected_row(|r| r.set_marked(!r.marked())),
             Action::ToggleExcluded => self.with_selected_row(|r| r.set_excluded(!r.excluded())),
             Action::RowProperties => self.row_props_dialog(),
-            Action::CopyOriginal => self.copy_original(),
+            Action::CopyIntoCell(from) => self.copy_into_cell(from),
             Action::ClearTranslation => {
                 if let (Some(row), Some(lang)) = (self.selected.clone(), self.lang.clone()) {
                     self.cell_edit = None;
@@ -286,9 +299,17 @@ impl SusiApp {
         }
     }
 
-    fn set_status_in(&mut self, scope: Scope, s: TranslationStatus) {
-        let Some(lang) = self.lang.clone() else {
+    /// The given language or else the current one; warns if there is none.
+    fn lang_or_current(&mut self, lang: Option<String>) -> Option<String> {
+        let lang = lang.or_else(|| self.lang.clone());
+        if lang.is_none() {
             self.warn(t("No language selected"));
+        }
+        lang
+    }
+
+    fn set_status_in(&mut self, scope: Scope, lang: Option<String>, s: TranslationStatus) {
+        let Some(lang) = self.lang_or_current(lang) else {
             return;
         };
         let rows = self.rows_of(&scope);
@@ -309,15 +330,86 @@ impl SusiApp {
         self.structure_changed();
     }
 
-    fn copy_original(&mut self) {
+    /// Copies the original (`from` = `None`) or the translation in `from` into the selected cell.
+    fn copy_into_cell(&mut self, from: Option<String>) {
         let (Some(sel), Some(lang)) = (self.selected.clone(), self.lang.clone()) else {
+            self.warn(t("No row or language selected"));
             return;
         };
-        let original = self.project.as_ref().and_then(|p| p.row(&sel)).map(|r| r.original().to_string());
-        if let Some(text) = original {
-            self.cell_edit = None;
-            self.write_translation(&sel, &lang, &text);
+        let text = self.project.as_ref().and_then(|p| ops::copy_source(p, &sel, from.as_deref())).map(str::to_string);
+        match (text, from) {
+            (Some(text), _) => {
+                self.cell_edit = None;
+                self.write_translation(&sel, &lang, &text);
+            }
+            (None, Some(from)) => self.warn(susi_core::tf!("The row has no translation in {lang}", lang = from)),
+            (None, None) => {}
         }
+    }
+
+    /// Opens the dialog copying the original or a language into the visible rows of a language column.
+    fn copy_dialog(&mut self, from: Option<String>, lang: Option<String>) {
+        let Some(lang) = self.lang_or_current(lang) else {
+            return;
+        };
+        self.commit_cell_edit();
+        let rows = self.rows.clone();
+        let Some(p) = &self.project else {
+            return;
+        };
+        let targets = ops::copy_targets(p, &rows, from.as_deref(), &lang);
+        if targets.count(true) == 0 {
+            self.info(susi_core::tf!("Nothing to copy in the column {lang}", lang = lang));
+            return;
+        }
+        self.dialog = Some(Dialog::Copy(CopyDialog { from, lang, rows, targets, overwrite: false }));
+    }
+
+    pub fn copy_in_column(&mut self, d: &CopyDialog) {
+        let Some(p) = self.project.as_mut() else {
+            return;
+        };
+        let done = ops::copy_cells(p, &d.rows, d.from.as_deref(), &d.lang, d.overwrite);
+        self.cells_changed(&done, &d.lang);
+        let count = trn(done.len(), "{n} cell", "{n} cells");
+        self.info(match &d.from {
+            None => susi_core::tf!("Original copied into {count} ({lang})", count = count, lang = d.lang),
+            Some(from) => susi_core::tf!("Translations of {from} copied into {count} ({lang})", from = from, count = count, lang = d.lang),
+        });
+    }
+
+    /// Asks before clearing the translations of the visible rows of a language column.
+    fn clear_column_dialog(&mut self, lang: Option<String>) {
+        let Some(lang) = self.lang_or_current(lang) else {
+            return;
+        };
+        self.commit_cell_edit();
+        let rows = self.project.as_ref().map(|p| ops::translated_rows(p, &self.rows, &lang)).unwrap_or_default();
+        if rows.is_empty() {
+            self.info(susi_core::tf!("The column {lang} has no translations in the visible rows", lang = lang));
+            return;
+        }
+        self.dialog = Some(Dialog::ClearColumn(ClearColumnDialog { lang, rows }));
+    }
+
+    pub fn clear_column(&mut self, d: &ClearColumnDialog) {
+        let Some(p) = self.project.as_mut() else {
+            return;
+        };
+        let done = ops::clear_translations(p, &d.rows, &d.lang);
+        self.cells_changed(&done, &d.lang);
+        self.info(susi_core::tf!("{count} deleted ({lang})", count = trn(done.len(), "{n} translation", "{n} translations"), lang = d.lang));
+    }
+
+    /// Bookkeeping after the cells of `lang` in `rows` were changed.
+    fn cells_changed(&mut self, rows: &[RowRef], lang: &str) {
+        if rows.is_empty() {
+            return;
+        }
+        for r in rows {
+            self.issue_cells.remove(&(r.clone(), lang.to_string()));
+        }
+        self.structure_changed();
     }
 
     fn row_props_dialog(&mut self) {

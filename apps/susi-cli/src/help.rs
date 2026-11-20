@@ -47,6 +47,7 @@ pub fn general(version: &str) -> String {
         ("mcp", t("Start the MCP server (stdio) for AI agents")),
         ("workflow", t("Git workflow: get, save and publish translations")),
         ("screenshot", t("Manage screenshots of rows (context for translators)")),
+        ("copy", t("Copy the original or another language")),
     ];
     let options = [
         ("-q", t("Quiet mode. Only errors are shown.")),
@@ -291,6 +292,18 @@ pub fn task(name: &str) -> String {
         }
         "workflow" => workflow(),
         "screenshot" => screenshot(),
+        "copy" => page(
+            "susi-cli copy -lang:X [options] project.slp",
+            t(
+                "Copies the original or the translations of another language into the given languages\n(Row/Column | Copy from), e.g. to fill de-CH from de. Only empty cells are filled unless\n-overwrite is given. Rows marked \"Do not translate\", excluded rows and rows without text to\ncopy are skipped; the status changes as when editing a cell.",
+            ),
+            &(item("-lang:X", t("Target languages, separated by ; (required)."))
+                + &item("-from:X", t("Language to copy from (default: the original)."))
+                + &overwrite_opt()
+                + &filter_opts()
+                + &date_opts()),
+            &["susi-cli copy -from:de -lang:de-CH;de-AT app.slp", "susi-cli copy -lang:en-GB -include:\"web.json\" create -lang:en-GB app.slp"],
+        ),
         _ => tf!("Unknown task '{name}'.", name = name) + "\n",
     }
 }

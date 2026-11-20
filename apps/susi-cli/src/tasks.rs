@@ -175,6 +175,7 @@ pub fn run_task(t: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), 
         "info" => info(st, o),
         "workflow" => crate::workflow::run(t, st, o),
         "screenshot" => crate::screenshot::run(t, st, o),
+        "copy" => copy(t, st, o),
         other => Err(tf!("Task '{task}' cannot be run here", task = other)),
     }
 }
@@ -183,9 +184,13 @@ pub fn run_task(t: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), 
 fn languages(t: &TaskArgs, p: &Project) -> Result<Vec<String>, String> {
     let langs = t.list("lang");
     if let Some(l) = langs.iter().find(|l| !p.has_language(l)) {
-        return Err(tf!("The project does not contain the language \"{lang}\" (available: {langs})", lang = l, langs = p.language_ids().join(", ")));
+        return Err(unknown_language(p, l));
     }
     Ok(langs)
+}
+
+fn unknown_language(p: &Project, lang: &str) -> String {
+    tf!("The project does not contain the language \"{lang}\" (available: {langs})", lang = lang, langs = p.language_ids().join(", "))
 }
 
 fn source_matches(name: &str, wanted: &str) -> bool {
@@ -475,6 +480,49 @@ fn duplicate(t: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), Str
     let rep = tm::translate_project(p, &memory, &TranslateOptions { langs, overwrite: t.flag("overwrite"), fuzzy: None }, None);
     st.changed |= rep.exact > 0;
     o.info(trn(rep.exact, "{n} duplicate string translated", "{n} duplicate strings translated"));
+    Ok(())
+}
+
+/// Copies the original (default) or the translations of `-from` into the `-lang` languages.
+fn copy(t: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), String> {
+    let p = st.load(o)?;
+    let langs = languages(t, p)?;
+    if langs.is_empty() {
+        return Err(tf!("Task '{task}': {what} missing (see: susi-cli {task} -h)", task = t.name, what = "-lang"));
+    }
+    let from = t.value("from").map(str::trim).filter(|f| !f.is_empty()).map(str::to_string);
+    if let Some(f) = &from {
+        if !p.has_language(f) {
+            return Err(unknown_language(p, f));
+        }
+        if langs.contains(f) {
+            return Err(tf!("-from and -lang must not contain the same language ({lang})", lang = f));
+        }
+    }
+    let rows = row_selection(t, p, &langs, sources(t, p)?, o)?.unwrap_or_else(|| p.rows());
+    let overwrite = t.flag("overwrite");
+    let mut changed = false;
+    for l in &langs {
+        let kept = if overwrite { 0 } else { ops::copy_targets(p, &rows, from.as_deref(), l).translated };
+        let n = ops::copy_cells(p, &rows, from.as_deref(), l, overwrite).len();
+        changed |= n > 0;
+        let (msg, source) = match &from {
+            None => (trn(n, "{n} cell copied from the original to {name} ({lang})", "{n} cells copied from the original to {name} ({lang})"), String::new()),
+            Some(f) => (
+                trn(n, "{n} cell copied from {from} to {name} ({lang})", "{n} cells copied from {from} to {name} ({lang})"),
+                format!("{} ({f})", lang::name(f)),
+            ),
+        };
+        o.info(i18n::fmt(&msg, &[("from", &source), ("name", &lang::name(l)), ("lang", l)]));
+        if kept > 0 {
+            o.note(trn(
+                kept,
+                "{n} cell with a translation was kept (-overwrite replaces it)",
+                "{n} cells with a translation were kept (-overwrite replaces them)",
+            ));
+        }
+    }
+    st.changed |= changed;
     Ok(())
 }
 

@@ -17,6 +17,8 @@ open_project(path) -> project_info -> list_rows(status=[\"untranslated\"], langs
 set_translations([{key, lang, text}], status defaults to 'auto') -> validate -> save_project. \
 Keep placeholders ({0}, {name}, %s, <tags>), leading/trailing spaces, line breaks and '&' hotkeys exactly as in the original; \
 respect max_chars and row comments. Rows marked do_not_translate must not be translated. \
+To fill a regional variant from a related language (e.g. de-CH from de) or a language from the original, \
+use copy_translations instead of writing every text with set_translations. \
 scan updates the project from the source files, build writes the localized files. \
 If the project is in a git working copy configured for the translation workflow (.susi/workflow.toml): \
 workflow_status -> workflow_fetch (latest version) -> translate -> workflow_save (commit + push to a personal branch) -> \
@@ -73,6 +75,22 @@ pub struct SetStatusInput {
     pub lang: String,
     /// untranslated|best|auto|translated|review|complete
     pub status: String,
+}
+
+#[derive(Debug, Deserialize, JsonSchema)]
+pub struct CopyTranslationsInput {
+    /// Language to copy from (default: the original text).
+    pub from: Option<String>,
+    /// Target language id.
+    pub lang: String,
+    /// Row keys (default: all rows, or all rows of `source`).
+    #[serde(default)]
+    pub keys: Vec<String>,
+    /// Source index: limits the rows without keys, disambiguates keys.
+    pub source: Option<usize>,
+    /// Replace existing translations (default false: only empty cells are filled).
+    #[serde(default)]
+    pub overwrite: bool,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -266,6 +284,13 @@ impl SusiServer {
     #[tool(description = "Change the translation status of rows for one language.")]
     fn set_status(&self, Parameters(i): Parameters<SetStatusInput>) -> Result<String, String> {
         self.run(|s| s.set_status(&i.keys, i.source, &i.lang, &i.status))
+    }
+
+    #[tool(
+        description = "Copy the original or the translations of another language into one language, e.g. to fill de-CH from de, without transferring the texts. Only empty cells unless overwrite; skips do-not-translate and excluded rows and rows without text to copy. The status changes as when editing (untranslated, best guess and auto become translated). Returns copied and kept (translated cells left unchanged) counts."
+    )]
+    fn copy_translations(&self, Parameters(i): Parameters<CopyTranslationsInput>) -> Result<String, String> {
+        self.run(|s| s.copy_translations(i.from.as_deref(), &i.lang, &i.keys, i.source, i.overwrite))
     }
 
     #[tool(description = "Set row properties: comment, do-not-translate flag, max characters.")]

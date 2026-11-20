@@ -6,7 +6,7 @@ use std::path::{Path, PathBuf};
 use crate::error::{Error, Result, read_file, write_file};
 use crate::formats::{self, ScannedString, select_output};
 use crate::lang::{PatternContext, expand_pattern};
-use crate::model::{Item, Node, NodeRef, Project, Row, Source, SourceKind, WriteMethod, now_stamp, stamp_of};
+use crate::model::{Item, Node, NodeRef, Project, Row, RowRef, Source, SourceKind, WriteMethod, now_stamp, stamp_of};
 use crate::status::{RowStatus, TranslationStatus};
 
 /// Result of a scan.
@@ -615,6 +615,100 @@ fn build_one(p: &Project, si: usize, src: &Source, f: &Path, original: &[u8], ro
     }
 }
 
+/// Cells of a language that [`copy_cells`] can write.
+#[derive(Debug, Default, Clone, Copy, PartialEq, Eq)]
+pub struct CopyTargets {
+    /// Empty cells.
+    pub empty: usize,
+    /// Cells with a translation other than the copied text (written only when overwriting).
+    pub translated: usize,
+}
+
+impl CopyTargets {
+    /// Number of cells written with or without `overwrite`.
+    pub fn count(&self, overwrite: bool) -> usize {
+        if overwrite { self.empty + self.translated } else { self.empty }
+    }
+}
+
+/// Text a copy command takes from row `r`: the original for `from` = `None` (or the row's original
+/// language), otherwise the translation in `from`; `None` if that is empty.
+pub fn copy_source<'a>(p: &'a Project, r: &RowRef, from: Option<&str>) -> Option<&'a str> {
+    let row = p.row(r)?;
+    match from {
+        Some(l) if l != p.original_lang(r) => row.text(l),
+        _ => Some(row.original()).filter(|t| !t.is_empty()),
+    }
+}
+
+/// Whether [`copy_cells`] can write the cell of `lang` in `r`: `None` for rows in `lang` as
+/// original language, locked, excluded and raw rows, rows without text to copy and cells that
+/// already hold it; otherwise whether the cell has a translation.
+fn copy_target(p: &Project, r: &RowRef, from: Option<&str>, lang: &str) -> Option<bool> {
+    if p.original_lang(r) == lang || from == Some(lang) {
+        return None;
+    }
+    let row = p.row(r)?;
+    if row.locked() || row.excluded() || row.raw {
+        return None;
+    }
+    let text = copy_source(p, r, from)?;
+    match row.text(lang) {
+        Some(t) if t == text => None,
+        t => Some(t.is_some()),
+    }
+}
+
+/// Counts the cells of `lang` in `rows` that [`copy_cells`] can write.
+pub fn copy_targets(p: &Project, rows: &[RowRef], from: Option<&str>, lang: &str) -> CopyTargets {
+    let mut n = CopyTargets::default();
+    for r in rows {
+        match copy_target(p, r, from, lang) {
+            Some(true) => n.translated += 1,
+            Some(false) => n.empty += 1,
+            None => {}
+        }
+    }
+    n
+}
+
+/// Copies the original (`from` = `None`) or the translations in `from` into the cells of `lang` in
+/// `rows`, into cells with a translation only with `overwrite`. The status changes as when editing
+/// a cell. Returns the rows written.
+pub fn copy_cells(p: &mut Project, rows: &[RowRef], from: Option<&str>, lang: &str, overwrite: bool) -> Vec<RowRef> {
+    let mut done = Vec::new();
+    for r in rows {
+        if !copy_target(p, r, from, lang).is_some_and(|translated| overwrite || !translated) {
+            continue;
+        }
+        let Some(text) = copy_source(p, r, from).map(str::to_string) else {
+            continue;
+        };
+        if let Some(row) = p.row_mut(r) {
+            let status = row.tstatus(lang).after_edit();
+            row.set_translation(lang, &text, status);
+            done.push(r.clone());
+        }
+    }
+    done
+}
+
+/// Rows of `rows` with a translation in `lang` (rows with `lang` as original language excluded).
+pub fn translated_rows(p: &Project, rows: &[RowRef], lang: &str) -> Vec<RowRef> {
+    rows.iter().filter(|r| p.original_lang(r) != lang && p.row(r).is_some_and(|row| row.text(lang).is_some())).cloned().collect()
+}
+
+/// Removes the translations of `lang` (with their comments) from `rows`. Returns the rows changed.
+pub fn clear_translations(p: &mut Project, rows: &[RowRef], lang: &str) -> Vec<RowRef> {
+    let done = translated_rows(p, rows, lang);
+    for r in &done {
+        if let Some(row) = p.row_mut(r) {
+            row.remove_translation(lang);
+        }
+    }
+    done
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -643,6 +737,57 @@ mod tests {
         assert_eq!(b.tstatus("de"), TranslationStatus::ForReview);
         let Some(Item::Row(c)) = items.get(3) else { panic!() };
         assert_eq!(c.status(), RowStatus::Unused);
+    }
+
+    #[test]
+    fn copy_and_clear_cells() {
+        let mut p = Project::new();
+        p.add_language("de");
+        let mut s = Source::new(SourceKind::Json, "a.json", "en");
+        let mut hello = Row::new("hello", "Hello");
+        hello.set_translation("de", "Hallo", TranslationStatus::Complete);
+        hello.translation_mut("de").unwrap().set_comment("formal");
+        let mut brand = Row::new("brand", "Susi");
+        brand.set_locked(true);
+        let mut bye = Row::new("bye", "Goodbye");
+        bye.set_translation("de", "Tschüss", TranslationStatus::BestGuess);
+        for r in [hello, Row::new("ok", "OK"), brand, bye, Row::new("blank", "")] {
+            s.items.push(Item::Row(r));
+        }
+        p.sources.push(s);
+        let rows = p.rows();
+        let text = |p: &Project, i: usize| p.row(&rows[i]).and_then(|r| r.text("de").map(|t| (t.to_string(), r.tstatus("de"))));
+
+        // Locked rows, rows without original and the original language are skipped.
+        assert_eq!(copy_targets(&p, &rows, None, "de"), CopyTargets { empty: 1, translated: 2 });
+        assert_eq!(copy_targets(&p, &rows, None, "en"), CopyTargets::default());
+        assert_eq!(copy_cells(&mut p, &rows, None, "de", false), [rows[1].clone()]);
+        assert_eq!(text(&p, 1), Some(("OK".into(), TranslationStatus::Translated)));
+        assert_eq!(text(&p, 0), Some(("Hallo".into(), TranslationStatus::Complete)));
+        assert_eq!(copy_targets(&p, &rows, None, "de"), CopyTargets { empty: 0, translated: 2 });
+
+        // Copying a language skips rows without a translation in it; the original language of a
+        // row stands for its original.
+        p.add_language("de-CH");
+        p.row_mut(&rows[0]).unwrap().set_translation("de-CH", "Grüezi", TranslationStatus::Translated);
+        let ch = |p: &Project, i: usize| p.row(&rows[i]).and_then(|r| r.text("de-CH").map(str::to_string));
+        assert_eq!(copy_targets(&p, &rows, Some("de"), "de-CH"), CopyTargets { empty: 2, translated: 1 });
+        assert_eq!(copy_targets(&p, &rows, Some("de-CH"), "de-CH"), CopyTargets::default());
+        assert_eq!(copy_targets(&p, &rows, Some("en"), "de-CH"), copy_targets(&p, &rows, None, "de-CH"));
+        assert_eq!(copy_cells(&mut p, &rows, Some("de"), "de-CH", false), [rows[1].clone(), rows[3].clone()]);
+        assert_eq!([ch(&p, 0), ch(&p, 1), ch(&p, 3)], [Some("Grüezi".into()), Some("OK".into()), Some("Tschüss".into())]);
+
+        // Overwriting keeps reviewed states and comments, like editing a cell.
+        assert_eq!(copy_cells(&mut p, &rows, None, "de", true).len(), 2);
+        assert_eq!(text(&p, 0), Some(("Hello".into(), TranslationStatus::Complete)));
+        assert_eq!(p.row(&rows[0]).unwrap().translation("de").unwrap().comment(), "formal");
+        assert_eq!(text(&p, 3), Some(("Goodbye".into(), TranslationStatus::Translated)));
+        assert_eq!(text(&p, 2), None);
+
+        assert_eq!(translated_rows(&p, &rows, "de").len(), 3);
+        assert_eq!(clear_translations(&mut p, &rows, "de").len(), 3);
+        assert!(rows.iter().all(|r| p.row(r).unwrap().translation("de").is_none()));
+        assert!(clear_translations(&mut p, &rows, "de").is_empty());
     }
 
     #[cfg(windows)]
