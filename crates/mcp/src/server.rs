@@ -24,7 +24,9 @@ If the project is in a git working copy configured for the translation workflow 
 workflow_status -> workflow_fetch (latest version) -> translate -> workflow_save (commit + push to a personal branch) -> \
 workflow_publish (GitLab merge request or GitHub pull request for review). \
 Rows may have screenshots (list_rows/get_row: screenshots [{id, title, area}], area = [x, y, width, height] in pixels): \
-if the meaning, tone or available space of a text is unclear, look at them with get_screenshot(id) before translating.";
+if the meaning, tone or available space of a text is unclear, look at them with get_screenshot(id) before translating. \
+Rows with `data` instead of text hold pictures or binary data (.resx images, byte arrays): get_picture shows a picture, \
+load_translation_file sets a translated file; set_translations does not apply to them.";
 
 #[derive(Clone)]
 pub struct SusiServer {
@@ -185,6 +187,28 @@ pub struct ExportInput {
     pub status: Vec<String>,
     /// Screenshots of the exported rows: auto (default: embedded in Excel, otherwise linked) | none | link | embed.
     pub screenshots: Option<String>,
+}
+
+#[derive(Debug, Deserialize, JsonSchema)]
+pub struct PictureInput {
+    /// Key of a picture row (`data.format` = picture in list_rows/get_row).
+    pub key: String,
+    pub source: Option<usize>,
+    /// Language of the translation to show (default: the original).
+    pub lang: Option<String>,
+}
+
+#[derive(Debug, Deserialize, JsonSchema)]
+pub struct LoadTranslationFileInput {
+    /// Key of a picture or binary row.
+    pub key: String,
+    pub source: Option<usize>,
+    /// Target language id.
+    pub lang: String,
+    /// Absolute path of the translated file (e.g. the localized image).
+    pub path: String,
+    /// Keep the translation linked to the file, so a changed file is read again on scan/build (default true).
+    pub link: Option<bool>,
 }
 
 #[derive(Debug, Deserialize, JsonSchema)]
@@ -358,6 +382,23 @@ impl SusiServer {
         let (bytes, mime, info) = self.with(|s| s.screenshot(&i.id))??;
         let data = base64::engine::general_purpose::STANDARD.encode(bytes);
         Ok(CallToolResult::success(vec![ContentBlock::image(data, mime), ContentBlock::text(text(Ok(info))?)]))
+    }
+
+    #[tool(
+        description = "Get the picture of a picture row (images in .resx files and Sisulizer projects) as image: the original, or the translation in lang. Most clients display PNG, JPEG and GIF."
+    )]
+    fn get_picture(&self, Parameters(i): Parameters<PictureInput>) -> Result<CallToolResult, String> {
+        use base64::Engine as _;
+        let (bytes, mime, info) = self.with(|s| s.picture(&i.key, i.source, i.lang.as_deref()))??;
+        let data = base64::engine::general_purpose::STANDARD.encode(bytes);
+        Ok(CallToolResult::success(vec![ContentBlock::image(data, mime), ContentBlock::text(text(Ok(info))?)]))
+    }
+
+    #[tool(
+        description = "Set the translation of a picture or binary row from a file (e.g. a localized image), linked to the file by default so that a changed file is read again on scan/build. The status changes as when editing."
+    )]
+    fn load_translation_file(&self, Parameters(i): Parameters<LoadTranslationFileInput>) -> Result<String, String> {
+        self.run(|s| s.load_translation_file(&i.key, i.source, &i.lang, &PathBuf::from(&i.path), i.link.unwrap_or(true)))
     }
 
     #[tool(

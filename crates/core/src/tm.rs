@@ -408,7 +408,7 @@ pub fn translate_project(p: &mut Project, tm: &TranslationMemory, opts: &Transla
         let Some(row) = p.row_mut(&r) else {
             continue;
         };
-        if row.locked() || row.excluded() || row.original().trim().is_empty() || row.raw {
+        if row.locked() || row.excluded() || row.original().trim().is_empty() || row.is_data_or_raw() {
             continue;
         }
         for l in langs.iter().filter(|l| **l != orig_lang) {
@@ -441,7 +441,7 @@ pub fn save_to_tm(p: &mut Project, tm: &mut TranslationMemory, langs: &[String],
         let Some(row) = p.row_mut(&r) else {
             continue;
         };
-        if row.raw || row.excluded() {
+        if row.is_data_or_raw() || row.excluded() {
             continue;
         }
         let original = row.original().to_string();

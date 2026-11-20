@@ -313,6 +313,8 @@ pub struct SusiApp {
     /// Screenshot links resolved against the project.
     pub shot_index: susi_core::screenshots::ScreenshotIndex,
     pub shot_ui: crate::shots::ShotUi,
+    /// Pictures and binary data: textures, originals read from source files.
+    pub data_ui: crate::data_ui::DataUi,
     title: String,
 }
 
@@ -362,6 +364,7 @@ impl SusiApp {
             shots: None,
             shot_index: Default::default(),
             shot_ui: Default::default(),
+            data_ui: Default::default(),
             title: String::new(),
         };
         app.apply_theme(ctx);
@@ -453,6 +456,7 @@ impl SusiApp {
         self.search.results.clear();
         self.stats = None;
         self.rows_stale = true;
+        self.data_ui.clear();
         self.load_screenshots();
         crate::workflow_ui::detect(self);
     }
@@ -463,6 +467,8 @@ impl SusiApp {
                 let rows = p.rows().len();
                 self.set_project(p);
                 self.info(susi_core::tf!("Project opened: {path} ({rows})", path = path.display(), rows = trn(rows, "{n} row", "{n} rows")));
+                // Like Sisulizer: translations linked to changed files are read again.
+                crate::data_ui::refresh_linked(self);
             }
             Err(e) => self.error(format!("{}: {e}", path.display())),
         }
@@ -660,6 +666,14 @@ impl SusiApp {
         };
         if r.locked() {
             self.warn(susi_core::tf!("Row \"{row}\" is marked as \"Do not translate\"", row = r.id()));
+            return;
+        }
+        if r.is_data() {
+            // Pictures and binary data are edited in the editor tab.
+            self.selected = Some(row);
+            self.lang = Some(lang);
+            self.show_bottom = true;
+            self.tab = BottomTab::Editor;
             return;
         }
         let text = r.translation(&lang).map(|t| t.text.clone()).unwrap_or_default();

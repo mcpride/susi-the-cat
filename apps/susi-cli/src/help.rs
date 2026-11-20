@@ -263,7 +263,7 @@ pub fn task(name: &str) -> String {
                 + &item(
                     "-check:S",
                     &format!(
-                        "{}\nmissing, format, tags, whitespace, newline, period, colon,\nexclamation, question, length, allspaces, hotkey, duplicate, control, icu, icucases,\nscreenshot",
+                        "{}\nmissing, format, tags, whitespace, newline, period, colon,\nexclamation, question, length, allspaces, hotkey, duplicate, control, icu, icucases,\nscreenshot, data",
                         t("Specific checks:")
                     ),
                 )

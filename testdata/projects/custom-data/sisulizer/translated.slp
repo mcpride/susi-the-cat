@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20261120225949" version="4.0.374" date="20261120225949" scan="1" scanned="20261120225949">
+  <lang id="en"/>
+  <lang id="de"/>
+  <source class="TNetResourceSource" name="Strings.resx" original="en" encoding="" date="20261120215950" usebom="1" version="net472" righttoleft="nrlNone">
+    <mappings>
+      <keyword name="Button" class="TVisButton"/>
+      <keyword name="CheckBox" class="TVisCheckBox"/>
+      <keyword name="ComboBox" class="TVisComboBox"/>
+      <keyword name="DataGrid" class="TVisGrid"/>
+      <keyword name="GroupBox" class="TVisGroupBox"/>
+      <keyword name="Label" class="TVisLabel"/>
+      <keyword name="ListBox" class="TVisListBox"/>
+      <keyword name="Panel" class="TVisPanel"/>
+      <keyword name="RadioButton" class="TVisRadioButton"/>
+      <keyword name="TextBox" class="TVisEdit"/>
+    </mappings>
+    <row id="FileText">
+      <native>Hello file#c#l</native>
+      <lang id="de">Hallo Datei#n</lang>
+    </row>
+    <row id="Hello">
+      <native>Hello</native>
+      <lang id="de">Hallo</lang>
+    </row>
+    <node class="TImageDataNode" name="AppIcon">
+      <row id="AppIcon" class="TPictureRow">
+        00000100010010100000010020004F0000001600000089504E470D0A1A0A0000000D49
+        48445200000010000000100802000000909168360000001649444154789C63E05AC045
+        126218D530AA61F86A0000B32DB401DF308B750000000049454E44AE426082
+      </row>
+    </node>
+    <node class="TBinaryDataNode" name="Blob">
+      <row id="Blob" class="TBinaryRow" thumbnail="0001020304050607...FDFEFF">
+        <lang id="de">
+          FFFEFDFCFBFAF9F8F7F6F5F4F3F2F1F0EFEEEDECEBEAE9E8E7E6E5E4E3E2E1E0DFDE
+          DDDCDBDAD9D8D7D6D5D4D3D2D1D0CFCECDCCCBCAC9C8C7C6C5C4C3C2C1C0BFBEBDBC
+          BBBAB9B8B7B6B5B4B3B2B1B0AFAEADACABAAA9A8A7A6A5A4A3A2A1A09F9E9D9C9B9A
+          999897969594939291908F8E8D8C8B8A898887868584838281807F7E7D7C7B7A7978
+          77767574737271706F6E6D6C6B6A696867666564636261605F5E5D5C5B5A59585756
+          5554535251504F4E4D4C4B4A494847464544434241403F3E3D3C3B3A393837363534
+          333231302F2E2D2C2B2A292827262524232221201F1E1D1C1B1A1918171615141312
+          11100F0E0D0C0B0A09080706050403020100
+        </lang>
+      </row>
+    </node>
+    <node class="TImageDataNode" name="FileBmp">
+      <row id="FileBmp" class="TPictureRow">
+        424D4E0000000000000036000000280000000400000002000000010018000000000018
+        000000130B0000130B00000000000000000000FF8000FF8000FF8000FF8000FF8000FF
+        8000FF8000FF8000
+      </row>
+    </node>
+    <node class="TBinaryDataNode" name="FileBytes">
+      <row id="FileBytes" class="TBinaryRow" thumbnail="0001020304050607...252627">
+        <lang id="de" filedate="20261120225950" filename="de\data.bin">
+          2827262524232221201F1E1D1C1B1A191817161514131211100F0E0D0C0B0A090807
+          060504030201
+        </lang>
+      </row>
+    </node>
+    <node class="TImageDataNode" name="FileGif">
+      <row id="FileGif" class="TPictureRow">
+        47494638396101000100800000FF00000000002C00000000010001000002024401003B
+      </row>
+    </node>
+    <node class="TImageDataNode" name="FilePicture">
+      <row id="FilePicture" class="TPictureRow">
+        <native>
+          89504E470D0A1A0A0000000D49484452000000180000000C0802000000F752EA2200
+          00001849444154789C63F87582812A883AA68C1A346AD0B035080078F9FA5080E399
+          5F0000000049454E44AE426082
+        </native>
+        <lang id="de" filedate="20261120225950" filename="de\file.png">
+          89504E470D0A1A0A0000000D49484452000000180000000C0802000000F752EA2200
+          00001649444154789C636038F18B3A68D4A05183460DC28700465BFA50720E72E700
+          00000049454E44AE426082
+        </lang>
+      </row>
+    </node>
+    <node class="TImageDataNode" name="Logo">
+      <row id="Logo" class="TPictureRow">
+        <native>
+          89504E470D0A1A0A0000000D49484452000000100000000808020000007F14E8C000
+          00001349444154789C6338212747126218D5400B0D00E4558201C44AEF8D00000000
+          49454E44AE426082
+        </native>
+        <lang id="de" filedate="20261120225950" filename="de\logo.png">
+          89504E470D0A1A0A0000000D49484452000000100000000808020000007F14E8C000
+          00001349444154789C6390933B41126218D5400B0D003A558201FC14BA8600000000
+          49454E44AE426082
+        </lang>
+      </row>
+    </node>
+  </source>
+</document>

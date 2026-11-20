@@ -5,6 +5,7 @@ mod actions;
 mod app;
 mod app_icon;
 mod bottom;
+mod data_ui;
 mod dialogs;
 mod grid;
 mod list;

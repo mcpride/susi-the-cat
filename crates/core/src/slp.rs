@@ -269,7 +269,59 @@ fn write_items(s: &mut String, level: usize, items: &[Item]) {
     }
 }
 
+/// Writes a picture or binary row the way Sisulizer does: hex wrapped to column 78 for its depth,
+/// inline content without translations, `<row …></row>` without data. Returns `false` without
+/// writing anything if a text is not hex (e.g. anonymized test data); it is then written verbatim.
+fn write_data_row(s: &mut String, level: usize, r: &Row) -> bool {
+    use crate::custom_data::{from_hex, wrap_hex};
+    let hex = |t: &str| from_hex(t).map(|_| t.chars().filter(|c| !c.is_ascii_whitespace()).collect::<String>());
+    let native = match r.native.as_deref() {
+        Some(n) => match hex(n) {
+            Some(h) => Some(h),
+            None => return false,
+        },
+        None => None,
+    };
+    let Some(langs) = r.translations.iter().map(|t| hex(&t.text)).collect::<Option<Vec<String>>>() else {
+        return false;
+    };
+    open_tag(s, level, "row", &encoded_attrs(&r.attrs));
+    if r.translations.is_empty() && r.extra.is_empty() && r.pre_native.is_empty() {
+        let content = native.as_deref().filter(|n| !n.is_empty()).map(|n| wrap_hex(n, (level + 1) * 2)).unwrap_or_default();
+        let _ = writeln!(s, ">{content}</row>");
+        return true;
+    }
+    s.push_str(">\n");
+    for e in &r.pre_native {
+        write_generic(s, level + 1, e);
+    }
+    if let Some(n) = &native {
+        indent(s, level + 1);
+        if n.is_empty() {
+            s.push_str("<native/>\n");
+        } else {
+            let _ = writeln!(s, "<native>{}</native>", wrap_hex(n, (level + 2) * 2));
+        }
+    }
+    for (t, h) in r.translations.iter().zip(&langs) {
+        open_tag(s, level + 1, "lang", &encoded_attrs(&t.attrs));
+        if h.is_empty() {
+            s.push_str("/>\n");
+        } else {
+            let _ = writeln!(s, ">{}</lang>", wrap_hex(h, (level + 2) * 2));
+        }
+    }
+    for e in &r.extra {
+        write_generic(s, level + 1, e);
+    }
+    close_tag(s, level, "row");
+    true
+}
+
 fn write_row(s: &mut String, level: usize, r: &Row) {
+    if r.is_data() && write_data_row(s, level, r) {
+        return;
+    }
     open_tag(s, level, "row", &encoded_attrs(&r.attrs));
     let code = |t: &str| if r.raw { t.to_string() } else { encode(t) };
     let native = r.native.as_deref().map(code);

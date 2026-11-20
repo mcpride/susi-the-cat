@@ -168,14 +168,19 @@ fn lang_cell(ui: &mut Ui, c: &LangCell<'_>, pal: &Palette) {
         fill_cell(ui, pal.problem);
     }
     let rect = ui.max_rect();
+    let data = c.row.is_data();
     if c.lang == c.original_lang {
         fill_cell(ui, pal.lavender);
-        cell_label(ui, c.row.original());
+        cell_label(ui, &if data { crate::data_ui::cell_text(c.row, None) } else { c.row.original().to_string() });
         return;
     }
     let st = c.row.tstatus(c.lang);
     ui.painter().rect_filled(Rect::from_min_size(rect.min, vec2(3.0, rect.height())), 0.0, status_color(st));
     ui.add_space(4.0);
+    if data {
+        cell_label(ui, &crate::data_ui::cell_text(c.row, Some(c.lang)));
+        return;
+    }
     let t = c.row.translation(c.lang);
     if let Some(t) = t {
         cell_label(ui, &t.text);
@@ -478,7 +483,7 @@ fn body(ui: &mut Ui, c: &BodyCtx<'_>, scroll_to: Option<usize>, cell_edit: &mut 
 
 /// Selection, editing and the row context menu of a cell in the column of `lang` (the current
 /// language for columns without a language); `langs` are the project languages.
-fn click_events(resp: &egui::Response, langs: &[String], r: &RowRef, lang: Option<&str>, ev: &mut Events) {
+fn click_events(resp: &egui::Response, langs: &[String], r: &RowRef, lang: Option<&str>, data_row: bool, ev: &mut Events) {
     if resp.clicked() || resp.secondary_clicked() {
         ev.click = Some((r.clone(), lang.map(str::to_string)));
     }
@@ -487,7 +492,7 @@ fn click_events(resp: &egui::Response, langs: &[String], r: &RowRef, lang: Optio
     {
         ev.double = Some((r.clone(), l.to_string()));
     }
-    resp.context_menu(|ui| row_menu_items(ui, &mut ev.actions, langs, lang));
+    resp.context_menu(|ui| row_menu_items(ui, &mut ev.actions, langs, lang, data_row));
 }
 
 fn row_cells(row: &mut egui_extras::TableRow<'_, '_>, c: &BodyCtx<'_>, r: &RowRef, data: &Row, cell_edit: &mut Option<crate::app::CellEdit>, ev: &mut Events) {
@@ -504,7 +509,7 @@ fn row_cells(row: &mut egui_extras::TableRow<'_, '_>, c: &BodyCtx<'_>, r: &RowRe
                 }
             });
             if !editing {
-                click_events(&resp, c.langs, r, Some(l), ev);
+                click_events(&resp, c.langs, r, Some(l), data.is_data(), ev);
             }
             continue;
         }
@@ -515,10 +520,10 @@ fn row_cells(row: &mut egui_extras::TableRow<'_, '_>, c: &BodyCtx<'_>, r: &RowRe
             Col::Date => resp.on_hover_text(date_hint(data, c.cur_lang)),
             _ => resp,
         };
-        click_events(&resp, c.langs, r, c.cur_lang, ev);
+        click_events(&resp, c.langs, r, c.cur_lang, data.is_data(), ev);
     }
     let (_, resp) = row.col(|_| {});
-    click_events(&resp, c.langs, r, c.cur_lang, ev);
+    click_events(&resp, c.langs, r, c.cur_lang, data.is_data(), ev);
 }
 
 /// Cells of all columns except the language columns.
@@ -536,7 +541,7 @@ fn plain_cell(ui: &mut Ui, col: &Col, c: &BodyCtx<'_>, r: &RowRef, data: &Row) {
         Col::Original => {
             let problem = c.issue_cells.contains(&(r.clone(), c.p.original_lang(r).to_string()));
             fill_cell(ui, if problem { c.pal.problem } else { c.pal.lavender });
-            cell_label(ui, data.original());
+            cell_label(ui, &if data.is_data() { crate::data_ui::cell_text(data, None) } else { data.original().to_string() });
         }
         Col::Note => {
             cell_label(ui, data.note());

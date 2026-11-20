@@ -134,6 +134,7 @@ flowchart TB
         pseudo["pseudo<br/>pseudo translation"]
         filter["filter<br/>row filters, date ranges"]
         screenshots["screenshots<br/>images linked to rows"]
+        custom_data["custom_data<br/>pictures and binary data"]
         keys["keys<br/>rows by context or id"]
     end
     subgraph formats_layer["File formats - formats/"]
@@ -173,6 +174,7 @@ flowchart TB
 | `exchange`  | Export/import of a project table to Excel, delimited text, XLIFF 1.2 and TMX, including the screenshots of the exported rows |
 | `screenshots` | `ScreenshotStore`: screenshots linked to rows (with areas) in `<project>.files/`, never in the `.slp`; manifest import, refresh, prune; `ScreenshotIndex` resolves links to rows |
 | `keys`      | `RowKeys`: rows by context, row id or wildcard pattern (screenshot links, MCP)                    |
+| `custom_data` | Pictures and binary data (Sisulizer *Custom Data*): hex codec and 78-column wrapping, `thumbnail`, picture formats and sizes, `merge_data` for the data nodes of a scan, linked translation files (`load_translation_file`, `refresh_linked`), the `data` check |
 | `validate`  | Placeholder, tag, whitespace, punctuation, length, hotkey, duplicate, control character and ICU checks; JUnit XML |
 | `icu`       | Light ICU MessageFormat parser (arguments, plural/select cases) used by validation                |
 | `stats`     | Per-language statistics; text/HTML/JSON reports                                                   |
@@ -254,6 +256,12 @@ classDiagram
   the GUI's context column, the exchange files and the MCP tools.
 - Timestamps (row created, original changed, translated per language) are stored as attributes in
   local time, as Sisulizer does, and drive the date filter.
+- Pictures and binary data are rows of the classes `TPictureRow` (original and translations as
+  hex) and `TBinaryRow` (original only as `thumbnail`), each in a data node (`TImageDataNode`,
+  `TBinaryDataNode`) named like the resource. `Row::data_kind` tells them apart; text features
+  (TM, pseudo, exchange, statistics, *Copy from* for columns) skip them. `slp` writes their hex the
+  way Sisulizer does (wrapped to column 78 for the depth, inline without translations), so a
+  translation added by Susi looks like one added by Sisulizer.
 
 ### 3.3 File formats and the scan/build pipeline
 
@@ -298,6 +306,10 @@ flowchart LR
 - **Scan** turns an original file into a flat list of `ScannedString { id, text, comment }` and
   merges it into the source's rows: new ids become *New* rows, a changed original marks the row
   *Changed* and its translations *For review*, ids no longer present become *Unused*.
+- **RESX** additionally yields custom data (`resx::scan_all`: embedded byte arrays and file
+  references, `ScannedData`), which `custom_data::merge_data` keeps in one data node per
+  resource (picture or binary by content, like Sisulizer); text file references become strings.
+  The build embeds translated data (`build_bytes`) and writes text references as strings.
 - **Build** never generates a file from scratch: it copies the original and substitutes the
   translated values (`select_output` applies the write method *All / Translated / Different*).
   Comments, order, indentation, BOM and line endings of the original are preserved, so diffs of
@@ -329,6 +341,7 @@ lives in one struct, `SusiApp` (`app.rs`); the UI is re-rendered from that state
 | `actions.rs`     | `Action` enum and `run_actions`: the only place that mutates the project         |
 | `workflow_ui.rs` | Git workflow state display, background jobs and the workflow dialogs           |
 | `shots.rs`       | Screenshots: bottom tab with marked areas, paste and drag & drop, screenshot manager |
+| `data_ui.rs`     | Pictures and binary data: editor tab with previews or hex dump, load/link/save files, cell texts |
 | `tests.rs`       | Headless rendering tests against real projects                                   |
 
 ### 4.1 Frame loop and action queue
@@ -443,7 +456,7 @@ flowchart LR
     session --> wf
 ```
 
-- `server.rs` declares the 29 tools with `#[tool]` attributes and input structs deriving
+- `server.rs` declares the 31 tools with `#[tool]` attributes and input structs deriving
   `JsonSchema`; each tool locks the session and delegates.
 - `session.rs` returns `serde_json::Value` results and is unit-testable without a transport.
   `get_screenshot` is the only tool with image content (base64 PNG/JPEG plus a JSON text).
@@ -457,6 +470,7 @@ flowchart LR
 | Project       | `open_project`, `create_project`, `save_project`, `project_info`, `add_language`, `add_source` |
 | Rows          | `list_rows`, `get_row`, `set_translations`, `set_status`, `set_row_properties`, `copy_translations` |
 | Screenshots   | `get_screenshot`, `attach_screenshot`, `detach_screenshot`                  |
+| Pictures, binary data | `get_picture`, `load_translation_file`                            |
 | Operations    | `scan`, `build`, `validate`, `statistics`, `fill_pseudo`                    |
 | TM / exchange | `tm_translate`, `tm_lookup`, `tm_save`, `export`, `import`                  |
 | Git workflow  | `workflow_status`, `workflow_fetch`, `workflow_save`, `workflow_publish`    |
@@ -586,6 +600,10 @@ Compatibility with existing Sisulizer projects is the central constraint:
   attributes when it saves a project (verified with SlMake 4.0.374). Screenshots therefore live
   in `<project>.files/`, and their links address rows by source and context so they survive
   scans; links to vanished rows are reported as orphaned.
+- Pictures and binary data, by contrast, are stored like Sisulizer stores them (hex in the
+  `.slp`, translations linked via `filename`/`filedate`), verified against SlMake 4.0.374 with the
+  fixture `testdata/projects/custom-data/`. Linked files are compared by content, so checkouts do
+  not change the project.
 
 ### 8.2 User interface localization
 
@@ -608,6 +626,7 @@ Compatibility with existing Sisulizer projects is the central constraint:
 | Forge token              | git credential helper (Windows Credential Manager) or `SUSI_FORGE_TOKEN` | *Sign in*, `workflow login` |
 | UI language override     | `SUSI_LANG`, CLI `-uilang:`                      | user                      |
 | Screenshots              | `<project>.files/screenshots.json` and `screenshots/` next to the `.slp` | GUI, CLI, MCP (with the project) |
+| Linked translation files | anywhere, `filename` relative to the `.slp` (pictures and binary data) | translator; read by GUI, CLI, MCP |
 
 ### 8.4 Error handling and code rules
 
@@ -648,6 +667,7 @@ language.
 | Unit tests        | `#[cfg(test)]` in most modules    | Parsers, builders, patterns, filters, status logic, i18n catalogs     |
 | Core integration  | `crates/core/tests/ops.rs`        | Scan/build of the demo projects, expected drift, RESX build vs. Sisulizer output |
 | Round trip        | `crates/core/tests/samples.rs`    | Load and save all `.slp` fixtures, byte-identical or stable           |
+| Custom data       | `crates/core/tests/custom_data.rs` | RESX pictures and binary data: scan and build compared with Sisulizer's results, linked files, excluded types |
 | Workflow          | `crates/workflow/tests/flow.rs`   | End to end with real git repositories (bare "server", developer and translator clones) and a fake `Forge` |
 | MCP               | `crates/mcp/tests/mcp.rs`         | rmcp client against `SusiServer` over an in-memory duplex stream      |
 | CLI               | `apps/susi-cli/tests/cli.rs`      | Task chains and exit codes through `susi_cli::run_with`               |

@@ -270,6 +270,10 @@ fn editor(app: &mut SusiApp, ui: &mut Ui) {
         ui.label(t("No row or language selected."));
         return;
     };
+    if app.project.as_ref().and_then(|p| p.row(&b.row)).is_some_and(susi_core::Row::is_data) {
+        crate::data_ui::editor(app, ui, &b.row, &b.lang);
+        return;
+    }
     let mut changed_text = false;
     let mut changed_note = false;
     let mut changed_comment = false;

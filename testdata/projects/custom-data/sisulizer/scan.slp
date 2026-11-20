@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20261120225949" version="4.0.374" date="20261120225949" scan="1" scanned="20261120225949">
+  <lang id="en"/>
+  <lang id="de"/>
+  <source class="TNetResourceSource" name="Strings.resx" original="en" encoding="" date="20261120215950" usebom="1" version="net472" righttoleft="nrlNone">
+    <mappings>
+      <keyword name="Button" class="TVisButton"/>
+      <keyword name="CheckBox" class="TVisCheckBox"/>
+      <keyword name="ComboBox" class="TVisComboBox"/>
+      <keyword name="DataGrid" class="TVisGrid"/>
+      <keyword name="GroupBox" class="TVisGroupBox"/>
+      <keyword name="Label" class="TVisLabel"/>
+      <keyword name="ListBox" class="TVisListBox"/>
+      <keyword name="Panel" class="TVisPanel"/>
+      <keyword name="RadioButton" class="TVisRadioButton"/>
+      <keyword name="TextBox" class="TVisEdit"/>
+    </mappings>
+    <row id="Hello">Hello</row>
+    <row id="FileText">Hello file#c#l</row>
+    <node class="TImageDataNode" name="AppIcon">
+      <row id="AppIcon" class="TPictureRow">
+        00000100010010100000010020004F0000001600000089504E470D0A1A0A0000000D49
+        48445200000010000000100802000000909168360000001649444154789C63E05AC045
+        126218D530AA61F86A0000B32DB401DF308B750000000049454E44AE426082
+      </row>
+    </node>
+    <node class="TBinaryDataNode" name="Blob">
+      <row id="Blob" class="TBinaryRow" thumbnail="0001020304050607...FDFEFF"></row>
+    </node>
+    <node class="TImageDataNode" name="FileBmp">
+      <row id="FileBmp" class="TPictureRow">
+        424D4E0000000000000036000000280000000400000002000000010018000000000018
+        000000130B0000130B00000000000000000000FF8000FF8000FF8000FF8000FF8000FF
+        8000FF8000FF8000
+      </row>
+    </node>
+    <node class="TBinaryDataNode" name="FileBytes">
+      <row id="FileBytes" class="TBinaryRow" thumbnail="0001020304050607...252627"></row>
+    </node>
+    <node class="TImageDataNode" name="FileGif">
+      <row id="FileGif" class="TPictureRow">
+        47494638396101000100800000FF00000000002C00000000010001000002024401003B
+      </row>
+    </node>
+    <node class="TImageDataNode" name="FilePicture">
+      <row id="FilePicture" class="TPictureRow">
+        89504E470D0A1A0A0000000D49484452000000180000000C0802000000F752EA220000
+        001849444154789C63F87582812A883AA68C1A346AD0B035080078F9FA5080E3995F00
+        00000049454E44AE426082
+      </row>
+    </node>
+    <node class="TImageDataNode" name="Logo">
+      <row id="Logo" class="TPictureRow">
+        89504E470D0A1A0A0000000D49484452000000100000000808020000007F14E8C00000
+        001349444154789C6338212747126218D5400B0D00E4558201C44AEF8D000000004945
+        4E44AE426082
+      </row>
+    </node>
+  </source>
+</document>

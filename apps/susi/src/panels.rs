@@ -8,6 +8,7 @@ use susi_core::status::{RowStatus, TranslationStatus};
 
 use crate::actions::{Action, Scope};
 use crate::app::{Nav, SusiApp};
+use crate::data_ui::DataCmd;
 use crate::shots::ShotCmd;
 
 pub fn status_color(s: TranslationStatus) -> Color32 {
@@ -263,16 +264,28 @@ fn status_buttons(ui: &mut egui::Ui, acts: &mut Vec<Action>, action: impl Fn(Tra
 pub fn row_menu(app: &SusiApp, ui: &mut egui::Ui, acts: &mut Vec<Action>) {
     ui.menu_button(t("Row"), |ui| {
         let langs = app.project.as_ref().map(Project::language_ids).unwrap_or_default();
-        row_menu_items(ui, acts, &langs, app.lang.as_deref());
+        let data_row = app.selected.as_ref().and_then(|r| app.project.as_ref()?.row(r)).is_some_and(susi_core::Row::is_data);
+        row_menu_items(ui, acts, &langs, app.lang.as_deref(), data_row);
     });
 }
 
 /// Row commands (menu "Row" and the grid's context menu) for the cell of `lang` (the current
-/// language) in the selected row; `langs` are the project languages.
-pub fn row_menu_items(ui: &mut egui::Ui, acts: &mut Vec<Action>, langs: &[String], lang: Option<&str>) {
+/// language) in the selected row; `langs` are the project languages, `data_row`: the row holds a
+/// picture or binary data.
+pub fn row_menu_items(ui: &mut egui::Ui, acts: &mut Vec<Action>, langs: &[String], lang: Option<&str>, data_row: bool) {
     ui.menu_button(t("Status"), |ui| status_buttons(ui, acts, Action::SetStatus));
     copy_from_menu(ui, acts, langs, lang, Action::CopyIntoCell);
     cmd(ui, acts, t("Clear translation"), Action::ClearTranslation);
+    if data_row {
+        ui.menu_button(t("Picture or binary data"), |ui| {
+            cmd(ui, acts, t("Load translation from file…"), Action::Data(DataCmd::Load { link: false }));
+            cmd(ui, acts, t("Link translation to file…"), Action::Data(DataCmd::Load { link: true }));
+            cmd(ui, acts, t("Remove file link"), Action::Data(DataCmd::Unlink));
+            ui.separator();
+            cmd(ui, acts, t("Save original as…"), Action::Data(DataCmd::SaveAs { translation: false }));
+            cmd(ui, acts, t("Save translation as…"), Action::Data(DataCmd::SaveAs { translation: true }));
+        });
+    }
     ui.separator();
     cmd(ui, acts, t("Toggle do not translate"), Action::ToggleLocked);
     cmd(ui, acts, t("Toggle mark"), Action::ToggleMarked);

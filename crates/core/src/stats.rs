@@ -64,7 +64,7 @@ pub fn statistics(p: &Project, rows: Option<&[RowRef]>) -> Statistics {
         let Some(row) = p.row(r) else {
             continue;
         };
-        if row.excluded() || row.raw {
+        if row.excluded() || row.is_data_or_raw() {
             continue;
         }
         st.rows += 1;

@@ -193,3 +193,74 @@ async fn screenshots_over_mcp() {
     client.cancel().await.unwrap();
     let _ = server.await;
 }
+
+fn copy_dir(from: &std::path::Path, to: &std::path::Path) {
+    std::fs::create_dir_all(to).unwrap();
+    for e in std::fs::read_dir(from).unwrap().flatten() {
+        if e.file_type().unwrap().is_dir() {
+            copy_dir(&e.path(), &to.join(e.file_name()));
+        } else {
+            std::fs::copy(e.path(), to.join(e.file_name())).unwrap();
+        }
+    }
+}
+
+/// Pictures and binary data (fixture with Sisulizer's translated project).
+#[tokio::test]
+async fn custom_data_over_mcp() {
+    let dir = tempfile::tempdir().unwrap();
+    copy_dir(&std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../testdata/projects/custom-data"), dir.path());
+    let slp = dir.path().join("app.slp");
+    std::fs::copy(dir.path().join("sisulizer").join("translated.slp"), &slp).unwrap();
+    let (server_io, client_io) = tokio::io::duplex(256 * 1024);
+    let server = tokio::spawn(async move {
+        let s = SusiServer::new(Session::new()).serve(server_io).await.unwrap();
+        let _ = s.waiting().await;
+    });
+    let client = Client.serve(client_io).await.unwrap();
+    let json = |t: &str| serde_json::from_str::<Value>(t).unwrap();
+    assert!(!call(&client, "open_project", json!({"path": slp.to_string_lossy()})).await.0);
+
+    let (_, t) = call(&client, "get_row", json!({"key": "Logo/Logo"})).await;
+    let v = json(&t);
+    assert_eq!(
+        (v["original"].clone(), v["data"].clone()),
+        (Value::Null, json!({"format": "picture", "size": 76, "type": "PNG", "width": 16, "height": 8})),
+        "{t}"
+    );
+    assert_eq!(v["translations"]["de"]["file"], "de\\logo.png", "{t}");
+    let (_, t) = call(&client, "get_row", json!({"key": "Blob/Blob"})).await;
+    assert_eq!(json(&t)["data"], json!({"format": "binary"}), "{t}");
+
+    let picture = |args: Value| {
+        let client = &client;
+        async move { client.call_tool(CallToolRequestParams::new("get_picture").with_arguments(args.as_object().cloned().unwrap())).await.unwrap() }
+    };
+    let res = picture(json!({"key": "Logo/Logo", "lang": "de"})).await;
+    assert_ne!(res.is_error, Some(true));
+    let image = res.content[0].as_image().expect("image content");
+    assert!(image.mime_type == "image/png" && image.data.starts_with("iVBORw0KGgo"));
+    assert_eq!(picture(json!({"key": "FileGif/FileGif"})).await.content[0].as_image().unwrap().mime_type, "image/gif");
+    assert_eq!(picture(json!({"key": "Blob/Blob"})).await.is_error, Some(true));
+
+    let (e, t) = call(&client, "set_translations", json!({"items": [{"key": "Logo/Logo", "lang": "de", "text": "x"}]})).await;
+    assert!(!e && t.contains("load_translation_file"), "{t}");
+    let path = dir.path().join("de").join("data.bin");
+    let (e, t) = call(&client, "load_translation_file", json!({"key": "Blob/Blob", "lang": "de", "path": path.to_string_lossy()})).await;
+    assert!(!e, "{t}");
+    assert_eq!(
+        json(&t)["translations"]["de"],
+        json!({"data": {"format": "binary", "size": 40}, "status": "complete", "file": "de\\data.bin", "date": json(&t)["translations"]["de"]["date"]}),
+        "{t}"
+    );
+
+    // A changed linked file is read again before building.
+    std::fs::copy(dir.path().join("de").join("file.png"), dir.path().join("de").join("logo.png")).unwrap();
+    let (e, t) = call(&client, "build", json!({"langs": ["de"]})).await;
+    assert!(!e && json(&t)["linked_files"]["updated"] == json!(["Logo/Logo (de)"]), "{t}");
+    let (_, t) = call(&client, "validate", json!({"kinds": ["data"]})).await;
+    assert!(t.contains("differs from the original"), "{t}");
+
+    client.cancel().await.unwrap();
+    let _ = server.await;
+}
