@@ -79,8 +79,10 @@ pub struct PseudoDialog {
     pub overwrite: bool,
 }
 
-/// Copying the original into the visible rows of a language column.
-pub struct CopyOriginalDialog {
+/// Copying the original or a language into the visible rows of a language column.
+pub struct CopyDialog {
+    /// Language copied from; `None` for the original.
+    pub from: Option<String>,
     pub lang: String,
     /// Visible rows when the dialog was opened.
     pub rows: Vec<RowRef>,
@@ -115,7 +117,7 @@ pub enum Dialog {
     Import(ImportDialog),
     TmTranslate(TmDialog),
     Pseudo(PseudoDialog),
-    CopyOriginal(CopyOriginalDialog),
+    Copy(CopyDialog),
     ClearColumn(ClearColumnDialog),
     Settings(Box<Settings>),
     About,
@@ -146,7 +148,7 @@ pub fn show(app: &mut SusiApp, ctx: &egui::Context) {
             Dialog::Import(i) => import(app, ui, i),
             Dialog::TmTranslate(t) => tm_translate(app, ui, t),
             Dialog::Pseudo(p) => pseudo(app, ui, p),
-            Dialog::CopyOriginal(c) => copy_original(app, ui, c),
+            Dialog::Copy(c) => copy_cells(app, ui, c),
             Dialog::ClearColumn(c) => clear_column(app, ui, c),
             Dialog::Settings(s) => settings(app, ui, s),
             Dialog::About => about(ui),
@@ -607,15 +609,30 @@ fn pseudo(app: &mut SusiApp, ui: &mut egui::Ui, d: &mut PseudoDialog) -> bool {
     }
 }
 
-fn copy_original(app: &mut SusiApp, ui: &mut egui::Ui, d: &mut CopyOriginalDialog) -> bool {
-    ui.heading(t("Copy original"));
-    ui.label(susi_core::tf!("Copies the original text into the visible rows of the column {lang}.", lang = SusiApp::lang_label(&d.lang)));
+fn copy_cells(app: &mut SusiApp, ui: &mut egui::Ui, d: &mut CopyDialog) -> bool {
+    let lang = SusiApp::lang_label(&d.lang);
+    let title = match &d.from {
+        None => {
+            ui.heading(t("Copy original"));
+            ui.label(susi_core::tf!("Copies the original text into the visible rows of the column {lang}.", lang = lang));
+            t("Copy original")
+        }
+        Some(from) => {
+            ui.heading(t("Copy language"));
+            ui.label(susi_core::tf!(
+                "Copies the translations of {from} into the visible rows of the column {lang}.",
+                from = SusiApp::lang_label(from),
+                lang = lang
+            ));
+            t("Copy language")
+        }
+    };
     ui.label(susi_core::tf!("Empty cells: {empty}, cells with a translation: {translated}", empty = d.targets.empty, translated = d.targets.translated));
     ui.add_enabled(d.targets.translated > 0, egui::Checkbox::new(&mut d.overwrite, t("Overwrite existing translations")));
     ui.small(t("Rows marked \"Do not translate\" and excluded rows are skipped."));
-    match ok_cancel(ui, t("Copy original"), d.targets.count(d.overwrite) > 0) {
+    match ok_cancel(ui, title, d.targets.count(d.overwrite) > 0) {
         Some(true) => {
-            app.copy_original_in_column(d);
+            app.copy_in_column(d);
             true
         }
         Some(false) => true,

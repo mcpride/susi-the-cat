@@ -10,7 +10,7 @@ use susi_core::ops::CopyTargets;
 
 use crate::actions::{Action, Scope};
 use crate::app::{BottomTab, SusiApp};
-use crate::dialogs::{ClearColumnDialog, CopyOriginalDialog, Dialog, ExportDialog, ImportDialog, PseudoDialog, TmDialog};
+use crate::dialogs::{ClearColumnDialog, CopyDialog, Dialog, ExportDialog, ImportDialog, PseudoDialog, TmDialog};
 use crate::workflow_ui::{FetchDialog, PublishDialog, SaveDialog, TokenDialog};
 
 fn run(ctx: &egui::Context, app: &mut SusiApp, frames: usize) {
@@ -137,20 +137,41 @@ fn column_commands() {
     assert!(app.dirty);
 
     // Copying the original fills the empty cells; then nothing is left to copy.
-    app.actions.push(Action::CopyOriginalInColumn(Some(lang.clone())));
+    app.actions.push(Action::CopyInColumn { from: None, lang: Some(lang.clone()) });
     run(&ctx, &mut app, 1);
-    let Some(Dialog::CopyOriginal(d)) = app.dialog.take() else { panic!("no copy dialog") };
+    let Some(Dialog::Copy(d)) = app.dialog.take() else { panic!("no copy dialog") };
     assert_eq!(d.targets.translated, 0);
-    app.copy_original_in_column(&d);
+    app.copy_in_column(&d);
     let p = app.project.as_ref().unwrap();
     for r in &rows {
         let row = p.row(r).unwrap();
         let copied = !row.locked() && !row.excluded() && !row.raw && !row.original().is_empty();
         assert_eq!(row.text(&lang), copied.then(|| row.original()), "{}", row.id());
     }
-    app.actions.push(Action::CopyOriginalInColumn(Some(lang.clone())));
+    app.actions.push(Action::CopyInColumn { from: None, lang: Some(lang.clone()) });
     run(&ctx, &mut app, 1);
     assert!(app.dialog.is_none());
+
+    // Copying a language into the selected cell and, overwriting, into the current column.
+    let editable = |row: &susi_core::model::Row| !row.locked() && !row.excluded() && !row.raw && row.text(&current).is_some();
+    let p = app.project.as_ref().unwrap();
+    let r0 = rows.iter().find(|r| p.row(r).is_some_and(|row| editable(row) && row.text(&current) != row.text(&lang))).unwrap().clone();
+    app.select(r0.clone());
+    app.lang = Some(lang.clone());
+    app.actions.push(Action::CopyIntoCell(Some(current.clone())));
+    run(&ctx, &mut app, 1);
+    let row = app.project.as_ref().unwrap().row(&r0).unwrap();
+    assert_eq!(row.text(&lang), row.text(&current));
+    app.actions.push(Action::CopyInColumn { from: Some(current.clone()), lang: None });
+    run(&ctx, &mut app, 1);
+    let Some(Dialog::Copy(mut d)) = app.dialog.take() else { panic!("no copy dialog") };
+    assert_eq!((d.from.as_deref(), d.lang.as_str()), (Some(current.as_str()), lang.as_str()));
+    assert!(d.targets.translated > 0);
+    d.overwrite = true;
+    app.copy_in_column(&d);
+    let p = app.project.as_ref().unwrap();
+    assert!(rows.iter().map(|r| p.row(r).unwrap()).filter(|row| editable(row)).all(|row| row.text(&lang) == row.text(&current)));
+    app.lang = Some(current.clone());
 
     app.actions.push(Action::SetStatusIn(Scope::View, Some(lang.clone()), TranslationStatus::Complete));
     run(&ctx, &mut app, 1);
@@ -212,11 +233,13 @@ fn render_all_views_and_dialogs(ui_language: &str) {
         Dialog::Confirm { then: Action::Exit },
         Dialog::TmTranslate(TmDialog { overwrite: false, fuzzy: true, only_view: false, only_lang: false }),
         Dialog::Pseudo(PseudoDialog { lang: "qps".into(), options: app.settings.pseudo.clone(), overwrite: false }),
-        Dialog::CopyOriginal(CopyOriginalDialog {
+        Dialog::Copy(CopyDialog { from: None, lang: "de".into(), rows: app.rows.clone(), targets: CopyTargets { empty: 2, translated: 5 }, overwrite: true }),
+        Dialog::Copy(CopyDialog {
+            from: Some("en".into()),
             lang: "de".into(),
             rows: app.rows.clone(),
-            targets: CopyTargets { empty: 2, translated: 5 },
-            overwrite: true,
+            targets: CopyTargets { empty: 0, translated: 0 },
+            overwrite: false,
         }),
         Dialog::ClearColumn(ClearColumnDialog { lang: "de".into(), rows: app.rows.clone() }),
         Dialog::Settings(Box::new(app.settings.clone())),

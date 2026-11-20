@@ -313,8 +313,10 @@ fn table(app: &mut SusiApp, ui: &mut Ui, langs: &[String]) -> Events {
     let Some(p) = app.project.as_ref() else {
         return ev;
     };
+    let project_langs = p.language_ids();
     let ctx = BodyCtx {
         p,
+        langs: &project_langs,
         rows: &app.rows,
         sel_idx: app.selected.as_ref().and_then(|s| app.rows.iter().position(|r| r == s)),
         cur_lang: app.lang.as_deref(),
@@ -327,7 +329,15 @@ fn table(app: &mut SusiApp, ui: &mut Ui, langs: &[String]) -> Events {
     let cell_edit = &mut app.cell_edit;
     let out = egui::ScrollArea::both().id_salt("grid-body").auto_shrink(false).show(ui, |ui| body(ui, &ctx, scroll_to, cell_edit, &mut ev));
     app.grid_offset = out.state.clamped_offset();
-    let h = Header { rect: header_rect, offset_x: app.grid_offset.x, cols: &cols, widths: &widths, cur_lang: app.lang.as_deref(), sort: app.sort };
+    let h = Header {
+        rect: header_rect,
+        offset_x: app.grid_offset.x,
+        cols: &cols,
+        widths: &widths,
+        langs: &project_langs,
+        cur_lang: app.lang.as_deref(),
+        sort: app.sort,
+    };
     let (resized, sort_clicked) = header(ui, &h, &mut ev.actions);
     if let Some((i, w)) = resized {
         app.col_widths.insert(cols[i].key(), w);
@@ -344,6 +354,8 @@ struct Header<'a> {
     offset_x: f32,
     cols: &'a [Col],
     widths: &'a [f32],
+    /// Project languages.
+    langs: &'a [String],
     cur_lang: Option<&'a str>,
     sort: Option<SheetSort>,
 }
@@ -352,7 +364,7 @@ struct Header<'a> {
 /// separator, and the sortable column whose title was clicked. The context menu of a language or
 /// status column title adds the column commands to `acts`.
 fn header(ui: &mut Ui, h: &Header<'_>, acts: &mut Vec<Action>) -> (Option<(usize, f32)>, Option<SortColumn>) {
-    let Header { rect, offset_x, cols, widths, cur_lang, sort } = *h;
+    let Header { rect, offset_x, cols, widths, langs, cur_lang, sort } = *h;
     let painter = ui.painter_at(rect);
     let visuals = ui.visuals().clone();
     let stroke = visuals.widgets.noninteractive.bg_stroke;
@@ -380,7 +392,7 @@ fn header(ui: &mut Ui, h: &Header<'_>, acts: &mut Vec<Action>) -> (Option<(usize
             resp.context_menu(|ui| {
                 ui.label(RichText::new(SusiApp::lang_label(lang)).strong());
                 ui.separator();
-                column_items(ui, acts, Some(lang));
+                column_items(ui, acts, langs, Some(lang));
             });
         }
         let galley = painter.layout_no_wrap(col.title(cur_lang, sort), font.clone(), visuals.strong_text_color());
@@ -411,6 +423,8 @@ fn header(ui: &mut Ui, h: &Header<'_>, acts: &mut Vec<Action>) -> (Option<(usize
 
 struct BodyCtx<'a> {
     p: &'a Project,
+    /// Project languages.
+    langs: &'a [String],
     rows: &'a [RowRef],
     sel_idx: Option<usize>,
     cur_lang: Option<&'a str>,
@@ -462,7 +476,9 @@ fn body(ui: &mut Ui, c: &BodyCtx<'_>, scroll_to: Option<usize>, cell_edit: &mut 
     }
 }
 
-fn click_events(resp: &egui::Response, r: &RowRef, lang: Option<&str>, ev: &mut Events) {
+/// Selection, editing and the row context menu of a cell in the column of `lang` (the current
+/// language for columns without a language); `langs` are the project languages.
+fn click_events(resp: &egui::Response, langs: &[String], r: &RowRef, lang: Option<&str>, ev: &mut Events) {
     if resp.clicked() || resp.secondary_clicked() {
         ev.click = Some((r.clone(), lang.map(str::to_string)));
     }
@@ -471,7 +487,7 @@ fn click_events(resp: &egui::Response, r: &RowRef, lang: Option<&str>, ev: &mut 
     {
         ev.double = Some((r.clone(), l.to_string()));
     }
-    resp.context_menu(|ui| row_menu_items(ui, &mut ev.actions));
+    resp.context_menu(|ui| row_menu_items(ui, &mut ev.actions, langs, lang));
 }
 
 fn row_cells(row: &mut egui_extras::TableRow<'_, '_>, c: &BodyCtx<'_>, r: &RowRef, data: &Row, cell_edit: &mut Option<crate::app::CellEdit>, ev: &mut Events) {
@@ -488,7 +504,7 @@ fn row_cells(row: &mut egui_extras::TableRow<'_, '_>, c: &BodyCtx<'_>, r: &RowRe
                 }
             });
             if !editing {
-                click_events(&resp, r, Some(l), ev);
+                click_events(&resp, c.langs, r, Some(l), ev);
             }
             continue;
         }
@@ -499,10 +515,10 @@ fn row_cells(row: &mut egui_extras::TableRow<'_, '_>, c: &BodyCtx<'_>, r: &RowRe
             Col::Date => resp.on_hover_text(date_hint(data, c.cur_lang)),
             _ => resp,
         };
-        click_events(&resp, r, c.cur_lang, ev);
+        click_events(&resp, c.langs, r, c.cur_lang, ev);
     }
     let (_, resp) = row.col(|_| {});
-    click_events(&resp, r, c.cur_lang, ev);
+    click_events(&resp, c.langs, r, c.cur_lang, ev);
 }
 
 /// Cells of all columns except the language columns.

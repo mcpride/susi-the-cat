@@ -63,7 +63,8 @@ fn menu_bar(app: &mut SusiApp, ui: &mut egui::Ui) {
     egui::MenuBar::new().ui(ui, |ui| {
         file_menu(app, ui, &mut acts);
         ui.menu_button(t("Edit"), |ui| {
-            cmd(ui, &mut acts, t("Copy original"), Action::CopyOriginal);
+            let langs = app.project.as_ref().map(Project::language_ids).unwrap_or_default();
+            copy_from_menu(ui, &mut acts, &langs, app.lang.as_deref(), Action::CopyIntoCell);
             cmd(ui, &mut acts, t("Clear translation"), Action::ClearTranslation);
             cmd_key(ui, &mut acts, t("Edit cell"), "F2", Action::EditCell);
             ui.separator();
@@ -81,7 +82,7 @@ fn menu_bar(app: &mut SusiApp, ui: &mut egui::Ui) {
             cmd(ui, &mut acts, t("Clear validation results"), Action::ClearIssues);
         });
         column_menu(app, ui, &mut acts);
-        row_menu(ui, &mut acts);
+        row_menu(app, ui, &mut acts);
         ui.menu_button(t("Translation"), |ui| {
             cmd(ui, &mut acts, t("Translate with translation memory…"), Action::TmTranslate);
             cmd(ui, &mut acts, t("Save to translation memory"), Action::SaveToTm);
@@ -165,7 +166,24 @@ fn view_menu(app: &mut SusiApp, ui: &mut egui::Ui) {
         if changed {
             let _ = app.settings.save();
         }
+        current_language_items(app, ui);
     });
+}
+
+/// Radio entries selecting the current language, after a separator (end of the menu "View").
+fn current_language_items(app: &mut SusiApp, ui: &mut egui::Ui) {
+    let ids = app.project.as_ref().map(Project::language_ids).unwrap_or_default();
+    if ids.is_empty() {
+        return;
+    }
+    ui.separator();
+    for id in ids {
+        if ui.radio(app.lang.as_deref() == Some(id.as_str()), SusiApp::lang_label(&id)).clicked() {
+            app.lang = Some(id);
+            app.rows_stale = true;
+            ui.close();
+        }
+    }
 }
 
 /// Checkboxes for the languages shown in the single-language view in addition to the selected one.
@@ -200,28 +218,36 @@ fn project_menu(ui: &mut egui::Ui, acts: &mut Vec<Action>) {
     });
 }
 
-fn column_menu(app: &mut SusiApp, ui: &mut egui::Ui, acts: &mut Vec<Action>) {
+fn column_menu(app: &SusiApp, ui: &mut egui::Ui, acts: &mut Vec<Action>) {
     ui.menu_button(t("Column"), |ui| {
-        let ids = app.project.as_ref().map(Project::language_ids).unwrap_or_default();
-        for id in ids {
-            if ui.radio(app.lang.as_deref() == Some(id.as_str()), SusiApp::lang_label(&id)).clicked() {
-                app.lang = Some(id);
-                app.rows_stale = true;
-                ui.close();
-            }
-        }
-        ui.separator();
-        column_items(ui, acts, None);
+        let langs = app.project.as_ref().map(Project::language_ids).unwrap_or_default();
+        column_items(ui, acts, &langs, app.lang.as_deref());
     });
 }
 
-/// Commands for the visible rows of a language column (`None`: the current language), in the menu
-/// "Column" and the context menu of a column header.
-pub fn column_items(ui: &mut egui::Ui, acts: &mut Vec<Action>, lang: Option<&str>) {
-    let lang = lang.map(str::to_string);
-    ui.menu_button(t("Set status of all visible rows"), |ui| status_buttons(ui, acts, |s| Action::SetStatusIn(Scope::View, lang.clone(), s)));
-    cmd(ui, acts, t("Copy original into all visible rows…"), Action::CopyOriginalInColumn(lang.clone()));
-    cmd(ui, acts, t("Clear translations of all visible rows…"), Action::ClearColumn(lang));
+/// Commands for the visible rows of the language column `lang` (`None`: the current language), named
+/// and ordered like the row commands; menu "Column" and the context menu of a column header.
+/// `langs` are the project languages.
+pub fn column_items(ui: &mut egui::Ui, acts: &mut Vec<Action>, langs: &[String], lang: Option<&str>) {
+    let target = lang.map(str::to_string);
+    ui.menu_button(t("Status"), |ui| status_buttons(ui, acts, |s| Action::SetStatusIn(Scope::View, target.clone(), s)));
+    copy_from_menu(ui, acts, langs, lang, |from| Action::CopyInColumn { from, lang: target.clone() });
+    cmd(ui, acts, t("Clear translation"), Action::ClearColumn(target.clone()));
+}
+
+/// Submenu "Copy from": the original (`None`) and, after a separator, the project languages other
+/// than `target`.
+fn copy_from_menu(ui: &mut egui::Ui, acts: &mut Vec<Action>, langs: &[String], target: Option<&str>, action: impl Fn(Option<String>) -> Action) {
+    ui.menu_button(t("Copy from"), |ui| {
+        cmd(ui, acts, t("Original"), action(None));
+        let sources: Vec<&String> = langs.iter().filter(|l| Some(l.as_str()) != target).collect();
+        if !sources.is_empty() {
+            ui.separator();
+        }
+        for l in sources {
+            cmd(ui, acts, &SusiApp::lang_label(l), action(Some(l.clone())));
+        }
+    });
 }
 
 /// One entry per translation status, with its color.
@@ -234,20 +260,18 @@ fn status_buttons(ui: &mut egui::Ui, acts: &mut Vec<Action>, action: impl Fn(Tra
     }
 }
 
-fn status_submenu(ui: &mut egui::Ui, acts: &mut Vec<Action>) {
-    ui.menu_button(t("Status"), |ui| {
-        status_buttons(ui, acts, Action::SetStatus);
+pub fn row_menu(app: &SusiApp, ui: &mut egui::Ui, acts: &mut Vec<Action>) {
+    ui.menu_button(t("Row"), |ui| {
+        let langs = app.project.as_ref().map(Project::language_ids).unwrap_or_default();
+        row_menu_items(ui, acts, &langs, app.lang.as_deref());
     });
 }
 
-pub fn row_menu(ui: &mut egui::Ui, acts: &mut Vec<Action>) {
-    ui.menu_button(t("Row"), |ui| row_menu_items(ui, acts));
-}
-
-/// Row commands (menu "Row" and the grid's context menu).
-pub fn row_menu_items(ui: &mut egui::Ui, acts: &mut Vec<Action>) {
-    status_submenu(ui, acts);
-    cmd(ui, acts, t("Copy original"), Action::CopyOriginal);
+/// Row commands (menu "Row" and the grid's context menu) for the cell of `lang` (the current
+/// language) in the selected row; `langs` are the project languages.
+pub fn row_menu_items(ui: &mut egui::Ui, acts: &mut Vec<Action>, langs: &[String], lang: Option<&str>) {
+    ui.menu_button(t("Status"), |ui| status_buttons(ui, acts, Action::SetStatus));
+    copy_from_menu(ui, acts, langs, lang, Action::CopyIntoCell);
     cmd(ui, acts, t("Clear translation"), Action::ClearTranslation);
     ui.separator();
     cmd(ui, acts, t("Toggle do not translate"), Action::ToggleLocked);

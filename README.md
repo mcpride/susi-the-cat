@@ -163,7 +163,7 @@ Operation follows Sisulizer:
 
 - **Menus**: File, Edit, Search, View, Project, Validation, Column, Row, Translation, Tools,
   Help. Keyboard shortcuts: `Ctrl+S`, `Ctrl+O`, `Ctrl+N`, `Ctrl+F`, `F5` (scan),
-  `F9` (build).
+  `F9` (build). The current language is selected at the end of *View* (or by clicking a cell).
 - **Project tree** (left): "All", with the sources and their nodes below. The context menu offers
   properties, scanning/building a single source, setting the status of all rows of a node and
   "Remove source".
@@ -185,12 +185,14 @@ Operation follows Sisulizer:
     `Esc` cancels. Double-clicking multi-line text opens it in the Editor tab.
   - Editing changes the status *Not translated*, *Best guess* or *Auto translated* to
     *Translated*.
-  - Column commands (menu *Column* for the selected language, or right-click the header of a
-    language or status column): set the status of all visible rows, copy the original into the
-    visible rows (empty cells only, or also overwriting translations) and clear the translations
-    of the visible rows after a confirmation. Copying skips rows marked "Do not translate" and
-    excluded rows and changes the status like editing; clearing also removes the translation
-    comments.
+  - Row and column commands have the same names and order: *Status*, *Copy from* (a submenu with
+    *Original* and the other project languages, e.g. to fill `de-CH` from `de`) and *Clear
+    translation*. The row commands (menus *Row* and *Edit*, context menu of a cell) change the
+    selected cell. The column commands (menu *Column* for the current language, or right-click the
+    header of a language or status column) change the visible rows: copying opens a dialog
+    (empty cells only, or also overwriting translations), clearing asks for confirmation. Copying
+    skips rows marked "Do not translate", excluded rows and rows without text to copy, and
+    changes the status like editing; clearing also removes the translation comments.
 - **Filter** (right): translation status, row status (new, modified, unused, in use), date,
   marked, locked, with/without screenshot and text. When a filter is active, the notice "Special filters on!" appears.
   See [Reviewing recent changes](#reviewing-recent-changes).

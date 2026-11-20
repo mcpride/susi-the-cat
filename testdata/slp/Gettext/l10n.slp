@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document created="20261120171935" version="4.0.374" date="20261120215123" scan="1" scanned="20261120181938">
+  <lang id="de"/>
+  <lang id="pl"/>
+  <lang id="ja"/>
+  <lang id="ar"/>
+  <source class="TPoSource" name="messages.pot" original="en" date="20261120171726" writemethod="nwTranslated" scancomments="1" compile="1" usevalueasoriginal="0" includeempty="0" byteorder="boLittleEndian" pluralforms="6">
+    <outputfile dir="./i18n" localized="&lt;body&gt;.&lt;iso&gt;.po"/>
+    <node class="TPoNode" name="messages.pot" state="0" created="20261120172254">
+      <row id="##Last-Translator" created="20261120172254">
+        <native>Madalin Grigore-Enescu</native>
+        <lang id="de" date="20261120181916" status="3" savedtotm="1">MAI Code 2 Flash Medium</lang>
+        <lang id="pl" date="20261120183654" status="3" savedtotm="1">MAI Code 2 Flash Medium</lang>
+        <lang id="ja" date="20261120184016" status="3" savedtotm="1">MAI Code 2 Flash Medium</lang>
+        <lang id="ar" date="20261120191718" status="3" savedtotm="1">MAI Code 2 Flash Medium</lang>
+      </row>
+      <row id="##Language-Team" created="20261120172254">
+        <native>English</native>
+        <lang id="de" date="20261120175456" status="3" savedtotm="1">Deutsch</lang>
+        <lang id="pl" date="20261120183705" status="3" savedtotm="1">Polski</lang>
+        <lang id="ja" date="20261120183918" status="3" savedtotm="1">日本語</lang>
+        <lang id="ar" date="20261120191207" status="3" savedtotm="1">العربية</lang>
+      </row>
+      <row id="Privacy Policy" created="20261120172254" note="Singular entry" notereadonly="1">
+        <native>Privacy Policy</native>
+        <lang id="de" date="20261120175456" status="3" savedtotm="1">Datenschutzerklärung</lang>
+        <lang id="pl" date="20261120183534" status="3" savedtotm="1">Polityka prywatności</lang>
+        <lang id="ja" date="20261120183918" status="3" savedtotm="1">プライバシーポリシー</lang>
+        <lang id="ar" date="20261120191207" status="3" savedtotm="1">سياسة الخصوصية</lang>
+      </row>
+      <row id="web-app/navbar|About us" created="20261120172254" note="Singular entry with context" notereadonly="1">
+        <native>About us</native>
+        <lang id="de" date="20261120175456" status="3" savedtotm="1">Über uns</lang>
+        <lang id="pl" date="20261120183534" status="3" savedtotm="1">O nas</lang>
+        <lang id="ja" date="20261120183918" status="3" savedtotm="1">会社概要</lang>
+        <lang id="ar" date="20261120191207" status="3" savedtotm="1">معلومات عنا</lang>
+      </row>
+      <row id="Project name: %s" created="20261120172254" note="Singular entry with interpolation" notereadonly="1">
+        <native>Project name: %s</native>
+        <lang id="de" date="20261120175456" status="3" savedtotm="1">Projektname: %s</lang>
+        <lang id="pl" date="20261120183534" status="3" savedtotm="1">Nazwa projektu: %s</lang>
+        <lang id="ja" date="20261120183918" status="3" savedtotm="1">プロジェクト名：%s</lang>
+        <lang id="ar" date="20261120191207" status="3" savedtotm="1">اسم المشروع: %s</lang>
+      </row>
+      <row id="android-app|Version: %s" created="20261120172254" note="Singular entry with context and interpolation" notereadonly="1">
+        <native>Version: %s</native>
+        <lang id="de" date="20261120175456" status="3" savedtotm="1">Version: %s</lang>
+        <lang id="pl" date="20261120183534" status="3" savedtotm="1">Wersja: %s</lang>
+        <lang id="ja" date="20261120183918" status="3" savedtotm="1">バージョン：%s</lang>
+        <lang id="ar" date="20261120191207" status="3" savedtotm="1">الإصدار: %s</lang>
+      </row>
+      <row id="female|Her name is %s" created="20261120172254" note="Grammatical gender based on context combined with interpolation" notereadonly="1">
+        <native>Her name is %s</native>
+        <lang id="de" date="20261120175456" status="3" savedtotm="1">Ihr Name ist %s</lang>
+        <lang id="pl" date="20261120183534" status="3" savedtotm="1">Nazywa się %s</lang>
+        <lang id="ja" date="20261120183918" status="3" savedtotm="1">彼女の名前は%sです</lang>
+        <lang id="ar" date="20261120191207" status="3" savedtotm="1">اسمها %s</lang>
+      </row>
+      <row id="male|His name is %s" created="20261120172254" note="Grammatical gender based on context combined with interpolation" notereadonly="1">
+        <native>His name is %s</native>
+        <lang id="de" date="20261120175456" status="3" savedtotm="1">Sein Name ist %s</lang>
+        <lang id="pl" date="20261120183534" status="3" savedtotm="1">Nazywa się %s</lang>
+        <lang id="ja" date="20261120183918" status="3" savedtotm="1">彼の名前は%sです</lang>
+        <lang id="ar" date="20261120191207" status="3" savedtotm="1">اسمه %s</lang>
+      </row>
+      <row id="%d file[0]" created="20261120172254" note="Plural entry with interpolation" notereadonly="1">
+        <native>%d file</native>
+        <lang id="de" date="20261120175456" status="3" savedtotm="1">%d Datei</lang>
+        <lang id="pl" date="20261120183534" status="3" savedtotm="1">%d plik</lang>
+        <lang id="ja" date="20261120183918" status="3" savedtotm="1">%dファイル</lang>
+        <lang id="ar" date="20261120191207" status="3" savedtotm="1">ملف واحد</lang>
+      </row>
+      <row id="%d file[1]" created="20261120172254" note="Plural entry with interpolation" notereadonly="1">
+        <native>%d files</native>
+        <lang id="de" date="20261120175456" status="3" savedtotm="1">%d Dateien</lang>
+        <lang id="pl" date="20261120183534" status="3" savedtotm="1">%d pliki</lang>
+        <lang id="ja" date="20261120183918" status="3" savedtotm="1">%dファイル</lang>
+        <lang id="ar" date="20261120191207" status="3" savedtotm="1">ملفان</lang>
+      </row>
+      <row id="%d file[2]" created="20261120172254" note="Plural entry with interpolation" notereadonly="1">
+        <native>%d files</native>
+        <lang id="de" date="20261120175456" status="3" savedtotm="1">%d Dateien</lang>
+        <lang id="pl" date="20261120183534" status="3" savedtotm="1">%d plików</lang>
+        <lang id="ja" date="20261120183918" status="3" savedtotm="1">%dファイル</lang>
+        <lang id="ar" date="20261120191207" status="3" savedtotm="1">%d ملفات</lang>
+      </row>
+      <row id="android-app/search|%d result[0]" created="20261120172254" note="Plural entry with context and interpolation" notereadonly="1">
+        <native>%d result</native>
+        <lang id="de" date="20261120175456" status="3" savedtotm="1">%d Ergebnis</lang>
+        <lang id="pl" date="20261120183534" status="3" savedtotm="1">%d wynik</lang>
+        <lang id="ja" date="20261120183918" status="3" savedtotm="1">%d件の結果</lang>
+        <lang id="ar" date="20261120191207" status="3" savedtotm="1">نتيجة واحدة</lang>
+      </row>
+      <row id="android-app/search|%d result[1]" created="20261120172254" note="Plural entry with context and interpolation" notereadonly="1">
+        <native>%d results</native>
+        <lang id="de" date="20261120175456" status="3" savedtotm="1">%d Ergebnisse</lang>
+        <lang id="pl" date="20261120183534" status="3" savedtotm="1">%d wyniki</lang>
+        <lang id="ja" date="20261120183918" status="3" savedtotm="1">%d件の結果</lang>
+        <lang id="ar" date="20261120191207" status="3" savedtotm="1">نتيجتان</lang>
+      </row>
+      <row id="android-app/search|%d result[2]" created="20261120172254" note="Plural entry with context and interpolation" notereadonly="1">
+        <native>%d results</native>
+        <lang id="de" date="20261120175456" status="3" savedtotm="1">%d Ergebnisse</lang>
+        <lang id="pl" date="20261120183534" status="3" savedtotm="1">%d wyników</lang>
+        <lang id="ja" date="20261120183918" status="3" savedtotm="1">%d件の結果</lang>
+        <lang id="ar" date="20261120191207" status="3" savedtotm="1">%d نتائج</lang>
+      </row>
+      <row id="web-app/search|%d result[0]" created="20261120172254" note="Plural entry with context and interpolation" notereadonly="1">
+        <native>%d result</native>
+        <lang id="de" date="20261120175456" status="3" savedtotm="1">%d Ergebnis</lang>
+        <lang id="pl" date="20261120183534" status="3" savedtotm="1">%d wynik</lang>
+        <lang id="ja" date="20261120183918" status="3" savedtotm="1">%d件の結果</lang>
+        <lang id="ar" date="20261120191207" status="3" savedtotm="1">نتيجة واحدة</lang>
+      </row>
+      <row id="web-app/search|%d result[1]" created="20261120172254" note="Plural entry with context and interpolation" notereadonly="1">
+        <native>%d results</native>
+        <lang id="de" date="20261120175456" status="3" savedtotm="1">%d Ergebnisse</lang>
+        <lang id="pl" date="20261120183534" status="3" savedtotm="1">%d wyniki</lang>
+        <lang id="ja" date="20261120183918" status="3" savedtotm="1">%d件の結果</lang>
+        <lang id="ar" date="20261120191207" status="3" savedtotm="1">نتيجتان</lang>
+      </row>
+      <row id="web-app/search|%d result[2]" created="20261120172254" note="Plural entry with context and interpolation" notereadonly="1">
+        <native>%d results</native>
+        <lang id="de" date="20261120175456" status="3" savedtotm="1">%d Ergebnisse</lang>
+        <lang id="pl" date="20261120183534" status="3" savedtotm="1">%d wyników</lang>
+        <lang id="ja" date="20261120183918" status="3" savedtotm="1">%d件の結果</lang>
+        <lang id="ar" date="20261120191207" status="3" savedtotm="1">%d نتائج</lang>
+      </row>
+      <row id="female|%d file belongs to her[0]" created="20261120172254" note="Plural entry with context used for grammatical gender and interpolation" notereadonly="1">
+        <native>%d file belongs to her</native>
+        <lang id="de" date="20261120175456" status="3" savedtotm="1">%d Datei gehört ihr</lang>
+        <lang id="pl" date="20261120183534" status="3" savedtotm="1">%d plik należy do niej</lang>
+        <lang id="ja" date="20261120183918" status="3" savedtotm="1">%dファイルが彼女のものです</lang>
+        <lang id="ar" date="20261120191207" status="3" savedtotm="1">ملف واحد تابع لها</lang>
+      </row>
+      <row id="female|%d file belongs to her[1]" created="20261120172254" note="Plural entry with context used for grammatical gender and interpolation" notereadonly="1">
+        <native>%d files belong to her</native>
+        <lang id="de" date="20261120175456" status="3" savedtotm="1">%d Dateien gehören ihr</lang>
+        <lang id="pl" date="20261120183534" status="3" savedtotm="1">%d pliki należą do niej</lang>
+        <lang id="ja" date="20261120183918" status="3" savedtotm="1">%dファイルが彼女のものです</lang>
+        <lang id="ar" date="20261120191207" status="3" savedtotm="1">ملفان تابعاَن لها</lang>
+      </row>
+      <row id="female|%d file belongs to her[2]" created="20261120172254" note="Plural entry with context used for grammatical gender and interpolation" notereadonly="1">
+        <native>%d files belong to her</native>
+        <lang id="de" date="20261120175456" status="3" savedtotm="1">%d Dateien gehören ihr</lang>
+        <lang id="pl" date="20261120183534" status="3" savedtotm="1">%d plików należy do niej</lang>
+        <lang id="ja" date="20261120183918" status="3" savedtotm="1">%dファイルが彼女のものです</lang>
+        <lang id="ar" date="20261120191207" status="3" savedtotm="1">%d ملفات تابعة لها</lang>
+      </row>
+      <row id="male|%d file belongs to him[0]" created="20261120172254" note="Plural entry with context used for grammatical gender and interpolation" notereadonly="1">
+        <native>%d file belongs to him</native>
+        <lang id="de" date="20261120175456" status="3" savedtotm="1">%d Datei gehört ihm</lang>
+        <lang id="pl" date="20261120183534" status="3" savedtotm="1">%d plik należy do niego</lang>
+        <lang id="ja" date="20261120183918" status="3" savedtotm="1">%dファイルが彼のものです</lang>
+        <lang id="ar" date="20261120191207" status="3" savedtotm="1">ملف واحد تابع له</lang>
+      </row>
+      <row id="male|%d file belongs to him[1]" created="20261120172254" note="Plural entry with context used for grammatical gender and interpolation" notereadonly="1">
+        <native>%d files belong to him</native>
+        <lang id="de" date="20261120175456" status="3" savedtotm="1">%d Dateien gehören ihm</lang>
+        <lang id="pl" date="20261120183534" status="3" savedtotm="1">%d pliki należą do niego</lang>
+        <lang id="ja" date="20261120183918" status="3" savedtotm="1">%dファイルが彼のものです</lang>
+        <lang id="ar" date="20261120191207" status="3" savedtotm="1">ملفان تابعاَن له</lang>
+      </row>
+      <row id="male|%d file belongs to him[2]" created="20261120172254" note="Plural entry with context used for grammatical gender and interpolation" notereadonly="1">
+        <native>%d files belong to him</native>
+        <lang id="de" date="20261120175456" status="3" savedtotm="1">%d Dateien gehören ihm</lang>
+        <lang id="pl" date="20261120183534" status="3" savedtotm="1">%d plików należy do niego</lang>
+        <lang id="ja" date="20261120183918" status="3" savedtotm="1">%dファイルが彼のものです</lang>
+        <lang id="ar" date="20261120191207" status="3" savedtotm="1">%d ملفات تابعة له</lang>
+      </row>
+      <row id="Multiline#lstring" created="20261120172254" note="Singular entry demonstrating multiline strings." notereadonly="1">
+        <native>Multiline#lstring</native>
+        <lang id="de" date="20261120175456" status="3" savedtotm="1">Mehrzeilige#lZeichenfolge</lang>
+        <lang id="pl" date="20261120183534" status="3" savedtotm="1">Wielowierszowy#lciąg znaków</lang>
+        <lang id="ja" date="20261120183918" status="3" savedtotm="1">複数行#l文字列</lang>
+        <lang id="ar" date="20261120191207" status="3" savedtotm="1">سلسلة#lمتعددة الأسطر</lang>
+      </row>
+      <row id="\a \b \f #l \r 	 \v \' &quot; \? \" created="20261120172254" note="Singular entry demonstrating multiline strings and escape sequences" notereadonly="1">
+        <native>\a \b \f #l \r 	 \v \' " \? \</native>
+        <lang id="de" date="20261120175456" status="3" savedtotm="1">\a \b \f #l \r 	 \v \' " \? \</lang>
+        <lang id="pl" date="20261120183534" status="3" savedtotm="1">\a \b \f #l \r 	 \v \' " \? \</lang>
+        <lang id="ja" date="20261120183918" status="3" savedtotm="1">\a \b \f #l \r 	 \v \' " \? \</lang>
+        <lang id="ar" date="20261120191207" status="3" savedtotm="1">\a \b \f #l \r 	 \v \' " \? \</lang>
+      </row>
+    </node>
+  </source>
+</document>
