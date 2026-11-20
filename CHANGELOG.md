@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.14.0](https://github.com/mcpride/susi-the-cat/compare/v0.13.0...v0.14.0) (2026-11-20)
+
+### Features
+
+* column commands for copying originals and clearing translations ([a805ee8](https://github.com/mcpride/susi-the-cat/commit/a805ee8f11880a77f8a4d20f69d46afc7d09efc4))
+* copy from the original or another language into cells and columns ([8dd11e6](https://github.com/mcpride/susi-the-cat/commit/8dd11e602db540abe73e7961c6751de88bbea30c))
+* copy the original or another language from the CLI and MCP ([a1ffc00](https://github.com/mcpride/susi-the-cat/commit/a1ffc00a2cfd6ac8d3ae9da183884432b1261e51))
+
 ## [0.13.0](https://github.com/mcpride/susi-the-cat/compare/v0.12.0...v0.13.0) (2026-11-18)
 
 ### Features
