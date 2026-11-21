@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.15.0](https://github.com/mcpride/susi-the-cat/compare/v0.14.0...v0.15.0) (2026-11-21)
+
+### Features
+
+* localize pictures and binary data of RESX files (custom data) ([f4a8081](https://github.com/mcpride/susi-the-cat/commit/f4a80819acd20e663e4d97b795f25dad03428009))
+
 ## [0.14.0](https://github.com/mcpride/susi-the-cat/compare/v0.13.0...v0.14.0) (2026-11-20)
 
 ### Features
