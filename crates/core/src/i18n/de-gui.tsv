@@ -368,3 +368,30 @@
 	Copies the translations of {from} into the visible rows of the column {lang}.	Übernimmt die Übersetzungen aus {from} in die sichtbaren Zeilen der Spalte {lang}.
 	Translations of {from} copied into {count} ({lang})	Übersetzungen aus {from} in {count} übernommen ({lang})
 	The row has no translation in {lang}	Die Zeile hat keine Übersetzung in {lang}
+
+# Custom data (pictures, binary data)
+	Picture or binary data	Bild oder Binärdaten
+	Load translation from file…	Übersetzung aus Datei laden…
+	Link translation to file…	Übersetzung mit Datei verknüpfen…
+	Remove file link	Dateiverknüpfung entfernen
+	Save original as…	Original speichern unter…
+	Save translation as…	Übersetzung speichern unter…
+	Load…	Laden…
+	Link to file…	Mit Datei verknüpfen…
+	Load translation from file	Übersetzung aus Datei laden
+	Link translation to file	Übersetzung mit Datei verknüpfen
+	Linked: a changed file is read again when the project is opened, scanned or built.	Verknüpft: Eine geänderte Datei wird beim Öffnen, Scannen und Erstellen neu gelesen.
+	Binary data, only a fingerprint is stored ({thumbnail})	Binärdaten, gespeichert ist nur ein Fingerabdruck ({thumbnail})
+	No data	Keine Daten
+	No data to save	Keine Daten zum Speichern
+	The picture cannot be shown.	Das Bild kann nicht angezeigt werden.
+	The row contains no picture or binary data	Die Zeile enthält kein Bild und keine Binärdaten
+	The cell cannot be translated	Die Zelle kann nicht übersetzt werden
+	File link removed	Dateiverknüpfung entfernt
+	The translation is not linked to a file	Die Übersetzung ist mit keiner Datei verknüpft
+	Translation loaded from {file}	Übersetzung aus {file} geladen
+	Saved: {path}	Gespeichert: {path}
+	Excluded data types	Ausgeschlossene Datentypen
+	Pictures	Bilder
+	Text files	Textdateien
+	Takes effect on the next scan; rows no longer scanned become unused.	Wirkt beim nächsten Scan; nicht mehr gescannte Zeilen werden unbenutzt.

@@ -181,7 +181,7 @@ pub fn export_rows(p: &Project, opts: &ExportOptions) -> Vec<RowRef> {
             let Some(row) = p.row(r) else {
                 return false;
             };
-            if row.excluded() || row.raw || row.original().is_empty() || (row.locked() && !opts.include_locked) {
+            if row.excluded() || row.is_data_or_raw() || row.original().is_empty() || (row.locked() && !opts.include_locked) {
                 return false;
             }
             if !opts.row_statuses.is_empty() && !opts.row_statuses.contains(&row.status()) {

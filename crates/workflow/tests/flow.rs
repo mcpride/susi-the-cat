@@ -311,3 +311,31 @@ fn screenshots_are_saved_with_the_project() {
     assert!(files.contains("l10n/app.files/screenshots.json") && files.contains("l10n/app.files/screenshots/main."), "{files}");
     assert_eq!(wf.status(&p, StatusOptions::default()).unwrap().state, State::Saved);
 }
+
+#[test]
+fn linked_translation_files_are_saved_with_the_project() {
+    use susi_core::model::{Item, Node, Row};
+    let tmp = tempfile::tempdir().unwrap();
+    let (_dev, work) = setup(tmp.path());
+    let slp_path = work.join("l10n").join("app.slp");
+    let wf = Workflow::detect_with(&slp_path, None).unwrap().expect("configured");
+    let mut p = slp::load(&slp_path).unwrap();
+    let mut row = Row::new("blob", "");
+    row.native = None;
+    row.attrs.set("class", susi_core::custom_data::BINARY_ROW);
+    let mut node = Node::new(susi_core::custom_data::BINARY_NODE, "blob");
+    node.items.push(Item::Row(row));
+    p.sources[0].items.push(Item::Node(node));
+    let file = work.join("l10n").join("translated").join("blob.bin");
+    std::fs::create_dir_all(file.parent().unwrap()).unwrap();
+    std::fs::write(&file, [1, 2, 3]).unwrap();
+    let r = p.rows().into_iter().find(|r| p.row(r).unwrap().id() == "blob").unwrap();
+    susi_core::custom_data::load_translation_file(&mut p, &r, "de", &file, true).unwrap();
+    slp::save(&mut p, &slp_path).unwrap();
+
+    let st = wf.status(&p, StatusOptions::default()).unwrap();
+    assert!(st.changed.contains(&"l10n/translated/blob.bin".to_string()), "{:?}", st.changed);
+    assert!(wf.save(&p, &wf.save_defaults()).unwrap().pushed);
+    let files = git(&work, &["show", "--name-only", "--format=", "HEAD"]);
+    assert!(files.contains("l10n/translated/blob.bin") && files.contains("l10n/app.slp"), "{files}");
+}

@@ -119,3 +119,17 @@ write method	All	Alle
 	image format (PNG or JPEG expected): {path}	Bildformat (PNG oder JPEG erwartet): {path}
 	{path}: screenshot index version {version}	{path}: Version {version} des Screenshot-Index
 	Screenshot "{title}" is missing: {file}	Screenshot „{title}“ fehlt: {file}
+
+# Custom data (pictures, binary data)
+	Picture	Bild
+	Binary data	Binärdaten
+	Custom data	Benutzerdefinierte Daten
+@plural	{n} byte|{n} bytes	{n} Byte|{n} Bytes
+	row	Zeile
+	the row contains no picture or binary data	die Zeile enthält kein Bild und keine Binärdaten
+	{name}: invalid base64 data	{name}: ungültige Base64-Daten
+	Linked file {file} not found.	Verknüpfte Datei {file} nicht gefunden.
+	The translation is no supported picture ({data}).	Die Übersetzung ist kein unterstütztes Bild ({data}).
+	The translated picture ({translation}) differs from the original ({original}).	Das übersetzte Bild ({translation}) weicht vom Original ab ({original}).
+	Linked file {file} not found	Verknüpfte Datei {file} nicht gefunden
+	Translation read from its changed linked file: {row} ({lang})	Übersetzung aus der geänderten verknüpften Datei gelesen: {row} ({lang})

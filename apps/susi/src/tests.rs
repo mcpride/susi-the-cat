@@ -406,6 +406,7 @@ fn all_ui_glyphs_exist_in_default_fonts() {
         include_str!("actions.rs"),
         include_str!("workflow_ui.rs"),
         include_str!("shots.rs"),
+        include_str!("data_ui.rs"),
     ];
     // Translations are shown in the same fonts.
     let i18n = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../crates/core/src/i18n");
@@ -502,5 +503,79 @@ fn bottom_list_scrolls_horizontally() {
     run(&ctx, &mut app, 2);
     wheel_left(&ctx, &mut app, pos);
     assert!(app.list_offset.x > 100.0, "list did not scroll horizontally: {:?}", app.list_offset);
+    let _ = std::fs::remove_dir_all(&tmp);
+}
+
+fn copy_dir(from: &Path, to: &Path) {
+    std::fs::create_dir_all(to).unwrap();
+    for e in std::fs::read_dir(from).unwrap().flatten() {
+        if e.file_type().unwrap().is_dir() {
+            copy_dir(&e.path(), &to.join(e.file_name()));
+        } else {
+            std::fs::copy(e.path(), to.join(e.file_name())).unwrap();
+        }
+    }
+}
+
+/// Pictures and binary data: cell texts, the editor tab with previews, loading, linking and
+/// unlinking files, linked files read again on scan, the source option.
+#[test]
+fn custom_data_rows() {
+    use crate::data_ui::{self, DataCmd};
+    let tmp = std::env::temp_dir().join(format!("susi-gui-custom-data-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&tmp);
+    copy_dir(&Path::new(env!("CARGO_MANIFEST_DIR")).join("../../testdata/projects/custom-data"), &tmp);
+    let slp_path = tmp.join("app.slp");
+    std::fs::copy(tmp.join("sisulizer").join("translated.slp"), &slp_path).unwrap();
+    let ctx = egui::Context::default();
+    let settings = Settings { tm_path: Some(tmp.join("tm.tmx")), ui_language: "en".into(), ..Settings::default() };
+    let mut app = SusiApp::with_settings(&ctx, settings, None);
+    let mut project = slp::load(&slp_path).unwrap();
+    project.path = None;
+    app.set_project(project);
+    // Linked files are relative to the project (set after set_project, which records recent files).
+    app.project.as_mut().unwrap().path = Some(slp_path.clone());
+    run(&ctx, &mut app, 2);
+    let find = |app: &SusiApp, id: &str| {
+        let p = app.project.as_ref().unwrap();
+        p.rows().into_iter().find(|r| p.row(r).unwrap().id() == id).unwrap()
+    };
+    let (logo, icon, bytes) = (find(&app, "Logo"), find(&app, "AppIcon"), find(&app, "FileBytes"));
+    let row = |app: &SusiApp, r: &susi_core::model::RowRef| app.project.as_ref().unwrap().row(r).unwrap().clone();
+    assert_eq!(data_ui::cell_text(&row(&app, &logo), None), "PNG 16 × 8");
+    assert_eq!(data_ui::cell_text(&row(&app, &logo), Some("de")), "🔗 PNG 16 × 8");
+    assert_eq!(data_ui::cell_text(&row(&app, &bytes), None), "Binary data");
+
+    // Editing a data cell opens the editor tab with both pictures; binary data as hex dump.
+    app.select(logo.clone());
+    app.lang = Some("de".into());
+    app.actions.push(Action::EditCell);
+    run(&ctx, &mut app, 2);
+    assert!(app.cell_edit.is_none());
+    assert!(app.show_bottom && app.tab == BottomTab::Editor);
+    assert_eq!(app.data_ui.texture_count(), 2);
+    app.select(bytes);
+    run(&ctx, &mut app, 2);
+
+    // Loading a linked file, removing the link; a changed linked file is read again on scan.
+    app.select(icon.clone());
+    data_ui::load_file(&mut app, &icon, "de", &tmp.join("de").join("logo.png"), true);
+    assert!(app.dirty);
+    assert_eq!(row(&app, &icon).translation("de").unwrap().linked_file(), Some("de\\logo.png"));
+    app.actions.push(Action::Data(DataCmd::Unlink));
+    run(&ctx, &mut app, 1);
+    assert_eq!(row(&app, &icon).translation("de").unwrap().linked_file(), None);
+    let new_logo = std::fs::read(tmp.join("de").join("file.png")).unwrap();
+    std::fs::write(tmp.join("de").join("logo.png"), &new_logo).unwrap();
+    app.actions.push(Action::Scan);
+    run(&ctx, &mut app, 2);
+    assert_eq!(row(&app, &logo).translation_bytes("de"), Some(new_logo));
+    assert!(app.log.iter().any(|l| l.message.contains("Translation read from its changed linked file: Logo/Logo (de)")));
+
+    // The source properties of a .resx offer the excluded data types.
+    app.actions.push(Action::SourceProperties(0));
+    run(&ctx, &mut app, 2);
+    assert!(matches!(&app.dialog, Some(Dialog::SourceProps(d)) if d.excluded.is_some()));
+    app.dialog = None;
     let _ = std::fs::remove_dir_all(&tmp);
 }

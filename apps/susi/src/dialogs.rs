@@ -2,6 +2,7 @@
 
 use std::path::PathBuf;
 
+use susi_core::custom_data::Excluded;
 use susi_core::exchange::{ExchangeFormat, ScreenshotExport};
 use susi_core::formats::po::PoOptions;
 use susi_core::formats::properties::PropertiesEncoding;
@@ -31,6 +32,8 @@ pub struct SourcePropsDialog {
     pub encoding: Option<PropertiesEncoding>,
     /// Android string resources (shows the Android placeholders).
     pub android: bool,
+    /// Data types not scanned (RESX sources).
+    pub excluded: Option<Excluded>,
 }
 
 pub struct RowPropsDialog {
@@ -343,6 +346,16 @@ fn source_props(app: &mut SusiApp, ui: &mut egui::Ui, s: &mut SourcePropsDialog)
     if let Some(po) = &mut s.po {
         po_options(ui, po);
     }
+    if let Some(e) = &mut s.excluded {
+        ui.separator();
+        ui.strong(t("Excluded data types"));
+        ui.horizontal(|ui| {
+            ui.checkbox(&mut e.images, t("Pictures"));
+            ui.checkbox(&mut e.binary, t("Binary data"));
+            ui.checkbox(&mut e.text, t("Text files"));
+        });
+        ui.small(t("Takes effect on the next scan; rows no longer scanned become unused."));
+    }
     match ok_cancel(ui, "OK", !s.original.trim().is_empty()) {
         Some(true) => {
             if let Some(src) = app.project.as_mut().and_then(|p| p.sources.get_mut(s.index)) {
@@ -354,6 +367,9 @@ fn source_props(app: &mut SusiApp, ui: &mut egui::Ui, s: &mut SourcePropsDialog)
                 }
                 if let Some(enc) = s.encoding {
                     src.set_properties_encoding(enc);
+                }
+                if let Some(e) = s.excluded {
+                    src.set_excluded_data(e);
                 }
                 app.touched();
             }

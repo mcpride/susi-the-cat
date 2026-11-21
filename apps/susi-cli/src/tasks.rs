@@ -12,7 +12,7 @@ use susi_core::settings::Settings;
 use susi_core::status::{TranslationStatus, parse_row_status_list, parse_status_list};
 use susi_core::tm::{self, TranslateOptions, TranslationMemory};
 use susi_core::validate::{self, Severity, ValidateOptions, ValidationKind};
-use susi_core::{lang, ops, pseudo, slp, stats, tf};
+use susi_core::{custom_data, lang, ops, pseudo, slp, stats, tf};
 
 use crate::args::TaskArgs;
 
@@ -367,7 +367,23 @@ fn add(t: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), String> {
     Ok(())
 }
 
+/// Reads translations of pictures and binary data again whose linked file changed (Sisulizer does
+/// this when it loads a project).
+fn refresh_linked(st: &mut State, o: &mut Output<'_>) -> Result<(), String> {
+    let p = st.load(o)?;
+    let rep = custom_data::refresh_linked(p);
+    for (r, lang) in &rep.updated {
+        o.info(tf!("Translation read from its changed linked file: {row} ({lang})", row = p.context(r), lang = lang));
+    }
+    for f in &rep.missing {
+        o.warn(tf!("Linked file {file} not found", file = f.display()));
+    }
+    st.changed |= !rep.updated.is_empty();
+    Ok(())
+}
+
 fn create(t: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), String> {
+    refresh_linked(st, o)?;
     let p = st.load(o)?;
     let langs = languages(t, p)?;
     let sel = sources(t, p)?;
@@ -383,6 +399,7 @@ fn create(t: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), String
 }
 
 fn scan(t: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), String> {
+    refresh_linked(st, o)?;
     let p = st.load(o)?;
     let sel = sources(t, p)?;
     let rep = ops::scan_project(p, sel.as_deref()).map_err(|e| o.core(&e))?;
@@ -677,6 +694,15 @@ fn info(st: &mut State, o: &mut Output<'_>) -> Result<(), String> {
         let output = format!("{dir}\\{file}");
         let details = tf!("Original: {lang}, {rows} rows, output: {output}", lang = src.original(), rows = src.row_count(), output = output);
         lines.push(format!("  #{i} {} [{}] {details}", src.name(), src.kind().label()));
+    }
+    let (pictures, binary, linked) = custom_data::counts(p);
+    if pictures + binary > 0 {
+        lines.push(tf!(
+            "Pictures and binary data: {pictures} pictures, {binary} binary rows, {linked} linked files",
+            pictures = pictures,
+            binary = binary,
+            linked = linked
+        ));
     }
     let (p, shots) = st.project_and_screenshots(o)?;
     if !shots.is_empty() {

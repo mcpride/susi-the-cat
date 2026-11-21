@@ -6,6 +6,7 @@
 use std::path::{Path, PathBuf};
 
 use serde_json::{Value, json};
+use susi_core::custom_data::{self, DataKind, PictureInfo};
 use susi_core::exchange::{self, ExportOptions, ImportOptions, ScreenshotExport};
 use susi_core::filter::{DateField, RowFilter, SearchIn, parse_date};
 use susi_core::keys::{KeyError, RowKeys};
@@ -64,15 +65,38 @@ fn date_bound(s: Option<&str>, end: bool) -> Result<Option<String>, String> {
     s.map(|v| parse_date(v, end).ok_or_else(|| format!("invalid date '{v}' (use e.g. 2026-11-01, \"2026-11-01 14:30\", today, 7d)"))).transpose()
 }
 
+/// Picture or binary data: `{format: picture|binary, size, type, width, height}` (only what is known;
+/// the original of binary data is not stored in the project).
+fn data_json(kind: DataKind, bytes: Option<&[u8]>) -> Value {
+    let mut v = json!({ "format": kind.keyword() });
+    if let Some(b) = bytes {
+        v["size"] = json!(b.len());
+        if let Some(i) = PictureInfo::of(b) {
+            v["type"] = json!(i.format.name());
+            v["width"] = json!(i.width);
+            v["height"] = json!(i.height);
+        }
+    }
+    v
+}
+
 pub fn row_json(p: &Project, r: &RowRef, langs: &[String]) -> Value {
     let Some(row) = p.row(r) else {
         return Value::Null;
     };
     let orig = p.original_lang(r);
+    let kind = row.data_kind();
     let mut tr = serde_json::Map::new();
     for l in langs.iter().filter(|l| l.as_str() != orig) {
-        let mut o = json!({ "text": row.text(l).unwrap_or(""), "status": row.tstatus(l).keyword() });
+        let mut o = match kind {
+            // Pictures and binary data: a description instead of hex text.
+            Some(k) => json!({ "data": data_json(k, row.translation_bytes(l).as_deref()), "status": row.tstatus(l).keyword() }),
+            None => json!({ "text": row.text(l).unwrap_or(""), "status": row.tstatus(l).keyword() }),
+        };
         if let Some(t) = row.translation(l) {
+            if let Some(f) = t.linked_file().filter(|_| kind.is_some()) {
+                o["file"] = json!(f);
+            }
             if !t.comment().is_empty() {
                 o["comment"] = json!(t.comment());
             }
@@ -88,11 +112,14 @@ pub fn row_json(p: &Project, r: &RowRef, langs: &[String]) -> Value {
     let mut v = json!({
         "source": r.source,
         "key": p.context(r),
-        "original": row.original(),
+        "original": if kind.is_some() { Value::Null } else { json!(row.original()) },
         "original_lang": orig,
         "row_status": row.status().keyword(),
         "translations": tr,
     });
+    if let Some(k) = kind {
+        v["data"] = data_json(k, row.original_bytes().as_deref());
+    }
     if !row.note().is_empty() {
         v["comment"] = json!(row.note());
     }
@@ -457,6 +484,9 @@ impl Session {
                 if row.locked() {
                     return Err("row is marked 'do not translate'".into());
                 }
+                if row.is_data() {
+                    return Err("the row holds a picture or binary data: use load_translation_file".into());
+                }
                 row.set_translation(&it.lang, &it.text, status);
                 if let (Some(c), Some(t)) = (&it.comment, row.translation_mut(&it.lang)) {
                     t.set_comment(c);
@@ -569,16 +599,55 @@ impl Session {
         Ok(json!({ "source": i, "scan": rep.summary(), "new_rows": rep.new }))
     }
 
+    /// Reads translations of pictures and binary data again whose linked file changed.
+    fn refresh_linked(&mut self) -> Result<Value, String> {
+        let p = self.project_mut()?;
+        let rep = custom_data::refresh_linked(p);
+        let updated: Vec<String> = rep.updated.iter().map(|(r, lang)| format!("{} ({lang})", p.context(r))).collect();
+        self.dirty |= !updated.is_empty();
+        Ok(json!({ "updated": updated, "missing": rep.missing }))
+    }
+
     pub fn scan(&mut self, sources: Option<&[usize]>) -> ToolResult {
+        let linked = self.refresh_linked()?;
         let p = self.project_mut()?;
         let rep = ops::scan_project(p, sources).map_err(err)?;
         self.dirty = true;
-        Ok(json!({ "new": rep.new, "changed": rep.changed, "unused": rep.unused, "summary": rep.summary() }))
+        Ok(json!({ "new": rep.new, "changed": rep.changed, "unused": rep.unused, "summary": rep.summary(), "linked_files": linked }))
     }
 
-    pub fn build(&self, langs: &[String], sources: Option<&[usize]>) -> ToolResult {
+    pub fn build(&mut self, langs: &[String], sources: Option<&[usize]>) -> ToolResult {
+        let linked = self.refresh_linked()?;
         let rep = ops::build_project(self.project()?, langs, sources);
-        Ok(json!({ "written": rep.written, "unchanged": rep.unchanged.len(), "errors": rep.errors, "summary": rep.summary() }))
+        Ok(json!({ "written": rep.written, "unchanged": rep.unchanged.len(), "errors": rep.errors, "summary": rep.summary(), "linked_files": linked }))
+    }
+
+    /// Picture of a row (the original, or the translation in `lang`) with its description.
+    pub fn picture(&self, key: &str, source: Option<usize>, lang: Option<&str>) -> Result<(Vec<u8>, &'static str, Value), String> {
+        let p = self.project()?;
+        let r = Keys::new(p).find(key, source)?;
+        let row = p.row(&r).ok_or("row vanished")?;
+        let bytes = match (row.data_kind(), lang) {
+            (None, _) => return Err(format!("'{key}' is a text row, not a picture")),
+            (Some(_), Some(l)) => row.translation_bytes(l).ok_or_else(|| format!("'{key}' has no translation in '{l}'"))?,
+            (Some(DataKind::Binary), None) => return Err("the original of binary data is not stored in the project".into()),
+            (Some(DataKind::Picture), None) => row.original_bytes().ok_or("the picture has no original data")?,
+        };
+        let info = PictureInfo::of(&bytes).ok_or_else(|| format!("the data is no supported picture ({})", custom_data::summary(&bytes)))?;
+        Ok((bytes, info.format.mime(), row_json(p, &r, &p.language_ids())))
+    }
+
+    /// Sets the translation of a picture or binary row from a file, optionally linked to it.
+    pub fn load_translation_file(&mut self, key: &str, source: Option<usize>, lang: &str, path: &Path, link: bool) -> ToolResult {
+        let p = self.project_mut()?;
+        if !p.has_language(lang) {
+            return Err(format!("language '{lang}' is not part of the project"));
+        }
+        let r = Keys::new(p).find(key, source)?;
+        custom_data::load_translation_file(p, &r, lang, path, link).map_err(err)?;
+        self.dirty = true;
+        let p = self.project()?;
+        Ok(row_json(p, &r, &[lang.to_string()]))
     }
 
     pub fn validate(&self, langs: &[String], kinds: &[String]) -> ToolResult {

@@ -305,3 +305,41 @@ fn copy_languages() {
         assert!(r.code == 1 && r.err.contains(error), "{args:?}: {}{}", r.out, r.err);
     }
 }
+
+fn copy_dir(from: &Path, to: &Path) {
+    std::fs::create_dir_all(to).unwrap();
+    for e in std::fs::read_dir(from).unwrap().flatten() {
+        if e.file_type().unwrap().is_dir() {
+            copy_dir(&e.path(), &to.join(e.file_name()));
+        } else {
+            std::fs::copy(e.path(), to.join(e.file_name())).unwrap();
+        }
+    }
+}
+
+/// Pictures and binary data of a RESX file (fixture with Sisulizer's projects).
+#[test]
+fn custom_data() {
+    let dir = tempfile::tempdir().unwrap();
+    let d = dir.path();
+    copy_dir(&Path::new(env!("CARGO_MANIFEST_DIR")).join("../../testdata/projects/custom-data"), d);
+    let r = run(&["add", &s(&d.join("Strings.resx")), "-origlang:en", "-lang:de", &s(&d.join("new.slp"))]);
+    assert_eq!(r.code, 0, "{}{}", r.out, r.err);
+    let r = run(&["info", &s(&d.join("new.slp"))]);
+    assert!(r.out.contains("Pictures and binary data: 5 pictures, 2 binary rows, 0 linked files"), "{}", r.out);
+
+    // Sisulizer's translated project: build, then a changed linked file is read again.
+    let slp = d.join("app.slp");
+    std::fs::copy(d.join("sisulizer").join("translated.slp"), &slp).unwrap();
+    let r = run(&["create", "-lang:de", &s(&slp)]);
+    assert!(r.code == 0 && r.out.contains("Strings.de.resx"), "{}{}", r.out, r.err);
+    assert!(std::fs::read_to_string(d.join("Strings.de.resx")).unwrap().contains("<data name=\"Logo\""));
+    std::fs::copy(d.join("de").join("file.png"), d.join("de").join("logo.png")).unwrap();
+    std::fs::remove_file(d.join("de").join("data.bin")).unwrap();
+    let r = run(&["create", "-lang:de", &s(&slp), "-w"]);
+    assert_eq!(r.code, 1, "{}{}", r.out, r.err);
+    assert!(r.out.contains("Translation read from its changed linked file: Logo/Logo (de)"), "{}", r.out);
+    assert!(r.out.contains("Linked file") && r.out.contains("data.bin not found"), "{}", r.out);
+    let r = run(&["validate", "-check:data", &s(&slp)]);
+    assert!(r.out.contains("The translated picture (PNG 24 × 12) differs from the original (PNG 16 × 8)."), "{}{}", r.out, r.err);
+}

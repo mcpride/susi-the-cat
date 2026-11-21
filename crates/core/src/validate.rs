@@ -31,6 +31,8 @@ pub enum ValidationKind {
     IcuCases,
     /// Linked screenshot image missing (reported by `ScreenshotStore::issues`).
     Screenshot,
+    /// Custom data: linked file missing, picture translation of another format or size.
+    Data,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Serialize)]
@@ -41,7 +43,7 @@ pub enum Severity {
 }
 
 impl ValidationKind {
-    pub const ALL: [ValidationKind; 17] = [
+    pub const ALL: [ValidationKind; 18] = [
         Self::MissingTranslation,
         Self::Format,
         Self::Tags,
@@ -59,6 +61,7 @@ impl ValidationKind {
         Self::IcuSyntax,
         Self::IcuCases,
         Self::Screenshot,
+        Self::Data,
     ];
 
     /// Label in the current UI language (validation names).
@@ -81,6 +84,7 @@ impl ValidationKind {
             Self::IcuSyntax => t("Invalid ICU message"),
             Self::IcuCases => t("Incomplete ICU cases"),
             Self::Screenshot => t("Missing screenshot"),
+            Self::Data => t("Custom data"),
         }
     }
 
@@ -103,6 +107,7 @@ impl ValidationKind {
             Self::IcuSyntax => "icu",
             Self::IcuCases => "icucases",
             Self::Screenshot => "screenshot",
+            Self::Data => "data",
         }
     }
 
@@ -400,10 +405,6 @@ pub fn validate(p: &Project, opts: &ValidateOptions, rows: Option<&[RowRef]>) ->
         let Some(row) = p.row(r) else {
             continue;
         };
-        if row.locked() || row.excluded() || row.raw || row.original().is_empty() {
-            continue;
-        }
-        let orig_lang = p.original_lang(r);
         let push = |issues: &mut Vec<Issue>, lang: &str, kind: ValidationKind, message: String| {
             issues.push(Issue {
                 row: r.clone(),
@@ -415,6 +416,18 @@ pub fn validate(p: &Project, opts: &ValidateOptions, rows: Option<&[RowRef]>) ->
                 message,
             });
         };
+        if row.is_data() {
+            if kinds.contains(&ValidationKind::Data) && !row.locked() && !row.excluded() {
+                for (lang, message) in crate::custom_data::issues(p, row, &langs) {
+                    push(&mut issues, &lang, ValidationKind::Data, message);
+                }
+            }
+            continue;
+        }
+        if row.locked() || row.excluded() || row.is_data_or_raw() || row.original().is_empty() {
+            continue;
+        }
+        let orig_lang = p.original_lang(r);
         // The original is shared by all languages: reported once, under the original language.
         if kinds.contains(&ValidationKind::ControlCharacters)
             && let Some(chars) = control_char_list(row.original())

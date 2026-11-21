@@ -216,7 +216,7 @@ pub fn fill_pseudo(p: &mut Project, lang: &str, opts: &PseudoOptions, rows: Opti
         let Some(row) = p.row_mut(&r) else {
             continue;
         };
-        if row.locked() || row.excluded() || row.raw || row.original().is_empty() {
+        if row.locked() || row.excluded() || row.is_data_or_raw() || row.original().is_empty() {
             continue;
         }
         let is_pseudo_cell = row.translation(lang).is_some_and(|t| t.attrs.get("test") == Some("1"));

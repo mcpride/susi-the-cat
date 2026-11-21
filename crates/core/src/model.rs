@@ -813,6 +813,8 @@ fn remove_unused(items: &mut Vec<Item>) -> usize {
             n += remove_unused(&mut node.items);
         }
     }
+    // A custom data node without its row is gone as well.
+    items.retain(|i| !matches!(i, Item::Node(node) if node.items.is_empty() && matches!(node.attrs.get("class"), Some(crate::custom_data::PICTURE_NODE | crate::custom_data::BINARY_NODE))));
     n
 }
 

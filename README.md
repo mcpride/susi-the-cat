@@ -89,7 +89,8 @@ The integration tests run against synthetic fixtures that are part of the worksp
 |-----------|---------|---------|
 | `testdata/projects/demo-ui/`, `demo-settings/`, `demo-widget/` | Three JSON projects (`susi\demo.slp` and the JSON files under `assets\i18n`); `demo-ui` also references a source of `demo-widget` | scan/build tests (`crates/core/tests/ops.rs`), CLI test, headless GUI tests |
 | `testdata/projects/wpf-resources/` | `Resources.slp`, `Resources.resx` and the German `Resources.de.resx` as built by Sisulizer | RESX build comparison |
-| `testdata/slp/` | 193 further `.slp` projects of all source types (VCL, .NET, Java, Qt, HTML, databases, ...) | `.slp` round trip (`crates/core/tests/samples.rs`) |
+| `testdata/projects/custom-data/` | `Strings.resx` with pictures, an icon, byte arrays and file references, German files for them, and what Sisulizer 4.0.374 made of it (`sisulizer/scan.slp`, `translated.slp`, `Strings.de.resx`) | [images and binary data](#images-and-binary-data) in core, CLI, GUI and MCP tests |
+| `testdata/slp/` | 194 further `.slp` projects of all source types (VCL, .NET, Java, Qt, HTML, databases, ...) | `.slp` round trip (`crates/core/tests/samples.rs`) |
 
 - The fixtures are fully anonymized: every word in texts, translations, comments, keys, names and paths was
   replaced by a pseudo word of the same length, case pattern and script (Latin, Cyrillic, Greek, CJK, Hangul,
@@ -97,7 +98,7 @@ The integration tests run against synthetic fixtures that are part of the worksp
   data (images, icons, hashes) was replaced by random bytes. Only the file format structure remains:
   element and attribute names, class names, enumeration values, numbers, dates, escapes, whitespace
   and line endings.
-- The `.slp` round trip covers all 197 projects. Projects written by Sisulizer 4.0.353 or newer
+- The `.slp` round trip covers all 201 projects. Projects written by Sisulizer 4.0.353 or newer
   must be reproduced byte for byte; for older ones the output must be stable.
 - The tests work on copies in a temporary directory; `testdata/` itself is never modified.
 - The JSON projects intentionally reproduce typical drift: `demo-ui` is in sync, `demo-settings`
@@ -202,10 +203,12 @@ Operation follows Sisulizer:
   - The lists in Output, Validation, Search and Comments scroll horizontally like the grid, and
     their columns can be resized the same way (widths last until the program is closed).
   - Editor: original, translation, comments, properties and translation memory suggestions with
-    "Apply".
+    "Apply". For pictures and binary data: both pictures (or a hex dump) with *Load…*, *Link to
+    file…*, *Remove file link* and *Save as…*, see [Images and binary data](#images-and-binary-data).
   - Screenshots: the screenshots of the selected row with its marked area, see
     [Screenshots](#screenshots).
-- **Dialogs**: Languages, Add source, Source properties (write method, output pattern),
+- **Dialogs**: Languages, Add source, Source properties (write method, output pattern, excluded
+  data types of RESX sources),
   Row properties, Export, Import, Translate with translation memory, Pseudo translation,
   Screenshots, Options.
 
@@ -304,7 +307,7 @@ susi-cli <tasks> project.slp [-q] [-a] [-w] [-e] [-h]
 | `report [file]` | `report` | Report (`.html`, `.txt`, `.json`, otherwise stdout) |
 | `remove` | `remove` | Remove unused rows |
 | `fillpseudo` / `removepseudo` | same | Pseudo translation |
-| `info` | – | Languages, sources, progress, screenshots |
+| `info` | – | Languages, sources, progress, pictures and binary data, screenshots |
 | `mcp` | – | Start the MCP server |
 | `screenshot [action]` | – | Manage [screenshots](#screenshots): `list`, `add`, `link`, `unlink`, `remove`, `prune`, `refresh`, `import` (manifest of UI tests) |
 
@@ -346,6 +349,8 @@ susi-cli export open.xlsx -lang:de;fr -status:untranslated app.slp
 | `control` | Control characters such as DEL in originals and translations | Error |
 | `icu` | ICU MessageFormat syntax of translations and of originals that use it: braces, the mandatory `other` case, plural categories (a translated `eins{…}`), argument types | Error |
 | `icucases` | ICU plural forms the target language needs (CLDR, e.g. Polish `few` and `many`; `=1` counts as `one`) and the select cases of the original | Warning |
+| `screenshot` | Linked screenshot image missing | Warning |
+| `data` | Pictures and binary data: linked file missing, picture translation of another format or size, translation of a picture that is no picture | Warning |
 
 **Test reports in GitLab CI**: `validate -junit:file` also writes the result to a
 [JUnit XML report](https://docs.gitlab.com/ci/testing/unit_test_reports/). Errors become failed
@@ -381,7 +386,7 @@ Configuration, e.g. in VS Code `mcp.json` or in the Copilot CLI:
 
 Optionally a project is opened right away: `"args": ["mcp", "C:\\path\\app.slp"]`.
 
-Tools (29):
+Tools (31):
 
 - `open_project`, `create_project`, `save_project`, `project_info`
 - `list_rows` (filters including the date range `since`/`until`/`date_field` and
@@ -393,6 +398,8 @@ Tools (29):
   `set_row_properties`
 - `copy_translations` (the original or another language into one language, for all rows, a
   source or given keys, without passing the texts through the agent; like *Copy from* in the GUI)
+- `get_picture` (a picture row as image content), `load_translation_file` (translation of a
+  picture or binary row from a file, linked by default; see [Images and binary data](#images-and-binary-data))
 - `add_language`, `add_source`, `scan`, `build`
 - `validate`, `statistics`
 - `tm_translate`, `tm_lookup`, `tm_save`
@@ -624,6 +631,51 @@ validation check `screenshot` reports rows whose screenshot image is missing.
 
 ---
 
+## Images and binary data
+
+Like Sisulizer (*Custom Data*), Susi localizes pictures and other binary data of `.resx` files and
+shows and translates the picture and binary rows of Sisulizer projects of any source type.
+
+**What a scan finds** (verified against Sisulizer 4.0.374, fixture `testdata/projects/custom-data/`):
+
+| RESX entry | Row |
+|---|---|
+| String, `ResXFileRef` to a text file (`System.String;…;utf-8`) | Text row with the text (file content) |
+| Embedded byte array (`bytearray.base64`: bitmap, icon, `byte[]`) or `ResXFileRef` to another file, whose content is a PNG, JPEG, GIF, BMP, ICO or CUR picture | Picture: `TImageDataNode` with a `TPictureRow` |
+| The same with other content | Binary data: `TBinaryDataNode` with a `TBinaryRow` |
+
+- The format is detected by the content, as Sisulizer does for .NET resources; there is no format
+  choice per resource (Sisulizer offers it only for Windows resources and database fields and
+  discards it for .NET resources). XML and HTML data, which Sisulizer splits into texts, are
+  plain binary data in Susi; such nodes of Sisulizer projects are kept untouched.
+- Pictures are stored as hex in the `.slp` like Sisulizer does (lines ending in column 78),
+  binary data only as a fingerprint (`thumbnail`: first 8 and last 3 bytes); Susi reads the
+  original of binary data from the `.resx` when it is shown or saved. A changed original marks
+  the row *Changed* and its translations *For review*.
+- *Source properties → Excluded data types* (`excludeddatatypes`) skips pictures, binary data or
+  text files on the next scan; rows no longer scanned become unused.
+
+**Translating.** The editor tab shows the original and the translation (pictures, otherwise a
+hex dump). *Load…* takes a file as translation, *Link to file…* also keeps it linked
+(Sisulizer: *Row | Link to File*): a changed linked file is read again when the project is
+opened, scanned or built (GUI, CLI, MCP). Susi compares the content, not the file date, so a git
+checkout changes nothing. *Save as…* saves the original or the translation, e.g. as a template
+for a localized picture. Translations are stored in Sisulizer's form, as hex in `<lang>` plus
+`filename` (relative to the project) and `filedate` when linked, so Sisulizer loads and builds
+them. Linked files are saved together with the project by the
+[git workflow](#git-workflow-gitlab-github). The validation check `data` reports missing linked
+files and picture translations with another format or size than the original.
+
+**Building.** A localized `.resx` contains the translated entries only (like Sisulizer's
+satellite files): pictures and binary data embedded as byte arrays (also for former file
+references, with the type of the reference), text file references as strings. Unlike Sisulizer,
+Susi always writes the `mimetype` of embedded data (Sisulizer omits it for former `byte[]` file
+references, which .NET then cannot read).
+
+CLI: `scan` and `create` read changed linked files first, `info` counts the pictures and binary
+rows. MCP: rows with `data` instead of text, `get_picture` (the picture as image content) and
+`load_translation_file`.
+
 ## Files and formats
 
 - **Project**: Susi/Sisulizer `.slp` (XML). Unknown elements and attributes are preserved on save.
@@ -650,6 +702,8 @@ validation check `screenshot` reports rows whose screenshot image is missing.
 - **Exchange**: Excel `.xlsx`, `.csv`, tab-separated `.txt`, XLIFF 1.2 (`.xlf`, one file per
   language when several languages are exported) and `.tmx`.
 - **Screenshots**: `<project>.files/` next to the project, see [Screenshots](#screenshots).
+- **Pictures and binary data** of RESX sources: hex in the `.slp` like Sisulizer, translations
+  optionally linked to files, see [Images and binary data](#images-and-binary-data).
 
 ---
 
@@ -849,6 +903,8 @@ may be the file of a target language; it is then its own localized file, like th
 - No Sisulizer exchange packages (`.sle`/`.slz`) and no merging of projects.
 - No machine translation services. The MCP interface takes over this role.
 - No visual form editor.
+- Pictures and binary data only in RESX sources; no user-defined data formats and no XML/HTML data
+  split into texts.
 
 ## ATTENTION
 

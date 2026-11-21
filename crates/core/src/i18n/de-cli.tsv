@@ -200,3 +200,6 @@
 @plural	{n} cell copied from the original to {name} ({lang})|{n} cells copied from the original to {name} ({lang})	{n} Zelle aus dem Original in {name} ({lang}) übernommen|{n} Zellen aus dem Original in {name} ({lang}) übernommen
 @plural	{n} cell copied from {from} to {name} ({lang})|{n} cells copied from {from} to {name} ({lang})	{n} Zelle aus {from} in {name} ({lang}) übernommen|{n} Zellen aus {from} in {name} ({lang}) übernommen
 @plural	{n} cell with a translation was kept (-overwrite replaces it)|{n} cells with a translation were kept (-overwrite replaces them)	{n} Zelle mit Übersetzung beibehalten (-overwrite ersetzt sie)|{n} Zellen mit Übersetzung beibehalten (-overwrite ersetzt sie)
+
+# Custom data (pictures, binary data)
+	Pictures and binary data: {pictures} pictures, {binary} binary rows, {linked} linked files	Bilder und Binärdaten: {pictures} Bilder, {binary} Binärzeilen, {linked} verknüpfte Dateien

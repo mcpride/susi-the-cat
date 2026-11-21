@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<document created="20261103155355" version="4.0.374" date="20261120220922" scan="24" scanned="20261120220922">
+<document created="20261103155355" version="4.0.374" date="20261120233557" scan="25" scanned="20261120233557">
   <lang id="en"/>
   <lang id="de"/>
-  <source class="TTsvSource" name="de-core.tsv" original="en" date="20261118190444">
+  <source class="TTsvSource" name="de-core.tsv" original="en" date="20261120233507">
     <outputfile dir="." localized="&lt;iso&gt;-core.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-core.tsv" state="0" created="20261103155355">
       <row id="Not translated" state="0" created="20261103155355" note="Status" notereadonly="1">
@@ -429,9 +429,57 @@
         <native>Screenshot "{title}" is missing: {file}</native>
         <lang id="de" date="20261118152930" status="3">Screenshot „{title}“ fehlt: {file}</lang>
       </row>
+      <row id="Picture" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>Picture</native>
+        <lang id="de" date="20261120233557" status="3">Bild</lang>
+      </row>
+      <row id="Binary data" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>Binary data</native>
+        <lang id="de" date="20261120233557" status="3">Binärdaten</lang>
+      </row>
+      <row id="Custom data" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>Custom data</native>
+        <lang id="de" date="20261120233557" status="3">Benutzerdefinierte Daten</lang>
+      </row>
+      <row id="@plural|{n} byte|{n} bytes" state="0" created="20261120233557" note="Custom data (pictures, binary data)#lContext: @plural" notereadonly="1">
+        <native>{n} byte|{n} bytes</native>
+        <lang id="de" date="20261120233557" status="3">{n} Byte|{n} Bytes</lang>
+      </row>
+      <row id="row" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>row</native>
+        <lang id="de" date="20261120233557" status="3">Zeile</lang>
+      </row>
+      <row id="the row contains no picture or binary data" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>the row contains no picture or binary data</native>
+        <lang id="de" date="20261120233557" status="3">die Zeile enthält kein Bild und keine Binärdaten</lang>
+      </row>
+      <row id="{name}: invalid base64 data" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>{name}: invalid base64 data</native>
+        <lang id="de" date="20261120233557" status="3">{name}: ungültige Base64-Daten</lang>
+      </row>
+      <row id="Linked file {file} not found." state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>Linked file {file} not found.</native>
+        <lang id="de" date="20261120233557" status="3">Verknüpfte Datei {file} nicht gefunden.</lang>
+      </row>
+      <row id="The translation is no supported picture ({data})." state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>The translation is no supported picture ({data}).</native>
+        <lang id="de" date="20261120233557" status="3">Die Übersetzung ist kein unterstütztes Bild ({data}).</lang>
+      </row>
+      <row id="The translated picture ({translation}) differs from the original ({original})." state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>The translated picture ({translation}) differs from the original ({original}).</native>
+        <lang id="de" date="20261120233557" status="3">Das übersetzte Bild ({translation}) weicht vom Original ab ({original}).</lang>
+      </row>
+      <row id="Linked file {file} not found" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>Linked file {file} not found</native>
+        <lang id="de" date="20261120233557" status="3">Verknüpfte Datei {file} nicht gefunden</lang>
+      </row>
+      <row id="Translation read from its changed linked file: {row} ({lang})" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>Translation read from its changed linked file: {row} ({lang})</native>
+        <lang id="de" date="20261120233557" status="3">Übersetzung aus der geänderten verknüpften Datei gelesen: {row} ({lang})</lang>
+      </row>
     </node>
   </source>
-  <source class="TTsvSource" name="de-cli.tsv" original="en" date="20261120220852">
+  <source class="TTsvSource" name="de-cli.tsv" original="en" date="20261120233507">
     <outputfile dir="." localized="&lt;iso&gt;-cli.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-cli.tsv" state="0" created="20261103155355">
       <row id="susi-cli {version} – Susi the CAT (SlMake compatible)" state="0" created="20261103162607" note="Help: general" notereadonly="1">
@@ -1162,9 +1210,13 @@
         <native>{n} cell with a translation was kept (-overwrite replaces it)|{n} cells with a translation were kept (-overwrite replaces them)</native>
         <lang id="de" date="20261120220922" status="3">{n} Zelle mit Übersetzung beibehalten (-overwrite ersetzt sie)|{n} Zellen mit Übersetzung beibehalten (-overwrite ersetzt sie)</lang>
       </row>
+      <row id="Pictures and binary data: {pictures} pictures, {binary} binary rows, {linked} linked files" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>Pictures and binary data: {pictures} pictures, {binary} binary rows, {linked} linked files</native>
+        <lang id="de" date="20261120233557" status="3">Bilder und Binärdaten: {pictures} Bilder, {binary} Binärzeilen, {linked} verknüpfte Dateien</lang>
+      </row>
     </node>
   </source>
-  <source class="TTsvSource" name="de-gui.tsv" original="en" date="20261120213508">
+  <source class="TTsvSource" name="de-gui.tsv" original="en" date="20261120233507">
     <outputfile dir="." localized="&lt;iso&gt;-gui.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-gui.tsv" state="0" created="20261103155355">
       <row id="Information" state="0" created="20261103155355" note="Application, log" notereadonly="1">
@@ -2562,6 +2614,106 @@
       <row id="The row has no translation in {lang}" state="0" created="20261120212158" note="Row and column commands" notereadonly="1">
         <native>The row has no translation in {lang}</native>
         <lang id="de" date="20261120212158" status="3">Die Zeile hat keine Übersetzung in {lang}</lang>
+      </row>
+      <row id="Picture or binary data" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>Picture or binary data</native>
+        <lang id="de" date="20261120233557" status="3">Bild oder Binärdaten</lang>
+      </row>
+      <row id="Load translation from file…" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>Load translation from file…</native>
+        <lang id="de" date="20261120233557" status="3">Übersetzung aus Datei laden…</lang>
+      </row>
+      <row id="Link translation to file…" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>Link translation to file…</native>
+        <lang id="de" date="20261120233557" status="3">Übersetzung mit Datei verknüpfen…</lang>
+      </row>
+      <row id="Remove file link" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>Remove file link</native>
+        <lang id="de" date="20261120233557" status="3">Dateiverknüpfung entfernen</lang>
+      </row>
+      <row id="Save original as…" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>Save original as…</native>
+        <lang id="de" date="20261120233557" status="3">Original speichern unter…</lang>
+      </row>
+      <row id="Save translation as…" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>Save translation as…</native>
+        <lang id="de" date="20261120233557" status="3">Übersetzung speichern unter…</lang>
+      </row>
+      <row id="Load…" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>Load…</native>
+        <lang id="de" date="20261120233557" status="3">Laden…</lang>
+      </row>
+      <row id="Link to file…" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>Link to file…</native>
+        <lang id="de" date="20261120233557" status="3">Mit Datei verknüpfen…</lang>
+      </row>
+      <row id="Load translation from file" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>Load translation from file</native>
+        <lang id="de" date="20261120233557" status="3">Übersetzung aus Datei laden</lang>
+      </row>
+      <row id="Link translation to file" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>Link translation to file</native>
+        <lang id="de" date="20261120233557" status="3">Übersetzung mit Datei verknüpfen</lang>
+      </row>
+      <row id="Linked: a changed file is read again when the project is opened, scanned or built." state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>Linked: a changed file is read again when the project is opened, scanned or built.</native>
+        <lang id="de" date="20261120233557" status="3">Verknüpft: Eine geänderte Datei wird beim Öffnen, Scannen und Erstellen neu gelesen.</lang>
+      </row>
+      <row id="Binary data, only a fingerprint is stored ({thumbnail})" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>Binary data, only a fingerprint is stored ({thumbnail})</native>
+        <lang id="de" date="20261120233557" status="3">Binärdaten, gespeichert ist nur ein Fingerabdruck ({thumbnail})</lang>
+      </row>
+      <row id="No data" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>No data</native>
+        <lang id="de" date="20261120233557" status="3">Keine Daten</lang>
+      </row>
+      <row id="No data to save" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>No data to save</native>
+        <lang id="de" date="20261120233557" status="3">Keine Daten zum Speichern</lang>
+      </row>
+      <row id="The picture cannot be shown." state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>The picture cannot be shown.</native>
+        <lang id="de" date="20261120233557" status="3">Das Bild kann nicht angezeigt werden.</lang>
+      </row>
+      <row id="The row contains no picture or binary data" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>The row contains no picture or binary data</native>
+        <lang id="de" date="20261120233557" status="3">Die Zeile enthält kein Bild und keine Binärdaten</lang>
+      </row>
+      <row id="The cell cannot be translated" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>The cell cannot be translated</native>
+        <lang id="de" date="20261120233557" status="3">Die Zelle kann nicht übersetzt werden</lang>
+      </row>
+      <row id="File link removed" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>File link removed</native>
+        <lang id="de" date="20261120233557" status="3">Dateiverknüpfung entfernt</lang>
+      </row>
+      <row id="The translation is not linked to a file" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>The translation is not linked to a file</native>
+        <lang id="de" date="20261120233557" status="3">Die Übersetzung ist mit keiner Datei verknüpft</lang>
+      </row>
+      <row id="Translation loaded from {file}" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>Translation loaded from {file}</native>
+        <lang id="de" date="20261120233557" status="3">Übersetzung aus {file} geladen</lang>
+      </row>
+      <row id="Saved: {path}" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>Saved: {path}</native>
+        <lang id="de" date="20261120233557" status="3">Gespeichert: {path}</lang>
+      </row>
+      <row id="Excluded data types" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>Excluded data types</native>
+        <lang id="de" date="20261120233557" status="3">Ausgeschlossene Datentypen</lang>
+      </row>
+      <row id="Pictures" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>Pictures</native>
+        <lang id="de" date="20261120233557" status="3">Bilder</lang>
+      </row>
+      <row id="Text files" state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>Text files</native>
+        <lang id="de" date="20261120233557" status="3">Textdateien</lang>
+      </row>
+      <row id="Takes effect on the next scan; rows no longer scanned become unused." state="0" created="20261120233557" note="Custom data (pictures, binary data)" notereadonly="1">
+        <native>Takes effect on the next scan; rows no longer scanned become unused.</native>
+        <lang id="de" date="20261120233557" status="3">Wirkt beim nächsten Scan; nicht mehr gescannte Zeilen werden unbenutzt.</lang>
       </row>
     </node>
   </source>

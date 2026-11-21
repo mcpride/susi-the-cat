@@ -5,7 +5,8 @@ use std::path::{Component, Path, PathBuf};
 use susi_core::Project;
 use susi_core::ops;
 
-/// Absolute paths of the project file, the original source files and all localized files.
+/// Absolute paths of the project file, the original source files, all localized files and the
+/// files translated pictures and binary data are linked to.
 pub fn project_files(p: &Project) -> Vec<PathBuf> {
     let mut files = Vec::new();
     if let Some(path) = &p.path {
@@ -18,6 +19,7 @@ pub fn project_files(p: &Project) -> Vec<PathBuf> {
             files.push(f);
         }
     }
+    files.extend(susi_core::custom_data::linked_files(p).into_iter().map(|(_, _, path)| path));
     files.into_iter().map(|f| std::path::absolute(&f).unwrap_or(f)).collect()
 }
 

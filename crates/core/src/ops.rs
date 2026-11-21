@@ -3,6 +3,7 @@
 use std::collections::HashMap;
 use std::path::{Path, PathBuf};
 
+use crate::custom_data::{self, is_data_node};
 use crate::error::{Error, Result, read_file, write_file};
 use crate::formats::{self, ScannedString, select_output};
 use crate::lang::{PatternContext, expand_pattern};
@@ -72,7 +73,7 @@ impl BuildReport {
     }
 }
 
-fn native_path(name: &str) -> PathBuf {
+pub(crate) fn native_path(name: &str) -> PathBuf {
     PathBuf::from(name.replace(['\\', '/'], std::path::MAIN_SEPARATOR_STR))
 }
 
@@ -164,13 +165,15 @@ const ANDROID_GROUP: &str = "string";
 
 /// Item path of the container holding the rows of `file` (`rel_name` relative to the source dir).
 fn container_for(src: &mut Source, rel_name: &str, wildcard: bool, create: bool) -> Option<Vec<usize>> {
-    let named = src.items.iter().position(|i| matches!(i, Item::Node(n) if n.name().eq_ignore_ascii_case(rel_name)));
+    // Custom data nodes (pictures, binary data) live inside a container, they never are one.
+    let file_node = |i: &Item| matches!(i, Item::Node(n) if !is_data_node(n));
+    let named = src.items.iter().position(|i| file_node(i) && matches!(i, Item::Node(n) if n.name().eq_ignore_ascii_case(rel_name)));
     if let Some(i) = named {
         return Some(vec![i]);
     }
     if !wildcard {
         let has_direct_rows = src.items.iter().any(|i| matches!(i, Item::Row(_)));
-        let nodes: Vec<usize> = src.items.iter().enumerate().filter(|(_, i)| matches!(i, Item::Node(_))).map(|(i, _)| i).collect();
+        let nodes: Vec<usize> = src.items.iter().enumerate().filter(|(_, i)| file_node(i)).map(|(i, _)| i).collect();
         // Sisulizer keeps the rows of a single .resx/.properties file directly in the source.
         if has_direct_rows || (nodes.is_empty() && matches!(src.kind(), SourceKind::Resx | SourceKind::Properties)) {
             return Some(Vec::new());
@@ -339,9 +342,16 @@ fn scan_source_impl(p: &mut Project, si: usize, import_existing: bool) -> Result
     let original = p.sources.get(si).map(|s| s.original().to_string()).unwrap_or_default();
     let langs: Vec<String> = p.languages.iter().filter(|l| !l.is_pseudo() && l.id() != original).map(|l| l.id().to_string()).collect();
     let mut newest = None;
+    let stamp = now_stamp();
     for f in &files {
         let Some(src) = p.sources.get_mut(si) else { break };
-        let scanned = match read_file(f).and_then(|b| scan_file(src, &b, &langs)) {
+        let excluded = src.excluded_data();
+        let scan = read_file(f).and_then(|b| match src.kind() {
+            // Text file references and custom data are resolved relative to the .resx.
+            SourceKind::Resx => formats::resx::scan_all(&b, f.parent().unwrap_or(&root), excluded),
+            _ => scan_file(src, &b, &langs).map(|strings| formats::resx::Scan { strings, ..Default::default() }),
+        });
+        let scan = match scan {
             Ok(s) => s,
             Err(e) => {
                 rep.errors.push(format!("{}: {e}", f.display()));
@@ -355,7 +365,9 @@ fn scan_source_impl(p: &mut Project, si: usize, import_existing: bool) -> Result
         let Some(path) = container_for(src, &name, wildcard, true) else { continue };
         let node = NodeRef { source: si, path };
         let Some(items) = p.items_at_mut(&node) else { continue };
-        let r = merge_rows(items, &scanned);
+        let mut r = merge_rows(items, &scan.strings);
+        let (new, changed, unused) = custom_data::merge_data(items, &scan.data, excluded, &stamp);
+        r.add(&ScanReport { new, changed, unused, total: scan.data.len(), errors: scan.errors, ..Default::default() });
         let imported = importer.map_or(0, |parse| import_translations(p, si, f, &node, parse, TranslationStatus::Translated))
             + drafts.map_or(0, |parse| import_translations(p, si, f, &node, parse, TranslationStatus::BestGuess));
         rep.add(&ScanReport { files: 1, imported, ..r });
@@ -442,7 +454,7 @@ pub fn add_source(p: &mut Project, file: &Path, original_lang: &str) -> Result<(
     Ok((si, rep))
 }
 
-fn base_abs(base: &Path) -> PathBuf {
+pub(crate) fn base_abs(base: &Path) -> PathBuf {
     if base.is_absolute() { base.to_path_buf() } else { std::env::current_dir().map(|d| d.join(base)).unwrap_or_else(|_| base.to_path_buf()) }
 }
 
@@ -464,6 +476,41 @@ pub fn relative_path(base: &Path, target: &Path) -> Option<PathBuf> {
     Some(out)
 }
 
+/// Original bytes of a picture or binary row: pictures from the project; binary data, of which the
+/// project keeps only a thumbnail, read from the original `.resx`.
+pub fn data_original(p: &Project, r: &RowRef) -> Option<Vec<u8>> {
+    let row = p.row(r)?;
+    if let Some(b) = row.original_bytes() {
+        return Some(b);
+    }
+    let src = p.sources.get(r.source)?;
+    if !row.is_data() || src.kind() != SourceKind::Resx {
+        return None;
+    }
+    // Path: …, data node, row. Above the data node: the source or the node of the file.
+    let container = r.path.get(..r.path.len().checked_sub(2)?)?;
+    let mut items = &src.items;
+    let mut file_node = None;
+    for &i in container {
+        match items.get(i)? {
+            Item::Node(n) => {
+                file_node = Some(n.name());
+                items = &n.items;
+            }
+            _ => return None,
+        }
+    }
+    let files = source_files(p, r.source).ok()?;
+    let (root, _) = source_location(p, src);
+    let file = match file_node {
+        None => files.into_iter().next()?,
+        Some(name) => files.into_iter().find(|f| rel_name(&root, f).eq_ignore_ascii_case(name))?,
+    };
+    let bytes = read_file(&file).ok()?;
+    let scan = formats::resx::scan_all(&bytes, file.parent()?, custom_data::Excluded::default()).ok()?;
+    scan.data.into_iter().find(|d| d.name == row.id()).map(|d| d.bytes)
+}
+
 /// Rows of the container of `file`, by id.
 fn rows_for_file<'a>(p: &'a Project, si: usize, file: &Path) -> HashMap<&'a str, &'a Row> {
     let mut map = HashMap::new();
@@ -473,8 +520,19 @@ fn rows_for_file<'a>(p: &'a Project, si: usize, file: &Path) -> HashMap<&'a str,
     let Some(path) = container_for(&mut tmp, &rel_name(&root, file), s.is_wildcard(), false) else { return map };
     let items = p.items_at(&NodeRef { source: si, path });
     for item in items.into_iter().flatten() {
-        if let Item::Row(r) = item {
-            map.entry(r.id()).or_insert(r);
+        match item {
+            Item::Row(r) => {
+                map.entry(r.id()).or_insert(r);
+            }
+            // Custom data: one row per data node, named like the resource.
+            Item::Node(n) if is_data_node(n) => {
+                for i in &n.items {
+                    if let Item::Row(r) = i {
+                        map.entry(r.id()).or_insert(r);
+                    }
+                }
+            }
+            _ => {}
         }
     }
     map
@@ -487,7 +545,12 @@ pub fn build_content(src: &Source, original: &[u8], rows: &HashMap<&str, &Row>, 
     let resolve = |id: &str, orig: &str| select_output(method, rows.get(id).copied(), lang, orig);
     match src.kind() {
         SourceKind::Json => formats::json::build(original, &resolve, method == WriteMethod::All),
-        SourceKind::Resx => formats::resx::build(original, &resolve),
+        SourceKind::Resx => {
+            let text_ref = |id: &str| rows.get(id).filter(|r| !r.is_data()).and_then(|r| select_output(method, Some(r), lang, r.original()));
+            let data = |id: &str| rows.get(id).filter(|r| r.is_data()).and_then(|r| r.build_bytes(lang));
+            let values = formats::resx::Values { text: &resolve, text_ref: &text_ref, data: &data, keep_data: method == WriteMethod::All };
+            formats::resx::build(original, &values)
+        }
         SourceKind::Po => {
             let fuzzy = |id: &str| rows.get(id).is_some_and(|r| matches!(r.tstatus(lang), TranslationStatus::ForReview | TranslationStatus::BestGuess));
             let params =
@@ -562,7 +625,7 @@ fn with_pseudo(rows: &HashMap<&str, &Row>, lang: &str, opts: &crate::pseudo::Pse
     rows.iter()
         .map(|(k, r)| {
             let mut row = (*r).clone();
-            if !row.locked() && row.build_text(lang).is_none() && !row.original().is_empty() {
+            if !row.locked() && !row.is_data() && row.build_text(lang).is_none() && !row.original().is_empty() {
                 row.set_translation(lang, &crate::pseudo::pseudo_text(row.original(), opts), TranslationStatus::AutoTranslated);
             }
             ((*k).to_string(), row)
@@ -649,7 +712,7 @@ fn copy_target(p: &Project, r: &RowRef, from: Option<&str>, lang: &str) -> Optio
         return None;
     }
     let row = p.row(r)?;
-    if row.locked() || row.excluded() || row.raw {
+    if row.locked() || row.excluded() || row.is_data_or_raw() {
         return None;
     }
     let text = copy_source(p, r, from)?;

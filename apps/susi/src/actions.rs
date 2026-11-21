@@ -76,6 +76,8 @@ pub enum Action {
     Workflow(crate::workflow_ui::Command),
     /// Screenshot command.
     Screenshot(crate::shots::ShotCmd),
+    /// Picture or binary data of the selected cell.
+    Data(crate::data_ui::DataCmd),
 }
 
 /// Rows an action applies to.
@@ -203,6 +205,7 @@ impl SusiApp {
             Action::ToggleMarked => self.with_selected_row(|r| r.set_marked(!r.marked())),
             Action::ToggleExcluded => self.with_selected_row(|r| r.set_excluded(!r.excluded())),
             Action::RowProperties => self.row_props_dialog(),
+            Action::Data(c) => crate::data_ui::run(self, c),
             Action::CopyIntoCell(from) => self.copy_into_cell(from),
             Action::ClearTranslation => {
                 if let (Some(row), Some(lang)) = (self.selected.clone(), self.lang.clone()) {
@@ -446,6 +449,7 @@ impl SusiApp {
             po: (s.kind() == susi_core::SourceKind::Po).then(|| s.po_options()),
             encoding: (s.kind() == susi_core::SourceKind::Properties).then(|| s.properties_encoding()),
             android: s.kind() == susi_core::SourceKind::Android,
+            excluded: (s.kind() == susi_core::SourceKind::Resx).then(|| s.excluded_data()),
         }));
     }
 
@@ -494,6 +498,8 @@ impl SusiApp {
 
     pub fn scan(&mut self, sources: Option<Vec<usize>>) {
         self.commit_cell_edit();
+        crate::data_ui::refresh_linked(self);
+        self.data_ui.clear();
         let Some(p) = self.project.as_mut() else {
             return;
         };
@@ -512,6 +518,7 @@ impl SusiApp {
 
     pub fn build(&mut self, sources: Option<Vec<usize>>) {
         self.commit_cell_edit();
+        crate::data_ui::refresh_linked(self);
         let Some(p) = self.project.as_ref() else {
             return;
         };
