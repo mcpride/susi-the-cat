@@ -1,11 +1,13 @@
 name: CI
 
 # Every push and pull request runs the quality gate (`cargo xtask ci`: rustfmt, clippy, all tests)
-# on Windows, Linux and macOS. A push to main then runs semantic-release: it derives the next
-# version from the Conventional Commits since the last `v*` tag, updates CHANGELOG.md, Cargo.toml
-# and Cargo.lock, commits and tags the release and creates a draft GitHub release. The build jobs
-# compile the tagged commit on every platform and attach the archives and a CycloneDX SBOM per
-# application; the last job publishes the release once all of them are attached.
+# on Windows, Linux and macOS and builds the user guide (`cargo xtask help --check`). A push to
+# main then runs semantic-release: it derives the next version from the Conventional Commits since
+# the last `v*` tag, updates CHANGELOG.md, Cargo.toml and Cargo.lock, commits and tags the release
+# and creates a draft GitHub release. The build jobs compile the tagged commit on every platform
+# and attach the archives (with the user guide of the version) and a CycloneDX SBOM per
+# application; the publish job publishes the release once all of them are attached, and the last
+# job deploys the user guide of the release as online help to GitHub Pages.
 on:
   push:
     branches: [main]
@@ -46,9 +48,25 @@ jobs:
       - uses: Swatinem/rust-cache@v2
       - run: cargo xtask ci
 
+  # User guide (docs/user): builds every language and fails if po/messages.pot is out of date.
+  help:
+    name: user guide
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: mdbook@0.5.4,mdbook-i18n-helpers@0.4.0
+      - run: cargo xtask help --check
+
   release:
     name: semantic-release
-    needs: test
+    needs: [test, help]
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -106,9 +124,12 @@ jobs:
       - uses: Swatinem/rust-cache@v2
       - uses: taiki-e/install-action@v2
         with:
-          tool: cargo-cyclonedx@0.5.10
-      # Release build into dist/; on Windows with icon and version info (rc.exe is required).
+          tool: cargo-cyclonedx@0.5.10,mdbook@0.5.4,mdbook-i18n-helpers@0.4.0
+      # Release build into dist/; on Windows with icon and version info (rc.exe is required),
+      # with the user guide of this version in dist/help/ (opened by F1).
       - run: cargo xtask dist
+        env:
+          SUSI_REQUIRE_HELP: 1
       # CycloneDX SBOM per application (dependencies of this platform) into dist/.
       - run: cargo xtask sbom
       - name: Package and upload
@@ -148,3 +169,36 @@ jobs:
       - run: gh release edit "v${{ needs.release.outputs.version }}" --draft=false --latest --repo "$GITHUB_REPOSITORY"
         env:
           GH_TOKEN: ${{ github.token }}
+
+  # Online help of the latest release on GitHub Pages (https://mcpride.github.io/susi-the-cat/).
+  # Requires Settings › Pages › Source: GitHub Actions.
+  pages:
+    name: online help
+    needs: [release, publish]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      pages: write # deploy to GitHub Pages
+      id-token: write # verifies the deployment
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: v${{ needs.release.outputs.version }}
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: mdbook@0.5.4,mdbook-i18n-helpers@0.4.0
+      - run: cargo xtask help
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: target/help
+      - id: deploy
+        uses: actions/deploy-pages@v5

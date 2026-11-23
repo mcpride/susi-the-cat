@@ -88,6 +88,9 @@
 	User interface language	Sprache der Benutzeroberfläche
 	Automatic (system language)	Automatisch (Systemsprache)
 	Help	Hilfe
+	User guide	Benutzerhandbuch
+	F1 opens the help for the part of the window under the mouse pointer	F1 öffnet die Hilfe zum Fensterbereich unter dem Mauszeiger
+	Help opened: {url}	Hilfe geöffnet: {url}
 	About Susi…	Über Susi…
 # Toolbar, status bar
 	New project	Neues Projekt

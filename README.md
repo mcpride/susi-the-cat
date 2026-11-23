@@ -41,7 +41,8 @@ Prerequisites:
 
 ```powershell
 cargo build --release          # target\release\susi.exe and susi-cli.exe
-cargo xtask dist               # release build (with icon and version info) and copy to dist\
+cargo xtask dist               # release build (with icon and version info) and copy to dist\, user guide into dist\help\
+cargo xtask help               # user guide (docs\user, English and German) into target\help\ (needs mdbook, see below)
 cargo xtask sbom               # CycloneDX SBOM per app into dist\ (cargo install cargo-cyclonedx --locked)
 cargo xtask ci                 # rustfmt --check, clippy -D warnings, all tests
 cargo xtask fmt | lint | test
@@ -63,14 +64,34 @@ apps/susi     GUI (egui/eframe)
 apps/susi-cli CLI (SlMake compatible) + `mcp` task
 xtask         automation (cargo xtask …)
 assets        app icon (see below)
-docs          architecture overview
+docs/user     user guide for translators (mdBook, English and German; offline and online help)
+docs/dev      developer documentation: architecture overview, maintaining the user guide
 testdata      test fixtures (see below)
 .github       CI and release workflow; release tooling in package.json and .releaserc.json (see below)
 ```
 
 How the applications and crates fit together (dependencies, data model, scan/build pipeline,
 GUI, CLI, MCP server, git workflow, CI) is described with diagrams in the
-[architecture overview](docs/architecture.md).
+[architecture overview](docs/dev/architecture.md).
+
+### User guide (`docs/user/`)
+
+The help for translators and reviewers is a separate, non-technical
+[user guide](docs/user/src/index.md) in English and German, built with
+[mdBook](https://rust-lang.github.io/mdBook/) and
+[mdbook-i18n-helpers](https://github.com/google/mdbook-i18n-helpers). The German translation is
+maintained with Susi (`docs/user/susi-help.slp`). Every release archive contains the guide of its
+version in `help/`, which `F1` in the GUI opens context-sensitively; without it, the
+[online help](https://mcpride.github.io/susi-the-cat/) of the latest release is opened.
+
+```powershell
+cargo install mdbook --version 0.5.4 --locked
+cargo install mdbook-i18n-helpers --version 0.4.0 --locked
+cargo xtask help
+```
+
+Writing, translating and publishing are described in
+[maintaining the user guide](docs/dev/user-guide.md).
 
 ### App icon (`assets/app-icon/`)
 
@@ -111,7 +132,9 @@ The integration tests run against synthetic fixtures that are part of the worksp
 
 `.github/workflows/ci.yml` runs on every push and pull request:
 
-1. **test** – `cargo xtask ci` (rustfmt, clippy, all tests) on Windows, Linux and macOS.
+1. **test** – `cargo xtask ci` (rustfmt, clippy, all tests) on Windows, Linux and macOS;
+   **user guide** – `cargo xtask help --check` (builds the guide, fails if
+   `docs/user/po/messages.pot` is out of date).
 2. **semantic-release** (pushes to `main` only, after all tests passed) – [semantic-release](https://semantic-release.gitbook.io/)
    derives the next version from the commit messages since the last `v*` tag
    ([Conventional Commits](https://www.conventionalcommits.org/)):
@@ -129,10 +152,13 @@ The integration tests run against synthetic fixtures that are part of the worksp
 3. **build** – checks out the tag and runs `cargo xtask dist` and `cargo xtask sbom` on each
    platform; the archives `susi-the-cat-x.y.z-windows-x64.zip`, `…-linux-x64.tar.gz` and
    `…-macos-arm64.tar.gz` (with `susi`, `susi-cli`, their SBOMs `susi.cdx.json` and
-   `susi-cli.cdx.json`, `README.md`, `CHANGELOG.md` and a `.sha256` file each) are attached to the
-   release, and the SBOMs also on their own (`susi-the-cat-x.y.z-<platform>-susi.cdx.json`,
-   `…-susi-cli.cdx.json`).
+   `susi-cli.cdx.json`, the user guide in `help/`, `README.md`, `CHANGELOG.md` and a `.sha256`
+   file each) are attached to the release, and the SBOMs also on their own
+   (`susi-the-cat-x.y.z-<platform>-susi.cdx.json`, `…-susi-cli.cdx.json`).
 4. **publish** – publishes the draft once all archives are attached.
+5. **online help** – deploys the user guide of the release to GitHub Pages
+   (`https://mcpride.github.io/susi-the-cat/`). Requires *Settings › Pages › Source: GitHub
+   Actions* once.
 
 Notes:
 
@@ -164,7 +190,11 @@ Operation follows Sisulizer:
 
 - **Menus**: File, Edit, Search, View, Project, Validation, Column, Row, Translation, Tools,
   Help. Keyboard shortcuts: `Ctrl+S`, `Ctrl+O`, `Ctrl+N`, `Ctrl+F`, `F5` (scan),
-  `F9` (build). The current language is selected at the end of *View* (or by clicking a cell).
+  `F9` (build), `F1` (help). The current language is selected at the end of *View* (or by clicking a cell).
+- **Help**: `F1` opens the [user guide](#user-guide-docsuser) page for the open dialog, the bottom
+  tab or the panel under the mouse pointer, in the user interface language: the guide shipped
+  with the version (`help/` next to the executable), otherwise the online help. *Help › User
+  guide* opens its start page.
 - **Project tree** (left): "All", with the sources and their nodes below. The context menu offers
   properties, scanning/building a single source, setting the status of all rows of a node and
   "Remove source".

@@ -1,0 +1,23 @@
+/* Susi help: language switcher in the menu bar (see language.js). */
+.right-buttons .susi-language {
+    display: inline-block;
+    margin-inline-end: 0.8em;
+    padding: 0 0.4em;
+    border: 1px solid var(--icons);
+    border-radius: 4px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    line-height: 2.2rem;
+    color: var(--icons);
+    text-decoration: none;
+}
+
+.right-buttons .susi-language:hover {
+    color: var(--icons-hover);
+    border-color: var(--icons-hover);
+}
+
+/* Tables of commands and options: keep the first column readable. */
+.content table td:first-child {
+    white-space: nowrap;
+}

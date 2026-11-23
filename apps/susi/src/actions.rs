@@ -72,6 +72,10 @@ pub enum Action {
     Nav(Nav),
     Settings,
     About,
+    /// Help page for the current context (`F1`).
+    Help,
+    /// Start page of the user guide.
+    UserGuide,
     /// Git workflow command.
     Workflow(crate::workflow_ui::Command),
     /// Screenshot command.
@@ -131,6 +135,8 @@ impl SusiApp {
             }
             Action::Settings => self.dialog = Some(Dialog::Settings(Box::new(self.settings.clone()))),
             Action::About => self.dialog = Some(Dialog::About),
+            Action::Help => crate::help::open(self, ctx, crate::help::topic(self)),
+            Action::UserGuide => crate::help::open(self, ctx, "index"),
             Action::Find => {
                 self.show_bottom = true;
                 self.tab = BottomTab::Search;

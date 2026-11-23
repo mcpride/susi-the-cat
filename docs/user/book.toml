@@ -1,0 +1,27 @@
+# User guide of Susi the CAT (mdBook + mdbook-i18n-helpers), built with `cargo xtask help`.
+# English is written in src/, translations live in po/<lang>.po (maintained with Susi: susi-help.slp).
+[book]
+title = "Susi the CAT – User guide"
+language = "en"
+src = "src"
+
+[build]
+create-missing = false
+extra-watch-dirs = ["po"]
+
+# Replaces the text with the translation of book.language from po/<lang>.po (no file: English).
+[preprocessor.gettext]
+after = ["links"]
+
+[output.html]
+default-theme = "light"
+preferred-dark-theme = "navy"
+no-section-label = true
+site-url = "/susi-the-cat/"
+git-repository-url = "https://github.com/mcpride/susi-the-cat"
+additional-css = ["theme/susi.css"]
+additional-js = ["theme/language.js"]
+
+[output.html.search]
+enable = true
+limit-results = 20

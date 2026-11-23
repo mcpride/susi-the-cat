@@ -8,6 +8,7 @@ mod bottom;
 mod data_ui;
 mod dialogs;
 mod grid;
+mod help;
 mod list;
 mod panels;
 mod shots;
