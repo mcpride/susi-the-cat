@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.15.1](https://github.com/mcpride/susi-the-cat/compare/v0.15.0...v0.15.1) (2026-11-23)
+
+### Bug Fixes
+
+* restore sizes of the bottom and side panels ([511e3b0](https://github.com/mcpride/susi-the-cat/commit/511e3b0b7dbc85adad1f52c562a6efee814a9d07))
+* restore window size and position after restart ([742a7a1](https://github.com/mcpride/susi-the-cat/commit/742a7a14aceda97b46fb580c53f627e0058209e2))
+
 ## [0.15.0](https://github.com/mcpride/susi-the-cat/compare/v0.14.0...v0.15.0) (2026-11-21)
 
 ### Features
