@@ -193,7 +193,16 @@ mod tests {
         assert_eq!((rep.new, rep.changed, rep.unused), (0, 0, 0), "po/messages.pot differs from susi-help.slp; {hint}");
         let b = susi_core::ops::build_project(&p, &[], None);
         assert!(b.errors.is_empty(), "{:?}", b.errors);
-        assert!(b.written.is_empty(), "building susi-help.slp would change {:?}; {hint}", b.written);
+        // `PO-Revision-Date` is the local time of the latest translation with the UTC offset of the
+        // building machine, so it differs between time zones (CI runs in UTC): compare without it.
+        let without_date = |path: &Path| {
+            let text = std::fs::read_to_string(path).unwrap_or_default();
+            text.lines().filter(|l| !l.starts_with("\"PO-Revision-Date:")).map(str::to_string).collect::<Vec<_>>()
+        };
+        for built in &b.written {
+            let committed = guide().join("po").join(built.file_name().unwrap());
+            assert!(without_date(built) == without_date(&committed), "building susi-help.slp would change {}; {hint}", committed.display());
+        }
         let _ = std::fs::remove_dir_all(&tmp);
     }
 }
