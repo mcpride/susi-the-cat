@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.16.0](https://github.com/mcpride/susi-the-cat/compare/v0.15.1...v0.16.0) (2026-11-23)
+
+### Features
+
+* context-sensitive user guide in English and German (F1, offline and online) ([0551804](https://github.com/mcpride/susi-the-cat/commit/0551804db02a310a004d808b84305b02c4c6dbe4))
+
 ## [0.15.1](https://github.com/mcpride/susi-the-cat/compare/v0.15.0...v0.15.1) (2026-11-23)
 
 ### Bug Fixes
