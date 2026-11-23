@@ -698,9 +698,9 @@ rows. MCP: rows with `data` instead of text, `get_picture` (the picture as image
 - **Translation memory**: TMX, by default `%APPDATA%\susi\susi-tm.tmx` (configurable). Exact
   matches get the status *Auto translated*, fuzzy matches *Best guess*.
 - **Settings**: `%APPDATA%\susi\settings.json`. The directory can be overridden with
-  `SUSI_CONFIG_DIR`. The window position, size and maximized state (and thereby the monitor) are
-  restored from `window.ron` in the same directory; on the first start the window is fitted to the
-  monitor.
+  `SUSI_CONFIG_DIR`. The window position, size and maximized state (and thereby the monitor) and
+  the sizes of the bottom panel, project tree and filter panel are restored from `window.ron` in
+  the same directory; on the first start the window is fitted to the monitor.
 - **Exchange**: Excel `.xlsx`, `.csv`, tab-separated `.txt`, XLIFF 1.2 (`.xlf`, one file per
   language when several languages are exported) and `.tmx`.
 - **Screenshots**: `<project>.files/` next to the project, see [Screenshots](#screenshots).

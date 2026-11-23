@@ -38,6 +38,9 @@ fn main() -> eframe::Result {
         Box::new(move |cc| {
             let mut app = app::SusiApp::new(&cc.egui_ctx, project);
             app.fit_window = first_start;
+            if let Some(storage) = cc.storage {
+                app.panels = window::PanelSizes::load(storage);
+            }
             Ok(Box::new(app))
         }),
     )

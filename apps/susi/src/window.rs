@@ -1,8 +1,42 @@
-//! Geometry of the main window: eframe restores position, size, maximized state and thereby the
-//! monitor from the last session (`window.ron` in the config directory). Without a saved geometry
-//! (first start) the window is fitted to the monitor and centered.
+//! Layout of the main window, restored from the last session (`window.ron` in the config directory):
+//! eframe saves position, size and maximized state (and thereby the monitor), Susi the sizes of the
+//! resizable panels. Without a saved geometry (first start) the window is fitted to the monitor and centered.
 
 use std::path::PathBuf;
+
+/// Sizes of the resizable panels (outer size in points): height of the bottom panel, widths of
+/// project tree and filter panel. The panels keep these sizes whatever they show (see `panels::fill`).
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub struct PanelSizes {
+    pub bottom: f32,
+    pub tree: f32,
+    pub filter: f32,
+}
+
+impl Default for PanelSizes {
+    fn default() -> Self {
+        Self { bottom: 250.0, tree: 260.0, filter: 210.0 }
+    }
+}
+
+const KEY_BOTTOM: &str = "panel_bottom";
+const KEY_TREE: &str = "panel_tree";
+const KEY_FILTER: &str = "panel_filter";
+
+impl PanelSizes {
+    /// Sizes of the last session; missing or unreadable values keep their default.
+    pub fn load(storage: &dyn eframe::Storage) -> Self {
+        let d = Self::default();
+        let get = |key, default| eframe::get_value::<f32>(storage, key).filter(|v| v.is_finite() && *v > 0.0).unwrap_or(default);
+        Self { bottom: get(KEY_BOTTOM, d.bottom), tree: get(KEY_TREE, d.tree), filter: get(KEY_FILTER, d.filter) }
+    }
+
+    pub fn save(&self, storage: &mut dyn eframe::Storage) {
+        eframe::set_value(storage, KEY_BOTTOM, &self.bottom);
+        eframe::set_value(storage, KEY_TREE, &self.tree);
+        eframe::set_value(storage, KEY_FILTER, &self.filter);
+    }
+}
 
 /// Inner size on the first start, shrunk to the monitor if needed (points).
 pub const DEFAULT_SIZE: egui::Vec2 = egui::vec2(1400.0, 860.0);

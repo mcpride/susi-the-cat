@@ -506,6 +506,58 @@ fn bottom_list_scrolls_horizontally() {
     let _ = std::fs::remove_dir_all(&tmp);
 }
 
+fn assert_panel_sizes(got: crate::window::PanelSizes, want: crate::window::PanelSizes, what: &str) {
+    let close = |a: f32, b: f32| (a - b).abs() < 0.5;
+    assert!(close(got.bottom, want.bottom) && close(got.tree, want.tree) && close(got.filter, want.filter), "{what}: {got:?}, expected {want:?}");
+}
+
+/// Panels keep their (restored) size whatever they show: switching the bottom tabs (lists, hints
+/// of empty tabs, editor) neither shrinks nor grows the bottom panel.
+#[test]
+fn panels_keep_their_size() {
+    use crate::window::PanelSizes;
+    let ctx = egui::Context::default();
+    let mut app = app_with_fixture(&ctx, &std::env::temp_dir(), "en");
+    let restored = PanelSizes { bottom: 300.0, tree: 240.0, filter: 220.0 };
+    app.panels = restored;
+    run(&ctx, &mut app, 2);
+    assert_panel_sizes(app.panels, restored, "start");
+    for tab in BottomTab::ALL {
+        app.tab = tab;
+        run(&ctx, &mut app, 2);
+        assert_panel_sizes(app.panels, restored, &format!("{tab:?} without selection"));
+    }
+    app.select(app.rows[0].clone());
+    app.lang = Some(app.project.as_ref().unwrap().language_ids()[0].clone());
+    for tab in BottomTab::ALL {
+        app.tab = tab;
+        run(&ctx, &mut app, 2);
+        assert_panel_sizes(app.panels, restored, &format!("{tab:?} with selection"));
+    }
+
+    // Saved next to the window geometry and read back on the next start.
+    #[derive(Default)]
+    struct Mem(std::collections::HashMap<String, String>);
+    impl eframe::Storage for Mem {
+        fn get_string(&self, key: &str) -> Option<String> {
+            self.0.get(key).cloned()
+        }
+        fn set_string(&mut self, key: &str, value: String) {
+            self.0.insert(key.into(), value);
+        }
+        fn remove_string(&mut self, key: &str) {
+            self.0.remove(key);
+        }
+        fn flush(&mut self) {}
+    }
+    let mut storage = Mem::default();
+    assert_eq!(PanelSizes::load(&storage), PanelSizes::default());
+    eframe::App::save(&mut app, &mut storage);
+    assert_panel_sizes(PanelSizes::load(&storage), restored, "loaded");
+    eframe::Storage::set_string(&mut storage, "panel_tree", "broken".into());
+    assert_eq!(PanelSizes::load(&storage).tree, PanelSizes::default().tree);
+}
+
 fn copy_dir(from: &Path, to: &Path) {
     std::fs::create_dir_all(to).unwrap();
     for e in std::fs::read_dir(from).unwrap().flatten() {
@@ -554,6 +606,8 @@ fn custom_data_rows() {
     assert!(app.cell_edit.is_none());
     assert!(app.show_bottom && app.tab == BottomTab::Editor);
     assert_eq!(app.data_ui.texture_count(), 2);
+    // The previews are taller than the bottom panel: it scrolls instead of growing.
+    assert_panel_sizes(app.panels, crate::window::PanelSizes::default(), "editor with pictures");
     app.select(bytes);
     run(&ctx, &mut app, 2);
 
