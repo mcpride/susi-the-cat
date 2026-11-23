@@ -319,6 +319,8 @@ pub struct SusiApp {
     pub fit_window: bool,
     /// Sizes of bottom panel, project tree and filter panel (restored from the last session).
     pub panels: crate::window::PanelSizes,
+    /// Part of the window under the mouse pointer: the context of `F1`.
+    pub help_area: crate::help::Area,
     title: String,
 }
 
@@ -371,6 +373,7 @@ impl SusiApp {
             data_ui: Default::default(),
             fit_window: false,
             panels: Default::default(),
+            help_area: Default::default(),
             title: String::new(),
         };
         app.apply_theme(ctx);
@@ -723,6 +726,7 @@ impl SusiApp {
             (KeyboardShortcut::new(Modifiers::COMMAND, Key::F), Action::Find),
             (KeyboardShortcut::new(Modifiers::NONE, Key::F5), Action::Scan),
             (KeyboardShortcut::new(Modifiers::NONE, Key::F9), Action::Build),
+            (KeyboardShortcut::new(Modifiers::NONE, Key::F1), Action::Help),
         ];
         for (sc, action) in shortcuts {
             if ctx.input_mut(|i| i.consume_shortcut(&sc)) {

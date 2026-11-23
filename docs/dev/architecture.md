@@ -3,7 +3,7 @@
 This document describes how Susi the CAT is structured: the applications, the library crates
 they are built from, the main data flows and the cross-cutting design decisions. It is aimed at
 developers who want to find their way around the code base. For usage and file format details see
-the [README](../README.md).
+the [README](../../README.md); the help for translators is in [docs/user](../user/).
 
 Contents:
 
@@ -104,7 +104,7 @@ flowchart TB
 | `crates/mcp`    | `susi-mcp`      | MCP server (rmcp) exposing a project session as tools                                            |
 | `apps/susi`     | `susi`          | Desktop GUI (egui immediate mode)                                                                |
 | `apps/susi-cli` | `susi-cli`      | Command line front end; also hosts the MCP server (`mcp` task)                                   |
-| `xtask`         | `xtask`         | `cargo xtask ci / dist / sbom / icons / set-version / fmt / lint / test`                         |
+| `xtask`         | `xtask`         | `cargo xtask ci / dist / help / sbom / icons / set-version / fmt / lint / test`                  |
 | `assets/`       | –               | App icon master (`susi.svg`) and rendered `.ico`/`.png`, embedded by `apps/*/build.rs`           |
 | `testdata/`     | –               | Anonymized fixtures: demo projects and 193 further `.slp` files for round-trip tests             |
 
@@ -333,6 +333,7 @@ lives in one struct, `SusiApp` (`app.rs`); the UI is re-rendered from that state
 |------------------|---------------------------------------------------------------------------------|
 | `main.rs`        | Window setup, starts `SusiApp` with an optional `.slp` argument                 |
 | `window.rs`      | Window layout: geometry and panel sizes restored from `window.ron` (eframe persistence), window fitted to the monitor on the first start |
+| `help.rs`        | Context help: `F1` maps the open dialog, bottom tab or pointed panel to a page of the user guide (`docs/user`), local guide first, then online |
 | `app.rs`         | `SusiApp` state: project, TM, selection, filter, sort, log, issues, dialogs, settings |
 | `panels.rs`      | Menu bar, toolbar, project tree, filter panel, status bar; the row and column commands shared with the context menus |
 | `grid.rs`        | Central translation sheet: columns, in-cell editing, sorting, column widths, context menus of cells and column headers |
@@ -685,14 +686,18 @@ runs rustfmt, clippy (`-D warnings`) and all tests.
 ```mermaid
 flowchart LR
     trigger["Push or pull request"] --> test["test<br/>cargo xtask ci<br/>Windows, Linux, macOS"]
+    trigger --> help["user guide<br/>cargo xtask help --check"]
     test -- "push to main" --> release["semantic-release<br/>version from Conventional Commits,<br/>CHANGELOG, set-version, tag, draft release"]
+    help -- "push to main" --> release
     release -- "new version" --> build["build<br/>cargo xtask dist + sbom<br/>windows-x64, linux-x64, macos-arm64"]
     build --> publish["publish<br/>draft becomes latest release"]
+    publish --> pages["online help<br/>user guide to GitHub Pages"]
 ```
 
 - `xtask` bundles the build automation: `ci`, `fmt`, `lint`, `test`, `dist` (release build with
-  embedded icon and version info), `sbom` (CycloneDX per application via cargo-cyclonedx),
-  `icons` (renders `susi.svg` to `.ico`/`.png`) and `set-version`.
+  embedded icon and version info, user guide in `dist/help/`), `help` (user guide, see
+  [maintaining the user guide](user-guide.md)), `sbom` (CycloneDX per application via
+  cargo-cyclonedx), `icons` (renders `susi.svg` to `.ico`/`.png`) and `set-version`.
 - `apps/*/build.rs` embed icon and version resources into the Windows executables via `winresource`.
-- Release archives contain `susi`, `susi-cli`, their SBOMs, `README.md` and `CHANGELOG.md`, each
-  with a `.sha256` checksum.
+- Release archives contain `susi`, `susi-cli`, their SBOMs, the user guide (`help/en`, `help/de`),
+  `README.md` and `CHANGELOG.md`, each with a `.sha256` checksum.

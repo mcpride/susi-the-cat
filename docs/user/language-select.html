@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<!-- Start page of the online help (copied to index.html by `cargo xtask help`): the help in the
+     language of the browser, German or English. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Susi the CAT – Help</title>
+<script>
+    var lang = ((navigator.languages && navigator.languages[0]) || navigator.language || "en").toLowerCase();
+    window.location.replace((lang.indexOf("de") === 0 ? "de" : "en") + "/index.html");
+</script>
+</head>
+<body>
+<p><a href="en/index.html">Susi the CAT – User guide (English)</a></p>
+<p><a href="de/index.html" lang="de">Susi the CAT – Benutzerhandbuch (Deutsch)</a></p>
+</body>
+</html>

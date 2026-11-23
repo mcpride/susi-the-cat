@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<document created="20261103155355" version="4.0.374" date="20261123181749" scan="26" scanned="20261123180547">
+<document created="20261103155355" version="4.0.374" date="20261123195037" scan="27" scanned="20261123195037">
   <lang id="en"/>
   <lang id="de"/>
   <source class="TTsvSource" name="de-core.tsv" original="en" date="20261123170134">
@@ -1216,7 +1216,7 @@
       </row>
     </node>
   </source>
-  <source class="TTsvSource" name="de-gui.tsv" original="en" date="20261123170134">
+  <source class="TTsvSource" name="de-gui.tsv" original="en" date="20261123195021">
     <outputfile dir="." localized="&lt;iso&gt;-gui.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-gui.tsv" state="0" created="20261103155355">
       <row id="Information" created="20261103155355" note="Application, log" notereadonly="1">
@@ -1550,6 +1550,18 @@
       <row id="Help" created="20261103155355" note="Menus" notereadonly="1">
         <native>Help</native>
         <lang id="de" date="20261103155355" status="3">Hilfe</lang>
+      </row>
+      <row id="User guide" state="0" created="20261123195037" note="Menus" notereadonly="1">
+        <native>User guide</native>
+        <lang id="de" date="20261123195037" status="3">Benutzerhandbuch</lang>
+      </row>
+      <row id="F1 opens the help for the part of the window under the mouse pointer" state="0" created="20261123195037" note="Menus" notereadonly="1">
+        <native>F1 opens the help for the part of the window under the mouse pointer</native>
+        <lang id="de" date="20261123195037" status="3">F1 öffnet die Hilfe zum Fensterbereich unter dem Mauszeiger</lang>
+      </row>
+      <row id="Help opened: {url}" state="0" created="20261123195037" note="Menus" notereadonly="1">
+        <native>Help opened: {url}</native>
+        <lang id="de" date="20261123195037" status="3">Hilfe geöffnet: {url}</lang>
       </row>
       <row id="About Susi…" created="20261103155355" note="Menus" notereadonly="1">
         <native>About Susi…</native>

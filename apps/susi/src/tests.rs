@@ -211,6 +211,8 @@ fn render_all_views_and_dialogs(ui_language: &str) {
         for tab in BottomTab::ALL {
             app.tab = tab;
             run(&ctx, &mut app, 2);
+            app.help_area = crate::help::Area::Output;
+            assert!(crate::help::TOPICS.contains(&crate::help::topic(&app)), "{tab:?}: help page not in TOPICS");
         }
     }
 
@@ -313,6 +315,7 @@ fn render_all_views_and_dialogs(ui_language: &str) {
     ];
     for d in dialogs {
         app.dialog = Some(d);
+        assert!(crate::help::TOPICS.contains(&crate::help::topic(&app)), "help page of a dialog not in TOPICS");
         run(&ctx, &mut app, 2);
         assert!(app.dialog.is_some(), "dialog closed without user interaction");
     }

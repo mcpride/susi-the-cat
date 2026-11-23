@@ -6,7 +6,11 @@
 //! - `lint`  – clippy for all targets with `-D warnings`
 //! - `test`  – run all tests
 //! - `dist`  – release build (icon and version info required on Windows); copies `susi`, `susi-cli`,
-//!   `README.md` and `CHANGELOG.md` to `dist/`
+//!   `README.md` and `CHANGELOG.md` to `dist/` and builds the user guide into `dist/help/` (without
+//!   mdbook only a warning, unless `SUSI_REQUIRE_HELP` is set, as in the release build)
+//! - `help`  – user guide (`docs/user`, mdBook): updates `po/messages.pot` from the English texts and
+//!   builds all languages into `target/help/<lang>/`; `--check` fails if `messages.pot` was out of
+//!   date (CI). Requires mdbook 0.5 and mdbook-i18n-helpers 0.4 (see `MDBOOK_HINT`)
 //! - `sbom`  – CycloneDX SBOM (JSON) of `susi` and `susi-cli` for the host platform into `dist/`
 //!   (`susi.cdx.json`, `susi-cli.cdx.json`; requires `cargo install cargo-cyclonedx --locked`)
 //! - `icons` – renders `assets/app-icon/susi.svg` to `susi.ico` (16–256 px) and `susi-256.png`
@@ -25,11 +29,12 @@ fn main() -> ExitCode {
         Some("lint") => lint(),
         Some("test") => test(),
         Some("dist") => dist(),
+        Some("help") => help(&args[1..]),
         Some("sbom") => sbom(),
         Some("icons") => icons(),
         Some("set-version") => set_version(args.get(1).map(String::as_str)),
         _ => {
-            eprintln!("usage: cargo xtask <ci|fmt|lint|test|dist|sbom|icons|set-version <x.y.z>>");
+            eprintln!("usage: cargo xtask <ci|fmt|lint|test|dist|help [--check]|sbom|icons|set-version <x.y.z>>");
             return ExitCode::from(2);
         }
     };
@@ -96,6 +101,96 @@ fn dist() -> Result {
             std::fs::copy(&from, dist.join(file)).map_err(|e| format!("{}: {e}", from.display()))?;
         }
     }
+    // The user guide of this version next to the executables: `F1` opens it before the online help.
+    match build_help(&dist.join("help")) {
+        Err(e) if std::env::var_os("SUSI_REQUIRE_HELP").is_none() => eprintln!("xtask: warning: dist/ has no user guide: {e}"),
+        result => result?,
+    }
+    Ok(())
+}
+
+/// Languages of the user guide with their titles (mdbook-gettext translates the chapters, not the
+/// book title). English is written in `docs/user/src`, the others are translated in `po/<lang>.po`.
+const HELP_LANGUAGES: [(&str, &str); 2] = [("en", "Susi the CAT {version} – User guide"), ("de", "Susi the CAT {version} – Benutzerhandbuch")];
+/// Path of the online help (GitHub Pages: https://mcpride.github.io/susi-the-cat/).
+const HELP_SITE: &str = "/susi-the-cat/";
+const MDBOOK_HINT: &str = "mdbook 0.5 and mdbook-i18n-helpers 0.4 are required: \
+    cargo install mdbook --version 0.5.4 --locked; cargo install mdbook-i18n-helpers --version 0.4.0 --locked";
+
+fn help_dir() -> PathBuf {
+    root().join("docs").join("user")
+}
+
+fn help(args: &[String]) -> Result {
+    let check = match args {
+        [] => false,
+        [a] if a == "--check" => true,
+        _ => return Err("usage: cargo xtask help [--check]".into()),
+    };
+    if update_pot()? && check {
+        return Err("docs/user/po/messages.pot was out of date (now updated): commit it and update the translations with Susi (docs/dev/user-guide.md)".into());
+    }
+    build_help(&root().join("target").join("help"))
+}
+
+fn mdbook(args: &[&str], env: &[(&str, &str)]) -> Result {
+    eprintln!("> mdbook {}", args.join(" "));
+    let status = Command::new("mdbook")
+        .args(args)
+        .envs(env.iter().copied())
+        .current_dir(help_dir())
+        .status()
+        .map_err(|e| format!("mdbook could not be started ({e}); {MDBOOK_HINT}"))?;
+    if status.success() { Ok(()) } else { Err(format!("`mdbook {}` failed ({status}); {MDBOOK_HINT}", args.join(" "))) }
+}
+
+/// Extracts the English texts into `docs/user/po/messages.pot`, the source of the translation
+/// project `susi-help.slp`. Returns whether the file changed.
+fn update_pot() -> Result<bool> {
+    let tmp = root().join("target").join("help-pot");
+    mdbook(&["build", "-d", &tmp.to_string_lossy()], &[("MDBOOK_OUTPUT", r#"{"xgettext": {"granularity": 0}}"#)])?;
+    let generated = tmp.join("messages.pot");
+    let text = std::fs::read_to_string(&generated).map_err(|e| format!("{}: {e}", generated.display()))?;
+    let pot = normalize_pot(&text);
+    let path = help_dir().join("po").join("messages.pot");
+    if std::fs::read_to_string(&path).is_ok_and(|old| old == pot) {
+        return Ok(false);
+    }
+    std::fs::write(&path, pot).map_err(|e| format!("{}: {e}", path.display()))?;
+    eprintln!("{}", path.display());
+    Ok(true)
+}
+
+/// Makes the POT depend on the texts only: no creation time, `/` in the references on every platform.
+fn normalize_pot(text: &str) -> String {
+    let mut out = String::with_capacity(text.len());
+    for line in text.lines() {
+        if line.starts_with("\"POT-Creation-Date:") {
+            out.push_str("\"POT-Creation-Date: \\n\"");
+        } else if let Some(refs) = line.strip_prefix("#: ") {
+            out.push_str("#: ");
+            out.push_str(&refs.replace('\\', "/"));
+        } else {
+            out.push_str(line);
+        }
+        out.push('\n');
+    }
+    out
+}
+
+/// Builds the user guide in every language into `out/<lang>/`, plus `out/index.html` choosing
+/// the language of the browser (the start page of the online help).
+fn build_help(out: &Path) -> Result {
+    for (lang, title) in HELP_LANGUAGES {
+        let dir = out.join(lang);
+        let title = title.replace("{version}", env!("CARGO_PKG_VERSION"));
+        let site = format!("{HELP_SITE}{lang}/");
+        let env = [("MDBOOK_BOOK__LANGUAGE", lang), ("MDBOOK_BOOK__TITLE", title.as_str()), ("MDBOOK_OUTPUT__HTML__SITE_URL", site.as_str())];
+        mdbook(&["build", "-d", &dir.to_string_lossy()], &env)?;
+        eprintln!("{}", dir.display());
+    }
+    let from = help_dir().join("language-select.html");
+    std::fs::copy(&from, out.join("index.html")).map_err(|e| format!("{}: {e}", from.display()))?;
     Ok(())
 }
 

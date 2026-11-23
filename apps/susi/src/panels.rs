@@ -29,9 +29,12 @@ pub fn search_in_label(s: SearchIn) -> &'static str {
 pub const SEARCH_IN: [SearchIn; 5] = [SearchIn::All, SearchIn::Original, SearchIn::Translation, SearchIn::Id, SearchIn::Comment];
 
 pub fn show(app: &mut SusiApp, ui: &mut egui::Ui) {
+    use crate::help::Area;
     egui::Panel::top("menu").show(ui, |ui| menu_bar(app, ui));
     egui::Panel::top("toolbar").show(ui, |ui| toolbar(app, ui));
     egui::Panel::bottom("statusbar").show(ui, |ui| status_bar(app, ui));
+    // The part of the window under the mouse pointer is the context of F1.
+    let mut area = Area::Window;
     // The default sizes only apply until the user drags a panel edge; the sizes are saved on exit.
     if app.show_bottom {
         let r = egui::Panel::bottom("bottom")
@@ -40,17 +43,26 @@ pub fn show(app: &mut SusiApp, ui: &mut egui::Ui) {
             .min_size(110.0)
             .show(ui, |ui| fill(ui, |ui| crate::bottom::show(app, ui)));
         app.panels.bottom = r.response.rect.height();
+        area = pointed(&r.response, Area::Output, area);
     }
     if app.show_tree {
         let r = egui::Panel::left("tree").resizable(true).default_size(app.panels.tree).min_size(140.0).show(ui, |ui| fill(ui, |ui| tree(app, ui)));
         app.panels.tree = r.response.rect.width();
+        area = pointed(&r.response, Area::Tree, area);
     }
     if app.show_filter {
         let r =
             egui::Panel::right("filter").resizable(true).default_size(app.panels.filter).min_size(160.0).show(ui, |ui| fill(ui, |ui| filter_panel(app, ui)));
         app.panels.filter = r.response.rect.width();
+        area = pointed(&r.response, Area::Filter, area);
     }
-    egui::CentralPanel::default().show(ui, |ui| crate::grid::show(app, ui));
+    let r = egui::CentralPanel::default().show(ui, |ui| crate::grid::show(app, ui));
+    app.help_area = pointed(&r.response, Area::Sheet, area);
+}
+
+/// `area` if the mouse pointer is over the panel of `r`, otherwise `other`.
+fn pointed(r: &egui::Response, area: crate::help::Area, other: crate::help::Area) -> crate::help::Area {
+    if r.contains_pointer() { area } else { other }
 }
 
 /// Shows `add` in exactly the space the panel currently has, clipping what does not fit.
@@ -121,6 +133,11 @@ fn menu_bar(app: &mut SusiApp, ui: &mut egui::Ui) {
             ui.menu_button(t("User interface language"), |ui| ui_language_items(app, ui));
         });
         ui.menu_button(t("Help"), |ui| {
+            if ui.button(t("User guide")).on_hover_text(t("F1 opens the help for the part of the window under the mouse pointer")).clicked() {
+                acts.push(Action::UserGuide);
+                ui.close();
+            }
+            ui.separator();
             cmd(ui, &mut acts, t("About Susi…"), Action::About);
         });
     });

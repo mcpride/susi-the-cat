@@ -1,0 +1,3415 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Susi the CAT – User guide\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-11-23 19:46+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/SUMMARY.md
+msgid "Summary"
+msgstr "Inhalt"
+
+#: src/SUMMARY.md
+msgid "Welcome"
+msgstr "Willkommen"
+
+#: src/SUMMARY.md
+msgid "Getting started"
+msgstr "Erste Schritte"
+
+#: src/SUMMARY.md src/getting-started.md
+msgid "Installation and first start"
+msgstr "Installation und erster Start"
+
+#: src/SUMMARY.md src/first-project.md
+msgid "Your first project"
+msgstr "Ihr erstes Projekt"
+
+#: src/SUMMARY.md src/main-window.md
+msgid "The main window"
+msgstr "Das Hauptfenster"
+
+#: src/SUMMARY.md
+msgid "Overview"
+msgstr "Überblick"
+
+#: src/SUMMARY.md src/project-tree.md
+msgid "Project tree"
+msgstr "Projektbaum"
+
+#: src/SUMMARY.md src/sheet.md
+msgid "Translation sheet"
+msgstr "Übersetzungstabelle"
+
+#: src/SUMMARY.md src/filter.md
+msgid "Filter bar"
+msgstr "Filterleiste"
+
+#: src/SUMMARY.md
+msgid "Translating"
+msgstr "Übersetzen"
+
+#: src/SUMMARY.md src/translating.md
+msgid "Translating texts"
+msgstr "Texte übersetzen"
+
+#: src/SUMMARY.md src/text-editor.md
+msgid "Text editor"
+msgstr "Texteditor"
+
+#: src/SUMMARY.md src/statuses.md
+msgid "Statuses"
+msgstr "Status"
+
+#: src/SUMMARY.md src/copy-and-clear.md
+msgid "Copying and clearing translations"
+msgstr "Übersetzungen übernehmen und löschen"
+
+#: src/SUMMARY.md src/translation-memory.md
+msgid "Translation memory"
+msgstr "Translation Memory"
+
+#: src/SUMMARY.md
+msgid "Checking translations"
+msgstr "Übersetzungen prüfen"
+
+#: src/SUMMARY.md src/validation.md
+msgid "Validation"
+msgstr "Prüfung"
+
+#: src/SUMMARY.md src/search.md
+msgid "Search"
+msgstr "Suchen"
+
+#: src/SUMMARY.md src/comments.md
+msgid "Comments"
+msgstr "Kommentare"
+
+#: src/SUMMARY.md src/statistics.md
+msgid "Statistics and reports"
+msgstr "Statistik und Berichte"
+
+#: src/SUMMARY.md src/output.md
+msgid "Output"
+msgstr "Ausgabe"
+
+#: src/SUMMARY.md
+msgid "Context for translators"
+msgstr "Kontext für Übersetzer"
+
+#: src/SUMMARY.md src/screenshots.md
+msgid "Screenshots"
+msgstr "Screenshots"
+
+#: src/SUMMARY.md src/pictures.md
+msgid "Pictures and binary data"
+msgstr "Bilder und Binärdaten"
+
+#: src/SUMMARY.md
+msgid "Projects"
+msgstr "Projekte"
+
+#: src/SUMMARY.md src/projects.md
+msgid "Creating, opening and saving"
+msgstr "Anlegen, öffnen und speichern"
+
+#: src/SUMMARY.md src/languages.md
+msgid "Languages"
+msgstr "Sprachen"
+
+#: src/SUMMARY.md src/sources.md
+msgid "Sources"
+msgstr "Quellen"
+
+#: src/SUMMARY.md src/pseudo-translation.md
+msgid "Pseudo translation"
+msgstr "Pseudoübersetzung"
+
+#: src/SUMMARY.md
+msgid "Working with others"
+msgstr "Zusammenarbeit"
+
+#: src/SUMMARY.md src/exchange.md
+msgid "Exchanging files"
+msgstr "Dateien austauschen"
+
+#: src/SUMMARY.md src/git-workflow.md
+msgid "Git workflow"
+msgstr "Git-Workflow"
+
+#: src/SUMMARY.md
+msgid "Reference"
+msgstr "Nachschlagen"
+
+#: src/SUMMARY.md src/options.md
+msgid "Options"
+msgstr "Einstellungen"
+
+#: src/SUMMARY.md src/shortcuts.md
+msgid "Keyboard shortcuts"
+msgstr "Tastenkürzel"
+
+#: src/SUMMARY.md src/faq.md
+msgid "Questions and answers"
+msgstr "Fragen und Antworten"
+
+#: src/index.md
+msgid "Welcome to Susi"
+msgstr "Willkommen bei Susi"
+
+#: src/index.md
+msgid ""
+"Susi the CAT is a translation tool for software. CAT stands for "
+"_computer-assisted translation_: Susi does not translate by itself, it helps "
+"you translate the texts of a program – menus, dialogs, messages – quickly, "
+"consistently and without breaking anything."
+msgstr "Susi the CAT ist ein Übersetzungswerkzeug für Software. CAT steht für _computer-assisted translation_, computergestützte Übersetzung: Susi übersetzt nicht selbst, sondern hilft Ihnen, die Texte eines Programms – Menüs, Dialoge, Meldungen – schnell, einheitlich und ohne Fehler zu übersetzen."
+
+#: src/index.md
+msgid "![The main window of Susi](images/main-window.jpg)"
+msgstr "![Das Hauptfenster von Susi](images/main-window.jpg)"
+
+#: src/index.md
+msgid "What Susi does for you"
+msgstr "Was Susi für Sie tut"
+
+#: src/index.md
+msgid ""
+"It shows all texts of a program in one table: the original next to its "
+"translations."
+msgstr "Susi zeigt alle Texte eines Programms in einer Tabelle: das Original neben seinen Übersetzungen."
+
+#: src/index.md
+msgid ""
+"It keeps track of what is translated, what still needs work and what has "
+"changed since your last visit."
+msgstr "Susi behält den Überblick, was übersetzt ist, was noch Arbeit braucht und was sich seit Ihrem letzten Besuch geändert hat."
+
+#: src/index.md
+msgid ""
+"It checks your translations, for example for a missing placeholder or a "
+"missing period."
+msgstr "Susi prüft Ihre Übersetzungen, zum Beispiel auf einen fehlenden Platzhalter oder einen fehlenden Punkt."
+
+#: src/index.md
+msgid ""
+"It remembers your translations and suggests them again for equal or similar "
+"texts."
+msgstr "Susi merkt sich Ihre Übersetzungen und schlägt sie für gleiche oder ähnliche Texte wieder vor."
+
+#: src/index.md
+msgid ""
+"It shows screenshots, so you know where a text appears and how much space it "
+"has."
+msgstr "Susi zeigt Screenshots, damit Sie sehen, wo ein Text erscheint und wie viel Platz er hat."
+
+#: src/index.md
+msgid ""
+"It creates the translated files that the developers build into the program."
+msgstr "Susi erstellt die übersetzten Dateien, die die Entwickler in das Programm einbauen."
+
+#: src/index.md
+msgid "Who this help is for"
+msgstr "Für wen diese Hilfe ist"
+
+#: src/index.md
+msgid ""
+"This help is written for translators, reviewers and everybody else who works "
+"with the Susi desktop application. You do not need to know how the program "
+"you translate is made. Developers find the technical details (command line, "
+"file formats, automation) in the [project description on "
+"GitHub](https://github.com/mcpride/susi-the-cat#readme)."
+msgstr "Diese Hilfe richtet sich an Übersetzer, Prüfer und alle anderen, die mit der Desktop-Anwendung von Susi arbeiten. Sie müssen nicht wissen, wie das Programm entsteht, das Sie übersetzen. Entwickler finden die technischen Einzelheiten (Kommandozeile, Dateiformate, Automatisierung) in der [Projektbeschreibung auf GitHub](https://github.com/mcpride/susi-the-cat#readme)."
+
+#: src/index.md
+msgid "Where to start"
+msgstr "Womit Sie beginnen"
+
+#: src/index.md
+msgid ""
+"New to Susi? Read [Installation and first start](getting-started.md) and "
+"then [Your first project](first-project.md)."
+msgstr "Neu bei Susi? Lesen Sie [Installation und erster Start](getting-started.md) und danach [Ihr erstes Projekt](first-project.md)."
+
+#: src/index.md
+msgid ""
+"Somebody gave you a project file (`.slp`)? Open it with _File › Open…_ and "
+"continue with [Translating texts](translating.md)."
+msgstr "Sie haben eine Projektdatei (`.slp`) bekommen? Öffnen Sie sie mit _Datei › Öffnen…_ und lesen Sie bei [Texte übersetzen](translating.md) weiter."
+
+#: src/index.md
+msgid ""
+"Press `F1` in Susi at any time to open the help page for the part of the "
+"window you are working in."
+msgstr "Drücken Sie in Susi jederzeit `F1`, um die Hilfeseite zu dem Fensterbereich zu öffnen, in dem Sie gerade arbeiten."
+
+#: src/index.md
+msgid "Susi and Sisulizer"
+msgstr "Susi und Sisulizer"
+
+#: src/index.md
+msgid ""
+"Susi is a new, independent development for the projects of _Sisulizer_, a "
+"translation tool that is no longer developed. Susi opens and saves Sisulizer "
+"project files directly, and its window is arranged in a similar way. If you "
+"know Sisulizer, you will quickly find your way around."
+msgstr "Susi ist eine unabhängige Neuentwicklung für die Projekte von _Sisulizer_, einem Übersetzungswerkzeug, das nicht mehr weiterentwickelt wird. Susi öffnet und speichert Sisulizer-Projektdateien direkt, und sein Fenster ist ähnlich aufgebaut. Wenn Sie Sisulizer kennen, finden Sie sich schnell zurecht."
+
+#: src/getting-started.md
+msgid "Installation"
+msgstr "Installation"
+
+#: src/getting-started.md
+msgid ""
+"Susi needs no installation. Download the archive for your system from the "
+"[releases page](https://github.com/mcpride/susi-the-cat/releases) and unpack "
+"it into a folder of your choice:"
+msgstr "Susi muss nicht installiert werden. Laden Sie das Archiv für Ihr System von der [Release-Seite](https://github.com/mcpride/susi-the-cat/releases) herunter und entpacken Sie es in einen Ordner Ihrer Wahl:"
+
+#: src/getting-started.md
+msgid "System"
+msgstr "System"
+
+#: src/getting-started.md
+msgid "Archive"
+msgstr "Archiv"
+
+#: src/getting-started.md
+msgid "Windows"
+msgstr "Windows"
+
+#: src/getting-started.md
+msgid "`susi-the-cat-<version>-windows-x64.zip`"
+msgstr "`susi-the-cat-<version>-windows-x64.zip`"
+
+#: src/getting-started.md
+msgid "Linux"
+msgstr "Linux"
+
+#: src/getting-started.md
+msgid "`susi-the-cat-<version>-linux-x64.tar.gz`"
+msgstr "`susi-the-cat-<version>-linux-x64.tar.gz`"
+
+#: src/getting-started.md
+msgid "macOS (Apple silicon)"
+msgstr "macOS (Apple Silicon)"
+
+#: src/getting-started.md
+msgid "`susi-the-cat-<version>-macos-arm64.tar.gz`"
+msgstr "`susi-the-cat-<version>-macos-arm64.tar.gz`"
+
+#: src/getting-started.md
+msgid ""
+"The folder contains the desktop application `susi`, the command line program "
+"`susi-cli` and this help in the folder `help`. Keep the files together: Susi "
+"opens the help from this folder."
+msgstr "Der Ordner enthält die Desktop-Anwendung `susi`, das Kommandozeilenprogramm `susi-cli` und diese Hilfe im Ordner `help`. Lassen Sie die Dateien zusammen: Susi öffnet die Hilfe aus diesem Ordner."
+
+#: src/getting-started.md
+msgid ""
+"On macOS, remove the download protection once: open the Terminal in the "
+"unpacked folder and enter `xattr -d com.apple.quarantine susi susi-cli`."
+msgstr "Unter macOS entfernen Sie einmalig den Download-Schutz: Öffnen Sie das Terminal im entpackten Ordner und geben Sie `xattr -d com.apple.quarantine susi susi-cli` ein."
+
+#: src/getting-started.md
+msgid "Starting Susi"
+msgstr "Susi starten"
+
+#: src/getting-started.md
+msgid ""
+"Start `susi` (on Windows `susi.exe`). To open a project right away, drag the "
+"project file (`.slp`) onto `susi.exe`, or let your system open `.slp` files "
+"with Susi."
+msgstr "Starten Sie `susi` (unter Windows `susi.exe`). Um gleich ein Projekt zu öffnen, ziehen Sie die Projektdatei (`.slp`) auf `susi.exe` oder lassen Sie Ihr System `.slp`\\-Dateien mit Susi öffnen."
+
+#: src/getting-started.md
+msgid ""
+"On the first start, Susi fits its window to the screen. After that it "
+"remembers the size and position of the window and the sizes of its panels, "
+"and restores them on the next start."
+msgstr "Beim ersten Start passt Susi sein Fenster an den Bildschirm an. Danach merkt es sich Größe und Position des Fensters und die Größen seiner Bereiche und stellt sie beim nächsten Start wieder her."
+
+#: src/getting-started.md
+msgid "Language of the user interface"
+msgstr "Sprache der Benutzeroberfläche"
+
+#: src/getting-started.md
+msgid ""
+"Susi speaks English and German. By default it follows the language of your "
+"system. To change it, choose _Tools › User interface language_. The change "
+"takes effect immediately."
+msgstr "Susi spricht Deutsch und Englisch. Standardmäßig richtet es sich nach der Sprache Ihres Systems. Um sie zu ändern, wählen Sie _Extras › Sprache der Benutzeroberfläche_. Die Änderung wirkt sofort."
+
+#: src/getting-started.md
+msgid "Getting help"
+msgstr "Hilfe bekommen"
+
+#: src/getting-started.md
+msgid ""
+"`F1` opens the help page for the part of the window you are working in: the "
+"open dialog, the tab of the output area, the project tree, the filter bar or "
+"the translation sheet. Point at the area with the mouse and press `F1`."
+msgstr "`F1` öffnet die Hilfeseite zu dem Fensterbereich, in dem Sie gerade arbeiten: zum offenen Dialog, zum Reiter des Ausgabebereichs, zum Projektbaum, zur Filterleiste oder zur Übersetzungstabelle. Zeigen Sie mit der Maus auf den Bereich und drücken Sie `F1`."
+
+#: src/getting-started.md
+msgid "_Help › User guide_ opens the start page of the help."
+msgstr "_Hilfe › Benutzerhandbuch_ öffnet die Startseite der Hilfe."
+
+#: src/getting-started.md
+msgid ""
+"The help opens in your web browser, in the language of the user interface. "
+"Susi uses the help that came with your version. If it is missing, Susi opens "
+"the online help of the latest version."
+msgstr "Die Hilfe öffnet sich in Ihrem Webbrowser, in der Sprache der Benutzeroberfläche. Susi verwendet die Hilfe, die mit Ihrer Version geliefert wurde. Fehlt sie, öffnet Susi die Online-Hilfe der neuesten Version."
+
+#: src/first-project.md
+msgid ""
+"This walk-through shows the whole way from the original texts of a program "
+"to the translated files. Often a developer has already prepared the project; "
+"then you only need the steps from \"Translate\" on."
+msgstr "Dieser Rundgang zeigt den ganzen Weg von den Originaltexten eines Programms bis zu den übersetzten Dateien. Oft hat ein Entwickler das Projekt schon vorbereitet; dann brauchen Sie nur die Schritte ab „Übersetzen“."
+
+#: src/first-project.md
+msgid "1. Create a project"
+msgstr "1. Ein Projekt anlegen"
+
+#: src/first-project.md
+msgid ""
+"Choose _File › New project…_ (`Ctrl+N`) and save the new project file "
+"(`.slp`) in the folder of the program, near the files with the texts."
+msgstr "Wählen Sie _Datei › Neues Projekt…_ (`Strg+N`) und speichern Sie die neue Projektdatei (`.slp`) im Ordner des Programms, in der Nähe der Dateien mit den Texten."
+
+#: src/first-project.md
+msgid ""
+"The dialog _Languages_ opens. Add the languages you want to translate into: "
+"choose a language in the list or type its code (for example `de` or "
+"`fr-CA`), and click _Add_. Then click _Close_."
+msgstr "Der Dialog _Sprachen_ öffnet sich. Fügen Sie die Sprachen hinzu, in die Sie übersetzen wollen: Wählen Sie eine Sprache in der Liste oder geben Sie ihren Code ein (zum Beispiel `de` oder `fr-CA`) und klicken Sie auf _Hinzufügen_. Klicken Sie dann auf _Schließen_."
+
+#: src/first-project.md
+msgid "2. Add the texts"
+msgstr "2. Die Texte hinzufügen"
+
+#: src/first-project.md
+msgid ""
+"Choose _Project › Add source…_ and select the files that contain the "
+"original texts, for example `Resources.resx`, `en.json` or `messages.pot`."
+msgstr "Wählen Sie _Projekt › Quelle hinzufügen…_ und wählen Sie die Dateien mit den Originaltexten aus, zum Beispiel `Resources.resx`, `en.json` oder `messages.pot`."
+
+#: src/first-project.md
+msgid ""
+"Enter the original language, the language of the texts in these files, for "
+"example `en`, and click _Add_."
+msgstr "Geben Sie die Originalsprache ein, also die Sprache der Texte in diesen Dateien, zum Beispiel `en`, und klicken Sie auf _Hinzufügen_."
+
+#: src/first-project.md
+msgid ""
+"Susi reads the files immediately. Every text becomes a row in the "
+"translation sheet. The project tree on the left shows the files and their "
+"structure."
+msgstr "Susi liest die Dateien sofort ein. Jeder Text wird zu einer Zeile in der Übersetzungstabelle. Der Projektbaum links zeigt die Dateien und ihren Aufbau."
+
+#: src/first-project.md
+msgid "3. Translate"
+msgstr "3. Übersetzen"
+
+#: src/first-project.md
+msgid "Select the language you translate into in the toolbar (_Language:_)."
+msgstr "Wählen Sie in der Werkzeugleiste die Sprache, in die Sie übersetzen (_Sprache:_)."
+
+#: src/first-project.md
+msgid ""
+"Click a cell in the column of this language and press `Enter`, or "
+"double-click the cell. Type the translation and press `Enter`: Susi keeps "
+"the text and moves to the next row."
+msgstr "Klicken Sie auf eine Zelle in der Spalte dieser Sprache und drücken Sie `Enter` oder doppelklicken Sie auf die Zelle. Tippen Sie die Übersetzung und drücken Sie `Enter`: Susi übernimmt den Text und geht zur nächsten Zeile."
+
+#: src/first-project.md
+msgid ""
+"Repeat. The colored bar at the start of each cell shows the status of the "
+"translation, see [Statuses](statuses.md)."
+msgstr "Wiederholen Sie das. Der farbige Balken am Anfang jeder Zelle zeigt den Status der Übersetzung, siehe [Status](statuses.md)."
+
+#: src/first-project.md
+msgid "Tips:"
+msgstr "Tipps:"
+
+#: src/first-project.md
+msgid ""
+"_Translation › Translate with translation memory…_ fills in texts Susi "
+"already knows from earlier work, see [Translation "
+"memory](translation-memory.md)."
+msgstr "_Übersetzung › Mit Translation Memory übersetzen…_ füllt Texte aus, die Susi von früheren Arbeiten kennt, siehe [Translation Memory](translation-memory.md)."
+
+#: src/first-project.md
+msgid ""
+"The filter bar on the right shows only the texts that still need work, for "
+"example only _Not translated_, see [Filter bar](filter.md)."
+msgstr "Die Filterleiste rechts zeigt nur die Texte, die noch Arbeit brauchen, zum Beispiel nur _Nicht übersetzt_, siehe [Filterleiste](filter.md)."
+
+#: src/first-project.md
+msgid "4. Check"
+msgstr "4. Prüfen"
+
+#: src/first-project.md
+msgid ""
+"Choose _Validation › Validate_. The tab _Validation results_ at the bottom "
+"lists possible problems, for example a missing placeholder. Click an entry "
+"to jump to the cell. See [Validation](validation.md)."
+msgstr "Wählen Sie _Prüfung › Prüfen_. Der Reiter _Prüfungsergebnisse_ unten listet mögliche Probleme auf, zum Beispiel einen fehlenden Platzhalter. Klicken Sie auf einen Eintrag, um zur Zelle zu springen. Siehe [Prüfung](validation.md)."
+
+#: src/first-project.md
+msgid "5. Save and build"
+msgstr "5. Speichern und erstellen"
+
+#: src/first-project.md
+msgid "Save the project with _File › Save_ (`Ctrl+S`)."
+msgstr "Speichern Sie das Projekt mit _Datei › Speichern_ (`Strg+S`)."
+
+#: src/first-project.md
+msgid ""
+"Choose _Project › Build_ (`F9`). Susi writes the translated files next to "
+"the original files, for example `Resources.de.resx` or `de/messages.po`. The "
+"tab _Output_ lists every file written."
+msgstr "Wählen Sie _Projekt › Erstellen_ (`F9`). Susi schreibt die übersetzten Dateien neben die Originaldateien, zum Beispiel `Resources.de.resx` oder `de/messages.po`. Der Reiter _Ausgabe_ listet jede geschriebene Datei auf."
+
+#: src/first-project.md
+msgid ""
+"When the developers change the program and its texts, choose _Project › Scan "
+"for changes_ (`F5`). Susi adds new texts, marks changed ones and keeps all "
+"existing translations."
+msgstr "Wenn die Entwickler das Programm und seine Texte ändern, wählen Sie _Projekt › Scannen_ (`F5`). Susi fügt neue Texte hinzu, kennzeichnet geänderte und behält alle vorhandenen Übersetzungen."
+
+#: src/main-window.md
+msgid "![The main window](images/main-window.jpg)"
+msgstr "![Das Hauptfenster](images/main-window.jpg)"
+
+#: src/main-window.md
+msgid "The window has these parts:"
+msgstr "Das Fenster besteht aus diesen Teilen:"
+
+#: src/main-window.md
+msgid "Part"
+msgstr "Teil"
+
+#: src/main-window.md
+msgid "What it is for"
+msgstr "Wofür er da ist"
+
+#: src/main-window.md
+msgid "Menu bar"
+msgstr "Menüleiste"
+
+#: src/main-window.md
+msgid "All commands, sorted by topic."
+msgstr "Alle Befehle, nach Themen geordnet."
+
+#: src/main-window.md
+msgid "Toolbar"
+msgstr "Werkzeugleiste"
+
+#: src/main-window.md
+msgid "Frequently used commands and the current language."
+msgstr "Häufig verwendete Befehle und die aktuelle Sprache."
+
+#: src/main-window.md
+msgid "[Project tree](project-tree.md) (left)"
+msgstr "[Projektbaum](project-tree.md) (links)"
+
+#: src/main-window.md
+msgid ""
+"The files of the project and their structure. A click shows only the texts "
+"of that part."
+msgstr "Die Dateien des Projekts und ihr Aufbau. Ein Klick zeigt nur die Texte dieses Teils."
+
+#: src/main-window.md
+msgid "[Translation sheet](sheet.md) (center)"
+msgstr "[Übersetzungstabelle](sheet.md) (Mitte)"
+
+#: src/main-window.md
+msgid ""
+"The texts with original, translations and status. This is where you "
+"translate."
+msgstr "Die Texte mit Original, Übersetzungen und Status. Hier übersetzen Sie."
+
+#: src/main-window.md
+msgid "[Filter bar](filter.md) (right)"
+msgstr "[Filterleiste](filter.md) (rechts)"
+
+#: src/main-window.md
+msgid "Shows only the texts you need, for example only the untranslated ones."
+msgstr "Zeigt nur die Texte, die Sie brauchen, zum Beispiel nur die unübersetzten."
+
+#: src/main-window.md
+msgid "Output area (bottom)"
+msgstr "Ausgabebereich (unten)"
+
+#: src/main-window.md
+msgid ""
+"Tabs for the [output](output.md), [validation results](validation.md), "
+"[search results](search.md), [statistics](statistics.md), "
+"[comments](comments.md), the [text editor](text-editor.md) and "
+"[screenshots](screenshots.md)."
+msgstr "Reiter für die [Ausgabe](output.md), die [Prüfungsergebnisse](validation.md), die [Suchergebnisse](search.md), die [Statistik](statistics.md), die [Kommentare](comments.md), den [Texteditor](text-editor.md) und die [Screenshots](screenshots.md)."
+
+#: src/main-window.md
+msgid "Status bar"
+msgstr "Statusleiste"
+
+#: src/main-window.md
+msgid ""
+"The selected row, an active filter, unsaved changes and the file of the "
+"selected text."
+msgstr "Die ausgewählte Zeile, ein aktiver Filter, ungespeicherte Änderungen und die Datei des ausgewählten Texts."
+
+#: src/main-window.md
+msgid "Showing and hiding panels"
+msgstr "Bereiche ein- und ausblenden"
+
+#: src/main-window.md
+msgid ""
+"The menu _View_ switches the project tree, the filter bar and the output "
+"area on and off. To change the size of a panel, drag its edge with the "
+"mouse. Susi remembers the sizes for the next start."
+msgstr "Das Menü _Ansicht_ blendet den Projektbaum, die Filterleiste und den Ausgabebereich ein und aus. Um die Größe eines Bereichs zu ändern, ziehen Sie seinen Rand mit der Maus. Susi merkt sich die Größen für den nächsten Start."
+
+#: src/main-window.md
+msgid "The toolbar"
+msgstr "Die Werkzeugleiste"
+
+#: src/main-window.md src/sheet.md src/pictures.md
+msgid "Button"
+msgstr "Schaltfläche"
+
+#: src/main-window.md src/project-tree.md src/sheet.md src/git-workflow.md
+#: src/shortcuts.md
+msgid "Command"
+msgstr "Befehl"
+
+#: src/main-window.md
+msgid "🗋 🗁 💾"
+msgstr "🗋 🗁 💾"
+
+#: src/main-window.md
+msgid "New project, open project, save"
+msgstr "Neues Projekt, Projekt öffnen, Speichern"
+
+#: src/main-window.md
+msgid "➕ Source"
+msgstr "➕ Quelle"
+
+#: src/main-window.md
+msgid "Add a file with original texts"
+msgstr "Eine Datei mit Originaltexten hinzufügen"
+
+#: src/main-window.md
+msgid "⟳ Scan"
+msgstr "⟳ Scannen"
+
+#: src/main-window.md
+msgid "Read the source files again and take over the changes (`F5`)"
+msgstr "Die Quelldateien neu einlesen und die Änderungen übernehmen (`F5`)"
+
+#: src/main-window.md
+msgid "🔨 Build"
+msgstr "🔨 Erstellen"
+
+#: src/main-window.md
+msgid "Write the translated files (`F9`)"
+msgstr "Die übersetzten Dateien schreiben (`F9`)"
+
+#: src/main-window.md
+msgid "Language"
+msgstr "Sprache"
+
+#: src/main-window.md
+msgid "The current language, the language you translate into"
+msgstr "Die aktuelle Sprache, in die Sie übersetzen"
+
+#: src/main-window.md
+msgid "All languages"
+msgstr "Alle Sprachen"
+
+#: src/main-window.md
+msgid "Show all languages side by side, or only the current language"
+msgstr "Alle Sprachen nebeneinander zeigen oder nur die aktuelle Sprache"
+
+#: src/main-window.md
+msgid "✔ Validate"
+msgstr "✔ Prüfen"
+
+#: src/main-window.md
+msgid "Check the translations"
+msgstr "Die Übersetzungen prüfen"
+
+#: src/main-window.md
+msgid "🗄 TM"
+msgstr "🗄 TM"
+
+#: src/main-window.md
+msgid "Translate with the translation memory"
+msgstr "Mit dem Translation Memory übersetzen"
+
+#: src/main-window.md
+msgid "📊"
+msgstr "📊"
+
+#: src/main-window.md
+msgid "Statistics"
+msgstr "Statistik"
+
+#: src/main-window.md
+msgid ""
+"If the project is part of a prepared git working copy, the toolbar also "
+"shows the buttons of the [git workflow](git-workflow.md)."
+msgstr "Gehört das Projekt zu einer vorbereiteten Git-Arbeitskopie, zeigt die Werkzeugleiste auch die Schaltflächen des [Git-Workflows](git-workflow.md)."
+
+#: src/main-window.md
+msgid "The status bar"
+msgstr "Die Statusleiste"
+
+#: src/main-window.md
+msgid "`12 / 340`: the selected row and the number of rows shown."
+msgstr "`12 / 340`: die ausgewählte Zeile und die Anzahl der angezeigten Zeilen."
+
+#: src/main-window.md
+msgid ""
+"_Filter active_: not all rows are shown, because a filter is set or a part "
+"of the project tree is selected."
+msgstr "_Filter aktiv_: Nicht alle Zeilen werden angezeigt, weil ein Filter gesetzt oder ein Teil des Projektbaums ausgewählt ist."
+
+#: src/main-window.md
+msgid "_Modified_: the project has unsaved changes."
+msgstr "_Geändert_: Das Projekt hat ungespeicherte Änderungen."
+
+#: src/main-window.md
+msgid "At the end: the file of the selected text, otherwise the project file."
+msgstr "Am Ende: die Datei des ausgewählten Texts, sonst die Projektdatei."
+
+#: src/main-window.md
+msgid ""
+"With the git workflow, the status bar also shows its state, see [Git "
+"workflow](git-workflow.md)."
+msgstr "Mit dem Git-Workflow zeigt die Statusleiste auch dessen Zustand, siehe [Git-Workflow](git-workflow.md)."
+
+#: src/project-tree.md
+msgid "The project tree on the left shows the structure of the project:"
+msgstr "Der Projektbaum links zeigt den Aufbau des Projekts:"
+
+#: src/project-tree.md
+msgid ""
+"_All_ at the top stands for the whole project. The number in brackets is the "
+"number of rows."
+msgstr "_Alle_ ganz oben steht für das ganze Projekt. Die Zahl in Klammern ist die Anzahl der Zeilen."
+
+#: src/project-tree.md
+msgid ""
+"Below it, there is one entry per source file, and inside it the parts of the "
+"file, for example the sections of a JSON file."
+msgstr "Darunter steht je ein Eintrag pro Quelldatei und darin die Teile der Datei, zum Beispiel die Abschnitte einer JSON-Datei."
+
+#: src/project-tree.md
+msgid ""
+"Click an entry to show only its rows in the translation sheet. Click _All_ "
+"to show all rows again. While a part is selected, the status bar shows "
+"_Filter active_. Click the small arrow in front of an entry to expand or "
+"collapse it."
+msgstr "Klicken Sie auf einen Eintrag, um in der Übersetzungstabelle nur seine Zeilen zu zeigen. Klicken Sie auf _Alle_, um wieder alle Zeilen zu zeigen. Solange ein Teil ausgewählt ist, zeigt die Statusleiste _Filter aktiv_. Mit dem kleinen Pfeil vor einem Eintrag klappen Sie ihn auf oder zu."
+
+#: src/project-tree.md
+msgid "Context menu"
+msgstr "Kontextmenü"
+
+#: src/project-tree.md
+msgid "Right-click an entry for commands that apply to all of its rows:"
+msgstr "Ein Rechtsklick auf einen Eintrag bietet Befehle für alle seine Zeilen:"
+
+#: src/project-tree.md src/pictures.md
+msgid "What it does"
+msgstr "Wirkung"
+
+#: src/project-tree.md
+msgid "_Status (current language)_"
+msgstr "_Status (aktuelle Sprache)_"
+
+#: src/project-tree.md
+msgid "Sets the status of the translations in the current language."
+msgstr "Setzt den Status der Übersetzungen in der aktuellen Sprache."
+
+#: src/project-tree.md
+msgid "_Do not translate_ / _Allow translation_"
+msgstr "_Nicht übersetzen_ / _Übersetzen erlauben_"
+
+#: src/project-tree.md
+msgid "Locks the rows against translation, or unlocks them."
+msgstr "Sperrt die Zeilen gegen Übersetzung oder gibt sie frei."
+
+#: src/project-tree.md
+msgid "_Clear new status_"
+msgstr "_Neu-Status entfernen_"
+
+#: src/project-tree.md
+msgid "Removes the mark _New_ from the rows."
+msgstr "Entfernt die Kennzeichnung _Neu_ von den Zeilen."
+
+#: src/project-tree.md
+msgid "_Add screenshot to all rows…_"
+msgstr "_Screenshot zu allen Zeilen hinzufügen…_"
+
+#: src/project-tree.md
+msgid "Links an image with all rows, see [Screenshots](screenshots.md)."
+msgstr "Verknüpft ein Bild mit allen Zeilen, siehe [Screenshots](screenshots.md)."
+
+#: src/project-tree.md
+msgid "_Statistics_"
+msgstr "_Statistik_"
+
+#: src/project-tree.md
+msgid "Shows the statistics."
+msgstr "Zeigt die Statistik."
+
+#: src/project-tree.md
+msgid "_Validate_"
+msgstr "_Prüfen_"
+
+#: src/project-tree.md
+msgid "Checks the translations."
+msgstr "Prüft die Übersetzungen."
+
+#: src/project-tree.md
+msgid "On a source file, there are more commands:"
+msgstr "Bei einer Quelldatei gibt es weitere Befehle:"
+
+#: src/project-tree.md
+msgid ""
+"_Properties…_ opens the properties of the source, see [Sources](sources.md)."
+msgstr "_Eigenschaften…_ öffnet die Eigenschaften der Quelle, siehe [Quellen](sources.md)."
+
+#: src/project-tree.md
+msgid "_Scan for changes_ and _Build_ work on this file only."
+msgstr "_Scannen_ und _Erstellen_ wirken nur auf diese Datei."
+
+#: src/project-tree.md
+msgid ""
+"_Remove source…_ removes the file with all its rows and translations from "
+"the project, after a confirmation. The file itself stays on the disk."
+msgstr "_Quelle entfernen…_ entfernt die Datei mit allen Zeilen und Übersetzungen aus dem Projekt, nach einer Rückfrage. Die Datei selbst bleibt auf der Festplatte."
+
+#: src/project-tree.md
+msgid ""
+"The entry _All_ also offers _Add source…_, _Scan for changes_ and _Build_ "
+"for the whole project."
+msgstr "Der Eintrag _Alle_ bietet außerdem _Quelle hinzufügen…_, _Scannen_ und _Erstellen_ für das ganze Projekt."
+
+#: src/sheet.md
+msgid ""
+"The translation sheet in the center shows the texts of the project, one row "
+"per text."
+msgstr "Die Übersetzungstabelle in der Mitte zeigt die Texte des Projekts, eine Zeile pro Text."
+
+#: src/sheet.md
+msgid "Columns"
+msgstr "Spalten"
+
+#: src/sheet.md
+msgid "Column"
+msgstr "Spalte"
+
+#: src/sheet.md
+msgid "Content"
+msgstr "Inhalt"
+
+#: src/sheet.md
+msgid "(first column)"
+msgstr "(erste Spalte)"
+
+#: src/sheet.md
+msgid ""
+"Signs for the row: ✚ new, ✏ changed, ✖ unused, 🔒 do not translate, ★ marked. "
+"Point at it for a description."
+msgstr "Zeichen für die Zeile: ✚ neu, ✏ geändert, ✖ nicht verwendet, 🔒 nicht übersetzen, ★ markiert. Zeigen Sie darauf, um eine Beschreibung zu sehen."
+
+#: src/sheet.md
+msgid "Context"
+msgstr "Kontext"
+
+#: src/sheet.md
+msgid ""
+"Where the text comes from, for example the file and the key. It tells equal "
+"texts apart."
+msgstr "Woher der Text stammt, zum Beispiel Datei und Schlüssel. Er unterscheidet gleiche Texte."
+
+#: src/sheet.md src/statuses.md
+msgid "Status"
+msgstr "Status"
+
+#: src/sheet.md
+msgid ""
+"The status of the translation in the current language, see "
+"[Statuses](statuses.md)."
+msgstr "Der Status der Übersetzung in der aktuellen Sprache, siehe [Status](statuses.md)."
+
+#: src/sheet.md
+msgid "Original"
+msgstr "Original"
+
+#: src/sheet.md
+msgid "The text in the original language."
+msgstr "Der Text in der Originalsprache."
+
+#: src/sheet.md
+msgid "One column per language"
+msgstr "Eine Spalte pro Sprache"
+
+#: src/sheet.md
+msgid ""
+"The translations. A colored bar at the left shows the status, a small "
+"triangle at the top right a comment."
+msgstr "Die Übersetzungen. Ein farbiger Balken links zeigt den Status, ein kleines Dreieck oben rechts einen Kommentar."
+
+#: src/sheet.md
+msgid "Row comment"
+msgstr "Zeilenkommentar"
+
+#: src/sheet.md
+msgid "A note on the row, for example from the developers."
+msgstr "Eine Notiz zur Zeile, zum Beispiel von den Entwicklern."
+
+#: src/sheet.md
+msgid "Comment"
+msgstr "Kommentar"
+
+#: src/sheet.md
+msgid "The comment on the translation (only when one language is shown)."
+msgstr "Der Kommentar zur Übersetzung (nur, wenn eine Sprache angezeigt wird)."
+
+#: src/sheet.md
+msgid "Translated on"
+msgstr "Übersetzt am"
+
+#: src/sheet.md
+msgid ""
+"When the translation of the current language was last changed. Point at a "
+"cell to see when the row was created and when its original changed."
+msgstr "Wann die Übersetzung der aktuellen Sprache zuletzt geändert wurde. Zeigen Sie auf eine Zelle, um zu sehen, wann die Zeile angelegt und wann ihr Original geändert wurde."
+
+#: src/sheet.md
+msgid ""
+"The original and the context have a lavender background. Cells with a "
+"problem found by the [validation](validation.md) are pink. A camera in the "
+"context cell means that the row has a [screenshot](screenshots.md)."
+msgstr "Original und Kontext haben einen lavendelfarbenen Hintergrund. Zellen mit einem Problem, das die [Prüfung](validation.md) gefunden hat, sind rosa. Eine Kamera in der Kontextzelle bedeutet, dass die Zeile einen [Screenshot](screenshots.md) hat."
+
+#: src/sheet.md
+msgid ""
+"The menu _View_ switches the columns _Context_, _Row comment_ and "
+"_Translated on_ on and off."
+msgstr "Das Menü _Ansicht_ blendet die Spalten _Kontext_, _Zeilenkommentar_ und _Übersetzt am_ ein und aus."
+
+#: src/sheet.md
+msgid "All languages or one language"
+msgstr "Alle Sprachen oder eine Sprache"
+
+#: src/sheet.md
+msgid "The button _All languages_ in the toolbar switches between two views:"
+msgstr "Die Schaltfläche _Alle Sprachen_ in der Werkzeugleiste wechselt zwischen zwei Ansichten:"
+
+#: src/sheet.md
+msgid "**All languages**: one column per language, side by side."
+msgstr "**Alle Sprachen**: eine Spalte pro Sprache, nebeneinander."
+
+#: src/sheet.md
+msgid ""
+"**One language**: only the current language, with its status and comment. "
+"Under _View › Additional languages_ you can show further languages next to "
+"it, for example a related language as a reference."
+msgstr "**Eine Sprache**: nur die aktuelle Sprache, mit ihrem Status und Kommentar. Unter _Ansicht › Zusätzliche Sprachen_ können Sie weitere Sprachen daneben anzeigen, zum Beispiel eine verwandte Sprache als Vorlage."
+
+#: src/sheet.md
+msgid ""
+"The current language is selected in the toolbar, at the end of the menu "
+"_View_, or by clicking a cell in a language column."
+msgstr "Die aktuelle Sprache wählen Sie in der Werkzeugleiste, am Ende des Menüs _Ansicht_ oder mit einem Klick auf eine Zelle in einer Sprachspalte."
+
+#: src/sheet.md
+msgid "Working with the sheet"
+msgstr "Mit der Tabelle arbeiten"
+
+#: src/sheet.md
+msgid ""
+"**Select** a row with a click or with the arrow keys. `Home` and `End` go to "
+"the first and last row."
+msgstr "**Auswählen** Sie eine Zeile mit einem Klick oder mit den Pfeiltasten. `Pos1` und `Ende` gehen zur ersten und letzten Zeile."
+
+#: src/sheet.md
+msgid ""
+"**Edit** a cell with `F2`, `Enter` or a double-click, see [Translating "
+"texts](translating.md)."
+msgstr "**Bearbeiten** Sie eine Zelle mit `F2`, `Enter` oder einem Doppelklick, siehe [Texte übersetzen](translating.md)."
+
+#: src/sheet.md
+msgid ""
+"**Sort**: click the header _Context_ to sort A–Z, Z–A or back to the "
+"original order. Click the header _Translated on_ to sort newest first, "
+"oldest first or unsorted. An arrow marks the sorted column."
+msgstr "**Sortieren**: Ein Klick auf die Überschrift _Kontext_ sortiert A–Z, Z–A oder zurück zur ursprünglichen Reihenfolge. Ein Klick auf die Überschrift _Übersetzt am_ sortiert neueste zuerst, älteste zuerst oder unsortiert. Ein Pfeil kennzeichnet die sortierte Spalte."
+
+#: src/sheet.md
+msgid ""
+"**Column width**: drag the separator in the header. A double-click on the "
+"separator resets the width."
+msgstr "**Spaltenbreite**: Ziehen Sie die Trennlinie in der Überschrift. Ein Doppelklick auf die Trennlinie stellt die Breite zurück."
+
+#: src/sheet.md
+msgid ""
+"**Context menu**: right-click a cell for the commands of the row, or a "
+"column header for the commands of the column, see [Copying and clearing "
+"translations](copy-and-clear.md)."
+msgstr "**Kontextmenü**: Ein Rechtsklick auf eine Zelle bietet die Befehle der Zeile, ein Rechtsklick auf eine Spaltenüberschrift die Befehle der Spalte, siehe [Übersetzungen übernehmen und löschen](copy-and-clear.md)."
+
+#: src/sheet.md
+msgid "The bar above the sheet"
+msgstr "Die Leiste über der Tabelle"
+
+#: src/sheet.md
+msgid "Status: ■ ■ ■ …"
+msgstr "Status: ■ ■ ■ …"
+
+#: src/sheet.md
+msgid "Sets the status of the selected cell. Point at a square to see its name."
+msgstr "Setzt den Status der ausgewählten Zelle. Zeigen Sie auf ein Quadrat, um seinen Namen zu sehen."
+
+#: src/sheet.md
+msgid "⏮ ◀ ▶ ⏭"
+msgstr "⏮ ◀ ▶ ⏭"
+
+#: src/sheet.md
+msgid "First, previous, next and last row"
+msgstr "Erste, vorherige, nächste und letzte Zeile"
+
+#: src/sheet.md
+msgid "🔒"
+msgstr "🔒"
+
+#: src/sheet.md
+msgid "Switches _Do not translate_ on or off for the row"
+msgstr "Schaltet _Nicht übersetzen_ für die Zeile ein oder aus"
+
+#: src/sheet.md
+msgid "★"
+msgstr "★"
+
+#: src/sheet.md
+msgid "Marks the row or removes the mark"
+msgstr "Markiert die Zeile oder entfernt die Markierung"
+
+#: src/sheet.md src/statuses.md
+msgid "✏"
+msgstr "✏"
+
+#: src/sheet.md
+msgid "Opens the selected text in the [text editor](text-editor.md)"
+msgstr "Öffnet den ausgewählten Text im [Texteditor](text-editor.md)"
+
+#: src/sheet.md
+msgid "At the end, the bar shows the number of rows in the current view."
+msgstr "Am Ende zeigt die Leiste die Anzahl der Zeilen in der aktuellen Ansicht."
+
+#: src/filter.md
+msgid ""
+"The filter bar on the right decides which rows the translation sheet shows. "
+"A row is shown when it matches all settings. As soon as a filter is set, the "
+"bar shows _Special filters on!_ and the status bar _Filter active_. _Reset "
+"filter_ (also in the menu _Search_) shows all rows again."
+msgstr "Die Filterleiste rechts bestimmt, welche Zeilen die Übersetzungstabelle zeigt. Eine Zeile wird angezeigt, wenn sie zu allen Einstellungen passt. Sobald ein Filter gesetzt ist, zeigt die Leiste _Spezielle Filter an!_ und die Statusleiste _Filter aktiv_. _Filter zurücksetzen_ (auch im Menü _Suchen_) zeigt wieder alle Zeilen."
+
+#: src/filter.md src/statuses.md
+msgid "Translation status"
+msgstr "Übersetzungszustand"
+
+#: src/filter.md
+msgid ""
+"Shows only rows with a translation that has one of the checked statuses in "
+"one of the languages shown. When only one language is shown, this is the "
+"current language. For example, check only _Not translated_ and _Best guess_ "
+"to see what still needs work. See [Statuses](statuses.md)."
+msgstr "Zeigt nur Zeilen mit einer Übersetzung, die in einer der angezeigten Sprachen einen der angekreuzten Status hat. Wird nur eine Sprache angezeigt, ist das die aktuelle Sprache. Kreuzen Sie zum Beispiel nur _Nicht übersetzt_ und _Vermutung_ an, um zu sehen, was noch Arbeit braucht. Siehe [Status](statuses.md)."
+
+#: src/filter.md src/statuses.md
+msgid "Row status"
+msgstr "Zeilenstatus"
+
+#: src/filter.md
+msgid ""
+"Shows rows by their state since the last scan: _New_, _Changed_, _Unused_ or "
+"_In use_. Use _New_ and _Changed_ to find the texts that came with a new "
+"version of the program."
+msgstr "Zeigt Zeilen nach ihrem Zustand seit dem letzten Scan: _Neu_, _Geändert_, _Nicht verwendet_ oder _In Verwendung_. Mit _Neu_ und _Geändert_ finden Sie die Texte, die mit einer neuen Version des Programms hinzugekommen sind."
+
+#: src/filter.md
+msgid "Date"
+msgstr "Datum"
+
+#: src/filter.md
+msgid ""
+"Shows rows by a point in time: _Today_, _Last 7 days_, _Last 30 days_ or "
+"_Period…_ with _From_ and _To_. The second list chooses which time counts:"
+msgstr "Zeigt Zeilen nach einem Zeitpunkt: _Heute_, _Letzte 7 Tage_, _Letzte 30 Tage_ oder _Zeitraum…_ mit _Von_ und _Bis_. Die zweite Liste wählt, welcher Zeitpunkt zählt:"
+
+#: src/filter.md
+msgid "_Any change_: any of the following."
+msgstr "_Beliebige Änderung_: einer der folgenden."
+
+#: src/filter.md
+msgid "_Row created_: when a scan found the text for the first time."
+msgstr "_Zeile erstellt_: wann ein Scan den Text zum ersten Mal gefunden hat."
+
+#: src/filter.md
+msgid "_Original changed_: when a scan found a changed original."
+msgstr "_Original geändert_: wann ein Scan ein geändertes Original gefunden hat."
+
+#: src/filter.md
+msgid ""
+"_Translated_: when the translation was last edited, imported or filled in."
+msgstr "_Übersetzt_: wann die Übersetzung zuletzt bearbeitet, importiert oder ausgefüllt wurde."
+
+#: src/filter.md
+msgid ""
+"_From_ and _To_ accept, for example, `2026-11-01`, `01.11.2026 14:30`, "
+"`today`, `yesterday`, `7d` (the last seven days) or `12h` (the last twelve "
+"hours). A date without a time covers the whole day."
+msgstr "_Von_ und _Bis_ verstehen zum Beispiel `2026-11-01`, `01.11.2026 14:30`, `heute`, `gestern`, `7d` (die letzten sieben Tage) oder `12h` (die letzten zwölf Stunden). Ein Datum ohne Uhrzeit umfasst den ganzen Tag."
+
+#: src/filter.md
+msgid ""
+"This is useful to review the work of the last days, or to find the texts "
+"that are new since the last release."
+msgstr "So prüfen Sie die Arbeit der letzten Tage oder finden die Texte, die seit dem letzten Release neu sind."
+
+#: src/filter.md
+msgid "More"
+msgstr "Weitere"
+
+#: src/filter.md
+msgid "_Only marked rows_: rows you marked with ★."
+msgstr "_Nur markierte Zeilen_: Zeilen, die Sie mit ★ markiert haben."
+
+#: src/filter.md
+msgid "_Only \"Do not translate\"_: rows that are locked against translation."
+msgstr "_Nur „Nicht übersetzen“_: Zeilen, die gegen Übersetzung gesperrt sind."
+
+#: src/filter.md
+msgid "_Show excluded_: also shows rows that are excluded from the translation."
+msgstr "_Ausgeschlossene anzeigen_: zeigt auch Zeilen, die von der Übersetzung ausgeschlossen sind."
+
+#: src/filter.md
+msgid "_Screenshot_: only rows with or without a screenshot."
+msgstr "_Screenshot_: nur Zeilen mit oder ohne Screenshot."
+
+#: src/filter.md src/exchange.md
+msgid "Text"
+msgstr "Text"
+
+#: src/filter.md
+msgid ""
+"Shows only rows that contain the text. The list below chooses where to "
+"search (all columns, original, translation, context or comment), and _Match "
+"case_ distinguishes upper and lower case. To search without hiding rows, use "
+"[Search](search.md)."
+msgstr "Zeigt nur Zeilen, die den Text enthalten. Die Liste darunter wählt, wo gesucht wird (alle Spalten, Original, Übersetzung, Kontext oder Kommentar), und _Groß-/Kleinschreibung_ unterscheidet große und kleine Buchstaben. Um zu suchen, ohne Zeilen auszublenden, verwenden Sie [Suchen](search.md)."
+
+#: src/translating.md
+msgid "Editing in the sheet"
+msgstr "In der Tabelle bearbeiten"
+
+#: src/translating.md
+msgid "Select the language you translate into in the toolbar."
+msgstr "Wählen Sie in der Werkzeugleiste die Sprache, in die Sie übersetzen."
+
+#: src/translating.md
+msgid "Click the cell of the row in the column of this language."
+msgstr "Klicken Sie auf die Zelle der Zeile in der Spalte dieser Sprache."
+
+#: src/translating.md
+msgid ""
+"Press `F2` or `Enter`, or double-click the cell, and type the translation."
+msgstr "Drücken Sie `F2` oder `Enter` oder doppelklicken Sie auf die Zelle und tippen Sie die Übersetzung."
+
+#: src/translating.md
+msgid ""
+"Press `Enter` to keep the text and move to the next row, or `Esc` to cancel."
+msgstr "Drücken Sie `Enter`, um den Text zu übernehmen und zur nächsten Zeile zu gehen, oder `Esc`, um abzubrechen."
+
+#: src/translating.md
+msgid ""
+"Texts with several lines are easier to edit in the [text "
+"editor](text-editor.md): a double-click on a multi-line text opens it there."
+msgstr "Texte mit mehreren Zeilen bearbeiten Sie bequemer im [Texteditor](text-editor.md): Ein Doppelklick auf einen mehrzeiligen Text öffnet ihn dort."
+
+#: src/translating.md
+msgid ""
+"When you edit a translation with the status _Not translated_, _Best guess_ "
+"or _Auto translated_, Susi sets it to _Translated_. When you are sure that a "
+"translation is final, set it to _Complete_. See [Statuses](statuses.md)."
+msgstr "Wenn Sie eine Übersetzung mit dem Status _Nicht übersetzt_, _Vermutung_ oder _Automatisch übersetzt_ bearbeiten, setzt Susi sie auf _Übersetzt_. Wenn Sie sicher sind, dass eine Übersetzung endgültig ist, setzen Sie sie auf _Abgeschlossen_. Siehe [Status](statuses.md)."
+
+#: src/translating.md
+msgid "Setting the status"
+msgstr "Den Status setzen"
+
+#: src/translating.md
+msgid "Click one of the colored squares in the bar above the sheet, or"
+msgstr "Klicken Sie auf eines der farbigen Quadrate in der Leiste über der Tabelle, oder"
+
+#: src/translating.md
+msgid "right-click the cell and choose _Status_, or"
+msgstr "klicken Sie mit der rechten Maustaste auf die Zelle und wählen Sie _Status_, oder"
+
+#: src/translating.md
+msgid "use the menu _Row › Status_."
+msgstr "verwenden Sie das Menü _Zeile › Status_."
+
+#: src/translating.md
+msgid ""
+"To set the status of many rows at once, use the menu _Column › Status_ (all "
+"rows shown), or the context menu of the project tree (all rows of a part)."
+msgstr "Um den Status vieler Zeilen auf einmal zu setzen, verwenden Sie das Menü _Spalte › Status_ (alle angezeigten Zeilen) oder das Kontextmenü des Projektbaums (alle Zeilen eines Teils)."
+
+#: src/translating.md
+msgid "Rows that need special care"
+msgstr "Zeilen, die besondere Sorgfalt brauchen"
+
+#: src/translating.md
+msgid ""
+"Some rows must not be translated, for example technical names, or should be "
+"left out for now. The menu _Row_ and the bar above the sheet switch these "
+"marks:"
+msgstr "Manche Zeilen dürfen nicht übersetzt werden, zum Beispiel technische Namen, oder sollen vorerst ausgelassen werden. Das Menü _Zeile_ und die Leiste über der Tabelle schalten diese Kennzeichen:"
+
+#: src/translating.md
+msgid "Mark"
+msgstr "Kennzeichen"
+
+#: src/translating.md src/statuses.md src/translation-memory.md src/sources.md
+#: src/pseudo-translation.md src/exchange.md src/options.md
+msgid "Meaning"
+msgstr "Bedeutung"
+
+#: src/translating.md
+msgid "_Do not translate_ (🔒)"
+msgstr "_Nicht übersetzen_ (🔒)"
+
+#: src/translating.md
+msgid "The text stays as it is in all languages."
+msgstr "Der Text bleibt in allen Sprachen, wie er ist."
+
+#: src/translating.md
+msgid "_Marked_ (★)"
+msgstr "_Markiert_ (★)"
+
+#: src/translating.md
+msgid ""
+"A personal reminder, for example \"ask the developers\". The filter bar can "
+"show only marked rows."
+msgstr "Eine persönliche Erinnerung, zum Beispiel „bei den Entwicklern nachfragen“. Die Filterleiste kann nur markierte Zeilen zeigen."
+
+#: src/translating.md
+msgid "_Excluded_"
+msgstr "_Ausgeschlossen_"
+
+#: src/translating.md
+msgid ""
+"The row is left out of the translation and hidden, unless the filter bar "
+"shows excluded rows."
+msgstr "Die Zeile wird bei der Übersetzung ausgelassen und ausgeblendet, außer die Filterleiste zeigt ausgeschlossene Zeilen."
+
+#: src/translating.md
+msgid "Row properties"
+msgstr "Zeileneigenschaften"
+
+#: src/translating.md
+msgid ""
+"_Row › Properties…_ (or _Edit › Row properties / comment…_) shows the "
+"context and the original of the selected row and lets you change:"
+msgstr "_Zeile › Eigenschaften…_ (oder _Bearbeiten › Zeileneigenschaften / Kommentar…_) zeigt Kontext und Original der ausgewählten Zeile und lässt Sie ändern:"
+
+#: src/translating.md
+msgid "the row status (_New_, _Changed_, _Unused_, _In use_),"
+msgstr "den Zeilenstatus (_Neu_, _Geändert_, _Nicht verwendet_, _In Verwendung_),"
+
+#: src/translating.md
+msgid ""
+"_Max. characters_: the maximum length of the translations. The "
+"[validation](validation.md) reports longer translations, and the text editor "
+"counts the characters,"
+msgstr "_Max. Zeichen_: die höchste Länge der Übersetzungen. Die [Prüfung](validation.md) meldet längere Übersetzungen, und der Texteditor zählt die Zeichen,"
+
+#: src/translating.md
+msgid "the row comment, for example a hint for other translators,"
+msgstr "den Zeilenkommentar, zum Beispiel einen Hinweis für andere Übersetzer,"
+
+#: src/translating.md
+msgid "the marks _Do not translate_, _Excluded_ and _Marked_."
+msgstr "die Kennzeichen _Nicht übersetzen_, _Ausgeschlossen_ und _Markiert_."
+
+#: src/translating.md
+msgid "Moving around"
+msgstr "Sich bewegen"
+
+#: src/translating.md src/shortcuts.md
+msgid "Keys"
+msgstr "Tasten"
+
+#: src/translating.md
+msgid "Go to"
+msgstr "Gehe zu"
+
+#: src/translating.md src/shortcuts.md
+msgid "`↓` / `↑`"
+msgstr "`↓` / `↑`"
+
+#: src/translating.md src/shortcuts.md
+msgid "Next / previous row"
+msgstr "Nächste / vorherige Zeile"
+
+#: src/translating.md src/shortcuts.md
+msgid "`Home` / `End`"
+msgstr "`Pos1` / `Ende`"
+
+#: src/translating.md src/shortcuts.md
+msgid "First / last row"
+msgstr "Erste / letzte Zeile"
+
+#: src/translating.md
+msgid ""
+"The menu _Row_ and the buttons ⏮ ◀ ▶ ⏭ above the sheet and in the text "
+"editor do the same."
+msgstr "Das Menü _Zeile_ und die Schaltflächen ⏮ ◀ ▶ ⏭ über der Tabelle und im Texteditor tun dasselbe."
+
+#: src/translating.md src/projects.md
+msgid "Saving"
+msgstr "Speichern"
+
+#: src/translating.md
+msgid ""
+"Your translations are part of the project file. Save it with _File › Save_ "
+"(`Ctrl+S`). When you close Susi or open another project with unsaved "
+"changes, Susi asks whether to save them."
+msgstr "Ihre Übersetzungen sind Teil der Projektdatei. Speichern Sie sie mit _Datei › Speichern_ (`Strg+S`). Wenn Sie Susi schließen oder bei ungespeicherten Änderungen ein anderes Projekt öffnen, fragt Susi, ob die Änderungen gespeichert werden sollen."
+
+#: src/text-editor.md
+msgid ""
+"The tab _Text editor_ at the bottom shows everything about the selected text "
+"of the current language. It opens with the ✏ button above the sheet or with "
+"a double-click on a multi-line text."
+msgstr "Der Reiter _Texteditor_ unten zeigt alles zum ausgewählten Text der aktuellen Sprache. Er öffnet sich mit der Schaltfläche ✏ über der Tabelle oder mit einem Doppelklick auf einen mehrzeiligen Text."
+
+#: src/text-editor.md
+msgid "Left: original and translation"
+msgstr "Links: Original und Übersetzung"
+
+#: src/text-editor.md
+msgid ""
+"_Original_ shows the text in the original language. It cannot be changed "
+"here."
+msgstr "_Original_ zeigt den Text in der Originalsprache. Er lässt sich hier nicht ändern."
+
+#: src/text-editor.md
+msgid ""
+"_Translation_ is the translation in the current language. Changes are taken "
+"over immediately."
+msgstr "_Übersetzung_ ist die Übersetzung in der aktuellen Sprache. Änderungen werden sofort übernommen."
+
+#: src/text-editor.md
+msgid ""
+"If the row has a maximum length, a counter below shows the characters used, "
+"for example `42 / 40 characters`. It turns red when the translation is too "
+"long."
+msgstr "Hat die Zeile eine Höchstlänge, zeigt ein Zähler darunter die verwendeten Zeichen, zum Beispiel `42 / 40 Zeichen`. Er wird rot, wenn die Übersetzung zu lang ist."
+
+#: src/text-editor.md
+msgid "Middle: comments"
+msgstr "Mitte: Kommentare"
+
+#: src/text-editor.md
+msgid ""
+"_Row comment_: a note on the row that applies to all languages, for example "
+"from the developers."
+msgstr "_Zeilenkommentar_: eine Notiz zur Zeile, die für alle Sprachen gilt, zum Beispiel von den Entwicklern."
+
+#: src/text-editor.md
+msgid ""
+"_Translation comment_: a note on this translation only, for example a "
+"question to the reviewer. It can be entered as soon as the cell has a "
+"translation."
+msgstr "_Übersetzungskommentar_: eine Notiz nur zu dieser Übersetzung, zum Beispiel eine Frage an den Prüfer. Sie lässt sich eingeben, sobald die Zelle eine Übersetzung hat."
+
+#: src/text-editor.md
+msgid "Right: properties and suggestions"
+msgstr "Rechts: Eigenschaften und Vorschläge"
+
+#: src/text-editor.md
+msgid "The buttons ⏮ ◀ ▶ ⏭ move to another row."
+msgstr "Die Schaltflächen ⏮ ◀ ▶ ⏭ wechseln zu einer anderen Zeile."
+
+#: src/text-editor.md
+msgid "The colored entries set the status of the translation."
+msgstr "Die farbigen Einträge setzen den Status der Übersetzung."
+
+#: src/text-editor.md
+msgid ""
+"Below: row status, context, source file and whether the row may be "
+"translated."
+msgstr "Darunter: Zeilenstatus, Kontext, Quelldatei und ob die Zeile übersetzt werden darf."
+
+#: src/text-editor.md
+msgid ""
+"_Translation memory_: translations of equal or similar texts with their "
+"similarity in percent. _Apply_ takes over a suggestion. See [Translation "
+"memory](translation-memory.md)."
+msgstr "_Translation Memory_: Übersetzungen gleicher oder ähnlicher Texte mit ihrer Ähnlichkeit in Prozent. _Übernehmen_ übernimmt einen Vorschlag. Siehe [Translation Memory](translation-memory.md)."
+
+#: src/text-editor.md
+msgid ""
+"For pictures and other binary data, the tab shows the pictures instead, see "
+"[Pictures and binary data](pictures.md)."
+msgstr "Bei Bildern und anderen Binärdaten zeigt der Reiter stattdessen die Bilder, siehe [Bilder und Binärdaten](pictures.md)."
+
+#: src/statuses.md
+msgid ""
+"Susi keeps two kinds of status: one for each translation and one for each "
+"row."
+msgstr "Susi führt zwei Arten von Status: einen für jede Übersetzung und einen für jede Zeile."
+
+#: src/statuses.md
+msgid ""
+"Every translation has a status. It is shown as a colored bar in the cell and "
+"in the column _Status_."
+msgstr "Jede Übersetzung hat einen Status. Er erscheint als farbiger Balken in der Zelle und in der Spalte _Status_."
+
+#: src/statuses.md
+msgid "_Not translated_"
+msgstr "_Nicht übersetzt_"
+
+#: src/statuses.md
+msgid "There is no translation yet."
+msgstr "Es gibt noch keine Übersetzung."
+
+#: src/statuses.md
+msgid "_Best guess_"
+msgstr "_Vermutung_"
+
+#: src/statuses.md
+msgid ""
+"A proposal, for example a similar text from the translation memory. It needs "
+"to be checked."
+msgstr "Ein Vorschlag, zum Beispiel ein ähnlicher Text aus dem Translation Memory. Er muss geprüft werden."
+
+#: src/statuses.md
+msgid "_Auto translated_"
+msgstr "_Automatisch übersetzt_"
+
+#: src/statuses.md
+msgid ""
+"Filled in automatically, for example an exact match from the translation "
+"memory."
+msgstr "Automatisch ausgefüllt, zum Beispiel ein exakter Treffer aus dem Translation Memory."
+
+#: src/statuses.md
+msgid "_Translated_"
+msgstr "_Übersetzt_"
+
+#: src/statuses.md
+msgid "Translated by a person."
+msgstr "Von einem Menschen übersetzt."
+
+#: src/statuses.md
+msgid "_For review_"
+msgstr "_Zur Prüfung_"
+
+#: src/statuses.md
+msgid ""
+"Needs a second look, for example because the original has changed since it "
+"was translated."
+msgstr "Braucht einen zweiten Blick, zum Beispiel weil sich das Original seit der Übersetzung geändert hat."
+
+#: src/statuses.md
+msgid "_Complete_"
+msgstr "_Abgeschlossen_"
+
+#: src/statuses.md
+msgid "Checked and final."
+msgstr "Geprüft und endgültig."
+
+#: src/statuses.md
+msgid "How the status changes by itself:"
+msgstr "Wie sich der Status von selbst ändert:"
+
+#: src/statuses.md
+msgid ""
+"Editing a translation with the status _Not translated_, _Best guess_ or "
+"_Auto translated_ sets it to _Translated_."
+msgstr "Das Bearbeiten einer Übersetzung mit dem Status _Nicht übersetzt_, _Vermutung_ oder _Automatisch übersetzt_ setzt sie auf _Übersetzt_."
+
+#: src/statuses.md
+msgid ""
+"When a scan finds a changed original, the existing translations of the row "
+"get the status _For review_."
+msgstr "Findet ein Scan ein geändertes Original, bekommen die vorhandenen Übersetzungen der Zeile den Status _Zur Prüfung_."
+
+#: src/statuses.md
+msgid ""
+"The translation memory sets _Auto translated_ for exact matches and _Best "
+"guess_ for similar texts."
+msgstr "Das Translation Memory setzt _Automatisch übersetzt_ bei exakten Treffern und _Vermutung_ bei ähnlichen Texten."
+
+#: src/statuses.md
+msgid "The row status tells what a scan found out about the text:"
+msgstr "Der Zeilenstatus sagt, was ein Scan über den Text herausgefunden hat:"
+
+#: src/statuses.md
+msgid "Sign"
+msgstr "Zeichen"
+
+#: src/statuses.md
+msgid "_New_"
+msgstr "_Neu_"
+
+#: src/statuses.md
+msgid "✚"
+msgstr "✚"
+
+#: src/statuses.md
+msgid "The text was added with the last scans."
+msgstr "Der Text ist mit den letzten Scans hinzugekommen."
+
+#: src/statuses.md
+msgid "_Changed_"
+msgstr "_Geändert_"
+
+#: src/statuses.md
+msgid "The original has changed."
+msgstr "Das Original hat sich geändert."
+
+#: src/statuses.md
+msgid "_Unused_"
+msgstr "_Nicht verwendet_"
+
+#: src/statuses.md
+msgid "✖"
+msgstr "✖"
+
+#: src/statuses.md
+msgid "The text is no longer in the source file."
+msgstr "Der Text steht nicht mehr in der Quelldatei."
+
+#: src/statuses.md
+msgid "_In use_"
+msgstr "_In Verwendung_"
+
+#: src/statuses.md
+msgid "The text is unchanged."
+msgstr "Der Text ist unverändert."
+
+#: src/statuses.md
+msgid ""
+"_Project › Clear new status (all rows)_ removes the mark _New_, for example "
+"when you have translated all new texts. _Project › Remove unused rows_ "
+"deletes the rows that are no longer used, together with their translations."
+msgstr "_Projekt › Neu-Status entfernen (alle Zeilen)_ entfernt die Kennzeichnung _Neu_, zum Beispiel wenn Sie alle neuen Texte übersetzt haben. _Projekt › Unbenutzte Zeilen entfernen_ löscht die Zeilen, die nicht mehr verwendet werden, zusammen mit ihren Übersetzungen."
+
+#: src/copy-and-clear.md
+msgid ""
+"Sometimes a translation can start from an existing text, for example Swiss "
+"German (`de-CH`) from German (`de`), or a product name that stays the same "
+"in all languages. Susi offers the same commands for a single cell and for a "
+"whole column."
+msgstr "Manchmal kann eine Übersetzung von einem vorhandenen Text ausgehen, zum Beispiel Schweizerdeutsch (`de-CH`) von Deutsch (`de`) oder ein Produktname, der in allen Sprachen gleich bleibt. Susi bietet dieselben Befehle für eine einzelne Zelle und für eine ganze Spalte."
+
+#: src/copy-and-clear.md
+msgid "For the selected cell"
+msgstr "Für die ausgewählte Zelle"
+
+#: src/copy-and-clear.md
+msgid "The menu _Row_ (also _Edit_ and the context menu of a cell) offers:"
+msgstr "Das Menü _Zeile_ (auch _Bearbeiten_ und das Kontextmenü einer Zelle) bietet:"
+
+#: src/copy-and-clear.md
+msgid "_Status_: sets the status of the translation."
+msgstr "_Status_: setzt den Status der Übersetzung."
+
+#: src/copy-and-clear.md
+msgid ""
+"_Copy from_: takes over the _Original_ or the translation of another project "
+"language into the cell."
+msgstr "_Übernehmen_: übernimmt das _Original_ oder die Übersetzung einer anderen Projektsprache in die Zelle."
+
+#: src/copy-and-clear.md
+msgid "_Clear translation_: deletes the translation of the cell."
+msgstr "_Übersetzung löschen_: löscht die Übersetzung der Zelle."
+
+#: src/copy-and-clear.md
+msgid "For a whole column"
+msgstr "Für eine ganze Spalte"
+
+#: src/copy-and-clear.md
+msgid ""
+"The menu _Column_ works on the current language. A right-click on the header "
+"of a language or status column offers the same commands for that language. "
+"They apply to all rows shown, so set a filter first to limit them."
+msgstr "Das Menü _Spalte_ wirkt auf die aktuelle Sprache. Ein Rechtsklick auf die Überschrift einer Sprach- oder Statusspalte bietet dieselben Befehle für diese Sprache. Sie gelten für alle angezeigten Zeilen; setzen Sie also vorher einen Filter, um sie einzugrenzen."
+
+#: src/copy-and-clear.md
+msgid "_Status_: sets the status of all translations shown."
+msgstr "_Status_: setzt den Status aller angezeigten Übersetzungen."
+
+#: src/copy-and-clear.md
+msgid ""
+"_Copy from_: a dialog shows how many cells are empty and how many already "
+"have a translation. Empty cells are always filled. Check _Overwrite existing "
+"translations_ to replace the existing ones as well."
+msgstr "_Übernehmen_: Ein Dialog zeigt, wie viele Zellen leer sind und wie viele schon eine Übersetzung haben. Leere Zellen werden immer gefüllt. Kreuzen Sie _Vorhandene Übersetzungen überschreiben_ an, um auch die vorhandenen zu ersetzen."
+
+#: src/copy-and-clear.md
+msgid ""
+"_Clear translation_: deletes the translations shown and their comments, "
+"after a confirmation. This cannot be undone, except by closing the project "
+"without saving."
+msgstr "_Übersetzung löschen_: löscht die angezeigten Übersetzungen und ihre Kommentare, nach einer Rückfrage. Das lässt sich nicht rückgängig machen, außer indem Sie das Projekt schließen, ohne zu speichern."
+
+#: src/copy-and-clear.md
+msgid ""
+"Copying skips rows marked _Do not translate_, excluded rows and rows without "
+"a text to copy. A copied translation gets its status like an edited one."
+msgstr "Das Übernehmen überspringt Zeilen mit _Nicht übersetzen_, ausgeschlossene Zeilen und Zeilen ohne Text zum Übernehmen. Eine übernommene Übersetzung bekommt ihren Status wie eine bearbeitete."
+
+#: src/translation-memory.md
+msgid ""
+"The translation memory (TM) is a collection of texts you have translated "
+"before. Susi keeps it in one file for all projects, so a translation you "
+"made once is offered again wherever the same or a similar text appears."
+msgstr "Das Translation Memory (TM) ist eine Sammlung von Texten, die Sie schon einmal übersetzt haben. Susi führt es in einer Datei für alle Projekte, damit eine Übersetzung, die Sie einmal gemacht haben, überall wieder angeboten wird, wo der gleiche oder ein ähnlicher Text vorkommt."
+
+#: src/translation-memory.md
+msgid "Suggestions while you translate"
+msgstr "Vorschläge beim Übersetzen"
+
+#: src/translation-memory.md
+msgid ""
+"The [text editor](text-editor.md) shows suggestions from the translation "
+"memory for the selected text, with their similarity in percent. _Apply_ "
+"takes over a suggestion as the translation."
+msgstr "Der [Texteditor](text-editor.md) zeigt Vorschläge aus dem Translation Memory für den ausgewählten Text, mit ihrer Ähnlichkeit in Prozent. _Übernehmen_ übernimmt einen Vorschlag als Übersetzung."
+
+#: src/translation-memory.md
+msgid "Translating many texts at once"
+msgstr "Viele Texte auf einmal übersetzen"
+
+#: src/translation-memory.md
+msgid ""
+"_Translation › Translate with translation memory…_ (toolbar: 🗄 TM) fills in "
+"translations for many rows:"
+msgstr "_Übersetzung › Mit Translation Memory übersetzen…_ (Werkzeugleiste: 🗄 TM) füllt Übersetzungen für viele Zeilen aus:"
+
+#: src/translation-memory.md src/exchange.md
+msgid "Option"
+msgstr "Option"
+
+#: src/translation-memory.md
+msgid "_Replace existing translations_"
+msgstr "_Vorhandene Übersetzungen ersetzen_"
+
+#: src/translation-memory.md
+msgid ""
+"Also replaces translations that are already there. Without it, only empty "
+"cells are filled."
+msgstr "Ersetzt auch Übersetzungen, die schon da sind. Ohne diese Option werden nur leere Zellen gefüllt."
+
+#: src/translation-memory.md
+msgid "_Accept fuzzy matches from … % as \"Best guess\"_"
+msgstr "_Unscharfe Treffer ab … % als „Vermutung“ übernehmen_"
+
+#: src/translation-memory.md
+msgid "Also takes over similar texts, with the status _Best guess_."
+msgstr "Übernimmt auch ähnliche Texte, mit dem Status _Vermutung_."
+
+#: src/translation-memory.md src/exchange.md
+msgid "_Only rows of the current view_"
+msgstr "_Nur Zeilen der aktuellen Ansicht_"
+
+#: src/translation-memory.md
+msgid "Only the rows the sheet shows now."
+msgstr "Nur die Zeilen, die die Tabelle gerade zeigt."
+
+#: src/translation-memory.md
+msgid "_Only current language_"
+msgstr "_Nur aktuelle Sprache_"
+
+#: src/translation-memory.md
+msgid "Only the current language instead of all languages."
+msgstr "Nur die aktuelle Sprache statt aller Sprachen."
+
+#: src/translation-memory.md
+msgid ""
+"Exact matches get the status _Auto translated_. Check the results, for "
+"example with the filter for _Auto translated_ and _Best guess_."
+msgstr "Exakte Treffer bekommen den Status _Automatisch übersetzt_. Prüfen Sie die Ergebnisse, zum Beispiel mit dem Filter für _Automatisch übersetzt_ und _Vermutung_."
+
+#: src/translation-memory.md
+msgid "Filling the translation memory"
+msgstr "Das Translation Memory füllen"
+
+#: src/translation-memory.md
+msgid ""
+"_Translation › Save to translation memory_ adds the translations with the "
+"status _Translated_ or _Complete_ to the translation memory."
+msgstr "_Übersetzung › In Translation Memory speichern_ übernimmt die Übersetzungen mit dem Status _Übersetzt_ oder _Abgeschlossen_ in das Translation Memory."
+
+#: src/translation-memory.md
+msgid ""
+"In the [options](options.md), _Automatically save translated texts to the "
+"translation memory when saving_ does this every time you save the project."
+msgstr "In den [Einstellungen](options.md) erledigt das _Übersetzte Texte beim Speichern automatisch ins Translation Memory übernehmen_ bei jedem Speichern des Projekts."
+
+#: src/translation-memory.md
+msgid "Equal texts in one project"
+msgstr "Gleiche Texte in einem Projekt"
+
+#: src/translation-memory.md
+msgid ""
+"_Translation › Translate duplicate strings_ fills empty cells with the "
+"translation of an equal original elsewhere in the project, with the status "
+"_Auto translated_. This helps when the same text, for example \"Cancel\", "
+"appears many times."
+msgstr "_Übersetzung › Doppelte Zeichenfolgen übersetzen_ füllt leere Zellen mit der Übersetzung eines gleichen Originals an anderer Stelle im Projekt, mit dem Status _Automatisch übersetzt_. Das hilft, wenn derselbe Text, zum Beispiel „Abbrechen“, oft vorkommt."
+
+#: src/translation-memory.md
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: src/translation-memory.md
+msgid ""
+"In _Tools › Options…_ you choose the file of the translation memory (TMX "
+"format) and the minimum similarity for suggestions (_Minimum fuzzy match_)."
+msgstr "Unter _Extras › Einstellungen…_ wählen Sie die Datei des Translation Memory (Format TMX) und die Mindestähnlichkeit für Vorschläge (_Mindestwert unscharfe Treffer_)."
+
+#: src/validation.md
+msgid ""
+"The validation checks the translations for typical mistakes before they "
+"reach the program."
+msgstr "Die Prüfung untersucht die Übersetzungen auf typische Fehler, bevor sie ins Programm gelangen."
+
+#: src/validation.md
+msgid "Running a validation"
+msgstr "Eine Prüfung starten"
+
+#: src/validation.md
+msgid "_Validation › Validate_ (toolbar: ✔ Validate) checks all translations."
+msgstr "_Prüfung › Prüfen_ (Werkzeugleiste: ✔ Prüfen) prüft alle Übersetzungen."
+
+#: src/validation.md
+msgid ""
+"_Validation › Validate (including missing translations)_ also reports texts "
+"that are not translated yet."
+msgstr "_Prüfung › Prüfen (inkl. fehlender Übersetzungen)_ meldet auch Texte, die noch nicht übersetzt sind."
+
+#: src/validation.md
+msgid "_Validation › Clear validation results_ removes the results."
+msgstr "_Prüfung › Prüfungsergebnisse löschen_ entfernt die Ergebnisse."
+
+#: src/validation.md
+msgid ""
+"The tab _Validation results_ lists every finding with its type (_Error_ or "
+"_Warning_), the check, the language, the context and a message. Click an "
+"entry to jump to the cell. Cells with a finding are pink in the translation "
+"sheet."
+msgstr "Der Reiter _Prüfungsergebnisse_ listet jeden Befund mit seinem Typ (_Fehler_ oder _Warnung_), der Prüfung, der Sprache, dem Kontext und einer Nachricht auf. Klicken Sie auf einen Eintrag, um zur Zelle zu springen. Zellen mit einem Befund sind in der Übersetzungstabelle rosa."
+
+#: src/validation.md
+msgid "The checks"
+msgstr "Die Prüfungen"
+
+#: src/validation.md
+msgid "Check"
+msgstr "Prüfung"
+
+#: src/validation.md
+msgid "Finds"
+msgstr "Findet"
+
+#: src/validation.md
+msgid "_Missing translation_"
+msgstr "_Fehlende Übersetzung_"
+
+#: src/validation.md
+msgid "Texts without a translation (only with _including missing translations_)."
+msgstr "Texte ohne Übersetzung (nur mit _inkl. fehlender Übersetzungen_)."
+
+#: src/validation.md
+msgid "_Inconsistent format string_"
+msgstr "_Inkonsistente Formatzeichenfolge_"
+
+#: src/validation.md
+msgid ""
+"Placeholders such as `{0}`, `%s` or `{name}` that differ from the original."
+msgstr "Platzhalter wie `{0}`, `%s` oder `{name}`, die vom Original abweichen."
+
+#: src/validation.md
+msgid "_Inconsistent tags_"
+msgstr "_Inkonsistente Tags_"
+
+#: src/validation.md
+msgid "Markup such as `<b>` that differs from the original."
+msgstr "Auszeichnungen wie `<b>`, die vom Original abweichen."
+
+#: src/validation.md
+msgid "_Invalid number of spaces_"
+msgstr "_Ungültige Anzahl von Leerzeichen_"
+
+#: src/validation.md
+msgid "Different leading or trailing spaces."
+msgstr "Abweichende Leerzeichen am Anfang oder Ende."
+
+#: src/validation.md
+msgid "_Invalid number of line breaks_"
+msgstr "_Ungültige Anzahl von Zeilenumbrüchen_"
+
+#: src/validation.md
+msgid "A different number of line breaks."
+msgstr "Eine abweichende Anzahl von Zeilenumbrüchen."
+
+#: src/validation.md
+msgid "_Missing period_, _colon_, _exclamation mark_, _question mark_"
+msgstr "_Fehlender Punkt_, _Doppelpunkt_, _Ausrufezeichen_, _Fragezeichen_"
+
+#: src/validation.md
+msgid "The original ends with the sign, the translation does not."
+msgstr "Das Original endet mit dem Zeichen, die Übersetzung nicht."
+
+#: src/validation.md
+msgid "_Length in characters_"
+msgstr "_Länge in Zeichen_"
+
+#: src/validation.md
+msgid "Translations longer than the maximum of the row (_Max. characters_)."
+msgstr "Übersetzungen, die länger sind als das Maximum der Zeile (_Max. Zeichen_)."
+
+#: src/validation.md
+msgid "_Translation consists of spaces only_"
+msgstr "_Übersetzung besteht nur aus Leerzeichen_"
+
+#: src/validation.md
+msgid "Translations without visible text."
+msgstr "Übersetzungen ohne sichtbaren Text."
+
+#: src/validation.md
+msgid "_Invalid number of hotkeys_"
+msgstr "_Ungültige Anzahl von Tastenkürzeln_"
+
+#: src/validation.md
+msgid "A different number of `&` hotkeys, as in `&File`."
+msgstr "Eine abweichende Anzahl von `&`\\-Tastenkürzeln, wie in `&Datei`."
+
+#: src/validation.md
+msgid "_Duplicate translation_"
+msgstr "_Doppelte Übersetzung_"
+
+#: src/validation.md
+msgid "The same original translated differently."
+msgstr "Dasselbe Original ist unterschiedlich übersetzt."
+
+#: src/validation.md
+msgid "_Invalid control characters_"
+msgstr "_Ungültige Steuerzeichen_"
+
+#: src/validation.md
+msgid "Invisible control characters."
+msgstr "Unsichtbare Steuerzeichen."
+
+#: src/validation.md
+msgid "_Invalid ICU message_, _Incomplete ICU cases_"
+msgstr "_Ungültige ICU-Nachricht_, _Unvollständige ICU-Fälle_"
+
+#: src/validation.md
+msgid ""
+"Errors in messages with plural or select forms, for example missing plural "
+"forms of the language."
+msgstr "Fehler in Meldungen mit Plural- oder Auswahlformen, zum Beispiel fehlende Pluralformen der Sprache."
+
+#: src/validation.md
+msgid "_Missing screenshot_"
+msgstr "_Fehlender Screenshot_"
+
+#: src/validation.md
+msgid "A linked screenshot whose image file is missing."
+msgstr "Ein verknüpfter Screenshot, dessen Bilddatei fehlt."
+
+#: src/validation.md
+msgid "_Custom data_"
+msgstr "_Benutzerdefinierte Daten_"
+
+#: src/validation.md
+msgid ""
+"Missing linked files, or translated pictures with another format or size "
+"than the original."
+msgstr "Fehlende verknüpfte Dateien oder übersetzte Bilder mit anderem Format oder anderer Größe als das Original."
+
+#: src/validation.md
+msgid ""
+"Not every finding is a real mistake: a missing period can be right in "
+"another language. Decide case by case."
+msgstr "Nicht jeder Befund ist ein echter Fehler: Ein fehlender Punkt kann in einer anderen Sprache richtig sein. Entscheiden Sie von Fall zu Fall."
+
+#: src/search.md
+msgid ""
+"The tab _Search results_ finds texts in the whole project without hiding any "
+"rows."
+msgstr "Der Reiter _Ergebnisse suchen_ findet Texte im ganzen Projekt, ohne Zeilen auszublenden."
+
+#: src/search.md
+msgid "Choose _Search › Find…_ (`Ctrl+F`), or click the tab _Search results_."
+msgstr "Wählen Sie _Suchen › Suchen…_ (`Strg+F`) oder klicken Sie auf den Reiter _Ergebnisse suchen_."
+
+#: src/search.md
+msgid "Type the text in _Find what:_ and press `Enter` or click _Search_."
+msgstr "Geben Sie den Text bei _Suchen nach:_ ein und drücken Sie `Enter` oder klicken Sie auf _Suchen_."
+
+#: src/search.md
+msgid ""
+"Choose where to search: in all columns, the original, the translation, the "
+"context or the comment. _Match case_ distinguishes upper and lower case."
+msgstr "Wählen Sie, wo gesucht wird: in allen Spalten, im Original, in der Übersetzung, im Kontext oder im Kommentar. _Groß-/Kleinschreibung_ unterscheidet große und kleine Buchstaben."
+
+#: src/search.md
+msgid ""
+"The list shows the context, the original and the translation in the current "
+"language of every hit. Click a hit to select its row in the sheet. The "
+"number of hits is shown in the tab title."
+msgstr "Die Liste zeigt zu jedem Treffer den Kontext, das Original und die Übersetzung in der aktuellen Sprache. Klicken Sie auf einen Treffer, um seine Zeile in der Tabelle auszuwählen. Die Anzahl der Treffer steht im Titel des Reiters."
+
+#: src/search.md
+msgid ""
+"_Use as filter_ copies the search into the filter bar, so the sheet shows "
+"only the matching rows. See [Filter bar](filter.md)."
+msgstr "_Als Filter verwenden_ übernimmt die Suche in die Filterleiste, sodass die Tabelle nur die passenden Zeilen zeigt. Siehe [Filterleiste](filter.md)."
+
+#: src/comments.md
+msgid ""
+"Comments carry information between developers, translators and reviewers. "
+"There are two kinds:"
+msgstr "Kommentare tragen Informationen zwischen Entwicklern, Übersetzern und Prüfern. Es gibt zwei Arten:"
+
+#: src/comments.md
+msgid ""
+"The **row comment** belongs to the text and applies to all languages, for "
+"example a hint from the developers like \"button label, max. 12 characters\"."
+msgstr "Der **Zeilenkommentar** gehört zum Text und gilt für alle Sprachen, zum Beispiel ein Hinweis der Entwickler wie „Beschriftung einer Schaltfläche, max. 12 Zeichen“."
+
+#: src/comments.md
+msgid ""
+"The **translation comment** belongs to one translation, for example a "
+"question about the meaning or a note for the reviewer."
+msgstr "Der **Übersetzungskommentar** gehört zu einer Übersetzung, zum Beispiel eine Frage zur Bedeutung oder eine Notiz für den Prüfer."
+
+#: src/comments.md
+msgid "Where comments appear"
+msgstr "Wo Kommentare erscheinen"
+
+#: src/comments.md
+msgid "A small triangle at the top right of a cell shows a translation comment."
+msgstr "Ein kleines Dreieck oben rechts in einer Zelle zeigt einen Übersetzungskommentar."
+
+#: src/comments.md
+msgid ""
+"The column _Row comment_ shows the row comments (switch it on in the menu "
+"_View_)."
+msgstr "Die Spalte _Zeilenkommentar_ zeigt die Zeilenkommentare (einschalten im Menü _Ansicht_)."
+
+#: src/comments.md
+msgid ""
+"The tab _Comments_ lists all rows of the current view that have a row "
+"comment or a translation comment in the current language. Click an entry to "
+"select the row."
+msgstr "Der Reiter _Kommentare_ listet alle Zeilen der aktuellen Ansicht auf, die einen Zeilenkommentar oder einen Übersetzungskommentar in der aktuellen Sprache haben. Klicken Sie auf einen Eintrag, um die Zeile auszuwählen."
+
+#: src/comments.md
+msgid "Writing comments"
+msgstr "Kommentare schreiben"
+
+#: src/comments.md
+msgid ""
+"In the [text editor](text-editor.md): _Row comment_ and _Translation "
+"comment_."
+msgstr "Im [Texteditor](text-editor.md): _Zeilenkommentar_ und _Übersetzungskommentar_."
+
+#: src/comments.md
+msgid "In the row properties: _Row › Properties…_."
+msgstr "In den Zeileneigenschaften: _Zeile › Eigenschaften…_."
+
+#: src/comments.md
+msgid ""
+"Comments can be included in exports, so external translators see them, and "
+"imported with their answers. See [Exchanging files](exchange.md)."
+msgstr "Kommentare lassen sich mit exportieren, damit externe Übersetzer sie sehen, und mit ihren Antworten wieder importieren. Siehe [Dateien austauschen](exchange.md)."
+
+#: src/statistics.md
+msgid ""
+"The tab _Statistics_ shows how far the translation is. Open it with _Project "
+"› Statistics_ or the 📊 button in the toolbar."
+msgstr "Der Reiter _Statistik_ zeigt, wie weit die Übersetzung ist. Öffnen Sie ihn mit _Projekt › Statistik_ oder der Schaltfläche 📊 in der Werkzeugleiste."
+
+#: src/statistics.md
+msgid ""
+"The first line counts the rows, words and characters of the originals, and "
+"the rows marked _Do not translate_."
+msgstr "Die erste Zeile zählt die Zeilen, Wörter und Zeichen der Originale und die Zeilen mit _Nicht übersetzen_."
+
+#: src/statistics.md
+msgid ""
+"The second line counts the rows by row status, for example how many are "
+"_New_."
+msgstr "Die zweite Zeile zählt die Zeilen nach Zeilenstatus, zum Beispiel wie viele _Neu_ sind."
+
+#: src/statistics.md
+msgid ""
+"The table shows one line per language: the progress in percent, the number "
+"of translations per status, and the words still open."
+msgstr "Die Tabelle zeigt eine Zeile pro Sprache: den Fortschritt in Prozent, die Anzahl der Übersetzungen je Status und die noch offenen Wörter."
+
+#: src/statistics.md
+msgid "Saving a report"
+msgstr "Einen Bericht speichern"
+
+#: src/statistics.md
+msgid ""
+"_Project › Save report…_ saves the statistics as a file, for example to send "
+"it to a project manager:"
+msgstr "_Projekt › Bericht speichern…_ speichert die Statistik als Datei, zum Beispiel um sie an eine Projektleitung zu schicken:"
+
+#: src/statistics.md
+msgid "**HTML** (`.html`): a page for the web browser."
+msgstr "**HTML** (`.html`): eine Seite für den Webbrowser."
+
+#: src/statistics.md
+msgid "**Text** (`.txt`): plain text."
+msgstr "**Text** (`.txt`): reiner Text."
+
+#: src/statistics.md
+msgid "**JSON** (`.json`): for further processing by other programs."
+msgstr "**JSON** (`.json`): zur Weiterverarbeitung in anderen Programmen."
+
+#: src/output.md
+msgid ""
+"The tab _Output_ is Susi's log. It lists what happened, with time and type:"
+msgstr "Der Reiter _Ausgabe_ ist das Protokoll von Susi. Er listet auf, was passiert ist, mit Zeit und Typ:"
+
+#: src/output.md
+msgid ""
+"_Information_, for example \"Project opened\", the result of a scan, every "
+"file written by a build, or the number of texts found by a search."
+msgstr "_Information_, zum Beispiel „Projekt geöffnet“, das Ergebnis eines Scans, jede beim Erstellen geschriebene Datei oder die Anzahl der Treffer einer Suche."
+
+#: src/output.md
+msgid ""
+"_Warning_ and _Error_ (in color), for example a source file that could not "
+"be read."
+msgstr "_Warnung_ und _Fehler_ (farbig), zum Beispiel eine Quelldatei, die sich nicht lesen ließ."
+
+#: src/output.md
+msgid ""
+"Look here first when something did not work as expected. New entries appear "
+"at the bottom. _Clear_ empties the list."
+msgstr "Schauen Sie zuerst hier nach, wenn etwas nicht wie erwartet funktioniert hat. Neue Einträge erscheinen unten. _Leeren_ leert die Liste."
+
+#: src/screenshots.md
+msgid ""
+"A screenshot shows where a text appears in the program, how much space it "
+"has and what it refers to. A screenshot can be linked to one or more rows, "
+"optionally with the area where the text appears."
+msgstr "Ein Screenshot zeigt, wo ein Text im Programm erscheint, wie viel Platz er hat und worauf er sich bezieht. Ein Screenshot lässt sich mit einer oder mehreren Zeilen verknüpfen, auf Wunsch mit dem Bereich, in dem der Text erscheint."
+
+#: src/screenshots.md
+msgid ""
+"The project must be saved before it can have screenshots. Susi keeps them in "
+"a folder next to the project file (`<project>.files`), not in the project "
+"file itself."
+msgstr "Das Projekt muss gespeichert sein, bevor es Screenshots haben kann. Susi legt sie in einem Ordner neben der Projektdatei ab (`<Projekt>.files`), nicht in der Projektdatei selbst."
+
+#: src/screenshots.md
+msgid "The tab Screenshots"
+msgstr "Der Reiter Screenshots"
+
+#: src/screenshots.md
+msgid ""
+"The tab _Screenshots_ at the bottom shows the screenshots of the selected "
+"row. The area of the row is highlighted, the areas of other rows are shown "
+"faintly. If several screenshots are linked, buttons above the image switch "
+"between them. A camera in the context cell of the sheet shows that a row has "
+"a screenshot."
+msgstr "Der Reiter _Screenshots_ unten zeigt die Screenshots der ausgewählten Zeile. Der Bereich der Zeile ist hervorgehoben, die Bereiche anderer Zeilen sind schwach angedeutet. Sind mehrere Screenshots verknüpft, wechseln Schaltflächen über dem Bild zwischen ihnen. Eine Kamera in der Kontextzelle der Tabelle zeigt, dass eine Zeile einen Screenshot hat."
+
+#: src/screenshots.md
+msgid "Adding screenshots"
+msgstr "Screenshots hinzufügen"
+
+#: src/screenshots.md
+msgid ""
+"_Add…_ in the tab adds image files (PNG or JPEG) and links them to the "
+"selected row."
+msgstr "_Hinzufügen…_ im Reiter fügt Bilddateien (PNG oder JPEG) hinzu und verknüpft sie mit der ausgewählten Zeile."
+
+#: src/screenshots.md
+msgid ""
+"_Paste_ or `Ctrl+V` pastes an image from the clipboard, for example a "
+"screenshot you just took."
+msgstr "_Einfügen_ oder `Strg+V` fügt ein Bild aus der Zwischenablage ein, zum Beispiel einen gerade aufgenommenen Screenshot."
+
+#: src/screenshots.md
+msgid "Drag image files from the file manager onto the Susi window."
+msgstr "Ziehen Sie Bilddateien aus dem Dateimanager auf das Fenster von Susi."
+
+#: src/screenshots.md
+msgid "_Link existing…_ links a screenshot that is already in the project."
+msgstr "_Vorhandenen verknüpfen…_ verknüpft einen Screenshot, der schon im Projekt ist."
+
+#: src/screenshots.md
+msgid ""
+"The menu _Row › Screenshot_ adds an image to the selected row or to all rows "
+"of the view. In the project tree, _Add screenshot to all rows…_ links it to "
+"all rows of a part."
+msgstr "Das Menü _Zeile › Screenshot_ fügt ein Bild zur ausgewählten Zeile oder zu allen Zeilen der Ansicht hinzu. Im Projektbaum verknüpft _Screenshot zu allen Zeilen hinzufügen…_ es mit allen Zeilen eines Teils."
+
+#: src/screenshots.md
+msgid "Marking the area of a text"
+msgstr "Den Bereich eines Texts markieren"
+
+#: src/screenshots.md
+msgid "Select the row and its screenshot."
+msgstr "Wählen Sie die Zeile und ihren Screenshot aus."
+
+#: src/screenshots.md
+msgid ""
+"Click _Mark area_ and drag a rectangle over the place where the text appears."
+msgstr "Klicken Sie auf _Bereich markieren_ und ziehen Sie ein Rechteck über die Stelle, an der der Text erscheint."
+
+#: src/screenshots.md
+msgid ""
+"_Clear area_ removes the marking. _Remove link_ removes the screenshot from "
+"the selected row; the image stays in the project."
+msgstr "_Bereich entfernen_ entfernt die Markierung. _Verknüpfung entfernen_ löst den Screenshot von der ausgewählten Zeile; das Bild bleibt im Projekt."
+
+#: src/screenshots.md
+msgid "Managing screenshots"
+msgstr "Screenshots verwalten"
+
+#: src/screenshots.md
+msgid ""
+"_Project › Screenshots…_ (or _Manage…_ in the tab) lists all screenshots "
+"with title, size and links. There you can change titles and remove "
+"screenshots."
+msgstr "_Projekt › Screenshots…_ (oder _Verwalten…_ im Reiter) listet alle Screenshots mit Titel, Größe und Verknüpfungen auf. Dort können Sie Titel ändern und Screenshots entfernen."
+
+#: src/screenshots.md
+msgid ""
+"_Refresh_ reads changed image files again, if a screenshot was taken from a "
+"file that has been replaced, for example by a new test run."
+msgstr "_Aktualisieren_ liest geänderte Bilddateien neu ein, wenn ein Screenshot aus einer Datei stammt, die ersetzt wurde, zum Beispiel durch einen neuen Testlauf."
+
+#: src/screenshots.md
+msgid ""
+"_Clean up_ removes links to rows that no longer exist and image files that "
+"are no longer used."
+msgstr "_Aufräumen_ entfernt Verknüpfungen zu Zeilen, die es nicht mehr gibt, und Bilddateien, die nicht mehr verwendet werden."
+
+#: src/screenshots.md
+msgid ""
+"_Import manifest…_ (also _Project › Import screenshot manifest…_) takes over "
+"the screenshots of an automated UI test run, prepared by the developers."
+msgstr "_Manifest importieren…_ (auch _Projekt › Screenshot-Manifest importieren…_) übernimmt die Screenshots eines automatischen UI-Testlaufs, den die Entwickler vorbereitet haben."
+
+#: src/screenshots.md
+msgid ""
+"Screenshots are included in exports, so external translators see them too, "
+"see [Exchanging files](exchange.md)."
+msgstr "Screenshots werden mit exportiert, damit auch externe Übersetzer sie sehen, siehe [Dateien austauschen](exchange.md)."
+
+#: src/pictures.md
+msgid ""
+"Besides texts, a program can contain pictures and other data that differ per "
+"language, for example a logo with text in it or a sound file. Susi shows "
+"such rows in the sheet with a short description, for example `PNG 16 × 8` or "
+"_Binary data_. A 🔗 in front of it means that the translation is linked to a "
+"file."
+msgstr "Neben Texten kann ein Programm Bilder und andere Daten enthalten, die je Sprache verschieden sind, zum Beispiel ein Logo mit Schrift darin oder eine Tondatei. Susi zeigt solche Zeilen in der Tabelle mit einer kurzen Beschreibung, zum Beispiel `PNG 16 × 8` oder _Binärdaten_. Ein 🔗 davor bedeutet, dass die Übersetzung mit einer Datei verknüpft ist."
+
+#: src/pictures.md
+msgid "Translating a picture"
+msgstr "Ein Bild übersetzen"
+
+#: src/pictures.md
+msgid ""
+"Select the row and open the [text editor](text-editor.md). For pictures and "
+"binary data, it shows the original on the left and the translation on the "
+"right: pictures as images, other data as a hex dump."
+msgstr "Wählen Sie die Zeile aus und öffnen Sie den [Texteditor](text-editor.md). Bei Bildern und Binärdaten zeigt er links das Original und rechts die Übersetzung: Bilder als Bild, andere Daten als Hex-Ansicht."
+
+#: src/pictures.md
+msgid "_Save as…_ (left)"
+msgstr "_Speichern unter…_ (links)"
+
+#: src/pictures.md
+msgid "Saves the original, for example as a template for the translated picture."
+msgstr "Speichert das Original, zum Beispiel als Vorlage für das übersetzte Bild."
+
+#: src/pictures.md
+msgid "_Load…_"
+msgstr "_Laden…_"
+
+#: src/pictures.md
+msgid "Takes a file as the translation."
+msgstr "Übernimmt eine Datei als Übersetzung."
+
+#: src/pictures.md
+msgid "_Link to file…_"
+msgstr "_Mit Datei verknüpfen…_"
+
+#: src/pictures.md
+msgid ""
+"Takes a file as the translation and keeps it linked: when the file changes, "
+"Susi reads it again when the project is opened, scanned or built."
+msgstr "Übernimmt eine Datei als Übersetzung und hält sie verknüpft: Ändert sich die Datei, liest Susi sie beim Öffnen, Scannen und Erstellen des Projekts neu ein."
+
+#: src/pictures.md
+msgid "_Remove file link_"
+msgstr "_Dateiverknüpfung entfernen_"
+
+#: src/pictures.md
+msgid "Keeps the translation, but no longer reads the file."
+msgstr "Behält die Übersetzung, liest die Datei aber nicht mehr ein."
+
+#: src/pictures.md
+msgid "_Save as…_ (right)"
+msgstr "_Speichern unter…_ (rechts)"
+
+#: src/pictures.md
+msgid "Saves the translation as a file."
+msgstr "Speichert die Übersetzung als Datei."
+
+#: src/pictures.md
+msgid "_Clear translation_"
+msgstr "_Übersetzung löschen_"
+
+#: src/pictures.md
+msgid "Deletes the translation, so the program uses the original."
+msgstr "Löscht die Übersetzung, sodass das Programm das Original verwendet."
+
+#: src/pictures.md
+msgid "The same commands are in the menu _Row › Picture or binary data_."
+msgstr "Dieselben Befehle stehen im Menü _Zeile › Bild oder Binärdaten_."
+
+#: src/pictures.md
+msgid ""
+"A linked file is the comfortable way when a designer delivers the translated "
+"pictures: replace the file, and Susi takes over the new content."
+msgstr "Eine verknüpfte Datei ist der bequeme Weg, wenn eine Grafikerin oder ein Grafiker die übersetzten Bilder liefert: Ersetzen Sie die Datei, und Susi übernimmt den neuen Inhalt."
+
+#: src/pictures.md
+msgid "Checks"
+msgstr "Prüfungen"
+
+#: src/pictures.md
+msgid ""
+"The [validation](validation.md) (check _Custom data_) reports linked files "
+"that are missing, and translated pictures with another format or size than "
+"the original."
+msgstr "Die [Prüfung](validation.md) (Prüfung _Benutzerdefinierte Daten_) meldet fehlende verknüpfte Dateien und übersetzte Bilder mit anderem Format oder anderer Größe als das Original."
+
+#: src/projects.md
+msgid ""
+"A Susi project is a file with the extension `.slp`. It refers to the source "
+"files with the original texts and contains all translations, statuses and "
+"comments. Susi uses the same file format as Sisulizer, so you can open "
+"existing Sisulizer projects."
+msgstr "Ein Susi-Projekt ist eine Datei mit der Endung `.slp`. Sie verweist auf die Quelldateien mit den Originaltexten und enthält alle Übersetzungen, Status und Kommentare. Susi verwendet dasselbe Dateiformat wie Sisulizer, Sie können also vorhandene Sisulizer-Projekte öffnen."
+
+#: src/projects.md
+msgid "Opening a project"
+msgstr "Ein Projekt öffnen"
+
+#: src/projects.md
+msgid "_File › Open…_ (`Ctrl+O`) opens a project file."
+msgstr "_Datei › Öffnen…_ (`Strg+O`) öffnet eine Projektdatei."
+
+#: src/projects.md
+msgid "_File › Recent projects_ lists the projects you opened last."
+msgstr "_Datei › Zuletzt geöffnet_ listet die Projekte auf, die Sie zuletzt geöffnet haben."
+
+#: src/projects.md
+msgid ""
+"You can also start Susi with a project, for example by dragging the project "
+"file onto `susi.exe`."
+msgstr "Sie können Susi auch mit einem Projekt starten, zum Beispiel indem Sie die Projektdatei auf `susi.exe` ziehen."
+
+#: src/projects.md
+msgid "Creating a project"
+msgstr "Ein Projekt anlegen"
+
+#: src/projects.md
+msgid ""
+"_File › New project…_ (`Ctrl+N`) creates an empty project and asks for its "
+"file name. Save it in or near the folder of the program to be translated: "
+"Susi stores the paths of the source files relative to the project. Then add "
+"the [languages](languages.md) and the [sources](sources.md). The "
+"walk-through [Your first project](first-project.md) shows all steps."
+msgstr "_Datei › Neues Projekt…_ (`Strg+N`) legt ein leeres Projekt an und fragt nach seinem Dateinamen. Speichern Sie es im oder neben dem Ordner des zu übersetzenden Programms: Susi speichert die Pfade der Quelldateien relativ zum Projekt. Fügen Sie dann die [Sprachen](languages.md) und die [Quellen](sources.md) hinzu. Der Rundgang [Ihr erstes Projekt](first-project.md) zeigt alle Schritte."
+
+#: src/projects.md
+msgid ""
+"_File › Save_ (`Ctrl+S`) saves the project. Before saving, Susi keeps the "
+"previous version as a backup copy `<name>.~slp` next to it."
+msgstr "_Datei › Speichern_ (`Strg+S`) speichert das Projekt. Vor dem Speichern bewahrt Susi die vorherige Fassung als Sicherungskopie `<Name>.~slp` daneben auf."
+
+#: src/projects.md
+msgid ""
+"_File › Save as…_ saves the project under a new name. Screenshots are copied "
+"along."
+msgstr "_Datei › Speichern unter…_ speichert das Projekt unter einem neuen Namen. Die Screenshots werden mitkopiert."
+
+#: src/projects.md
+msgid ""
+"The status bar shows _Modified_ while there are unsaved changes. When you "
+"close Susi, open or create another project, Susi asks whether to save them: "
+"_Save_, _Don't save_ or _Cancel_."
+msgstr "Die Statusleiste zeigt _Geändert_, solange es ungespeicherte Änderungen gibt. Wenn Sie Susi schließen oder ein anderes Projekt öffnen oder anlegen, fragt Susi, ob sie gespeichert werden sollen: _Speichern_, _Nicht speichern_ oder _Abbrechen_."
+
+#: src/projects.md
+msgid "Projects of Sisulizer"
+msgstr "Projekte von Sisulizer"
+
+#: src/projects.md
+msgid ""
+"Susi keeps everything it does not know in a Sisulizer project when it saves "
+"it. Some kinds of sources that Susi supports are unknown to Sisulizer 4, for "
+"example TSV catalogs: Sisulizer cannot open a project that contains such a "
+"source."
+msgstr "Susi behält in einem Sisulizer-Projekt beim Speichern alles bei, was es nicht kennt. Manche Quellarten, die Susi unterstützt, kennt Sisulizer 4 nicht, zum Beispiel TSV-Kataloge: Ein Projekt mit einer solchen Quelle kann Sisulizer nicht öffnen."
+
+#: src/languages.md
+msgid ""
+"A project has one original language per source and any number of target "
+"languages, the languages you translate into."
+msgstr "Ein Projekt hat je Quelle eine Originalsprache und beliebig viele Zielsprachen, also die Sprachen, in die Sie übersetzen."
+
+#: src/languages.md
+msgid "Adding and removing languages"
+msgstr "Sprachen hinzufügen und entfernen"
+
+#: src/languages.md
+msgid ""
+"_Project › Languages…_ shows the original languages and the target languages "
+"of the project."
+msgstr "_Projekt › Sprachen…_ zeigt die Originalsprachen und die Zielsprachen des Projekts."
+
+#: src/languages.md
+msgid ""
+"To add a language, choose it in the list next to _Add:_, or type its code in "
+"_ID:_, and click _Add_. Codes follow the usual conventions: `de` for German, "
+"`de-CH` for Swiss German, `pt-BR` for Brazilian Portuguese, `zh-Hans` for "
+"simplified Chinese."
+msgstr "Um eine Sprache hinzuzufügen, wählen Sie sie in der Liste neben _Hinzufügen:_ oder geben Sie ihren Code bei _Kennung:_ ein und klicken Sie auf _Hinzufügen_. Die Codes folgen den üblichen Regeln: `de` für Deutsch, `de-CH` für Schweizerdeutsch, `pt-BR` für brasilianisches Portugiesisch, `zh-Hans` für vereinfachtes Chinesisch."
+
+#: src/languages.md
+msgid ""
+"To remove a language, click _Remove_ in its line and confirm. All "
+"translations of the language are deleted."
+msgstr "Um eine Sprache zu entfernen, klicken Sie in ihrer Zeile auf _Entfernen_ und bestätigen Sie. Alle Übersetzungen der Sprache werden gelöscht."
+
+#: src/languages.md
+msgid ""
+"The column _Kind_ shows _Target_ for normal languages and _Pseudo_ for "
+"[pseudo languages](pseudo-translation.md)."
+msgstr "Die Spalte _Art_ zeigt _Ziel_ für normale Sprachen und _Pseudo_ für [Pseudo-Sprachen](pseudo-translation.md)."
+
+#: src/languages.md
+msgid "The current language"
+msgstr "Die aktuelle Sprache"
+
+#: src/languages.md
+msgid ""
+"Many commands work on the current language, for example _Column_ and the "
+"translation status filter. Choose it in the toolbar (_Language:_), at the "
+"end of the menu _View_, or click a cell in a language column."
+msgstr "Viele Befehle wirken auf die aktuelle Sprache, zum Beispiel _Spalte_ und der Filter nach Übersetzungszustand. Wählen Sie sie in der Werkzeugleiste (_Sprache:_), am Ende des Menüs _Ansicht_ oder mit einem Klick auf eine Zelle in einer Sprachspalte."
+
+#: src/languages.md
+msgid "Showing languages"
+msgstr "Sprachen anzeigen"
+
+#: src/languages.md
+msgid "_View › All languages_ shows all languages side by side."
+msgstr "_Ansicht › Alle Sprachen_ zeigt alle Sprachen nebeneinander."
+
+#: src/languages.md
+msgid ""
+"_View › Single language_ shows only the current language, with its status "
+"and comment."
+msgstr "_Ansicht › Eine Sprache_ zeigt nur die aktuelle Sprache, mit ihrem Status und Kommentar."
+
+#: src/languages.md
+msgid ""
+"_View › Additional languages_ chooses languages that are also shown in the "
+"single-language view, for example German as a reference while translating "
+"into Swiss German."
+msgstr "_Ansicht › Zusätzliche Sprachen_ wählt Sprachen, die auch in der Ansicht mit einer Sprache angezeigt werden, zum Beispiel Deutsch als Vorlage beim Übersetzen ins Schweizerdeutsche."
+
+#: src/sources.md
+msgid ""
+"A source is a file with the original texts of the program, for example a "
+"resource file of the developers. Susi reads the texts from the sources "
+"(_scan_) and writes translated copies of them (_build_)."
+msgstr "Eine Quelle ist eine Datei mit den Originaltexten des Programms, zum Beispiel eine Ressourcendatei der Entwickler. Susi liest die Texte aus den Quellen (_Scannen_) und schreibt übersetzte Kopien davon (_Erstellen_)."
+
+#: src/sources.md
+msgid "Supported files"
+msgstr "Unterstützte Dateien"
+
+#: src/sources.md
+msgid "Kind"
+msgstr "Art"
+
+#: src/sources.md
+msgid "Files"
+msgstr "Dateien"
+
+#: src/sources.md
+msgid ".NET resources"
+msgstr ".NET-Ressourcen"
+
+#: src/sources.md
+msgid "`.resx`, `.resw` (including pictures and other data in `.resx`)"
+msgstr "`.resx`, `.resw` (einschließlich Bildern und anderen Daten in `.resx`)"
+
+#: src/sources.md
+msgid "JSON"
+msgstr "JSON"
+
+#: src/sources.md
+msgid ""
+"key trees as used by i18next or ngx-translate, and `messages.json` of "
+"browser extensions"
+msgstr "Schlüsselbäume, wie sie i18next oder ngx-translate verwenden, und `messages.json` von Browser-Erweiterungen"
+
+#: src/sources.md
+msgid "gettext"
+msgstr "gettext"
+
+#: src/sources.md
+msgid "`.po`, `.pot`"
+msgstr "`.po`, `.pot`"
+
+#: src/sources.md
+msgid "i18n catalogs"
+msgstr "i18n-Kataloge"
+
+#: src/sources.md
+msgid "`.tsv`"
+msgstr "`.tsv`"
+
+#: src/sources.md
+msgid "Java"
+msgstr "Java"
+
+#: src/sources.md
+msgid "`.properties`"
+msgstr "`.properties`"
+
+#: src/sources.md
+msgid "Android"
+msgstr "Android"
+
+#: src/sources.md
+msgid "`res/values/strings.xml`"
+msgstr "`res/values/strings.xml`"
+
+#: src/sources.md
+msgid "Flutter"
+msgstr "Flutter"
+
+#: src/sources.md
+msgid "`.arb`"
+msgstr "`.arb`"
+
+#: src/sources.md
+msgid "Qt Linguist"
+msgstr "Qt Linguist"
+
+#: src/sources.md
+msgid "`.ts`"
+msgstr "`.ts`"
+
+#: src/sources.md
+msgid "Adding a source"
+msgstr "Eine Quelle hinzufügen"
+
+#: src/sources.md
+msgid ""
+"Choose _Project › Add source…_ (toolbar: ➕ Source) and select one or more "
+"files."
+msgstr "Wählen Sie _Projekt › Quelle hinzufügen…_ (Werkzeugleiste: ➕ Quelle) und wählen Sie eine oder mehrere Dateien aus."
+
+#: src/sources.md
+msgid "Enter the _Original language_ of the files, for example `en`."
+msgstr "Geben Sie die _Originalsprache_ der Dateien ein, zum Beispiel `en`."
+
+#: src/sources.md
+msgid "Click _Add_."
+msgstr "Klicken Sie auf _Hinzufügen_."
+
+#: src/sources.md
+msgid "Susi stores the files relative to the project and reads them immediately."
+msgstr "Susi speichert die Dateien relativ zum Projekt und liest sie sofort ein."
+
+#: src/sources.md
+msgid "Scanning"
+msgstr "Scannen"
+
+#: src/sources.md
+msgid ""
+"_Project › Scan for changes_ (`F5`, toolbar: ⟳ Scan) reads all sources "
+"again, for example after the developers changed the program:"
+msgstr "_Projekt › Scannen_ (`F5`, Werkzeugleiste: ⟳ Scannen) liest alle Quellen neu ein, zum Beispiel nachdem die Entwickler das Programm geändert haben:"
+
+#: src/sources.md
+msgid "New texts are added with the row status _New_."
+msgstr "Neue Texte kommen mit dem Zeilenstatus _Neu_ hinzu."
+
+#: src/sources.md
+msgid ""
+"Changed texts get the row status _Changed_, and their translations _For "
+"review_."
+msgstr "Geänderte Texte bekommen den Zeilenstatus _Geändert_ und ihre Übersetzungen _Zur Prüfung_."
+
+#: src/sources.md
+msgid ""
+"Texts that are no longer in the file get the row status _Unused_. Their "
+"translations are kept, in case the text comes back."
+msgstr "Texte, die nicht mehr in der Datei stehen, bekommen den Zeilenstatus _Nicht verwendet_. Ihre Übersetzungen bleiben erhalten, falls der Text zurückkommt."
+
+#: src/sources.md
+msgid ""
+"The tab _Output_ shows a summary. _Project › Remove unused rows_ deletes the "
+"unused rows when they are no longer needed."
+msgstr "Der Reiter _Ausgabe_ zeigt eine Zusammenfassung. _Projekt › Unbenutzte Zeilen entfernen_ löscht die nicht verwendeten Zeilen, wenn sie nicht mehr gebraucht werden."
+
+#: src/sources.md
+msgid "Building"
+msgstr "Erstellen"
+
+#: src/sources.md
+msgid ""
+"_Project › Build_ (`F9`, toolbar: 🔨 Build) writes one translated file per "
+"source and language, for example `Resources.de.resx`, `de/messages.po` or "
+"`res/values-b+de/strings.xml`. The tab _Output_ lists every file written. "
+"Texts that are not translated get the original text or are left out, "
+"depending on the kind of file, so the program shows the original instead."
+msgstr "_Projekt › Erstellen_ (`F9`, Werkzeugleiste: 🔨 Erstellen) schreibt je Quelle und Sprache eine übersetzte Datei, zum Beispiel `Resources.de.resx`, `de/messages.po` oder `res/values-b+de/strings.xml`. Der Reiter _Ausgabe_ listet jede geschriebene Datei auf. Texte, die nicht übersetzt sind, bekommen je nach Dateiart den Originaltext oder werden weggelassen, sodass das Programm stattdessen das Original zeigt."
+
+#: src/sources.md
+msgid ""
+"To scan or build a single source, use the context menu of the source in the "
+"project tree."
+msgstr "Um eine einzelne Quelle zu scannen oder zu erstellen, verwenden Sie das Kontextmenü der Quelle im Projektbaum."
+
+#: src/sources.md
+msgid "Source properties"
+msgstr "Eigenschaften der Quelle"
+
+#: src/sources.md
+msgid "Right-click the source in the project tree and choose _Properties…_:"
+msgstr "Klicken Sie mit der rechten Maustaste auf die Quelle im Projektbaum und wählen Sie _Eigenschaften…_:"
+
+#: src/sources.md src/pseudo-translation.md src/options.md
+msgid "Setting"
+msgstr "Einstellung"
+
+#: src/sources.md
+msgid "_Original language_"
+msgstr "_Originalsprache_"
+
+#: src/sources.md
+msgid "The language of the texts in the file."
+msgstr "Die Sprache der Texte in der Datei."
+
+#: src/sources.md
+msgid "_Localized files contain_"
+msgstr "_Lokalisierte Dateien enthalten_"
+
+#: src/sources.md
+msgid ""
+"_Different_: only texts whose translation differs from the original. "
+"_Translated_: only translated texts. _All_: all texts."
+msgstr "_Unterschiedliche_: nur Texte, deren Übersetzung vom Original abweicht. _Übersetzte_: nur übersetzte Texte. _Alle_: alle Texte."
+
+#: src/sources.md
+msgid "_Output directory_ and _File pattern_"
+msgstr "_Ausgabeverzeichnis_ und _Dateimuster_"
+
+#: src/sources.md
+msgid ""
+"Where the translated files are written and how they are named. Placeholders "
+"such as `<iso>` (language code), `<file>` (file name) or `<body>` (name "
+"without extension) are replaced."
+msgstr "Wohin die übersetzten Dateien geschrieben werden und wie sie heißen. Platzhalter wie `<iso>` (Sprachcode), `<file>` (Dateiname) oder `<body>` (Name ohne Erweiterung) werden ersetzt."
+
+#: src/sources.md
+msgid "_Encoding_"
+msgstr "_Kodierung_"
+
+#: src/sources.md
+msgid ""
+"For Java `.properties` files: the character encoding of the translated files."
+msgstr "Bei Java-`.properties`\\-Dateien: die Zeichenkodierung der übersetzten Dateien."
+
+#: src/sources.md
+msgid "_PO options_"
+msgstr "_PO-Optionen_"
+
+#: src/sources.md
+msgid "For gettext files: read comments, create `.mo` files and more."
+msgstr "Bei gettext-Dateien: Kommentare einlesen, `.mo`\\-Dateien erzeugen und mehr."
+
+#: src/sources.md
+msgid "_Excluded data types_"
+msgstr "_Ausgeschlossene Datentypen_"
+
+#: src/sources.md
+msgid ""
+"For `.resx` files: pictures, binary data or text files that are not to be "
+"translated."
+msgstr "Bei `.resx`\\-Dateien: Bilder, Binärdaten oder Textdateien, die nicht übersetzt werden sollen."
+
+#: src/sources.md
+msgid ""
+"Usually the developers set these up once. Ask them before you change the "
+"output settings: the program expects the translated files in a certain place."
+msgstr "Meist richten die Entwickler das einmal ein. Fragen Sie sie, bevor Sie die Ausgabeeinstellungen ändern: Das Programm erwartet die übersetzten Dateien an einer bestimmten Stelle."
+
+#: src/pseudo-translation.md
+msgid ""
+"A pseudo translation is an artificial translation for testing. It shows "
+"early, before the real translation, whether the program is ready for other "
+"languages: whether all texts come from the resource files, whether longer "
+"texts fit into the dialogs and whether special characters are displayed "
+"correctly."
+msgstr "Eine Pseudoübersetzung ist eine künstliche Übersetzung zum Testen. Sie zeigt früh, noch vor der echten Übersetzung, ob das Programm für andere Sprachen bereit ist: ob alle Texte aus den Ressourcendateien kommen, ob längere Texte in die Dialoge passen und ob Sonderzeichen richtig angezeigt werden."
+
+#: src/pseudo-translation.md
+msgid "Creating a pseudo translation"
+msgstr "Eine Pseudoübersetzung erstellen"
+
+#: src/pseudo-translation.md
+msgid "_Translation › Create pseudo translation…_ opens a dialog:"
+msgstr "_Übersetzung › Pseudoübersetzung erstellen…_ öffnet einen Dialog:"
+
+#: src/pseudo-translation.md
+msgid "_Language_"
+msgstr "_Sprache_"
+
+#: src/pseudo-translation.md
+msgid ""
+"The language that receives the pseudo translation. It is created as a pseudo "
+"language if necessary, for example `qps`."
+msgstr "Die Sprache, die die Pseudoübersetzung bekommt. Sie wird bei Bedarf als Pseudo-Sprache angelegt, zum Beispiel `qps`."
+
+#: src/pseudo-translation.md
+msgid "_Kind_"
+msgstr "_Art_"
+
+#: src/pseudo-translation.md
+msgid ""
+"_Emulation_ changes the original as set below. _Replace_ replaces every "
+"character by a fill character, _Reduce_ shortens every text to its first "
+"character. _Longest translation_ takes the longest text of the row in any "
+"language and changes it like _Emulation_."
+msgstr "_Emulation_ verändert das Original wie unten eingestellt. _Ersetzen_ ersetzt jedes Zeichen durch ein Füllzeichen, _Reduzieren_ kürzt jeden Text auf sein erstes Zeichen. _Längste Übersetzung_ nimmt den längsten Text der Zeile in irgendeiner Sprache und verändert ihn wie _Emulation_."
+
+#: src/pseudo-translation.md
+msgid "_Diacritics_"
+msgstr "_Diakritische Zeichen_"
+
+#: src/pseudo-translation.md
+msgid "Replaces letters by similar ones with accents: `Save` becomes `Šàvé`."
+msgstr "Ersetzt Buchstaben durch ähnliche mit Akzenten: Aus `Save` wird `Šàvé`."
+
+#: src/pseudo-translation.md
+msgid "_Expand text_"
+msgstr "_Text verlängern_"
+
+#: src/pseudo-translation.md
+msgid "Makes the texts longer, as many languages need more space than English."
+msgstr "Macht die Texte länger, denn viele Sprachen brauchen mehr Platz als Englisch."
+
+#: src/pseudo-translation.md
+msgid "_Enclose in delimiters_"
+msgstr "_Mit Begrenzungszeichen einschließen_"
+
+#: src/pseudo-translation.md
+msgid "Puts delimiters around every text, so cut-off texts are easy to spot."
+msgstr "Setzt Begrenzungszeichen um jeden Text, damit abgeschnittene Texte leicht auffallen."
+
+#: src/pseudo-translation.md
+msgid "_Case_"
+msgstr "_Groß-/Kleinschreibung_"
+
+#: src/pseudo-translation.md
+msgid "Leaves the case unchanged, alternates it or uses upper case."
+msgstr "Lässt die Schreibung unverändert, wechselt sie ab oder verwendet Großbuchstaben."
+
+#: src/pseudo-translation.md src/exchange.md
+msgid "_Overwrite existing translations_"
+msgstr "_Vorhandene Übersetzungen überschreiben_"
+
+#: src/pseudo-translation.md
+msgid ""
+"Also replaces real translations of the language. Existing pseudo "
+"translations are always renewed."
+msgstr "Ersetzt auch echte Übersetzungen der Sprache. Vorhandene Pseudoübersetzungen werden immer erneuert."
+
+#: src/pseudo-translation.md
+msgid ""
+"_Sample_ shows the effect on an example text. Click _Create_, then build the "
+"project and start the program with the pseudo language."
+msgstr "_Beispiel_ zeigt die Wirkung an einem Beispieltext. Klicken Sie auf _Erstellen_, erstellen Sie dann das Projekt und starten Sie das Programm mit der Pseudo-Sprache."
+
+#: src/pseudo-translation.md
+msgid ""
+"_Translation › Remove pseudo translations_ deletes the pseudo translations "
+"again."
+msgstr "_Übersetzung › Pseudoübersetzungen entfernen_ löscht die Pseudoübersetzungen wieder."
+
+#: src/exchange.md
+msgid ""
+"Not everybody who translates has Susi. You can export the texts into a file, "
+"send it to a translator or an agency, and import the translated file again."
+msgstr "Nicht jeder, der übersetzt, hat Susi. Sie können die Texte in eine Datei exportieren, sie an einen Übersetzer oder eine Agentur schicken und die übersetzte Datei wieder importieren."
+
+#: src/exchange.md
+msgid "Formats"
+msgstr "Formate"
+
+#: src/exchange.md
+msgid "Format"
+msgstr "Format"
+
+#: src/exchange.md
+msgid "Extension"
+msgstr "Endung"
+
+#: src/exchange.md
+msgid "Good for"
+msgstr "Gut für"
+
+#: src/exchange.md
+msgid "Excel workbook"
+msgstr "Excel-Arbeitsmappe"
+
+#: src/exchange.md
+msgid "`.xlsx`"
+msgstr "`.xlsx`"
+
+#: src/exchange.md
+msgid "Translators who work in Excel; screenshots can be embedded."
+msgstr "Übersetzer, die in Excel arbeiten; Screenshots lassen sich einbetten."
+
+#: src/exchange.md
+msgid "CSV"
+msgstr "CSV"
+
+#: src/exchange.md
+msgid "`.csv`"
+msgstr "`.csv`"
+
+#: src/exchange.md
+msgid "Other spreadsheet programs (separated by semicolons)."
+msgstr "Andere Tabellenprogramme (durch Semikolons getrennt)."
+
+#: src/exchange.md
+msgid "`.txt`"
+msgstr "`.txt`"
+
+#: src/exchange.md
+msgid "Simple tools (separated by tabs)."
+msgstr "Einfache Werkzeuge (durch Tabulatoren getrennt)."
+
+#: src/exchange.md
+msgid "XLIFF 1.2"
+msgstr "XLIFF 1.2"
+
+#: src/exchange.md
+msgid "`.xlf`"
+msgstr "`.xlf`"
+
+#: src/exchange.md
+msgid "Translation tools of agencies (one file per language)."
+msgstr "Übersetzungswerkzeuge von Agenturen (eine Datei pro Sprache)."
+
+#: src/exchange.md
+msgid "TMX"
+msgstr "TMX"
+
+#: src/exchange.md
+msgid "`.tmx`"
+msgstr "`.tmx`"
+
+#: src/exchange.md
+msgid "Translation memories of other tools."
+msgstr "Translation Memorys anderer Werkzeuge."
+
+#: src/exchange.md
+msgid "Exporting"
+msgstr "Exportieren"
+
+#: src/exchange.md
+msgid ""
+"Set a filter if you want to export only some rows, for example only _Not "
+"translated_."
+msgstr "Setzen Sie einen Filter, wenn Sie nur einige Zeilen exportieren wollen, zum Beispiel nur _Nicht übersetzt_."
+
+#: src/exchange.md
+msgid ""
+"Choose _File › Export (Excel, CSV, XLIFF, TMX)…_ and enter a file name. The "
+"extension decides the format."
+msgstr "Wählen Sie _Datei › Exportieren (Excel, CSV, XLIFF, TMX)…_ und geben Sie einen Dateinamen ein. Die Endung bestimmt das Format."
+
+#: src/exchange.md
+msgid "Choose the options and click _Export_:"
+msgstr "Wählen Sie die Optionen und klicken Sie auf _Exportieren_:"
+
+#: src/exchange.md
+msgid "_Languages_"
+msgstr "_Sprachen_"
+
+#: src/exchange.md
+msgid "The languages to export."
+msgstr "Die Sprachen, die exportiert werden."
+
+#: src/exchange.md
+msgid "Only the rows the sheet shows now, otherwise all rows."
+msgstr "Nur die Zeilen, die die Tabelle gerade zeigt, sonst alle Zeilen."
+
+#: src/exchange.md
+msgid "_Status columns_, _Comment columns_"
+msgstr "_Statusspalten_, _Kommentarspalten_"
+
+#: src/exchange.md
+msgid "A status and a comment column for every language."
+msgstr "Eine Status- und eine Kommentarspalte für jede Sprache."
+
+#: src/exchange.md
+msgid "_Row status column_, _\"Max. characters\" column_"
+msgstr "_Zeilenstatus-Spalte_, _Spalte „Max. Zeichen“_"
+
+#: src/exchange.md
+msgid "More information on the rows."
+msgstr "Weitere Angaben zu den Zeilen."
+
+#: src/exchange.md
+msgid "_Include \"Do not translate\" rows_"
+msgstr "_„Nicht übersetzen“-Zeilen einschließen_"
+
+#: src/exchange.md
+msgid "Also exports the rows that must not be translated."
+msgstr "Exportiert auch die Zeilen, die nicht übersetzt werden dürfen."
+
+#: src/exchange.md
+msgid "_Language of column headers and status values_"
+msgstr "_Sprache der Spaltenüberschriften und Statuswerte_"
+
+#: src/exchange.md
+msgid ""
+"The language of the column titles, for example English for an agency abroad."
+msgstr "Die Sprache der Spaltentitel, zum Beispiel Englisch für eine Agentur im Ausland."
+
+#: src/exchange.md
+msgid "_Screenshots_"
+msgstr "_Screenshots_"
+
+#: src/exchange.md
+msgid ""
+"Whether screenshots are embedded (Excel, on a second worksheet), copied as "
+"files next to the export with links, or left out."
+msgstr "Ob Screenshots eingebettet werden (Excel, auf einem zweiten Tabellenblatt), als Dateien mit Links neben den Export kopiert oder weggelassen werden."
+
+#: src/exchange.md
+msgid ""
+"Tell the translators to keep the columns _Source_, _Context_ and _Original_ "
+"unchanged: Susi needs them to find the rows again."
+msgstr "Bitten Sie die Übersetzer, die Spalten _Quelle_, _Kontext_ und _Original_ nicht zu verändern: Susi braucht sie, um die Zeilen wiederzufinden."
+
+#: src/exchange.md
+msgid "Importing"
+msgstr "Importieren"
+
+#: src/exchange.md
+msgid "Choose _File › Import…_ and select the translated file. Then decide:"
+msgstr "Wählen Sie _Datei › Importieren…_ und wählen Sie die übersetzte Datei aus. Entscheiden Sie dann:"
+
+#: src/exchange.md
+msgid ""
+"Replaces translations that are already in the project. Without it, only "
+"empty cells are filled."
+msgstr "Ersetzt Übersetzungen, die schon im Projekt sind. Ohne diese Option werden nur leere Zellen gefüllt."
+
+#: src/exchange.md
+msgid "_Skip rows whose original has changed_"
+msgstr "_Zeilen mit geändertem Original überspringen_"
+
+#: src/exchange.md
+msgid ""
+"Ignores rows whose original has changed since the export, because the "
+"translation may no longer fit."
+msgstr "Lässt Zeilen aus, deren Original sich seit dem Export geändert hat, weil die Übersetzung vielleicht nicht mehr passt."
+
+#: src/exchange.md
+msgid "_Import comments_"
+msgstr "_Kommentare importieren_"
+
+#: src/exchange.md
+msgid "Takes over the comments of the file."
+msgstr "Übernimmt die Kommentare der Datei."
+
+#: src/exchange.md
+msgid "_Status for imported texts without a status_"
+msgstr "_Status für importierte Texte ohne Statusangabe_"
+
+#: src/exchange.md
+msgid "The status for translations that come without a status column."
+msgstr "Der Status für Übersetzungen, die ohne Statusspalte kommen."
+
+#: src/exchange.md
+msgid ""
+"The tab _Output_ shows how many translations were imported, kept or skipped. "
+"Column headers and status values are recognized in every language of the "
+"user interface."
+msgstr "Der Reiter _Ausgabe_ zeigt, wie viele Übersetzungen importiert, behalten oder übersprungen wurden. Spaltenüberschriften und Statuswerte werden in jeder Sprache der Benutzeroberfläche erkannt."
+
+#: src/git-workflow.md
+msgid ""
+"Many programs are developed with git, on a server such as GitLab or GitHub. "
+"Susi can exchange your translations with this server for you, without any "
+"git knowledge. A developer prepares this once; afterwards Susi shows the "
+"menu _Workflow_ and three buttons in the toolbar."
+msgstr "Viele Programme werden mit Git entwickelt, auf einem Server wie GitLab oder GitHub. Susi kann Ihre Übersetzungen für Sie mit diesem Server austauschen, ganz ohne Git-Kenntnisse. Ein Entwickler bereitet das einmal vor; danach zeigt Susi das Menü _Workflow_ und drei Schaltflächen in der Werkzeugleiste."
+
+#: src/git-workflow.md
+msgid "The three steps"
+msgstr "Die drei Schritte"
+
+#: src/git-workflow.md
+msgid "Step"
+msgstr "Schritt"
+
+#: src/git-workflow.md
+msgid "What happens"
+msgstr "Was passiert"
+
+#: src/git-workflow.md
+msgid "1"
+msgstr "1"
+
+#: src/git-workflow.md
+msgid "📥 _Get translation project…_"
+msgstr "📥 _Übersetzungsprojekt holen…_"
+
+#: src/git-workflow.md
+msgid "Fetches the latest version of the project from the server and opens it."
+msgstr "Holt die neueste Version des Projekts vom Server und öffnet sie."
+
+#: src/git-workflow.md
+msgid "2"
+msgstr "2"
+
+#: src/git-workflow.md
+msgid "📤 _Save changes…_"
+msgstr "📤 _Änderungen zwischenspeichern…_"
+
+#: src/git-workflow.md
+msgid ""
+"Builds the translated files, saves the project and sends your changes to the "
+"server, into a branch of your own."
+msgstr "Erstellt die übersetzten Dateien, speichert das Projekt und überträgt Ihre Änderungen auf den Server, in einen eigenen Zweig."
+
+#: src/git-workflow.md
+msgid "3"
+msgstr "3"
+
+#: src/git-workflow.md
+msgid "🚀 _Prepare publication…_"
+msgstr "🚀 _Veröffentlichung vorbereiten…_"
+
+#: src/git-workflow.md
+msgid ""
+"Asks a reviewer to check your changes and take them over (a merge request on "
+"GitLab, a pull request on GitHub)."
+msgstr "Bittet einen Prüfer, Ihre Änderungen zu kontrollieren und zu übernehmen (ein Merge Request bei GitLab, ein Pull Request bei GitHub)."
+
+#: src/git-workflow.md
+msgid ""
+"You can save your changes as often as you like, also after preparing the "
+"publication: the reviewer then sees the latest state."
+msgstr "Sie können Ihre Änderungen so oft zwischenspeichern, wie Sie wollen, auch nach der Vorbereitung der Veröffentlichung: Der Prüfer sieht dann den neuesten Stand."
+
+#: src/git-workflow.md
+msgid "Getting the translation project"
+msgstr "Das Übersetzungsprojekt holen"
+
+#: src/git-workflow.md
+msgid ""
+"_Workflow › Get translation project…_ replaces your local copy with the "
+"latest version from the server. If you have changes that are not saved on "
+"the server yet, Susi warns you: they are set aside and can only be restored "
+"by a developer. Save them first if you want to keep them."
+msgstr "_Workflow › Übersetzungsprojekt holen…_ ersetzt Ihre lokale Kopie durch die neueste Version vom Server. Haben Sie Änderungen, die noch nicht auf dem Server gespeichert sind, warnt Susi Sie: Sie werden beiseitegelegt und lassen sich nur von einem Entwickler wiederherstellen. Speichern Sie sie vorher zwischen, wenn Sie sie behalten wollen."
+
+#: src/git-workflow.md
+msgid "Saving changes"
+msgstr "Änderungen zwischenspeichern"
+
+#: src/git-workflow.md
+msgid ""
+"_Workflow › Save changes…_ shows the branch and the changed files. Choose "
+"the _Kind of change_:"
+msgstr "_Workflow › Änderungen zwischenspeichern…_ zeigt den Zweig und die geänderten Dateien. Wählen Sie die _Art der Änderung_:"
+
+#: src/git-workflow.md
+msgid "_New translations (feat)_ for new texts,"
+msgstr "_Neue Übersetzungen (feat)_ für neue Texte,"
+
+#: src/git-workflow.md
+msgid "_Corrected translations (fix)_ for corrections,"
+msgstr "_Korrigierte Übersetzungen (fix)_ für Korrekturen,"
+
+#: src/git-workflow.md
+msgid "_Maintenance (chore)_ for anything else."
+msgstr "_Wartung (chore)_ für alles andere."
+
+#: src/git-workflow.md
+msgid ""
+"The first time you save, Susi creates a personal branch for your changes. "
+"Only the project and its translated files are sent, never other files."
+msgstr "Beim ersten Zwischenspeichern legt Susi einen persönlichen Zweig für Ihre Änderungen an. Übertragen werden nur das Projekt und seine übersetzten Dateien, nie andere Dateien."
+
+#: src/git-workflow.md
+msgid "Preparing the publication"
+msgstr "Die Veröffentlichung vorbereiten"
+
+#: src/git-workflow.md
+msgid ""
+"_Workflow › Prepare publication…_ creates the merge or pull request. Enter a "
+"title and a description and choose the reviewers. When the request is "
+"created, _Workflow › Open merge request in the browser_ (or _pull request_) "
+"shows it on the server."
+msgstr "_Workflow › Veröffentlichung vorbereiten…_ erstellt den Merge oder Pull Request. Geben Sie einen Titel und eine Beschreibung ein und wählen Sie die Prüfer. Ist der Request erstellt, zeigt ihn _Workflow › Merge Request im Browser öffnen_ (bzw. _Pull Request_) auf dem Server."
+
+#: src/git-workflow.md
+msgid "The state in the status bar"
+msgstr "Der Zustand in der Statusleiste"
+
+#: src/git-workflow.md
+msgid "State"
+msgstr "Zustand"
+
+#: src/git-workflow.md
+msgid "Meaning and next step"
+msgstr "Bedeutung und nächster Schritt"
+
+#: src/git-workflow.md
+msgid "_Up to date_"
+msgstr "_Aktuell_"
+
+#: src/git-workflow.md
+msgid "Translate, then save your changes."
+msgstr "Übersetzen Sie und speichern Sie dann Ihre Änderungen zwischen."
+
+#: src/git-workflow.md
+msgid "_Update available_"
+msgstr "_Aktualisierung verfügbar_"
+
+#: src/git-workflow.md
+msgid "A newer version is on the server: get the translation project."
+msgstr "Auf dem Server gibt es eine neuere Version: Holen Sie das Übersetzungsprojekt."
+
+#: src/git-workflow.md
+msgid "_Changes not saved on the server_"
+msgstr "_Änderungen nicht auf dem Server gespeichert_"
+
+#: src/git-workflow.md
+msgid "Save your changes."
+msgstr "Speichern Sie Ihre Änderungen zwischen."
+
+#: src/git-workflow.md
+msgid "_Saved, not published_"
+msgstr "_Zwischengespeichert, nicht veröffentlicht_"
+
+#: src/git-workflow.md
+msgid "When you are done, prepare the publication."
+msgstr "Wenn Sie fertig sind, bereiten Sie die Veröffentlichung vor."
+
+#: src/git-workflow.md
+msgid "_In review_"
+msgstr "_In Prüfung_"
+
+#: src/git-workflow.md
+msgid "The reviewer checks your changes. You can still save further changes."
+msgstr "Der Prüfer kontrolliert Ihre Änderungen. Sie können weiterhin Änderungen zwischenspeichern."
+
+#: src/git-workflow.md
+msgid "_Published_"
+msgstr "_Veröffentlicht_"
+
+#: src/git-workflow.md
+msgid ""
+"Your changes were accepted. Get the translation project to continue with the "
+"latest version."
+msgstr "Ihre Änderungen wurden übernommen. Holen Sie das Übersetzungsprojekt, um mit der neuesten Version weiterzuarbeiten."
+
+#: src/git-workflow.md
+msgid "_Fixed version_"
+msgstr "_Feste Version_"
+
+#: src/git-workflow.md
+msgid ""
+"An older version is shown for reading. Get the translation project to "
+"continue working."
+msgstr "Eine ältere Version wird zum Lesen angezeigt. Holen Sie das Übersetzungsprojekt, um weiterzuarbeiten."
+
+#: src/git-workflow.md
+msgid ""
+"Click the state to ask the server for the latest information (_Workflow › "
+"Refresh state_ does the same)."
+msgstr "Ein Klick auf den Zustand fragt den Server nach dem neuesten Stand (_Workflow › Zustand aktualisieren_ tut dasselbe)."
+
+#: src/git-workflow.md
+msgid "Signing in"
+msgstr "Anmelden"
+
+#: src/git-workflow.md
+msgid ""
+"The server needs to know who you are. _Workflow › Sign in to the server…_ "
+"stores an access token, a kind of password for programs, which you create on "
+"the server:"
+msgstr "Der Server muss wissen, wer Sie sind. _Workflow › Am Server anmelden…_ speichert ein Zugriffstoken, eine Art Passwort für Programme, das Sie auf dem Server erstellen:"
+
+#: src/git-workflow.md
+msgid "**GitLab**: a personal access token with the scope `api`."
+msgstr "**GitLab**: ein persönliches Zugriffstoken mit dem Bereich `api`."
+
+#: src/git-workflow.md
+msgid ""
+"**GitHub**: a fine-grained personal access token for the repository with the "
+"permissions _Contents_ and _Pull requests_ (read and write)."
+msgstr "**GitHub**: ein fein abgestuftes persönliches Zugriffstoken (fine-grained) für das Repository mit den Berechtigungen _Contents_ und _Pull requests_ (Lesen und Schreiben)."
+
+#: src/git-workflow.md
+msgid ""
+"Your developers tell you which server to use and can help you create the "
+"token. Susi keeps it in the credential store of the operating system, never "
+"in the project."
+msgstr "Ihre Entwickler sagen Ihnen, welchen Server Sie verwenden, und helfen beim Erstellen des Tokens. Susi bewahrt es im Anmeldespeicher des Betriebssystems auf, nie im Projekt."
+
+#: src/git-workflow.md
+msgid ""
+"_Advanced settings_ in the dialogs allow other branches or versions. You "
+"normally do not need them."
+msgstr "_Erweiterte Einstellungen_ in den Dialogen erlauben andere Zweige oder Versionen. Normalerweise brauchen Sie sie nicht."
+
+#: src/options.md
+msgid ""
+"_Tools › Options…_ contains the personal settings. They apply to all "
+"projects."
+msgstr "_Extras › Einstellungen…_ enthält die persönlichen Einstellungen. Sie gelten für alle Projekte."
+
+#: src/options.md
+msgid "_Translation memory (TMX)_"
+msgstr "_Translation Memory (TMX)_"
+
+#: src/options.md
+msgid ""
+"The file of the [translation memory](translation-memory.md). Empty: the "
+"default file in the settings folder of Susi."
+msgstr "Die Datei des [Translation Memory](translation-memory.md). Leer: die Standarddatei im Einstellungsordner von Susi."
+
+#: src/options.md
+msgid "_Minimum fuzzy match_"
+msgstr "_Mindestwert unscharfe Treffer_"
+
+#: src/options.md
+msgid ""
+"How similar a text must be, in percent, to be offered as a suggestion from "
+"the translation memory."
+msgstr "Wie ähnlich ein Text in Prozent sein muss, damit er als Vorschlag aus dem Translation Memory angeboten wird."
+
+#: src/options.md
+msgid "_User interface language_"
+msgstr "_Sprache der Benutzeroberfläche_"
+
+#: src/options.md
+msgid ""
+"_Automatic (system language)_, _English_ or _Deutsch_. Takes effect "
+"immediately."
+msgstr "_Automatisch (Systemsprache)_, _English_ oder _Deutsch_. Wirkt sofort."
+
+#: src/options.md
+msgid ""
+"_Automatically save translated texts to the translation memory when saving_"
+msgstr "_Übersetzte Texte beim Speichern automatisch ins Translation Memory übernehmen_"
+
+#: src/options.md
+msgid ""
+"Adds your translations to the translation memory every time you save the "
+"project."
+msgstr "Übernimmt Ihre Übersetzungen bei jedem Speichern des Projekts in das Translation Memory."
+
+#: src/options.md
+msgid ""
+"_Show \"Context\" column_, _Show \"Row comment\" column_, _Show \"Translated "
+"on\" column_"
+msgstr "_Spalte „Kontext“ anzeigen_, _Spalte „Zeilenkommentar“ anzeigen_, _Spalte „Übersetzt am“ anzeigen_"
+
+#: src/options.md
+msgid "The optional columns of the [translation sheet](sheet.md)."
+msgstr "Die zuschaltbaren Spalten der [Übersetzungstabelle](sheet.md)."
+
+#: src/options.md
+msgid "_Dark theme_"
+msgstr "_Dunkles Design_"
+
+#: src/options.md
+msgid "Dark colors instead of light ones."
+msgstr "Dunkle statt heller Farben."
+
+#: src/options.md
+msgid ""
+"The columns and the dark theme can also be switched in the menu _View_, the "
+"user interface language in _Tools › User interface language_."
+msgstr "Die Spalten und das dunkle Design lassen sich auch im Menü _Ansicht_ umschalten, die Sprache der Benutzeroberfläche unter _Extras › Sprache der Benutzeroberfläche_."
+
+#: src/options.md
+msgid "Where Susi keeps its settings"
+msgstr "Wo Susi seine Einstellungen ablegt"
+
+#: src/options.md
+msgid ""
+"Susi keeps the settings, the default translation memory and the size and "
+"position of its window in a settings folder of your user account:"
+msgstr "Susi legt die Einstellungen, das Standard-Translation-Memory und Größe und Position seines Fensters in einem Einstellungsordner Ihres Benutzerkontos ab:"
+
+#: src/options.md
+msgid "Windows: `%APPDATA%\\susi`"
+msgstr "Windows: `%APPDATA%\\susi`"
+
+#: src/options.md
+msgid "Linux and macOS: `~/.config/susi`"
+msgstr "Linux und macOS: `~/.config/susi`"
+
+#: src/shortcuts.md
+msgid "On macOS, use `Cmd` instead of `Ctrl`."
+msgstr "Unter macOS verwenden Sie `Cmd` statt `Strg`."
+
+#: src/shortcuts.md
+msgid "Everywhere"
+msgstr "Überall"
+
+#: src/shortcuts.md
+msgid "`F1`"
+msgstr "`F1`"
+
+#: src/shortcuts.md
+msgid ""
+"Help for the part of the window under the mouse pointer, or for the open "
+"dialog"
+msgstr "Hilfe zum Fensterbereich unter dem Mauszeiger oder zum offenen Dialog"
+
+#: src/shortcuts.md
+msgid "`Ctrl+N`"
+msgstr "`Strg+N`"
+
+#: src/shortcuts.md
+msgid "New project"
+msgstr "Neues Projekt"
+
+#: src/shortcuts.md
+msgid "`Ctrl+O`"
+msgstr "`Strg+O`"
+
+#: src/shortcuts.md
+msgid "Open project"
+msgstr "Projekt öffnen"
+
+#: src/shortcuts.md
+msgid "`Ctrl+S`"
+msgstr "`Strg+S`"
+
+#: src/shortcuts.md
+msgid "Save project"
+msgstr "Projekt speichern"
+
+#: src/shortcuts.md
+msgid "`Ctrl+F`"
+msgstr "`Strg+F`"
+
+#: src/shortcuts.md
+msgid "Find (tab _Search results_)"
+msgstr "Suchen (Reiter _Ergebnisse suchen_)"
+
+#: src/shortcuts.md
+msgid "`F5`"
+msgstr "`F5`"
+
+#: src/shortcuts.md
+msgid "Scan for changes"
+msgstr "Scannen"
+
+#: src/shortcuts.md
+msgid "`F9`"
+msgstr "`F9`"
+
+#: src/shortcuts.md
+msgid "Build"
+msgstr "Erstellen"
+
+#: src/shortcuts.md
+msgid "In the translation sheet"
+msgstr "In der Übersetzungstabelle"
+
+#: src/shortcuts.md
+msgid "`F2` or `Enter`"
+msgstr "`F2` oder `Enter`"
+
+#: src/shortcuts.md
+msgid "Edit the selected cell"
+msgstr "Die ausgewählte Zelle bearbeiten"
+
+#: src/shortcuts.md
+msgid "While editing a cell"
+msgstr "Beim Bearbeiten einer Zelle"
+
+#: src/shortcuts.md
+msgid "`Enter`"
+msgstr "`Enter`"
+
+#: src/shortcuts.md
+msgid "Keep the text and move to the next row"
+msgstr "Den Text übernehmen und zur nächsten Zeile gehen"
+
+#: src/shortcuts.md
+msgid "`Esc`"
+msgstr "`Esc`"
+
+#: src/shortcuts.md
+msgid "Cancel the change"
+msgstr "Die Änderung verwerfen"
+
+#: src/shortcuts.md
+msgid "In the tab Screenshots"
+msgstr "Im Reiter Screenshots"
+
+#: src/shortcuts.md
+msgid "`Ctrl+V`"
+msgstr "`Strg+V`"
+
+#: src/shortcuts.md
+msgid "Paste an image from the clipboard as a screenshot of the selected row"
+msgstr "Ein Bild aus der Zwischenablage als Screenshot der ausgewählten Zeile einfügen"
+
+#: src/faq.md
+msgid "The sheet is empty or shows only a few rows. Where are my texts?"
+msgstr "Die Tabelle ist leer oder zeigt nur wenige Zeilen. Wo sind meine Texte?"
+
+#: src/faq.md
+msgid ""
+"Probably a filter is active: the status bar then shows _Filter active_. "
+"Click _Reset filter_ in the filter bar (or _Search › Reset filter_) and "
+"_All_ in the project tree."
+msgstr "Wahrscheinlich ist ein Filter aktiv: Die Statusleiste zeigt dann _Filter aktiv_. Klicken Sie in der Filterleiste auf _Filter zurücksetzen_ (oder _Suchen › Filter zurücksetzen_) und im Projektbaum auf _Alle_."
+
+#: src/faq.md
+msgid "Why is a translation suddenly \"For review\"?"
+msgstr "Warum steht eine Übersetzung plötzlich auf „Zur Prüfung“?"
+
+#: src/faq.md
+msgid ""
+"The original has changed since it was translated, and the scan marked the "
+"translation for a second look. Check whether it still fits, correct it if "
+"necessary, and set the status to _Translated_ or _Complete_."
+msgstr "Das Original hat sich seit der Übersetzung geändert, und der Scan hat die Übersetzung für einen zweiten Blick gekennzeichnet. Prüfen Sie, ob sie noch passt, korrigieren Sie sie bei Bedarf und setzen Sie den Status auf _Übersetzt_ oder _Abgeschlossen_."
+
+#: src/faq.md
+msgid "A text must stay in English. How do I prevent it from being translated?"
+msgstr "Ein Text muss englisch bleiben. Wie verhindere ich, dass er übersetzt wird?"
+
+#: src/faq.md
+msgid ""
+"Select the row and choose _Row › Toggle do not translate_ (or 🔒 above the "
+"sheet). The text then stays as it is in all languages."
+msgstr "Wählen Sie die Zeile aus und wählen Sie _Zeile › Nicht übersetzen ein/aus_ (oder 🔒 über der Tabelle). Der Text bleibt dann in allen Sprachen, wie er ist."
+
+#: src/faq.md
+msgid "I have translated everything, but the program still shows English texts."
+msgstr "Ich habe alles übersetzt, aber das Programm zeigt immer noch englische Texte."
+
+#: src/faq.md
+msgid ""
+"The translated files are only written when you build: choose _Project › "
+"Build_ (`F9`) and check the tab _Output_ for the files written. Then the "
+"program must be built or installed again by the developers, with the new "
+"files."
+msgstr "Die übersetzten Dateien werden erst beim Erstellen geschrieben: Wählen Sie _Projekt › Erstellen_ (`F9`) und prüfen Sie im Reiter _Ausgabe_ die geschriebenen Dateien. Danach müssen die Entwickler das Programm mit den neuen Dateien neu bauen oder installieren."
+
+#: src/faq.md
+msgid "Can I undo a change?"
+msgstr "Kann ich eine Änderung rückgängig machen?"
+
+#: src/faq.md
+msgid ""
+"There is no undo command. Correct the text again, or close the project "
+"without saving to discard all changes since the last save. Before every "
+"save, Susi keeps the previous version as `<name>.~slp`."
+msgstr "Einen Befehl zum Rückgängigmachen gibt es nicht. Korrigieren Sie den Text erneut, oder schließen Sie das Projekt ohne zu speichern, um alle Änderungen seit dem letzten Speichern zu verwerfen. Vor jedem Speichern bewahrt Susi die vorherige Fassung als `<Name>.~slp` auf."
+
+#: src/faq.md
+msgid "Can Sisulizer still open my project?"
+msgstr "Kann Sisulizer mein Projekt noch öffnen?"
+
+#: src/faq.md
+msgid ""
+"Yes, as long as it contains only kinds of sources that Sisulizer knows. Susi "
+"keeps everything else in the file untouched. See [Creating, opening and "
+"saving](projects.md)."
+msgstr "Ja, solange es nur Quellarten enthält, die Sisulizer kennt. Alles andere in der Datei lässt Susi unverändert. Siehe [Anlegen, öffnen und speichern](projects.md)."
+
+#: src/faq.md
+msgid "Where does Susi keep my settings and the translation memory?"
+msgstr "Wo legt Susi meine Einstellungen und das Translation Memory ab?"
+
+#: src/faq.md
+msgid "In the settings folder of your user account, see [Options](options.md)."
+msgstr "Im Einstellungsordner Ihres Benutzerkontos, siehe [Einstellungen](options.md)."
+
+#: src/faq.md
+msgid "The help does not open."
+msgstr "Die Hilfe öffnet sich nicht."
+
+#: src/faq.md
+msgid ""
+"Susi opens the help in your web browser: first the help that came with your "
+"version (folder `help` next to `susi`), otherwise the online help. If "
+"neither opens, open the file `help/en/index.html` (or `help/de/index.html`) "
+"by hand, or visit the [online help](https://mcpride.github.io/susi-the-cat/)."
+msgstr "Susi öffnet die Hilfe in Ihrem Webbrowser: zuerst die Hilfe, die mit Ihrer Version geliefert wurde (Ordner `help` neben `susi`), sonst die Online-Hilfe. Öffnet sich keine davon, öffnen Sie die Datei `help/de/index.html` (oder `help/en/index.html`) von Hand oder besuchen Sie die [Online-Hilfe](https://mcpride.github.io/susi-the-cat/)."
