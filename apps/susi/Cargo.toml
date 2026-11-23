@@ -17,7 +17,8 @@ path = "src/main.rs"
 [dependencies]
 susi-core = { workspace = true }
 susi-workflow = { workspace = true }
-eframe = { workspace = true }
+# persistence: window position, size and maximized state are restored on the next start
+eframe = { workspace = true, features = ["persistence"] }
 # Since egui 0.37 the symbol/emoji fonts used for toolbar and menu icons are optional.
 egui = { workspace = true, features = ["monochrome_emoji_fonts"] }
 egui_extras = { workspace = true }
