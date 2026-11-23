@@ -32,16 +32,39 @@ pub fn show(app: &mut SusiApp, ui: &mut egui::Ui) {
     egui::Panel::top("menu").show(ui, |ui| menu_bar(app, ui));
     egui::Panel::top("toolbar").show(ui, |ui| toolbar(app, ui));
     egui::Panel::bottom("statusbar").show(ui, |ui| status_bar(app, ui));
+    // The default sizes only apply until the user drags a panel edge; the sizes are saved on exit.
     if app.show_bottom {
-        egui::Panel::bottom("bottom").resizable(true).default_size(250.0).min_size(110.0).show(ui, |ui| crate::bottom::show(app, ui));
+        let r = egui::Panel::bottom("bottom")
+            .resizable(true)
+            .default_size(app.panels.bottom)
+            .min_size(110.0)
+            .show(ui, |ui| fill(ui, |ui| crate::bottom::show(app, ui)));
+        app.panels.bottom = r.response.rect.height();
     }
     if app.show_tree {
-        egui::Panel::left("tree").resizable(true).default_size(260.0).min_size(140.0).show(ui, |ui| tree(app, ui));
+        let r = egui::Panel::left("tree").resizable(true).default_size(app.panels.tree).min_size(140.0).show(ui, |ui| fill(ui, |ui| tree(app, ui)));
+        app.panels.tree = r.response.rect.width();
     }
     if app.show_filter {
-        egui::Panel::right("filter").resizable(true).default_size(210.0).min_size(160.0).show(ui, |ui| filter_panel(app, ui));
+        let r =
+            egui::Panel::right("filter").resizable(true).default_size(app.panels.filter).min_size(160.0).show(ui, |ui| fill(ui, |ui| filter_panel(app, ui)));
+        app.panels.filter = r.response.rect.width();
     }
     egui::CentralPanel::default().show(ui, |ui| crate::grid::show(app, ui));
+}
+
+/// Shows `add` in exactly the space the panel currently has, clipping what does not fit.
+///
+/// An egui panel takes the size of its content: a bottom tab with little content (an empty list,
+/// a hint) would shrink the panel, a taller one (picture preview) grow it, so its height changed
+/// with every tab switch. Here the panel keeps the size it was given or dragged to.
+fn fill<R>(ui: &mut egui::Ui, add: impl FnOnce(&mut egui::Ui) -> R) -> R {
+    let rect = ui.available_rect_before_wrap();
+    let mut child = ui.new_child(egui::UiBuilder::new().max_rect(rect).layout(*ui.layout()));
+    child.shrink_clip_rect(rect);
+    let r = add(&mut child);
+    ui.expand_to_include_rect(rect);
+    r
 }
 
 /// Menu entry that queues `a` and closes the menu.

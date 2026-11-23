@@ -332,6 +332,7 @@ lives in one struct, `SusiApp` (`app.rs`); the UI is re-rendered from that state
 | Module           | Responsibility                                                                  |
 |------------------|---------------------------------------------------------------------------------|
 | `main.rs`        | Window setup, starts `SusiApp` with an optional `.slp` argument                 |
+| `window.rs`      | Window layout: geometry and panel sizes restored from `window.ron` (eframe persistence), window fitted to the monitor on the first start |
 | `app.rs`         | `SusiApp` state: project, TM, selection, filter, sort, log, issues, dialogs, settings |
 | `panels.rs`      | Menu bar, toolbar, project tree, filter panel, status bar; the row and column commands shared with the context menus |
 | `grid.rs`        | Central translation sheet: columns, in-cell editing, sorting, column widths, context menus of cells and column headers |
@@ -620,6 +621,7 @@ Compatibility with existing Sisulizer projects is the central constraint:
 | What                     | Location                                         | Written by                |
 |--------------------------|--------------------------------------------------|---------------------------|
 | User settings            | `%APPDATA%\susi\settings.json` (override: `SUSI_CONFIG_DIR`) | GUI                |
+| Window layout            | `%APPDATA%\susi\window.ron` (position, size, maximized, panel sizes) | GUI (eframe) |
 | Translation memory       | `%APPDATA%\susi\susi-tm.tmx` (configurable, CLI `-tm:`) | GUI, CLI, MCP      |
 | Workflow configuration   | user, `.susi/workflow.toml`, `.git/susi/workflow.local.toml` | developer, `workflow init` |
 | Merge request cache      | `.git/susi/merge-requests.json`                  | `susi-workflow`           |

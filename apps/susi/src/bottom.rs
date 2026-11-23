@@ -31,7 +31,10 @@ pub fn show(app: &mut SusiApp, ui: &mut Ui) {
         BottomTab::Search => search(app, ui),
         BottomTab::Statistics => statistics(app, ui),
         BottomTab::Comments => comments(app, ui),
-        BottomTab::Editor => editor(app, ui),
+        // The editor (texts, TM suggestions, picture previews) can be taller than the panel.
+        BottomTab::Editor => {
+            egui::ScrollArea::vertical().id_salt("editor").auto_shrink(false).show(ui, |ui| editor(app, ui));
+        }
         BottomTab::Screenshots => crate::shots::tab(app, ui),
     }
 }

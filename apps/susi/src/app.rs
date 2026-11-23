@@ -315,6 +315,10 @@ pub struct SusiApp {
     pub shot_ui: crate::shots::ShotUi,
     /// Pictures and binary data: textures, originals read from source files.
     pub data_ui: crate::data_ui::DataUi,
+    /// Fit the window to the monitor in the first frame (first start without a saved geometry).
+    pub fit_window: bool,
+    /// Sizes of bottom panel, project tree and filter panel (restored from the last session).
+    pub panels: crate::window::PanelSizes,
     title: String,
 }
 
@@ -365,6 +369,8 @@ impl SusiApp {
             shot_index: Default::default(),
             shot_ui: Default::default(),
             data_ui: Default::default(),
+            fit_window: false,
+            panels: Default::default(),
             title: String::new(),
         };
         app.apply_theme(ctx);
@@ -752,7 +758,22 @@ pub enum Nav {
 
 impl eframe::App for SusiApp {
     fn ui(&mut self, ui: &mut egui::Ui, _frame: &mut eframe::Frame) {
+        if std::mem::take(&mut self.fit_window) {
+            crate::window::fit_to_monitor(ui.ctx());
+        }
         self.frame(ui);
+    }
+
+    /// Saves the panel sizes next to the window geometry (`window.ron`); eframe calls this
+    /// periodically and on exit.
+    fn save(&mut self, storage: &mut dyn eframe::Storage) {
+        self.panels.save(storage);
+    }
+
+    /// Only the window layout is persisted (`window.ron`), not egui's memory
+    /// (collapsed tree nodes, dialog positions): it would outlive the project it belongs to.
+    fn persist_egui_memory(&self) -> bool {
+        false
     }
 }
 
