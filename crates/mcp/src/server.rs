@@ -344,7 +344,9 @@ impl SusiServer {
         self.run(|s| s.build(&i.langs, i.sources.as_deref()))
     }
 
-    #[tool(description = "Validate translations (placeholders, tags, whitespace, line breaks, punctuation, length, hotkeys, duplicates).")]
+    #[tool(
+        description = "Validate translations (placeholders, tags, whitespace, line breaks, punctuation, length, hotkeys, duplicates). Issues the user excluded (Sisulizer-compatible, stored in the project's .sds file) are not reported; 'excluded' counts them."
+    )]
     fn validate(&self, Parameters(i): Parameters<ValidateInput>) -> Result<String, String> {
         self.run(|s| s.validate(&i.langs, &i.kinds))
     }

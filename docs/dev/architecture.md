@@ -175,7 +175,8 @@ flowchart TB
 | `screenshots` | `ScreenshotStore`: screenshots linked to rows (with areas) in `<project>.files/`, never in the `.slp`; manifest import, refresh, prune; `ScreenshotIndex` resolves links to rows |
 | `keys`      | `RowKeys`: rows by context, row id or wildcard pattern (screenshot links, MCP)                    |
 | `custom_data` | Pictures and binary data (Sisulizer *Custom Data*): hex codec and 78-column wrapping, `thumbnail`, picture formats and sizes, `merge_data` for the data nodes of a scan, linked translation files (`load_translation_file`, `refresh_linked`), the `data` check |
-| `validate`  | Placeholder, tag, whitespace, punctuation, length, hotkey, duplicate, control character and ICU checks; JUnit XML |
+| `validate`  | Placeholder, tag, whitespace, punctuation, length, hotkey, duplicate, control character and ICU checks; JUnit XML; `remove_excluded` drops the findings excluded in the desktop file |
+| `sds`       | Sisulizer desktop file `<project>.sds` (`Project::desktop`), loaded and saved with the `.slp`: excluded validations per scope (original/translation), everything else kept as read |
 | `icu`       | Light ICU MessageFormat parser (arguments, plural/select cases) used by validation                |
 | `stats`     | Per-language statistics; text/HTML/JSON reports                                                   |
 | `pseudo`    | Pseudo translation and pseudo languages                                                           |

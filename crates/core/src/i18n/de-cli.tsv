@@ -128,6 +128,7 @@
 @plural	{n} error|{n} errors	{n} Fehler|{n} Fehler
 @plural	{n} warning|{n} warnings	{n} Warnung|{n} Warnungen
 	Validation finished: {errors}, {warnings}	Prüfung abgeschlossen: {errors}, {warnings}
+@plural	{n} excluded issue not reported|{n} excluded issues not reported	{n} ausgeschlossener Befund nicht gemeldet|{n} ausgeschlossene Befunde nicht gemeldet
 	Pseudo language {lang} added	Pseudo-Sprache {lang} angelegt
 @plural	{n} pseudo translation for {name} ({lang})|{n} pseudo translations for {name} ({lang})	{n} Pseudo-Übersetzung für {name} ({lang})|{n} Pseudo-Übersetzungen für {name} ({lang})
 @plural	{n} pseudo translation removed|{n} pseudo translations removed	{n} Pseudo-Übersetzung entfernt|{n} Pseudo-Übersetzungen entfernt

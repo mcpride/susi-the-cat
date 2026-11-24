@@ -3,6 +3,7 @@
 use std::path::{Path, PathBuf};
 
 use susi_core::exchange;
+use susi_core::validate::{self, ValidateOptions};
 
 struct Run {
     code: i32,
@@ -186,6 +187,60 @@ fn errors_and_result_codes() {
 
     let r = run(&["export", "-h"]);
     assert!(r.code == 0 && r.out.contains("-status"));
+}
+
+/// Findings excluded in the desktop file (`.sds`, as Sisulizer writes it) are not reported: they
+/// count neither for the result code nor in the JUnit report, so false positives do not fail CI.
+#[test]
+fn excluded_validations_do_not_fail_the_pipeline() {
+    let (dir, slp) = fixture();
+    let d = dir.path();
+    let csv = d.join("de.csv");
+    assert_eq!(run(&["export", &s(&csv), "-lang:de", &s(&slp)]).code, 0);
+    // A placeholder dropped on purpose (error) and a period left out on purpose (warning).
+    translate_csv(&csv, |o| match o {
+        "Open {0}" => "Öffnen".into(),
+        "Close" => "Schließen".into(),
+        "Hello." => "Hallo".into(),
+        "Hello" => "Hallo".into(),
+        _ => String::new(),
+    });
+    assert_eq!(run(&["import", &s(&csv), "-lang:de", &s(&slp)]).code, 0);
+    let junit = d.join("junit.xml");
+    let junit_arg = format!("-junit:{}", s(&junit));
+    let r = run(&["validate", "-lang:de", &junit_arg, &s(&slp), "-w"]);
+    assert_eq!(r.code, 2, "{}{}", r.out, r.err);
+    assert_eq!(std::fs::read_to_string(&junit).unwrap().matches("<testcase ").count(), 2);
+
+    // Exclude both findings, as Validation › Exclude in Susi or Sisulizer does.
+    let mut p = susi_core::slp::load(&slp).unwrap();
+    let opts = ValidateOptions { langs: vec!["de".into()], ..Default::default() };
+    for issue in validate::validate(&p, &opts, None) {
+        let e = issue.exclusion(&p).unwrap();
+        p.desktop.add(e);
+    }
+    susi_core::slp::save(&mut p, &slp).unwrap();
+    assert!(d.join("app.sds").is_file());
+
+    let r = run(&["validate", "-lang:de", &junit_arg, &s(&slp), "-w"]);
+    assert_eq!(r.code, 0, "{}{}", r.out, r.err);
+    assert!(r.out.contains("0 errors, 0 warnings") && r.out.contains("2 excluded issues not reported"), "{}", r.out);
+    assert!(!std::fs::read_to_string(&junit).unwrap().contains("<testcase"));
+
+    // Tasks that save the project keep the exclusions.
+    assert_eq!(run(&["scan", &s(&slp)]).code, 0);
+    assert_eq!(run(&["validate", "-lang:de", &s(&slp), "-w"]).code, 0);
+
+    // Exclusions made in Sisulizer (testdata/slp/Gettext): 2 of 10 format errors.
+    let fixture = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../testdata/slp/Gettext");
+    for f in ["l10n.slp", "l10n.sds"] {
+        std::fs::copy(fixture.join(f), d.join(f)).unwrap();
+    }
+    let r = run(&["validate", "-check:format", &s(&d.join("l10n.slp"))]);
+    assert_eq!(r.code, 1, "{}{}", r.out, r.err);
+    assert!(r.out.contains("8 errors") && r.out.contains("2 excluded issues not reported"), "{}", r.out);
+    assert!(!r.err.contains("%d file[0]") && !r.err.contains("android-app/search|%d result[0]"), "{}", r.err);
+    assert!(r.err.contains("web-app/search|%d result[0]"), "{}", r.err);
 }
 
 #[test]

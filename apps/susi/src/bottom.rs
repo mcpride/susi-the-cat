@@ -4,6 +4,7 @@ use egui::{Color32, RichText, Ui};
 use susi_core::filter::RowFilter;
 use susi_core::i18n::{t, trn};
 use susi_core::model::RowRef;
+use susi_core::sds::Scope as ValidationScope;
 use susi_core::status::TranslationStatus;
 use susi_core::tm::TmMatch;
 use susi_core::validate::Severity;
@@ -73,9 +74,11 @@ fn validation(app: &mut SusiApp, ui: &mut Ui) {
         return;
     }
     let mut clicked: Option<(RowRef, String)> = None;
+    let mut action = None;
     let cols = [col(t("Type"), 70.0), col(t("Check"), 220.0), col(t("Language"), 70.0), col(t("Context"), 260.0), col(t("Message"), 300.0)];
     app.list_offset = list::show(ui, "issues", &cols, app.issues.len(), false, |row| {
-        let is = &app.issues[row.index()];
+        let index = row.index();
+        let is = &app.issues[index];
         row.set_selected(app.selected.as_ref() == Some(&is.row) && app.lang.as_deref() == Some(is.lang.as_str()));
         let (label, color) = match is.severity {
             Severity::Error => (t("Error"), Color32::from_rgb(220, 40, 40)),
@@ -86,10 +89,26 @@ fn validation(app: &mut SusiApp, ui: &mut Ui) {
         row.col(|ui| small_label(ui, is.lang.as_str()));
         row.col(|ui| small_label(ui, format!("{}: {}", is.source, is.context)));
         row.col(|ui| small_label(ui, is.message.as_str()));
-        if row.response().clicked() {
+        let resp = row.response();
+        if resp.clicked() {
             clicked = Some((is.row.clone(), is.lang.clone()));
         }
+        resp.context_menu(|ui| {
+            let mut item = |ui: &mut Ui, text: &str, a: Action| {
+                if ui.button(text).clicked() {
+                    action = Some(a);
+                    ui.close();
+                }
+            };
+            item(ui, t("Exclude"), Action::ExcludeIssue(index));
+            ui.separator();
+            item(ui, t("Excluded original validations…"), Action::ExcludedValidations(ValidationScope::Original));
+            item(ui, t("Excluded translation validations…"), Action::ExcludedValidations(ValidationScope::Translation));
+        });
     });
+    if let Some(a) = action {
+        app.actions.push(a);
+    }
     if let Some((r, l)) = clicked {
         // Issues of the original carry the original language, which may be no project language.
         let is_lang = app.project.as_ref().is_some_and(|p| p.has_language(&l));

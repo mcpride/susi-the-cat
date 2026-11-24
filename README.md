@@ -353,6 +353,7 @@ prints help for a task.
 
 - With `-w`: `2` on errors, `1` on warnings, otherwise `0`.
 - Without `-w`: `1` on errors, otherwise `0`.
+- Excluded validation findings do not count (see *Excluded findings* below).
 
 Pipeline example:
 
@@ -381,6 +382,15 @@ susi-cli export open.xlsx -lang:de;fr -status:untranslated app.slp
 | `icucases` | ICU plural forms the target language needs (CLDR, e.g. Polish `few` and `many`; `=1` counts as `one`) and the select cases of the original | Warning |
 | `screenshot` | Linked screenshot image missing | Warning |
 | `data` | Pictures and binary data: linked file missing, picture translation of another format or size, translation of a picture that is no picture | Warning |
+
+**Excluded findings** (false positives): a finding excluded in the GUI (context menu of the
+validation results › *Exclude*) or in Sisulizer (*Validation › Exclude*) is no longer reported.
+`validate` neither counts it for the exit code nor writes it to the JUnit report, and prints only
+how many findings were excluded. An exclusion applies to one check of one row in all languages
+and ends when the row's original changes. The exclusions are stored like Sisulizer stores them,
+in the desktop file next to the project (`app.slp` → `app.sds`,
+`<validator>/<original|translation>/<excludedvalidations>`), so commit that file with the project.
+Checks that Sisulizer does not have are stored under class names of the form `TSusi…Validation`.
 
 **Test reports in GitLab CI**: `validate -junit:file` also writes the result to a
 [JUnit XML report](https://docs.gitlab.com/ci/testing/unit_test_reports/). Errors become failed

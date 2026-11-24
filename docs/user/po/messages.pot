@@ -1867,6 +1867,45 @@ msgid ""
 "another language. Decide case by case."
 msgstr ""
 
+#: src/validation.md
+msgid "Excluding findings"
+msgstr ""
+
+#: src/validation.md
+msgid "If a check reports something that is correct, exclude the finding:"
+msgstr ""
+
+#: src/validation.md
+msgid ""
+"Right-click the finding in _Validation results_ and choose _Exclude_. This "
+"check is no longer reported for the row, in all languages. The other checks "
+"of the row still run."
+msgstr ""
+
+#: src/validation.md
+msgid ""
+"_Validation › Excluded original validations…_ and _Validation › Excluded "
+"translation validations…_ list the exclusions with check, context and "
+"original. _Remove_ or _Remove all_ brings the findings back, and the "
+"validation runs again."
+msgstr ""
+
+#: src/validation.md
+msgid ""
+"Findings in the original text, such as control characters in the original, "
+"are listed under _original validations_, all others under _translation "
+"validations_. If the original text of the row changes, the exclusion no "
+"longer applies."
+msgstr ""
+
+#: src/validation.md
+msgid ""
+"The exclusions are saved with the project, in the file `.sds` next to the "
+"project file. Sisulizer uses the same file: findings excluded in Sisulizer "
+"are also excluded in Susi, and the other way round. The command line "
+"(`susi-cli validate`) skips them as well."
+msgstr ""
+
 #: src/search.md
 msgid ""
 "The tab _Search results_ finds texts in the whole project without hiding any "

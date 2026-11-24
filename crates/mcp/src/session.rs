@@ -660,7 +660,8 @@ impl Session {
         if let Some(shots) = self.shots.as_ref().filter(|_| opts.kinds.contains(&ValidationKind::Screenshot)) {
             issues.extend(shots.issues(p, None));
         }
-        Ok(json!({ "count": issues.len(), "issues": issues }))
+        let excluded = validate::remove_excluded(p, &mut issues);
+        Ok(json!({ "count": issues.len(), "excluded": excluded, "issues": issues }))
     }
 
     pub fn statistics(&self) -> ToolResult {
