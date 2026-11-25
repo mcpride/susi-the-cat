@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Susi the CAT – User guide\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-11-23 19:46+0100\n"
+"PO-Revision-Date: 2026-11-25 00:00+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1865,6 +1865,45 @@ msgid ""
 "Not every finding is a real mistake: a missing period can be right in "
 "another language. Decide case by case."
 msgstr "Nicht jeder Befund ist ein echter Fehler: Ein fehlender Punkt kann in einer anderen Sprache richtig sein. Entscheiden Sie von Fall zu Fall."
+
+#: src/validation.md
+msgid "Excluding findings"
+msgstr "Befunde ausschließen"
+
+#: src/validation.md
+msgid "If a check reports something that is correct, exclude the finding:"
+msgstr "Meldet eine Prüfung etwas, das korrekt ist, schließen Sie den Befund aus:"
+
+#: src/validation.md
+msgid ""
+"Right-click the finding in _Validation results_ and choose _Exclude_. This "
+"check is no longer reported for the row, in all languages. The other checks "
+"of the row still run."
+msgstr "Klicken Sie in _Prüfungsergebnisse_ mit der rechten Maustaste auf den Befund und wählen Sie _Ausschließen_. Diese Prüfung wird für die Zeile nicht mehr gemeldet, in allen Sprachen. Die anderen Prüfungen der Zeile laufen weiterhin."
+
+#: src/validation.md
+msgid ""
+"_Validation › Excluded original validations…_ and _Validation › Excluded "
+"translation validations…_ list the exclusions with check, context and "
+"original. _Remove_ or _Remove all_ brings the findings back, and the "
+"validation runs again."
+msgstr "_Prüfung › Ausgeschlossene Originalprüfungen…_ und _Prüfung › Ausgeschlossene Übersetzungsprüfungen…_ listen die Ausschlüsse mit Prüfung, Kontext und Original auf. _Entfernen_ oder _Alle entfernen_ holt die Befunde zurück, und die Prüfung läuft erneut."
+
+#: src/validation.md
+msgid ""
+"Findings in the original text, such as control characters in the original, "
+"are listed under _original validations_, all others under _translation "
+"validations_. If the original text of the row changes, the exclusion no "
+"longer applies."
+msgstr "Befunde im Originaltext, etwa Steuerzeichen im Original, stehen unter _Originalprüfungen_, alle anderen unter _Übersetzungsprüfungen_. Ändert sich der Originaltext der Zeile, gilt der Ausschluss nicht mehr."
+
+#: src/validation.md
+msgid ""
+"The exclusions are saved with the project, in the file `.sds` next to the "
+"project file. Sisulizer uses the same file: findings excluded in Sisulizer "
+"are also excluded in Susi, and the other way round. The command line "
+"(`susi-cli validate`) skips them as well."
+msgstr "Die Ausschlüsse werden mit dem Projekt gespeichert, in der Datei `.sds` neben der Projektdatei. Sisulizer verwendet dieselbe Datei: In Sisulizer ausgeschlossene Befunde sind auch in Susi ausgeschlossen und umgekehrt. Auch die Kommandozeile (`susi-cli validate`) überspringt sie."
 
 #: src/search.md
 msgid ""

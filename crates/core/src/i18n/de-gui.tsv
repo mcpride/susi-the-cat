@@ -67,6 +67,13 @@
 	Validate	Prüfen
 	Validate (including missing translations)	Prüfen (inkl. fehlender Übersetzungen)
 	Clear validation results	Prüfungsergebnisse löschen
+	Excluded original validations…	Ausgeschlossene Originalprüfungen…
+	Excluded translation validations…	Ausgeschlossene Übersetzungsprüfungen…
+	Exclude	Ausschließen
+	Excluded original validations	Ausgeschlossene Originalprüfungen
+	Excluded translation validations	Ausgeschlossene Übersetzungsprüfungen
+	No excluded validations. Exclude a finding with the context menu of the validation results.	Keine ausgeschlossenen Prüfungen. Ein Befund wird über das Kontextmenü der Prüfungsergebnisse ausgeschlossen.
+	Remove all	Alle entfernen
 	Column	Spalte
 	Copy from	Übernehmen
 	Row	Zeile
@@ -262,6 +269,8 @@
 	Save report	Bericht speichern
 	Report saved: {path}	Bericht gespeichert: {path}
 	Validation: {errors}, {warnings}	Prüfung: {errors}, {warnings}
+@plural	{n} excluded|{n} excluded	{n} ausgeschlossen|{n} ausgeschlossen
+	Validation excluded: {check} – {context}	Prüfung ausgeschlossen: {check} – {context}
 	{translations} saved to the translation memory ({entries})	{translations} im Translation Memory gespeichert ({entries})
 	Pseudo language {lang} created	Pseudo-Sprache {lang} angelegt
 @plural	{n} pseudo translation created for {lang}|{n} pseudo translations created for {lang}	{n} Pseudo-Übersetzung für {lang} erstellt|{n} Pseudo-Übersetzungen für {lang} erstellt

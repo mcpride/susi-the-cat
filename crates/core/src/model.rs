@@ -44,6 +44,8 @@ pub struct Project {
     pub post: Vec<Element>,
     /// XML declaration as read (e.g. `xml version="1.0" encoding="UTF-8"`); default when `None`.
     pub decl: Option<String>,
+    /// Desktop file next to the project (`.sds`): validation exclusions and Sisulizer's view state.
+    pub desktop: crate::sds::Desktop,
 }
 
 #[derive(Debug, Clone, Default)]

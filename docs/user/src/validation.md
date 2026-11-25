@@ -34,3 +34,21 @@ are pink in the translation sheet.
 
 Not every finding is a real mistake: a missing period can be right in another language. Decide
 case by case.
+
+## Excluding findings
+
+If a check reports something that is correct, exclude the finding:
+
+- Right-click the finding in *Validation results* and choose *Exclude*. This check is no longer
+  reported for the row, in all languages. The other checks of the row still run.
+- *Validation › Excluded original validations…* and *Validation › Excluded translation
+  validations…* list the exclusions with check, context and original. *Remove* or *Remove all*
+  brings the findings back, and the validation runs again.
+
+Findings in the original text, such as control characters in the original, are listed under
+*original validations*, all others under *translation validations*. If the original text of the
+row changes, the exclusion no longer applies.
+
+The exclusions are saved with the project, in the file `.sds` next to the project file. Sisulizer
+uses the same file: findings excluded in Sisulizer are also excluded in Susi, and the other way
+round. The command line (`susi-cli validate`) skips them as well.

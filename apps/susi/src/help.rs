@@ -83,6 +83,7 @@ fn dialog_topic(d: &Dialog) -> &'static str {
         Dialog::About => "index",
         Dialog::WorkflowFetch(_) | Dialog::WorkflowSave(_) | Dialog::WorkflowPublish(_) | Dialog::WorkflowToken(_) => "git-workflow",
         Dialog::Screenshots => "screenshots",
+        Dialog::Excluded(_) => "validation",
     }
 }
 

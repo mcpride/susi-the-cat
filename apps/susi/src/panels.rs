@@ -4,6 +4,7 @@ use egui::{Color32, RichText};
 use susi_core::filter::SearchIn;
 use susi_core::i18n::{Lang, t};
 use susi_core::model::{Item, Node, NodeRef, Project};
+use susi_core::sds::Scope as ValidationScope;
 use susi_core::status::{RowStatus, TranslationStatus};
 
 use crate::actions::{Action, Scope};
@@ -116,6 +117,9 @@ fn menu_bar(app: &mut SusiApp, ui: &mut egui::Ui) {
             cmd(ui, &mut acts, t("Validate"), Action::Validate { missing: false });
             cmd(ui, &mut acts, t("Validate (including missing translations)"), Action::Validate { missing: true });
             cmd(ui, &mut acts, t("Clear validation results"), Action::ClearIssues);
+            ui.separator();
+            cmd(ui, &mut acts, t("Excluded original validations…"), Action::ExcludedValidations(ValidationScope::Original));
+            cmd(ui, &mut acts, t("Excluded translation validations…"), Action::ExcludedValidations(ValidationScope::Translation));
         });
         column_menu(app, ui, &mut acts);
         row_menu(app, ui, &mut acts);

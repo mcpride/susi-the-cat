@@ -285,6 +285,8 @@ pub struct SusiApp {
     pub log: Vec<LogEntry>,
     pub issues: Vec<Issue>,
     pub issue_cells: HashSet<(RowRef, String)>,
+    /// Last validation (`Some(missing)`), to run it again after exclusions were removed.
+    pub last_validation: Option<bool>,
     pub search: SearchState,
     pub stats: Option<Statistics>,
     pub tab: BottomTab,
@@ -351,6 +353,7 @@ impl SusiApp {
             log: Vec::new(),
             issues: Vec::new(),
             issue_cells: HashSet::new(),
+            last_validation: None,
             search: SearchState::default(),
             stats: None,
             tab: BottomTab::Output,
@@ -462,6 +465,7 @@ impl SusiApp {
         self.cell_edit = None;
         self.issues.clear();
         self.issue_cells.clear();
+        self.last_validation = None;
         self.search.results.clear();
         self.stats = None;
         self.rows_stale = true;

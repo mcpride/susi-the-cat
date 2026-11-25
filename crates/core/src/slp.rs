@@ -18,10 +18,13 @@ use crate::xml::{self, Attrs, Element};
 /// Element names that are always treated as row containers.
 const CONTAINER_TAGS: &[&str] = &["node"];
 
+/// Loads a project and its desktop file (`.sds`, see [`crate::sds`]). An unreadable desktop file
+/// is ignored: it only holds view state and validation exclusions.
 pub fn load(path: &Path) -> Result<Project> {
     let bytes = read_file(path)?;
     let mut p = parse(&bytes)?;
     p.path = Some(path.to_path_buf());
+    p.desktop = crate::sds::Desktop::load(&crate::sds::path(path)).unwrap_or_default();
     Ok(p)
 }
 
@@ -191,8 +194,9 @@ pub fn save(project: &mut Project, path: &Path) -> Result<()> {
         let _ = std::fs::copy(path, backup);
     }
     write_file(path, &bytes)?;
+    let moved = project.path.as_deref() != Some(path);
     project.path = Some(path.to_path_buf());
-    Ok(())
+    project.desktop.save(&crate::sds::path(path), moved)
 }
 
 pub fn to_bytes(p: &Project) -> Vec<u8> {
@@ -366,7 +370,7 @@ fn write_row(s: &mut String, level: usize, r: &Row) {
 }
 
 /// Pretty-prints an element preserved verbatim from the input.
-fn write_generic(s: &mut String, level: usize, e: &Element) {
+pub(crate) fn write_generic(s: &mut String, level: usize, e: &Element) {
     open_tag(s, level, &e.name, &e.attrs);
     let has_elements = e.has_element_children();
     let text = e.text();

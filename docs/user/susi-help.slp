@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<document created="20261123194613" version="4.0.374" date="20261123194651" scan="0">
+<document created="20261123194613" version="4.0.374" date="20261124235816" scan="1" scanned="20261124235816">
   <lang id="en"/>
   <lang id="de"/>
-  <source class="TPoSource" name="po\messages.pot" original="en" date="20261123194451" compile="0">
+  <source class="TPoSource" name="po\messages.pot" original="en" date="20261124235814" compile="0">
     <outputfile dir="." localized="&lt;iso&gt;.po"/>
     <node class="TPoNode" name="messages.pot" state="0" created="20261123194613">
       <row id="##Last-Translator" state="0" created="20261123194613">
@@ -1566,6 +1566,30 @@
       <row id="Not every finding is a real mistake: a missing period can be right in another language. Decide case by case." state="0" created="20261123194613" note="src/validation.md" notereadonly="1">
         <native>Not every finding is a real mistake: a missing period can be right in another language. Decide case by case.</native>
         <lang id="de" date="20261123194651" status="3">Nicht jeder Befund ist ein echter Fehler: Ein fehlender Punkt kann in einer anderen Sprache richtig sein. Entscheiden Sie von Fall zu Fall.</lang>
+      </row>
+      <row id="Excluding findings" state="0" created="20261124235816" note="src/validation.md" notereadonly="1">
+        <native>Excluding findings</native>
+        <lang id="de" date="20261125000000" status="3">Befunde ausschließen</lang>
+      </row>
+      <row id="If a check reports something that is correct, exclude the finding:" state="0" created="20261124235816" note="src/validation.md" notereadonly="1">
+        <native>If a check reports something that is correct, exclude the finding:</native>
+        <lang id="de" date="20261125000000" status="3">Meldet eine Prüfung etwas, das korrekt ist, schließen Sie den Befund aus:</lang>
+      </row>
+      <row id="Right-click the finding in _Validation results_ and choose _Exclude_. This check is no longer reported for the row, in all languages. The other checks of the row still run." state="0" created="20261124235816" note="src/validation.md" notereadonly="1">
+        <native>Right-click the finding in _Validation results_ and choose _Exclude_. This check is no longer reported for the row, in all languages. The other checks of the row still run.</native>
+        <lang id="de" date="20261125000000" status="3">Klicken Sie in _Prüfungsergebnisse_ mit der rechten Maustaste auf den Befund und wählen Sie _Ausschließen_. Diese Prüfung wird für die Zeile nicht mehr gemeldet, in allen Sprachen. Die anderen Prüfungen der Zeile laufen weiterhin.</lang>
+      </row>
+      <row id="_Validation › Excluded original validations…_ and _Validation › Excluded translation validations…_ list the exclusions with check, context and original. _Remove_ or _Remove all_ brings the findings back, and the validation runs again." state="0" created="20261124235816" note="src/validation.md" notereadonly="1">
+        <native>_Validation › Excluded original validations…_ and _Validation › Excluded translation validations…_ list the exclusions with check, context and original. _Remove_ or _Remove all_ brings the findings back, and the validation runs again.</native>
+        <lang id="de" date="20261125000000" status="3">_Prüfung › Ausgeschlossene Originalprüfungen…_ und _Prüfung › Ausgeschlossene Übersetzungsprüfungen…_ listen die Ausschlüsse mit Prüfung, Kontext und Original auf. _Entfernen_ oder _Alle entfernen_ holt die Befunde zurück, und die Prüfung läuft erneut.</lang>
+      </row>
+      <row id="Findings in the original text, such as control characters in the original, are listed under _original validations_, all others under _translation validations_. If the original text of the row changes, the exclusion no longer applies." state="0" created="20261124235816" note="src/validation.md" notereadonly="1">
+        <native>Findings in the original text, such as control characters in the original, are listed under _original validations_, all others under _translation validations_. If the original text of the row changes, the exclusion no longer applies.</native>
+        <lang id="de" date="20261125000000" status="3">Befunde im Originaltext, etwa Steuerzeichen im Original, stehen unter _Originalprüfungen_, alle anderen unter _Übersetzungsprüfungen_. Ändert sich der Originaltext der Zeile, gilt der Ausschluss nicht mehr.</lang>
+      </row>
+      <row id="The exclusions are saved with the project, in the file `.sds` next to the project file. Sisulizer uses the same file: findings excluded in Sisulizer are also excluded in Susi, and the other way round. The command line (`susi-cli validate`) skips them as well." state="0" created="20261124235816" note="src/validation.md" notereadonly="1">
+        <native>The exclusions are saved with the project, in the file `.sds` next to the project file. Sisulizer uses the same file: findings excluded in Sisulizer are also excluded in Susi, and the other way round. The command line (`susi-cli validate`) skips them as well.</native>
+        <lang id="de" date="20261125000000" status="3">Die Ausschlüsse werden mit dem Projekt gespeichert, in der Datei `.sds` neben der Projektdatei. Sisulizer verwendet dieselbe Datei: In Sisulizer ausgeschlossene Befunde sind auch in Susi ausgeschlossen und umgekehrt. Auch die Kommandozeile (`susi-cli validate`) überspringt sie.</lang>
       </row>
       <row id="The tab _Search results_ finds texts in the whole project without hiding any rows." state="0" created="20261123194613" note="src/search.md" notereadonly="1">
         <native>The tab _Search results_ finds texts in the whole project without hiding any rows.</native>

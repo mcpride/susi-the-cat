@@ -11,8 +11,10 @@ use susi_core::lang;
 use susi_core::model::{RowRef, WriteMethod};
 use susi_core::ops::CopyTargets;
 use susi_core::pseudo::{PseudoCase, PseudoKind, PseudoOptions};
+use susi_core::sds::{Exclusion, Scope};
 use susi_core::settings::Settings;
 use susi_core::status::{RowStatus, TranslationStatus};
+use susi_core::validate;
 
 use crate::actions::Action;
 use crate::app::SusiApp;
@@ -130,6 +132,14 @@ pub enum Dialog {
     WorkflowToken(TokenDialog),
     /// Screenshot manager.
     Screenshots,
+    /// Excluded original or translation validations.
+    Excluded(ExcludedDialog),
+}
+
+pub struct ExcludedDialog {
+    pub scope: Scope,
+    /// Index within the exclusions of `scope`.
+    pub selected: Option<usize>,
 }
 
 /// Shows the open dialog (if any).
@@ -160,6 +170,7 @@ pub fn show(app: &mut SusiApp, ctx: &egui::Context) {
             Dialog::WorkflowPublish(p) => workflow_ui::publish_dialog(app, ui, p),
             Dialog::WorkflowToken(t) => workflow_ui::token_dialog(app, ui, t),
             Dialog::Screenshots => crate::shots::manager(app, ui),
+            Dialog::Excluded(e) => excluded(app, ui, e),
         };
     });
     if modal.should_close() {
@@ -736,6 +747,71 @@ fn ui_language_combo(ui: &mut egui::Ui, pref: &mut String) {
             ui.selectable_value(pref, l.code().to_string(), l.name());
         }
     });
+}
+
+/// Excluded validations of one scope (like Sisulizer's *Excluded Translation Validations*): check,
+/// context and original of each; *Remove* and *Remove all* bring the findings back.
+fn excluded(app: &mut SusiApp, ui: &mut egui::Ui, d: &mut ExcludedDialog) -> bool {
+    ui.heading(match d.scope {
+        Scope::Original => t("Excluded original validations"),
+        Scope::Translation => t("Excluded translation validations"),
+    });
+    let list: Vec<Exclusion> = app.project.as_ref().map(|p| p.desktop.exclusions_of(d.scope).cloned().collect()).unwrap_or_default();
+    if d.selected.is_some_and(|i| i >= list.len()) {
+        d.selected = None;
+    }
+    if list.is_empty() {
+        ui.label(t("No excluded validations. Exclude a finding with the context menu of the validation results."));
+    } else {
+        egui::ScrollArea::both().max_height(320.0).auto_shrink([false, true]).show(ui, |ui| {
+            egui::Grid::new("excluded").num_columns(3).striped(true).show(ui, |ui| {
+                ui.strong(t("Check"));
+                ui.strong(t("Context"));
+                ui.strong(t("Original"));
+                ui.end_row();
+                for (i, e) in list.iter().enumerate() {
+                    let sel = d.selected == Some(i);
+                    if ui.selectable_label(sel, validate::class_label(&e.class)).clicked() {
+                        d.selected = Some(i);
+                    }
+                    if ui.selectable_label(sel, &e.context).clicked() {
+                        d.selected = Some(i);
+                    }
+                    if ui.selectable_label(sel, e.native.replace('\n', " ¶ ").replace('\r', "")).clicked() {
+                        d.selected = Some(i);
+                    }
+                    ui.end_row();
+                }
+            });
+        });
+    }
+    ui.separator();
+    let mut close = false;
+    let mut changed = false;
+    ui.horizontal(|ui| {
+        let selected = d.selected.and_then(|i| list.get(i));
+        if ui.add_enabled(selected.is_some(), egui::Button::new(t("Remove"))).clicked()
+            && let (Some(e), Some(p)) = (selected, app.project.as_mut())
+        {
+            changed = p.desktop.remove(e);
+            d.selected = None;
+        }
+        if ui.add_enabled(!list.is_empty(), egui::Button::new(t("Remove all"))).clicked()
+            && let Some(p) = app.project.as_mut()
+        {
+            changed = p.desktop.clear(d.scope) > 0;
+            d.selected = None;
+        }
+        close = ui.button(t("Close")).clicked();
+    });
+    if changed {
+        app.touched();
+        // The findings of removed exclusions come back: validate again if results are shown.
+        if let Some(missing) = app.last_validation.filter(|_| !app.issues.is_empty()) {
+            app.actions.push(Action::Validate { missing });
+        }
+    }
+    close
 }
 
 fn about(ui: &mut egui::Ui) -> bool {

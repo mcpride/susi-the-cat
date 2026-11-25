@@ -586,6 +586,7 @@ fn validate(t: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), Stri
     if opts.kinds.contains(&ValidationKind::Screenshot) {
         issues.extend(shots.issues(p, rows.as_deref()));
     }
+    let excluded = validate::remove_excluded(p, &mut issues);
     let (mut errors, mut warnings) = (0, 0);
     for i in &issues {
         let msg = format!("[{}] {} {}: {} – {}", i.lang, i.source, i.context, i.kind.label(), i.message);
@@ -602,6 +603,9 @@ fn validate(t: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), Stri
     }
     let (errors, warnings) = (trn(errors, "{n} error", "{n} errors"), trn(warnings, "{n} warning", "{n} warnings"));
     o.info(tf!("Validation finished: {errors}, {warnings}", errors = errors, warnings = warnings));
+    if excluded > 0 {
+        o.info(trn(excluded, "{n} excluded issue not reported", "{n} excluded issues not reported"));
+    }
     if let Some(file) = junit {
         // Failed tests are what fails the job: errors, and warnings only with -w.
         let failed: Vec<&validate::Issue> = issues.iter().filter(|i| i.severity == Severity::Error || o.warning_codes).collect();

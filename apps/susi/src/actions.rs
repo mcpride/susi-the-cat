@@ -5,13 +5,16 @@ use std::path::PathBuf;
 use susi_core::exchange::{ExportOptions, ImportOptions, ScreenshotExport};
 use susi_core::i18n::{t, trn};
 use susi_core::model::{NodeRef, Project, RowRef};
+use susi_core::sds::Scope as ValidationScope;
 use susi_core::status::{RowStatus, TranslationStatus};
 use susi_core::tm::{self, TranslateOptions, TranslationMemory};
 use susi_core::validate::{self, Severity, ValidateOptions, ValidationKind};
 use susi_core::{ops, pseudo, slp, stats};
 
 use crate::app::{BottomTab, Nav, SusiApp};
-use crate::dialogs::{ClearColumnDialog, CopyDialog, Dialog, ExportDialog, ImportDialog, PseudoDialog, RowPropsDialog, SourcePropsDialog, TmDialog};
+use crate::dialogs::{
+    ClearColumnDialog, CopyDialog, Dialog, ExcludedDialog, ExportDialog, ImportDialog, PseudoDialog, RowPropsDialog, SourcePropsDialog, TmDialog,
+};
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum Action {
@@ -43,6 +46,10 @@ pub enum Action {
         missing: bool,
     },
     ClearIssues,
+    /// Excludes the check of the validation result with this index from future validations.
+    ExcludeIssue(usize),
+    /// Opens the list of excluded original or translation validations.
+    ExcludedValidations(ValidationScope),
     Find,
     ResetFilter,
     /// Status of the selected cell (selected row, current language).
@@ -176,6 +183,8 @@ impl SusiApp {
             Action::Report => self.report(),
             Action::Validate { missing } => self.validate(missing),
             Action::ClearIssues => self.set_issues(Vec::new()),
+            Action::ExcludeIssue(i) => self.exclude_issue(i),
+            Action::ExcludedValidations(scope) => self.dialog = Some(Dialog::Excluded(ExcludedDialog { scope, selected: None })),
             other => self.run_translation_action(other),
         }
     }
@@ -594,16 +603,41 @@ impl SusiApp {
         if let Some(shots) = &self.shots {
             issues.extend(shots.issues(p, None));
         }
+        let excluded = validate::remove_excluded(p, &mut issues);
         let errors = issues.iter().filter(|i| i.severity == Severity::Error).count();
-        let msg = susi_core::tf!(
+        let mut msg = susi_core::tf!(
             "Validation: {errors}, {warnings}",
             errors = trn(errors, "{n} error", "{n} errors"),
             warnings = trn(issues.len() - errors, "{n} warning", "{n} warnings")
         );
+        if excluded > 0 {
+            msg = format!("{msg} ({})", trn(excluded, "{n} excluded", "{n} excluded"));
+        }
         self.set_issues(issues);
+        self.last_validation = Some(missing);
         self.info(msg);
         self.show_bottom = true;
         self.tab = BottomTab::Validation;
+    }
+
+    /// Excludes the check of validation result `i` for its row (all languages) and removes the
+    /// results hidden by that from the list.
+    fn exclude_issue(&mut self, i: usize) {
+        let Some(p) = self.project.as_mut() else {
+            return;
+        };
+        let Some(e) = self.issues.get(i).and_then(|is| is.exclusion(p)) else {
+            return;
+        };
+        let msg = susi_core::tf!("Validation excluded: {check} – {context}", check = validate::class_label(&e.class), context = e.context);
+        if !p.desktop.add(e) {
+            return;
+        }
+        let mut issues = std::mem::take(&mut self.issues);
+        validate::remove_excluded(p, &mut issues);
+        self.set_issues(issues);
+        self.touched();
+        self.info(msg);
     }
 
     pub fn tm_translate(&mut self, d: &TmDialog) {

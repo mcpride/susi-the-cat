@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<desktop scan="1" scanned="20261120181938" lang="ar" pane="TValidationPane" col="1" row="android-app/search|%d result[0]">
+  <language id="de" autoime="0" autokeyboard="0"/>
+  <language id="pl" autoime="0" autokeyboard="0"/>
+  <language id="ja" autoime="0" autokeyboard="0"/>
+  <language id="ar" autoime="0" autokeyboard="0"/>
+  <validator>
+    <original>
+      <type class="TCharacterWidthValidation" validate="1"/>
+    </original>
+    <translation>
+      <excludedvalidations>
+        <item class="TFormatValidation" context="%d file[0]" native="%d file"/>
+        <item class="TFormatValidation" context="android-app/search|%d result[0]" native="%d result"/>
+      </excludedvalidations>
+    </translation>
+  </validator>
+  <sheet>
+    <columns>
+      <item class="TFlagsColumn" width="38"/>
+      <item class="TPathColumn" width="264"/>
+      <item class="TTranslationStatusColumn" width="93"/>
+      <item class="TOriginalColumn" width="528"/>
+      <item class="TTranslationColumn" lang="ar" width="527"/>
+    </columns>
+  </sheet>
+  <path>
+    <item>All</item>
+    <item>messages.pot</item>
+    <item>messages.pot</item>
+  </path>
+</desktop>

@@ -15,6 +15,7 @@ pub mod model;
 pub mod ops;
 pub mod pseudo;
 pub mod screenshots;
+pub mod sds;
 pub mod settings;
 pub mod slp;
 pub mod stats;

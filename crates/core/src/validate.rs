@@ -8,6 +8,7 @@ use serde::Serialize;
 
 use crate::i18n::t;
 use crate::model::{Project, RowRef, Source};
+use crate::sds::{Exclusion, Scope};
 use crate::status::TranslationStatus;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize)]
@@ -121,6 +122,47 @@ impl ValidationKind {
             _ => Severity::Warning,
         }
     }
+
+    /// Class name of the check in Sisulizer, as stored in excluded validations (`.sds`). Checks
+    /// that Sisulizer does not have get names of the form `TSusi…Validation`.
+    pub fn class_name(self) -> &'static str {
+        match self {
+            Self::MissingTranslation => "TMissingTranslationValidation",
+            Self::Format => "TFormatValidation",
+            Self::Tags => "THtmlTagValidation",
+            Self::WhiteSpace => "TWhiteSpaceValidation",
+            Self::NewLine => "TNewLineValidation",
+            Self::MissingPeriod => "TMissingPeriodValidation",
+            Self::MissingColon => "TMissingColonValidation",
+            Self::MissingExclamation => "TMissingExclamationValidation",
+            Self::MissingQuestion => "TMissingQuestionValidation",
+            Self::CharacterLength => "TCharacterLengthValidation",
+            Self::AllSpaces => "TAllSpacesTranslationValidation",
+            Self::HotkeyCount => "THotkeyCountValidation",
+            Self::DuplicateTranslation => "TDuplicateTranslationValidation",
+            Self::ControlCharacters => "TSusiControlCharactersValidation",
+            Self::IcuSyntax => "TSusiIcuSyntaxValidation",
+            Self::IcuCases => "TSusiIcuCasesValidation",
+            Self::Screenshot => "TSusiScreenshotValidation",
+            Self::Data => "TSusiDataValidation",
+        }
+    }
+
+    pub fn from_class_name(s: &str) -> Option<Self> {
+        Self::ALL.into_iter().find(|k| k.class_name().eq_ignore_ascii_case(s))
+    }
+}
+
+/// Label of an excluded validation's check: the Susi label, or the Sisulizer class name without
+/// `T…Validation` for checks only Sisulizer has (`TSpellingValidation` → `Spelling`).
+pub fn class_label(class: &str) -> String {
+    match ValidationKind::from_class_name(class) {
+        Some(k) => k.label().to_string(),
+        None => {
+            let s = class.strip_prefix('T').unwrap_or(class);
+            s.strip_suffix("Validation").filter(|x| !x.is_empty()).unwrap_or(s).to_string()
+        }
+    }
 }
 
 #[derive(Debug, Clone, Serialize)]
@@ -133,6 +175,39 @@ pub struct Issue {
     pub kind: ValidationKind,
     pub severity: Severity,
     pub message: String,
+}
+
+impl Issue {
+    /// Validation that reports the issue: issues of the original carry the original language.
+    pub fn scope(&self, p: &Project) -> Scope {
+        if self.lang == p.original_lang(&self.row) { Scope::Original } else { Scope::Translation }
+    }
+
+    /// Exclusion that hides this issue (and the same check of the row in all other languages).
+    pub fn exclusion(&self, p: &Project) -> Option<Exclusion> {
+        let row = p.row(&self.row)?;
+        Some(Exclusion {
+            scope: self.scope(p),
+            class: self.kind.class_name().to_string(),
+            context: crate::sds::context(p, &self.row),
+            native: row.original().to_string(),
+        })
+    }
+}
+
+/// Removes the issues excluded in the project's desktop file (see [`crate::sds`]) and returns
+/// their number. Applies to the results of [`validate`] and of the screenshot check alike.
+pub fn remove_excluded(p: &Project, issues: &mut Vec<Issue>) -> usize {
+    let idx = crate::sds::Index::new(&p.desktop);
+    if idx.is_empty() {
+        return 0;
+    }
+    let before = issues.len();
+    issues.retain(|i| {
+        let native = p.row(&i.row).map(|r| r.original()).unwrap_or_default();
+        !idx.excludes(p, &i.row, i.scope(p), i.kind.class_name(), native)
+    });
+    before - issues.len()
 }
 
 #[derive(Debug, Clone)]
@@ -659,6 +734,60 @@ mod tests {
         let only_format = ValidateOptions { kinds: vec![ValidationKind::Format], ..Default::default() };
         assert!(validate(&p, &only_format, None).is_empty());
         assert_eq!(ValidationKind::from_keyword("control"), Some(ValidationKind::ControlCharacters));
+    }
+
+    /// `testdata/slp/Gettext`: in `l10n.sds` Sisulizer excluded the format check of `%d file[0]`
+    /// and of `%d result[0]` with the message context `android-app/search`.
+    #[test]
+    fn exclusions_of_the_sisulizer_desktop_file() {
+        let slp = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../testdata/slp/Gettext/l10n.slp");
+        let p = crate::slp::load(&slp).unwrap();
+        let format = |issues: &[Issue]| issues.iter().filter(|i| i.kind == ValidationKind::Format).map(|i| p.context(&i.row)).collect::<Vec<_>>();
+        let excluded = |c: &String| c.ends_with("/%d file[0]") || c.ends_with("/android-app/search|%d result[0]");
+        let mut issues = validate(&p, &ValidateOptions::default(), None);
+        let all = format(&issues);
+        for row in ["/%d file[0]", "/android-app/search|%d result[0]", "/web-app/search|%d result[0]"] {
+            assert!(all.iter().any(|c| c.ends_with(row)), "{row}: {all:?}");
+        }
+        let removed = remove_excluded(&p, &mut issues);
+        let kept = format(&issues);
+        // Excluded for every language; other plural forms and the same text in another context stay.
+        assert_eq!(removed, all.iter().filter(|c| excluded(c)).count());
+        assert!(!kept.iter().any(excluded), "{kept:?}");
+        assert!(kept.iter().any(|c| c.ends_with("/%d file[1]")), "{kept:?}");
+        assert!(kept.iter().any(|c| c.ends_with("/web-app/search|%d result[0]")), "{kept:?}");
+
+        // The exclusion Susi creates for an issue is the one Sisulizer wrote.
+        let i = validate(&p, &ValidateOptions::default(), None)
+            .into_iter()
+            .find(|i| i.kind == ValidationKind::Format && i.context.ends_with("/%d file[0]"))
+            .unwrap();
+        assert_eq!(i.exclusion(&p).as_ref(), p.desktop.exclusions().first());
+    }
+
+    #[test]
+    fn exclusions_by_scope_and_class() {
+        let mut p = project(CONTROL_ROWS);
+        let issues = validate(&p, &ValidateOptions::default(), None);
+        assert_eq!(issues.len(), 2);
+        // Excluding the original's issue keeps the translation's issue of the same check.
+        let e = issues[0].exclusion(&p).unwrap();
+        assert_eq!(
+            (e.scope, e.class.as_str(), e.context.as_str(), e.native.as_str()),
+            (Scope::Original, "TSusiControlCharactersValidation", "OPEN", "Open\u{7F}")
+        );
+        p.desktop.add(e);
+        let mut again = validate(&p, &ValidateOptions::default(), None);
+        assert_eq!(remove_excluded(&p, &mut again), 1);
+        assert_eq!(again.iter().map(|i| i.lang.as_str()).collect::<Vec<_>>(), ["de"]);
+        // A changed original is validated again.
+        p.row_mut(&issues[0].row).unwrap().native = Some("Open\u{7F}\u{7F}".into());
+        let mut changed = validate(&p, &ValidateOptions::default(), None);
+        assert_eq!(remove_excluded(&p, &mut changed), 0);
+
+        assert_eq!(class_label("TFormatValidation"), "Inconsistent format string");
+        assert_eq!(class_label("TSpellingValidation"), "Spelling");
+        assert!(ValidationKind::ALL.iter().all(|k| ValidationKind::from_class_name(k.class_name()) == Some(*k)));
     }
 
     #[test]
