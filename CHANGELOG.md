@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.17.0](https://github.com/mcpride/susi-the-cat/compare/v0.16.0...v0.17.0) (2026-11-25)
+
+### Features
+
+* exclude validation findings, compatible with Sisulizer (.sds) ([aa89a5a](https://github.com/mcpride/susi-the-cat/commit/aa89a5ae4f4686b0cfd9d7f53ede9bbb2896a9fb))
+
 ## [0.16.0](https://github.com/mcpride/susi-the-cat/compare/v0.15.1...v0.16.0) (2026-11-23)
 
 ### Features
