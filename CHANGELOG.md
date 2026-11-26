@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.18.1](https://github.com/mcpride/susi-the-cat/compare/v0.18.0...v0.18.1) (2026-11-26)
+
+### Bug Fixes
+
+* refactor validation rules ([04f7bd1](https://github.com/mcpride/susi-the-cat/commit/04f7bd153269d41859665537b005358ca340e6da))
+
 ## [0.18.0](https://github.com/mcpride/susi-the-cat/compare/v0.17.0...v0.18.0) (2026-11-26)
 
 ### Features
