@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.18.0](https://github.com/mcpride/susi-the-cat/compare/v0.17.0...v0.18.0) (2026-11-26)
+
+### Features
+
+* add project file monitoring (detect changes from outside) ([3a734c8](https://github.com/mcpride/susi-the-cat/commit/3a734c8e4b3abbf2715db8bd3b54b5a4e3e0f7f9))
+
 ## [0.17.0](https://github.com/mcpride/susi-the-cat/compare/v0.16.0...v0.17.0) (2026-11-25)
 
 ### Features
