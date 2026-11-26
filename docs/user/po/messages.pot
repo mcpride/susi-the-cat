@@ -3207,7 +3207,8 @@ msgstr ""
 
 #: src/options.md
 msgid ""
-"_Automatically save translated texts to the translation memory when saving_"
+"_Automatically save translated texts<br>to the translation memory when "
+"saving_"
 msgstr ""
 
 #: src/options.md
@@ -3218,8 +3219,8 @@ msgstr ""
 
 #: src/options.md
 msgid ""
-"_Show \"Context\" column_, _Show \"Row comment\" column_, _Show \"Translated "
-"on\" column_"
+"_Show \"Context\" column_,<br>_Show \"Row comment\" column_,<br>_Show "
+"\"Translated on\" column_"
 msgstr ""
 
 #: src/options.md

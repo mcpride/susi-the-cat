@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Susi the CAT – User guide\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-11-25 00:00+0100\n"
+"PO-Revision-Date: 2026-11-26 12:39+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -3206,8 +3206,9 @@ msgstr "_Automatisch (Systemsprache)_, _English_ oder _Deutsch_. Wirkt sofort."
 
 #: src/options.md
 msgid ""
-"_Automatically save translated texts to the translation memory when saving_"
-msgstr "_Übersetzte Texte beim Speichern automatisch ins Translation Memory übernehmen_"
+"_Automatically save translated texts<br>to the translation memory when "
+"saving_"
+msgstr "_Übersetzte Texte beim Speichern automatisch<br>ins Translation Memory übernehmen_"
 
 #: src/options.md
 msgid ""
@@ -3217,9 +3218,9 @@ msgstr "Übernimmt Ihre Übersetzungen bei jedem Speichern des Projekts in das T
 
 #: src/options.md
 msgid ""
-"_Show \"Context\" column_, _Show \"Row comment\" column_, _Show \"Translated "
-"on\" column_"
-msgstr "_Spalte „Kontext“ anzeigen_, _Spalte „Zeilenkommentar“ anzeigen_, _Spalte „Übersetzt am“ anzeigen_"
+"_Show \"Context\" column_,<br>_Show \"Row comment\" column_,<br>_Show "
+"\"Translated on\" column_"
+msgstr "_Spalte „Kontext“ anzeigen_,<br>_Spalte „Zeilenkommentar“ anzeigen_,<br> _Spalte „Übersetzt am“ anzeigen_"
 
 #: src/options.md
 msgid "The optional columns of the [translation sheet](sheet.md)."

@@ -186,6 +186,7 @@ fn build_help(out: &Path) -> Result {
         let title = title.replace("{version}", env!("CARGO_PKG_VERSION"));
         let site = format!("{HELP_SITE}{lang}/");
         let env = [("MDBOOK_BOOK__LANGUAGE", lang), ("MDBOOK_BOOK__TITLE", title.as_str()), ("MDBOOK_OUTPUT__HTML__SITE_URL", site.as_str())];
+        eprintln!("Building mdbook with the following environment: {env:?}");
         mdbook(&["build", "-d", &dir.to_string_lossy()], &env)?;
         eprintln!("{}", dir.display());
     }

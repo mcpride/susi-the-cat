@@ -12,6 +12,8 @@
       <excludedvalidations>
         <item class="TFormatValidation" context="%d file[0]" native="%d file"/>
         <item class="TFormatValidation" context="android-app/search|%d result[0]" native="%d result"/>
+        <item class="TFormatValidation" context="%d file[1]" native="%d files"/>
+        <item class="TFormatValidation" context="web-app/search|%d result[1]" native="%d results"/>
       </excludedvalidations>
     </translation>
   </validator>
