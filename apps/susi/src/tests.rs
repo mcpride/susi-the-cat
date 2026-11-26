@@ -636,3 +636,99 @@ fn custom_data_rows() {
     app.dialog = None;
     let _ = std::fs::remove_dir_all(&tmp);
 }
+
+/// The project file changed by another program (susi-cli, MCP, Sisulizer): the user is asked once
+/// per version and warned about unsaved changes; reloading keeps tree node and selected row. Own
+/// saves, a file rewritten with the same content and a vanished file do not ask.
+#[test]
+fn project_file_changed_by_another_program() {
+    use std::time::{Duration, Instant, SystemTime};
+    use susi_core::model::NodeRef;
+    use susi_core::status::TranslationStatus;
+
+    use crate::watch;
+    let tmp = std::env::temp_dir().join(format!("susi-gui-watch-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&tmp);
+    std::fs::create_dir_all(&tmp).unwrap();
+    let slp_path = tmp.join("demo.slp");
+    std::fs::copy(Path::new(env!("CARGO_MANIFEST_DIR")).join("../../testdata/projects/demo-ui/susi/demo.slp"), &slp_path).unwrap();
+    let ctx = egui::Context::default();
+    let mut app = app_with_fixture(&ctx, &tmp, "en");
+    // Set after set_project, which records recent files in the user's settings.
+    app.project.as_mut().unwrap().path = Some(slp_path.clone());
+    run(&ctx, &mut app, 2);
+    assert!(app.dialog.is_none(), "unchanged file reported");
+
+    let row = app.rows[0].clone();
+    let p = app.project.as_ref().unwrap();
+    let lang = p.language_ids().into_iter().find(|l| l != p.original_lang(&row)).unwrap();
+    let source = NodeRef { source: row.source, path: Vec::new() };
+    app.select(row.clone());
+    app.tree = Some(source.clone());
+    let text = |app: &SusiApp| app.project.as_ref().unwrap().row(&row).unwrap().text(&lang).map(str::to_string);
+    let external = |s: &str| {
+        let mut p = slp::load(&slp_path).unwrap();
+        p.row_mut(&row).unwrap().set_translation(&lang, s, TranslationStatus::Translated);
+        slp::save(&mut p, &slp_path).unwrap();
+    };
+
+    // The background thread notices the change and wakes the UI.
+    external("Extern 1");
+    let start = Instant::now();
+    while app.dialog.is_none() && start.elapsed() < Duration::from_secs(10) {
+        std::thread::sleep(Duration::from_millis(10));
+        run(&ctx, &mut app, 1);
+    }
+    assert!(matches!(app.dialog, Some(Dialog::Reload)), "change not detected");
+    assert!(!app.has_unsaved_changes());
+    run(&ctx, &mut app, 1);
+    app.dialog = None;
+    app.reload();
+    assert_eq!(text(&app).as_deref(), Some("Extern 1"));
+    assert!(!app.dirty);
+    assert_eq!(app.selected.as_ref(), Some(&row));
+    assert_eq!(app.tree.as_ref(), Some(&source));
+    assert!(app.log.iter().any(|l| l.message.starts_with("Project reloaded:")));
+
+    // An open cell edit with a changed text counts as unsaved.
+    app.start_cell_edit(row.clone(), lang.clone());
+    assert!(!app.has_unsaved_changes());
+    app.cell_edit.as_mut().unwrap().text.push('!');
+    assert!(app.has_unsaved_changes());
+    app.cell_edit = None;
+
+    // Unsaved changes: the dialog warns. "Don't reload" keeps them and is not asked again for this version.
+    app.write_translation(&row, &lang, "Mine");
+    external("Extern change 2");
+    watch::check(&mut app);
+    assert!(matches!(app.dialog, Some(Dialog::Reload)));
+    assert!(app.has_unsaved_changes());
+    run(&ctx, &mut app, 1);
+    app.dialog = None;
+    watch::check(&mut app);
+    assert!(app.dialog.is_none(), "asked twice for the same version");
+    assert_eq!(text(&app).as_deref(), Some("Mine"));
+    assert!(app.dirty);
+
+    // Own save, then the same content with another modification time: nothing to ask.
+    assert!(app.save());
+    watch::check(&mut app);
+    assert!(app.dialog.is_none(), "own save reported");
+    let file = std::fs::File::options().write(true).open(&slp_path).unwrap();
+    file.set_modified(SystemTime::UNIX_EPOCH + Duration::from_secs(1_000_000_000)).unwrap();
+    drop(file);
+    watch::check(&mut app);
+    assert!(app.dialog.is_none(), "touched file reported");
+
+    // A vanished file is reported once in the output; back with the same content, nothing to ask.
+    let saved = std::fs::read(&slp_path).unwrap();
+    std::fs::remove_file(&slp_path).unwrap();
+    watch::check(&mut app);
+    watch::check(&mut app);
+    assert_eq!(app.log.iter().filter(|l| l.message.starts_with("The project file no longer exists")).count(), 1);
+    std::fs::write(&slp_path, &saved).unwrap();
+    watch::check(&mut app);
+    assert!(app.dialog.is_none(), "restored file reported");
+    drop(app);
+    let _ = std::fs::remove_dir_all(&tmp);
+}

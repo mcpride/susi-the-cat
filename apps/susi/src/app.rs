@@ -5,6 +5,7 @@ use std::path::{Path, PathBuf};
 
 use susi_core::filter::{DateField, RowFilter, SearchIn, parse_date};
 use susi_core::i18n::{Lang, t, trn};
+use susi_core::keys::RowKeys;
 use susi_core::model::{NodeRef, Project, RowRef};
 use susi_core::settings::Settings;
 use susi_core::stats::Statistics;
@@ -323,6 +324,8 @@ pub struct SusiApp {
     pub panels: crate::window::PanelSizes,
     /// Part of the window under the mouse pointer: the context of `F1`.
     pub help_area: crate::help::Area,
+    /// Watch of the project file for changes made by other programs.
+    pub watch: crate::watch::FileWatch,
     title: String,
 }
 
@@ -377,6 +380,7 @@ impl SusiApp {
             fit_window: false,
             panels: Default::default(),
             help_area: Default::default(),
+            watch: Default::default(),
             title: String::new(),
         };
         app.apply_theme(ctx);
@@ -448,16 +452,22 @@ impl SusiApp {
         self.rebuild_shot_index();
     }
 
-    /// Replaces the current project (after loading or creating one).
+    /// Replaces the current project (after loading or creating one) and records it in the recent files.
     pub fn set_project(&mut self, p: Project) {
-        let langs = p.language_ids();
-        self.lang = self.lang.take().filter(|l| langs.contains(l)).or_else(|| langs.first().cloned());
         if let Some(path) = &p.path {
             self.settings.add_recent(path.clone());
             if let Err(e) = self.settings.save() {
                 self.warn(susi_core::tf!("Settings could not be saved: {error}", error = e));
             }
         }
+        self.replace_project(p);
+    }
+
+    /// Shows `p` instead of the current project and resets everything that belongs to the project.
+    fn replace_project(&mut self, p: Project) {
+        let langs = p.language_ids();
+        self.lang = self.lang.take().filter(|l| langs.contains(l)).or_else(|| langs.first().cloned());
+        self.watch.set_known(p.path.as_deref().and_then(crate::watch::Fingerprint::of));
         self.project = Some(p);
         self.dirty = false;
         self.tree = None;
@@ -487,6 +497,41 @@ impl SusiApp {
         }
     }
 
+    /// Loads the project file again after another program changed it; unsaved changes are lost.
+    /// Language, filter and sort stay, the tree node and the selected row if they still exist.
+    pub fn reload(&mut self) {
+        let Some(path) = self.path().map(Path::to_path_buf) else {
+            return;
+        };
+        let old = self.project.as_ref();
+        let tree = self.tree.clone().and_then(|n| old.and_then(|p| node_trail(p, &n)).map(|trail| (n, trail)));
+        let selected = self.selected.as_ref().zip(old).map(|(r, p)| (r.source, p.context(r)));
+        match slp::load(&path) {
+            Ok(p) => {
+                let rows = p.rows().len();
+                self.replace_project(p);
+                let Some(p) = self.project.as_ref() else {
+                    return;
+                };
+                self.tree = tree.filter(|(n, trail)| node_trail(p, n).as_ref() == Some(trail)).map(|(n, _)| n);
+                self.selected = selected.and_then(|(source, context)| RowKeys::new(p).find(&context, Some(source)).ok());
+                self.scroll_to_selected = self.selected.is_some();
+                self.info(susi_core::tf!("Project reloaded: {path} ({rows})", path = path.display(), rows = trn(rows, "{n} row", "{n} rows")));
+                crate::data_ui::refresh_linked(self);
+            }
+            Err(e) => self.error(format!("{}: {e}", path.display())),
+        }
+    }
+
+    /// Whether there are changes not saved yet, including an open cell edit.
+    pub fn has_unsaved_changes(&self) -> bool {
+        self.dirty
+            || self.cell_edit.as_ref().is_some_and(|e| {
+                let saved = self.project.as_ref().and_then(|p| p.row(&e.row)).and_then(|r| r.translation(&e.lang)).map_or("", |t| t.text.as_str());
+                saved != e.text
+            })
+    }
+
     /// Saves to the project's path. Returns `false` if the project has no path or saving failed.
     pub fn save(&mut self) -> bool {
         self.commit_cell_edit();
@@ -500,6 +545,7 @@ impl SusiApp {
         match slp::save(p, &path) {
             Ok(()) => {
                 self.dirty = false;
+                self.watch.set_known(crate::watch::Fingerprint::of(&path));
                 self.info(susi_core::tf!("Project saved: {path}", path = path.display()));
                 match self.shots.as_mut().map(susi_core::screenshots::ScreenshotStore::save) {
                     Some(Err(e)) => self.error(susi_core::tf!("Screenshots: {error}", error = e)),
@@ -756,6 +802,16 @@ impl SusiApp {
     }
 }
 
+/// Names of the source and nodes along `n`; `None` if it does not exist. Tells whether a node
+/// reference still means the same node after the project was reloaded.
+fn node_trail(p: &Project, n: &NodeRef) -> Option<Vec<String>> {
+    let mut trail = vec![p.sources.get(n.source)?.name().to_string()];
+    for depth in 1..=n.path.len() {
+        trail.push(p.node(&NodeRef { source: n.source, path: n.path[..depth].to_vec() })?.name().to_string());
+    }
+    Some(trail)
+}
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Nav {
     First,
@@ -794,6 +850,7 @@ impl SusiApp {
         self.handle_shortcuts(&ctx);
         crate::shots::handle_input(self, &ctx);
         crate::workflow_ui::poll(self, &ctx);
+        crate::watch::poll(self, &ctx);
         if self.rows_stale {
             self.refresh_rows();
         }

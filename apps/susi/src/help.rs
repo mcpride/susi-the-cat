@@ -71,7 +71,7 @@ pub fn topic(app: &SusiApp) -> &'static str {
 
 fn dialog_topic(d: &Dialog) -> &'static str {
     match d {
-        Dialog::Confirm { .. } => "projects",
+        Dialog::Confirm { .. } | Dialog::Reload => "projects",
         Dialog::Languages { .. } => "languages",
         Dialog::AddSource { .. } | Dialog::SourceProps(_) | Dialog::RemoveSource(_) => "sources",
         Dialog::RowProps(_) => "translating",

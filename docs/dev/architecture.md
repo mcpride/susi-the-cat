@@ -345,6 +345,7 @@ lives in one struct, `SusiApp` (`app.rs`); the UI is re-rendered from that state
 | `workflow_ui.rs` | Git workflow state display, background jobs and the workflow dialogs           |
 | `shots.rs`       | Screenshots: bottom tab with marked areas, paste and drag & drop, screenshot manager |
 | `data_ui.rs`     | Pictures and binary data: editor tab with previews or hex dump, load/link/save files, cell texts |
+| `watch.rs`       | Watch of the open `.slp`: a background thread polls modification time and size, the UI compares content hashes and asks to reload (*Project changed*) |
 | `tests.rs`       | Headless rendering tests against real projects                                   |
 
 ### 4.1 Frame loop and action queue
@@ -366,7 +367,8 @@ flowchart TD
     lang --> close["handle_close_request<br/>unsaved-changes guard"]
     close --> keys["handle_shortcuts<br/>push Actions"]
     keys --> poll["workflow_ui::poll<br/>collect finished git job"]
-    poll --> stale{"rows_stale?"}
+    poll --> watch["watch::poll<br/>project file changed by another program?"]
+    watch --> stale{"rows_stale?"}
     stale -- yes --> refresh["refresh_rows<br/>apply RowFilter and sort"]
     stale -- no --> panels
     refresh --> panels["panels::show<br/>menu, toolbar, tree, grid, filter, bottom, status bar"]
@@ -655,7 +657,7 @@ Compatibility with existing Sisulizer projects is the central constraint:
 
 | Front end | Model                                                                                     |
 |-----------|-------------------------------------------------------------------------------------------|
-| GUI       | Single UI thread; at most one git worker thread, results returned through an `mpsc` channel |
+| GUI       | Single UI thread; at most one git worker thread, results returned through an `mpsc` channel; one thread polling the project file, which only wakes the UI (`request_repaint`) |
 | CLI       | Sequential tasks on the main thread                                                       |
 | MCP       | Multi-threaded tokio runtime; tool calls serialized by `Arc<Mutex<Session>>`              |
 

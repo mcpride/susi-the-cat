@@ -244,6 +244,13 @@ Operation follows Sisulizer:
 
 Unsaved changes are prompted for when closing, opening or creating a project.
 
+When another program changes the open `.slp` (Sisulizer working on it in parallel, `susi-cli`,
+an AI agent through `susi-cli mcp`, git), Susi notices it within about two seconds and asks
+whether to reload it: *Reload* keeps the language, filter, tree node and selected row; with
+unsaved changes it warns that they will be lost (*Discard changes and reload*). *Don't reload*
+keeps the open project until the file changes again. A file rewritten with the same content and
+Susi's own saves do not ask.
+
 ### Reviewing recent changes
 
 Like Sisulizer, Susi stores three timestamps (local time) in the `.slp` file:
