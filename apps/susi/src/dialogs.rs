@@ -107,6 +107,8 @@ pub enum Dialog {
     Confirm {
         then: Action,
     },
+    /// The project file was changed by another program: reload it?
+    Reload,
     Languages {
         add: String,
         remove: Option<String>,
@@ -152,6 +154,7 @@ pub fn show(app: &mut SusiApp, ctx: &egui::Context) {
         ui.set_min_width(460.0);
         close = match &mut d {
             Dialog::Confirm { then } => confirm(app, ui, then),
+            Dialog::Reload => reload(app, ui),
             Dialog::Languages { add, remove } => languages(app, ui, add, remove),
             Dialog::AddSource { files, original } => add_source(app, ui, files, original),
             Dialog::SourceProps(s) => source_props(app, ui, s),
@@ -222,6 +225,35 @@ fn confirm(app: &mut SusiApp, ui: &mut egui::Ui, then: &Action) -> bool {
             return true;
         }
         ui.button(t("Cancel")).clicked()
+    })
+    .inner
+}
+
+/// The project file was changed by another program (Sisulizer, susi-cli, an AI agent, git).
+/// Closing the dialog keeps the open project; it is asked again when the file changes again.
+fn reload(app: &mut SusiApp, ui: &mut egui::Ui) -> bool {
+    let Some(path) = app.path().map(std::path::Path::to_path_buf) else {
+        return true;
+    };
+    let unsaved = app.has_unsaved_changes();
+    ui.heading(t("Project changed"));
+    ui.label(susi_core::tf!("The project file {path} has been changed by another program. Do you want to reload it?", path = path.display()));
+    if unsaved {
+        ui.colored_label(ui.visuals().error_fg_color, t("The project has unsaved changes. They will be lost when it is reloaded."));
+    }
+    let backup = path.with_extension("~slp");
+    let backup = backup.file_name().map(|n| n.to_string_lossy()).unwrap_or_default();
+    ui.small(susi_core::tf!(
+        "If the open version is kept, saving it overwrites the changes made by the other program (the replaced file is kept as {backup}).",
+        backup = backup
+    ));
+    ui.separator();
+    ui.horizontal(|ui| {
+        if ui.button(if unsaved { t("Discard changes and reload") } else { t("Reload") }).clicked() {
+            app.reload();
+            return true;
+        }
+        ui.button(t("Don't reload")).clicked()
     })
     .inner
 }

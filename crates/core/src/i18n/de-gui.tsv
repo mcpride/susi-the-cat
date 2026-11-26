@@ -10,6 +10,9 @@
 	Susi the CAT {version} started	Susi the CAT {version} gestartet
 	Settings could not be saved: {error}	Einstellungen konnten nicht gespeichert werden: {error}
 	Project opened: {path} ({rows})	Projekt geöffnet: {path} ({rows})
+	Project reloaded: {path} ({rows})	Projekt neu geladen: {path} ({rows})
+	The project file was changed by another program: {path}	Die Projektdatei wurde von einem anderen Programm geändert: {path}
+	The project file no longer exists: {path}	Die Projektdatei existiert nicht mehr: {path}
 @plural	{n} row|{n} rows	{n} Zeile|{n} Zeilen
 	Susi/Sisulizer project	Susi/Sisulizer-Projekt
 	Save project as	Projekt speichern unter
@@ -169,6 +172,13 @@
 	Unsaved changes	Ungespeicherte Änderungen
 	The project has been modified. Do you want to save the changes?	Das Projekt wurde geändert. Sollen die Änderungen gespeichert werden?
 	Don't save	Nicht speichern
+	Project changed	Projekt geändert
+	The project file {path} has been changed by another program. Do you want to reload it?	Die Projektdatei {path} wurde von einem anderen Programm geändert. Soll sie neu geladen werden?
+	The project has unsaved changes. They will be lost when it is reloaded.	Das Projekt enthält ungespeicherte Änderungen. Sie gehen beim Neuladen verloren.
+	If the open version is kept, saving it overwrites the changes made by the other program (the replaced file is kept as {backup}).	Wird die geöffnete Version behalten, überschreibt das Speichern die Änderungen des anderen Programms (die ersetzte Datei bleibt als {backup} erhalten).
+	Reload	Neu laden
+	Discard changes and reload	Änderungen verwerfen und neu laden
+	Don't reload	Nicht neu laden
 	Languages	Sprachen
 	Original language(s): {langs}	Originalsprache(n): {langs}
 	ID	Kennung

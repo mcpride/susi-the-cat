@@ -2329,6 +2329,36 @@ msgid ""
 msgstr ""
 
 #: src/projects.md
+msgid "Changes made by other programs"
+msgstr ""
+
+#: src/projects.md
+msgid ""
+"Susi notices when another program changes the open project file, for example "
+"Sisulizer, the command line program `susi-cli` or an AI agent. Susi then "
+"asks _Project changed_:"
+msgstr ""
+
+#: src/projects.md
+msgid ""
+"_Reload_ loads the changed project. The language, the filter, the node in "
+"the project tree and the selected row stay as they are."
+msgstr ""
+
+#: src/projects.md
+msgid ""
+"_Don't reload_ keeps the open project. Susi asks again only when the file "
+"changes once more. If you save the project, you overwrite the changes of the "
+"other program; the replaced file is kept as `<name>.~slp`."
+msgstr ""
+
+#: src/projects.md
+msgid ""
+"If the project has unsaved changes, Susi warns that they will be lost. The "
+"button then reads _Discard changes and reload_."
+msgstr ""
+
+#: src/projects.md
 msgid "Projects of Sisulizer"
 msgstr ""
 

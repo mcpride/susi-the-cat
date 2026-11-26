@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<document created="20261123194613" version="4.0.374" date="20261126124054" scan="3" scanned="20261126123725">
+<document created="20261123194613" version="4.0.374" date="20261126133117" scan="4" scanned="20261126133037">
   <lang id="en"/>
   <lang id="de"/>
-  <source class="TPoSource" name="po\messages.pot" original="en" date="20261126123611" compile="0">
+  <source class="TPoSource" name="po\messages.pot" original="en" date="20261126133034" compile="0">
     <outputfile dir="." localized="&lt;iso&gt;.po"/>
     <node class="TPoNode" name="messages.pot" state="0" created="20261123194613">
       <row id="##Last-Translator" created="20261123194613">
@@ -1906,6 +1906,26 @@
       <row id="The status bar shows _Modified_ while there are unsaved changes. When you close Susi, open or create another project, Susi asks whether to save them: _Save_, _Don't save_ or _Cancel_." created="20261123194613" note="src/projects.md" notereadonly="1">
         <native>The status bar shows _Modified_ while there are unsaved changes. When you close Susi, open or create another project, Susi asks whether to save them: _Save_, _Don't save_ or _Cancel_.</native>
         <lang id="de" date="20261123194651" status="3">Die Statusleiste zeigt _Geändert_, solange es ungespeicherte Änderungen gibt. Wenn Sie Susi schließen oder ein anderes Projekt öffnen oder anlegen, fragt Susi, ob sie gespeichert werden sollen: _Speichern_, _Nicht speichern_ oder _Abbrechen_.</lang>
+      </row>
+      <row id="Changes made by other programs" state="0" created="20261126133037" note="src/projects.md" notereadonly="1">
+        <native>Changes made by other programs</native>
+        <lang id="de" date="20261126133117" status="3">Änderungen durch andere Programme</lang>
+      </row>
+      <row id="Susi notices when another program changes the open project file, for example Sisulizer, the command line program `susi-cli` or an AI agent. Susi then asks _Project changed_:" state="0" created="20261126133037" note="src/projects.md" notereadonly="1">
+        <native>Susi notices when another program changes the open project file, for example Sisulizer, the command line program `susi-cli` or an AI agent. Susi then asks _Project changed_:</native>
+        <lang id="de" date="20261126133117" status="3">Susi bemerkt, wenn ein anderes Programm die geöffnete Projektdatei ändert, zum Beispiel Sisulizer, das Kommandozeilenprogramm `susi-cli` oder ein KI-Agent. Susi fragt dann _Projekt geändert_:</lang>
+      </row>
+      <row id="_Reload_ loads the changed project. The language, the filter, the node in the project tree and the selected row stay as they are." state="0" created="20261126133037" note="src/projects.md" notereadonly="1">
+        <native>_Reload_ loads the changed project. The language, the filter, the node in the project tree and the selected row stay as they are.</native>
+        <lang id="de" date="20261126133117" status="3">_Neu laden_ lädt das geänderte Projekt. Die Sprache, der Filter, der Knoten im Projektbaum und die ausgewählte Zeile bleiben erhalten.</lang>
+      </row>
+      <row id="_Don't reload_ keeps the open project. Susi asks again only when the file changes once more. If you save the project, you overwrite the changes of the other program; the replaced file is kept as `&lt;name&gt;.~slp`." state="0" created="20261126133037" note="src/projects.md" notereadonly="1">
+        <native>_Don't reload_ keeps the open project. Susi asks again only when the file changes once more. If you save the project, you overwrite the changes of the other program; the replaced file is kept as `&lt;name&gt;.~slp`.</native>
+        <lang id="de" date="20261126133117" status="3">_Nicht neu laden_ behält das geöffnete Projekt. Susi fragt erst wieder, wenn sich die Datei erneut ändert. Wenn Sie das Projekt speichern, überschreiben Sie die Änderungen des anderen Programms; die ersetzte Datei bleibt als `&lt;Name&gt;.~slp` erhalten.</lang>
+      </row>
+      <row id="If the project has unsaved changes, Susi warns that they will be lost. The button then reads _Discard changes and reload_." state="0" created="20261126133037" note="src/projects.md" notereadonly="1">
+        <native>If the project has unsaved changes, Susi warns that they will be lost. The button then reads _Discard changes and reload_.</native>
+        <lang id="de" date="20261126133117" status="3">Hat das Projekt ungespeicherte Änderungen, warnt Susi, dass sie verloren gehen. Die Schaltfläche heißt dann _Änderungen verwerfen und neu laden_.</lang>
       </row>
       <row id="Projects of Sisulizer" created="20261123194613" note="src/projects.md" notereadonly="1">
         <native>Projects of Sisulizer</native>

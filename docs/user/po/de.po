@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Susi the CAT – User guide\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-11-26 12:39+0100\n"
+"PO-Revision-Date: 2026-11-26 13:31+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -2326,6 +2326,36 @@ msgid ""
 "close Susi, open or create another project, Susi asks whether to save them: "
 "_Save_, _Don't save_ or _Cancel_."
 msgstr "Die Statusleiste zeigt _Geändert_, solange es ungespeicherte Änderungen gibt. Wenn Sie Susi schließen oder ein anderes Projekt öffnen oder anlegen, fragt Susi, ob sie gespeichert werden sollen: _Speichern_, _Nicht speichern_ oder _Abbrechen_."
+
+#: src/projects.md
+msgid "Changes made by other programs"
+msgstr "Änderungen durch andere Programme"
+
+#: src/projects.md
+msgid ""
+"Susi notices when another program changes the open project file, for example "
+"Sisulizer, the command line program `susi-cli` or an AI agent. Susi then "
+"asks _Project changed_:"
+msgstr "Susi bemerkt, wenn ein anderes Programm die geöffnete Projektdatei ändert, zum Beispiel Sisulizer, das Kommandozeilenprogramm `susi-cli` oder ein KI-Agent. Susi fragt dann _Projekt geändert_:"
+
+#: src/projects.md
+msgid ""
+"_Reload_ loads the changed project. The language, the filter, the node in "
+"the project tree and the selected row stay as they are."
+msgstr "_Neu laden_ lädt das geänderte Projekt. Die Sprache, der Filter, der Knoten im Projektbaum und die ausgewählte Zeile bleiben erhalten."
+
+#: src/projects.md
+msgid ""
+"_Don't reload_ keeps the open project. Susi asks again only when the file "
+"changes once more. If you save the project, you overwrite the changes of the "
+"other program; the replaced file is kept as `<name>.~slp`."
+msgstr "_Nicht neu laden_ behält das geöffnete Projekt. Susi fragt erst wieder, wenn sich die Datei erneut ändert. Wenn Sie das Projekt speichern, überschreiben Sie die Änderungen des anderen Programms; die ersetzte Datei bleibt als `<Name>.~slp` erhalten."
+
+#: src/projects.md
+msgid ""
+"If the project has unsaved changes, Susi warns that they will be lost. The "
+"button then reads _Discard changes and reload_."
+msgstr "Hat das Projekt ungespeicherte Änderungen, warnt Susi, dass sie verloren gehen. Die Schaltfläche heißt dann _Änderungen verwerfen und neu laden_."
 
 #: src/projects.md
 msgid "Projects of Sisulizer"

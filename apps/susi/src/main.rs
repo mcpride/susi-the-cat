@@ -14,6 +14,7 @@ mod panels;
 mod shots;
 #[cfg(test)]
 mod tests;
+mod watch;
 mod window;
 mod workflow_ui;
 

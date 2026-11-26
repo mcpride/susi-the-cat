@@ -27,6 +27,20 @@ The walk-through [Your first project](first-project.md) shows all steps.
 The status bar shows *Modified* while there are unsaved changes. When you close Susi, open or
 create another project, Susi asks whether to save them: *Save*, *Don't save* or *Cancel*.
 
+## Changes made by other programs
+
+Susi notices when another program changes the open project file, for example Sisulizer, the
+command line program `susi-cli` or an AI agent. Susi then asks *Project changed*:
+
+- *Reload* loads the changed project. The language, the filter, the node in the project tree and
+  the selected row stay as they are.
+- *Don't reload* keeps the open project. Susi asks again only when the file changes once more.
+  If you save the project, you overwrite the changes of the other program; the replaced file is
+  kept as `<name>.~slp`.
+
+If the project has unsaved changes, Susi warns that they will be lost. The button then reads
+*Discard changes and reload*.
+
 ## Projects of Sisulizer
 
 Susi keeps everything it does not know in a Sisulizer project when it saves it. Some kinds of
