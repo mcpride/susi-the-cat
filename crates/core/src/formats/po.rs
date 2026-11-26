@@ -596,6 +596,170 @@ pub fn plural_forms(lang: &str) -> (usize, &'static str) {
     }
 }
 
+/// Plural form that the gettext expression `expr` (C syntax: `n`, numbers, `?:`, `||`, `&&`,
+/// comparisons, `+ - * / %`, `!`, parentheses) selects for `n`; `None` if it is invalid.
+pub fn plural_index(expr: &str, n: u64) -> Option<usize> {
+    let mut e = PluralExpr { s: expr.as_bytes(), pos: 0, n: i64::try_from(n).ok()? };
+    let v = e.ternary()?;
+    e.skip_ws();
+    (e.pos == e.s.len()).then_some(())?;
+    usize::try_from(v).ok()
+}
+
+/// Rows of a plural message that cover a single number in `lang`, by row index. Row `i` holds
+/// plural form `i`, the last of `plural_rows` rows all remaining forms (as in the build). The
+/// translation of such a row may leave out the count, as `msgfmt --check-format` allows: Arabic
+/// `ملف واحد` (one file) for `%d file`, German `Eine Datei`.
+pub fn single_number_rows(lang: &str, plural_rows: usize) -> Vec<bool> {
+    /// Numbers tried: the rules of [`plural_forms`] repeat at the latest after 100.
+    const SAMPLE: u64 = 1000;
+    let (forms, expr) = plural_forms(lang);
+    let rows = plural_rows.clamp(1, PoOptions::MAX_PLURAL_ROWS);
+    let mut count = vec![0usize; rows];
+    for n in 0..=SAMPLE {
+        let form = plural_index(expr, n).unwrap_or(0).min(forms - 1);
+        count[form.min(rows - 1)] += 1;
+    }
+    count.into_iter().map(|c| c == 1).collect()
+}
+
+/// Recursive-descent evaluator of a gettext plural expression for one `n`.
+struct PluralExpr<'a> {
+    s: &'a [u8],
+    pos: usize,
+    n: i64,
+}
+
+impl PluralExpr<'_> {
+    fn skip_ws(&mut self) {
+        while self.s.get(self.pos).is_some_and(u8::is_ascii_whitespace) {
+            self.pos += 1;
+        }
+    }
+
+    /// Consumes `op`. Callers try longer operators first (`<=` before `<`).
+    fn eat(&mut self, op: &str) -> bool {
+        self.skip_ws();
+        let found = self.s[self.pos..].starts_with(op.as_bytes());
+        if found {
+            self.pos += op.len();
+        }
+        found
+    }
+
+    fn ternary(&mut self) -> Option<i64> {
+        let c = self.or()?;
+        if !self.eat("?") {
+            return Some(c);
+        }
+        let a = self.ternary()?;
+        self.eat(":").then_some(())?;
+        let b = self.ternary()?;
+        Some(if c != 0 { a } else { b })
+    }
+
+    fn or(&mut self) -> Option<i64> {
+        let mut v = self.and()?;
+        while self.eat("||") {
+            let r = self.and()?;
+            v = i64::from(v != 0 || r != 0);
+        }
+        Some(v)
+    }
+
+    fn and(&mut self) -> Option<i64> {
+        let mut v = self.equality()?;
+        while self.eat("&&") {
+            let r = self.equality()?;
+            v = i64::from(v != 0 && r != 0);
+        }
+        Some(v)
+    }
+
+    fn equality(&mut self) -> Option<i64> {
+        let mut v = self.relation()?;
+        loop {
+            if self.eat("==") {
+                v = i64::from(v == self.relation()?);
+            } else if self.eat("!=") {
+                v = i64::from(v != self.relation()?);
+            } else {
+                return Some(v);
+            }
+        }
+    }
+
+    fn relation(&mut self) -> Option<i64> {
+        let mut v = self.sum()?;
+        loop {
+            if self.eat("<=") {
+                v = i64::from(v <= self.sum()?);
+            } else if self.eat(">=") {
+                v = i64::from(v >= self.sum()?);
+            } else if self.eat("<") {
+                v = i64::from(v < self.sum()?);
+            } else if self.eat(">") {
+                v = i64::from(v > self.sum()?);
+            } else {
+                return Some(v);
+            }
+        }
+    }
+
+    fn sum(&mut self) -> Option<i64> {
+        let mut v = self.product()?;
+        loop {
+            if self.eat("+") {
+                v = v.checked_add(self.product()?)?;
+            } else if self.eat("-") {
+                v = v.checked_sub(self.product()?)?;
+            } else {
+                return Some(v);
+            }
+        }
+    }
+
+    fn product(&mut self) -> Option<i64> {
+        let mut v = self.unary()?;
+        loop {
+            if self.eat("*") {
+                v = v.checked_mul(self.unary()?)?;
+            } else if self.eat("/") {
+                v = v.checked_div(self.unary()?)?;
+            } else if self.eat("%") {
+                v = v.checked_rem(self.unary()?)?;
+            } else {
+                return Some(v);
+            }
+        }
+    }
+
+    fn unary(&mut self) -> Option<i64> {
+        if self.eat("!") {
+            return Some(i64::from(self.unary()? == 0));
+        }
+        self.skip_ws();
+        match self.s.get(self.pos)? {
+            b'(' => {
+                self.pos += 1;
+                let v = self.ternary()?;
+                self.eat(")").then_some(v)
+            }
+            b'n' => {
+                self.pos += 1;
+                Some(self.n)
+            }
+            c if c.is_ascii_digit() => {
+                let len = self.s[self.pos..].iter().take_while(|c| c.is_ascii_digit()).count();
+                let v = std::str::from_utf8(&self.s[self.pos..self.pos + len]).ok()?.parse().ok()?;
+                self.pos += len;
+                Some(v)
+            }
+            _ => None,
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -711,5 +875,39 @@ mod tests {
         o.store(&mut a);
         assert_eq!(a.get("byteorder"), Some("boBigEndian"));
         assert_eq!(PoOptions::from_attrs(&a), o);
+    }
+
+    #[test]
+    fn plural_expressions() {
+        let forms = |lang: &str, ns: &[u64]| ns.iter().map(|n| plural_index(plural_forms(lang).1, *n).unwrap()).collect::<Vec<_>>();
+        assert_eq!(forms("de", &[0, 1, 2, 21]), [1, 0, 1, 1]);
+        assert_eq!(forms("fr", &[0, 1, 2]), [0, 0, 1]);
+        assert_eq!(forms("ru", &[1, 2, 5, 11, 21, 22, 111]), [0, 1, 2, 2, 0, 1, 2]);
+        assert_eq!(forms("ar", &[0, 1, 2, 3, 10, 11, 99, 100, 102, 103]), [0, 1, 2, 3, 3, 4, 4, 5, 5, 3]);
+        assert_eq!(forms("ja", &[0, 1, 7]), [0, 0, 0]);
+        // Every built-in rule is valid and stays within nplurals.
+        for lang in ["de", "fr", "is", "mk", "ru", "pl", "cs", "lt", "lv", "ro", "sl", "cy", "ga", "ar", "ja"] {
+            let (n, expr) = plural_forms(lang);
+            assert!((0..=200).all(|x| plural_index(expr, x).is_some_and(|f| f < n)), "{lang}: {expr}");
+        }
+        assert_eq!(plural_index("!(n<=1) + 2*(n>=10) - n/n", 12), Some(2));
+        assert_eq!(plural_index("n % 0", 1), None);
+        for invalid in ["", "n ==", "(n", "n ? 1", "x", "n 1"] {
+            assert_eq!(plural_index(invalid, 1), None, "{invalid}");
+        }
+    }
+
+    #[test]
+    fn rows_of_a_single_number() {
+        assert_eq!(single_number_rows("de", 3), [true, false, false]);
+        assert_eq!(single_number_rows("fr", 2), [false, false]);
+        assert_eq!(single_number_rows("ja", 3), [false, false, false]);
+        assert_eq!(single_number_rows("cs", 3), [true, false, false]);
+        // Arabic: zero, one and two; the last row also holds the remaining forms.
+        assert_eq!(single_number_rows("ar", 6), [true, true, true, false, false, false]);
+        assert_eq!(single_number_rows("ar", 3), [true, true, false]);
+        assert_eq!(single_number_rows("ar", 1), [false]);
+        // Slovenian form 0 is 1, 101, 201, …
+        assert_eq!(single_number_rows("sl", 4), [false; 4]);
     }
 }

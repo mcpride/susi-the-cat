@@ -283,9 +283,19 @@ pub fn placeholders(s: &str) -> Vec<String> {
     out
 }
 
-/// Markup tags (`<b>`, `</b>`, `<br/>`) sorted.
-pub fn tags(s: &str) -> Vec<String> {
-    let mut out = Vec::new();
+/// A tag found by [`scan_tags`].
+struct Tag {
+    /// Normalized: `<b>`, `</b>`.
+    text: String,
+    /// A placeholder in angle brackets rather than markup, see [`tag_signature`].
+    placeholder: bool,
+}
+
+/// Elements that are markup without closing tag or attributes, as in `Line<br>break`.
+const VOID_TAGS: [&str; 3] = ["br", "hr", "wbr"];
+
+fn scan_tags(s: &str) -> Vec<Tag> {
+    let mut found = Vec::new();
     let mut rest = s;
     while let Some(a) = rest.find('<') {
         let after = &rest[a + 1..];
@@ -295,13 +305,44 @@ pub fn tags(s: &str) -> Vec<String> {
         let inner = &after[..e];
         let name: String = inner.trim_start_matches('/').chars().take_while(|c| c.is_ascii_alphanumeric()).collect();
         if !name.is_empty() && !inner.contains('<') {
-            let closing = if inner.starts_with('/') { "/" } else { "" };
-            out.push(format!("<{closing}{}>", name.to_ascii_lowercase()));
+            let closing = inner.starts_with('/');
+            // `<name>` alone: no attributes, no namespace, not self-closing.
+            let bare = !closing && inner == name;
+            found.push((closing, bare, name.to_ascii_lowercase()));
         }
         rest = &after[e + 1..];
     }
+    let closed: HashSet<String> = found.iter().filter(|(closing, ..)| *closing).map(|(.., name)| name.clone()).collect();
+    found
+        .into_iter()
+        .map(|(closing, bare, name)| Tag {
+            text: format!("<{}{name}>", if closing { "/" } else { "" }),
+            placeholder: bare && !closed.contains(&name) && !VOID_TAGS.contains(&name.as_str()),
+        })
+        .collect()
+}
+
+/// Markup tags (`<b>`, `</b>`, `<br/>`) sorted.
+pub fn tags(s: &str) -> Vec<String> {
+    let mut out: Vec<String> = scan_tags(s).into_iter().map(|t| t.text).collect();
     out.sort();
     out
+}
+
+/// The tags compared by the tag check. A `<name>` without attributes and without `</name>` in the
+/// same text (except `<br>`, `<hr>`, `<wbr>`) is a placeholder in angle brackets, as in
+/// `<project>.files` or `name.<language>.xlf`: its name may be translated, so only the number of
+/// such placeholders counts.
+fn tag_signature(s: &str) -> Vec<String> {
+    let mut out: Vec<String> = scan_tags(s).into_iter().map(|t| if t.placeholder { "<…>".into() } else { t.text }).collect();
+    out.sort();
+    out
+}
+
+/// Whether the placeholders `tr` are those of `orig` with some left out (both sorted).
+fn leaves_out(orig: &[String], tr: &[String]) -> bool {
+    let mut rest = orig.iter();
+    tr.iter().all(|t| rest.any(|o| o == t))
 }
 
 fn lead_trail(s: &str) -> (usize, usize) {
@@ -374,8 +415,9 @@ fn ends_with_any(s: &str, set: &[char]) -> bool {
     s.trim_end().chars().last().is_some_and(|c| set.contains(&c))
 }
 
-/// Checks a translation into `lang` against its original.
-fn check_pair(orig: &str, tr: &str, lang: &str, max_chars: usize, kinds: &[ValidationKind]) -> Vec<(ValidationKind, String)> {
+/// Checks a translation into `lang` against its original. `single_number`: the row is the plural
+/// form of a single number, its translation may leave out placeholders (the count).
+fn check_pair(orig: &str, tr: &str, lang: &str, max_chars: usize, single_number: bool, kinds: &[ValidationKind]) -> Vec<(ValidationKind, String)> {
     let mut out = Vec::new();
     let on = |k: ValidationKind| kinds.contains(&k);
     if on(ValidationKind::AllSpaces) && tr.trim().is_empty() && !orig.trim().is_empty() {
@@ -390,7 +432,7 @@ fn check_pair(orig: &str, tr: &str, lang: &str, max_chars: usize, kinds: &[Valid
             Some((_, Err(_))) => None,
             None => Some((placeholders(orig), placeholders(tr))),
         };
-        if let Some((a, b)) = pair.filter(|(a, b)| a != b) {
+        if let Some((a, b)) = pair.filter(|(a, b)| a != b && !(single_number && leaves_out(a, b))) {
             out.push((
                 ValidationKind::Format,
                 crate::tf!("Placeholders in the original {a}, in the translation {b}.", a = format!("{a:?}"), b = format!("{b:?}")),
@@ -416,11 +458,9 @@ fn check_pair(orig: &str, tr: &str, lang: &str, max_chars: usize, kinds: &[Valid
         }
         _ => {}
     }
-    if on(ValidationKind::Tags) {
+    if on(ValidationKind::Tags) && tag_signature(orig) != tag_signature(tr) {
         let (a, b) = (tags(orig), tags(tr));
-        if a != b {
-            out.push((ValidationKind::Tags, crate::tf!("Tags in the original {a}, in the translation {b}.", a = format!("{a:?}"), b = format!("{b:?}"))));
-        }
+        out.push((ValidationKind::Tags, crate::tf!("Tags in the original {a}, in the translation {b}.", a = format!("{a:?}"), b = format!("{b:?}"))));
     }
     if on(ValidationKind::WhiteSpace) {
         let (a, b) = (lead_trail(orig), lead_trail(tr));
@@ -474,8 +514,11 @@ pub fn validate(p: &Project, opts: &ValidateOptions, rows: Option<&[RowRef]>) ->
     let langs = if opts.langs.is_empty() { p.language_ids() } else { opts.langs.clone() };
     let refs = rows.map(<[RowRef]>::to_vec).unwrap_or_else(|| p.rows());
     let mut issues = Vec::new();
-    // (lang, original) → translations seen, for duplicate translation detection
-    let mut seen: HashMap<(String, String), BTreeMap<String, RowRef>> = HashMap::new();
+    // (lang, original, plural form) → translations seen, for duplicate translation detection: the
+    // plural forms of `%d files` (Polish `%d pliki`, `%d plików`) are no duplicates.
+    let mut seen: HashMap<(String, String, Option<usize>), BTreeMap<String, RowRef>> = HashMap::new();
+    // (lang, rows per plural message) → rows of a single number
+    let mut single_rows: HashMap<(String, usize), Vec<bool>> = HashMap::new();
     for r in &refs {
         let Some(row) = p.row(r) else {
             continue;
@@ -515,27 +558,30 @@ pub fn validate(p: &Project, opts: &ValidateOptions, rows: Option<&[RowRef]>) ->
         {
             push(&mut issues, orig_lang, ValidationKind::IcuSyntax, crate::tf!("ICU syntax error in the original: {error}.", error = e));
         }
+        let plural = po_plural_row(p, r, row.id());
         for l in langs.iter().filter(|l| l.as_str() != orig_lang) {
             if p.languages.iter().any(|x| x.id() == l && x.is_pseudo()) {
                 continue;
             }
+            let single_number =
+                plural.is_some_and(|(i, rows)| single_rows.entry((l.clone(), rows)).or_insert_with(|| crate::formats::po::single_number_rows(l, rows))[i]);
             let Some(tr) = row.text(l).filter(|_| row.tstatus(l) != TranslationStatus::NotTranslated) else {
                 if kinds.contains(&ValidationKind::MissingTranslation) {
                     push(&mut issues, l, ValidationKind::MissingTranslation, t("Not translated.").into());
                 }
                 continue;
             };
-            for (k, m) in check_pair(row.original(), tr, l, row.max_chars(), &kinds) {
+            for (k, m) in check_pair(row.original(), tr, l, row.max_chars(), single_number, &kinds) {
                 push(&mut issues, l, k, m);
             }
             if kinds.contains(&ValidationKind::DuplicateTranslation) {
-                seen.entry((l.clone(), row.original().to_string())).or_default().entry(tr.to_string()).or_insert_with(|| r.clone());
+                seen.entry((l.clone(), row.original().to_string(), plural.map(|(i, _)| i))).or_default().entry(tr.to_string()).or_insert_with(|| r.clone());
             }
         }
     }
     let mut dups: Vec<_> = seen.into_iter().filter(|(_, v)| v.len() > 1).collect();
     dups.sort_by(|a, b| a.0.cmp(&b.0));
-    for ((lang, original), variants) in dups {
+    for ((lang, original, _), variants) in dups {
         let list: Vec<&String> = variants.keys().collect();
         for r in variants.values() {
             issues.push(Issue {
@@ -550,6 +596,14 @@ pub fn validate(p: &Project, opts: &ValidateOptions, rows: Option<&[RowRef]>) ->
         }
     }
     issues
+}
+
+/// Plural form row `msgid[i]` of a PO source: `(i, rows per plural message)`.
+fn po_plural_row(p: &Project, r: &RowRef, id: &str) -> Option<(usize, usize)> {
+    let src = p.sources.get(r.source).filter(|s| s.kind() == crate::model::SourceKind::Po)?;
+    let rows = src.po_options().plural_rows;
+    let i: usize = id.strip_suffix(']')?.rsplit_once('[')?.1.parse().ok()?;
+    (i < rows).then_some((i, rows))
 }
 
 /// JUnit XML report of `issues` (e.g. for GitLab CI unit test reports): one failed test case per
@@ -656,7 +710,7 @@ mod tests {
     #[test]
     fn pair_checks() {
         let all = ValidateOptions::default().kinds;
-        let k = |o: &str, t: &str| check_pair(o, t, "de", 0, &all).into_iter().map(|x| x.0).collect::<Vec<_>>();
+        let k = |o: &str, t: &str| check_pair(o, t, "de", 0, false, &all).into_iter().map(|x| x.0).collect::<Vec<_>>();
         assert!(k("Hello {0}.", "Hallo {0}.").is_empty());
         assert_eq!(k("Hello {0}", "Hallo"), vec![ValidationKind::Format]);
         assert_eq!(k(" Name:", "Name:"), vec![ValidationKind::WhiteSpace]);
@@ -664,14 +718,48 @@ mod tests {
         assert_eq!(k("a\nb", "ab"), vec![ValidationKind::NewLine]);
         assert_eq!(k("<b>x</b>", "x"), vec![ValidationKind::Tags]);
         assert_eq!(k("&File", "Datei"), vec![ValidationKind::HotkeyCount]);
-        assert_eq!(check_pair("abc", "abcd", "de", 3, &all)[0].0, ValidationKind::CharacterLength);
+        assert_eq!(check_pair("abc", "abcd", "de", 3, false, &all)[0].0, ValidationKind::CharacterLength);
         assert_eq!(k("Save", "Speichern\u{7F}"), vec![ValidationKind::ControlCharacters]);
+    }
+
+    #[test]
+    fn placeholders_in_angle_brackets() {
+        let all = ValidateOptions::default().kinds;
+        let k = |o: &str, t: &str| check_pair(o, t, "de", 0, false, &all).into_iter().map(|x| x.0).collect::<Vec<_>>();
+        // A lone `<name>` may be translated, but not left out or doubled.
+        assert!(k("Stored in <project>.files", "Gespeichert in <projekt>.files").is_empty());
+        assert!(k("One file per language (name.<language>.xlf)", "Eine Datei je Sprache (name.<sprache>.xlf)").is_empty());
+        assert_eq!(k("Stored in <project>.files", "Gespeichert in .files"), vec![ValidationKind::Tags]);
+        assert_eq!(k("<a> to <b>", "<a> bis"), vec![ValidationKind::Tags]);
+        // Markup: a closed element, attributes, a namespace, self-closing and void elements.
+        assert_eq!(k("<b>bold</b>", "<fett>fett</b>"), vec![ValidationKind::Tags]);
+        assert_eq!(k("<b>bold</b>", "<b>fett"), vec![ValidationKind::Tags]);
+        assert_eq!(k("<a href=\"x\">link</a>", "<link>Link</a>"), vec![ValidationKind::Tags]);
+        assert_eq!(k("<xliff:g>%s</xliff:g>", "<g>%s</xliff:g>"), vec![ValidationKind::Tags]);
+        assert_eq!(k("Line<br/>break", "Zeilen<umbruch>"), vec![ValidationKind::Tags]);
+        assert_eq!(k("Line<br>break", "Zeilen<umbruch>"), vec![ValidationKind::Tags]);
+        assert_eq!(tags("<b>x</b> <project> <br>"), ["</b>", "<b>", "<br>", "<project>"]);
+        let e = check_pair("Stored in <project>.files", "Gespeichert in .files", "de", 0, false, &all);
+        assert!(e[0].1.contains("[\"<project>\"]"), "{}", e[0].1);
+    }
+
+    #[test]
+    fn plural_forms_of_a_single_number() {
+        let all = ValidateOptions::default().kinds;
+        let k = |o: &str, t: &str, single: bool| check_pair(o, t, "ar", 0, single, &all).into_iter().map(|x| x.0).collect::<Vec<_>>();
+        // The count may be left out where the form covers one number only …
+        assert!(k("%d file", "ملف واحد", true).is_empty());
+        assert!(k("%1$s has %2$d files", "%1$s لديه ملفان", true).is_empty());
+        // … but nothing may be added or changed.
+        assert_eq!(k("%d file", "%s ملف", true), vec![ValidationKind::Format]);
+        assert_eq!(k("%d file", "%d %d ملف", true), vec![ValidationKind::Format]);
+        assert_eq!(k("%d files", "ملفات", false), vec![ValidationKind::Format]);
     }
 
     #[test]
     fn icu_messages() {
         let all = ValidateOptions::default().kinds;
-        let check = |o: &str, t: &str, lang: &str| check_pair(o, t, lang, 0, &all);
+        let check = |o: &str, t: &str, lang: &str| check_pair(o, t, lang, 0, false, &all);
         let kinds = |o: &str, t: &str, lang: &str| check(o, t, lang).into_iter().map(|x| x.0).collect::<Vec<_>>();
         let wombats = "{count, plural, =0{no wombats} one{1 wombat} other{{count} wombats}}";
         // Nested `{count}` is no i18next `{{…}}` placeholder: a correct translation passes.
@@ -736,12 +824,37 @@ mod tests {
         assert_eq!(ValidationKind::from_keyword("control"), Some(ValidationKind::ControlCharacters));
     }
 
+    /// `testdata/slp/Gettext` (6 rows per plural message): the Arabic translations leave out the
+    /// count `%d` for zero, one and two, as the plural forms allow; the Polish forms of `%d files`
+    /// differ (`%d pliki`, `%d plików`) and are no duplicate translations.
+    #[test]
+    fn plural_forms_of_the_gettext_project() {
+        let slp = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../testdata/slp/Gettext/l10n.slp");
+        let mut p = crate::slp::load(&slp).unwrap();
+        let issues = validate(&p, &ValidateOptions::default(), None);
+        assert!(issues.is_empty(), "{:?}", issues.iter().map(|i| (&i.lang, &i.context, i.kind)).collect::<Vec<_>>());
+        let only_format = ValidateOptions { kinds: vec![ValidationKind::Format], ..Default::default() };
+        // With 3 rows the last row also holds the forms of 3 and more: the count must stay.
+        let po = p.sources.iter_mut().find(|s| s.kind() == crate::model::SourceKind::Po).unwrap();
+        let three_rows = crate::formats::po::PoOptions { plural_rows: 3, ..po.po_options() };
+        po.set_po_options(&three_rows);
+        let r = p.find_row("%d file[2]").unwrap();
+        p.row_mut(&r).unwrap().set_translation("ar", "ملفات", TranslationStatus::Translated);
+        let issues = validate(&p, &only_format, None);
+        assert_eq!(issues.iter().map(|i| (i.lang.as_str(), i.context.as_str())).collect::<Vec<_>>(), [("ar", "messages.pot/%d file[2]")]);
+    }
+
     /// `testdata/slp/Gettext`: in `l10n.sds` Sisulizer excluded the format check of `%d file[0]`
-    /// and of `%d result[0]` with the message context `android-app/search`.
+    /// and of `%d result[0]` with the message context `android-app/search` (the Arabic plural forms
+    /// it reported). Japanese has one plural form for all numbers: without the count it is reported.
     #[test]
     fn exclusions_of_the_sisulizer_desktop_file() {
         let slp = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../testdata/slp/Gettext/l10n.slp");
-        let p = crate::slp::load(&slp).unwrap();
+        let mut p = crate::slp::load(&slp).unwrap();
+        for id in ["%d file[0]", "%d file[1]", "android-app/search|%d result[0]", "web-app/search|%d result[0]"] {
+            let r = p.find_row(id).unwrap();
+            p.row_mut(&r).unwrap().set_translation("ja", "ファイル", TranslationStatus::Translated);
+        }
         let format = |issues: &[Issue]| issues.iter().filter(|i| i.kind == ValidationKind::Format).map(|i| p.context(&i.row)).collect::<Vec<_>>();
         let excluded = |c: &String| c.ends_with("/%d file[0]") || c.ends_with("/android-app/search|%d result[0]");
         let mut issues = validate(&p, &ValidateOptions::default(), None);

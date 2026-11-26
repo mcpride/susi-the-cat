@@ -231,16 +231,28 @@ fn excluded_validations_do_not_fail_the_pipeline() {
     assert_eq!(run(&["scan", &s(&slp)]).code, 0);
     assert_eq!(run(&["validate", "-lang:de", &s(&slp), "-w"]).code, 0);
 
-    // Exclusions made in Sisulizer (testdata/slp/Gettext): 2 of 10 format errors.
+    // testdata/slp/Gettext: the Arabic plural forms of zero, one and two leave out the count `%d`,
+    // which is right; Japanese (one form for all numbers) must keep it.
     let fixture = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../testdata/slp/Gettext");
     for f in ["l10n.slp", "l10n.sds"] {
         std::fs::copy(fixture.join(f), d.join(f)).unwrap();
     }
-    let r = run(&["validate", "-check:format", &s(&d.join("l10n.slp"))]);
+    let gettext = d.join("l10n.slp");
+    let r = run(&["validate", "-check:format", &s(&gettext)]);
+    assert_eq!(r.code, 0, "{}{}", r.out, r.err);
+    assert!(r.out.contains("0 errors"), "{}", r.out);
+    let mut p = susi_core::slp::load(&gettext).unwrap();
+    for id in ["%d file[0]", "android-app/search|%d result[0]", "web-app/search|%d result[0]"] {
+        let r = p.find_row(id).unwrap();
+        p.row_mut(&r).unwrap().set_translation("ja", "ファイル", susi_core::status::TranslationStatus::Translated);
+    }
+    susi_core::slp::save(&mut p, &gettext).unwrap();
+    // Exclusions made in Sisulizer: the first two rows.
+    let r = run(&["validate", "-check:format", &s(&gettext)]);
     assert_eq!(r.code, 1, "{}{}", r.out, r.err);
-    assert!(r.out.contains("8 errors") && r.out.contains("2 excluded issues not reported"), "{}", r.out);
+    assert!(r.out.contains("1 error") && r.out.contains("2 excluded issues not reported"), "{}", r.out);
     assert!(!r.err.contains("%d file[0]") && !r.err.contains("android-app/search|%d result[0]"), "{}", r.err);
-    assert!(r.err.contains("web-app/search|%d result[0]"), "{}", r.err);
+    assert!(r.err.contains("[ja]") && r.err.contains("web-app/search|%d result[0]"), "{}", r.err);
 }
 
 #[test]

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Susi the CAT – User guide\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-11-26 13:31+0100\n"
+"PO-Revision-Date: 2026-11-26 16:35+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1765,8 +1765,10 @@ msgid "_Inconsistent tags_"
 msgstr "_Inkonsistente Tags_"
 
 #: src/validation.md
-msgid "Markup such as `<b>` that differs from the original."
-msgstr "Auszeichnungen wie `<b>`, die vom Original abweichen."
+msgid ""
+"Markup such as `<b>` that differs from the original. A lone `<name>`, as in "
+"`<project>.files`, is a placeholder: it may be translated, but not left out."
+msgstr "Auszeichnungen wie `<b>`, die vom Original abweichen. Ein einzelnes `<Name>` wie in `<Projekt>.files` ist ein Platzhalter: Er darf übersetzt, aber nicht weggelassen werden."
 
 #: src/validation.md
 msgid "_Invalid number of spaces_"
@@ -1865,6 +1867,15 @@ msgid ""
 "Not every finding is a real mistake: a missing period can be right in "
 "another language. Decide case by case."
 msgstr "Nicht jeder Befund ist ein echter Fehler: Ein fehlender Punkt kann in einer anderen Sprache richtig sein. Entscheiden Sie von Fall zu Fall."
+
+#: src/validation.md
+msgid ""
+"Plural forms of gettext messages (rows `[0]`, `[1]`, …) are checked by the "
+"plural rule of the language. A form that stands for a single number, such as "
+"Arabic `ملف واحد` (one file) for `%d file`, may leave out the count `%d`. "
+"Different translations of the same original in different plural forms are no "
+"_Duplicate translation_."
+msgstr "Pluralformen von gettext-Meldungen (Zeilen `[0]`, `[1]`, …) werden nach der Pluralregel der Sprache geprüft. Eine Form, die für eine einzige Zahl steht, wie das arabische `ملف واحد` (eine Datei) für `%d file`, darf die Anzahl `%d` weglassen. Unterschiedliche Übersetzungen desselben Originals in verschiedenen Pluralformen sind keine _Doppelte Übersetzung_."
 
 #: src/validation.md
 msgid "Excluding findings"
