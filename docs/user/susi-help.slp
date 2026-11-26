@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<document created="20261123194613" version="4.0.374" date="20261126133117" scan="4" scanned="20261126133037">
+<document created="20261123194613" version="4.0.374" date="20261126163558" scan="5" scanned="20261126163558">
   <lang id="en"/>
   <lang id="de"/>
-  <source class="TPoSource" name="po\messages.pot" original="en" date="20261126133034" compile="0">
+  <source class="TPoSource" name="po\messages.pot" original="en" date="20261126163556" compile="0">
     <outputfile dir="." localized="&lt;iso&gt;.po"/>
     <node class="TPoNode" name="messages.pot" state="0" created="20261123194613">
       <row id="##Last-Translator" created="20261123194613">
@@ -1471,9 +1471,9 @@
         <native>_Inconsistent tags_</native>
         <lang id="de" date="20261123194651" status="3">_Inkonsistente Tags_</lang>
       </row>
-      <row id="Markup such as `&lt;b&gt;` that differs from the original." created="20261123194613" note="src/validation.md" notereadonly="1">
-        <native>Markup such as `&lt;b&gt;` that differs from the original.</native>
-        <lang id="de" date="20261123194651" status="3">Auszeichnungen wie `&lt;b&gt;`, die vom Original abweichen.</lang>
+      <row id="Markup such as `&lt;b&gt;` that differs from the original. A lone `&lt;name&gt;`, as in `&lt;project&gt;.files`, is a placeholder: it may be translated, but not left out." state="0" created="20261126163558" note="src/validation.md" notereadonly="1">
+        <native>Markup such as `&lt;b&gt;` that differs from the original. A lone `&lt;name&gt;`, as in `&lt;project&gt;.files`, is a placeholder: it may be translated, but not left out.</native>
+        <lang id="de" date="20261126163558" status="3">Auszeichnungen wie `&lt;b&gt;`, die vom Original abweichen. Ein einzelnes `&lt;Name&gt;` wie in `&lt;Projekt&gt;.files` ist ein Platzhalter: Er darf übersetzt, aber nicht weggelassen werden.</lang>
       </row>
       <row id="_Invalid number of spaces_" created="20261123194613" note="src/validation.md" notereadonly="1">
         <native>_Invalid number of spaces_</native>
@@ -1566,6 +1566,10 @@
       <row id="Not every finding is a real mistake: a missing period can be right in another language. Decide case by case." created="20261123194613" note="src/validation.md" notereadonly="1">
         <native>Not every finding is a real mistake: a missing period can be right in another language. Decide case by case.</native>
         <lang id="de" date="20261123194651" status="3">Nicht jeder Befund ist ein echter Fehler: Ein fehlender Punkt kann in einer anderen Sprache richtig sein. Entscheiden Sie von Fall zu Fall.</lang>
+      </row>
+      <row id="Plural forms of gettext messages (rows `[0]`, `[1]`, …) are checked by the plural rule of the language. A form that stands for a single number, such as Arabic `ملف واحد` (one file) for `%d file`, may leave out the count `%d`. Different translations of the same original in different plural forms are no _Duplicate translation_." state="0" created="20261126163558" note="src/validation.md" notereadonly="1">
+        <native>Plural forms of gettext messages (rows `[0]`, `[1]`, …) are checked by the plural rule of the language. A form that stands for a single number, such as Arabic `ملف واحد` (one file) for `%d file`, may leave out the count `%d`. Different translations of the same original in different plural forms are no _Duplicate translation_.</native>
+        <lang id="de" date="20261126163558" status="3">Pluralformen von gettext-Meldungen (Zeilen `[0]`, `[1]`, …) werden nach der Pluralregel der Sprache geprüft. Eine Form, die für eine einzige Zahl steht, wie das arabische `ملف واحد` (eine Datei) für `%d file`, darf die Anzahl `%d` weglassen. Unterschiedliche Übersetzungen desselben Originals in verschiedenen Pluralformen sind keine _Doppelte Übersetzung_.</lang>
       </row>
       <row id="Excluding findings" created="20261124235816" note="src/validation.md" notereadonly="1">
         <native>Excluding findings</native>

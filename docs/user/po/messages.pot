@@ -1766,7 +1766,9 @@ msgid "_Inconsistent tags_"
 msgstr ""
 
 #: src/validation.md
-msgid "Markup such as `<b>` that differs from the original."
+msgid ""
+"Markup such as `<b>` that differs from the original. A lone `<name>`, as in "
+"`<project>.files`, is a placeholder: it may be translated, but not left out."
 msgstr ""
 
 #: src/validation.md
@@ -1865,6 +1867,15 @@ msgstr ""
 msgid ""
 "Not every finding is a real mistake: a missing period can be right in "
 "another language. Decide case by case."
+msgstr ""
+
+#: src/validation.md
+msgid ""
+"Plural forms of gettext messages (rows `[0]`, `[1]`, …) are checked by the "
+"plural rule of the language. A form that stands for a single number, such as "
+"Arabic `ملف واحد` (one file) for `%d file`, may leave out the count `%d`. "
+"Different translations of the same original in different plural forms are no "
+"_Duplicate translation_."
 msgstr ""
 
 #: src/validation.md

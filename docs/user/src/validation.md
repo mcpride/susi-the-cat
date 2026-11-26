@@ -19,7 +19,7 @@ are pink in the translation sheet.
 |---|---|
 | *Missing translation* | Texts without a translation (only with *including missing translations*). |
 | *Inconsistent format string* | Placeholders such as `{0}`, `%s` or `{name}` that differ from the original. |
-| *Inconsistent tags* | Markup such as `<b>` that differs from the original. |
+| *Inconsistent tags* | Markup such as `<b>` that differs from the original. A lone `<name>`, as in `<project>.files`, is a placeholder: it may be translated, but not left out. |
 | *Invalid number of spaces* | Different leading or trailing spaces. |
 | *Invalid number of line breaks* | A different number of line breaks. |
 | *Missing period*, *colon*, *exclamation mark*, *question mark* | The original ends with the sign, the translation does not. |
@@ -34,6 +34,11 @@ are pink in the translation sheet.
 
 Not every finding is a real mistake: a missing period can be right in another language. Decide
 case by case.
+
+Plural forms of gettext messages (rows `[0]`, `[1]`, …) are checked by the plural rule of the
+language. A form that stands for a single number, such as Arabic `ملف واحد` (one file) for
+`%d file`, may leave out the count `%d`. Different translations of the same original in different
+plural forms are no *Duplicate translation*.
 
 ## Excluding findings
 
