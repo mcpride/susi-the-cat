@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.18.3](https://github.com/mcpride/susi-the-cat/compare/v0.18.2...v0.18.3) (2026-11-27)
+
+### Bug Fixes
+
+* separate row comment and translation comment columns in export ([bfc291f](https://github.com/mcpride/susi-the-cat/commit/bfc291f55bfcf62992e8aed3c0bc109348239ea2))
+
 ## [0.18.2](https://github.com/mcpride/susi-the-cat/compare/v0.18.1...v0.18.2) (2026-11-27)
 
 ### Bug Fixes
