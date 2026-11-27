@@ -180,6 +180,7 @@ jobs:
     permissions:
       pages: write # deploy to GitHub Pages
       id-token: write # verifies the deployment
+      actions: read # lists the artifacts of the run (wait step)
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
@@ -203,6 +204,22 @@ jobs:
         with:
           path: target/help
           name: github-pages-${{ github.run_attempt }}
+      # The artifact list of the run sometimes lags behind the upload, and deploy-pages gives
+      # up at once when it does not find the artifact there ("Found 0 artifact(s)"). Wait until
+      # the same API lists it (at most 2 minutes).
+      - name: wait for the pages artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ARTIFACT: github-pages-${{ github.run_attempt }}
+        run: |
+          for _ in $(seq 1 24); do
+            count=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/artifacts?name=$ARTIFACT" --jq '.total_count')
+            if [ "$count" -gt 0 ]; then exit 0; fi
+            echo "Artifact $ARTIFACT is not listed yet, waiting..."
+            sleep 5
+          done
+          echo "::error::Artifact $ARTIFACT is still not listed after 2 minutes."
+          exit 1
       - id: deploy
         uses: actions/deploy-pages@v5
         with:
