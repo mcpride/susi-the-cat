@@ -2877,7 +2877,9 @@ msgid "_Languages_"
 msgstr ""
 
 #: src/exchange.md
-msgid "The languages to export."
+msgid ""
+"The languages to export. _All languages_ above the list selects or clears "
+"all of them at once."
 msgstr ""
 
 #: src/exchange.md

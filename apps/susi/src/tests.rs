@@ -180,6 +180,54 @@ fn column_commands() {
     assert_eq!(cells(&app, &current), others);
 }
 
+/// The export languages fill the dialog in as many equal columns as fit.
+#[test]
+fn language_grid_columns() {
+    use crate::dialogs::grid_columns;
+    assert_eq!(grid_columns(460.0, 150.0, 8.0, 12), 2);
+    assert_eq!(grid_columns(460.0, 100.0, 8.0, 12), 4);
+    // Exactly fitting: 4 × 109 + 3 × 8 = 460.
+    assert_eq!(grid_columns(460.0, 109.0, 8.0, 12), 4);
+    // Not more columns than languages, at least one even for labels wider than the dialog.
+    assert_eq!(grid_columns(460.0, 100.0, 8.0, 2), 2);
+    assert_eq!(grid_columns(460.0, 600.0, 8.0, 12), 1);
+    assert_eq!(grid_columns(460.0, 100.0, 8.0, 0), 1);
+    assert_eq!(grid_columns(-10.0, 0.0, 0.0, 5), 1);
+}
+
+/// However many languages the project has, the language grid does not widen the export dialog.
+#[test]
+fn export_languages_fit_the_dialog() {
+    for ui_language in ["en", "de"] {
+        let tmp = std::env::temp_dir();
+        let ctx = egui::Context::default();
+        let mut app = app_with_fixture(&ctx, &tmp, ui_language);
+        let ids = app.project.as_ref().unwrap().language_ids();
+        assert!(ids.len() >= 8, "fixture needs many languages: {ids:?}");
+        let mut width = |langs: &[String]| {
+            app.dialog = Some(Dialog::Export(ExportDialog {
+                path: tmp.join("export.tmx"),
+                langs: langs.iter().map(|l| (l.clone(), true)).collect(),
+                only_view: false,
+                status_columns: false,
+                comment_columns: false,
+                row_status_column: false,
+                max_chars_column: false,
+                include_locked: false,
+                label_lang: String::new(),
+                screenshots: susi_core::exchange::ScreenshotExport::None,
+            }));
+            run(&ctx, &mut app, 4);
+            ctx.memory(|m| m.area_rect(egui::Id::unique("susi-dialog"))).unwrap().width()
+        };
+        let one = width(&ids[..1]);
+        let all = width(&ids);
+        assert_eq!(all, one, "{ui_language}: the language grid widens the dialog");
+        // Not stretched to egui's default area size by the first (sizing) pass.
+        assert!(one < ctx.global_style().spacing.default_area_size.x, "{ui_language}: dialog width {one}");
+    }
+}
+
 #[test]
 fn app_icon_decodes() {
     let icon = crate::app_icon::window_icon();
@@ -256,6 +304,19 @@ fn render_all_views_and_dialogs(ui_language: &str) {
             include_locked: true,
             label_lang: "en".into(),
             screenshots: susi_core::exchange::ScreenshotExport::Embed,
+        }),
+        // All project languages, partly selected: the language grid scrolls, "All languages" is indeterminate.
+        Dialog::Export(ExportDialog {
+            path: tmp.join("export.csv"),
+            langs: app.project.as_ref().unwrap().language_ids().into_iter().enumerate().map(|(i, l)| (l, i % 2 == 0)).collect(),
+            only_view: true,
+            status_columns: false,
+            comment_columns: false,
+            row_status_column: false,
+            max_chars_column: false,
+            include_locked: false,
+            label_lang: String::new(),
+            screenshots: susi_core::exchange::ScreenshotExport::None,
         }),
         Dialog::Import(ImportDialog {
             path: tmp.join("import.xlsx"),

@@ -213,6 +213,7 @@
 	Export	Exportieren
 	File: {path}	Datei: {path}
 	The format is determined by the file extension (xlsx, csv, txt, xlf, tmx).	Format wird über die Dateierweiterung bestimmt (xlsx, csv, txt, xlf, tmx).
+	{selected} of {count} selected	{selected} von {count} ausgewählt
 	Only rows of the current view ({count})	Nur Zeilen der aktuellen Ansicht ({count})
 	Status columns	Statusspalten
 	Comment columns	Kommentarspalten

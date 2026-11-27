@@ -15,3 +15,4 @@
 *.sds
 # … except the test fixture of validation exclusions
 !/testdata/slp/Gettext/l10n.sds
+/testdata/slp/Gettext/i18n

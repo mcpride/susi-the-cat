@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<document created="20261103155355" version="4.0.374" date="20261126132704" scan="29" scanned="20261126132704">
+<document created="20261103155355" version="4.0.374" date="20261127141140" scan="30" scanned="20261127141140">
   <lang id="en"/>
   <lang id="de"/>
   <source class="TTsvSource" name="de-core.tsv" original="en" date="20261123170134">
@@ -1220,7 +1220,7 @@
       </row>
     </node>
   </source>
-  <source class="TTsvSource" name="de-gui.tsv" original="en" date="20261126132530">
+  <source class="TTsvSource" name="de-gui.tsv" original="en" date="20261127140440">
     <outputfile dir="." localized="&lt;iso&gt;-gui.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-gui.tsv" state="0" created="20261103155355">
       <row id="Information" created="20261103155355" note="Application, log" notereadonly="1">
@@ -2034,6 +2034,10 @@
       <row id="The format is determined by the file extension (xlsx, csv, txt, xlf, tmx)." created="20261103155355" note="Dialogs" notereadonly="1">
         <native>The format is determined by the file extension (xlsx, csv, txt, xlf, tmx).</native>
         <lang id="de" date="20261103155355" status="3">Format wird über die Dateierweiterung bestimmt (xlsx, csv, txt, xlf, tmx).</lang>
+      </row>
+      <row id="{selected} of {count} selected" state="0" created="20261127141140" note="Dialogs" notereadonly="1">
+        <native>{selected} of {count} selected</native>
+        <lang id="de" date="20261127141140" status="3">{selected} von {count} ausgewählt</lang>
       </row>
       <row id="Only rows of the current view ({count})" created="20261103155355" note="Dialogs" notereadonly="1">
         <native>Only rows of the current view ({count})</native>

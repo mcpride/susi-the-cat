@@ -22,7 +22,7 @@ translator or an agency, and import the translated file again.
 
 | Option | Meaning |
 |---|---|
-| *Languages* | The languages to export. |
+| *Languages* | The languages to export. *All languages* above the list selects or clears all of them at once. |
 | *Only rows of the current view* | Only the rows the sheet shows now, otherwise all rows. |
 | *Status columns*, *Comment columns* | A status and a comment column for every language. |
 | *Row status column*, *"Max. characters" column* | More information on the rows. |

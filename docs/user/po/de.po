@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Susi the CAT – User guide\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-11-26 16:35+0100\n"
+"PO-Revision-Date: 2026-11-27 14:12+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -2876,8 +2876,10 @@ msgid "_Languages_"
 msgstr "_Sprachen_"
 
 #: src/exchange.md
-msgid "The languages to export."
-msgstr "Die Sprachen, die exportiert werden."
+msgid ""
+"The languages to export. _All languages_ above the list selects or clears "
+"all of them at once."
+msgstr "Die Sprachen, die exportiert werden. _Alle Sprachen_ über der Liste wählt alle auf einmal aus oder ab."
 
 #: src/exchange.md
 msgid "Only the rows the sheet shows now, otherwise all rows."

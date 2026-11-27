@@ -144,6 +144,9 @@ pub struct ExcludedDialog {
     pub selected: Option<usize>,
 }
 
+/// Minimum width of the dialogs.
+const DIALOG_WIDTH: f32 = 460.0;
+
 /// Shows the open dialog (if any).
 pub fn show(app: &mut SusiApp, ctx: &egui::Context) {
     let Some(mut d) = app.dialog.take() else {
@@ -151,7 +154,7 @@ pub fn show(app: &mut SusiApp, ctx: &egui::Context) {
     };
     let mut close = false;
     let modal = egui::Modal::new(egui::Id::unique("susi-dialog")).show(ctx, |ui| {
-        ui.set_min_width(460.0);
+        ui.set_min_width(DIALOG_WIDTH);
         close = match &mut d {
             Dialog::Confirm { then } => confirm(app, ui, then),
             Dialog::Reload => reload(app, ui),
@@ -519,12 +522,7 @@ fn export(app: &mut SusiApp, ui: &mut egui::Ui, d: &mut ExportDialog) -> bool {
     ui.label(susi_core::tf!("File: {path}", path = d.path.display()));
     ui.label(t("The format is determined by the file extension (xlsx, csv, txt, xlf, tmx)."));
     ui.separator();
-    ui.strong(t("Languages"));
-    ui.horizontal_wrapped(|ui| {
-        for (l, on) in d.langs.iter_mut() {
-            ui.checkbox(on, SusiApp::lang_label(l));
-        }
-    });
+    export_languages(ui, &mut d.langs);
     ui.separator();
     ui.checkbox(&mut d.only_view, susi_core::tf!("Only rows of the current view ({count})", count = app.rows.len()));
     ui.checkbox(&mut d.status_columns, t("Status columns"));
@@ -557,6 +555,59 @@ fn export(app: &mut SusiApp, ui: &mut egui::Ui, d: &mut ExportDialog) -> bool {
         Some(false) => true,
         None => false,
     }
+}
+
+/// Languages to export: a checkbox above the list selects or clears all of them (partly selected:
+/// indeterminate, a click selects all). The list is a scrollable grid with as many columns as fit
+/// into the dialog.
+fn export_languages(ui: &mut egui::Ui, langs: &mut [(String, bool)]) {
+    let selected = langs.iter().filter(|(_, on)| *on).count();
+    let mut all = !langs.is_empty() && selected == langs.len();
+    let partly = selected > 0 && !all;
+    ui.horizontal(|ui| {
+        let toggle = egui::Checkbox::new(&mut all, egui::RichText::new(t("All languages")).strong()).indeterminate(partly);
+        if ui.add_enabled(!langs.is_empty(), toggle).changed() {
+            for (_, on) in langs.iter_mut() {
+                *on = all;
+            }
+        }
+        ui.weak(susi_core::tf!("{selected} of {count} selected", selected = selected, count = langs.len()));
+    });
+    let labels: Vec<String> = langs.iter().map(|(l, _)| SusiApp::lang_label(l)).collect();
+    let frame = egui::Frame::group(ui.style());
+    // The list fills the dialog without widening it. In the first (sizing) pass egui offers its
+    // default area size, so the dialog would never become narrower than that.
+    let outer = if ui.is_sizing_pass() { DIALOG_WIDTH } else { ui.available_width() };
+    let spacing = ui.spacing();
+    let width = outer - frame.total_margin().sum().x - spacing.scroll.allocated_width();
+    let gap = spacing.item_spacing.x;
+    let item = spacing.icon_width
+        + spacing.icon_spacing
+        + labels
+            .iter()
+            .map(|l| egui::WidgetText::from(l).into_galley(ui, Some(egui::TextWrapMode::Extend), f32::INFINITY, egui::TextStyle::Body).size().x)
+            .fold(0.0, f32::max);
+    let columns = grid_columns(width, item, gap, labels.len());
+    frame.show(ui, |ui| {
+        egui::ScrollArea::vertical().id_salt("exp-langs").max_height(180.0).show(ui, |ui| {
+            ui.set_min_width(width);
+            egui::Grid::new("exp-langs").num_columns(columns).min_col_width(item).show(ui, |ui| {
+                for (i, ((_, on), label)) in langs.iter_mut().zip(labels).enumerate() {
+                    ui.checkbox(on, label);
+                    if i % columns == columns - 1 {
+                        ui.end_row();
+                    }
+                }
+            });
+        });
+    });
+}
+
+/// Columns of `item` width (`gap` between them) that fit into `width`: at least 1, at most `count`.
+pub(crate) fn grid_columns(width: f32, item: f32, gap: f32, count: usize) -> usize {
+    let fit = ((width + gap) / (item + gap).max(1.0)).floor();
+    // `as` saturates; a negative width gives 0.
+    (fit as usize).clamp(1, count.max(1))
 }
 
 fn screenshot_export_label(m: ScreenshotExport) -> &'static str {

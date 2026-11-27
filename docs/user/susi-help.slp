@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<document created="20261123194613" version="4.0.374" date="20261126163558" scan="5" scanned="20261126163558">
+<document created="20261123194613" version="4.0.374" date="20261127141235" scan="6" scanned="20261127141158">
   <lang id="en"/>
   <lang id="de"/>
-  <source class="TPoSource" name="po\messages.pot" original="en" date="20261126163556" compile="0">
+  <source class="TPoSource" name="po\messages.pot" original="en" date="20261127141151" compile="0">
     <outputfile dir="." localized="&lt;iso&gt;.po"/>
     <node class="TPoNode" name="messages.pot" state="0" created="20261123194613">
       <row id="##Last-Translator" created="20261123194613">
@@ -2359,9 +2359,9 @@
         <native>_Languages_</native>
         <lang id="de" date="20261123194651" status="3">_Sprachen_</lang>
       </row>
-      <row id="The languages to export." created="20261123194613" note="src/exchange.md" notereadonly="1">
-        <native>The languages to export.</native>
-        <lang id="de" date="20261123194651" status="3">Die Sprachen, die exportiert werden.</lang>
+      <row id="The languages to export. _All languages_ above the list selects or clears all of them at once." state="0" created="20261127141158" note="src/exchange.md" notereadonly="1">
+        <native>The languages to export. _All languages_ above the list selects or clears all of them at once.</native>
+        <lang id="de" date="20261127141227" status="3">Die Sprachen, die exportiert werden. _Alle Sprachen_ über der Liste wählt alle auf einmal aus oder ab.</lang>
       </row>
       <row id="Only the rows the sheet shows now, otherwise all rows." created="20261123194613" note="src/exchange.md" notereadonly="1">
         <native>Only the rows the sheet shows now, otherwise all rows.</native>
