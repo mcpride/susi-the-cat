@@ -52,6 +52,7 @@ pub struct ExportDialog {
     pub path: PathBuf,
     pub langs: Vec<(String, bool)>,
     pub only_view: bool,
+    pub original_column: bool,
     pub status_columns: bool,
     /// A translation comment column for every language.
     pub comment_columns: bool,
@@ -526,7 +527,13 @@ fn export(app: &mut SusiApp, ui: &mut egui::Ui, d: &mut ExportDialog) -> bool {
     ui.separator();
     export_languages(ui, &mut d.langs);
     ui.separator();
+    let table = matches!(ExchangeFormat::from_path(&d.path), Some(ExchangeFormat::Excel | ExchangeFormat::Csv | ExchangeFormat::Text));
     ui.checkbox(&mut d.only_view, susi_core::tf!("Only rows of the current view ({count})", count = app.rows.len()));
+    ui.checkbox(&mut d.original_column, t("\"Original\" column"));
+    // XLIFF always contains the original.
+    if table && !d.original_column {
+        ui.weak(t("Without the original, an import cannot recognize changed originals."));
+    }
     ui.checkbox(&mut d.status_columns, t("Status columns"));
     ui.checkbox(&mut d.comment_columns, t("Translation comment columns"));
     ui.checkbox(&mut d.row_status_column, t("Row status column"));
@@ -534,7 +541,7 @@ fn export(app: &mut SusiApp, ui: &mut egui::Ui, d: &mut ExportDialog) -> bool {
     ui.checkbox(&mut d.max_chars_column, t("\"Max. characters\" column"));
     ui.checkbox(&mut d.include_locked, t("Include \"Do not translate\" rows"));
     // XLIFF and TMX have no labels of their own.
-    if matches!(ExchangeFormat::from_path(&d.path), Some(ExchangeFormat::Excel | ExchangeFormat::Csv | ExchangeFormat::Text)) {
+    if table {
         ui.horizontal(|ui| {
             ui.label(t("Language of column headers and status values:"));
             label_language_combo(ui, &mut d.label_lang);

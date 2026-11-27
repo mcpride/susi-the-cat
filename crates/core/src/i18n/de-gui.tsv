@@ -215,6 +215,8 @@
 	The format is determined by the file extension (xlsx, csv, txt, xlf, tmx).	Format wird über die Dateierweiterung bestimmt (xlsx, csv, txt, xlf, tmx).
 	{selected} of {count} selected	{selected} von {count} ausgewählt
 	Only rows of the current view ({count})	Nur Zeilen der aktuellen Ansicht ({count})
+	"Original" column	Spalte „Original“
+	Without the original, an import cannot recognize changed originals.	Ohne Original kann ein Import geänderte Originale nicht erkennen.
 	Status columns	Statusspalten
 	Translation comment columns	Übersetzungskommentarspalten
 	Row status column	Zeilenstatus-Spalte

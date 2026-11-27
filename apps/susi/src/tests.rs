@@ -209,6 +209,7 @@ fn export_languages_fit_the_dialog() {
                 path: tmp.join("export.tmx"),
                 langs: langs.iter().map(|l| (l.clone(), true)).collect(),
                 only_view: false,
+                original_column: true,
                 status_columns: false,
                 comment_columns: false,
                 row_status_column: false,
@@ -229,21 +230,24 @@ fn export_languages_fit_the_dialog() {
     }
 }
 
-/// The export dialog switches the translation comment columns and the row comment column separately.
+/// The export dialog switches the "Original" column, the translation comment columns and the row
+/// comment column separately.
 #[test]
-fn export_comment_columns_separately() {
-    let tmp = std::env::temp_dir().join(format!("susi-gui-export-comments-{}", std::process::id()));
+fn export_optional_columns() {
+    let tmp = std::env::temp_dir().join(format!("susi-gui-export-columns-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&tmp);
     std::fs::create_dir_all(&tmp).unwrap();
     let ctx = egui::Context::default();
     let mut app = app_with_fixture(&ctx, &tmp, "en");
     let lang = app.project.as_ref().unwrap().language_ids().remove(0);
     let path = tmp.join("export.txt");
-    for (comment_columns, row_comment_column) in [(true, false), (false, true), (true, true), (false, false)] {
+    for bits in 0..8u8 {
+        let (original_column, comment_columns, row_comment_column) = (bits & 1 != 0, bits & 2 != 0, bits & 4 != 0);
         let d = ExportDialog {
             path: path.clone(),
             langs: vec![(lang.clone(), true)],
             only_view: false,
+            original_column,
             status_columns: false,
             comment_columns,
             row_status_column: false,
@@ -256,9 +260,12 @@ fn export_comment_columns_separately() {
         };
         app.export(&d);
         let headers = susi_core::exchange::read_delimited(&std::fs::read(&path).unwrap(), Some('\t')).unwrap().headers;
-        let translation = headers.iter().filter(|h| h.ends_with(" Comment")).count();
-        let row = headers.iter().filter(|h| *h == "Row comment").count();
-        assert_eq!((translation, row), (usize::from(comment_columns), usize::from(row_comment_column)), "{headers:?}");
+        let count = |f: &dyn Fn(&str) -> bool| headers.iter().filter(|h| f(h)).count();
+        let original = count(&|h| h.starts_with("Original"));
+        let translation = count(&|h| h.ends_with(" Comment"));
+        let row = count(&|h| h == "Row comment");
+        let expected = (usize::from(original_column), usize::from(comment_columns), usize::from(row_comment_column));
+        assert_eq!((original, translation, row), expected, "{headers:?}");
     }
     let _ = std::fs::remove_dir_all(&tmp);
 }
@@ -332,6 +339,7 @@ fn render_all_views_and_dialogs(ui_language: &str) {
             path: tmp.join("export.xlsx"),
             langs: vec![("de".into(), true)],
             only_view: false,
+            original_column: true,
             status_columns: true,
             comment_columns: true,
             row_status_column: true,
@@ -346,6 +354,8 @@ fn render_all_views_and_dialogs(ui_language: &str) {
             path: tmp.join("export.csv"),
             langs: app.project.as_ref().unwrap().language_ids().into_iter().enumerate().map(|(i, l)| (l, i % 2 == 0)).collect(),
             only_view: true,
+            // A table without the original shows a hint.
+            original_column: false,
             status_columns: false,
             comment_columns: false,
             row_status_column: false,

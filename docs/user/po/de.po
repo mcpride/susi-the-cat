@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Susi the CAT – User guide\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-11-27 15:41+0100\n"
+"PO-Revision-Date: 2026-11-27 16:04+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -2884,6 +2884,17 @@ msgstr "Die Sprachen, die exportiert werden. _Alle Sprachen_ über der Liste wä
 #: src/exchange.md
 msgid "Only the rows the sheet shows now, otherwise all rows."
 msgstr "Nur die Zeilen, die die Tabelle gerade zeigt, sonst alle Zeilen."
+
+#: src/exchange.md
+msgid "_\"Original\" column_"
+msgstr "_Spalte „Original“_"
+
+#: src/exchange.md
+msgid ""
+"The original texts (Excel, CSV and text; XLIFF always contains them). "
+"Without them, the import cannot recognize originals that have changed since "
+"the export."
+msgstr "Die Originaltexte (Excel, CSV und Text; XLIFF enthält sie immer). Ohne sie kann der Import keine Originale erkennen, die sich seit dem Export geändert haben."
 
 #: src/exchange.md
 msgid "_Status columns_, _Translation comment columns_"

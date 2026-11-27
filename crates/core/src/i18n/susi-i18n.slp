@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<document created="20261103155355" version="4.0.374" date="20261127154136" scan="32" scanned="20261127154136">
+<document created="20261103155355" version="4.0.374" date="20261127160350" scan="33" scanned="20261127160350">
   <lang id="en"/>
   <lang id="de"/>
   <source class="TTsvSource" name="de-core.tsv" original="en" date="20261127154011">
@@ -1224,7 +1224,7 @@
       </row>
     </node>
   </source>
-  <source class="TTsvSource" name="de-gui.tsv" original="en" date="20261127145612">
+  <source class="TTsvSource" name="de-gui.tsv" original="en" date="20261127160315">
     <outputfile dir="." localized="&lt;iso&gt;-gui.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-gui.tsv" state="0" created="20261103155355">
       <row id="Information" created="20261103155355" note="Application, log" notereadonly="1">
@@ -2046,6 +2046,14 @@
       <row id="Only rows of the current view ({count})" created="20261103155355" note="Dialogs" notereadonly="1">
         <native>Only rows of the current view ({count})</native>
         <lang id="de" date="20261103155355" status="3">Nur Zeilen der aktuellen Ansicht ({count})</lang>
+      </row>
+      <row id="&quot;Original&quot; column" state="0" created="20261127160350" note="Dialogs" notereadonly="1">
+        <native>"Original" column</native>
+        <lang id="de" date="20261127160350" status="3">Spalte „Original“</lang>
+      </row>
+      <row id="Without the original, an import cannot recognize changed originals." state="0" created="20261127160350" note="Dialogs" notereadonly="1">
+        <native>Without the original, an import cannot recognize changed originals.</native>
+        <lang id="de" date="20261127160350" status="3">Ohne Original kann ein Import geänderte Originale nicht erkennen.</lang>
       </row>
       <row id="Status columns" created="20261103155355" note="Dialogs" notereadonly="1">
         <native>Status columns</native>

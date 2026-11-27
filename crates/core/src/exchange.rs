@@ -79,6 +79,9 @@ pub struct ExportOptions {
     pub row_statuses: Vec<RowStatus>,
     /// Restrict to these rows (e.g. the current view).
     pub rows: Option<Vec<RowRef>>,
+    /// The original texts (tables only; XLIFF always has them). Without them, the import finds
+    /// rows by context only and cannot skip rows whose original has changed.
+    pub original_column: bool,
     pub status_columns: bool,
     pub comment_columns: bool,
     pub row_status_column: bool,
@@ -105,6 +108,7 @@ impl Default for ExportOptions {
             statuses: Vec::new(),
             row_statuses: Vec::new(),
             rows: None,
+            original_column: true,
             status_columns: true,
             comment_columns: true,
             row_status_column: false,
@@ -214,8 +218,10 @@ fn table_of(p: &Project, opts: &ExportOptions, rows: &[RowRef], shots: Option<&S
         v
     };
     let ui = opts.label_lang();
-    let orig_header = if originals.len() == 1 { format!("Original [{}]", originals[0]) } else { "Original".to_string() };
-    let mut headers = vec![tr(ui, "Source").to_string(), tr(ui, "Context").to_string(), orig_header];
+    let mut headers = vec![tr(ui, "Source").to_string(), tr(ui, "Context").to_string()];
+    if opts.original_column {
+        headers.push(if originals.len() == 1 { format!("Original [{}]", originals[0]) } else { "Original".to_string() });
+    }
     for l in &langs {
         let h = lang_header(ui, l);
         headers.push(h.clone());
@@ -244,7 +250,10 @@ fn table_of(p: &Project, opts: &ExportOptions, rows: &[RowRef], shots: Option<&S
             continue;
         };
         let orig = p.original_lang(r);
-        let mut rec = vec![p.sources.get(r.source).map(|s| s.name().to_string()).unwrap_or_default(), p.context(r), row.original().to_string()];
+        let mut rec = vec![p.sources.get(r.source).map(|s| s.name().to_string()).unwrap_or_default(), p.context(r)];
+        if opts.original_column {
+            rec.push(row.original().to_string());
+        }
         for l in &langs {
             let own = l.as_str() == orig;
             rec.push(if own { row.original().to_string() } else { row.text(l).unwrap_or("").to_string() });
@@ -504,6 +513,13 @@ struct Workbook<'a> {
     p: &'a Project,
 }
 
+/// Number of leading columns that identify the rows (source, context, original): they stay
+/// visible when scrolling to the right.
+fn key_columns(t: &Table) -> u16 {
+    let n = t.headers.iter().take_while(|h| matches!(classify(h), Col::Source | Col::Context | Col::Original)).count();
+    u16::try_from(n).unwrap_or(u16::MAX)
+}
+
 fn write_workbook(t: &Table, path: &Path, ui: Lang, shots: Option<&Workbook<'_>>) -> Result<()> {
     use rust_xlsxwriter::{Format, Url};
     let mut wb = rust_xlsxwriter::Workbook::new();
@@ -554,7 +570,7 @@ fn write_workbook(t: &Table, path: &Path, ui: Lang, shots: Option<&Workbook<'_>>
             }
         }
     }
-    ws.set_freeze_panes(1, 3).map_err(xe)?;
+    ws.set_freeze_panes(1, key_columns(t)).map_err(xe)?;
     if !t.headers.is_empty() {
         let last_col = u16::try_from(t.headers.len() - 1).unwrap_or(u16::MAX);
         let last_row = u32::try_from(t.rows.len()).unwrap_or(u32::MAX);
@@ -1130,6 +1146,26 @@ mod tests {
         let r = q.find_row("multi").unwrap();
         assert_eq!(q.row(&r).unwrap().text("fr"), Some("Ligne 1\r\nLigne 2"));
         assert_eq!(rep.unchanged, 1);
+    }
+
+    /// Without the "Original" column the rows are found by context, and a changed original goes
+    /// unnoticed. In Excel, the frozen columns end after the context.
+    #[test]
+    fn table_without_original_column() {
+        let p = project();
+        let with = export_table(&p, &ExportOptions::default());
+        let mut t = export_table(&p, &ExportOptions { original_column: false, ..Default::default() });
+        assert_eq!(t.headers[..3], ["Source", "Context", "German [de]"]);
+        assert_eq!(t.rows[0][..3], ["a.json", "hello", "Hallo"]);
+        assert_eq!((key_columns(&with), key_columns(&t)), (3, 2));
+        let fr = t.headers.iter().position(|h| h == "French [fr]").unwrap();
+        t.rows[1][fr] = "Ligne".into();
+        let mut q = project();
+        let r = q.find_row("multi").unwrap();
+        q.row_mut(&r).unwrap().native = Some("Changed since the export".into());
+        let rep = import_table(&mut q, &t, &ImportOptions::default()).unwrap();
+        assert_eq!((rep.updated, rep.original_changed, rep.not_found), (1, 0, 0), "{rep:?}");
+        assert_eq!(q.row(&r).unwrap().text("fr"), Some("Ligne"));
     }
 
     #[test]

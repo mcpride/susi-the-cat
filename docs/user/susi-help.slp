@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<document created="20261123194613" version="4.0.374" date="20261127154157" scan="8" scanned="20261127154141">
+<document created="20261123194613" version="4.0.374" date="20261127160406" scan="9" scanned="20261127160352">
   <lang id="en"/>
   <lang id="de"/>
-  <source class="TPoSource" name="po\messages.pot" original="en" date="20261127154139" compile="0">
+  <source class="TPoSource" name="po\messages.pot" original="en" date="20261127160350" compile="0">
     <outputfile dir="." localized="&lt;iso&gt;.po"/>
     <node class="TPoNode" name="messages.pot" state="0" created="20261123194613">
       <row id="##Last-Translator" created="20261123194613">
@@ -2366,6 +2366,14 @@
       <row id="Only the rows the sheet shows now, otherwise all rows." created="20261123194613" note="src/exchange.md" notereadonly="1">
         <native>Only the rows the sheet shows now, otherwise all rows.</native>
         <lang id="de" date="20261123194651" status="3">Nur die Zeilen, die die Tabelle gerade zeigt, sonst alle Zeilen.</lang>
+      </row>
+      <row id="_&quot;Original&quot; column_" state="0" created="20261127160352" note="src/exchange.md" notereadonly="1">
+        <native>_"Original" column_</native>
+        <lang id="de" date="20261127160406" status="3">_Spalte „Original“_</lang>
+      </row>
+      <row id="The original texts (Excel, CSV and text; XLIFF always contains them). Without them, the import cannot recognize originals that have changed since the export." state="0" created="20261127160352" note="src/exchange.md" notereadonly="1">
+        <native>The original texts (Excel, CSV and text; XLIFF always contains them). Without them, the import cannot recognize originals that have changed since the export.</native>
+        <lang id="de" date="20261127160406" status="3">Die Originaltexte (Excel, CSV und Text; XLIFF enthält sie immer). Ohne sie kann der Import keine Originale erkennen, die sich seit dem Export geändert haben.</lang>
       </row>
       <row id="_Status columns_, _Translation comment columns_" state="0" created="20261127151628" note="src/exchange.md" notereadonly="1">
         <native>_Status columns_, _Translation comment columns_</native>

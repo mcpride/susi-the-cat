@@ -737,6 +737,7 @@ impl SusiApp {
             path,
             langs,
             only_view: false,
+            original_column: d.original_column,
             status_columns: d.status_columns,
             comment_columns: d.comment_columns,
             row_status_column: d.row_status_column,
@@ -762,6 +763,7 @@ impl SusiApp {
         let opts = ExportOptions {
             langs: d.langs.iter().filter(|(_, on)| *on).map(|(l, _)| l.clone()).collect(),
             rows: d.only_view.then(|| self.rows.clone()),
+            original_column: d.original_column,
             status_columns: d.status_columns,
             comment_columns: d.comment_columns,
             row_status_column: d.row_status_column,

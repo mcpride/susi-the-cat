@@ -2887,6 +2887,17 @@ msgid "Only the rows the sheet shows now, otherwise all rows."
 msgstr ""
 
 #: src/exchange.md
+msgid "_\"Original\" column_"
+msgstr ""
+
+#: src/exchange.md
+msgid ""
+"The original texts (Excel, CSV and text; XLIFF always contains them). "
+"Without them, the import cannot recognize originals that have changed since "
+"the export."
+msgstr ""
+
+#: src/exchange.md
 msgid "_Status columns_, _Translation comment columns_"
 msgstr ""
 
