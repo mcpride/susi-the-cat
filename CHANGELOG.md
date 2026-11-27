@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.19.0](https://github.com/mcpride/susi-the-cat/compare/v0.18.5...v0.19.0) (2026-11-27)
+
+### Features
+
+* select several rows in the sheet (Ctrl/Shift click) ([c938cc9](https://github.com/mcpride/susi-the-cat/commit/c938cc919e5ead0ad38489509969d6b950ef6264))
+
 ## [0.18.5](https://github.com/mcpride/susi-the-cat/compare/v0.18.4...v0.18.5) (2026-11-27)
 
 ### Bug Fixes
