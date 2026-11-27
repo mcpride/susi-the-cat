@@ -212,6 +212,7 @@ fn export_languages_fit_the_dialog() {
                 status_columns: false,
                 comment_columns: false,
                 row_status_column: false,
+                row_comment_column: false,
                 max_chars_column: false,
                 include_locked: false,
                 label_lang: String::new(),
@@ -226,6 +227,40 @@ fn export_languages_fit_the_dialog() {
         // Not stretched to egui's default area size by the first (sizing) pass.
         assert!(one < ctx.global_style().spacing.default_area_size.x, "{ui_language}: dialog width {one}");
     }
+}
+
+/// The export dialog switches the translation comment columns and the row comment column separately.
+#[test]
+fn export_comment_columns_separately() {
+    let tmp = std::env::temp_dir().join(format!("susi-gui-export-comments-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&tmp);
+    std::fs::create_dir_all(&tmp).unwrap();
+    let ctx = egui::Context::default();
+    let mut app = app_with_fixture(&ctx, &tmp, "en");
+    let lang = app.project.as_ref().unwrap().language_ids().remove(0);
+    let path = tmp.join("export.txt");
+    for (comment_columns, row_comment_column) in [(true, false), (false, true), (true, true), (false, false)] {
+        let d = ExportDialog {
+            path: path.clone(),
+            langs: vec![(lang.clone(), true)],
+            only_view: false,
+            status_columns: false,
+            comment_columns,
+            row_status_column: false,
+            row_comment_column,
+            max_chars_column: false,
+            include_locked: false,
+            // As remembered in the settings: the export does not save them.
+            label_lang: app.settings.export_label_language.clone(),
+            screenshots: susi_core::exchange::ScreenshotExport::from_keyword(&app.settings.export_screenshots).unwrap_or_default(),
+        };
+        app.export(&d);
+        let headers = susi_core::exchange::read_delimited(&std::fs::read(&path).unwrap(), Some('\t')).unwrap().headers;
+        let translation = headers.iter().filter(|h| h.ends_with(" Comment")).count();
+        let row = headers.iter().filter(|h| *h == "Row comment").count();
+        assert_eq!((translation, row), (usize::from(comment_columns), usize::from(row_comment_column)), "{headers:?}");
+    }
+    let _ = std::fs::remove_dir_all(&tmp);
 }
 
 #[test]
@@ -300,6 +335,7 @@ fn render_all_views_and_dialogs(ui_language: &str) {
             status_columns: true,
             comment_columns: true,
             row_status_column: true,
+            row_comment_column: true,
             max_chars_column: true,
             include_locked: true,
             label_lang: "en".into(),
@@ -313,6 +349,7 @@ fn render_all_views_and_dialogs(ui_language: &str) {
             status_columns: false,
             comment_columns: false,
             row_status_column: false,
+            row_comment_column: false,
             max_chars_column: false,
             include_locked: false,
             label_lang: String::new(),

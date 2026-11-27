@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Susi the CAT – User guide\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-11-27 14:12+0100\n"
+"PO-Revision-Date: 2026-11-27 15:41+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -2886,16 +2886,16 @@ msgid "Only the rows the sheet shows now, otherwise all rows."
 msgstr "Nur die Zeilen, die die Tabelle gerade zeigt, sonst alle Zeilen."
 
 #: src/exchange.md
-msgid "_Status columns_, _Comment columns_"
-msgstr "_Statusspalten_, _Kommentarspalten_"
+msgid "_Status columns_, _Translation comment columns_"
+msgstr "_Statusspalten_, _Übersetzungskommentarspalten_"
 
 #: src/exchange.md
-msgid "A status and a comment column for every language."
-msgstr "Eine Status- und eine Kommentarspalte für jede Sprache."
+msgid "A status and a translation comment column for every language."
+msgstr "Eine Status- und eine Übersetzungskommentarspalte für jede Sprache."
 
 #: src/exchange.md
-msgid "_Row status column_, _\"Max. characters\" column_"
-msgstr "_Zeilenstatus-Spalte_, _Spalte „Max. Zeichen“_"
+msgid "_Row status column_, _Row comment column_, _\"Max. characters\" column_"
+msgstr "_Zeilenstatus-Spalte_, _Zeilenkommentarspalte_, _Spalte „Max. Zeichen“_"
 
 #: src/exchange.md
 msgid "More information on the rows."
@@ -2973,6 +2973,12 @@ msgstr "_Status für importierte Texte ohne Statusangabe_"
 #: src/exchange.md
 msgid "The status for translations that come without a status column."
 msgstr "Der Status für Übersetzungen, die ohne Statusspalte kommen."
+
+#: src/exchange.md
+msgid ""
+"Rows marked _Do not translate_ and excluded rows stay unchanged, even if the "
+"file contains translations or comments for them."
+msgstr "Zeilen mit _Nicht übersetzen_ und ausgeschlossene Zeilen bleiben unverändert, auch wenn die Datei Übersetzungen oder Kommentare für sie enthält."
 
 #: src/exchange.md
 msgid ""

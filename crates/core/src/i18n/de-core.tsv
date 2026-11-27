@@ -38,6 +38,7 @@ write method	All	Alle
 	unsupported	nicht unterstützt
 # Exchange (Excel/CSV/XLIFF)
 	{updated} translations imported, {unchanged} unchanged, {kept} existing kept, {missing} rows not found, {changed} skipped because the original changed	{updated} Übersetzungen importiert, {unchanged} unverändert, {kept} bestehende beibehalten, {missing} Zeilen nicht gefunden, {changed} mit geändertem Original übersprungen
+	; {skipped} rows skipped ("Do not translate" or excluded)	; {skipped} Zeilen übersprungen („Nicht übersetzen“ oder ausgeschlossen)
 	; unknown languages: {langs}	; unbekannte Sprachen: {langs}
 	Source	Quelle
 	Context	Kontext

@@ -53,8 +53,10 @@ pub struct ExportDialog {
     pub langs: Vec<(String, bool)>,
     pub only_view: bool,
     pub status_columns: bool,
+    /// A translation comment column for every language.
     pub comment_columns: bool,
     pub row_status_column: bool,
+    pub row_comment_column: bool,
     pub max_chars_column: bool,
     pub include_locked: bool,
     /// UI language of headers and status values (tables only): empty = user interface language.
@@ -526,8 +528,9 @@ fn export(app: &mut SusiApp, ui: &mut egui::Ui, d: &mut ExportDialog) -> bool {
     ui.separator();
     ui.checkbox(&mut d.only_view, susi_core::tf!("Only rows of the current view ({count})", count = app.rows.len()));
     ui.checkbox(&mut d.status_columns, t("Status columns"));
-    ui.checkbox(&mut d.comment_columns, t("Comment columns"));
+    ui.checkbox(&mut d.comment_columns, t("Translation comment columns"));
     ui.checkbox(&mut d.row_status_column, t("Row status column"));
+    ui.checkbox(&mut d.row_comment_column, t("Row comment column"));
     ui.checkbox(&mut d.max_chars_column, t("\"Max. characters\" column"));
     ui.checkbox(&mut d.include_locked, t("Include \"Do not translate\" rows"));
     // XLIFF and TMX have no labels of their own.

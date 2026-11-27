@@ -216,8 +216,9 @@
 	{selected} of {count} selected	{selected} von {count} ausgewählt
 	Only rows of the current view ({count})	Nur Zeilen der aktuellen Ansicht ({count})
 	Status columns	Statusspalten
-	Comment columns	Kommentarspalten
+	Translation comment columns	Übersetzungskommentarspalten
 	Row status column	Zeilenstatus-Spalte
+	Row comment column	Zeilenkommentarspalte
 	"Max. characters" column	Spalte „Max. Zeichen“
 	Include "Do not translate" rows	„Nicht übersetzen“-Zeilen einschließen
 	Language of column headers and status values:	Sprache der Spaltenüberschriften und Statuswerte:

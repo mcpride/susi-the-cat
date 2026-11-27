@@ -49,7 +49,7 @@
 	Exports rows to a file: .xlsx (Excel), .csv, .txt (tab separated), .xlf/.xliff, .tmx.\nXLIFF with several languages creates one file per language (name.<language>.xlf).	Exportiert Zeilen in eine Datei: .xlsx (Excel), .csv, .txt (Tab-getrennt), .xlf/.xliff, .tmx.\nXLIFF mit mehreren Sprachen erzeugt je Sprache eine Datei (name.<sprache>.xlf).
 	Row status:	Zeilenstatus:
 	true = also export "Do not translate" rows	true = auch "Nicht übersetzen"-Zeilen exportieren
-	Imports translations from .xlsx, .csv, .txt, .xlf/.xliff or .tmx.\nRows are matched by source+context, then context, then original text.	Importiert Übersetzungen aus .xlsx, .csv, .txt, .xlf/.xliff oder .tmx.\nZeilen werden über Quelle+Kontext, dann Kontext, dann Originaltext zugeordnet.
+	Imports translations from .xlsx, .csv, .txt, .xlf/.xliff or .tmx.\nRows are matched by source+context, then context, then original text.\nRows marked "Do not translate" and excluded rows are skipped.	Importiert Übersetzungen aus .xlsx, .csv, .txt, .xlf/.xliff oder .tmx.\nZeilen werden über Quelle+Kontext, dann Kontext, dann Originaltext zugeordnet.\nZeilen mit „Nicht übersetzen“ und ausgeschlossene Zeilen werden übersprungen.
 	Overwrite existing translations: 0 = never, 1..3 = yes (default)	Vorhandene Übersetzungen überschreiben: 0 = nie, 1..3 = ja (Standard)
 	Status of imported texts without a status column:\n1 = Best guess, 2 = Auto translated, 3 = Translated (default),\n4 = For review, 5 = Complete	Status importierter Texte ohne Statusspalte:\n1 = Vorschlag, 2 = Automatisch übersetzt, 3 = Übersetzt (Standard),\n4 = Zur Prüfung, 5 = Abgeschlossen
 	Import even if the original has changed.	Auch importieren, wenn sich das Original geändert hat.

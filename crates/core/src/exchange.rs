@@ -144,6 +144,9 @@ pub struct ImportReport {
     pub kept_existing: usize,
     pub not_found: usize,
     pub original_changed: usize,
+    /// Rows of the file skipped because they are not translated ("Do not translate", excluded,
+    /// custom data).
+    pub not_translatable: usize,
     pub unknown_languages: Vec<String>,
 }
 
@@ -157,6 +160,9 @@ impl ImportReport {
             missing = self.not_found,
             changed = self.original_changed
         );
+        if self.not_translatable > 0 {
+            s.push_str(&crate::tf!("; {skipped} rows skipped (\"Do not translate\" or excluded)", skipped = self.not_translatable));
+        }
         if !self.unknown_languages.is_empty() {
             s.push_str(&crate::tf!("; unknown languages: {langs}", langs = self.unknown_languages.join(", ")));
         }
@@ -373,6 +379,12 @@ impl RowIndex {
     }
 }
 
+/// Whether an import may change `row`: not for rows marked "Do not translate", excluded rows and
+/// custom data, as for the translation memory and copying.
+fn importable(row: &Row) -> bool {
+    !(row.locked() || row.excluded() || row.is_data_or_raw())
+}
+
 /// One cell value to import.
 struct Cell<'a> {
     lang: &'a str,
@@ -446,6 +458,10 @@ pub fn import_table(p: &mut Project, t: &Table, opts: &ImportOptions) -> Result<
             let Some(row) = p.row_mut(&r) else {
                 continue;
             };
+            if !importable(row) {
+                rep.not_translatable += 1;
+                continue;
+            }
             if opts.check_original && get(orig_col).is_some_and(|o| !same_text(o, row.original())) {
                 rep.original_changed += 1;
                 continue;
@@ -957,6 +973,10 @@ pub fn import_xliff(p: &mut Project, bytes: &[u8], opts: &ImportOptions) -> Resu
                 let Some(row) = p.row_mut(&r) else {
                     continue;
                 };
+                if !importable(row) {
+                    rep.not_translatable += 1;
+                    continue;
+                }
                 if opts.check_original && source.as_deref().is_some_and(|s| !same_text(s, row.original())) {
                     rep.original_changed += 1;
                     continue;
@@ -1122,6 +1142,47 @@ mod tests {
         assert_eq!(rep.updated, 1, "{rep:?}");
         let r = q.find_row("multi").unwrap();
         assert_eq!(q.row(&r).unwrap().tstatus("de"), TranslationStatus::Complete);
+    }
+
+    /// As the translation memory, imports leave "Do not translate" and excluded rows unchanged.
+    #[test]
+    fn import_skips_rows_that_are_not_translated() {
+        let p = project();
+        let mut t = export_table(&p, &ExportOptions::default());
+        let col = |h: &str| t.headers.iter().position(|x| x == h).unwrap();
+        let (fr, comment, note) = (col("French [fr]"), col("French [fr] Comment"), col("Row comment"));
+        for rec in &mut t.rows {
+            (rec[fr], rec[comment], rec[note]) = ("Texte".into(), "Frage".into(), "Notiz".into());
+        }
+        let x = export_xliff(&p, "fr", &ExportOptions::default())
+            .replace("<target state=\"needs-translation\"></target>", "<target state=\"final\">Texte</target>\n        <note from=\"translator\">Frage</note>");
+        let marked = || {
+            let mut q = project();
+            let (hello, multi) = (q.find_row("hello").unwrap(), q.find_row("multi").unwrap());
+            q.row_mut(&hello).unwrap().set_locked(true);
+            q.row_mut(&multi).unwrap().set_excluded(true);
+            q
+        };
+        let mut q = marked();
+        let rep = import_table(&mut q, &t, &ImportOptions::default()).unwrap();
+        assert_eq!((rep.updated, rep.not_translatable), (0, 2), "{rep:?}");
+        assert!(rep.summary().ends_with("; 2 rows skipped (\"Do not translate\" or excluded)"), "{}", rep.summary());
+        let rep = import_xliff(&mut q, x.as_bytes(), &ImportOptions::default()).unwrap();
+        assert_eq!((rep.updated, rep.not_translatable), (0, 2), "{rep:?}");
+        for id in ["hello", "multi"] {
+            let row = q.row(&q.find_row(id).unwrap()).unwrap();
+            assert_eq!((row.translation("fr").is_none(), row.note()), (true, ""), "{id}");
+        }
+        // Without the marks, the same files are imported.
+        for xliff in [false, true] {
+            let mut q = project();
+            let opts = ImportOptions::default();
+            let rep = if xliff { import_xliff(&mut q, x.as_bytes(), &opts) } else { import_table(&mut q, &t, &opts) }.unwrap();
+            assert_eq!((rep.updated, rep.not_translatable), (2, 0), "xliff {xliff}: {rep:?}");
+            assert!(!rep.summary().contains("excluded"), "{}", rep.summary());
+            let row = q.row(&q.find_row("hello").unwrap()).unwrap();
+            assert_eq!((row.text("fr"), row.translation("fr").map(|t| t.comment())), (Some("Texte"), Some("Frage")));
+        }
     }
 
     #[test]

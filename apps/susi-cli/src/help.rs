@@ -214,7 +214,9 @@ pub fn task(name: &str) -> String {
         ),
         "import" => page(
             "susi-cli import file [options] project.slp",
-            t("Imports translations from .xlsx, .csv, .txt, .xlf/.xliff or .tmx.\nRows are matched by source+context, then context, then original text."),
+            t(
+                "Imports translations from .xlsx, .csv, .txt, .xlf/.xliff or .tmx.\nRows are matched by source+context, then context, then original text.\nRows marked \"Do not translate\" and excluded rows are skipped.",
+            ),
             &(lang_opt()
                 + &item("-overwrite:X", t("Overwrite existing translations: 0 = never, 1..3 = yes (default)"))
                 + &item(

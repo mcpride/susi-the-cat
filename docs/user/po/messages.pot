@@ -2887,15 +2887,15 @@ msgid "Only the rows the sheet shows now, otherwise all rows."
 msgstr ""
 
 #: src/exchange.md
-msgid "_Status columns_, _Comment columns_"
+msgid "_Status columns_, _Translation comment columns_"
 msgstr ""
 
 #: src/exchange.md
-msgid "A status and a comment column for every language."
+msgid "A status and a translation comment column for every language."
 msgstr ""
 
 #: src/exchange.md
-msgid "_Row status column_, _\"Max. characters\" column_"
+msgid "_Row status column_, _Row comment column_, _\"Max. characters\" column_"
 msgstr ""
 
 #: src/exchange.md
@@ -2973,6 +2973,12 @@ msgstr ""
 
 #: src/exchange.md
 msgid "The status for translations that come without a status column."
+msgstr ""
+
+#: src/exchange.md
+msgid ""
+"Rows marked _Do not translate_ and excluded rows stay unchanged, even if the "
+"file contains translations or comments for them."
 msgstr ""
 
 #: src/exchange.md
