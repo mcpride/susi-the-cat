@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.5](https://github.com/mcpride/susi-the-cat/compare/v0.18.4...v0.18.5) (2026-11-27)
+
+### Bug Fixes
+
+* report a missing git for workflow projects ([c27d03c](https://github.com/mcpride/susi-the-cat/commit/c27d03cd089440fce3d82e6f3aa595df848de5a2))
+* show language codes in square brackets everywhere ([0bef7dd](https://github.com/mcpride/susi-the-cat/commit/0bef7dd32719abf52ac93c2848241eeed3e5dc42))
+
 ## [0.18.4](https://github.com/mcpride/susi-the-cat/compare/v0.18.3...v0.18.4) (2026-11-27)
 
 ### Bug Fixes
