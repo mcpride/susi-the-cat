@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.19.1](https://github.com/mcpride/susi-the-cat/compare/v0.19.0...v0.19.1) (2026-11-27)
+
+### Bug Fixes
+
+* draw frames on linked screenshots ([47125c1](https://github.com/mcpride/susi-the-cat/commit/47125c1ae6fff6ff30326a18dee13418b7b7b723))
+* handling for multiple screenshots per row in exported files ([9cbaf5a](https://github.com/mcpride/susi-the-cat/commit/9cbaf5a6bb2ec6e3e6361df00098191341fee1e0))
+
 ## [0.19.0](https://github.com/mcpride/susi-the-cat/compare/v0.18.5...v0.19.0) (2026-11-27)
 
 ### Features
