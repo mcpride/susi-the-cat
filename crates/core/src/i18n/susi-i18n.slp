@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<document created="20261103155355" version="4.0.374" date="20261127165457" scan="35" scanned="20261127165457">
+<document created="20261103155355" version="4.0.374" date="20261127172632" scan="36" scanned="20261127172632">
   <lang id="en"/>
   <lang id="de"/>
   <source class="TTsvSource" name="de-core.tsv" original="en" date="20261127154011">
@@ -1224,7 +1224,7 @@
       </row>
     </node>
   </source>
-  <source class="TTsvSource" name="de-gui.tsv" original="en" date="20261127162647">
+  <source class="TTsvSource" name="de-gui.tsv" original="en" date="20261127172617">
     <outputfile dir="." localized="&lt;iso&gt;-gui.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-gui.tsv" state="0" created="20261103155355">
       <row id="Information" created="20261103155355" note="Application, log" notereadonly="1">
@@ -1266,6 +1266,10 @@
       <row id="@plural|{n} row|{n} rows" created="20261103155355" note="Application, log#lContext: @plural" notereadonly="1">
         <native>{n} row|{n} rows</native>
         <lang id="de" date="20261103155355" status="3">{n} Zeile|{n} Zeilen</lang>
+      </row>
+      <row id="{count} selected" state="0" created="20261127172632" note="Application, log" notereadonly="1">
+        <native>{count} selected</native>
+        <lang id="de" date="20261127172632" status="3">{count} ausgewählt</lang>
       </row>
       <row id="Susi/Sisulizer project" created="20261103155355" note="Application, log" notereadonly="1">
         <native>Susi/Sisulizer project</native>
@@ -1370,6 +1374,10 @@
       <row id="Clear translation" created="20261103155355" note="Menus" notereadonly="1">
         <native>Clear translation</native>
         <lang id="de" date="20261103155355" status="3">Übersetzung löschen</lang>
+      </row>
+      <row id="Clear translations…" state="0" created="20261127172632" note="Menus" notereadonly="1">
+        <native>Clear translations…</native>
+        <lang id="de" date="20261127172632" status="3">Übersetzungen löschen…</lang>
       </row>
       <row id="Edit cell" created="20261103155355" note="Menus" notereadonly="1">
         <native>Edit cell</native>
@@ -1558,6 +1566,10 @@
       <row id="Last row" created="20261103155355" note="Menus" notereadonly="1">
         <native>Last row</native>
         <lang id="de" date="20261103155355" status="3">Letzte Zeile</lang>
+      </row>
+      <row id="Select all rows" state="0" created="20261127172632" note="Menus" notereadonly="1">
+        <native>Select all rows</native>
+        <lang id="de" date="20261127172632" status="3">Alle Zeilen auswählen</lang>
       </row>
       <row id="Properties…" created="20261103155355" note="Menus" notereadonly="1">
         <native>Properties…</native>
@@ -2251,6 +2263,10 @@
         <native>The cell contains no translation; the status cannot be set</native>
         <lang id="de" date="20261103155355" status="3">Die Zelle enthält keine Übersetzung; der Status kann nicht gesetzt werden</lang>
       </row>
+      <row id="@plural|{n} selected cell contains no translation|{n} selected cells contain no translation" state="0" created="20261127172632" note="Commands, file dialogs#lContext: @plural" notereadonly="1">
+        <native>{n} selected cell contains no translation|{n} selected cells contain no translation</native>
+        <lang id="de" date="20261127172632" status="3">{n} ausgewählte Zelle enthält keine Übersetzung|{n} ausgewählte Zellen enthalten keine Übersetzung</lang>
+      </row>
       <row id="No language selected" created="20261103155355" note="Commands, file dialogs" notereadonly="1">
         <native>No language selected</native>
         <lang id="de" date="20261103155355" status="3">Keine Sprache ausgewählt</lang>
@@ -2495,6 +2511,10 @@
         <native>Add for this row…</native>
         <lang id="de" date="20261118155320" status="3">Für diese Zeile hinzufügen…</lang>
       </row>
+      <row id="Add for the selected rows…" state="0" created="20261127172632" note="Screenshots" notereadonly="1">
+        <native>Add for the selected rows…</native>
+        <lang id="de" date="20261127172632" status="3">Für die ausgewählten Zeilen hinzufügen…</lang>
+      </row>
       <row id="Add for all rows of the view…" created="20261118155320" note="Screenshots" notereadonly="1">
         <native>Add for all rows of the view…</native>
         <lang id="de" date="20261118155320" status="3">Für alle Zeilen der Ansicht hinzufügen…</lang>
@@ -2543,9 +2563,9 @@
         <native>Add…</native>
         <lang id="de" date="20261118155320" status="3">Hinzufügen…</lang>
       </row>
-      <row id="Add image files and link them to the selected row" created="20261118155320" note="Screenshots" notereadonly="1">
-        <native>Add image files and link them to the selected row</native>
-        <lang id="de" date="20261118155320" status="3">Bilddateien hinzufügen und mit der ausgewählten Zeile verknüpfen</lang>
+      <row id="Add image files and link them to the selected rows" state="0" created="20261127172632" note="Screenshots" notereadonly="1">
+        <native>Add image files and link them to the selected rows</native>
+        <lang id="de" date="20261127172632" status="3">Bilddateien hinzufügen und mit den ausgewählten Zeilen verknüpfen</lang>
       </row>
       <row id="Add screenshots" created="20261118155320" note="Screenshots" notereadonly="1">
         <native>Add screenshots</native>
@@ -2703,6 +2723,10 @@
         <native>Delete {count} in the visible rows of the column {lang}?</native>
         <lang id="de" date="20261118190714" status="3">{count} in den sichtbaren Zeilen der Spalte {lang} löschen?</lang>
       </row>
+      <row id="Delete {count} in the selected rows of the column {lang}?" state="0" created="20261127172632" note="Row and column commands" notereadonly="1">
+        <native>Delete {count} in the selected rows of the column {lang}?</native>
+        <lang id="de" date="20261127172632" status="3">{count} in den ausgewählten Zeilen der Spalte {lang} löschen?</lang>
+      </row>
       <row id="Their comments are deleted as well. This cannot be undone." created="20261118190714" note="Row and column commands" notereadonly="1">
         <native>Their comments are deleted as well. This cannot be undone.</native>
         <lang id="de" date="20261118190714" status="3">Ihre Kommentare werden ebenfalls gelöscht. Das lässt sich nicht rückgängig machen.</lang>
@@ -2710,6 +2734,10 @@
       <row id="The column {lang} has no translations in the visible rows" created="20261118190714" note="Row and column commands" notereadonly="1">
         <native>The column {lang} has no translations in the visible rows</native>
         <lang id="de" date="20261118190714" status="3">Die Spalte {lang} hat in den sichtbaren Zeilen keine Übersetzungen</lang>
+      </row>
+      <row id="The selected rows have no translations in {lang}" state="0" created="20261127172632" note="Row and column commands" notereadonly="1">
+        <native>The selected rows have no translations in {lang}</native>
+        <lang id="de" date="20261127172632" status="3">Die ausgewählten Zeilen haben keine Übersetzungen in {lang}</lang>
       </row>
       <row id="{count} deleted ({lang})" created="20261118190714" note="Row and column commands" notereadonly="1">
         <native>{count} deleted ({lang})</native>

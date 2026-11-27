@@ -21,6 +21,9 @@ On macOS, use `Cmd` instead of `Ctrl`.
 | `↓` / `↑` | Next / previous row |
 | `Home` / `End` | First / last row |
 | `F2` or `Enter` | Edit the selected cell |
+| `Ctrl`+click | Add a row to the selection or remove it |
+| `Shift`+click | Select the rows from the current row to the clicked one |
+| `Ctrl+A` | Select all rows |
 
 ## While editing a cell
 

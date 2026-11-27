@@ -354,7 +354,7 @@ fn editor_side(app: &mut SusiApp, ui: &mut Ui, b: &EditorBuf, suggestions: &[TmM
         for s in TranslationStatus::ALL {
             let on = current == Some(s);
             if ui.selectable_label(on, RichText::new(format!("■ {}", s.label())).color(status_color(s))).clicked() {
-                app.actions.push(Action::SetStatus(s));
+                app.actions.push(Action::SetCellStatus(s));
             }
         }
     });

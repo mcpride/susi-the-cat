@@ -145,7 +145,7 @@ pub fn editor(app: &mut SusiApp, ui: &mut Ui, r: &RowRef, lang: &str) {
             button(ui, t("Link to file…"), editable, Action::Data(DataCmd::Load { link: true }));
             button(ui, t("Remove file link"), linked.is_some(), Action::Data(DataCmd::Unlink));
             button(ui, t("Save as…"), translation.is_some(), Action::Data(DataCmd::SaveAs { translation: true }));
-            button(ui, t("Clear translation"), editable && translation.is_some(), Action::ClearTranslation);
+            button(ui, t("Clear translation"), editable && translation.is_some(), Action::ClearCell);
         });
     });
     app.actions.extend(acts);

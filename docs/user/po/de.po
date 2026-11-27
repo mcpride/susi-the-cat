@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Susi the CAT – User guide\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-11-27 16:55+0100\n"
+"PO-Revision-Date: 2026-11-27 17:28+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -949,6 +949,14 @@ msgstr "**Auswählen** Sie eine Zeile mit einem Klick oder mit den Pfeiltasten. 
 
 #: src/sheet.md
 msgid ""
+"**Select several rows**: `Ctrl`+click adds a row or removes it, "
+"`Shift`+click selects all rows from the current row to the clicked one, "
+"`Ctrl+A` selects all rows. The row commands then apply to all selected rows, "
+"see [Translating texts](translating.md)."
+msgstr "**Mehrere Zeilen auswählen**: `Strg`+Klick fügt eine Zeile hinzu oder entfernt sie, `Umschalt`+Klick wählt alle Zeilen von der aktuellen bis zur angeklickten Zeile aus, `Strg+A` wählt alle Zeilen aus. Die Zeilenbefehle gelten dann für alle ausgewählten Zeilen, siehe [Texte übersetzen](translating.md)."
+
+#: src/sheet.md
+msgid ""
 "**Edit** a cell with `F2`, `Enter` or a double-click, see [Translating "
 "texts](translating.md)."
 msgstr "**Bearbeiten** Sie eine Zelle mit `F2`, `Enter` oder einem Doppelklick, siehe [Texte übersetzen](translating.md)."
@@ -982,8 +990,8 @@ msgid "Status: ■ ■ ■ …"
 msgstr "Status: ■ ■ ■ …"
 
 #: src/sheet.md
-msgid "Sets the status of the selected cell. Point at a square to see its name."
-msgstr "Setzt den Status der ausgewählten Zelle. Zeigen Sie auf ein Quadrat, um seinen Namen zu sehen."
+msgid "Sets the status of the selected cells. Point at a square to see its name."
+msgstr "Setzt den Status der ausgewählten Zellen. Zeigen Sie auf ein Quadrat, um seinen Namen zu sehen."
 
 #: src/sheet.md
 msgid "⏮ ◀ ▶ ⏭"
@@ -998,16 +1006,16 @@ msgid "🔒"
 msgstr "🔒"
 
 #: src/sheet.md
-msgid "Switches _Do not translate_ on or off for the row"
-msgstr "Schaltet _Nicht übersetzen_ für die Zeile ein oder aus"
+msgid "Switches _Do not translate_ on or off for the selected rows"
+msgstr "Schaltet _Nicht übersetzen_ für die ausgewählten Zeilen ein oder aus"
 
 #: src/sheet.md
 msgid "★"
 msgstr "★"
 
 #: src/sheet.md
-msgid "Marks the row or removes the mark"
-msgstr "Markiert die Zeile oder entfernt die Markierung"
+msgid "Marks the selected rows or removes the mark"
+msgstr "Markiert die ausgewählten Zeilen oder entfernt die Markierung"
 
 #: src/sheet.md src/statuses.md
 msgid "✏"
@@ -1018,8 +1026,10 @@ msgid "Opens the selected text in the [text editor](text-editor.md)"
 msgstr "Öffnet den ausgewählten Text im [Texteditor](text-editor.md)"
 
 #: src/sheet.md
-msgid "At the end, the bar shows the number of rows in the current view."
-msgstr "Am Ende zeigt die Leiste die Anzahl der Zeilen in der aktuellen Ansicht."
+msgid ""
+"At the end, the bar shows the number of rows in the current view and, if "
+"several rows are selected, how many."
+msgstr "Am Ende zeigt die Leiste die Anzahl der Zeilen in der aktuellen Ansicht und, wenn mehrere Zeilen ausgewählt sind, wie viele."
 
 #: src/filter.md
 msgid ""
@@ -1180,6 +1190,42 @@ msgid ""
 "To set the status of many rows at once, use the menu _Column › Status_ (all "
 "rows shown), or the context menu of the project tree (all rows of a part)."
 msgstr "Um den Status vieler Zeilen auf einmal zu setzen, verwenden Sie das Menü _Spalte › Status_ (alle angezeigten Zeilen) oder das Kontextmenü des Projektbaums (alle Zeilen eines Teils)."
+
+#: src/translating.md
+msgid "Several rows at once"
+msgstr "Mehrere Zeilen auf einmal"
+
+#: src/translating.md
+msgid ""
+"Select several rows with `Ctrl`+click (adds a row or removes it) or "
+"`Shift`+click (all rows from the current row to the clicked one). `Ctrl+A` "
+"selects all rows of the sheet. The status, _Copy from_, _Clear "
+"translations…_, the marks and _Screenshot › Add for the selected rows…_ then "
+"apply to all selected rows, in the current language:"
+msgstr "Wählen Sie mehrere Zeilen mit `Strg`+Klick (fügt eine Zeile hinzu oder entfernt sie) oder `Umschalt`+Klick (alle Zeilen von der aktuellen bis zur angeklickten Zeile) aus. `Strg+A` wählt alle Zeilen der Tabelle aus. Der Status, _Übernehmen_, _Übersetzungen löschen…_, die Markierungen und _Screenshot › Für die ausgewählten Zeilen hinzufügen…_ gelten dann für alle ausgewählten Zeilen, in der aktuellen Sprache:"
+
+#: src/translating.md
+msgid ""
+"A mark (_Do not translate_, _Marked_, _Excluded_) takes its new value from "
+"the current row, the one with the frame: if it is not marked, all selected "
+"rows become marked."
+msgstr "Eine Markierung (_Nicht übersetzen_, _Markiert_, _Ausgeschlossen_) übernimmt ihren neuen Wert von der aktuellen Zeile, der mit dem Rahmen: Ist sie dort nicht gesetzt, wird sie bei allen ausgewählten Zeilen gesetzt."
+
+#: src/translating.md
+msgid "Clearing several translations asks first."
+msgstr "Vor dem Löschen mehrerer Übersetzungen fragt Susi nach."
+
+#: src/translating.md
+msgid ""
+"_Properties…_ and the commands for pictures concern one row only; they are "
+"not offered then."
+msgstr "_Eigenschaften…_ und die Befehle für Bilder betreffen nur eine Zeile; sie werden dann nicht angeboten."
+
+#: src/translating.md
+msgid ""
+"A click without `Ctrl` or `Shift`, or an arrow key, selects a single row "
+"again."
+msgstr "Ein Klick ohne `Strg` oder `Umschalt` oder eine Pfeiltaste wählt wieder eine einzelne Zeile aus."
 
 #: src/translating.md
 msgid "Rows that need special care"
@@ -3395,6 +3441,30 @@ msgstr "`F2` oder `Enter`"
 #: src/shortcuts.md
 msgid "Edit the selected cell"
 msgstr "Die ausgewählte Zelle bearbeiten"
+
+#: src/shortcuts.md
+msgid "`Ctrl`+click"
+msgstr "`Strg`+Klick"
+
+#: src/shortcuts.md
+msgid "Add a row to the selection or remove it"
+msgstr "Eine Zeile zur Auswahl hinzufügen oder daraus entfernen"
+
+#: src/shortcuts.md
+msgid "`Shift`+click"
+msgstr "`Umschalt`+Klick"
+
+#: src/shortcuts.md
+msgid "Select the rows from the current row to the clicked one"
+msgstr "Die Zeilen von der aktuellen bis zur angeklickten Zeile auswählen"
+
+#: src/shortcuts.md
+msgid "`Ctrl+A`"
+msgstr "`Strg+A`"
+
+#: src/shortcuts.md
+msgid "Select all rows"
+msgstr "Alle Zeilen auswählen"
 
 #: src/shortcuts.md
 msgid "While editing a cell"

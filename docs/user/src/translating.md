@@ -23,6 +23,19 @@ Susi sets it to *Translated*. When you are sure that a translation is final, set
 To set the status of many rows at once, use the menu *Column › Status* (all rows shown), or the
 context menu of the project tree (all rows of a part).
 
+## Several rows at once
+
+Select several rows with `Ctrl`+click (adds a row or removes it) or `Shift`+click (all rows from
+the current row to the clicked one). `Ctrl+A` selects all rows of the sheet. The status, *Copy
+from*, *Clear translations…*, the marks and *Screenshot › Add for the selected rows…* then apply
+to all selected rows, in the current language:
+
+- A mark (*Do not translate*, *Marked*, *Excluded*) takes its new value from the current row, the
+  one with the frame: if it is not marked, all selected rows become marked.
+- Clearing several translations asks first.
+- *Properties…* and the commands for pictures concern one row only; they are not offered then.
+- A click without `Ctrl` or `Shift`, or an arrow key, selects a single row again.
+
 ## Rows that need special care
 
 Some rows must not be translated, for example technical names, or should be left out for now.

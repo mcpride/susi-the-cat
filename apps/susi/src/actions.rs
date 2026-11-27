@@ -52,8 +52,10 @@ pub enum Action {
     ExcludedValidations(ValidationScope),
     Find,
     ResetFilter,
-    /// Status of the selected cell (selected row, current language).
+    /// Status of the selected cells (selected rows, current language).
     SetStatus(TranslationStatus),
+    /// Status of the current cell only (the editors show one cell).
+    SetCellStatus(TranslationStatus),
     /// Status of all rows of a scope in a language (`None`: the current language).
     SetStatusIn(Scope, Option<String>, TranslationStatus),
     /// Copies the original (`from` = `None`) or the translations in `from` into the visible rows of
@@ -65,18 +67,24 @@ pub enum Action {
     /// Clears the translations of the visible rows of a language column (`None`: the current
     /// language) after confirmation.
     ClearColumn(Option<String>),
+    /// Toggles of the selected rows; the current row decides the new value for all.
     ToggleLocked,
     ToggleMarked,
     ToggleExcluded,
     SetLockedIn(Scope, bool),
     ClearNewIn(Scope),
     RowProperties,
-    /// Copies the original (`None`) or the translation in a language into the selected cell
-    /// (selected row, current language).
+    /// Copies the original (`None`) or the translation in a language into the selected cells
+    /// (selected rows, current language).
     CopyIntoCell(Option<String>),
+    /// Clears the selected cells, after confirmation if there are several.
     ClearTranslation,
+    /// Clears the current cell only (the editors show one cell).
+    ClearCell,
     EditCell,
     Nav(Nav),
+    /// Selects all rows of the sheet (`Ctrl+A`).
+    SelectAll,
     Settings,
     About,
     /// Help page for the current context (`F1`).
@@ -155,6 +163,7 @@ impl SusiApp {
                 self.rows_stale = true;
             }
             Action::Nav(n) => self.navigate(n),
+            Action::SelectAll => self.select_all(),
             Action::Workflow(c) => crate::workflow_ui::run(self, c, ctx),
             Action::Screenshot(c) => crate::shots::run(self, c, ctx),
             other => self.run_project_action(other),
@@ -207,6 +216,7 @@ impl SusiApp {
     fn run_row_action(&mut self, a: Action) {
         match a {
             Action::SetStatus(s) => self.set_status(s),
+            Action::SetCellStatus(s) => self.set_cell_status(s),
             Action::SetStatusIn(scope, lang, s) => self.set_status_in(scope, lang, s),
             Action::CopyInColumn { from, lang } => self.copy_dialog(from, lang),
             Action::ClearColumn(lang) => self.clear_column_dialog(lang),
@@ -216,18 +226,14 @@ impl SusiApp {
                     r.set_status(RowStatus::InUse);
                 }
             }),
-            Action::ToggleLocked => self.with_selected_row(|r| r.set_locked(!r.locked())),
-            Action::ToggleMarked => self.with_selected_row(|r| r.set_marked(!r.marked())),
-            Action::ToggleExcluded => self.with_selected_row(|r| r.set_excluded(!r.excluded())),
+            Action::ToggleLocked => self.toggle_rows(susi_core::Row::locked, susi_core::Row::set_locked),
+            Action::ToggleMarked => self.toggle_rows(susi_core::Row::marked, susi_core::Row::set_marked),
+            Action::ToggleExcluded => self.toggle_rows(susi_core::Row::excluded, susi_core::Row::set_excluded),
             Action::RowProperties => self.row_props_dialog(),
             Action::Data(c) => crate::data_ui::run(self, c),
             Action::CopyIntoCell(from) => self.copy_into_cell(from),
-            Action::ClearTranslation => {
-                if let (Some(row), Some(lang)) = (self.selected.clone(), self.lang.clone()) {
-                    self.cell_edit = None;
-                    self.write_translation(&row, &lang, "");
-                }
-            }
+            Action::ClearTranslation => self.clear_translation(),
+            Action::ClearCell => self.clear_cell(),
             Action::EditCell => {
                 if let (Some(row), Some(lang)) = (self.selected.clone(), self.lang.clone()) {
                     self.start_cell_edit(row, lang);
@@ -269,15 +275,28 @@ impl SusiApp {
         self.select(row);
     }
 
-    fn with_selected_row(&mut self, f: impl FnOnce(&mut susi_core::Row)) {
+    /// Sets a flag of the selected rows to the opposite of the current row's value.
+    fn toggle_rows(&mut self, get: fn(&susi_core::Row) -> bool, set: fn(&mut susi_core::Row, bool)) {
         let Some(sel) = self.selected.clone() else {
             self.warn(t("No row selected"));
             return;
         };
-        if let Some(r) = self.project.as_mut().and_then(|p| p.row_mut(&sel)) {
-            f(r);
-            self.touched();
+        let rows = self.selected_rows();
+        let Some(p) = self.project.as_mut() else {
+            return;
+        };
+        let Some(on) = p.row(&sel).map(|r| !get(r)) else {
+            return;
+        };
+        for r in &rows {
+            if let Some(row) = p.row_mut(r) {
+                set(row, on);
+            }
         }
+        if rows.len() > 1 {
+            self.info(trn(rows.len(), "{n} row changed", "{n} rows changed"));
+        }
+        self.touched();
     }
 
     pub(crate) fn rows_of(&self, scope: &Scope) -> Vec<RowRef> {
@@ -302,6 +321,18 @@ impl SusiApp {
     }
 
     fn set_status(&mut self, s: TranslationStatus) {
+        let rows = self.selected_rows();
+        let Some(lang) = self.lang.clone().filter(|_| rows.len() > 1) else {
+            return self.set_cell_status(s);
+        };
+        self.commit_cell_edit();
+        let n = self.set_status_of(&rows, lang, s);
+        if n < rows.len() {
+            self.warn(trn(rows.len() - n, "{n} selected cell contains no translation", "{n} selected cells contain no translation"));
+        }
+    }
+
+    fn set_cell_status(&mut self, s: TranslationStatus) {
         self.commit_cell_edit();
         let (Some(sel), Some(lang)) = (self.selected.clone(), self.lang.clone()) else {
             self.warn(t("No row or language selected"));
@@ -331,9 +362,14 @@ impl SusiApp {
             return;
         };
         let rows = self.rows_of(&scope);
+        self.set_status_of(&rows, lang, s);
+    }
+
+    /// Sets the status of the translations of `lang` in `rows`; returns how many were set.
+    fn set_status_of(&mut self, rows: &[RowRef], lang: String, s: TranslationStatus) -> usize {
         let mut n = 0;
         if let Some(p) = self.project.as_mut() {
-            for r in &rows {
+            for r in rows {
                 if p.row_mut(r).is_some_and(|row| row.set_tstatus(&lang, s)) {
                     n += 1;
                 }
@@ -346,14 +382,27 @@ impl SusiApp {
             lang = lang
         ));
         self.structure_changed();
+        n
     }
 
-    /// Copies the original (`from` = `None`) or the translation in `from` into the selected cell.
+    /// Copies the original (`from` = `None`) or the translation in `from` into the selected cells.
+    /// Several cells are filled like a column: rows marked "Do not translate", excluded rows and
+    /// rows without a text to copy are skipped.
     fn copy_into_cell(&mut self, from: Option<String>) {
         let (Some(sel), Some(lang)) = (self.selected.clone(), self.lang.clone()) else {
             self.warn(t("No row or language selected"));
             return;
         };
+        let rows = self.selected_rows();
+        if rows.len() > 1 {
+            self.commit_cell_edit();
+            let Some(p) = self.project.as_mut() else {
+                return;
+            };
+            let done = ops::copy_cells(p, &rows, from.as_deref(), &lang, true);
+            self.copied(&done, from.as_deref(), &lang);
+            return;
+        }
         let text = self.project.as_ref().and_then(|p| ops::copy_source(p, &sel, from.as_deref())).map(str::to_string);
         match (text, from) {
             (Some(text), _) => {
@@ -388,12 +437,39 @@ impl SusiApp {
             return;
         };
         let done = ops::copy_cells(p, &d.rows, d.from.as_deref(), &d.lang, d.overwrite);
-        self.cells_changed(&done, &d.lang);
+        self.copied(&done, d.from.as_deref(), &d.lang);
+    }
+
+    /// Bookkeeping and message after copying the original or `from` into the cells of `lang` in `done`.
+    fn copied(&mut self, done: &[RowRef], from: Option<&str>, lang: &str) {
+        self.cells_changed(done, lang);
         let count = trn(done.len(), "{n} cell", "{n} cells");
-        self.info(match &d.from {
-            None => susi_core::tf!("Original copied into {count} ({lang})", count = count, lang = d.lang),
-            Some(from) => susi_core::tf!("Translations of {from} copied into {count} ({lang})", from = from, count = count, lang = d.lang),
+        self.info(match from {
+            None => susi_core::tf!("Original copied into {count} ({lang})", count = count, lang = lang),
+            Some(from) => susi_core::tf!("Translations of {from} copied into {count} ({lang})", from = from, count = count, lang = lang),
         });
+    }
+
+    /// Clears the selected cell at once, several selected cells after confirmation.
+    fn clear_translation(&mut self) {
+        let rows = self.selected_rows();
+        let Some(lang) = self.lang.clone().filter(|_| rows.len() > 1) else {
+            return self.clear_cell();
+        };
+        self.commit_cell_edit();
+        let rows = self.project.as_ref().map(|p| ops::translated_rows(p, &rows, &lang)).unwrap_or_default();
+        if rows.is_empty() {
+            self.info(susi_core::tf!("The selected rows have no translations in {lang}", lang = lang));
+            return;
+        }
+        self.dialog = Some(Dialog::ClearColumn(ClearColumnDialog { lang, rows, selection: true }));
+    }
+
+    fn clear_cell(&mut self) {
+        if let (Some(row), Some(lang)) = (self.selected.clone(), self.lang.clone()) {
+            self.cell_edit = None;
+            self.write_translation(&row, &lang, "");
+        }
     }
 
     /// Asks before clearing the translations of the visible rows of a language column.
@@ -407,7 +483,7 @@ impl SusiApp {
             self.info(susi_core::tf!("The column {lang} has no translations in the visible rows", lang = lang));
             return;
         }
-        self.dialog = Some(Dialog::ClearColumn(ClearColumnDialog { lang, rows }));
+        self.dialog = Some(Dialog::ClearColumn(ClearColumnDialog { lang, rows, selection: false }));
     }
 
     pub fn clear_column(&mut self, d: &ClearColumnDialog) {
@@ -549,7 +625,7 @@ impl SusiApp {
 
     fn remove_unused(&mut self) {
         let n = self.project.as_mut().map(Project::remove_unused_rows).unwrap_or(0);
-        self.selected = None;
+        self.clear_selection();
         self.set_issues(Vec::new());
         self.structure_changed();
         self.info(trn(n, "{n} unused row removed", "{n} unused rows removed"));
