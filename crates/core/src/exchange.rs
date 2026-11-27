@@ -7,9 +7,10 @@
 //! Screenshots linked to the exported rows (see [`crate::screenshots`]) are added as a `Screenshot`
 //! column: in Excel by default as links to a second worksheet showing each image once with numbered
 //! frames around the marked areas, otherwise as relative paths of images copied to
-//! `<name>_screenshots/` (XLIFF: `<context-group>` per trans-unit). Import ignores them.
+//! `<name>_screenshots/` (XLIFF: `<context-group>` per trans-unit). There, the frame of a marked
+//! area is drawn into a copy of the image per area. Import ignores them.
 
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::path::{Path, PathBuf};
 
 use serde::{Deserialize, Serialize};
@@ -30,7 +31,8 @@ pub enum ScreenshotExport {
     #[default]
     Auto,
     None,
-    /// Images copied next to the export (`<name>_screenshots/`), referenced by relative path.
+    /// Images copied next to the export (`<name>_screenshots/`), referenced by relative path; a
+    /// marked area is framed in a copy of the image per area.
     Link,
     /// Excel: images on a second worksheet with numbered frames; other formats like `Link`.
     Embed,
@@ -558,7 +560,7 @@ fn write_workbook(t: &Table, path: &Path, ui: Lang, shots: Option<&Workbook<'_>>
                 if s.plan.embed {
                     Some(format!("internal:'{}'!A{}", sheet.replace('\'', "''"), layout.get(first.shot)?.title_row + 1))
                 } else {
-                    Some(format!("file:///{}", s.plan.rel(s.plan.shots.get(first.shot)?)))
+                    Some(format!("file:///{}", s.plan.rel(first)?))
                 }
             });
             if let Some(link) = link {
@@ -646,9 +648,26 @@ impl<'a> ShotPlan<'a> {
         Some(Self { store, embed, dir: export.with_file_name(&dir_name), dir_name, shots, marks, by_shot })
     }
 
-    /// Reference of a copied image relative to the export.
-    fn rel(&self, s: &Screenshot) -> String {
-        format!("{}/{}", self.dir_name, s.file)
+    /// Name of the image copied to [`Self::dir`] for `m`: the screenshot itself, or for a marked
+    /// area a copy with its frame drawn in (`<stem>.<x>-<y>-<w>-<h>.<ext>`; the stored file names
+    /// `<id>.<hash>.<ext>` contain no further dot, so they cannot collide).
+    fn file_name(&self, m: &Mark) -> Option<String> {
+        let file = &self.shots.get(m.shot)?.file;
+        Some(match m.area {
+            None => file.clone(),
+            Some(a) => {
+                let area = format!("{}-{}-{}-{}", a.x, a.y, a.w, a.h);
+                match file.rsplit_once('.') {
+                    Some((stem, ext)) => format!("{stem}.{area}.{ext}"),
+                    None => format!("{file}.{area}"),
+                }
+            }
+        })
+    }
+
+    /// Reference of the image copied for `m`, relative to the export.
+    fn rel(&self, m: &Mark) -> Option<String> {
+        Some(format!("{}/{}", self.dir_name, self.file_name(m)?))
     }
 
     /// Text of the screenshot column for row `r`.
@@ -656,22 +675,29 @@ impl<'a> ShotPlan<'a> {
         let Some(marks) = self.marks.get(r) else {
             return String::new();
         };
-        let mut v: Vec<String> = marks
-            .iter()
-            .filter_map(|m| {
-                let s = self.shots.get(m.shot)?;
-                Some(if self.embed { format!("{} (#{})", s.label(), m.no) } else { self.rel(s) })
-            })
-            .collect();
+        let mut v: Vec<String> =
+            marks.iter().filter_map(|m| if self.embed { Some(format!("{} (#{})", self.shots.get(m.shot)?.label(), m.no)) } else { self.rel(m) }).collect();
         v.dedup();
         v.join(if self.embed { ", " } else { "\n" })
     }
 
-    /// Copies the images to [`Self::dir`].
+    /// Copies the images to [`Self::dir`]: per screenshot the image itself if a row shows it
+    /// without area, and one framed copy per marked area.
     fn copy_images(&self) -> Result<()> {
         let from = self.store.image_dir();
-        for s in &self.shots {
-            write_file(&self.dir.join(&s.file), &read_file(&from.join(&s.file))?)?;
+        for (s, marks) in self.shots.iter().zip(&self.by_shot) {
+            let path = from.join(&s.file);
+            let bytes = read_file(&path)?;
+            let mut done = HashSet::new();
+            for m in marks.iter().filter(|m| done.insert(m.area)) {
+                let Some(name) = self.file_name(m) else {
+                    continue;
+                };
+                match m.area {
+                    None => write_file(&self.dir.join(name), &bytes)?,
+                    Some(a) => write_file(&self.dir.join(name), &draw_frame(&bytes, a, &path)?)?,
+                }
+            }
         }
         Ok(())
     }
@@ -699,11 +725,11 @@ impl<'a> ShotPlan<'a> {
     fn xliff(&self, r: &RowRef) -> String {
         let mut s = String::new();
         for m in self.marks.get(r).into_iter().flatten() {
-            let Some(shot) = self.shots.get(m.shot) else {
+            let Some(rel) = self.rel(m) else {
                 continue;
             };
             s.push_str("        <context-group purpose=\"information\">\n");
-            s.push_str(&format!("          <context context-type=\"x-screenshot\">{}</context>\n", escape_text(&self.rel(shot))));
+            s.push_str(&format!("          <context context-type=\"x-screenshot\">{}</context>\n", escape_text(&rel)));
             if let Some(a) = m.area {
                 s.push_str(&format!("          <context context-type=\"x-screenshot-area\">{a}</context>\n"));
             }
@@ -711,6 +737,56 @@ impl<'a> ShotPlan<'a> {
         }
         s
     }
+}
+
+/// Colour of the frames around marked areas (Excel shapes and framed image copies).
+const FRAME_RGB: [u8; 3] = [0xE0, 0x20, 0x20];
+/// Line width of a frame drawn into an image copy, in pixels.
+const FRAME_WIDTH: u32 = 3;
+
+/// `bytes` (PNG or JPEG, read from `path`) with a frame around `a` drawn in, in the same format.
+/// The frame lies outside the area where the image leaves room, otherwise along its inner edge.
+fn draw_frame(bytes: &[u8], a: Area, path: &Path) -> Result<Vec<u8>> {
+    use image::{DynamicImage, ImageFormat, Pixel, Rgb, Rgba};
+    let format = match crate::screenshots::image_kind(bytes) {
+        Some("png") => ImageFormat::Png,
+        Some(_) => ImageFormat::Jpeg,
+        None => return Err(Error::Unsupported(crate::tf!("image format (PNG or JPEG expected): {path}", path = path.display()))),
+    };
+    let broken = |e: image::ImageError| Error::Format(format!("{}: {e}", path.display()));
+    let decoded = image::load_from_memory_with_format(bytes, format).map_err(broken)?;
+    fn frame<P: Pixel<Subpixel = u8>>(img: &mut image::ImageBuffer<P, Vec<u8>>, a: Area, color: P) {
+        let (w, h) = img.dimensions();
+        let (x0, y0) = (a.x.saturating_sub(FRAME_WIDTH), a.y.saturating_sub(FRAME_WIDTH));
+        let x1 = a.x.saturating_add(a.w).saturating_add(FRAME_WIDTH).min(w);
+        let y1 = a.y.saturating_add(a.h).saturating_add(FRAME_WIDTH).min(h);
+        for y in y0..y1 {
+            for x in x0..x1 {
+                if x < x0 + FRAME_WIDTH || x + FRAME_WIDTH >= x1 || y < y0 + FRAME_WIDTH || y + FRAME_WIDTH >= y1 {
+                    img.put_pixel(x, y, color);
+                }
+            }
+        }
+    }
+    // Colour images in any case, so that the frame is red on grey screenshots too.
+    let img = if format == ImageFormat::Png && decoded.color().has_alpha() {
+        let mut img = decoded.into_rgba8();
+        let [r, g, b] = FRAME_RGB;
+        frame(&mut img, a, Rgba([r, g, b, 0xFF]));
+        DynamicImage::ImageRgba8(img)
+    } else {
+        let mut img = decoded.into_rgb8();
+        frame(&mut img, a, Rgb(FRAME_RGB));
+        DynamicImage::ImageRgb8(img)
+    };
+    let mut out = std::io::Cursor::new(Vec::new());
+    match format {
+        // Better than the default quality (75): screenshots contain text.
+        ImageFormat::Jpeg => img.write_with_encoder(image::codecs::jpeg::JpegEncoder::new_with_quality(&mut out, 90)),
+        _ => img.write_to(&mut out, format),
+    }
+    .map_err(broken)?;
+    Ok(out.into_inner())
 }
 
 /// Widest screenshot on the screenshot worksheet, in pixels.
@@ -732,7 +808,8 @@ impl Workbook<'_> {
     /// `No. | Context | Original` of the rows shown.
     fn write_sheet(&self, ws: &mut rust_xlsxwriter::Worksheet, layout: &[SheetImage], ui: Lang) -> Result<()> {
         use rust_xlsxwriter::{Color, Format, Shape, ShapeFont, ShapeFormat, ShapeLine};
-        let red = Color::RGB(0x00E0_2020);
+        let [r, g, b] = FRAME_RGB;
+        let red = Color::RGB(u32::from_be_bytes([0, r, g, b]));
         let frame = ShapeFormat::new().set_no_fill().set_line(&ShapeLine::new().set_color(red).set_width(2.0));
         let font = ShapeFont::new().set_bold().set_color(red).set_size(9);
         let (head, bold, wrap) = (header_format(), Format::new().set_bold().set_font_size(12), Format::new().set_text_wrap());
@@ -1327,14 +1404,16 @@ mod tests {
     fn csv_and_xliff_reference_copied_screenshots() {
         let dir = tempfile::tempdir().unwrap();
         let (p, st) = with_screenshot(dir.path());
-        let file = &st.get("main").unwrap().file;
+        // The area of the link is framed in a copy of the image.
+        let file = st.get("main").unwrap().file.replace(".png", ".10-10-50-20.png");
         let opts = ExportOptions { label_lang: Some(Lang::EN), langs: vec!["de".into()], ..Default::default() };
 
         let csv = dir.path().join("out").join("x.csv");
         let files = export_file(&p, &csv, &opts, Some(&st)).unwrap();
         let copies = dir.path().join("out").join("x_screenshots");
         assert_eq!(files, [csv.clone(), copies.clone()]);
-        assert!(copies.join(file).is_file());
+        assert_eq!(std::fs::read_dir(&copies).unwrap().count(), 1, "no unframed copy without a row showing it");
+        assert!(copies.join(&file).is_file());
         let t = read_delimited(&read_file(&csv).unwrap(), None).unwrap();
         assert_eq!(t.rows[0].last().unwrap(), &format!("x_screenshots/{file}"));
         let mut q = project();
@@ -1345,10 +1424,73 @@ mod tests {
         let x = String::from_utf8(read_file(&xlf).unwrap()).unwrap();
         assert!(x.contains(&format!("<context context-type=\"x-screenshot\">y_screenshots/{file}</context>")), "{x}");
         assert!(x.contains("<context context-type=\"x-screenshot-area\">10,10,50,20</context>"));
-        assert!(dir.path().join("y_screenshots").join(file).is_file());
+        assert!(dir.path().join("y_screenshots").join(&file).is_file());
         let mut q = project();
         let rep = import_file(&mut q, &xlf, &ImportOptions::default()).unwrap();
         assert_eq!(rep.not_found, 0, "{rep:?}");
         assert_eq!(classify("Screenshot"), Col::Ignore);
+    }
+
+    /// Copied images: one framed copy per marked area (shared by links with the same area), the
+    /// image itself for a link without area; PNG and JPEG keep their format.
+    #[test]
+    fn copied_screenshots_have_the_frames_drawn_in() {
+        use crate::screenshots::Link;
+        let dir = tempfile::tempdir().unwrap();
+        let (mut p, mut st) = with_screenshot(dir.path());
+        let mut s = Source::new(SourceKind::Json, "b.json", "en");
+        for id in ["same", "other", "plain", "photo"] {
+            s.items.push(Item::Row(Row::new(id, id)));
+        }
+        p.sources.push(s);
+        let row = |p: &Project, id: &str| p.find_row(id).unwrap();
+        let area = |s: &str| Area::parse(s);
+        st.link(
+            "main",
+            [
+                Link::to_row(&p, &row(&p, "same"), area("10,10,50,20")),
+                Link::to_row(&p, &row(&p, "other"), area("0,60,200,40")),
+                Link::to_row(&p, &row(&p, "plain"), None),
+            ],
+        )
+        .unwrap();
+        let mut jpeg = std::io::Cursor::new(Vec::new());
+        image::DynamicImage::ImageRgb8(image::RgbImage::from_pixel(80, 60, image::Rgb([0, 0, 255]))).write_to(&mut jpeg, image::ImageFormat::Jpeg).unwrap();
+        st.add_bytes(jpeg.get_ref(), Some("photo"), None).unwrap();
+        st.link("photo", [Link::to_row(&p, &row(&p, "photo"), area("20,20,20,20"))]).unwrap();
+
+        let csv = dir.path().join("x.csv");
+        let opts = ExportOptions { label_lang: Some(Lang::EN), langs: vec!["de".into()], ..Default::default() };
+        export_file(&p, &csv, &opts, Some(&st)).unwrap();
+        let copies = dir.path().join("x_screenshots");
+        let (main, photo) = (st.get("main").unwrap().file.clone(), st.get("photo").unwrap().file.clone());
+        let named = |file: &str, a: &str| file.replace(".png", &format!(".{a}.png")).replace(".jpg", &format!(".{a}.jpg"));
+        let t = read_delimited(&read_file(&csv).unwrap(), None).unwrap();
+        let cells: Vec<&str> = t.rows.iter().map(|r| r.last().unwrap().as_str()).collect();
+        let want =
+            [named(&main, "10-10-50-20"), String::new(), named(&main, "10-10-50-20"), named(&main, "0-60-200-40"), main.clone(), named(&photo, "20-20-20-20")];
+        assert_eq!(cells, want.iter().map(|f| if f.is_empty() { String::new() } else { format!("x_screenshots/{f}") }).collect::<Vec<_>>());
+        let mut written: Vec<String> = std::fs::read_dir(&copies).unwrap().map(|e| e.unwrap().file_name().to_string_lossy().into_owned()).collect();
+        written.sort();
+        let mut expected: Vec<String> = want.into_iter().filter(|f| !f.is_empty()).collect();
+        expected.sort();
+        expected.dedup();
+        assert_eq!(written, expected);
+
+        let load = |f: &str| image::open(copies.join(f)).unwrap().to_rgb8();
+        let (red, gray) = (image::Rgb(FRAME_RGB), image::Rgb([200, 200, 200]));
+        // The unframed image is the original file.
+        assert_eq!(read_file(&copies.join(&main)).unwrap(), read_file(&st.image_dir().join(&main)).unwrap());
+        // Frame outside the area, the area itself unchanged.
+        let img = load(&named(&main, "10-10-50-20"));
+        assert_eq!((img.get_pixel(7, 7), img.get_pixel(62, 32), img.get_pixel(10, 10), img.get_pixel(6, 6)), (&red, &red, &gray, &gray));
+        // At the edges of the image, the frame lies inside the area.
+        let img = load(&named(&main, "0-60-200-40"));
+        assert_eq!((img.get_pixel(0, 99), img.get_pixel(199, 80), img.get_pixel(100, 57), img.get_pixel(3, 63)), (&red, &red, &red, &gray));
+        // JPEG stays JPEG (lossy: the colour only roughly).
+        let jpg = read_file(&copies.join(named(&photo, "20-20-20-20"))).unwrap();
+        assert_eq!(crate::screenshots::image_kind(&jpg), Some("jpg"));
+        let px = image::load_from_memory(&jpg).unwrap().to_rgb8().get_pixel(18, 18).0;
+        assert!(px[0] > 150 && px[2] < 100, "{px:?}");
     }
 }
