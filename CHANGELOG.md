@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.18.2](https://github.com/mcpride/susi-the-cat/compare/v0.18.1...v0.18.2) (2026-11-27)
+
+### Bug Fixes
+
+* optimize languages selection in export dialog ([49760ce](https://github.com/mcpride/susi-the-cat/commit/49760cefda0152a9ef59612265d7ebf04b1d0b45))
+
 ## [0.18.1](https://github.com/mcpride/susi-the-cat/compare/v0.18.0...v0.18.1) (2026-11-26)
 
 ### Bug Fixes
