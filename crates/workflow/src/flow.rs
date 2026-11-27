@@ -224,6 +224,14 @@ fn is_config_path(path: &str) -> bool {
     path.strip_prefix(config::REPO_DIR).is_some_and(|r| r.is_empty() || r.starts_with('/'))
 }
 
+/// Whether `dir` is in a working copy with a workflow configuration, found without git: the
+/// nearest folder with `.git` contains `.susi/workflow.toml`, or `.git/susi/workflow.local.toml`.
+fn configured_without_git(dir: &Path) -> bool {
+    dir.ancestors()
+        .find(|d| d.join(".git").exists())
+        .is_some_and(|root| root.join(config::REPO_FILE).is_file() || root.join(".git").join(config::LOCAL_FILE).is_file())
+}
+
 impl Workflow {
     /// Workflow for the project file `slp`, `None` if it is not in a configured git working copy.
     pub fn detect(slp: &Path) -> Result<Option<Workflow>> {
@@ -244,6 +252,8 @@ impl Workflow {
                     dir = dir.display().to_string().replace('\\', "/")
                 )));
             }
+            // Only where a workflow is set up: projects outside of git stay silent without git, too.
+            Err(Error::GitNotFound) if configured_without_git(dir) => return Err(Error::GitNotFound),
             Err(_) => return Ok(None),
         };
         let prefix = probe.query(&["rev-parse", "--show-prefix"])?;
@@ -259,7 +269,10 @@ impl Workflow {
     pub fn init(slp: &Path) -> Result<PathBuf> {
         let slp = std::path::absolute(slp).unwrap_or_else(|_| slp.to_path_buf());
         let dir = slp.parent().unwrap_or(Path::new("."));
-        let top = Git::new(dir).query(&["rev-parse", "--show-toplevel"]).map_err(|_| Error::NotConfigured(dir.display().to_string()))?;
+        let top = Git::new(dir).query(&["rev-parse", "--show-toplevel"]).map_err(|e| match e {
+            Error::GitNotFound => e,
+            _ => Error::NotConfigured(dir.display().to_string()),
+        })?;
         let path = PathBuf::from(top).join(config::REPO_FILE);
         if path.exists() {
             return Err(Error::Workflow(tf!("{path} already exists", path = path.display())));
@@ -821,5 +834,31 @@ mod tests {
         assert_eq!(sanitize("Anna Müller"), "anna.mueller");
         assert_eq!(sanitize(" Groß/Straße? "), "gross-strasse");
         assert_eq!(sanitize("a..b--c"), "a.b-c");
+    }
+
+    /// Without git, a missing git is reported only for working copies with a workflow configuration.
+    #[test]
+    fn finds_the_configuration_without_git() {
+        let tmp = tempfile::tempdir().unwrap();
+        let write = |rel: &str| {
+            let path = tmp.path().join(rel);
+            std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+            std::fs::write(path, "").unwrap();
+        };
+        let (repo, local, plain) = (tmp.path().join("repo"), tmp.path().join("local"), tmp.path().join("plain"));
+        write("repo/.git/HEAD");
+        write("repo/.susi/workflow.toml");
+        write("repo/l10n/app.slp");
+        write("local/.git/susi/workflow.local.toml");
+        write("plain/.git/HEAD");
+        write("plain/.susi-other/workflow.toml");
+        assert!(configured_without_git(&repo.join("l10n")));
+        assert!(configured_without_git(&repo));
+        assert!(configured_without_git(&local));
+        assert!(!configured_without_git(&plain));
+        // The nearest working copy counts (a nested one without configuration), and folders outside of git.
+        write("repo/vendor/lib/.git");
+        assert!(!configured_without_git(&repo.join("vendor/lib")));
+        assert!(!configured_without_git(tmp.path()));
     }
 }

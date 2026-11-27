@@ -56,7 +56,7 @@ impl Git {
         if input.is_some() {
             cmd.stdin(Stdio::piped());
         }
-        let mut child = cmd.spawn().map_err(|e| Error::Git { command: line.clone(), message: e.to_string() })?;
+        let mut child = cmd.spawn().map_err(|e| spawn_error(&line, &e))?;
         if let (Some(data), Some(mut stdin)) = (input, child.stdin.take()) {
             stdin.write_all(data).map_err(|e| Error::Git { command: line.clone(), message: e.to_string() })?;
         }
@@ -170,9 +170,23 @@ pub fn parse_snapshot(out: &str) -> Snapshot {
     s
 }
 
+/// Error of starting `git`: [`Error::GitNotFound`] when it is not installed (not on the `PATH`).
+fn spawn_error(command: &str, e: &std::io::Error) -> Error {
+    if e.kind() == std::io::ErrorKind::NotFound { Error::GitNotFound } else { Error::Git { command: command.to_string(), message: e.to_string() } }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn missing_git_is_reported_as_such() {
+        let missing = std::io::Error::from(std::io::ErrorKind::NotFound);
+        assert!(matches!(spawn_error("status", &missing), Error::GitNotFound));
+        assert!(spawn_error("status", &missing).to_string().starts_with("git was not found"));
+        let denied = std::io::Error::from(std::io::ErrorKind::PermissionDenied);
+        assert!(matches!(spawn_error("status", &denied), Error::Git { command, .. } if command == "status"));
+    }
 
     #[test]
     fn parses_porcelain_status() {

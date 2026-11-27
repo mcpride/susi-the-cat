@@ -41,8 +41,22 @@ pub enum Error {
     Workflow(String),
     #[error("{prefix} {0}", prefix = t("The project is not in a git working copy configured for the translation workflow:"))]
     NotConfigured(String),
+    /// `git` could not be started: not installed or not on the `PATH`.
+    #[error("{message}", message = git_not_found())]
+    GitNotFound,
     #[error(transparent)]
     Core(#[from] susi_core::Error),
+}
+
+/// What to do without git, in terms of the translator's platform.
+fn git_not_found() -> &'static str {
+    if cfg!(windows) {
+        t(
+            "git was not found, so the git workflow is not available. Install Git for Windows with the option \"Git from the command line and also from 3rd-party software\" and restart Susi.",
+        )
+    } else {
+        t("git was not found, so the git workflow is not available. Install git (the git command must be on the PATH) and restart Susi.")
+    }
 }
 
 pub type Result<T, E = Error> = std::result::Result<T, E>;

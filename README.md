@@ -493,7 +493,10 @@ committed – never other changes in the working copy.
    adjust and commit it **to the default branch**. The workflow is active when this file (or the working
    copy file below) exists. *Get translation project* never sets `.susi/` aside; if the checked-out
    version lacks the file, it is kept as an uncommitted file and the status warns about it.
-2. Configure git for the translator: `git config --global user.name/user.email` and a credential
+2. Susi runs `git` from the `PATH`: on Windows, install Git for Windows with the option *Git from
+   the command line and also from 3rd-party software*. Without git, Susi reports it for working
+   copies with a workflow configuration (GUI: tab *Output*). Configure git for the translator:
+   `git config --global user.name/user.email` and a credential
    helper (`git config --global credential.helper manager` on Windows). For working copies owned by
    another user: `git config --global --add safe.directory <path>`.
 3. Create an access token and store it with *Workflow → Sign in to the server…* or

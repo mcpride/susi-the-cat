@@ -33,6 +33,14 @@ all changes since the last save. Before every save, Susi keeps the previous vers
 Yes, as long as it contains only kinds of sources that Sisulizer knows. Susi keeps everything else
 in the file untouched. See [Creating, opening and saving](projects.md).
 
+## The menu *Workflow* and its buttons are missing.
+
+Susi shows them only for projects that a developer has prepared for the
+[git workflow](git-workflow.md). Look at the tab *Output* after opening the project: if git is not
+installed, Susi says so there. Install Git for Windows with the option *Git from the command line
+and also from 3rd-party software* and restart Susi. Without a message, the project is not in a
+prepared working copy: ask your developers.
+
 ## Where does Susi keep my settings and the translation memory?
 
 In the settings folder of your user account, see [Options](options.md).

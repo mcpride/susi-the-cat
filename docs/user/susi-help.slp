@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<document created="20261123194613" version="4.0.374" date="20261127160406" scan="9" scanned="20261127160352">
+<document created="20261123194613" version="4.0.374" date="20261127165548" scan="10" scanned="20261127165527">
   <lang id="en"/>
   <lang id="de"/>
-  <source class="TPoSource" name="po\messages.pot" original="en" date="20261127160350" compile="0">
+  <source class="TPoSource" name="po\messages.pot" original="en" date="20261127165524" compile="0">
     <outputfile dir="." localized="&lt;iso&gt;.po"/>
     <node class="TPoNode" name="messages.pot" state="0" created="20261123194613">
       <row id="##Last-Translator" created="20261123194613">
@@ -2882,6 +2882,14 @@
       <row id="Yes, as long as it contains only kinds of sources that Sisulizer knows. Susi keeps everything else in the file untouched. See [Creating, opening and saving](projects.md)." created="20261123194613" note="src/faq.md" notereadonly="1">
         <native>Yes, as long as it contains only kinds of sources that Sisulizer knows. Susi keeps everything else in the file untouched. See [Creating, opening and saving](projects.md).</native>
         <lang id="de" date="20261123194651" status="3">Ja, solange es nur Quellarten enthält, die Sisulizer kennt. Alles andere in der Datei lässt Susi unverändert. Siehe [Anlegen, öffnen und speichern](projects.md).</lang>
+      </row>
+      <row id="The menu _Workflow_ and its buttons are missing." state="0" created="20261127165527" note="src/faq.md" notereadonly="1">
+        <native>The menu _Workflow_ and its buttons are missing.</native>
+        <lang id="de" date="20261127165548" status="3">Das Menü _Workflow_ und seine Schaltflächen fehlen.</lang>
+      </row>
+      <row id="Susi shows them only for projects that a developer has prepared for the [git workflow](git-workflow.md). Look at the tab _Output_ after opening the project: if git is not installed, Susi says so there. Install Git for Windows with the option _Git from the command line and also from 3rd-party software_ and restart Susi. Without a message, the project is not in a prepared working copy: ask your developers." state="0" created="20261127165527" note="src/faq.md" notereadonly="1">
+        <native>Susi shows them only for projects that a developer has prepared for the [git workflow](git-workflow.md). Look at the tab _Output_ after opening the project: if git is not installed, Susi says so there. Install Git for Windows with the option _Git from the command line and also from 3rd-party software_ and restart Susi. Without a message, the project is not in a prepared working copy: ask your developers.</native>
+        <lang id="de" date="20261127165548" status="3">Susi zeigt sie nur für Projekte, die ein Entwickler für den [Git-Workflow](git-workflow.md) vorbereitet hat. Schauen Sie nach dem Öffnen des Projekts in den Reiter _Ausgabe_: Ist git nicht installiert, meldet Susi das dort. Installieren Sie Git for Windows mit der Option _Git from the command line and also from 3rd-party software_ und starten Sie Susi neu. Ohne Meldung liegt das Projekt nicht in einer vorbereiteten Arbeitskopie: Fragen Sie Ihre Entwickler.</lang>
       </row>
       <row id="Where does Susi keep my settings and the translation memory?" created="20261123194613" note="src/faq.md" notereadonly="1">
         <native>Where does Susi keep my settings and the translation memory?</native>

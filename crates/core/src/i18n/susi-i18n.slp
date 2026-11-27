@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<document created="20261103155355" version="4.0.374" date="20261127162806" scan="34" scanned="20261127162806">
+<document created="20261103155355" version="4.0.374" date="20261127165457" scan="35" scanned="20261127165457">
   <lang id="en"/>
   <lang id="de"/>
   <source class="TTsvSource" name="de-core.tsv" original="en" date="20261127154011">
@@ -2829,7 +2829,7 @@
       </row>
     </node>
   </source>
-  <source class="TTsvSource" name="de-workflow.tsv" original="en" date="20261116220228">
+  <source class="TTsvSource" name="de-workflow.tsv" original="en" date="20261127165319">
     <outputfile dir="." localized="&lt;iso&gt;-workflow.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-workflow.tsv" state="0" created="20261112175203">
       <row id="A fixed version is checked out. Get the translation project to continue working." created="20261112175203">
@@ -3471,6 +3471,14 @@
       <row id="git does not trust the working copy (it belongs to another user). A developer can allow it with: git config --global --add safe.directory &quot;{dir}&quot;" created="20261112175203">
         <native>git does not trust the working copy (it belongs to another user). A developer can allow it with: git config --global --add safe.directory "{dir}"</native>
         <lang id="de" date="20261112175203" status="3">git vertraut der Arbeitskopie nicht (sie gehört einem anderen Benutzer). Ein Entwickler kann sie erlauben mit: git config --global --add safe.directory "{dir}"</lang>
+      </row>
+      <row id="git was not found, so the git workflow is not available. Install Git for Windows with the option &quot;Git from the command line and also from 3rd-party software&quot; and restart Susi." state="0" created="20261127165457">
+        <native>git was not found, so the git workflow is not available. Install Git for Windows with the option "Git from the command line and also from 3rd-party software" and restart Susi.</native>
+        <lang id="de" date="20261127165457" status="3">git wurde nicht gefunden, der Git-Workflow ist daher nicht verfügbar. Installieren Sie Git for Windows mit der Option „Git from the command line and also from 3rd-party software“ und starten Sie Susi neu.</lang>
+      </row>
+      <row id="git was not found, so the git workflow is not available. Install git (the git command must be on the PATH) and restart Susi." state="0" created="20261127165457">
+        <native>git was not found, so the git workflow is not available. Install git (the git command must be on the PATH) and restart Susi.</native>
+        <lang id="de" date="20261127165457" status="3">git wurde nicht gefunden, der Git-Workflow ist daher nicht verfügbar. Installieren Sie git (der Befehl git muss im PATH liegen) und starten Sie Susi neu.</lang>
       </row>
       <row id="publish: description of the merge/pull request." created="20261115140835">
         <native>publish: description of the merge/pull request.</native>

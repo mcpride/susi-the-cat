@@ -3496,6 +3496,20 @@ msgid ""
 msgstr ""
 
 #: src/faq.md
+msgid "The menu _Workflow_ and its buttons are missing."
+msgstr ""
+
+#: src/faq.md
+msgid ""
+"Susi shows them only for projects that a developer has prepared for the [git "
+"workflow](git-workflow.md). Look at the tab _Output_ after opening the "
+"project: if git is not installed, Susi says so there. Install Git for "
+"Windows with the option _Git from the command line and also from 3rd-party "
+"software_ and restart Susi. Without a message, the project is not in a "
+"prepared working copy: ask your developers."
+msgstr ""
+
+#: src/faq.md
 msgid "Where does Susi keep my settings and the translation memory?"
 msgstr ""
 

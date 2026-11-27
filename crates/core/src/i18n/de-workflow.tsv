@@ -163,6 +163,8 @@
 	fetch: check out commit, tag or branch C read-only.	fetch: Commit, Tag oder Zweig C schreibgeschützt auschecken.
 	git does not know your name and e-mail address yet. A developer can set them with git config --global user.name / user.email.	git kennt Ihren Namen und Ihre E-Mail-Adresse noch nicht. Ein Entwickler kann sie mit git config --global user.name / user.email setzen.
 	git does not trust the working copy (it belongs to another user). A developer can allow it with: git config --global --add safe.directory "{dir}"	git vertraut der Arbeitskopie nicht (sie gehört einem anderen Benutzer). Ein Entwickler kann sie erlauben mit: git config --global --add safe.directory "{dir}"
+	git was not found, so the git workflow is not available. Install Git for Windows with the option "Git from the command line and also from 3rd-party software" and restart Susi.	git wurde nicht gefunden, der Git-Workflow ist daher nicht verfügbar. Installieren Sie Git for Windows mit der Option „Git from the command line and also from 3rd-party software“ und starten Sie Susi neu.
+	git was not found, so the git workflow is not available. Install git (the git command must be on the PATH) and restart Susi.	git wurde nicht gefunden, der Git-Workflow ist daher nicht verfügbar. Installieren Sie git (der Befehl git muss im PATH liegen) und starten Sie Susi neu.
 	publish: description of the merge/pull request.	publish: Beschreibung des Merge/Pull Requests.
 	publish: reviewers (usernames, GitHub teams as org/team; separated by ;).	publish: Prüfer (Benutzernamen, GitHub-Teams als org/team; durch ; getrennt).
 	publish: target branch.	publish: Zielzweig.
