@@ -2944,7 +2944,7 @@ msgid ""
 msgstr ""
 
 #: src/exchange.md
-msgid "_Status columns_, _Translation comment columns_"
+msgid "_Status columns_,<br>_Translation comment columns_"
 msgstr ""
 
 #: src/exchange.md
@@ -2952,7 +2952,8 @@ msgid "A status and a translation comment column for every language."
 msgstr ""
 
 #: src/exchange.md
-msgid "_Row status column_, _Row comment column_, _\"Max. characters\" column_"
+msgid ""
+"_Row status column_,<br>_Row comment column_,<br>_\"Max. characters\" column_"
 msgstr ""
 
 #: src/exchange.md
@@ -2968,7 +2969,7 @@ msgid "Also exports the rows that must not be translated."
 msgstr ""
 
 #: src/exchange.md
-msgid "_Language of column headers and status values_"
+msgid "_Language of column headers<br>and status values_"
 msgstr ""
 
 #: src/exchange.md

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Susi the CAT – User guide\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-11-27 17:28+0100\n"
+"PO-Revision-Date: 2026-11-27 21:55+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -2943,16 +2943,17 @@ msgid ""
 msgstr "Die Originaltexte (Excel, CSV und Text; XLIFF enthält sie immer). Ohne sie kann der Import keine Originale erkennen, die sich seit dem Export geändert haben."
 
 #: src/exchange.md
-msgid "_Status columns_, _Translation comment columns_"
-msgstr "_Statusspalten_, _Übersetzungskommentarspalten_"
+msgid "_Status columns_,<br>_Translation comment columns_"
+msgstr "_Statusspalten_, <br>_Übersetzungskommentarspalten_"
 
 #: src/exchange.md
 msgid "A status and a translation comment column for every language."
 msgstr "Eine Status- und eine Übersetzungskommentarspalte für jede Sprache."
 
 #: src/exchange.md
-msgid "_Row status column_, _Row comment column_, _\"Max. characters\" column_"
-msgstr "_Zeilenstatus-Spalte_, _Zeilenkommentarspalte_, _Spalte „Max. Zeichen“_"
+msgid ""
+"_Row status column_,<br>_Row comment column_,<br>_\"Max. characters\" column_"
+msgstr "_Zeilenstatus-Spalte_,<br>_Zeilenkommentarspalte_,<br>_Spalte „Max. Zeichen“_"
 
 #: src/exchange.md
 msgid "More information on the rows."
@@ -2967,8 +2968,8 @@ msgid "Also exports the rows that must not be translated."
 msgstr "Exportiert auch die Zeilen, die nicht übersetzt werden dürfen."
 
 #: src/exchange.md
-msgid "_Language of column headers and status values_"
-msgstr "_Sprache der Spaltenüberschriften und Statuswerte_"
+msgid "_Language of column headers<br>and status values_"
+msgstr "_Sprache der Spaltenüberschriften<br>und Statuswerte_"
 
 #: src/exchange.md
 msgid ""

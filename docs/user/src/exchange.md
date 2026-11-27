@@ -25,10 +25,10 @@ translator or an agency, and import the translated file again.
 | *Languages* | The languages to export. *All languages* above the list selects or clears all of them at once. |
 | *Only rows of the current view* | Only the rows the sheet shows now, otherwise all rows. |
 | *"Original" column* | The original texts (Excel, CSV and text; XLIFF always contains them). Without them, the import cannot recognize originals that have changed since the export. |
-| *Status columns*, *Translation comment columns* | A status and a translation comment column for every language. |
-| *Row status column*, *Row comment column*, *"Max. characters" column* | More information on the rows. |
+| *Status columns*,<br>*Translation comment columns* | A status and a translation comment column for every language. |
+| *Row status column*,<br>*Row comment column*,<br>*"Max. characters" column* | More information on the rows. |
 | *Include "Do not translate" rows* | Also exports the rows that must not be translated. |
-| *Language of column headers and status values* | The language of the column titles, for example English for an agency abroad. |
+| *Language of column headers<br>and status values* | The language of the column titles, for example English for an agency abroad. |
 | *Screenshots* | Whether screenshots are embedded (Excel, on a second worksheet), copied as files next to the export with links, or left out. |
 
 Tell the translators to keep the columns *Source*, *Context* and *Original* unchanged: Susi needs
