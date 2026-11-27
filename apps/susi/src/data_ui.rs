@@ -131,7 +131,7 @@ pub fn editor(app: &mut SusiApp, ui: &mut Ui, r: &RowRef, lang: &str) {
         }
     };
     ui.columns(2, |cols| {
-        cols[0].label(RichText::new(susi_core::tf!("Original ({lang})", lang = orig_lang)).strong());
+        cols[0].label(RichText::new(susi_core::tf!("Original [{lang}]", lang = orig_lang)).strong());
         preview(&mut app.data_ui, &mut cols[0], original.as_deref(), &missing_original);
         button(&mut cols[0], t("Save as…"), original.is_some(), Action::Data(DataCmd::SaveAs { translation: false }));
 

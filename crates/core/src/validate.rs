@@ -642,7 +642,7 @@ pub fn junit_xml(p: &Project, issues: &[&Issue]) -> String {
         let mut body = format!("{severity}: {}", i.message);
         if let Some(row) = p.row(&i.row) {
             let orig_lang = p.original_lang(&i.row);
-            let _ = write!(body, "\n{}: {}", crate::tf!("Original ({lang})", lang = orig_lang), row.original());
+            let _ = write!(body, "\n{}: {}", crate::tf!("Original [{lang}]", lang = orig_lang), row.original());
             if let Some(text) = row.text(&i.lang).filter(|_| i.lang != orig_lang && i.kind != ValidationKind::MissingTranslation) {
                 let _ = write!(body, "\n{}: {text}", crate::tf!("Translation – {lang}", lang = i.lang));
             }
@@ -931,7 +931,7 @@ mod tests {
         assert_eq!(failure.attr("message"), Some(issues[1].message.as_str()));
         assert_eq!(
             failure.text(),
-            "Error: The translation contains control characters: DEL (U+007F) at position 13.\nOriginal (en): Open[U+007F]\nTranslation – de: Öffnen & los[U+007F]"
+            "Error: The translation contains control characters: DEL (U+007F) at position 13.\nOriginal [en]: Open[U+007F]\nTranslation – de: Öffnen & los[U+007F]"
         );
         // The original's issue shows no translation.
         assert!(!cases[0].child("failure").unwrap().text().contains("Translation"));

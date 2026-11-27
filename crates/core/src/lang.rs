@@ -93,7 +93,7 @@ pub fn is_known(id: &str) -> bool {
 pub fn name_de(id: &str) -> String {
     match lookup(id) {
         Some((_, de, ..)) => (*de).to_string(),
-        None if id == "sis" => "Pseudo-Original (sis)".into(),
+        None if id == "sis" => "Pseudo-Original".into(),
         None => id.to_string(),
     }
 }
@@ -101,7 +101,7 @@ pub fn name_de(id: &str) -> String {
 pub fn name_en(id: &str) -> String {
     match lookup(id) {
         Some((_, _, en, _)) => (*en).to_string(),
-        None if id == "sis" => "Pseudo original (sis)".into(),
+        None if id == "sis" => "Pseudo original".into(),
         None => id.to_string(),
     }
 }
@@ -114,6 +114,13 @@ pub fn name(id: &str) -> String {
 /// Display name in the UI language `ui` (English for languages without names of their own).
 pub fn name_in(ui: crate::i18n::Lang, id: &str) -> String {
     if ui == crate::i18n::Lang::DE { name_de(id) } else { name_en(id) }
+}
+
+/// Name and id in the current UI language, as in the column headers of exported tables:
+/// `German [de]`; only the id for languages without a name.
+pub fn label(id: &str) -> String {
+    let name = name(id);
+    if name == id { name } else { format!("{name} [{id}]") }
 }
 
 /// Whether `s` is the id, German or English name of language `id`.
@@ -248,6 +255,17 @@ pub fn expand_pattern(pattern: &str, ctx: &PatternContext<'_>) -> PathBuf {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    /// Labels have the language code in square brackets, as the column headers of exports.
+    #[test]
+    fn labels() {
+        crate::i18n::set_current(crate::i18n::Lang::DE);
+        assert_eq!((label("de"), label("sis")), ("Deutsch [de]".to_string(), "Pseudo-Original [sis]".to_string()));
+        crate::i18n::set_current(crate::i18n::Lang::EN);
+        assert_eq!((label("pt-BR"), label("sis")), ("Portuguese (Brazil) [pt-BR]".to_string(), "Pseudo original [sis]".to_string()));
+        // Without a name of its own, only the code.
+        assert_eq!(label("qps-ploc"), "qps-ploc");
+    }
 
     #[test]
     fn patterns() {

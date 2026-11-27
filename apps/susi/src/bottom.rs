@@ -216,7 +216,7 @@ fn statistics(app: &mut SusiApp, ui: &mut Ui) {
             ui.strong(t("Open words"));
             ui.end_row();
             for l in &s.languages {
-                ui.label(format!("{} ({})", l.name, l.lang));
+                ui.label(SusiApp::lang_label(&l.lang));
                 ui.add(egui::ProgressBar::new((l.percent() / 100.0) as f32).desired_width(140.0).text(format!("{:.1} %", l.percent())));
                 for n in l.status {
                     ui.label(n.to_string());
@@ -303,7 +303,7 @@ fn editor(app: &mut SusiApp, ui: &mut Ui) {
     let suggestions = suggestions(app, &b);
     ui.columns(3, |cols| {
         cols[0].label(
-            RichText::new(susi_core::tf!("Original ({lang})", lang = app.project.as_ref().map(|p| p.original_lang(&b.row).to_string()).unwrap_or_default()))
+            RichText::new(susi_core::tf!("Original [{lang}]", lang = app.project.as_ref().map(|p| p.original_lang(&b.row).to_string()).unwrap_or_default()))
                 .strong(),
         );
         let mut orig = b.original.clone();

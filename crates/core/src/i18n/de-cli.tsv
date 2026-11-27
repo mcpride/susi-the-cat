@@ -108,7 +108,7 @@
 	Import file (importing all localized files is not supported)	Importdatei (Importieren aller lokalisierten Dateien wird nicht unterstützt)
 	Source type '{kind}' is not supported (json, resx, po, tsv, properties, android, arb, webext, ts)	Quelltyp '{kind}' wird nicht unterstützt (json, resx, po, tsv, properties, android, arb, webext, ts)
 	New project {path}	Neues Projekt {path}
-	Language added: {name} ({lang})	Sprache hinzugefügt: {name} ({lang})
+	Language added: {lang}	Sprache hinzugefügt: {lang}
 	No files found: {files}	Keine Dateien gefunden: {files}
 	{file}: file type does not match -type:{kind}	{file}: Dateityp passt nicht zu -type:{kind}
 	Source #{index} added: {name} – {summary}	Quelle #{index} hinzugefügt: {name} – {summary}
@@ -130,7 +130,7 @@
 	Validation finished: {errors}, {warnings}	Prüfung abgeschlossen: {errors}, {warnings}
 @plural	{n} excluded issue not reported|{n} excluded issues not reported	{n} ausgeschlossener Befund nicht gemeldet|{n} ausgeschlossene Befunde nicht gemeldet
 	Pseudo language {lang} added	Pseudo-Sprache {lang} angelegt
-@plural	{n} pseudo translation for {name} ({lang})|{n} pseudo translations for {name} ({lang})	{n} Pseudo-Übersetzung für {name} ({lang})|{n} Pseudo-Übersetzungen für {name} ({lang})
+@plural	{n} pseudo translation for {lang}|{n} pseudo translations for {lang}	{n} Pseudo-Übersetzung für {lang}|{n} Pseudo-Übersetzungen für {lang}
 @plural	{n} pseudo translation removed|{n} pseudo translations removed	{n} Pseudo-Übersetzung entfernt|{n} Pseudo-Übersetzungen entfernt
 @plural	{n} unused row removed|{n} unused rows removed	{n} unbenutzte Zeile entfernt|{n} unbenutzte Zeilen entfernt
 	Report created: {path}	Bericht erstellt: {path}
@@ -198,8 +198,8 @@
 	Target languages, separated by ; (required).	Zielsprachen, getrennt durch ; (erforderlich).
 	Language to copy from (default: the original).	Sprache, aus der übernommen wird (Standard: das Original).
 	-from and -lang must not contain the same language ({lang})	-from und -lang dürfen nicht dieselbe Sprache enthalten ({lang})
-@plural	{n} cell copied from the original to {name} ({lang})|{n} cells copied from the original to {name} ({lang})	{n} Zelle aus dem Original in {name} ({lang}) übernommen|{n} Zellen aus dem Original in {name} ({lang}) übernommen
-@plural	{n} cell copied from {from} to {name} ({lang})|{n} cells copied from {from} to {name} ({lang})	{n} Zelle aus {from} in {name} ({lang}) übernommen|{n} Zellen aus {from} in {name} ({lang}) übernommen
+@plural	{n} cell copied from the original to {lang}|{n} cells copied from the original to {lang}	{n} Zelle aus dem Original in {lang} übernommen|{n} Zellen aus dem Original in {lang} übernommen
+@plural	{n} cell copied from {from} to {lang}|{n} cells copied from {from} to {lang}	{n} Zelle aus {from} in {lang} übernommen|{n} Zellen aus {from} in {lang} übernommen
 @plural	{n} cell with a translation was kept (-overwrite replaces it)|{n} cells with a translation were kept (-overwrite replaces them)	{n} Zelle mit Übersetzung beibehalten (-overwrite ersetzt sie)|{n} Zellen mit Übersetzung beibehalten (-overwrite ersetzt sie)
 
 # Custom data (pictures, binary data)

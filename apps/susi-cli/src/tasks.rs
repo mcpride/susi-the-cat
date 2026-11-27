@@ -336,7 +336,7 @@ fn add(t: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), String> {
     let p = st.load(o)?;
     for l in std::iter::once(&orig).chain(&langs) {
         if p.add_language(l) {
-            o.info(tf!("Language added: {name} ({lang})", name = lang::name(l), lang = l));
+            o.info(tf!("Language added: {lang}", lang = lang::label(l)));
             changed = true;
         }
     }
@@ -524,13 +524,10 @@ fn copy(t: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), String> 
         let n = ops::copy_cells(p, &rows, from.as_deref(), l, overwrite).len();
         changed |= n > 0;
         let (msg, source) = match &from {
-            None => (trn(n, "{n} cell copied from the original to {name} ({lang})", "{n} cells copied from the original to {name} ({lang})"), String::new()),
-            Some(f) => (
-                trn(n, "{n} cell copied from {from} to {name} ({lang})", "{n} cells copied from {from} to {name} ({lang})"),
-                format!("{} ({f})", lang::name(f)),
-            ),
+            None => (trn(n, "{n} cell copied from the original to {lang}", "{n} cells copied from the original to {lang}"), String::new()),
+            Some(f) => (trn(n, "{n} cell copied from {from} to {lang}", "{n} cells copied from {from} to {lang}"), lang::label(f)),
         };
-        o.info(i18n::fmt(&msg, &[("from", &source), ("name", &lang::name(l)), ("lang", l)]));
+        o.info(i18n::fmt(&msg, &[("from", &source), ("lang", &lang::label(l))]));
         if kept > 0 {
             o.note(trn(
                 kept,
@@ -633,8 +630,8 @@ fn fill_pseudo(t: &TaskArgs, st: &mut State, o: &mut Output<'_>) -> Result<(), S
         }
         let n = pseudo::fill_pseudo(p, l, &opts, None, t.flag("overwrite"));
         changed = true;
-        let msg = trn(n, "{n} pseudo translation for {name} ({lang})", "{n} pseudo translations for {name} ({lang})");
-        o.info(i18n::fmt(&msg, &[("name", &lang::name(l)), ("lang", l)]));
+        let msg = trn(n, "{n} pseudo translation for {lang}", "{n} pseudo translations for {lang}");
+        o.info(i18n::fmt(&msg, &[("lang", &lang::label(l))]));
     }
     st.changed |= changed;
     Ok(())

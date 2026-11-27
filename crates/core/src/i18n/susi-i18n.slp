@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<document created="20261103155355" version="4.0.374" date="20261127160350" scan="33" scanned="20261127160350">
+<document created="20261103155355" version="4.0.374" date="20261127162806" scan="34" scanned="20261127162806">
   <lang id="en"/>
   <lang id="de"/>
   <source class="TTsvSource" name="de-core.tsv" original="en" date="20261127154011">
@@ -483,7 +483,7 @@
       </row>
     </node>
   </source>
-  <source class="TTsvSource" name="de-cli.tsv" original="en" date="20261127154011">
+  <source class="TTsvSource" name="de-cli.tsv" original="en" date="20261127162647">
     <outputfile dir="." localized="&lt;iso&gt;-cli.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-cli.tsv" state="0" created="20261103155355">
       <row id="susi-cli {version} – Susi the CAT (SlMake compatible)" created="20261103162607" note="Help: general" notereadonly="1">
@@ -878,9 +878,9 @@
         <native>New project {path}</native>
         <lang id="de" date="20261103155355" status="3">Neues Projekt {path}</lang>
       </row>
-      <row id="Language added: {name} ({lang})" created="20261103155355" note="Messages" notereadonly="1">
-        <native>Language added: {name} ({lang})</native>
-        <lang id="de" date="20261103155355" status="3">Sprache hinzugefügt: {name} ({lang})</lang>
+      <row id="Language added: {lang}" state="0" created="20261127162806" note="Messages" notereadonly="1">
+        <native>Language added: {lang}</native>
+        <lang id="de" date="20261127162806" status="3">Sprache hinzugefügt: {lang}</lang>
       </row>
       <row id="No files found: {files}" created="20261103155355" note="Messages" notereadonly="1">
         <native>No files found: {files}</native>
@@ -966,9 +966,9 @@
         <native>Pseudo language {lang} added</native>
         <lang id="de" date="20261103155355" status="3">Pseudo-Sprache {lang} angelegt</lang>
       </row>
-      <row id="@plural|{n} pseudo translation for {name} ({lang})|{n} pseudo translations for {name} ({lang})" created="20261103155355" note="Messages#lContext: @plural" notereadonly="1">
-        <native>{n} pseudo translation for {name} ({lang})|{n} pseudo translations for {name} ({lang})</native>
-        <lang id="de" date="20261103155355" status="3">{n} Pseudo-Übersetzung für {name} ({lang})|{n} Pseudo-Übersetzungen für {name} ({lang})</lang>
+      <row id="@plural|{n} pseudo translation for {lang}|{n} pseudo translations for {lang}" state="0" created="20261127162806" note="Messages#lContext: @plural" notereadonly="1">
+        <native>{n} pseudo translation for {lang}|{n} pseudo translations for {lang}</native>
+        <lang id="de" date="20261127162806" status="3">{n} Pseudo-Übersetzung für {lang}|{n} Pseudo-Übersetzungen für {lang}</lang>
       </row>
       <row id="@plural|{n} pseudo translation removed|{n} pseudo translations removed" created="20261103155355" note="Messages#lContext: @plural" notereadonly="1">
         <native>{n} pseudo translation removed|{n} pseudo translations removed</native>
@@ -1206,13 +1206,13 @@
         <native>-from and -lang must not contain the same language ({lang})</native>
         <lang id="de" date="20261120220922" status="3">-from und -lang dürfen nicht dieselbe Sprache enthalten ({lang})</lang>
       </row>
-      <row id="@plural|{n} cell copied from the original to {name} ({lang})|{n} cells copied from the original to {name} ({lang})" created="20261120220922" note="Copy#lContext: @plural" notereadonly="1">
-        <native>{n} cell copied from the original to {name} ({lang})|{n} cells copied from the original to {name} ({lang})</native>
-        <lang id="de" date="20261120220922" status="3">{n} Zelle aus dem Original in {name} ({lang}) übernommen|{n} Zellen aus dem Original in {name} ({lang}) übernommen</lang>
+      <row id="@plural|{n} cell copied from the original to {lang}|{n} cells copied from the original to {lang}" state="0" created="20261127162806" note="Copy#lContext: @plural" notereadonly="1">
+        <native>{n} cell copied from the original to {lang}|{n} cells copied from the original to {lang}</native>
+        <lang id="de" date="20261127162806" status="3">{n} Zelle aus dem Original in {lang} übernommen|{n} Zellen aus dem Original in {lang} übernommen</lang>
       </row>
-      <row id="@plural|{n} cell copied from {from} to {name} ({lang})|{n} cells copied from {from} to {name} ({lang})" created="20261120220922" note="Copy#lContext: @plural" notereadonly="1">
-        <native>{n} cell copied from {from} to {name} ({lang})|{n} cells copied from {from} to {name} ({lang})</native>
-        <lang id="de" date="20261120220922" status="3">{n} Zelle aus {from} in {name} ({lang}) übernommen|{n} Zellen aus {from} in {name} ({lang}) übernommen</lang>
+      <row id="@plural|{n} cell copied from {from} to {lang}|{n} cells copied from {from} to {lang}" state="0" created="20261127162806" note="Copy#lContext: @plural" notereadonly="1">
+        <native>{n} cell copied from {from} to {lang}|{n} cells copied from {from} to {lang}</native>
+        <lang id="de" date="20261127162806" status="3">{n} Zelle aus {from} in {lang} übernommen|{n} Zellen aus {from} in {lang} übernommen</lang>
       </row>
       <row id="@plural|{n} cell with a translation was kept (-overwrite replaces it)|{n} cells with a translation were kept (-overwrite replaces them)" created="20261120220922" note="Copy#lContext: @plural" notereadonly="1">
         <native>{n} cell with a translation was kept (-overwrite replaces it)|{n} cells with a translation were kept (-overwrite replaces them)</native>
@@ -1224,7 +1224,7 @@
       </row>
     </node>
   </source>
-  <source class="TTsvSource" name="de-gui.tsv" original="en" date="20261127160315">
+  <source class="TTsvSource" name="de-gui.tsv" original="en" date="20261127162647">
     <outputfile dir="." localized="&lt;iso&gt;-gui.&lt;ext&gt;"/>
     <node class="TTsvNode" name="de-gui.tsv" state="0" created="20261103155355">
       <row id="Information" created="20261103155355" note="Application, log" notereadonly="1">
@@ -1819,9 +1819,9 @@
         <native>No row or language selected.</native>
         <lang id="de" date="20261103155355" status="3">Keine Zeile bzw. Sprache ausgewählt.</lang>
       </row>
-      <row id="Original ({lang})" created="20261103155355" note="Bottom area" notereadonly="1">
-        <native>Original ({lang})</native>
-        <lang id="de" date="20261103155355" status="3">Original ({lang})</lang>
+      <row id="Original [{lang}]" state="0" created="20261127162806" note="Bottom area" notereadonly="1">
+        <native>Original [{lang}]</native>
+        <lang id="de" date="20261127162806" status="3">Original [{lang}]</lang>
       </row>
       <row id="Translation – {lang}" created="20261103155355" note="Bottom area" notereadonly="1">
         <native>Translation – {lang}</native>

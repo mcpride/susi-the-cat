@@ -754,8 +754,7 @@ impl SusiApp {
     }
 
     pub fn lang_label(id: &str) -> String {
-        let name = lang::name(id);
-        if name == id { id.to_string() } else { format!("{name} ({id})") }
+        lang::label(id)
     }
 
     fn handle_close_request(&mut self, ctx: &egui::Context) {

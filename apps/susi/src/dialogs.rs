@@ -208,7 +208,7 @@ pub fn ok_cancel(ui: &mut egui::Ui, ok: &str, enabled: bool) -> Option<bool> {
 fn lang_combo(ui: &mut egui::Ui, id: &str, value: &mut String) {
     egui::ComboBox::from_id_salt(id).width(260.0).selected_text(SusiApp::lang_label(value)).show_ui(ui, |ui| {
         for (code, name) in lang::known_languages() {
-            ui.selectable_value(value, code.to_string(), format!("{name} ({code})"));
+            ui.selectable_value(value, code.to_string(), format!("{name} [{code}]"));
         }
     });
 }

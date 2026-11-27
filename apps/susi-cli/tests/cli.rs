@@ -344,21 +344,21 @@ fn copy_languages() {
         p.rows().into_iter().find(|r| p.row(r).unwrap().id().ends_with(key)).and_then(|r| p.row(&r).unwrap().text(lang).map(str::to_string))
     };
     let r = run(&["copy", "-from:de", "-lang:fr", &s(&slp)]);
-    assert!(r.code == 0 && r.out.contains("0 cells copied from German (de) to French (fr)"), "{}{}", r.out, r.err);
+    assert!(r.code == 0 && r.out.contains("0 cells copied from German [de] to French [fr]"), "{}{}", r.out, r.err);
 
     let csv = dir.path().join("de.csv");
     assert_eq!(run(&["export", &s(&csv), "-lang:de", &s(&slp)]).code, 0);
     translate_csv(&csv, |o| format!("DE {o}"));
     assert_eq!(run(&["import", &s(&csv), "-lang:de", &s(&slp)]).code, 0);
     let r = run(&["copy", "-from:de", "-lang:fr", &s(&slp)]);
-    assert!(r.code == 0 && r.out.contains("4 cells copied from German (de) to French (fr)"), "{}{}", r.out, r.err);
+    assert!(r.code == 0 && r.out.contains("4 cells copied from German [de] to French [fr]"), "{}{}", r.out, r.err);
     assert_eq!(text("Greeting", "fr").as_deref(), Some("DE Hello"));
 
     // Existing translations are kept unless -overwrite is given; sources and the original as source.
     let r = run(&["copy", "-lang:fr", &s(&slp)]);
     assert!(r.out.contains("0 cells copied from the original") && r.out.contains("4 cells with a translation were kept"), "{}", r.out);
     let r = run(&["copy", "-lang:fr", "-overwrite", "-include:Strings.resx", &s(&slp)]);
-    assert!(r.code == 0 && r.out.contains("1 cell copied from the original to French (fr)"), "{}{}", r.out, r.err);
+    assert!(r.code == 0 && r.out.contains("1 cell copied from the original to French [fr]"), "{}{}", r.out, r.err);
     assert_eq!(text("Greeting", "fr").as_deref(), Some("Hello"));
     assert_eq!(text("title", "fr").as_deref(), Some("DE Hello."));
 
