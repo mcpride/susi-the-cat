@@ -37,6 +37,9 @@ cell in a language column.
 
 - **Select** a row with a click or with the arrow keys. `Home` and `End` go to the first and last
   row.
+- **Select several rows**: `Ctrl`+click adds a row or removes it, `Shift`+click selects all rows
+  from the current row to the clicked one, `Ctrl+A` selects all rows. The row commands then apply
+  to all selected rows, see [Translating texts](translating.md).
 - **Edit** a cell with `F2`, `Enter` or a double-click, see [Translating texts](translating.md).
 - **Sort**: click the header *Context* to sort A–Z, Z–A or back to the original order. Click the
   header *Translated on* to sort newest first, oldest first or unsorted. An arrow marks the
@@ -50,10 +53,11 @@ cell in a language column.
 
 | Button | Command |
 |---|---|
-| Status: ■ ■ ■ … | Sets the status of the selected cell. Point at a square to see its name. |
+| Status: ■ ■ ■ … | Sets the status of the selected cells. Point at a square to see its name. |
 | ⏮ ◀ ▶ ⏭ | First, previous, next and last row |
-| 🔒 | Switches *Do not translate* on or off for the row |
-| ★ | Marks the row or removes the mark |
+| 🔒 | Switches *Do not translate* on or off for the selected rows |
+| ★ | Marks the selected rows or removes the mark |
 | ✏ | Opens the selected text in the [text editor](text-editor.md) |
 
-At the end, the bar shows the number of rows in the current view.
+At the end, the bar shows the number of rows in the current view and, if several rows are
+selected, how many.

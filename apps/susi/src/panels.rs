@@ -102,7 +102,8 @@ fn menu_bar(app: &mut SusiApp, ui: &mut egui::Ui) {
         ui.menu_button(t("Edit"), |ui| {
             let langs = app.project.as_ref().map(Project::language_ids).unwrap_or_default();
             copy_from_menu(ui, &mut acts, &langs, app.lang.as_deref(), Action::CopyIntoCell);
-            cmd(ui, &mut acts, t("Clear translation"), Action::ClearTranslation);
+            let clear = if app.multi_selection() { t("Clear translations…") } else { t("Clear translation") };
+            cmd(ui, &mut acts, clear, Action::ClearTranslation);
             cmd_key(ui, &mut acts, t("Edit cell"), "F2", Action::EditCell);
             ui.separator();
             cmd(ui, &mut acts, t("Row properties / comment…"), Action::RowProperties);
@@ -309,18 +310,26 @@ pub fn row_menu(app: &SusiApp, ui: &mut egui::Ui, acts: &mut Vec<Action>) {
     ui.menu_button(t("Row"), |ui| {
         let langs = app.project.as_ref().map(Project::language_ids).unwrap_or_default();
         let data_row = app.selected.as_ref().and_then(|r| app.project.as_ref()?.row(r)).is_some_and(susi_core::Row::is_data);
-        row_menu_items(ui, acts, &langs, app.lang.as_deref(), data_row);
+        row_menu_items(ui, acts, &langs, app.lang.as_deref(), RowMenu { data_row, several: app.multi_selection() });
     });
 }
 
-/// Row commands (menu "Row" and the grid's context menu) for the cell of `lang` (the current
-/// language) in the selected row; `langs` are the project languages, `data_row`: the row holds a
-/// picture or binary data.
-pub fn row_menu_items(ui: &mut egui::Ui, acts: &mut Vec<Action>, langs: &[String], lang: Option<&str>, data_row: bool) {
+/// What the row commands apply to.
+#[derive(Clone, Copy)]
+pub struct RowMenu {
+    /// The current row holds a picture or binary data.
+    pub data_row: bool,
+    /// Several rows are selected: commands for one row only are left out.
+    pub several: bool,
+}
+
+/// Row commands (menu "Row" and the grid's context menu) for the cells of `lang` (the current
+/// language) in the selected rows; `langs` are the project languages.
+pub fn row_menu_items(ui: &mut egui::Ui, acts: &mut Vec<Action>, langs: &[String], lang: Option<&str>, m: RowMenu) {
     ui.menu_button(t("Status"), |ui| status_buttons(ui, acts, Action::SetStatus));
     copy_from_menu(ui, acts, langs, lang, Action::CopyIntoCell);
-    cmd(ui, acts, t("Clear translation"), Action::ClearTranslation);
-    if data_row {
+    cmd(ui, acts, if m.several { t("Clear translations…") } else { t("Clear translation") }, Action::ClearTranslation);
+    if m.data_row && !m.several {
         ui.menu_button(t("Picture or binary data"), |ui| {
             cmd(ui, acts, t("Load translation from file…"), Action::Data(DataCmd::Load { link: false }));
             cmd(ui, acts, t("Link translation to file…"), Action::Data(DataCmd::Load { link: true }));
@@ -336,7 +345,7 @@ pub fn row_menu_items(ui: &mut egui::Ui, acts: &mut Vec<Action>, langs: &[String
     cmd(ui, acts, t("Toggle excluded"), Action::ToggleExcluded);
     ui.separator();
     ui.menu_button(t("Screenshot"), |ui| {
-        cmd(ui, acts, t("Add for this row…"), Action::Screenshot(ShotCmd::Add(None)));
+        cmd(ui, acts, if m.several { t("Add for the selected rows…") } else { t("Add for this row…") }, Action::Screenshot(ShotCmd::Add(None)));
         cmd(ui, acts, t("Add for all rows of the view…"), Action::Screenshot(ShotCmd::Add(Some(Scope::View))));
         cmd(ui, acts, t("Paste from the clipboard"), Action::Screenshot(ShotCmd::Paste));
     });
@@ -345,8 +354,11 @@ pub fn row_menu_items(ui: &mut egui::Ui, acts: &mut Vec<Action>, langs: &[String
     cmd(ui, acts, t("Previous row"), Action::Nav(Nav::Prev));
     cmd(ui, acts, t("Next row"), Action::Nav(Nav::Next));
     cmd(ui, acts, t("Last row"), Action::Nav(Nav::Last));
-    ui.separator();
-    cmd(ui, acts, t("Properties…"), Action::RowProperties);
+    cmd_key(ui, acts, t("Select all rows"), "Ctrl+A", Action::SelectAll);
+    if !m.several {
+        ui.separator();
+        cmd(ui, acts, t("Properties…"), Action::RowProperties);
+    }
 }
 
 fn tool(ui: &mut egui::Ui, acts: &mut Vec<Action>, text: &str, hint: &str, a: Action) {

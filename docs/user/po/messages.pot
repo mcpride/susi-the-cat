@@ -950,6 +950,14 @@ msgstr ""
 
 #: src/sheet.md
 msgid ""
+"**Select several rows**: `Ctrl`+click adds a row or removes it, "
+"`Shift`+click selects all rows from the current row to the clicked one, "
+"`Ctrl+A` selects all rows. The row commands then apply to all selected rows, "
+"see [Translating texts](translating.md)."
+msgstr ""
+
+#: src/sheet.md
+msgid ""
 "**Edit** a cell with `F2`, `Enter` or a double-click, see [Translating "
 "texts](translating.md)."
 msgstr ""
@@ -983,7 +991,7 @@ msgid "Status: ■ ■ ■ …"
 msgstr ""
 
 #: src/sheet.md
-msgid "Sets the status of the selected cell. Point at a square to see its name."
+msgid "Sets the status of the selected cells. Point at a square to see its name."
 msgstr ""
 
 #: src/sheet.md
@@ -999,7 +1007,7 @@ msgid "🔒"
 msgstr ""
 
 #: src/sheet.md
-msgid "Switches _Do not translate_ on or off for the row"
+msgid "Switches _Do not translate_ on or off for the selected rows"
 msgstr ""
 
 #: src/sheet.md
@@ -1007,7 +1015,7 @@ msgid "★"
 msgstr ""
 
 #: src/sheet.md
-msgid "Marks the row or removes the mark"
+msgid "Marks the selected rows or removes the mark"
 msgstr ""
 
 #: src/sheet.md src/statuses.md
@@ -1019,7 +1027,9 @@ msgid "Opens the selected text in the [text editor](text-editor.md)"
 msgstr ""
 
 #: src/sheet.md
-msgid "At the end, the bar shows the number of rows in the current view."
+msgid ""
+"At the end, the bar shows the number of rows in the current view and, if "
+"several rows are selected, how many."
 msgstr ""
 
 #: src/filter.md
@@ -1180,6 +1190,42 @@ msgstr ""
 msgid ""
 "To set the status of many rows at once, use the menu _Column › Status_ (all "
 "rows shown), or the context menu of the project tree (all rows of a part)."
+msgstr ""
+
+#: src/translating.md
+msgid "Several rows at once"
+msgstr ""
+
+#: src/translating.md
+msgid ""
+"Select several rows with `Ctrl`+click (adds a row or removes it) or "
+"`Shift`+click (all rows from the current row to the clicked one). `Ctrl+A` "
+"selects all rows of the sheet. The status, _Copy from_, _Clear "
+"translations…_, the marks and _Screenshot › Add for the selected rows…_ then "
+"apply to all selected rows, in the current language:"
+msgstr ""
+
+#: src/translating.md
+msgid ""
+"A mark (_Do not translate_, _Marked_, _Excluded_) takes its new value from "
+"the current row, the one with the frame: if it is not marked, all selected "
+"rows become marked."
+msgstr ""
+
+#: src/translating.md
+msgid "Clearing several translations asks first."
+msgstr ""
+
+#: src/translating.md
+msgid ""
+"_Properties…_ and the commands for pictures concern one row only; they are "
+"not offered then."
+msgstr ""
+
+#: src/translating.md
+msgid ""
+"A click without `Ctrl` or `Shift`, or an arrow key, selects a single row "
+"again."
 msgstr ""
 
 #: src/translating.md
@@ -3395,6 +3441,30 @@ msgstr ""
 
 #: src/shortcuts.md
 msgid "Edit the selected cell"
+msgstr ""
+
+#: src/shortcuts.md
+msgid "`Ctrl`+click"
+msgstr ""
+
+#: src/shortcuts.md
+msgid "Add a row to the selection or remove it"
+msgstr ""
+
+#: src/shortcuts.md
+msgid "`Shift`+click"
+msgstr ""
+
+#: src/shortcuts.md
+msgid "Select the rows from the current row to the clicked one"
+msgstr ""
+
+#: src/shortcuts.md
+msgid "`Ctrl+A`"
+msgstr ""
+
+#: src/shortcuts.md
+msgid "Select all rows"
 msgstr ""
 
 #: src/shortcuts.md

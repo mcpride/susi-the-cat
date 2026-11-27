@@ -98,11 +98,13 @@ pub struct CopyDialog {
     pub overwrite: bool,
 }
 
-/// Confirmation before clearing the translations of the visible rows of a language column.
+/// Confirmation before clearing the translations of the visible or the selected rows of a language column.
 pub struct ClearColumnDialog {
     pub lang: String,
-    /// Visible rows with a translation in `lang`.
+    /// Visible or selected rows with a translation in `lang`.
     pub rows: Vec<RowRef>,
+    /// The rows are the selected ones (otherwise all visible rows).
+    pub selection: bool,
 }
 
 pub enum Dialog {
@@ -461,7 +463,7 @@ fn remove_source(app: &mut SusiApp, ui: &mut egui::Ui, i: usize) -> bool {
             if let Some(p) = app.project.as_mut().filter(|p| i < p.sources.len()) {
                 p.sources.remove(i);
                 app.tree = None;
-                app.selected = None;
+                app.clear_selection();
                 app.cell_edit = None;
                 app.set_issues(Vec::new());
                 app.structure_changed();
@@ -762,11 +764,13 @@ fn copy_cells(app: &mut SusiApp, ui: &mut egui::Ui, d: &mut CopyDialog) -> bool 
 
 fn clear_column(app: &mut SusiApp, ui: &mut egui::Ui, d: &mut ClearColumnDialog) -> bool {
     ui.heading(t("Clear translations"));
-    ui.label(susi_core::tf!(
-        "Delete {count} in the visible rows of the column {lang}?",
-        count = trn(d.rows.len(), "{n} translation", "{n} translations"),
-        lang = SusiApp::lang_label(&d.lang)
-    ));
+    let count = trn(d.rows.len(), "{n} translation", "{n} translations");
+    let lang = SusiApp::lang_label(&d.lang);
+    ui.label(if d.selection {
+        susi_core::tf!("Delete {count} in the selected rows of the column {lang}?", count = count, lang = lang)
+    } else {
+        susi_core::tf!("Delete {count} in the visible rows of the column {lang}?", count = count, lang = lang)
+    });
     ui.label(t("Their comments are deleted as well. This cannot be undone."));
     match ok_cancel(ui, t("Clear translations"), true) {
         Some(true) => {

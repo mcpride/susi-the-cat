@@ -11,6 +11,7 @@ mod grid;
 mod help;
 mod list;
 mod panels;
+mod selection;
 mod shots;
 #[cfg(test)]
 mod tests;

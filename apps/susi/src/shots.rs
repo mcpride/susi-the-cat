@@ -156,7 +156,7 @@ impl SusiApp {
     fn target_rows(&self, scope: Option<&Scope>) -> Vec<RowRef> {
         match scope {
             Some(s) => self.rows_of(s),
-            None => self.selected.iter().cloned().collect(),
+            None => self.selected_rows(),
         }
     }
 
@@ -365,7 +365,7 @@ pub fn tab(app: &mut SusiApp, ui: &mut Ui) {
     let current = app.shot_ui.current.clone().filter(|c| links.iter().any(|(id, _)| id == c)).or_else(|| links.first().map(|(id, _)| id.clone()));
     let area = links.iter().find(|(id, _)| Some(id) == current.as_ref()).and_then(|(_, a)| *a);
     ui.horizontal_wrapped(|ui| {
-        if ui.button(format!("➕ {}", t("Add…"))).on_hover_text(t("Add image files and link them to the selected row")).clicked() {
+        if ui.button(format!("➕ {}", t("Add…"))).on_hover_text(t("Add image files and link them to the selected rows")).clicked() {
             cmds.push(ShotCmd::Add(None));
         }
         if ui.button(t("Paste")).on_hover_text(t("Paste an image from the clipboard (Ctrl+V)")).clicked() {

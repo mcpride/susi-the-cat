@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<document created="20261123194613" version="4.0.374" date="20261127165548" scan="10" scanned="20261127165527">
+<document created="20261123194613" version="4.0.374" date="20261127172845" scan="11" scanned="20261127172757">
   <lang id="en"/>
   <lang id="de"/>
-  <source class="TPoSource" name="po\messages.pot" original="en" date="20261127165524" compile="0">
+  <source class="TPoSource" name="po\messages.pot" original="en" date="20261127172754" compile="0">
     <outputfile dir="." localized="&lt;iso&gt;.po"/>
     <node class="TPoNode" name="messages.pot" state="0" created="20261123194613">
       <row id="##Last-Translator" created="20261123194613">
@@ -803,6 +803,10 @@
         <native>**Select** a row with a click or with the arrow keys. `Home` and `End` go to the first and last row.</native>
         <lang id="de" date="20261123194651" status="3">**Auswählen** Sie eine Zeile mit einem Klick oder mit den Pfeiltasten. `Pos1` und `Ende` gehen zur ersten und letzten Zeile.</lang>
       </row>
+      <row id="**Select several rows**: `Ctrl`+click adds a row or removes it, `Shift`+click selects all rows from the current row to the clicked one, `Ctrl+A` selects all rows. The row commands then apply to all selected rows, see [Translating texts](translating.md)." state="0" created="20261127172757" note="src/sheet.md" notereadonly="1">
+        <native>**Select several rows**: `Ctrl`+click adds a row or removes it, `Shift`+click selects all rows from the current row to the clicked one, `Ctrl+A` selects all rows. The row commands then apply to all selected rows, see [Translating texts](translating.md).</native>
+        <lang id="de" date="20261127172845" status="3">**Mehrere Zeilen auswählen**: `Strg`+Klick fügt eine Zeile hinzu oder entfernt sie, `Umschalt`+Klick wählt alle Zeilen von der aktuellen bis zur angeklickten Zeile aus, `Strg+A` wählt alle Zeilen aus. Die Zeilenbefehle gelten dann für alle ausgewählten Zeilen, siehe [Texte übersetzen](translating.md).</lang>
+      </row>
       <row id="**Edit** a cell with `F2`, `Enter` or a double-click, see [Translating texts](translating.md)." created="20261123194613" note="src/sheet.md" notereadonly="1">
         <native>**Edit** a cell with `F2`, `Enter` or a double-click, see [Translating texts](translating.md).</native>
         <lang id="de" date="20261123194651" status="3">**Bearbeiten** Sie eine Zelle mit `F2`, `Enter` oder einem Doppelklick, siehe [Texte übersetzen](translating.md).</lang>
@@ -827,9 +831,9 @@
         <native>Status: ■ ■ ■ …</native>
         <lang id="de" date="20261123194651" status="3">Status: ■ ■ ■ …</lang>
       </row>
-      <row id="Sets the status of the selected cell. Point at a square to see its name." created="20261123194613" note="src/sheet.md" notereadonly="1">
-        <native>Sets the status of the selected cell. Point at a square to see its name.</native>
-        <lang id="de" date="20261123194651" status="3">Setzt den Status der ausgewählten Zelle. Zeigen Sie auf ein Quadrat, um seinen Namen zu sehen.</lang>
+      <row id="Sets the status of the selected cells. Point at a square to see its name." state="0" created="20261127172757" note="src/sheet.md" notereadonly="1">
+        <native>Sets the status of the selected cells. Point at a square to see its name.</native>
+        <lang id="de" date="20261127172845" status="3">Setzt den Status der ausgewählten Zellen. Zeigen Sie auf ein Quadrat, um seinen Namen zu sehen.</lang>
       </row>
       <row id="⏮ ◀ ▶ ⏭" created="20261123194613" note="src/sheet.md" notereadonly="1">
         <native>⏮ ◀ ▶ ⏭</native>
@@ -843,17 +847,17 @@
         <native>🔒</native>
         <lang id="de" date="20261123194651" status="3">🔒</lang>
       </row>
-      <row id="Switches _Do not translate_ on or off for the row" created="20261123194613" note="src/sheet.md" notereadonly="1">
-        <native>Switches _Do not translate_ on or off for the row</native>
-        <lang id="de" date="20261123194651" status="3">Schaltet _Nicht übersetzen_ für die Zeile ein oder aus</lang>
+      <row id="Switches _Do not translate_ on or off for the selected rows" state="0" created="20261127172757" note="src/sheet.md" notereadonly="1">
+        <native>Switches _Do not translate_ on or off for the selected rows</native>
+        <lang id="de" date="20261127172845" status="3">Schaltet _Nicht übersetzen_ für die ausgewählten Zeilen ein oder aus</lang>
       </row>
       <row id="★" created="20261123194613" note="src/sheet.md" notereadonly="1">
         <native>★</native>
         <lang id="de" date="20261123194651" status="3">★</lang>
       </row>
-      <row id="Marks the row or removes the mark" created="20261123194613" note="src/sheet.md" notereadonly="1">
-        <native>Marks the row or removes the mark</native>
-        <lang id="de" date="20261123194651" status="3">Markiert die Zeile oder entfernt die Markierung</lang>
+      <row id="Marks the selected rows or removes the mark" state="0" created="20261127172757" note="src/sheet.md" notereadonly="1">
+        <native>Marks the selected rows or removes the mark</native>
+        <lang id="de" date="20261127172845" status="3">Markiert die ausgewählten Zeilen oder entfernt die Markierung</lang>
       </row>
       <row id="✏" created="20261123194613" note="src/sheet.md src/statuses.md" notereadonly="1">
         <native>✏</native>
@@ -863,9 +867,9 @@
         <native>Opens the selected text in the [text editor](text-editor.md)</native>
         <lang id="de" date="20261123194651" status="3">Öffnet den ausgewählten Text im [Texteditor](text-editor.md)</lang>
       </row>
-      <row id="At the end, the bar shows the number of rows in the current view." created="20261123194613" note="src/sheet.md" notereadonly="1">
-        <native>At the end, the bar shows the number of rows in the current view.</native>
-        <lang id="de" date="20261123194651" status="3">Am Ende zeigt die Leiste die Anzahl der Zeilen in der aktuellen Ansicht.</lang>
+      <row id="At the end, the bar shows the number of rows in the current view and, if several rows are selected, how many." state="0" created="20261127172757" note="src/sheet.md" notereadonly="1">
+        <native>At the end, the bar shows the number of rows in the current view and, if several rows are selected, how many.</native>
+        <lang id="de" date="20261127172845" status="3">Am Ende zeigt die Leiste die Anzahl der Zeilen in der aktuellen Ansicht und, wenn mehrere Zeilen ausgewählt sind, wie viele.</lang>
       </row>
       <row id="The filter bar on the right decides which rows the translation sheet shows. A row is shown when it matches all settings. As soon as a filter is set, the bar shows _Special filters on!_ and the status bar _Filter active_. _Reset filter_ (also in the menu _Search_) shows all rows again." created="20261123194613" note="src/filter.md" notereadonly="1">
         <native>The filter bar on the right decides which rows the translation sheet shows. A row is shown when it matches all settings. As soon as a filter is set, the bar shows _Special filters on!_ and the status bar _Filter active_. _Reset filter_ (also in the menu _Search_) shows all rows again.</native>
@@ -994,6 +998,30 @@
       <row id="To set the status of many rows at once, use the menu _Column › Status_ (all rows shown), or the context menu of the project tree (all rows of a part)." created="20261123194613" note="src/translating.md" notereadonly="1">
         <native>To set the status of many rows at once, use the menu _Column › Status_ (all rows shown), or the context menu of the project tree (all rows of a part).</native>
         <lang id="de" date="20261123194651" status="3">Um den Status vieler Zeilen auf einmal zu setzen, verwenden Sie das Menü _Spalte › Status_ (alle angezeigten Zeilen) oder das Kontextmenü des Projektbaums (alle Zeilen eines Teils).</lang>
+      </row>
+      <row id="Several rows at once" state="0" created="20261127172757" note="src/translating.md" notereadonly="1">
+        <native>Several rows at once</native>
+        <lang id="de" date="20261127172845" status="3">Mehrere Zeilen auf einmal</lang>
+      </row>
+      <row id="Select several rows with `Ctrl`+click (adds a row or removes it) or `Shift`+click (all rows from the current row to the clicked one). `Ctrl+A` selects all rows of the sheet. The status, _Copy from_, _Clear translations…_, the marks and _Screenshot › Add for the selected rows…_ then apply to all selected rows, in the current language:" state="0" created="20261127172757" note="src/translating.md" notereadonly="1">
+        <native>Select several rows with `Ctrl`+click (adds a row or removes it) or `Shift`+click (all rows from the current row to the clicked one). `Ctrl+A` selects all rows of the sheet. The status, _Copy from_, _Clear translations…_, the marks and _Screenshot › Add for the selected rows…_ then apply to all selected rows, in the current language:</native>
+        <lang id="de" date="20261127172845" status="3">Wählen Sie mehrere Zeilen mit `Strg`+Klick (fügt eine Zeile hinzu oder entfernt sie) oder `Umschalt`+Klick (alle Zeilen von der aktuellen bis zur angeklickten Zeile) aus. `Strg+A` wählt alle Zeilen der Tabelle aus. Der Status, _Übernehmen_, _Übersetzungen löschen…_, die Markierungen und _Screenshot › Für die ausgewählten Zeilen hinzufügen…_ gelten dann für alle ausgewählten Zeilen, in der aktuellen Sprache:</lang>
+      </row>
+      <row id="A mark (_Do not translate_, _Marked_, _Excluded_) takes its new value from the current row, the one with the frame: if it is not marked, all selected rows become marked." state="0" created="20261127172757" note="src/translating.md" notereadonly="1">
+        <native>A mark (_Do not translate_, _Marked_, _Excluded_) takes its new value from the current row, the one with the frame: if it is not marked, all selected rows become marked.</native>
+        <lang id="de" date="20261127172845" status="3">Eine Markierung (_Nicht übersetzen_, _Markiert_, _Ausgeschlossen_) übernimmt ihren neuen Wert von der aktuellen Zeile, der mit dem Rahmen: Ist sie dort nicht gesetzt, wird sie bei allen ausgewählten Zeilen gesetzt.</lang>
+      </row>
+      <row id="Clearing several translations asks first." state="0" created="20261127172757" note="src/translating.md" notereadonly="1">
+        <native>Clearing several translations asks first.</native>
+        <lang id="de" date="20261127172845" status="3">Vor dem Löschen mehrerer Übersetzungen fragt Susi nach.</lang>
+      </row>
+      <row id="_Properties…_ and the commands for pictures concern one row only; they are not offered then." state="0" created="20261127172757" note="src/translating.md" notereadonly="1">
+        <native>_Properties…_ and the commands for pictures concern one row only; they are not offered then.</native>
+        <lang id="de" date="20261127172845" status="3">_Eigenschaften…_ und die Befehle für Bilder betreffen nur eine Zeile; sie werden dann nicht angeboten.</lang>
+      </row>
+      <row id="A click without `Ctrl` or `Shift`, or an arrow key, selects a single row again." state="0" created="20261127172757" note="src/translating.md" notereadonly="1">
+        <native>A click without `Ctrl` or `Shift`, or an arrow key, selects a single row again.</native>
+        <lang id="de" date="20261127172845" status="3">Ein Klick ohne `Strg` oder `Umschalt` oder eine Pfeiltaste wählt wieder eine einzelne Zeile aus.</lang>
       </row>
       <row id="Rows that need special care" created="20261123194613" note="src/translating.md" notereadonly="1">
         <native>Rows that need special care</native>
@@ -2802,6 +2830,30 @@
       <row id="Edit the selected cell" created="20261123194613" note="src/shortcuts.md" notereadonly="1">
         <native>Edit the selected cell</native>
         <lang id="de" date="20261123194651" status="3">Die ausgewählte Zelle bearbeiten</lang>
+      </row>
+      <row id="`Ctrl`+click" state="0" created="20261127172757" note="src/shortcuts.md" notereadonly="1">
+        <native>`Ctrl`+click</native>
+        <lang id="de" date="20261127172845" status="3">`Strg`+Klick</lang>
+      </row>
+      <row id="Add a row to the selection or remove it" state="0" created="20261127172757" note="src/shortcuts.md" notereadonly="1">
+        <native>Add a row to the selection or remove it</native>
+        <lang id="de" date="20261127172845" status="3">Eine Zeile zur Auswahl hinzufügen oder daraus entfernen</lang>
+      </row>
+      <row id="`Shift`+click" state="0" created="20261127172757" note="src/shortcuts.md" notereadonly="1">
+        <native>`Shift`+click</native>
+        <lang id="de" date="20261127172845" status="3">`Umschalt`+Klick</lang>
+      </row>
+      <row id="Select the rows from the current row to the clicked one" state="0" created="20261127172757" note="src/shortcuts.md" notereadonly="1">
+        <native>Select the rows from the current row to the clicked one</native>
+        <lang id="de" date="20261127172845" status="3">Die Zeilen von der aktuellen bis zur angeklickten Zeile auswählen</lang>
+      </row>
+      <row id="`Ctrl+A`" state="0" created="20261127172757" note="src/shortcuts.md" notereadonly="1">
+        <native>`Ctrl+A`</native>
+        <lang id="de" date="20261127172845" status="3">`Strg+A`</lang>
+      </row>
+      <row id="Select all rows" state="0" created="20261127172757" note="src/shortcuts.md" notereadonly="1">
+        <native>Select all rows</native>
+        <lang id="de" date="20261127172845" status="3">Alle Zeilen auswählen</lang>
       </row>
       <row id="While editing a cell" created="20261123194613" note="src/shortcuts.md" notereadonly="1">
         <native>While editing a cell</native>

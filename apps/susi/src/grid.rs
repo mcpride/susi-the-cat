@@ -8,13 +8,24 @@ use susi_core::status::{RowStatus, TranslationStatus};
 
 use crate::actions::Action;
 use crate::app::{Nav, SheetSort, SortColumn, SusiApp};
-use crate::panels::{column_items, row_menu_items, status_color};
+use crate::panels::{RowMenu, column_items, row_menu_items, status_color};
+use crate::selection::Click;
 
 const ROW_HEIGHT: f32 = 20.0;
 
+/// A click on a cell of the sheet.
+struct CellClick {
+    row: RowRef,
+    /// Language of the column (the current language for columns without one).
+    lang: Option<String>,
+    click: Click,
+    /// Right click: keeps a selection that contains the row (for its context menu).
+    secondary: bool,
+}
+
 #[derive(Default)]
 struct Events {
-    click: Option<(RowRef, Option<String>)>,
+    click: Option<CellClick>,
     double: Option<(RowRef, String)>,
     commit: bool,
     next: bool,
@@ -80,7 +91,12 @@ fn sheet_toolbar(app: &mut SusiApp, ui: &mut Ui) {
             app.tab = crate::app::BottomTab::Editor;
         }
         ui.separator();
-        ui.label(trn(app.rows.len(), "{n} row", "{n} rows"));
+        let mut count = trn(app.rows.len(), "{n} row", "{n} rows");
+        if app.multi_selection() {
+            count += ", ";
+            count += &susi_core::tf!("{count} selected", count = app.selection.len());
+        }
+        ui.label(count);
     });
 }
 
@@ -324,6 +340,7 @@ fn table(app: &mut SusiApp, ui: &mut Ui, langs: &[String]) -> Events {
         langs: &project_langs,
         rows: &app.rows,
         sel_idx: app.selected.as_ref().and_then(|s| app.rows.iter().position(|r| r == s)),
+        selection: app.multi_selection().then_some(&app.selection),
         cur_lang: app.lang.as_deref(),
         cols: &cols,
         widths: &widths,
@@ -431,7 +448,10 @@ struct BodyCtx<'a> {
     /// Project languages.
     langs: &'a [String],
     rows: &'a [RowRef],
+    /// Index of the current row.
     sel_idx: Option<usize>,
+    /// Several selected rows (including the current one, which gets a frame).
+    selection: Option<&'a std::collections::HashSet<RowRef>>,
     cur_lang: Option<&'a str>,
     cols: &'a [Col],
     widths: &'a [f32],
@@ -455,6 +475,7 @@ fn body(ui: &mut Ui, c: &BodyCtx<'_>, scroll_to: Option<usize>, cell_edit: &mut 
     }
     // Fills the rest of the view when all columns fit.
     tb = tb.column(Column::remainder());
+    let mut current_rect = None;
     tb.body(|body| {
         body.rows(ROW_HEIGHT, c.rows.len(), |mut row| {
             let i = row.index();
@@ -462,10 +483,17 @@ fn body(ui: &mut Ui, c: &BodyCtx<'_>, scroll_to: Option<usize>, cell_edit: &mut 
             let Some(data) = c.p.row(r) else {
                 return;
             };
-            row.set_selected(c.sel_idx == Some(i));
-            row_cells(&mut row, c, r, data, cell_edit, ev);
+            row.set_selected(c.sel_idx == Some(i) || c.selection.is_some_and(|s| s.contains(r)));
+            let rect = row_cells(&mut row, c, r, data, cell_edit, ev);
+            if c.sel_idx == Some(i) {
+                current_rect = Some(rect);
+            }
         });
     });
+    // Among several selected rows, the current one (whose values toggles take) has a frame.
+    if let Some(rect) = current_rect.filter(|_| c.selection.is_some()) {
+        ui.painter().rect_stroke(rect, 0.0, ui.visuals().selection.stroke, egui::StrokeKind::Inside);
+    }
     if let Some(i) = scroll_to {
         let spacing = ui.spacing().item_spacing;
         let y = origin.y + i as f32 * (ROW_HEIGHT + spacing.y);
@@ -482,25 +510,36 @@ fn body(ui: &mut Ui, c: &BodyCtx<'_>, scroll_to: Option<usize>, cell_edit: &mut 
 }
 
 /// Selection, editing and the row context menu of a cell in the column of `lang` (the current
-/// language for columns without a language); `langs` are the project languages.
-fn click_events(resp: &egui::Response, langs: &[String], r: &RowRef, lang: Option<&str>, data_row: bool, ev: &mut Events) {
+/// language for columns without a language).
+fn click_events(resp: &egui::Response, c: &BodyCtx<'_>, r: &RowRef, lang: Option<&str>, data_row: bool, ev: &mut Events) {
     if resp.clicked() || resp.secondary_clicked() {
-        ev.click = Some((r.clone(), lang.map(str::to_string)));
+        let click = Click::of(resp.ctx.input(|i| i.modifiers));
+        ev.click = Some(CellClick { row: r.clone(), lang: lang.map(str::to_string), click, secondary: resp.secondary_clicked() });
     }
     if resp.double_clicked()
         && let Some(l) = lang
     {
         ev.double = Some((r.clone(), l.to_string()));
     }
-    resp.context_menu(|ui| row_menu_items(ui, &mut ev.actions, langs, lang, data_row));
+    let m = RowMenu { data_row, several: c.selection.is_some_and(|s| s.contains(r)) };
+    resp.context_menu(|ui| row_menu_items(ui, &mut ev.actions, c.langs, lang, m));
 }
 
-fn row_cells(row: &mut egui_extras::TableRow<'_, '_>, c: &BodyCtx<'_>, r: &RowRef, data: &Row, cell_edit: &mut Option<crate::app::CellEdit>, ev: &mut Events) {
+/// The cells of a row; returns the rectangle they cover.
+fn row_cells(
+    row: &mut egui_extras::TableRow<'_, '_>,
+    c: &BodyCtx<'_>,
+    r: &RowRef,
+    data: &Row,
+    cell_edit: &mut Option<crate::app::CellEdit>,
+    ev: &mut Events,
+) -> Rect {
     let original_lang = c.p.original_lang(r);
+    let mut covered = Rect::NOTHING;
     for col in c.cols {
         if let Col::Lang(l) = col {
             let editing = cell_edit.as_ref().is_some_and(|e| e.row == *r && e.lang == *l);
-            let (_, resp) = row.col(|ui| {
+            let (rect, resp) = row.col(|ui| {
                 if editing {
                     edit_cell(ui, cell_edit, ev);
                 } else {
@@ -508,22 +547,25 @@ fn row_cells(row: &mut egui_extras::TableRow<'_, '_>, c: &BodyCtx<'_>, r: &RowRe
                     lang_cell(ui, &LangCell { row: data, lang: l, original_lang, problem }, &c.pal);
                 }
             });
+            covered = covered.union(rect);
             if !editing {
-                click_events(&resp, c.langs, r, Some(l), data.is_data(), ev);
+                click_events(&resp, c, r, Some(l), data.is_data(), ev);
             }
             continue;
         }
-        let (_, resp) = row.col(|ui| plain_cell(ui, col, c, r, data));
+        let (rect, resp) = row.col(|ui| plain_cell(ui, col, c, r, data));
+        covered = covered.union(rect);
         let resp = match col {
             Col::Marker => resp.on_hover_text(marker_hint(data)),
             Col::Original if has_newline(data.original()) => resp.on_hover_text(data.original()),
             Col::Date => resp.on_hover_text(date_hint(data, c.cur_lang)),
             _ => resp,
         };
-        click_events(&resp, c.langs, r, c.cur_lang, data.is_data(), ev);
+        click_events(&resp, c, r, c.cur_lang, data.is_data(), ev);
     }
-    let (_, resp) = row.col(|_| {});
-    click_events(&resp, c.langs, r, c.cur_lang, data.is_data(), ev);
+    let (rect, resp) = row.col(|_| {});
+    click_events(&resp, c, r, c.cur_lang, data.is_data(), ev);
+    covered.union(rect)
 }
 
 /// Cells of all columns except the language columns.
@@ -592,8 +634,15 @@ fn apply(app: &mut SusiApp, ev: Events) {
             app.actions.push(Action::Nav(Nav::Next));
         }
     }
-    if let Some((r, l)) = ev.click {
-        app.select(r);
+    if let Some(CellClick { row, lang: l, click, secondary }) = ev.click {
+        if secondary {
+            // The context menu of a selected row applies to the whole selection.
+            if !(app.multi_selection() && app.selection.contains(&row)) {
+                app.select(row);
+            }
+        } else {
+            app.click_row(row, click);
+        }
         app.scroll_to_selected = false;
         if l.is_some() && l != app.lang {
             // The date order depends on the current language.

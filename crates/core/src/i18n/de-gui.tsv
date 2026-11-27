@@ -14,6 +14,7 @@
 	The project file was changed by another program: {path}	Die Projektdatei wurde von einem anderen Programm geändert: {path}
 	The project file no longer exists: {path}	Die Projektdatei existiert nicht mehr: {path}
 @plural	{n} row|{n} rows	{n} Zeile|{n} Zeilen
+	{count} selected	{count} ausgewählt
 	Susi/Sisulizer project	Susi/Sisulizer-Projekt
 	Save project as	Projekt speichern unter
 @plural	{n} translation automatically saved to the translation memory|{n} translations automatically saved to the translation memory	{n} Übersetzung automatisch im Translation Memory gespeichert|{n} Übersetzungen automatisch im Translation Memory gespeichert
@@ -42,6 +43,7 @@
 	Edit	Bearbeiten
 	Copy original	Original übernehmen
 	Clear translation	Übersetzung löschen
+	Clear translations…	Übersetzungen löschen…
 	Edit cell	Zelle bearbeiten
 	Row properties / comment…	Zeileneigenschaften / Kommentar…
 	Search	Suchen
@@ -88,6 +90,7 @@
 	Previous row	Vorherige Zeile
 	Next row	Nächste Zeile
 	Last row	Letzte Zeile
+	Select all rows	Alle Zeilen auswählen
 	Properties…	Eigenschaften…
 	Translate with translation memory…	Mit Translation Memory übersetzen…
 	Save to translation memory	In Translation Memory speichern
@@ -267,6 +270,7 @@
 @plural	{n} row changed|{n} rows changed	{n} Zeile geändert|{n} Zeilen geändert
 	No row or language selected	Keine Zeile bzw. Sprache ausgewählt
 	The cell contains no translation; the status cannot be set	Die Zelle enthält keine Übersetzung; der Status kann nicht gesetzt werden
+@plural	{n} selected cell contains no translation|{n} selected cells contain no translation	{n} ausgewählte Zelle enthält keine Übersetzung|{n} ausgewählte Zellen enthalten keine Übersetzung
 	No language selected	Keine Sprache ausgewählt
 	Status "{status}" set for {count} ({lang})	Status „{status}“ für {count} ({lang}) gesetzt
 @plural	{n} translation|{n} translations	{n} Übersetzung|{n} Übersetzungen
@@ -333,6 +337,7 @@
 	Screenshot manifest	Screenshot-Manifest
 	Add screenshot to all rows…	Screenshot zu allen Zeilen hinzufügen…
 	Add for this row…	Für diese Zeile hinzufügen…
+	Add for the selected rows…	Für die ausgewählten Zeilen hinzufügen…
 	Add for all rows of the view…	Für alle Zeilen der Ansicht hinzufügen…
 	Paste from the clipboard	Aus der Zwischenablage einfügen
 	Screenshot:	Screenshot:
@@ -345,7 +350,7 @@
 	As links (images copied next to the export)	Als Links (Bilder werden neben den Export kopiert)
 	Embedded (Excel, second worksheet)	Eingebettet (Excel, zweites Tabellenblatt)
 	Add…	Hinzufügen…
-	Add image files and link them to the selected row	Bilddateien hinzufügen und mit der ausgewählten Zeile verknüpfen
+	Add image files and link them to the selected rows	Bilddateien hinzufügen und mit den ausgewählten Zeilen verknüpfen
 	Add screenshots	Screenshots hinzufügen
 	Images (PNG, JPEG)	Bilder (PNG, JPEG)
 	Paste	Einfügen
@@ -388,8 +393,10 @@
 @plural	{n} cell|{n} cells	{n} Zelle|{n} Zellen
 	Clear translations	Übersetzungen löschen
 	Delete {count} in the visible rows of the column {lang}?	{count} in den sichtbaren Zeilen der Spalte {lang} löschen?
+	Delete {count} in the selected rows of the column {lang}?	{count} in den ausgewählten Zeilen der Spalte {lang} löschen?
 	Their comments are deleted as well. This cannot be undone.	Ihre Kommentare werden ebenfalls gelöscht. Das lässt sich nicht rückgängig machen.
 	The column {lang} has no translations in the visible rows	Die Spalte {lang} hat in den sichtbaren Zeilen keine Übersetzungen
+	The selected rows have no translations in {lang}	Die ausgewählten Zeilen haben keine Übersetzungen in {lang}
 	{count} deleted ({lang})	{count} gelöscht ({lang})
 	Copies the translations of {from} into the visible rows of the column {lang}.	Übernimmt die Übersetzungen aus {from} in die sichtbaren Zeilen der Spalte {lang}.
 	Translations of {from} copied into {count} ({lang})	Übersetzungen aus {from} in {count} übernommen ({lang})

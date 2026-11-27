@@ -280,7 +280,10 @@ pub struct SusiApp {
     pub rows_stale: bool,
     /// Sort order of the sheet (header click); `None` = document order.
     pub sort: Option<SheetSort>,
+    /// Current row: the editor shows it, single-row commands use it; the anchor of `selection`.
     pub selected: Option<RowRef>,
+    /// Rows selected with `Ctrl`/`Shift` clicks, including `selected`; empty when only `selected` is.
+    pub selection: HashSet<RowRef>,
     pub scroll_to_selected: bool,
     pub cell_edit: Option<CellEdit>,
     pub log: Vec<LogEntry>,
@@ -351,6 +354,7 @@ impl SusiApp {
             rows_stale: false,
             sort: None,
             selected: None,
+            selection: HashSet::new(),
             scroll_to_selected: false,
             cell_edit: None,
             log: Vec::new(),
@@ -471,7 +475,7 @@ impl SusiApp {
         self.project = Some(p);
         self.dirty = false;
         self.tree = None;
-        self.selected = None;
+        self.clear_selection();
         self.cell_edit = None;
         self.issues.clear();
         self.issue_cells.clear();
@@ -677,12 +681,15 @@ impl SusiApp {
         if let Some(s) = self.sort {
             s.apply(p, &mut self.rows, self.lang.as_deref());
         }
+        crate::selection::retain_shown(&self.rows, &mut self.selected, &mut self.selection);
     }
 
+    /// Selects only `row`; if the sheet does not show it, the filter and tree node are reset.
     pub fn select(&mut self, row: RowRef) {
         if self.selected.as_ref() != Some(&row) {
             self.commit_cell_edit();
         }
+        self.selection.clear();
         if !self.rows.contains(&row) {
             self.tree = None;
             self.filter = FilterState::default();
@@ -690,6 +697,45 @@ impl SusiApp {
         }
         self.selected = Some(row);
         self.scroll_to_selected = true;
+    }
+
+    /// Changes the selection by a click on a row of the sheet.
+    pub fn click_row(&mut self, row: RowRef, click: crate::selection::Click) {
+        if click == crate::selection::Click::Single {
+            return self.select(row);
+        }
+        self.commit_cell_edit();
+        let (anchor, selection) = crate::selection::after_click(&self.rows, self.selected.as_ref(), &self.selection, &row, click);
+        self.selected = Some(anchor);
+        self.selection = selection;
+    }
+
+    /// Selects all rows of the sheet; the current row stays the anchor.
+    pub fn select_all(&mut self) {
+        let Some(first) = self.rows.first().cloned() else {
+            return;
+        };
+        self.commit_cell_edit();
+        if !self.selected.as_ref().is_some_and(|s| self.rows.contains(s)) {
+            self.selected = Some(first);
+        }
+        self.selection = if self.rows.len() > 1 { self.rows.iter().cloned().collect() } else { HashSet::new() };
+    }
+
+    pub fn clear_selection(&mut self) {
+        self.selected = None;
+        self.selection.clear();
+    }
+
+    /// The rows the row commands apply to, in the order of the sheet: the selected rows, or else
+    /// the current row.
+    pub fn selected_rows(&self) -> Vec<RowRef> {
+        crate::selection::ordered(&self.rows, self.selected.as_ref(), &self.selection)
+    }
+
+    /// Whether several rows are selected.
+    pub fn multi_selection(&self) -> bool {
+        self.selection.len() > 1 && self.selected.as_ref().is_some_and(|s| self.selection.contains(s))
     }
 
     pub fn selected_index(&self) -> Option<usize> {
@@ -726,6 +772,9 @@ impl SusiApp {
         if r.locked() {
             self.warn(susi_core::tf!("Row \"{row}\" is marked as \"Do not translate\"", row = r.id()));
             return;
+        }
+        if self.selected.as_ref() != Some(&row) {
+            self.selection.clear();
         }
         if r.is_data() {
             // Pictures and binary data are edited in the editor tab.
@@ -797,6 +846,9 @@ impl SusiApp {
             if ctx.input_mut(|i| i.consume_key(Modifiers::NONE, key)) {
                 self.actions.push(action);
             }
+        }
+        if ctx.input_mut(|i| i.consume_shortcut(&KeyboardShortcut::new(Modifiers::COMMAND, Key::A))) {
+            self.actions.push(Action::SelectAll);
         }
     }
 }

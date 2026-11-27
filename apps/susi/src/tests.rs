@@ -180,6 +180,83 @@ fn column_commands() {
     assert_eq!(cells(&app, &current), others);
 }
 
+/// Ctrl and Shift clicks select several rows. Row commands then apply to all of them, toggles take
+/// the value of the current row, and clearing asks first.
+#[test]
+fn several_selected_rows() {
+    use crate::selection::Click;
+    use susi_core::status::TranslationStatus;
+    let ctx = egui::Context::default();
+    let mut app = app_with_fixture(&ctx, &std::env::temp_dir(), "en");
+    run(&ctx, &mut app, 2);
+    let lang = app.lang.clone().unwrap();
+    let p = app.project.as_ref().unwrap();
+    let editable = |r: &&susi_core::model::RowRef| {
+        p.original_lang(r) != lang && p.row(r).is_some_and(|row| !row.locked() && !row.excluded() && !row.raw && row.text(&lang).is_some())
+    };
+    let rows: Vec<_> = app.rows.iter().filter(editable).take(3).cloned().collect();
+    let other = app.rows.iter().filter(editable).nth(3).cloned().unwrap();
+    assert_eq!(rows.len(), 3, "fixture needs translated rows in {lang}");
+    let text = |app: &SusiApp, r| app.project.as_ref().unwrap().row(r).unwrap().text(&lang).map(str::to_string);
+    let other_text = text(&app, &other);
+
+    app.click_row(rows[0].clone(), Click::Single);
+    app.click_row(rows[1].clone(), Click::Toggle);
+    app.click_row(rows[2].clone(), Click::Toggle);
+    assert!(app.multi_selection());
+    assert_eq!((app.selected.as_ref(), app.selected_rows()), (Some(&rows[2]), rows.clone()));
+    run(&ctx, &mut app, 2);
+
+    app.actions.push(Action::SetStatus(TranslationStatus::Complete));
+    run(&ctx, &mut app, 1);
+    let p = app.project.as_ref().unwrap();
+    assert!(rows.iter().all(|r| p.row(r).unwrap().tstatus(&lang) == TranslationStatus::Complete));
+    // The editors show and change only the current cell.
+    app.actions.push(Action::SetCellStatus(TranslationStatus::ForReview));
+    run(&ctx, &mut app, 1);
+    let p = app.project.as_ref().unwrap();
+    let statuses: Vec<_> = rows.iter().map(|r| p.row(r).unwrap().tstatus(&lang)).collect();
+    assert_eq!(statuses, [TranslationStatus::Complete, TranslationStatus::Complete, TranslationStatus::ForReview]);
+
+    // The current row decides: it is not marked, so all become marked.
+    let p = app.project.as_mut().unwrap();
+    p.row_mut(&rows[0]).unwrap().set_marked(true);
+    p.row_mut(&rows[2]).unwrap().set_marked(false);
+    app.actions.push(Action::ToggleMarked);
+    run(&ctx, &mut app, 1);
+    let p = app.project.as_ref().unwrap();
+    assert!(rows.iter().all(|r| p.row(r).unwrap().marked()));
+    assert!(!p.row(&other).unwrap().marked());
+
+    // Clearing several cells asks first.
+    app.actions.push(Action::ClearTranslation);
+    run(&ctx, &mut app, 1);
+    let Some(Dialog::ClearColumn(d)) = app.dialog.take() else { panic!("no confirmation") };
+    assert!(d.selection && d.rows == rows, "{:?}", d.rows);
+    app.clear_column(&d);
+    assert!(rows.iter().all(|r| text(&app, r).is_none()));
+    assert_eq!(text(&app, &other), other_text);
+
+    // Copying fills all selected cells.
+    app.actions.push(Action::CopyIntoCell(None));
+    run(&ctx, &mut app, 1);
+    let p = app.project.as_ref().unwrap();
+    assert!(rows.iter().all(|r| text(&app, r).as_deref() == Some(p.row(r).unwrap().original())));
+    assert_eq!(text(&app, &other), other_text);
+
+    // Shift selects a range, Ctrl+A all rows, a plain click or the arrow keys one row again.
+    app.click_row(app.rows[1].clone(), Click::Single);
+    app.click_row(app.rows[4].clone(), Click::Range);
+    assert_eq!((app.selected.as_ref(), app.selected_rows()), (Some(&app.rows[1]), app.rows[1..=4].to_vec()));
+    app.actions.push(Action::SelectAll);
+    run(&ctx, &mut app, 1);
+    assert_eq!(app.selected_rows(), app.rows);
+    app.actions.push(Action::Nav(crate::app::Nav::Next));
+    run(&ctx, &mut app, 1);
+    assert!(!app.multi_selection());
+    assert_eq!(app.selected_rows(), [app.rows[2].clone()]);
+}
+
 /// The export languages fill the dialog in as many equal columns as fit.
 #[test]
 fn language_grid_columns() {
@@ -333,7 +410,8 @@ fn render_all_views_and_dialogs(ui_language: &str) {
             targets: CopyTargets { empty: 0, translated: 0 },
             overwrite: false,
         }),
-        Dialog::ClearColumn(ClearColumnDialog { lang: "de".into(), rows: app.rows.clone() }),
+        Dialog::ClearColumn(ClearColumnDialog { lang: "de".into(), rows: app.rows.clone(), selection: false }),
+        Dialog::ClearColumn(ClearColumnDialog { lang: "de".into(), rows: app.rows[..2].to_vec(), selection: true }),
         Dialog::Settings(Box::new(app.settings.clone())),
         Dialog::Export(ExportDialog {
             path: tmp.join("export.xlsx"),
