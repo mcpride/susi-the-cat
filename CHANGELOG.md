@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.18.4](https://github.com/mcpride/susi-the-cat/compare/v0.18.3...v0.18.4) (2026-11-27)
+
+### Bug Fixes
+
+* make the "Original" column optional in table exports. ([2680c6b](https://github.com/mcpride/susi-the-cat/commit/2680c6b9990ce791a75d9b7a68b3cda30bffbc4a))
+
 ## [0.18.3](https://github.com/mcpride/susi-the-cat/compare/v0.18.2...v0.18.3) (2026-11-27)
 
 ### Bug Fixes
